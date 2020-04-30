@@ -41,11 +41,11 @@ class HttpRedirectsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head300(
+    async def get302(
         self,
         **kwargs
     ) -> None:
-        """Return 300 status code and redirect to /http/success/200.
+        """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -57,143 +57,7 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.head300.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 300]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        if response.status_code == 300:
-            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    head300.metadata = {'url': '/http/redirect/300'}  # type: ignore
-
-    @distributed_trace_async
-    async def get300(
-        self,
-        **kwargs
-    ) -> List[str]:
-        """Return 300 status code and redirect to /http/success/200.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
-        :rtype: list[str] or None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get300.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 300]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        deserialized = None
-        if response.status_code == 300:
-            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            deserialized = self._deserialize('[str]', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, response_headers)
-
-        return deserialized
-    get300.metadata = {'url': '/http/redirect/300'}  # type: ignore
-
-    @distributed_trace_async
-    async def head301(
-        self,
-        **kwargs
-    ) -> None:
-        """Return 301 status code and redirect to /http/success/200.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.head301.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 301]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        if response.status_code == 301:
-            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    head301.metadata = {'url': '/http/redirect/301'}  # type: ignore
-
-    @distributed_trace_async
-    async def get301(
-        self,
-        **kwargs
-    ) -> None:
-        """Return 301 status code and redirect to /http/success/200.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get301.metadata['url']  # type: ignore
+        url = self.get302.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -206,74 +70,19 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 301]:
+        if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
-        if response.status_code == 301:
+        if response.status_code == 302:
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    get301.metadata = {'url': '/http/redirect/301'}  # type: ignore
-
-    @distributed_trace_async
-    async def put301(
-        self,
-        boolean_value: Optional[bool] = True,
-        **kwargs
-    ) -> None:
-        """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put301.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [301]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    put301.metadata = {'url': '/http/redirect/301'}  # type: ignore
+    get302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace_async
     async def head302(
@@ -318,50 +127,6 @@ class HttpRedirectsOperations:
           return cls(pipeline_response, None, response_headers)
 
     head302.metadata = {'url': '/http/redirect/302'}  # type: ignore
-
-    @distributed_trace_async
-    async def get302(
-        self,
-        **kwargs
-    ) -> None:
-        """Return 302 status code and redirect to /http/success/200.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get302.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 302]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        if response.status_code == 302:
-            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    get302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace_async
     async def patch302(
@@ -475,12 +240,15 @@ class HttpRedirectsOperations:
     post303.metadata = {'url': '/http/redirect/303'}  # type: ignore
 
     @distributed_trace_async
-    async def head307(
+    async def delete307(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
-        """Redirect with 307, resulting in a 200 success.
+        """Delete redirected with 307, resulting in a 200 after redirect.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -489,18 +257,27 @@ class HttpRedirectsOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.head307.metadata['url']  # type: ignore
+        url = self.delete307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -516,7 +293,7 @@ class HttpRedirectsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    head307.metadata = {'url': '/http/redirect/307'}  # type: ignore
+    delete307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace_async
     async def get307(
@@ -563,6 +340,50 @@ class HttpRedirectsOperations:
     get307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace_async
+    async def head307(
+        self,
+        **kwargs
+    ) -> None:
+        """Redirect with 307, resulting in a 200 success.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.head307.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.head(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 307]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        if response.status_code == 307:
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    head307.metadata = {'url': '/http/redirect/307'}  # type: ignore
+
+    @distributed_trace_async
     async def options307(
         self,
         **kwargs
@@ -605,62 +426,6 @@ class HttpRedirectsOperations:
           return cls(pipeline_response, None, response_headers)
 
     options307.metadata = {'url': '/http/redirect/307'}  # type: ignore
-
-    @distributed_trace_async
-    async def put307(
-        self,
-        boolean_value: Optional[bool] = True,
-        **kwargs
-    ) -> None:
-        """Put redirected with 307, resulting in a 200 after redirect.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put307.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 307]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        if response.status_code == 307:
-            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    put307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace_async
     async def patch307(
@@ -775,12 +540,12 @@ class HttpRedirectsOperations:
     post307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace_async
-    async def delete307(
+    async def put307(
         self,
         boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
-        """Delete redirected with 307, resulting in a 200 after redirect.
+        """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
@@ -795,7 +560,7 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete307.metadata['url']  # type: ignore
+        url = self.put307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -811,7 +576,7 @@ class HttpRedirectsOperations:
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
-        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -828,4 +593,239 @@ class HttpRedirectsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    delete307.metadata = {'url': '/http/redirect/307'}  # type: ignore
+    put307.metadata = {'url': '/http/redirect/307'}  # type: ignore
+
+    @distributed_trace_async
+    async def get300(
+        self,
+        **kwargs
+    ) -> List[str]:
+        """Return 300 status code and redirect to /http/success/200.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: list or the result of cls(response)
+        :rtype: list[str] or None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get300.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 300]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        deserialized = None
+        if response.status_code == 300:
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+            deserialized = self._deserialize('[str]', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+    get300.metadata = {'url': '/http/redirect/300'}  # type: ignore
+
+    @distributed_trace_async
+    async def head300(
+        self,
+        **kwargs
+    ) -> None:
+        """Return 300 status code and redirect to /http/success/200.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.head300.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.head(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 300]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        if response.status_code == 300:
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    head300.metadata = {'url': '/http/redirect/300'}  # type: ignore
+
+    @distributed_trace_async
+    async def get301(
+        self,
+        **kwargs
+    ) -> None:
+        """Return 301 status code and redirect to /http/success/200.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get301.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 301]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        if response.status_code == 301:
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    get301.metadata = {'url': '/http/redirect/301'}  # type: ignore
+
+    @distributed_trace_async
+    async def head301(
+        self,
+        **kwargs
+    ) -> None:
+        """Return 301 status code and redirect to /http/success/200.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.head301.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.head(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 301]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        if response.status_code == 301:
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    head301.metadata = {'url': '/http/redirect/301'}  # type: ignore
+
+    @distributed_trace_async
+    async def put301(
+        self,
+        boolean_value: Optional[bool] = True,
+        **kwargs
+    ) -> None:
+        """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.put301.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [301]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    put301.metadata = {'url': '/http/redirect/301'}  # type: ignore

@@ -80,16 +80,16 @@ class Error(msrest.serialization.Model):
 
     :param code:
     :type code: int
-    :param message:
-    :type message: str
     :param fields:
     :type fields: str
+    :param message:
+    :type message: str
     """
 
     _attribute_map = {
         'code': {'key': 'code', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
         'fields': {'key': 'fields', 'type': 'str'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
     def __init__(
@@ -98,8 +98,8 @@ class Error(msrest.serialization.Model):
     ):
         super(Error, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
-        self.message = kwargs.get('message', None)
         self.fields = kwargs.get('fields', None)
+        self.message = kwargs.get('message', None)
 
 
 class Product(msrest.serialization.Model):
@@ -109,12 +109,8 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param display_names: Non required array of unique items from 0 to 6 elements.
-    :type display_names: list[str]
     :param capacity: Non required int betwen 0 and 100 exclusive.
     :type capacity: int
-    :param image: Image URL representing the product.
-    :type image: str
     :param child: Required. The product documentation.
     :type child: ~validation.models.ChildProduct
     :param const_child: Required. The product documentation.
@@ -125,28 +121,32 @@ class Product(msrest.serialization.Model):
     :vartype const_string: str
     :ivar const_string_as_enum: Constant string as Enum. Default value: "constant_string_as_enum".
     :vartype const_string_as_enum: str
+    :param display_names: Non required array of unique items from 0 to 6 elements.
+    :type display_names: list[str]
+    :param image: Image URL representing the product.
+    :type image: str
     """
 
     _validation = {
-        'display_names': {'max_items': 6, 'min_items': 0, 'unique': True},
         'capacity': {'maximum_ex': 100, 'minimum_ex': 0},
-        'image': {'pattern': r'http://\w+'},
         'child': {'required': True},
         'const_child': {'required': True},
         'const_int': {'required': True, 'constant': True},
         'const_string': {'required': True, 'constant': True},
         'const_string_as_enum': {'constant': True},
+        'display_names': {'max_items': 6, 'min_items': 0, 'unique': True},
+        'image': {'pattern': r'http://\w+'},
     }
 
     _attribute_map = {
-        'display_names': {'key': 'display_names', 'type': '[str]'},
         'capacity': {'key': 'capacity', 'type': 'int'},
-        'image': {'key': 'image', 'type': 'str'},
         'child': {'key': 'child', 'type': 'ChildProduct'},
         'const_child': {'key': 'constChild', 'type': 'ConstantProduct'},
         'const_int': {'key': 'constInt', 'type': 'int'},
         'const_string': {'key': 'constString', 'type': 'str'},
         'const_string_as_enum': {'key': 'constStringAsEnum', 'type': 'str'},
+        'display_names': {'key': 'display_names', 'type': '[str]'},
+        'image': {'key': 'image', 'type': 'str'},
     }
 
     const_int = 0
@@ -158,8 +158,8 @@ class Product(msrest.serialization.Model):
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)
-        self.display_names = kwargs.get('display_names', None)
         self.capacity = kwargs.get('capacity', None)
-        self.image = kwargs.get('image', None)
         self.child = kwargs['child']
         self.const_child = kwargs['const_child']
+        self.display_names = kwargs.get('display_names', None)
+        self.image = kwargs.get('image', None)

@@ -223,6 +223,481 @@ class XmlOperations:
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}  # type: ignore
 
     @distributed_trace_async
+    async def get_empty_child_element(
+        self,
+        **kwargs
+    ) -> "models.Banana":
+        """Gets an XML document with an empty child element.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Banana or the result of cls(response)
+        :rtype: ~xmlservice.models.Banana
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Banana"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_empty_child_element.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/xml'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('Banana', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_empty_child_element(
+        self,
+        banana: "models.Banana",
+        **kwargs
+    ) -> None:
+        """Puts a value with an empty child element.
+
+        :param banana:
+        :type banana: ~xmlservice.models.Banana
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_empty_child_element.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(banana, 'Banana', is_xml=True)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
+
+    @distributed_trace_async
+    async def list_containers(
+        self,
+        **kwargs
+    ) -> "models.ListContainersResponse":
+        """Lists containers in a storage account.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ListContainersResponse or the result of cls(response)
+        :rtype: ~xmlservice.models.ListContainersResponse
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListContainersResponse"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        comp = "list"
+
+        # Construct URL
+        url = self.list_containers.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/xml'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('ListContainersResponse', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    list_containers.metadata = {'url': '/xml/'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_service_properties(
+        self,
+        **kwargs
+    ) -> "models.StorageServiceProperties":
+        """Gets storage service properties.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: StorageServiceProperties or the result of cls(response)
+        :rtype: ~xmlservice.models.StorageServiceProperties
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageServiceProperties"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        comp = "properties"
+        restype = "service"
+
+        # Construct URL
+        url = self.get_service_properties.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
+        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/xml'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('StorageServiceProperties', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_service_properties.metadata = {'url': '/xml/'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_service_properties(
+        self,
+        properties: "models.StorageServiceProperties",
+        **kwargs
+    ) -> None:
+        """Puts storage service properties.
+
+        :param properties:
+        :type properties: ~xmlservice.models.StorageServiceProperties
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        comp = "properties"
+        restype = "service"
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_service_properties.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
+        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(properties, 'StorageServiceProperties', is_xml=True)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_service_properties.metadata = {'url': '/xml/'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_acls(
+        self,
+        **kwargs
+    ) -> List["models.SignedIdentifier"]:
+        """Gets storage ACLs for a container.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: list or the result of cls(response)
+        :rtype: list[~xmlservice.models.SignedIdentifier]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.SignedIdentifier"]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        comp = "acl"
+        restype = "container"
+
+        # Construct URL
+        url = self.get_acls.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
+        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/xml'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('[SignedIdentifier]', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_acls(
+        self,
+        properties: List["models.SignedIdentifier"],
+        **kwargs
+    ) -> None:
+        """Puts storage ACLs for a container.
+
+        :param properties:
+        :type properties: list[~xmlservice.models.SignedIdentifier]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        comp = "acl"
+        restype = "container"
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_acls.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
+        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'wrapped': True, 'itemsName': 'SignedIdentifier'}}
+        body_content = self._serialize.body(properties, '[SignedIdentifier]', is_xml=True, serialization_ctxt=serialization_ctxt)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
+
+    @distributed_trace_async
+    async def list_blobs(
+        self,
+        **kwargs
+    ) -> "models.ListBlobsResponse":
+        """Lists blobs in a storage container.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ListBlobsResponse or the result of cls(response)
+        :rtype: ~xmlservice.models.ListBlobsResponse
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListBlobsResponse"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        comp = "list"
+        restype = "container"
+
+        # Construct URL
+        url = self.list_blobs.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
+        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/xml'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('ListBlobsResponse', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    list_blobs.metadata = {'url': '/xml/mycontainer'}  # type: ignore
+
+    @distributed_trace_async
+    async def json_input(
+        self,
+        id: Optional[int] = None,
+        **kwargs
+    ) -> None:
+        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
+
+        :param id:
+        :type id: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        _properties = models.JSONInput(id=id)
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.json_input.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_properties, 'JSONInput')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    json_input.metadata = {'url': '/xml/jsoninput'}  # type: ignore
+
+    @distributed_trace_async
+    async def json_output(
+        self,
+        **kwargs
+    ) -> "models.JSONOutput":
+        """A Swagger with XML that has one operation that returns JSON. ID number 42.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: JSONOutput or the result of cls(response)
+        :rtype: ~xmlservice.models.JSONOutput
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.JSONOutput"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.json_output.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('JSONOutput', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    json_output.metadata = {'url': '/xml/jsonoutput'}  # type: ignore
+
+    @distributed_trace_async
     async def get_simple(
         self,
         **kwargs
@@ -906,478 +1381,3 @@ class XmlOperations:
           return cls(pipeline_response, None, {})
 
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_empty_child_element(
-        self,
-        **kwargs
-    ) -> "models.Banana":
-        """Gets an XML document with an empty child element.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Banana or the result of cls(response)
-        :rtype: ~xmlservice.models.Banana
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Banana"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_empty_child_element.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/xml'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = self._deserialize('Banana', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_empty_child_element(
-        self,
-        banana: "models.Banana",
-        **kwargs
-    ) -> None:
-        """Puts a value with an empty child element.
-
-        :param banana:
-        :type banana: ~xmlservice.models.Banana
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = self.put_empty_child_element.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(banana, 'Banana', is_xml=True)
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [201]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
-
-    @distributed_trace_async
-    async def list_containers(
-        self,
-        **kwargs
-    ) -> "models.ListContainersResponse":
-        """Lists containers in a storage account.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListContainersResponse or the result of cls(response)
-        :rtype: ~xmlservice.models.ListContainersResponse
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListContainersResponse"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        comp = "list"
-
-        # Construct URL
-        url = self.list_containers.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/xml'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = self._deserialize('ListContainersResponse', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    list_containers.metadata = {'url': '/xml/'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_service_properties(
-        self,
-        **kwargs
-    ) -> "models.StorageServiceProperties":
-        """Gets storage service properties.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageServiceProperties or the result of cls(response)
-        :rtype: ~xmlservice.models.StorageServiceProperties
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageServiceProperties"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        comp = "properties"
-        restype = "service"
-
-        # Construct URL
-        url = self.get_service_properties.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
-        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/xml'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = self._deserialize('StorageServiceProperties', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_service_properties.metadata = {'url': '/xml/'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_service_properties(
-        self,
-        properties: "models.StorageServiceProperties",
-        **kwargs
-    ) -> None:
-        """Puts storage service properties.
-
-        :param properties:
-        :type properties: ~xmlservice.models.StorageServiceProperties
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        comp = "properties"
-        restype = "service"
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = self.put_service_properties.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
-        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(properties, 'StorageServiceProperties', is_xml=True)
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [201]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_service_properties.metadata = {'url': '/xml/'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_acls(
-        self,
-        **kwargs
-    ) -> List["models.SignedIdentifier"]:
-        """Gets storage ACLs for a container.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
-        :rtype: list[~xmlservice.models.SignedIdentifier]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.SignedIdentifier"]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        comp = "acl"
-        restype = "container"
-
-        # Construct URL
-        url = self.get_acls.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
-        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/xml'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = self._deserialize('[SignedIdentifier]', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_acls(
-        self,
-        properties: List["models.SignedIdentifier"],
-        **kwargs
-    ) -> None:
-        """Puts storage ACLs for a container.
-
-        :param properties:
-        :type properties: list[~xmlservice.models.SignedIdentifier]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        comp = "acl"
-        restype = "container"
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = self.put_acls.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
-        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'wrapped': True, 'itemsName': 'SignedIdentifier'}}
-        body_content = self._serialize.body(properties, '[SignedIdentifier]', is_xml=True, serialization_ctxt=serialization_ctxt)
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [201]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
-
-    @distributed_trace_async
-    async def list_blobs(
-        self,
-        **kwargs
-    ) -> "models.ListBlobsResponse":
-        """Lists blobs in a storage container.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListBlobsResponse or the result of cls(response)
-        :rtype: ~xmlservice.models.ListBlobsResponse
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListBlobsResponse"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        comp = "list"
-        restype = "container"
-
-        # Construct URL
-        url = self.list_blobs.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
-        query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/xml'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = self._deserialize('ListBlobsResponse', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    list_blobs.metadata = {'url': '/xml/mycontainer'}  # type: ignore
-
-    @distributed_trace_async
-    async def json_input(
-        self,
-        id: Optional[int] = None,
-        **kwargs
-    ) -> None:
-        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
-
-        :param id:
-        :type id: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        _properties = models.JSONInput(id=id)
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.json_input.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_properties, 'JSONInput')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    json_input.metadata = {'url': '/xml/jsoninput'}  # type: ignore
-
-    @distributed_trace_async
-    async def json_output(
-        self,
-        **kwargs
-    ) -> "models.JSONOutput":
-        """A Swagger with XML that has one operation that returns JSON. ID number 42.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSONOutput or the result of cls(response)
-        :rtype: ~xmlservice.models.JSONOutput
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.JSONOutput"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.json_output.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = self._deserialize('JSONOutput', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    json_output.metadata = {'url': '/xml/jsonoutput'}  # type: ignore

@@ -42,15 +42,15 @@ class CustomParameterGroup(msrest.serialization.Model):
 class OdataProductResult(msrest.serialization.Model):
     """OdataProductResult.
 
-    :param values:
-    :type values: list[~paging.models.Product]
     :param odata_next_link:
     :type odata_next_link: str
+    :param values:
+    :type values: list[~paging.models.Product]
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[Product]'},
         'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
+        'values': {'key': 'values', 'type': '[Product]'},
     }
 
     def __init__(
@@ -58,8 +58,8 @@ class OdataProductResult(msrest.serialization.Model):
         **kwargs
     ):
         super(OdataProductResult, self).__init__(**kwargs)
-        self.values = kwargs.get('values', None)
         self.odata_next_link = kwargs.get('odata_next_link', None)
+        self.values = kwargs.get('values', None)
 
 
 class OperationResult(msrest.serialization.Model):
@@ -211,15 +211,15 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
     }
 
     def __init__(
@@ -227,22 +227,22 @@ class ProductProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
+        self.id = kwargs.get('id', None)
 
 
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :param values:
-    :type values: list[~paging.models.Product]
     :param next_link:
     :type next_link: str
+    :param values:
+    :type values: list[~paging.models.Product]
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[Product]'},
         'next_link': {'key': 'nextLink', 'type': 'str'},
+        'values': {'key': 'values', 'type': '[Product]'},
     }
 
     def __init__(
@@ -250,22 +250,22 @@ class ProductResult(msrest.serialization.Model):
         **kwargs
     ):
         super(ProductResult, self).__init__(**kwargs)
-        self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
+        self.values = kwargs.get('values', None)
 
 
 class ProductResultValue(msrest.serialization.Model):
     """ProductResultValue.
 
-    :param value:
-    :type value: list[~paging.models.Product]
     :param next_link:
     :type next_link: str
+    :param value:
+    :type value: list[~paging.models.Product]
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': '[Product]'},
         'next_link': {'key': 'nextLink', 'type': 'str'},
+        'value': {'key': 'value', 'type': '[Product]'},
     }
 
     def __init__(
@@ -273,5 +273,5 @@ class ProductResultValue(msrest.serialization.Model):
         **kwargs
     ):
         super(ProductResultValue, self).__init__(**kwargs)
-        self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
+        self.value = kwargs.get('value', None)

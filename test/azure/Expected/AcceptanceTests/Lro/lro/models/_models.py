@@ -12,17 +12,17 @@ import msrest.serialization
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
+    :param error:
+    :type error: ~lro.models.OperationResultError
     :param status: The status of the request. Possible values include: "Succeeded", "Failed",
      "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
      "OK".
     :type status: str or ~lro.models.OperationResultStatus
-    :param error:
-    :type error: ~lro.models.OperationResultError
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'str'},
         'error': {'key': 'error', 'type': 'OperationResultError'},
+        'status': {'key': 'status', 'type': 'str'},
     }
 
     def __init__(
@@ -30,8 +30,8 @@ class OperationResult(msrest.serialization.Model):
         **kwargs
     ):
         super(OperationResult, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.error = kwargs.get('error', None)
+        self.status = kwargs.get('status', None)
 
 
 class OperationResultError(msrest.serialization.Model):
@@ -62,30 +62,30 @@ class Resource(msrest.serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
     :ivar name: Resource Name.
     :vartype name: str
+    :ivar type: Resource Type.
+    :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
+    :param location: Resource Location.
+    :type location: str
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
+    :type tags: dict[str, str]
     """
 
     _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
         'name': {'readonly': True},
+        'type': {'readonly': True},
+        'id': {'readonly': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
     }
 
     def __init__(
@@ -93,11 +93,11 @@ class Resource(msrest.serialization.Model):
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.type = None
-        self.tags = kwargs.get('tags', None)
-        self.location = kwargs.get('location', None)
         self.name = None
+        self.type = None
+        self.id = None
+        self.location = kwargs.get('location', None)
+        self.tags = kwargs.get('tags', None)
 
 
 class Product(Resource):
@@ -105,16 +105,16 @@ class Product(Resource):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
     :ivar name: Resource Name.
     :vartype name: str
+    :ivar type: Resource Type.
+    :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
+    :param location: Resource Location.
+    :type location: str
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
+    :type tags: dict[str, str]
     :param provisioning_state:
     :type provisioning_state: str
     :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
@@ -123,18 +123,18 @@ class Product(Resource):
     """
 
     _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
         'name': {'readonly': True},
+        'type': {'readonly': True},
+        'id': {'readonly': True},
         'provisioning_state_values': {'readonly': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }

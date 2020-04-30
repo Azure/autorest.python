@@ -45,47 +45,6 @@ class HttpServerFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def head501(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Return 501 status code - should be represented in the client as an error.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.head501.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.head(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in []:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    head501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
-
-    @distributed_trace
     def get501(
         self,
         **kwargs  # type: Any
@@ -127,16 +86,13 @@ class HttpServerFailureOperations(object):
     get501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
     @distributed_trace
-    def post505(
+    def head501(
         self,
-        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Return 505 status code - should be represented in the client as an error.
+        """Return 501 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -145,27 +101,18 @@ class HttpServerFailureOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post505.metadata['url']  # type: ignore
+        url = self.head501.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
+        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -177,7 +124,7 @@ class HttpServerFailureOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post505.metadata = {'url': '/http/failure/server/505'}  # type: ignore
+    head501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
     @distributed_trace
     def delete505(
@@ -231,3 +178,56 @@ class HttpServerFailureOperations(object):
           return cls(pipeline_response, None, {})
 
     delete505.metadata = {'url': '/http/failure/server/505'}  # type: ignore
+
+    @distributed_trace
+    def post505(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Return 505 status code - should be represented in the client as an error.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.post505.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in []:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    post505.metadata = {'url': '/http/failure/server/505'}  # type: ignore

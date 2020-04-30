@@ -47,8 +47,8 @@ class PathsOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        vault,  # type: str
         secret,  # type: str
+        vault,  # type: str
         key_name,  # type: str
         key_version="v1",  # type: Optional[str]
         **kwargs  # type: Any
@@ -56,10 +56,10 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
-        :param vault: The vault name, e.g. https://myvault.
-        :type vault: str
         :param secret: Secret value.
         :type secret: str
+        :param vault: The vault name, e.g. https://myvault.
+        :type vault: str
         :param key_name: The key name with value 'key1'.
         :type key_name: str
         :param key_version: The key version. Default value 'v1'.
@@ -76,9 +76,9 @@ class PathsOperations(object):
         # Construct URL
         url = self.get_empty.metadata['url']  # type: ignore
         path_format_arguments = {
-            'vault': self._serialize.url("vault", vault, 'str', skip_quote=True),
-            'secret': self._serialize.url("secret", secret, 'str', skip_quote=True),
             'dnsSuffix': self._serialize.url("self._config.dns_suffix", self._config.dns_suffix, 'str', skip_quote=True),
+            'secret': self._serialize.url("secret", secret, 'str', skip_quote=True),
+            'vault': self._serialize.url("vault", vault, 'str', skip_quote=True),
             'keyName': self._serialize.url("key_name", key_name, 'str'),
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }

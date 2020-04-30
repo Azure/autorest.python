@@ -91,6 +91,51 @@ class DurationOperations(object):
     get_null.metadata = {'url': '/duration/null'}  # type: ignore
 
     @distributed_trace
+    def get_positive_duration(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.timedelta
+        """Get a positive duration value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: timedelta or the result of cls(response)
+        :rtype: ~datetime.timedelta
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_positive_duration.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('duration', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
+
+    @distributed_trace
     def put_positive_duration(
         self,
         duration_body,  # type: datetime.timedelta
@@ -139,51 +184,6 @@ class DurationOperations(object):
           return cls(pipeline_response, None, {})
 
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
-
-    @distributed_trace
-    def get_positive_duration(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.timedelta
-        """Get a positive duration value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or the result of cls(response)
-        :rtype: ~datetime.timedelta
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_positive_duration.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('duration', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
 
     @distributed_trace
     def get_invalid(

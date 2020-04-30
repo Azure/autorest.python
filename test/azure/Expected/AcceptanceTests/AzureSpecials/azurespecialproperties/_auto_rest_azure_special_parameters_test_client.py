@@ -17,11 +17,11 @@ if TYPE_CHECKING:
 
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations import XMsClientRequestIdOperations
-from .operations import SubscriptionInCredentialsOperations
 from .operations import SubscriptionInMethodOperations
 from .operations import ApiVersionDefaultOperations
 from .operations import ApiVersionLocalOperations
 from .operations import SkipUrlEncodingOperations
+from .operations import SubscriptionInCredentialsOperations
 from .operations import OdataOperations
 from .operations import HeaderOperations
 from . import models
@@ -32,8 +32,6 @@ class AutoRestAzureSpecialParametersTestClient(object):
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
     :vartype xms_client_request_id: azurespecialproperties.operations.XMsClientRequestIdOperations
-    :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
-    :vartype subscription_in_credentials: azurespecialproperties.operations.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
     :vartype subscription_in_method: azurespecialproperties.operations.SubscriptionInMethodOperations
     :ivar api_version_default: ApiVersionDefaultOperations operations
@@ -42,6 +40,8 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :vartype api_version_local: azurespecialproperties.operations.ApiVersionLocalOperations
     :ivar skip_url_encoding: SkipUrlEncodingOperations operations
     :vartype skip_url_encoding: azurespecialproperties.operations.SkipUrlEncodingOperations
+    :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
+    :vartype subscription_in_credentials: azurespecialproperties.operations.SubscriptionInCredentialsOperations
     :ivar odata: OdataOperations operations
     :vartype odata: azurespecialproperties.operations.OdataOperations
     :ivar header: HeaderOperations operations
@@ -73,8 +73,6 @@ class AutoRestAzureSpecialParametersTestClient(object):
 
         self.xms_client_request_id = XMsClientRequestIdOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
         self.subscription_in_method = SubscriptionInMethodOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.api_version_default = ApiVersionDefaultOperations(
@@ -82,6 +80,8 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self.api_version_local = ApiVersionLocalOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.skip_url_encoding = SkipUrlEncodingOperations(
+            self._client, self._config, self._serialize, self._deserialize)
+        self.subscription_in_credentials = SubscriptionInCredentialsOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.odata = OdataOperations(
             self._client, self._config, self._serialize, self._deserialize)

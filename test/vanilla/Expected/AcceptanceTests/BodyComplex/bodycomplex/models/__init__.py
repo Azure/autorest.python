@@ -12,7 +12,6 @@ try:
     from ._models_py3 import BooleanWrapper
     from ._models_py3 import ByteWrapper
     from ._models_py3 import Cat
-    from ._models_py3 import Cookiecuttershark
     from ._models_py3 import DateWrapper
     from ._models_py3 import DatetimeWrapper
     from ._models_py3 import Datetimerfc1123Wrapper
@@ -45,7 +44,6 @@ except (SyntaxError, ImportError):
     from ._models import BooleanWrapper  # type: ignore
     from ._models import ByteWrapper  # type: ignore
     from ._models import Cat  # type: ignore
-    from ._models import Cookiecuttershark  # type: ignore
     from ._models import DateWrapper  # type: ignore
     from ._models import DatetimeWrapper  # type: ignore
     from ._models import Datetimerfc1123Wrapper  # type: ignore
@@ -84,7 +82,6 @@ __all__ = [
     'BooleanWrapper',
     'ByteWrapper',
     'Cat',
-    'Cookiecuttershark',
     'DateWrapper',
     'DatetimeWrapper',
     'Datetimerfc1123Wrapper',

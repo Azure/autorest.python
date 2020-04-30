@@ -17,9 +17,9 @@ if TYPE_CHECKING:
 
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 from .operations import HttpFailureOperations
-from .operations import HttpSuccessOperations
 from .operations import HttpRedirectsOperations
 from .operations import HttpClientFailureOperations
+from .operations import HttpSuccessOperations
 from .operations import HttpServerFailureOperations
 from .operations import HttpRetryOperations
 from .operations import MultipleResponsesOperations
@@ -31,12 +31,12 @@ class AutoRestHttpInfrastructureTestService(object):
 
     :ivar http_failure: HttpFailureOperations operations
     :vartype http_failure: httpinfrastructure.operations.HttpFailureOperations
-    :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: httpinfrastructure.operations.HttpSuccessOperations
     :ivar http_redirects: HttpRedirectsOperations operations
     :vartype http_redirects: httpinfrastructure.operations.HttpRedirectsOperations
     :ivar http_client_failure: HttpClientFailureOperations operations
     :vartype http_client_failure: httpinfrastructure.operations.HttpClientFailureOperations
+    :ivar http_success: HttpSuccessOperations operations
+    :vartype http_success: httpinfrastructure.operations.HttpSuccessOperations
     :ivar http_server_failure: HttpServerFailureOperations operations
     :vartype http_server_failure: httpinfrastructure.operations.HttpServerFailureOperations
     :ivar http_retry: HttpRetryOperations operations
@@ -64,11 +64,11 @@ class AutoRestHttpInfrastructureTestService(object):
 
         self.http_failure = HttpFailureOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize)
         self.http_redirects = HttpRedirectsOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.http_client_failure = HttpClientFailureOperations(
+            self._client, self._config, self._serialize, self._deserialize)
+        self.http_success = HttpSuccessOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.http_server_failure = HttpServerFailureOperations(
             self._client, self._config, self._serialize, self._deserialize)

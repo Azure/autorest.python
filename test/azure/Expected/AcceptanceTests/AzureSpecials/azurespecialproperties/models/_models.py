@@ -17,12 +17,12 @@ class Error(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param status:
-    :type status: int
     :ivar constant_id: Required.  Default value: "1".
     :vartype constant_id: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _validation = {
@@ -30,9 +30,9 @@ class Error(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'constant_id': {'key': 'constantId', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     constant_id = 1
@@ -42,8 +42,8 @@ class Error(msrest.serialization.Model):
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+        self.status = kwargs.get('status', None)
 
 
 class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):
@@ -74,15 +74,15 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 class OdataFilter(msrest.serialization.Model):
     """OdataFilter.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
     }
 
     def __init__(
@@ -90,5 +90,5 @@ class OdataFilter(msrest.serialization.Model):
         **kwargs
     ):
         super(OdataFilter, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
+        self.id = kwargs.get('id', None)

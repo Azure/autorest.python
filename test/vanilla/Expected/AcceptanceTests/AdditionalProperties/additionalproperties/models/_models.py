@@ -20,10 +20,10 @@ class PetAPTrue(msrest.serialization.Model):
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :type additional_properties: dict[str, object]
-    :param id: Required.
-    :type id: int
     :param name:
     :type name: str
+    :param id: Required.
+    :type id: int
     :ivar status:
     :vartype status: bool
     """
@@ -35,8 +35,8 @@ class PetAPTrue(msrest.serialization.Model):
 
     _attribute_map = {
         'additional_properties': {'key': '', 'type': '{object}'},
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
         'status': {'key': 'status', 'type': 'bool'},
     }
 
@@ -46,8 +46,8 @@ class PetAPTrue(msrest.serialization.Model):
     ):
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
+        self.id = kwargs['id']
         self.status = None
 
 
@@ -61,10 +61,10 @@ class CatAPTrue(PetAPTrue):
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :type additional_properties: dict[str, object]
-    :param id: Required.
-    :type id: int
     :param name:
     :type name: str
+    :param id: Required.
+    :type id: int
     :ivar status:
     :vartype status: bool
     :param friendly:
@@ -78,8 +78,8 @@ class CatAPTrue(PetAPTrue):
 
     _attribute_map = {
         'additional_properties': {'key': '', 'type': '{object}'},
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
         'status': {'key': 'status', 'type': 'bool'},
         'friendly': {'key': 'friendly', 'type': 'bool'},
     }
@@ -95,15 +95,15 @@ class CatAPTrue(PetAPTrue):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
@@ -111,8 +111,8 @@ class Error(msrest.serialization.Model):
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+        self.status = kwargs.get('status', None)
 
 
 class PetAPInProperties(msrest.serialization.Model):
@@ -122,14 +122,14 @@ class PetAPInProperties(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required.
-    :type id: int
     :param name:
     :type name: str
-    :ivar status:
-    :vartype status: bool
     :param additional_properties: Dictionary of :code:`<number>`.
     :type additional_properties: dict[str, float]
+    :param id: Required.
+    :type id: int
+    :ivar status:
+    :vartype status: bool
     """
 
     _validation = {
@@ -138,10 +138,10 @@ class PetAPInProperties(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
         'additional_properties': {'key': 'additionalProperties', 'type': '{float}'},
+        'id': {'key': 'id', 'type': 'int'},
+        'status': {'key': 'status', 'type': 'bool'},
     }
 
     def __init__(
@@ -149,10 +149,10 @@ class PetAPInProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(PetAPInProperties, self).__init__(**kwargs)
-        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
-        self.status = None
         self.additional_properties = kwargs.get('additional_properties', None)
+        self.id = kwargs['id']
+        self.status = None
 
 
 class PetAPInPropertiesWithAPString(msrest.serialization.Model):
@@ -165,31 +165,31 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :type additional_properties: dict[str, str]
-    :param id: Required.
-    :type id: int
     :param name:
     :type name: str
-    :ivar status:
-    :vartype status: bool
     :param odata_location: Required.
     :type odata_location: str
     :param additional_properties1: Dictionary of :code:`<number>`.
     :type additional_properties1: dict[str, float]
+    :param id: Required.
+    :type id: int
+    :ivar status:
+    :vartype status: bool
     """
 
     _validation = {
+        'odata_location': {'required': True},
         'id': {'required': True},
         'status': {'readonly': True},
-        'odata_location': {'required': True},
     }
 
     _attribute_map = {
         'additional_properties': {'key': '', 'type': '{str}'},
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
         'odata_location': {'key': '@odata\\.location', 'type': 'str'},
         'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
+        'id': {'key': 'id', 'type': 'int'},
+        'status': {'key': 'status', 'type': 'bool'},
     }
 
     def __init__(
@@ -198,11 +198,11 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     ):
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
-        self.status = None
         self.odata_location = kwargs['odata_location']
         self.additional_properties1 = kwargs.get('additional_properties1', None)
+        self.id = kwargs['id']
+        self.status = None
 
 
 class PetAPObject(msrest.serialization.Model):
@@ -215,10 +215,10 @@ class PetAPObject(msrest.serialization.Model):
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :type additional_properties: dict[str, object]
-    :param id: Required.
-    :type id: int
     :param name:
     :type name: str
+    :param id: Required.
+    :type id: int
     :ivar status:
     :vartype status: bool
     """
@@ -230,8 +230,8 @@ class PetAPObject(msrest.serialization.Model):
 
     _attribute_map = {
         'additional_properties': {'key': '', 'type': '{object}'},
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
         'status': {'key': 'status', 'type': 'bool'},
     }
 
@@ -241,8 +241,8 @@ class PetAPObject(msrest.serialization.Model):
     ):
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
+        self.id = kwargs['id']
         self.status = None
 
 
@@ -256,10 +256,10 @@ class PetAPString(msrest.serialization.Model):
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :type additional_properties: dict[str, str]
-    :param id: Required.
-    :type id: int
     :param name:
     :type name: str
+    :param id: Required.
+    :type id: int
     :ivar status:
     :vartype status: bool
     """
@@ -271,8 +271,8 @@ class PetAPString(msrest.serialization.Model):
 
     _attribute_map = {
         'additional_properties': {'key': '', 'type': '{str}'},
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
         'status': {'key': 'status', 'type': 'bool'},
     }
 
@@ -282,6 +282,6 @@ class PetAPString(msrest.serialization.Model):
     ):
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
+        self.id = kwargs['id']
         self.status = None

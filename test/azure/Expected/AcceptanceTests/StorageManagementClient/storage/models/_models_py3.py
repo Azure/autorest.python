@@ -38,6 +38,8 @@ class Bar(msrest.serialization.Model):
 class CheckNameAvailabilityResult(msrest.serialization.Model):
     """The CheckNameAvailability operation response.
 
+    :param message: Gets an error message explaining the Reason value in more detail.
+    :type message: str
     :param name_available: Gets a boolean value that indicates whether the name is available for
      you to use. If true, the name is available. If false, the name has already been taken or
      invalid and cannot be used.
@@ -46,28 +48,26 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
      element is only returned if NameAvailable is false. Possible values include:
      "AccountNameInvalid", "AlreadyExists".
     :type reason: str or ~storage.models.Reason
-    :param message: Gets an error message explaining the Reason value in more detail.
-    :type message: str
     """
 
     _attribute_map = {
+        'message': {'key': 'message', 'type': 'str'},
         'name_available': {'key': 'nameAvailable', 'type': 'bool'},
         'reason': {'key': 'reason', 'type': 'str'},
-        'message': {'key': 'message', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
+        message: Optional[str] = None,
         name_available: Optional[bool] = None,
         reason: Optional[Union[str, "Reason"]] = None,
-        message: Optional[str] = None,
         **kwargs
     ):
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
+        self.message = message
         self.name_available = name_available
         self.reason = reason
-        self.message = message
 
 
 class CustomDomain(msrest.serialization.Model):
@@ -100,42 +100,42 @@ class CustomDomain(msrest.serialization.Model):
 class Endpoints(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
+    :param foo_point: Foo point.
+    :type foo_point: ~storage.models.Foo
     :param blob: Gets the blob endpoint.
     :type blob: str
+    :param dummy_end_point: Dummy EndPoint.
+    :type dummy_end_point: ~storage.models.Endpoints
     :param queue: Gets the queue endpoint.
     :type queue: str
     :param table: Gets the table endpoint.
     :type table: str
-    :param dummy_end_point: Dummy EndPoint.
-    :type dummy_end_point: ~storage.models.Endpoints
-    :param foo_point: Foo point.
-    :type foo_point: ~storage.models.Foo
     """
 
     _attribute_map = {
+        'foo_point': {'key': 'FooPoint', 'type': 'Foo'},
         'blob': {'key': 'blob', 'type': 'str'},
+        'dummy_end_point': {'key': 'dummyEndPoint', 'type': 'Endpoints'},
         'queue': {'key': 'queue', 'type': 'str'},
         'table': {'key': 'table', 'type': 'str'},
-        'dummy_end_point': {'key': 'dummyEndPoint', 'type': 'Endpoints'},
-        'foo_point': {'key': 'FooPoint', 'type': 'Foo'},
     }
 
     def __init__(
         self,
         *,
+        foo_point: Optional["Foo"] = None,
         blob: Optional[str] = None,
+        dummy_end_point: Optional["Endpoints"] = None,
         queue: Optional[str] = None,
         table: Optional[str] = None,
-        dummy_end_point: Optional["Endpoints"] = None,
-        foo_point: Optional["Foo"] = None,
         **kwargs
     ):
         super(Endpoints, self).__init__(**kwargs)
+        self.foo_point = foo_point
         self.blob = blob
+        self.dummy_end_point = dummy_end_point
         self.queue = queue
         self.table = table
-        self.dummy_end_point = dummy_end_point
-        self.foo_point = foo_point
 
 
 class Foo(msrest.serialization.Model):
@@ -166,12 +166,12 @@ class Resource(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
-    :vartype id: str
     :ivar name: Resource name.
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
     :param location: Required. Resource location.
     :type location: str
     :param tags: A set of tags. Resource tags.
@@ -179,16 +179,16 @@ class Resource(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'readonly': True},
         'name': {'readonly': True},
         'type': {'readonly': True},
+        'id': {'readonly': True},
         'location': {'required': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
     }
@@ -201,9 +201,9 @@ class Resource(msrest.serialization.Model):
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
         self.name = None
         self.type = None
+        self.id = None
         self.location = location
         self.tags = tags
 
@@ -215,78 +215,78 @@ class StorageAccount(Resource):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
-    :vartype id: str
     :ivar name: Resource name.
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
     :param location: Required. Resource location.
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param provisioning_state: Gets the status of the storage account at the time the operation was
-     called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
-    :type provisioning_state: str or ~storage.models.ProvisioningState
     :param account_type: Gets the type of the storage account. Possible values include:
      "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
     :type account_type: str or ~storage.models.AccountType
+    :param creation_time: Gets the creation date and time of the storage account in UTC.
+    :type creation_time: ~datetime.datetime
+    :param custom_domain: Gets the user assigned custom domain assigned to this storage account.
+    :type custom_domain: ~storage.models.CustomDomain
+    :param last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
+     the secondary location. Only the most recent timestamp is retained. This element is not
+     returned if there has never been a failover instance. Only available if the accountType is
+     StandardGRS or StandardRAGRS.
+    :type last_geo_failover_time: ~datetime.datetime
     :param primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
      queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
      endpoint.
     :type primary_endpoints: ~storage.models.Endpoints
     :param primary_location: Gets the location of the primary for the storage account.
     :type primary_location: str
-    :param status_of_primary: Gets the status indicating whether the primary location of the
-     storage account is available or unavailable. Possible values include: "Available",
-     "Unavailable".
-    :type status_of_primary: str or ~storage.models.AccountStatus
-    :param last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
-     the secondary location. Only the most recent timestamp is retained. This element is not
-     returned if there has never been a failover instance. Only available if the accountType is
-     StandardGRS or StandardRAGRS.
-    :type last_geo_failover_time: ~datetime.datetime
-    :param secondary_location: Gets the location of the geo replicated secondary for the storage
-     account. Only available if the accountType is StandardGRS or StandardRAGRS.
-    :type secondary_location: str
-    :param status_of_secondary: Gets the status indicating whether the secondary location of the
-     storage account is available or unavailable. Only available if the accountType is StandardGRS
-     or StandardRAGRS. Possible values include: "Available", "Unavailable".
-    :type status_of_secondary: str or ~storage.models.AccountStatus
-    :param creation_time: Gets the creation date and time of the storage account in UTC.
-    :type creation_time: ~datetime.datetime
-    :param custom_domain: Gets the user assigned custom domain assigned to this storage account.
-    :type custom_domain: ~storage.models.CustomDomain
+    :param provisioning_state: Gets the status of the storage account at the time the operation was
+     called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
+    :type provisioning_state: str or ~storage.models.ProvisioningState
     :param secondary_endpoints: Gets the URLs that are used to perform a retrieval of a public
      blob, queue or table object from the secondary location of the storage account. Only available
      if the accountType is StandardRAGRS.
     :type secondary_endpoints: ~storage.models.Endpoints
+    :param secondary_location: Gets the location of the geo replicated secondary for the storage
+     account. Only available if the accountType is StandardGRS or StandardRAGRS.
+    :type secondary_location: str
+    :param status_of_primary: Gets the status indicating whether the primary location of the
+     storage account is available or unavailable. Possible values include: "Available",
+     "Unavailable".
+    :type status_of_primary: str or ~storage.models.AccountStatus
+    :param status_of_secondary: Gets the status indicating whether the secondary location of the
+     storage account is available or unavailable. Only available if the accountType is StandardGRS
+     or StandardRAGRS. Possible values include: "Available", "Unavailable".
+    :type status_of_secondary: str or ~storage.models.AccountStatus
     """
 
     _validation = {
-        'id': {'readonly': True},
         'name': {'readonly': True},
         'type': {'readonly': True},
+        'id': {'readonly': True},
         'location': {'required': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
-        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
         'account_type': {'key': 'properties.accountType', 'type': 'str'},
-        'primary_endpoints': {'key': 'properties.primaryEndpoints', 'type': 'Endpoints'},
-        'primary_location': {'key': 'properties.primaryLocation', 'type': 'str'},
-        'status_of_primary': {'key': 'properties.statusOfPrimary', 'type': 'str'},
-        'last_geo_failover_time': {'key': 'properties.lastGeoFailoverTime', 'type': 'iso-8601'},
-        'secondary_location': {'key': 'properties.secondaryLocation', 'type': 'str'},
-        'status_of_secondary': {'key': 'properties.statusOfSecondary', 'type': 'str'},
         'creation_time': {'key': 'properties.creationTime', 'type': 'iso-8601'},
         'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
+        'last_geo_failover_time': {'key': 'properties.lastGeoFailoverTime', 'type': 'iso-8601'},
+        'primary_endpoints': {'key': 'properties.primaryEndpoints', 'type': 'Endpoints'},
+        'primary_location': {'key': 'properties.primaryLocation', 'type': 'str'},
+        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
         'secondary_endpoints': {'key': 'properties.secondaryEndpoints', 'type': 'Endpoints'},
+        'secondary_location': {'key': 'properties.secondaryLocation', 'type': 'str'},
+        'status_of_primary': {'key': 'properties.statusOfPrimary', 'type': 'str'},
+        'status_of_secondary': {'key': 'properties.statusOfSecondary', 'type': 'str'},
     }
 
     def __init__(
@@ -294,31 +294,31 @@ class StorageAccount(Resource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
-        primary_endpoints: Optional["Endpoints"] = None,
-        primary_location: Optional[str] = None,
-        status_of_primary: Optional[Union[str, "AccountStatus"]] = None,
-        last_geo_failover_time: Optional[datetime.datetime] = None,
-        secondary_location: Optional[str] = None,
-        status_of_secondary: Optional[Union[str, "AccountStatus"]] = None,
         creation_time: Optional[datetime.datetime] = None,
         custom_domain: Optional["CustomDomain"] = None,
+        last_geo_failover_time: Optional[datetime.datetime] = None,
+        primary_endpoints: Optional["Endpoints"] = None,
+        primary_location: Optional[str] = None,
+        provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
         secondary_endpoints: Optional["Endpoints"] = None,
+        secondary_location: Optional[str] = None,
+        status_of_primary: Optional[Union[str, "AccountStatus"]] = None,
+        status_of_secondary: Optional[Union[str, "AccountStatus"]] = None,
         **kwargs
     ):
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
-        self.provisioning_state = provisioning_state
         self.account_type = account_type
-        self.primary_endpoints = primary_endpoints
-        self.primary_location = primary_location
-        self.status_of_primary = status_of_primary
-        self.last_geo_failover_time = last_geo_failover_time
-        self.secondary_location = secondary_location
-        self.status_of_secondary = status_of_secondary
         self.creation_time = creation_time
         self.custom_domain = custom_domain
+        self.last_geo_failover_time = last_geo_failover_time
+        self.primary_endpoints = primary_endpoints
+        self.primary_location = primary_location
+        self.provisioning_state = provisioning_state
         self.secondary_endpoints = secondary_endpoints
+        self.secondary_location = secondary_location
+        self.status_of_primary = status_of_primary
+        self.status_of_secondary = status_of_secondary
 
 
 class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
@@ -360,12 +360,12 @@ class StorageAccountCreateParameters(Resource):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
-    :vartype id: str
     :ivar name: Resource name.
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
     :param location: Required. Resource location.
     :type location: str
     :param tags: A set of tags. Resource tags.
@@ -376,16 +376,16 @@ class StorageAccountCreateParameters(Resource):
     """
 
     _validation = {
-        'id': {'readonly': True},
         'name': {'readonly': True},
         'type': {'readonly': True},
+        'id': {'readonly': True},
         'location': {'required': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
         'account_type': {'key': 'properties.accountType', 'type': 'str'},
@@ -432,28 +432,28 @@ class StorageAccountKeys(msrest.serialization.Model):
 class StorageAccountListResult(msrest.serialization.Model):
     """The list storage accounts operation response.
 
-    :param value: Gets the list of storage accounts and their properties.
-    :type value: list[~storage.models.StorageAccount]
     :param next_link: Gets the link to the next set of results. Currently this will always be empty
      as the API does not support pagination.
     :type next_link: str
+    :param value: Gets the list of storage accounts and their properties.
+    :type value: list[~storage.models.StorageAccount]
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': '[StorageAccount]'},
         'next_link': {'key': 'nextLink', 'type': 'str'},
+        'value': {'key': 'value', 'type': '[StorageAccount]'},
     }
 
     def __init__(
         self,
         *,
-        value: Optional[List["StorageAccount"]] = None,
         next_link: Optional[str] = None,
+        value: Optional[List["StorageAccount"]] = None,
         **kwargs
     ):
         super(StorageAccountListResult, self).__init__(**kwargs)
-        self.value = value
         self.next_link = next_link
+        self.value = value
 
 
 class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
@@ -484,12 +484,12 @@ class StorageAccountUpdateParameters(Resource):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
-    :vartype id: str
     :ivar name: Resource name.
     :vartype name: str
     :ivar type: Resource type.
     :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
     :param location: Required. Resource location.
     :type location: str
     :param tags: A set of tags. Resource tags.
@@ -506,16 +506,16 @@ class StorageAccountUpdateParameters(Resource):
     """
 
     _validation = {
-        'id': {'readonly': True},
         'name': {'readonly': True},
         'type': {'readonly': True},
+        'id': {'readonly': True},
         'location': {'required': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'tags': {'key': 'tags', 'type': '{str}'},
         'account_type': {'key': 'properties.accountType', 'type': 'str'},
@@ -560,39 +560,39 @@ class SubResource(msrest.serialization.Model):
 class Usage(msrest.serialization.Model):
     """Describes Storage Resource Usage.
 
-    :param unit: Gets the unit of measurement. Possible values include: "Count", "Bytes",
-     "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
-    :type unit: str or ~storage.models.UsageUnit
+    :param name: Gets the name of the type of usage.
+    :type name: ~storage.models.UsageName
     :param current_value: Gets the current count of the allocated resources in the subscription.
     :type current_value: int
     :param limit: Gets the maximum count of the resources that can be allocated in the
      subscription.
     :type limit: int
-    :param name: Gets the name of the type of usage.
-    :type name: ~storage.models.UsageName
+    :param unit: Gets the unit of measurement. Possible values include: "Count", "Bytes",
+     "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
+    :type unit: str or ~storage.models.UsageUnit
     """
 
     _attribute_map = {
-        'unit': {'key': 'unit', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'UsageName'},
         'current_value': {'key': 'currentValue', 'type': 'int'},
         'limit': {'key': 'limit', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'UsageName'},
+        'unit': {'key': 'unit', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        unit: Optional[Union[str, "UsageUnit"]] = None,
+        name: Optional["UsageName"] = None,
         current_value: Optional[int] = None,
         limit: Optional[int] = None,
-        name: Optional["UsageName"] = None,
+        unit: Optional[Union[str, "UsageUnit"]] = None,
         **kwargs
     ):
         super(Usage, self).__init__(**kwargs)
-        self.unit = unit
+        self.name = name
         self.current_value = current_value
         self.limit = limit
-        self.name = name
+        self.unit = unit
 
 
 class UsageListResult(msrest.serialization.Model):
@@ -619,24 +619,24 @@ class UsageListResult(msrest.serialization.Model):
 class UsageName(msrest.serialization.Model):
     """The Usage Names.
 
-    :param value: Gets a string describing the resource name.
-    :type value: str
     :param localized_value: Gets a localized string describing the resource name.
     :type localized_value: str
+    :param value: Gets a string describing the resource name.
+    :type value: str
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'str'},
         'localized_value': {'key': 'localizedValue', 'type': 'str'},
+        'value': {'key': 'value', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        value: Optional[str] = None,
         localized_value: Optional[str] = None,
+        value: Optional[str] = None,
         **kwargs
     ):
         super(UsageName, self).__init__(**kwargs)
-        self.value = value
         self.localized_value = localized_value
+        self.value = value

@@ -136,6 +136,521 @@ class DatetimeOperations(object):
     get_invalid.metadata = {'url': '/datetime/invalid'}  # type: ignore
 
     @distributed_trace
+    def get_local_positive_offset_lowercase_max_date_time(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
+        """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: datetime or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('iso-8601', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}  # type: ignore
+
+    @distributed_trace
+    def get_local_positive_offset_uppercase_max_date_time(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
+        """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: datetime or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('iso-8601', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}  # type: ignore
+
+    @distributed_trace
+    def put_local_negative_offset_max_date_time(
+        self,
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
+
+        :param datetime_body:
+        :type datetime_body: ~datetime.datetime
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.put_local_negative_offset_max_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(datetime_body, 'iso-8601')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}  # type: ignore
+
+    @distributed_trace
+    def get_local_negative_offset_uppercase_max_date_time(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
+        """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: datetime or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('iso-8601', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}  # type: ignore
+
+    @distributed_trace
+    def get_local_negative_offset_lowercase_max_date_time(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
+        """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: datetime or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('iso-8601', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}  # type: ignore
+
+    @distributed_trace
+    def get_utc_min_date_time(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
+        """Get min datetime value 0001-01-01T00:00:00Z.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: datetime or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_utc_min_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('iso-8601', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
+
+    @distributed_trace
+    def put_utc_min_date_time(
+        self,
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put min datetime value 0001-01-01T00:00:00Z.
+
+        :param datetime_body:
+        :type datetime_body: ~datetime.datetime
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.put_utc_min_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(datetime_body, 'iso-8601')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
+
+    @distributed_trace
+    def get_local_positive_offset_min_date_time(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
+        """Get min datetime value 0001-01-01T00:00:00+14:00.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: datetime or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_local_positive_offset_min_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('iso-8601', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
+
+    @distributed_trace
+    def put_local_positive_offset_min_date_time(
+        self,
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put min datetime value 0001-01-01T00:00:00+14:00.
+
+        :param datetime_body:
+        :type datetime_body: ~datetime.datetime
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.put_local_positive_offset_min_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(datetime_body, 'iso-8601')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
+
+    @distributed_trace
+    def get_local_negative_offset_min_date_time(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
+        """Get min datetime value 0001-01-01T00:00:00-14:00.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: datetime or the result of cls(response)
+        :rtype: ~datetime.datetime
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_local_negative_offset_min_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('iso-8601', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore
+
+    @distributed_trace
+    def put_local_negative_offset_min_date_time(
+        self,
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put min datetime value 0001-01-01T00:00:00-14:00.
+
+        :param datetime_body:
+        :type datetime_body: ~datetime.datetime
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.put_local_negative_offset_min_date_time.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(datetime_body, 'iso-8601')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore
+
+    @distributed_trace
     def get_overflow(
         self,
         **kwargs  # type: Any
@@ -515,518 +1030,3 @@ class DatetimeOperations(object):
           return cls(pipeline_response, None, {})
 
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}  # type: ignore
-
-    @distributed_trace
-    def get_local_positive_offset_lowercase_max_date_time(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.datetime
-        """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
-        :rtype: ~datetime.datetime
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('iso-8601', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}  # type: ignore
-
-    @distributed_trace
-    def get_local_positive_offset_uppercase_max_date_time(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.datetime
-        """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
-        :rtype: ~datetime.datetime
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('iso-8601', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}  # type: ignore
-
-    @distributed_trace
-    def put_local_negative_offset_max_date_time(
-        self,
-        datetime_body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
-
-        :param datetime_body:
-        :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put_local_negative_offset_max_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, 'iso-8601')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}  # type: ignore
-
-    @distributed_trace
-    def get_local_negative_offset_uppercase_max_date_time(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.datetime
-        """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
-        :rtype: ~datetime.datetime
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('iso-8601', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}  # type: ignore
-
-    @distributed_trace
-    def get_local_negative_offset_lowercase_max_date_time(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.datetime
-        """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
-        :rtype: ~datetime.datetime
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('iso-8601', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}  # type: ignore
-
-    @distributed_trace
-    def put_utc_min_date_time(
-        self,
-        datetime_body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Put min datetime value 0001-01-01T00:00:00Z.
-
-        :param datetime_body:
-        :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put_utc_min_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, 'iso-8601')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
-
-    @distributed_trace
-    def get_utc_min_date_time(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.datetime
-        """Get min datetime value 0001-01-01T00:00:00Z.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
-        :rtype: ~datetime.datetime
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_utc_min_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('iso-8601', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
-
-    @distributed_trace
-    def put_local_positive_offset_min_date_time(
-        self,
-        datetime_body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Put min datetime value 0001-01-01T00:00:00+14:00.
-
-        :param datetime_body:
-        :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put_local_positive_offset_min_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, 'iso-8601')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
-
-    @distributed_trace
-    def get_local_positive_offset_min_date_time(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.datetime
-        """Get min datetime value 0001-01-01T00:00:00+14:00.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
-        :rtype: ~datetime.datetime
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_local_positive_offset_min_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('iso-8601', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
-
-    @distributed_trace
-    def put_local_negative_offset_min_date_time(
-        self,
-        datetime_body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Put min datetime value 0001-01-01T00:00:00-14:00.
-
-        :param datetime_body:
-        :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put_local_negative_offset_min_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, 'iso-8601')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore
-
-    @distributed_trace
-    def get_local_negative_offset_min_date_time(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.datetime
-        """Get min datetime value 0001-01-01T00:00:00-14:00.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
-        :rtype: ~datetime.datetime
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_local_negative_offset_min_date_time.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('iso-8601', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore

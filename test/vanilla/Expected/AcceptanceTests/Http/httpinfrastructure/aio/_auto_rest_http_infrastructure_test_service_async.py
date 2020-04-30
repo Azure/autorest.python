@@ -13,9 +13,9 @@ from msrest import Deserializer, Serializer
 
 from ._configuration_async import AutoRestHttpInfrastructureTestServiceConfiguration
 from .operations_async import HttpFailureOperations
-from .operations_async import HttpSuccessOperations
 from .operations_async import HttpRedirectsOperations
 from .operations_async import HttpClientFailureOperations
+from .operations_async import HttpSuccessOperations
 from .operations_async import HttpServerFailureOperations
 from .operations_async import HttpRetryOperations
 from .operations_async import MultipleResponsesOperations
@@ -27,12 +27,12 @@ class AutoRestHttpInfrastructureTestService(object):
 
     :ivar http_failure: HttpFailureOperations operations
     :vartype http_failure: httpinfrastructure.aio.operations_async.HttpFailureOperations
-    :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: httpinfrastructure.aio.operations_async.HttpSuccessOperations
     :ivar http_redirects: HttpRedirectsOperations operations
     :vartype http_redirects: httpinfrastructure.aio.operations_async.HttpRedirectsOperations
     :ivar http_client_failure: HttpClientFailureOperations operations
     :vartype http_client_failure: httpinfrastructure.aio.operations_async.HttpClientFailureOperations
+    :ivar http_success: HttpSuccessOperations operations
+    :vartype http_success: httpinfrastructure.aio.operations_async.HttpSuccessOperations
     :ivar http_server_failure: HttpServerFailureOperations operations
     :vartype http_server_failure: httpinfrastructure.aio.operations_async.HttpServerFailureOperations
     :ivar http_retry: HttpRetryOperations operations
@@ -59,11 +59,11 @@ class AutoRestHttpInfrastructureTestService(object):
 
         self.http_failure = HttpFailureOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize)
         self.http_redirects = HttpRedirectsOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.http_client_failure = HttpClientFailureOperations(
+            self._client, self._config, self._serialize, self._deserialize)
+        self.http_success = HttpSuccessOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.http_server_failure = HttpServerFailureOperations(
             self._client, self._config, self._serialize, self._deserialize)

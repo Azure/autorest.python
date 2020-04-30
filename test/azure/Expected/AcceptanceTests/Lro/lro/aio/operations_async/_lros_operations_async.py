@@ -223,749 +223,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}  # type: ignore
 
-    async def _put202_retry200_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put202_retry200_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [202]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _put202_retry200_initial.metadata = {'url': '/lro/put/202/retry/200'}  # type: ignore
-
-    @distributed_trace_async
-    async def put202_retry200(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put202_retry200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}  # type: ignore
-
-    async def _put201_creating_succeeded200_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put201_creating_succeeded200_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize('Product', pipeline_response)
-
-        if response.status_code == 201:
-            deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _put201_creating_succeeded200_initial.metadata = {'url': '/lro/put/201/creating/succeeded/200'}  # type: ignore
-
-    @distributed_trace_async
-    async def put201_creating_succeeded200(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put201_creating_succeeded200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}  # type: ignore
-
-    async def _put200_updating_succeeded204_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put200_updating_succeeded204_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _put200_updating_succeeded204_initial.metadata = {'url': '/lro/put/200/updating/succeeded/200'}  # type: ignore
-
-    @distributed_trace_async
-    async def put200_updating_succeeded204(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put200_updating_succeeded204_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}  # type: ignore
-
-    async def _put201_creating_failed200_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put201_creating_failed200_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize('Product', pipeline_response)
-
-        if response.status_code == 201:
-            deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _put201_creating_failed200_initial.metadata = {'url': '/lro/put/201/created/failed/200'}  # type: ignore
-
-    @distributed_trace_async
-    async def put201_creating_failed200(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put201_creating_failed200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}  # type: ignore
-
-    async def _put200_acceptedcanceled200_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put200_acceptedcanceled200_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _put200_acceptedcanceled200_initial.metadata = {'url': '/lro/put/200/accepted/canceled/200'}  # type: ignore
-
-    @distributed_trace_async
-    async def put200_acceptedcanceled200(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put200_acceptedcanceled200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}  # type: ignore
-
-    async def _put_no_header_in_retry_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put_no_header_in_retry_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [202]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        response_headers['location']=self._deserialize('str', response.headers.get('location'))
-        deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, response_headers)
-
-        return deserialized
-    _put_no_header_in_retry_initial.metadata = {'url': '/lro/put/noheader/202/200'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_no_header_in_retry(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put_no_header_in_retry_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            response_headers = {}
-            response = pipeline_response.http_response
-            response_headers['location']=self._deserialize('str', response.headers.get('location'))
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, response_headers)
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}  # type: ignore
-
-    async def _put_async_retry_succeeded_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put_async_retry_succeeded_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
-        response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-        response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-        deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, response_headers)
-
-        return deserialized
-    _put_async_retry_succeeded_initial.metadata = {'url': '/lro/putasync/retry/succeeded'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_async_retry_succeeded(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put_async_retry_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            response_headers = {}
-            response = pipeline_response.http_response
-            response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
-            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, response_headers)
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}  # type: ignore
-
-    async def _put_async_no_retry_succeeded_initial(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self._put_async_no_retry_succeeded_initial.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
-        response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-        deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, response_headers)
-
-        return deserialized
-    _put_async_no_retry_succeeded_initial.metadata = {'url': '/lro/putasync/noretry/succeeded'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_async_no_retry_succeeded(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        :param product: Product to put.
-        :type product: ~lro.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product
-        :rtype: ~lro.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        raw_result = await self._put_async_no_retry_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-        def get_long_running_output(pipeline_response):
-            response_headers = {}
-            response = pipeline_response.http_response
-            response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
-            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            deserialized = self._deserialize('Product', pipeline_response)
-
-            if cls:
-                return cls(pipeline_response, deserialized, response_headers)
-            return deserialized
-
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}  # type: ignore
-
     async def _put_async_retry_failed_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -1875,6 +1132,95 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}  # type: ignore
 
+    async def _put202_retry200_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put202_retry200_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _put202_retry200_initial.metadata = {'url': '/lro/put/202/retry/200'}  # type: ignore
+
+    @distributed_trace_async
+    async def put202_retry200(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put202_retry200_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}  # type: ignore
+
     async def _delete204_succeeded_initial(
         self,
         **kwargs
@@ -2622,6 +1968,100 @@ class LROsOperations:
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post200_with_payload.metadata = {'url': '/lro/post/payload/200'}  # type: ignore
+
+    async def _put201_creating_succeeded200_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put201_creating_succeeded200_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', pipeline_response)
+
+        if response.status_code == 201:
+            deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _put201_creating_succeeded200_initial.metadata = {'url': '/lro/put/201/creating/succeeded/200'}  # type: ignore
+
+    @distributed_trace_async
+    async def put201_creating_succeeded200(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put201_creating_succeeded200_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}  # type: ignore
 
     async def _post202_retry200_initial(
         self,
@@ -3397,3 +2837,563 @@ class LROsOperations:
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}  # type: ignore
+
+    async def _put200_updating_succeeded204_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put200_updating_succeeded204_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _put200_updating_succeeded204_initial.metadata = {'url': '/lro/put/200/updating/succeeded/200'}  # type: ignore
+
+    @distributed_trace_async
+    async def put200_updating_succeeded204(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put200_updating_succeeded204_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}  # type: ignore
+
+    async def _put201_creating_failed200_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put201_creating_failed200_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('Product', pipeline_response)
+
+        if response.status_code == 201:
+            deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _put201_creating_failed200_initial.metadata = {'url': '/lro/put/201/created/failed/200'}  # type: ignore
+
+    @distributed_trace_async
+    async def put201_creating_failed200(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put201_creating_failed200_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}  # type: ignore
+
+    async def _put200_acceptedcanceled200_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put200_acceptedcanceled200_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _put200_acceptedcanceled200_initial.metadata = {'url': '/lro/put/200/accepted/canceled/200'}  # type: ignore
+
+    @distributed_trace_async
+    async def put200_acceptedcanceled200(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put200_acceptedcanceled200_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}  # type: ignore
+
+    async def _put_no_header_in_retry_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put_no_header_in_retry_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers['location']=self._deserialize('str', response.headers.get('location'))
+        deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+    _put_no_header_in_retry_initial.metadata = {'url': '/lro/put/noheader/202/200'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_no_header_in_retry(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put_no_header_in_retry_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers['location']=self._deserialize('str', response.headers.get('location'))
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, response_headers)
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}  # type: ignore
+
+    async def _put_async_retry_succeeded_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put_async_retry_succeeded_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
+        response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+        response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
+        deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+    _put_async_retry_succeeded_initial.metadata = {'url': '/lro/putasync/retry/succeeded'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_async_retry_succeeded(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put_async_retry_succeeded_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+            response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, response_headers)
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}  # type: ignore
+
+    async def _put_async_no_retry_succeeded_initial(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put_async_no_retry_succeeded_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
+        response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+        deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+    _put_async_no_retry_succeeded_initial.metadata = {'url': '/lro/putasync/noretry/succeeded'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_async_no_retry_succeeded(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: Product
+        :rtype: ~lro.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = await self._put_async_no_retry_succeeded_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, response_headers)
+            return deserialized
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = AsyncNoPolling()
+        else: polling_method = polling
+        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+    put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}  # type: ignore

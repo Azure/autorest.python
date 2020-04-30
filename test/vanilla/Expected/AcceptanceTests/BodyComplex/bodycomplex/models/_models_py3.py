@@ -39,59 +39,59 @@ class ArrayWrapper(msrest.serialization.Model):
 class Basic(msrest.serialization.Model):
     """Basic.
 
-    :param id: Basic Id.
-    :type id: int
     :param name: Name property with a very long description that does not fit on a single line and
      a line break.
     :type name: str
     :param color:  Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
     :type color: str or ~bodycomplex.models.CMYKColors
+    :param id: Basic Id.
+    :type id: int
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'color': {'key': 'color', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
         name: Optional[str] = None,
         color: Optional[Union[str, "CMYKColors"]] = None,
+        id: Optional[int] = None,
         **kwargs
     ):
         super(Basic, self).__init__(**kwargs)
-        self.id = id
         self.name = name
         self.color = color
+        self.id = id
 
 
 class BooleanWrapper(msrest.serialization.Model):
     """BooleanWrapper.
 
-    :param field_true:
-    :type field_true: bool
     :param field_false:
     :type field_false: bool
+    :param field_true:
+    :type field_true: bool
     """
 
     _attribute_map = {
-        'field_true': {'key': 'field_true', 'type': 'bool'},
         'field_false': {'key': 'field_false', 'type': 'bool'},
+        'field_true': {'key': 'field_true', 'type': 'bool'},
     }
 
     def __init__(
         self,
         *,
-        field_true: Optional[bool] = None,
         field_false: Optional[bool] = None,
+        field_true: Optional[bool] = None,
         **kwargs
     ):
         super(BooleanWrapper, self).__init__(**kwargs)
-        self.field_true = field_true
         self.field_false = field_false
+        self.field_true = field_true
 
 
 class ByteWrapper(msrest.serialization.Model):
@@ -118,36 +118,36 @@ class ByteWrapper(msrest.serialization.Model):
 class Pet(msrest.serialization.Model):
     """Pet.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
         name: Optional[str] = None,
+        id: Optional[int] = None,
         **kwargs
     ):
         super(Pet, self).__init__(**kwargs)
-        self.id = id
         self.name = name
+        self.id = id
 
 
 class Cat(Pet):
     """Cat.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     :param color:
     :type color: str
     :param hates:
@@ -155,8 +155,8 @@ class Cat(Pet):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
         'color': {'key': 'color', 'type': 'str'},
         'hates': {'key': 'hates', 'type': '[Dog]'},
     }
@@ -164,169 +164,15 @@ class Cat(Pet):
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
         name: Optional[str] = None,
+        id: Optional[int] = None,
         color: Optional[str] = None,
         hates: Optional[List["Dog"]] = None,
         **kwargs
     ):
-        super(Cat, self).__init__(id=id, name=name, **kwargs)
+        super(Cat, self).__init__(name=name, id=id, **kwargs)
         self.color = color
         self.hates = hates
-
-
-class Fish(msrest.serialization.Model):
-    """Fish.
-
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: Salmon, Shark.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    """
-
-    _validation = {
-        'fishtype': {'required': True},
-        'length': {'required': True},
-    }
-
-    _attribute_map = {
-        'fishtype': {'key': 'fishtype', 'type': 'str'},
-        'species': {'key': 'species', 'type': 'str'},
-        'length': {'key': 'length', 'type': 'float'},
-        'siblings': {'key': 'siblings', 'type': '[Fish]'},
-    }
-
-    _subtype_map = {
-        'fishtype': {'salmon': 'Salmon', 'shark': 'Shark'}
-    }
-
-    def __init__(
-        self,
-        *,
-        length: float,
-        species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
-        **kwargs
-    ):
-        super(Fish, self).__init__(**kwargs)
-        self.fishtype: Optional[str] = None
-        self.species = species
-        self.length = length
-        self.siblings = siblings
-
-
-class Shark(Fish):
-    """Shark.
-
-    You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: Cookiecuttershark, Goblinshark, Sawshark.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param age:
-    :type age: int
-    :param birthday: Required.
-    :type birthday: ~datetime.datetime
-    """
-
-    _validation = {
-        'fishtype': {'required': True},
-        'length': {'required': True},
-        'birthday': {'required': True},
-    }
-
-    _attribute_map = {
-        'fishtype': {'key': 'fishtype', 'type': 'str'},
-        'species': {'key': 'species', 'type': 'str'},
-        'length': {'key': 'length', 'type': 'float'},
-        'siblings': {'key': 'siblings', 'type': '[Fish]'},
-        'age': {'key': 'age', 'type': 'int'},
-        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
-    }
-
-    _subtype_map = {
-        'fishtype': {'cookiecuttershark': 'Cookiecuttershark', 'goblin': 'Goblinshark', 'sawshark': 'Sawshark'}
-    }
-
-    def __init__(
-        self,
-        *,
-        length: float,
-        birthday: datetime.datetime,
-        species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
-        age: Optional[int] = None,
-        **kwargs
-    ):
-        super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype: str = 'shark'
-        self.age = age
-        self.birthday = birthday
-
-
-class Cookiecuttershark(Shark):
-    """Cookiecuttershark.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param age:
-    :type age: int
-    :param birthday: Required.
-    :type birthday: ~datetime.datetime
-    """
-
-    _validation = {
-        'fishtype': {'required': True},
-        'length': {'required': True},
-        'birthday': {'required': True},
-    }
-
-    _attribute_map = {
-        'fishtype': {'key': 'fishtype', 'type': 'str'},
-        'species': {'key': 'species', 'type': 'str'},
-        'length': {'key': 'length', 'type': 'float'},
-        'siblings': {'key': 'siblings', 'type': '[Fish]'},
-        'age': {'key': 'age', 'type': 'int'},
-        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
-    }
-
-    def __init__(
-        self,
-        *,
-        length: float,
-        birthday: datetime.datetime,
-        species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
-        age: Optional[int] = None,
-        **kwargs
-    ):
-        super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype: str = 'cookiecuttershark'
 
 
 class Datetimerfc1123Wrapper(msrest.serialization.Model):
@@ -431,29 +277,29 @@ class DictionaryWrapper(msrest.serialization.Model):
 class Dog(Pet):
     """Dog.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     :param food:
     :type food: str
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
         'food': {'key': 'food', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
         name: Optional[str] = None,
+        id: Optional[int] = None,
         food: Optional[str] = None,
         **kwargs
     ):
-        super(Dog, self).__init__(id=id, name=name, **kwargs)
+        super(Dog, self).__init__(name=name, id=id, **kwargs)
         self.food = food
 
 
@@ -498,37 +344,37 @@ class DotFish(msrest.serialization.Model):
 class DotFishMarket(msrest.serialization.Model):
     """DotFishMarket.
 
-    :param sample_salmon:
-    :type sample_salmon: ~bodycomplex.models.DotSalmon
+    :param fishes:
+    :type fishes: list[~bodycomplex.models.DotFish]
     :param salmons:
     :type salmons: list[~bodycomplex.models.DotSalmon]
     :param sample_fish:
     :type sample_fish: ~bodycomplex.models.DotFish
-    :param fishes:
-    :type fishes: list[~bodycomplex.models.DotFish]
+    :param sample_salmon:
+    :type sample_salmon: ~bodycomplex.models.DotSalmon
     """
 
     _attribute_map = {
-        'sample_salmon': {'key': 'sampleSalmon', 'type': 'DotSalmon'},
+        'fishes': {'key': 'fishes', 'type': '[DotFish]'},
         'salmons': {'key': 'salmons', 'type': '[DotSalmon]'},
         'sample_fish': {'key': 'sampleFish', 'type': 'DotFish'},
-        'fishes': {'key': 'fishes', 'type': '[DotFish]'},
+        'sample_salmon': {'key': 'sampleSalmon', 'type': 'DotSalmon'},
     }
 
     def __init__(
         self,
         *,
-        sample_salmon: Optional["DotSalmon"] = None,
+        fishes: Optional[List["DotFish"]] = None,
         salmons: Optional[List["DotSalmon"]] = None,
         sample_fish: Optional["DotFish"] = None,
-        fishes: Optional[List["DotFish"]] = None,
+        sample_salmon: Optional["DotSalmon"] = None,
         **kwargs
     ):
         super(DotFishMarket, self).__init__(**kwargs)
-        self.sample_salmon = sample_salmon
+        self.fishes = fishes
         self.salmons = salmons
         self.sample_fish = sample_fish
-        self.fishes = fishes
+        self.sample_salmon = sample_salmon
 
 
 class DotSalmon(DotFish):
@@ -540,10 +386,10 @@ class DotSalmon(DotFish):
     :type fish_type: str
     :param species:
     :type species: str
-    :param location:
-    :type location: str
     :param iswild:
     :type iswild: bool
+    :param location:
+    :type location: str
     """
 
     _validation = {
@@ -553,22 +399,22 @@ class DotSalmon(DotFish):
     _attribute_map = {
         'fish_type': {'key': 'fish\\.type', 'type': 'str'},
         'species': {'key': 'species', 'type': 'str'},
-        'location': {'key': 'location', 'type': 'str'},
         'iswild': {'key': 'iswild', 'type': 'bool'},
+        'location': {'key': 'location', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
         species: Optional[str] = None,
-        location: Optional[str] = None,
         iswild: Optional[bool] = None,
+        location: Optional[str] = None,
         **kwargs
     ):
         super(DotSalmon, self).__init__(species=species, **kwargs)
         self.fish_type: str = 'DotSalmon'
-        self.location = location
         self.iswild = iswild
+        self.location = location
 
 
 class DoubleWrapper(msrest.serialization.Model):
@@ -624,27 +470,76 @@ class DurationWrapper(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
         message: Optional[str] = None,
+        status: Optional[int] = None,
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = status
         self.message = message
+        self.status = status
+
+
+class Fish(msrest.serialization.Model):
+    """Fish.
+
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: Salmon, Shark.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
+    :param length: Required.
+    :type length: float
+    :param siblings:
+    :type siblings: list[~bodycomplex.models.Fish]
+    :param species:
+    :type species: str
+    """
+
+    _validation = {
+        'fishtype': {'required': True},
+        'length': {'required': True},
+    }
+
+    _attribute_map = {
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'species': {'key': 'species', 'type': 'str'},
+    }
+
+    _subtype_map = {
+        'fishtype': {'salmon': 'Salmon', 'shark': 'Shark'}
+    }
+
+    def __init__(
+        self,
+        *,
+        length: float,
+        siblings: Optional[List["Fish"]] = None,
+        species: Optional[str] = None,
+        **kwargs
+    ):
+        super(Fish, self).__init__(**kwargs)
+        self.fishtype: Optional[str] = None
+        self.length = length
+        self.siblings = siblings
+        self.species = species
 
 
 class FloatWrapper(msrest.serialization.Model):
@@ -673,28 +568,26 @@ class FloatWrapper(msrest.serialization.Model):
         self.field2 = field2
 
 
-class Goblinshark(Shark):
-    """Goblinshark.
+class Shark(Fish):
+    """Shark.
+
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: Goblinshark, Sawshark.
 
     All required parameters must be populated in order to send to Azure.
 
     :param fishtype: Required. Constant filled by server.
     :type fishtype: str
-    :param species:
-    :type species: str
     :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
+    :param species:
+    :type species: str
     :param age:
     :type age: int
     :param birthday: Required.
     :type birthday: ~datetime.datetime
-    :param jawsize:
-    :type jawsize: int
-    :param color: Colors possible. Possible values include: "pink", "gray", "brown", "RED", "red".
-     Default value: "gray".
-    :type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
     _validation = {
@@ -705,13 +598,15 @@ class Goblinshark(Shark):
 
     _attribute_map = {
         'fishtype': {'key': 'fishtype', 'type': 'str'},
-        'species': {'key': 'species', 'type': 'str'},
         'length': {'key': 'length', 'type': 'float'},
         'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'species': {'key': 'species', 'type': 'str'},
         'age': {'key': 'age', 'type': 'int'},
         'birthday': {'key': 'birthday', 'type': 'iso-8601'},
-        'jawsize': {'key': 'jawsize', 'type': 'int'},
-        'color': {'key': 'color', 'type': 'str'},
+    }
+
+    _subtype_map = {
+        'fishtype': {'goblin': 'Goblinshark', 'sawshark': 'Sawshark'}
     }
 
     def __init__(
@@ -719,17 +614,74 @@ class Goblinshark(Shark):
         *,
         length: float,
         birthday: datetime.datetime,
-        species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
+        species: Optional[str] = None,
         age: Optional[int] = None,
-        jawsize: Optional[int] = None,
-        color: Optional[Union[str, "GoblinSharkColor"]] = "gray",
         **kwargs
     ):
-        super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
+        super(Shark, self).__init__(length=length, siblings=siblings, species=species, **kwargs)
+        self.fishtype: str = 'shark'
+        self.age = age
+        self.birthday = birthday
+
+
+class Goblinshark(Shark):
+    """Goblinshark.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
+    :param length: Required.
+    :type length: float
+    :param siblings:
+    :type siblings: list[~bodycomplex.models.Fish]
+    :param species:
+    :type species: str
+    :param age:
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
+    :param color: Colors possible. Possible values include: "pink", "gray", "brown", "RED", "red".
+     Default value: "gray".
+    :type color: str or ~bodycomplex.models.GoblinSharkColor
+    :param jawsize:
+    :type jawsize: int
+    """
+
+    _validation = {
+        'fishtype': {'required': True},
+        'length': {'required': True},
+        'birthday': {'required': True},
+    }
+
+    _attribute_map = {
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'species': {'key': 'species', 'type': 'str'},
+        'age': {'key': 'age', 'type': 'int'},
+        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
+        'color': {'key': 'color', 'type': 'str'},
+        'jawsize': {'key': 'jawsize', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        *,
+        length: float,
+        birthday: datetime.datetime,
+        siblings: Optional[List["Fish"]] = None,
+        species: Optional[str] = None,
+        age: Optional[int] = None,
+        color: Optional[Union[str, "GoblinSharkColor"]] = "gray",
+        jawsize: Optional[int] = None,
+        **kwargs
+    ):
+        super(Goblinshark, self).__init__(length=length, siblings=siblings, species=species, age=age, birthday=birthday, **kwargs)
         self.fishtype: str = 'goblin'
-        self.jawsize = jawsize
         self.color = color
+        self.jawsize = jawsize
 
 
 class IntWrapper(msrest.serialization.Model):
@@ -907,16 +859,16 @@ class Salmon(Fish):
 
     :param fishtype: Required. Constant filled by server.
     :type fishtype: str
-    :param species:
-    :type species: str
     :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param location:
-    :type location: str
+    :param species:
+    :type species: str
     :param iswild:
     :type iswild: bool
+    :param location:
+    :type location: str
     """
 
     _validation = {
@@ -926,11 +878,11 @@ class Salmon(Fish):
 
     _attribute_map = {
         'fishtype': {'key': 'fishtype', 'type': 'str'},
-        'species': {'key': 'species', 'type': 'str'},
         'length': {'key': 'length', 'type': 'float'},
         'siblings': {'key': 'siblings', 'type': '[Fish]'},
-        'location': {'key': 'location', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
         'iswild': {'key': 'iswild', 'type': 'bool'},
+        'location': {'key': 'location', 'type': 'str'},
     }
 
     _subtype_map = {
@@ -941,16 +893,16 @@ class Salmon(Fish):
         self,
         *,
         length: float,
-        species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
-        location: Optional[str] = None,
+        species: Optional[str] = None,
         iswild: Optional[bool] = None,
+        location: Optional[str] = None,
         **kwargs
     ):
-        super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
+        super(Salmon, self).__init__(length=length, siblings=siblings, species=species, **kwargs)
         self.fishtype: str = 'salmon'
-        self.location = location
         self.iswild = iswild
+        self.location = location
 
 
 class Sawshark(Shark):
@@ -960,12 +912,12 @@ class Sawshark(Shark):
 
     :param fishtype: Required. Constant filled by server.
     :type fishtype: str
-    :param species:
-    :type species: str
     :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
+    :param species:
+    :type species: str
     :param age:
     :type age: int
     :param birthday: Required.
@@ -982,9 +934,9 @@ class Sawshark(Shark):
 
     _attribute_map = {
         'fishtype': {'key': 'fishtype', 'type': 'str'},
-        'species': {'key': 'species', 'type': 'str'},
         'length': {'key': 'length', 'type': 'float'},
         'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'species': {'key': 'species', 'type': 'str'},
         'age': {'key': 'age', 'type': 'int'},
         'birthday': {'key': 'birthday', 'type': 'iso-8601'},
         'picture': {'key': 'picture', 'type': 'bytearray'},
@@ -995,13 +947,13 @@ class Sawshark(Shark):
         *,
         length: float,
         birthday: datetime.datetime,
-        species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
+        species: Optional[str] = None,
         age: Optional[int] = None,
         picture: Optional[bytearray] = None,
         **kwargs
     ):
-        super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
+        super(Sawshark, self).__init__(length=length, siblings=siblings, species=species, age=age, birthday=birthday, **kwargs)
         self.fishtype: str = 'sawshark'
         self.picture = picture
 
@@ -1009,10 +961,10 @@ class Sawshark(Shark):
 class Siamese(Cat):
     """Siamese.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     :param color:
     :type color: str
     :param hates:
@@ -1022,8 +974,8 @@ class Siamese(Cat):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
         'color': {'key': 'color', 'type': 'str'},
         'hates': {'key': 'hates', 'type': '[Dog]'},
         'breed': {'key': 'breed', 'type': 'str'},
@@ -1032,14 +984,14 @@ class Siamese(Cat):
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
         name: Optional[str] = None,
+        id: Optional[int] = None,
         color: Optional[str] = None,
         hates: Optional[List["Dog"]] = None,
         breed: Optional[str] = None,
         **kwargs
     ):
-        super(Siamese, self).__init__(id=id, name=name, color=color, hates=hates, **kwargs)
+        super(Siamese, self).__init__(name=name, id=id, color=color, hates=hates, **kwargs)
         self.breed = breed
 
 
@@ -1050,16 +1002,16 @@ class SmartSalmon(Salmon):
 
     :param fishtype: Required. Constant filled by server.
     :type fishtype: str
-    :param species:
-    :type species: str
     :param length: Required.
     :type length: float
     :param siblings:
     :type siblings: list[~bodycomplex.models.Fish]
-    :param location:
-    :type location: str
+    :param species:
+    :type species: str
     :param iswild:
     :type iswild: bool
+    :param location:
+    :type location: str
     :param additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :type additional_properties: dict[str, object]
@@ -1074,11 +1026,11 @@ class SmartSalmon(Salmon):
 
     _attribute_map = {
         'fishtype': {'key': 'fishtype', 'type': 'str'},
-        'species': {'key': 'species', 'type': 'str'},
         'length': {'key': 'length', 'type': 'float'},
         'siblings': {'key': 'siblings', 'type': '[Fish]'},
-        'location': {'key': 'location', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
         'iswild': {'key': 'iswild', 'type': 'bool'},
+        'location': {'key': 'location', 'type': 'str'},
         'additional_properties': {'key': '', 'type': '{object}'},
         'college_degree': {'key': 'college_degree', 'type': 'str'},
     }
@@ -1087,15 +1039,15 @@ class SmartSalmon(Salmon):
         self,
         *,
         length: float,
-        species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
-        location: Optional[str] = None,
+        species: Optional[str] = None,
         iswild: Optional[bool] = None,
+        location: Optional[str] = None,
         additional_properties: Optional[Dict[str, object]] = None,
         college_degree: Optional[str] = None,
         **kwargs
     ):
-        super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
+        super(SmartSalmon, self).__init__(length=length, siblings=siblings, species=species, iswild=iswild, location=location, **kwargs)
         self.fishtype: str = 'smart_salmon'
         self.additional_properties = additional_properties
         self.college_degree = college_degree
@@ -1104,29 +1056,29 @@ class SmartSalmon(Salmon):
 class StringWrapper(msrest.serialization.Model):
     """StringWrapper.
 
-    :param field:
-    :type field: str
     :param empty:
     :type empty: str
+    :param field:
+    :type field: str
     :param null:
     :type null: str
     """
 
     _attribute_map = {
-        'field': {'key': 'field', 'type': 'str'},
         'empty': {'key': 'empty', 'type': 'str'},
+        'field': {'key': 'field', 'type': 'str'},
         'null': {'key': 'null', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        field: Optional[str] = None,
         empty: Optional[str] = None,
+        field: Optional[str] = None,
         null: Optional[str] = None,
         **kwargs
     ):
         super(StringWrapper, self).__init__(**kwargs)
-        self.field = field
         self.empty = empty
+        self.field = field
         self.null = null

@@ -135,386 +135,6 @@ class HeaderOperations(object):
     response_existing_key.metadata = {'url': '/header/response/existingkey'}  # type: ignore
 
     @distributed_trace
-    def param_protected_key(
-        self,
-        content_type,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Send a post request with header value "Content-Type": "text/html".
-
-        :param content_type: Send a post request with header value "Content-Type": "text/html".
-        :type content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.param_protected_key.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    param_protected_key.metadata = {'url': '/header/param/protectedkey'}  # type: ignore
-
-    @distributed_trace
-    def response_protected_key(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get a response with header value "Content-Type": "text/html".
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.response_protected_key.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        response_headers['Content-Type']=self._deserialize('str', response.headers.get('Content-Type'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    response_protected_key.metadata = {'url': '/header/response/protectedkey'}  # type: ignore
-
-    @distributed_trace
-    def param_integer(
-        self,
-        scenario,  # type: str
-        value,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
-
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :param value: Send a post request with header values 1 or -2.
-        :type value: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.param_integer.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
-        header_parameters['value'] = self._serialize.header("value", value, 'int')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    param_integer.metadata = {'url': '/header/param/prim/integer'}  # type: ignore
-
-    @distributed_trace
-    def response_integer(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get a response with header value "value": 1 or -2.
-
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.response_integer.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        response_headers['value']=self._deserialize('int', response.headers.get('value'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    response_integer.metadata = {'url': '/header/response/prim/integer'}  # type: ignore
-
-    @distributed_trace
-    def param_long(
-        self,
-        scenario,  # type: str
-        value,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
-
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :param value: Send a post request with header values 105 or -2.
-        :type value: long
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.param_long.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
-        header_parameters['value'] = self._serialize.header("value", value, 'long')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    param_long.metadata = {'url': '/header/param/prim/long'}  # type: ignore
-
-    @distributed_trace
-    def response_long(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get a response with header value "value": 105 or -2.
-
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.response_long.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        response_headers['value']=self._deserialize('long', response.headers.get('value'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    response_long.metadata = {'url': '/header/response/prim/long'}  # type: ignore
-
-    @distributed_trace
-    def param_float(
-        self,
-        scenario,  # type: str
-        value,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
-
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :param value: Send a post request with header values 0.07 or -3.0.
-        :type value: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.param_float.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
-        header_parameters['value'] = self._serialize.header("value", value, 'float')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    param_float.metadata = {'url': '/header/param/prim/float'}  # type: ignore
-
-    @distributed_trace
-    def response_float(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get a response with header value "value": 0.07 or -3.0.
-
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
-        :type scenario: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.response_float.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        response_headers = {}
-        response_headers['value']=self._deserialize('float', response.headers.get('value'))
-
-        if cls:
-          return cls(pipeline_response, None, response_headers)
-
-    response_float.metadata = {'url': '/header/response/prim/float'}  # type: ignore
-
-    @distributed_trace
     def param_double(
         self,
         scenario,  # type: str
@@ -1005,6 +625,51 @@ class HeaderOperations(object):
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}  # type: ignore
 
     @distributed_trace
+    def param_protected_key(
+        self,
+        content_type,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Send a post request with header value "Content-Type": "text/html".
+
+        :param content_type: Send a post request with header value "Content-Type": "text/html".
+        :type content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.param_protected_key.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    param_protected_key.metadata = {'url': '/header/param/protectedkey'}  # type: ignore
+
+    @distributed_trace
     def param_datetime_rfc1123(
         self,
         scenario,  # type: str
@@ -1437,3 +1102,338 @@ class HeaderOperations(object):
           return cls(pipeline_response, None, {})
 
     custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}  # type: ignore
+
+    @distributed_trace
+    def response_protected_key(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get a response with header value "Content-Type": "text/html".
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.response_protected_key.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        response_headers['Content-Type']=self._deserialize('str', response.headers.get('Content-Type'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    response_protected_key.metadata = {'url': '/header/response/protectedkey'}  # type: ignore
+
+    @distributed_trace
+    def param_integer(
+        self,
+        scenario,  # type: str
+        value,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
+
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :type scenario: str
+        :param value: Send a post request with header values 1 or -2.
+        :type value: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.param_integer.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+        header_parameters['value'] = self._serialize.header("value", value, 'int')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    param_integer.metadata = {'url': '/header/param/prim/integer'}  # type: ignore
+
+    @distributed_trace
+    def response_integer(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get a response with header value "value": 1 or -2.
+
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :type scenario: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.response_integer.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        response_headers['value']=self._deserialize('int', response.headers.get('value'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    response_integer.metadata = {'url': '/header/response/prim/integer'}  # type: ignore
+
+    @distributed_trace
+    def param_long(
+        self,
+        scenario,  # type: str
+        value,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
+
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :type scenario: str
+        :param value: Send a post request with header values 105 or -2.
+        :type value: long
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.param_long.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+        header_parameters['value'] = self._serialize.header("value", value, 'long')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    param_long.metadata = {'url': '/header/param/prim/long'}  # type: ignore
+
+    @distributed_trace
+    def response_long(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get a response with header value "value": 105 or -2.
+
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :type scenario: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.response_long.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        response_headers['value']=self._deserialize('long', response.headers.get('value'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    response_long.metadata = {'url': '/header/response/prim/long'}  # type: ignore
+
+    @distributed_trace
+    def param_float(
+        self,
+        scenario,  # type: str
+        value,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
+
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :type scenario: str
+        :param value: Send a post request with header values 0.07 or -3.0.
+        :type value: float
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.param_float.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+        header_parameters['value'] = self._serialize.header("value", value, 'float')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    param_float.metadata = {'url': '/header/param/prim/float'}  # type: ignore
+
+    @distributed_trace
+    def response_float(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get a response with header value "value": 0.07 or -3.0.
+
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :type scenario: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.response_float.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        response_headers = {}
+        response_headers['value']=self._deserialize('float', response.headers.get('value'))
+
+        if cls:
+          return cls(pipeline_response, None, response_headers)
+
+    response_float.metadata = {'url': '/header/response/prim/float'}  # type: ignore

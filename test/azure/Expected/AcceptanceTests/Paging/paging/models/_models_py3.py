@@ -49,27 +49,27 @@ class CustomParameterGroup(msrest.serialization.Model):
 class OdataProductResult(msrest.serialization.Model):
     """OdataProductResult.
 
-    :param values:
-    :type values: list[~paging.models.Product]
     :param odata_next_link:
     :type odata_next_link: str
+    :param values:
+    :type values: list[~paging.models.Product]
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[Product]'},
         'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
+        'values': {'key': 'values', 'type': '[Product]'},
     }
 
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
         odata_next_link: Optional[str] = None,
+        values: Optional[List["Product"]] = None,
         **kwargs
     ):
         super(OdataProductResult, self).__init__(**kwargs)
-        self.values = values
         self.odata_next_link = odata_next_link
+        self.values = values
 
 
 class OperationResult(msrest.serialization.Model):
@@ -238,76 +238,76 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
         name: Optional[str] = None,
+        id: Optional[int] = None,
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
-        self.id = id
         self.name = name
+        self.id = id
 
 
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :param values:
-    :type values: list[~paging.models.Product]
     :param next_link:
     :type next_link: str
+    :param values:
+    :type values: list[~paging.models.Product]
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[Product]'},
         'next_link': {'key': 'nextLink', 'type': 'str'},
+        'values': {'key': 'values', 'type': '[Product]'},
     }
 
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
+        values: Optional[List["Product"]] = None,
         **kwargs
     ):
         super(ProductResult, self).__init__(**kwargs)
-        self.values = values
         self.next_link = next_link
+        self.values = values
 
 
 class ProductResultValue(msrest.serialization.Model):
     """ProductResultValue.
 
-    :param value:
-    :type value: list[~paging.models.Product]
     :param next_link:
     :type next_link: str
+    :param value:
+    :type value: list[~paging.models.Product]
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': '[Product]'},
         'next_link': {'key': 'nextLink', 'type': 'str'},
+        'value': {'key': 'value', 'type': '[Product]'},
     }
 
     def __init__(
         self,
         *,
-        value: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
+        value: Optional[List["Product"]] = None,
         **kwargs
     ):
         super(ProductResultValue, self).__init__(**kwargs)
-        self.value = value
         self.next_link = next_link
+        self.value = value

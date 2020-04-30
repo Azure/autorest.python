@@ -218,6 +218,50 @@ class DateOperations:
     get_underflow_date.metadata = {'url': '/date/underflowdate'}  # type: ignore
 
     @distributed_trace_async
+    async def get_max_date(
+        self,
+        **kwargs
+    ) -> datetime.date:
+        """Get max date value 9999-12-31.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: date or the result of cls(response)
+        :rtype: ~datetime.date
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_max_date.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('date', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_max_date.metadata = {'url': '/date/max'}  # type: ignore
+
+    @distributed_trace_async
     async def put_max_date(
         self,
         date_body: datetime.date,
@@ -267,11 +311,11 @@ class DateOperations:
     put_max_date.metadata = {'url': '/date/max'}  # type: ignore
 
     @distributed_trace_async
-    async def get_max_date(
+    async def get_min_date(
         self,
         **kwargs
     ) -> datetime.date:
-        """Get max date value 9999-12-31.
+        """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
@@ -283,7 +327,7 @@ class DateOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_max_date.metadata['url']  # type: ignore
+        url = self.get_min_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -308,7 +352,7 @@ class DateOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_max_date.metadata = {'url': '/date/max'}  # type: ignore
+    get_min_date.metadata = {'url': '/date/min'}  # type: ignore
 
     @distributed_trace_async
     async def put_min_date(
@@ -358,47 +402,3 @@ class DateOperations:
           return cls(pipeline_response, None, {})
 
     put_min_date.metadata = {'url': '/date/min'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_min_date(
-        self,
-        **kwargs
-    ) -> datetime.date:
-        """Get min date value 0000-01-01.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or the result of cls(response)
-        :rtype: ~datetime.date
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_min_date.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('date', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_min_date.metadata = {'url': '/date/min'}  # type: ignore

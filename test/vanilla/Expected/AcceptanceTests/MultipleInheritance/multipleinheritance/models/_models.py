@@ -13,15 +13,15 @@ import msrest.serialization
 class Feline(msrest.serialization.Model):
     """Feline.
 
-    :param meows:
-    :type meows: bool
     :param hisses:
     :type hisses: bool
+    :param meows:
+    :type meows: bool
     """
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
         'hisses': {'key': 'hisses', 'type': 'bool'},
+        'meows': {'key': 'meows', 'type': 'bool'},
     }
 
     def __init__(
@@ -29,8 +29,8 @@ class Feline(msrest.serialization.Model):
         **kwargs
     ):
         super(Feline, self).__init__(**kwargs)
-        self.meows = kwargs.get('meows', None)
         self.hisses = kwargs.get('hisses', None)
+        self.meows = kwargs.get('meows', None)
 
 
 class Pet(msrest.serialization.Model):
@@ -63,10 +63,10 @@ class Cat(Pet, Feline):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param meows:
-    :type meows: bool
     :param hisses:
     :type hisses: bool
+    :param meows:
+    :type meows: bool
     :param name: Required.
     :type name: str
     :param likes_milk:
@@ -78,8 +78,8 @@ class Cat(Pet, Feline):
     }
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
         'hisses': {'key': 'hisses', 'type': 'bool'},
+        'meows': {'key': 'meows', 'type': 'bool'},
         'name': {'key': 'name', 'type': 'str'},
         'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
     }
@@ -89,8 +89,8 @@ class Cat(Pet, Feline):
         **kwargs
     ):
         super(Cat, self).__init__(**kwargs)
-        self.meows = kwargs.get('meows', None)
         self.hisses = kwargs.get('hisses', None)
+        self.meows = kwargs.get('meows', None)
         self.likes_milk = kwargs.get('likes_milk', None)
         self.name = kwargs['name']
         self.likes_milk = kwargs.get('likes_milk', None)
@@ -99,15 +99,15 @@ class Cat(Pet, Feline):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
@@ -115,8 +115,8 @@ class Error(msrest.serialization.Model):
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+        self.status = kwargs.get('status', None)
 
 
 class Horse(Pet):
@@ -152,10 +152,10 @@ class Kitten(Cat):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param meows:
-    :type meows: bool
     :param hisses:
     :type hisses: bool
+    :param meows:
+    :type meows: bool
     :param name: Required.
     :type name: str
     :param likes_milk:
@@ -169,8 +169,8 @@ class Kitten(Cat):
     }
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
         'hisses': {'key': 'hisses', 'type': 'bool'},
+        'meows': {'key': 'meows', 'type': 'bool'},
         'name': {'key': 'name', 'type': 'str'},
         'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
         'eats_mice_yet': {'key': 'eatsMiceYet', 'type': 'bool'},

@@ -41,301 +41,6 @@ class ExplicitOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_required_integer_parameter(
-        self,
-        body_parameter: int,
-        **kwargs
-    ) -> None:
-        """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
-
-        :param body_parameter:
-        :type body_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.post_required_integer_parameter.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, 'int')
-        body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
-
-    @distributed_trace_async
-    async def post_optional_integer_parameter(
-        self,
-        body_parameter: Optional[int] = None,
-        **kwargs
-    ) -> None:
-        """Test explicitly optional integer. Please put null.
-
-        :param body_parameter:
-        :type body_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.post_optional_integer_parameter.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'int')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
-
-    @distributed_trace_async
-    async def post_required_integer_property(
-        self,
-        value: int,
-        **kwargs
-    ) -> None:
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
-
-        :param value:
-        :type value: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        _body_parameter = models.IntWrapper(value=value)
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.post_required_integer_property.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, 'IntWrapper')
-        body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
-
-    @distributed_trace_async
-    async def post_optional_integer_property(
-        self,
-        value: Optional[int] = None,
-        **kwargs
-    ) -> None:
-        """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
-
-        :param value:
-        :type value: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        _body_parameter = models.IntOptionalWrapper(value=value)
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.post_optional_integer_property.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
-
-    @distributed_trace_async
-    async def post_required_integer_header(
-        self,
-        header_parameter: int,
-        **kwargs
-    ) -> None:
-        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
-
-        :param header_parameter:
-        :type header_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.post_required_integer_header.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
-
-    @distributed_trace_async
-    async def post_optional_integer_header(
-        self,
-        header_parameter: Optional[int] = None,
-        **kwargs
-    ) -> None:
-        """Test explicitly optional integer. Please put a header 'headerParameter' => null.
-
-        :param header_parameter:
-        :type header_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.post_optional_integer_header.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        if header_parameter is not None:
-            header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore
-
-    @distributed_trace_async
     async def post_required_string_parameter(
         self,
         body_parameter: str,
@@ -1130,3 +835,298 @@ class ExplicitOperations:
           return cls(pipeline_response, None, {})
 
     post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}  # type: ignore
+
+    @distributed_trace_async
+    async def post_required_integer_parameter(
+        self,
+        body_parameter: int,
+        **kwargs
+    ) -> None:
+        """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
+
+        :param body_parameter:
+        :type body_parameter: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.post_required_integer_parameter.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(body_parameter, 'int')
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
+
+    @distributed_trace_async
+    async def post_optional_integer_parameter(
+        self,
+        body_parameter: Optional[int] = None,
+        **kwargs
+    ) -> None:
+        """Test explicitly optional integer. Please put null.
+
+        :param body_parameter:
+        :type body_parameter: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.post_optional_integer_parameter.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if body_parameter is not None:
+            body_content = self._serialize.body(body_parameter, 'int')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
+
+    @distributed_trace_async
+    async def post_required_integer_property(
+        self,
+        value: int,
+        **kwargs
+    ) -> None:
+        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
+
+        :param value:
+        :type value: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        _body_parameter = models.IntWrapper(value=value)
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.post_required_integer_property.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_body_parameter, 'IntWrapper')
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
+
+    @distributed_trace_async
+    async def post_optional_integer_property(
+        self,
+        value: Optional[int] = None,
+        **kwargs
+    ) -> None:
+        """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
+
+        :param value:
+        :type value: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        _body_parameter = models.IntOptionalWrapper(value=value)
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.post_optional_integer_property.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if _body_parameter is not None:
+            body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
+
+    @distributed_trace_async
+    async def post_required_integer_header(
+        self,
+        header_parameter: int,
+        **kwargs
+    ) -> None:
+        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+
+        :param header_parameter:
+        :type header_parameter: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.post_required_integer_header.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
+
+    @distributed_trace_async
+    async def post_optional_integer_header(
+        self,
+        header_parameter: Optional[int] = None,
+        **kwargs
+    ) -> None:
+        """Test explicitly optional integer. Please put a header 'headerParameter' => null.
+
+        :param header_parameter:
+        :type header_parameter: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.post_optional_integer_header.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if header_parameter is not None:
+            header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore

@@ -15,12 +15,12 @@ class BaseProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param description: Description of product.
+    :type description: str
     :param product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
     :type product_id: str
-    :param description: Description of product.
-    :type description: str
     """
 
     _validation = {
@@ -28,8 +28,8 @@ class BaseProduct(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        'product_id': {'key': 'base_product_id', 'type': 'str'},
         'description': {'key': 'base_product_description', 'type': 'str'},
+        'product_id': {'key': 'base_product_id', 'type': 'str'},
     }
 
     def __init__(
@@ -37,25 +37,25 @@ class BaseProduct(msrest.serialization.Model):
         **kwargs
     ):
         super(BaseProduct, self).__init__(**kwargs)
-        self.product_id = kwargs['product_id']
         self.description = kwargs.get('description', None)
+        self.product_id = kwargs['product_id']
 
 
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
     :param parent_error:
     :type parent_error: ~modelflattening.models.Error
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
         'parent_error': {'key': 'parentError', 'type': 'Error'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
@@ -63,9 +63,9 @@ class Error(msrest.serialization.Model):
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
         self.parent_error = kwargs.get('parent_error', None)
+        self.status = kwargs.get('status', None)
 
 
 class Resource(msrest.serialization.Model):
@@ -73,30 +73,30 @@ class Resource(msrest.serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
     :ivar name: Resource Name.
     :vartype name: str
+    :ivar type: Resource Type.
+    :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
+    :param location: Resource Location.
+    :type location: str
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
+    :type tags: dict[str, str]
     """
 
     _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
         'name': {'readonly': True},
+        'type': {'readonly': True},
+        'id': {'readonly': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
     }
 
     def __init__(
@@ -104,11 +104,11 @@ class Resource(msrest.serialization.Model):
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.type = None
-        self.tags = kwargs.get('tags', None)
-        self.location = kwargs.get('location', None)
         self.name = None
+        self.type = None
+        self.id = None
+        self.location = kwargs.get('location', None)
+        self.tags = kwargs.get('tags', None)
 
 
 class FlattenedProduct(Resource):
@@ -116,45 +116,45 @@ class FlattenedProduct(Resource):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :param p_name:
-    :type p_name: str
+    :ivar type: Resource Type.
+    :vartype type: str
+    :ivar id: Resource Id.
+    :vartype id: str
+    :param location: Resource Location.
+    :type location: str
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
+    :type tags: dict[str, str]
     :param type_properties_type:
     :type type_properties_type: str
+    :param p_name:
+    :type p_name: str
+    :param provisioning_state:
+    :type provisioning_state: str
     :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
-    :param provisioning_state:
-    :type provisioning_state: str
     """
 
     _validation = {
-        'id': {'readonly': True},
-        'type': {'readonly': True},
         'name': {'readonly': True},
+        'type': {'readonly': True},
+        'id': {'readonly': True},
         'provisioning_state_values': {'readonly': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
-        'p_name': {'key': 'properties.p\\.name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
         'type_properties_type': {'key': 'properties.type', 'type': 'str'},
-        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
+        'p_name': {'key': 'properties.p\\.name', 'type': 'str'},
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
+        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
     def __init__(
@@ -162,10 +162,10 @@ class FlattenedProduct(Resource):
         **kwargs
     ):
         super(FlattenedProduct, self).__init__(**kwargs)
-        self.p_name = kwargs.get('p_name', None)
         self.type_properties_type = kwargs.get('type_properties_type', None)
-        self.provisioning_state_values = None
+        self.p_name = kwargs.get('p_name', None)
         self.provisioning_state = kwargs.get('provisioning_state', None)
+        self.provisioning_state_values = None
 
 
 class FlattenParameterGroup(msrest.serialization.Model):
@@ -177,12 +177,12 @@ class FlattenParameterGroup(msrest.serialization.Model):
     :type name: str
     :param simple_body_product: Simple body product to put.
     :type simple_body_product: ~modelflattening.models.SimpleProduct
+    :param description: Description of product.
+    :type description: str
     :param product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
     :type product_id: str
-    :param description: Description of product.
-    :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
     :param generic_value: Generic URL value.
@@ -199,8 +199,8 @@ class FlattenParameterGroup(msrest.serialization.Model):
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
         'simple_body_product': {'key': 'SimpleBodyProduct', 'type': 'SimpleProduct'},
-        'product_id': {'key': 'productId', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
+        'product_id': {'key': 'productId', 'type': 'str'},
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'generic_value': {'key': 'generic_value', 'type': 'str'},
         'odata_value': {'key': '@odata\\.value', 'type': 'str'},
@@ -213,8 +213,8 @@ class FlattenParameterGroup(msrest.serialization.Model):
         super(FlattenParameterGroup, self).__init__(**kwargs)
         self.name = kwargs['name']
         self.simple_body_product = kwargs.get('simple_body_product', None)
-        self.product_id = kwargs['product_id']
         self.description = kwargs.get('description', None)
+        self.product_id = kwargs['product_id']
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
         self.odata_value = kwargs.get('odata_value', None)
@@ -283,18 +283,18 @@ class ProductWrapper(msrest.serialization.Model):
 class ResourceCollection(msrest.serialization.Model):
     """ResourceCollection.
 
-    :param productresource: Flattened product.
-    :type productresource: ~modelflattening.models.FlattenedProduct
     :param arrayofresources:
     :type arrayofresources: list[~modelflattening.models.FlattenedProduct]
     :param dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
     :type dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
+    :param productresource: Flattened product.
+    :type productresource: ~modelflattening.models.FlattenedProduct
     """
 
     _attribute_map = {
-        'productresource': {'key': 'productresource', 'type': 'FlattenedProduct'},
         'arrayofresources': {'key': 'arrayofresources', 'type': '[FlattenedProduct]'},
         'dictionaryofresources': {'key': 'dictionaryofresources', 'type': '{FlattenedProduct}'},
+        'productresource': {'key': 'productresource', 'type': 'FlattenedProduct'},
     }
 
     def __init__(
@@ -302,9 +302,9 @@ class ResourceCollection(msrest.serialization.Model):
         **kwargs
     ):
         super(ResourceCollection, self).__init__(**kwargs)
-        self.productresource = kwargs.get('productresource', None)
         self.arrayofresources = kwargs.get('arrayofresources', None)
         self.dictionaryofresources = kwargs.get('dictionaryofresources', None)
+        self.productresource = kwargs.get('productresource', None)
 
 
 class SimpleProduct(BaseProduct):
@@ -314,16 +314,16 @@ class SimpleProduct(BaseProduct):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param description: Description of product.
+    :type description: str
     :param product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
     :type product_id: str
-    :param description: Description of product.
-    :type description: str
-    :param max_product_display_name: Display name of product.
-    :type max_product_display_name: str
     :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
     :vartype capacity: str
+    :param max_product_display_name: Display name of product.
+    :type max_product_display_name: str
     :param generic_value: Generic URL value.
     :type generic_value: str
     :param odata_value: URL value.
@@ -336,10 +336,10 @@ class SimpleProduct(BaseProduct):
     }
 
     _attribute_map = {
-        'product_id': {'key': 'base_product_id', 'type': 'str'},
         'description': {'key': 'base_product_description', 'type': 'str'},
-        'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
+        'product_id': {'key': 'base_product_id', 'type': 'str'},
         'capacity': {'key': 'details.max_product_capacity', 'type': 'str'},
+        'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
         'generic_value': {'key': 'details.max_product_image.generic_value', 'type': 'str'},
         'odata_value': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
     }

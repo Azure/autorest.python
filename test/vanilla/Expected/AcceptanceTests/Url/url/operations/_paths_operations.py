@@ -138,374 +138,6 @@ class PathsOperations(object):
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}  # type: ignore
 
     @distributed_trace
-    def get_int_one_million(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '1000000' integer value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        int_path = 1000000
-
-        # Construct URL
-        url = self.get_int_one_million.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'intPath': self._serialize.url("int_path", int_path, 'int'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}  # type: ignore
-
-    @distributed_trace
-    def get_int_negative_one_million(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '-1000000' integer value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        int_path = -1000000
-
-        # Construct URL
-        url = self.get_int_negative_one_million.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'intPath': self._serialize.url("int_path", int_path, 'int'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}  # type: ignore
-
-    @distributed_trace
-    def get_ten_billion(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '10000000000' 64 bit integer value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        long_path = 10000000000
-
-        # Construct URL
-        url = self.get_ten_billion.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'longPath': self._serialize.url("long_path", long_path, 'long'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}  # type: ignore
-
-    @distributed_trace
-    def get_negative_ten_billion(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '-10000000000' 64 bit integer value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        long_path = -10000000000
-
-        # Construct URL
-        url = self.get_negative_ten_billion.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'longPath': self._serialize.url("long_path", long_path, 'long'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}  # type: ignore
-
-    @distributed_trace
-    def float_scientific_positive(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '1.034E+20' numeric value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        float_path = 103400000000000000000
-
-        # Construct URL
-        url = self.float_scientific_positive.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'floatPath': self._serialize.url("float_path", float_path, 'float'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}  # type: ignore
-
-    @distributed_trace
-    def float_scientific_negative(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '-1.034E-20' numeric value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        float_path = -1.034e-20
-
-        # Construct URL
-        url = self.float_scientific_negative.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'floatPath': self._serialize.url("float_path", float_path, 'float'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}  # type: ignore
-
-    @distributed_trace
-    def double_decimal_positive(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '9999999.999' numeric value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        double_path = 9999999.999
-
-        # Construct URL
-        url = self.double_decimal_positive.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'doublePath': self._serialize.url("double_path", double_path, 'float'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}  # type: ignore
-
-    @distributed_trace
-    def double_decimal_negative(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        """Get '-9999999.999' numeric value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        double_path = -9999999.999
-
-        # Construct URL
-        url = self.double_decimal_negative.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'doublePath': self._serialize.url("double_path", double_path, 'float'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}  # type: ignore
-
-    @distributed_trace
     def string_unicode(
         self,
         **kwargs  # type: Any
@@ -978,6 +610,52 @@ class PathsOperations(object):
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}  # type: ignore
 
     @distributed_trace
+    def get_int_one_million(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '1000000' integer value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        int_path = 1000000
+
+        # Construct URL
+        url = self.get_int_one_million.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'intPath': self._serialize.url("int_path", int_path, 'int'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}  # type: ignore
+
+    @distributed_trace
     def date_valid(
         self,
         **kwargs  # type: Any
@@ -1309,3 +987,325 @@ class PathsOperations(object):
           return cls(pipeline_response, None, {})
 
     unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}  # type: ignore
+
+    @distributed_trace
+    def get_int_negative_one_million(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '-1000000' integer value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        int_path = -1000000
+
+        # Construct URL
+        url = self.get_int_negative_one_million.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'intPath': self._serialize.url("int_path", int_path, 'int'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}  # type: ignore
+
+    @distributed_trace
+    def get_ten_billion(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '10000000000' 64 bit integer value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        long_path = 10000000000
+
+        # Construct URL
+        url = self.get_ten_billion.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'longPath': self._serialize.url("long_path", long_path, 'long'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}  # type: ignore
+
+    @distributed_trace
+    def get_negative_ten_billion(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '-10000000000' 64 bit integer value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        long_path = -10000000000
+
+        # Construct URL
+        url = self.get_negative_ten_billion.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'longPath': self._serialize.url("long_path", long_path, 'long'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}  # type: ignore
+
+    @distributed_trace
+    def float_scientific_positive(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '1.034E+20' numeric value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        float_path = 103400000000000000000
+
+        # Construct URL
+        url = self.float_scientific_positive.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'floatPath': self._serialize.url("float_path", float_path, 'float'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}  # type: ignore
+
+    @distributed_trace
+    def float_scientific_negative(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '-1.034E-20' numeric value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        float_path = -1.034e-20
+
+        # Construct URL
+        url = self.float_scientific_negative.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'floatPath': self._serialize.url("float_path", float_path, 'float'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}  # type: ignore
+
+    @distributed_trace
+    def double_decimal_positive(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '9999999.999' numeric value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        double_path = 9999999.999
+
+        # Construct URL
+        url = self.double_decimal_positive.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'doublePath': self._serialize.url("double_path", double_path, 'float'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}  # type: ignore
+
+    @distributed_trace
+    def double_decimal_negative(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get '-9999999.999' numeric value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        double_path = -9999999.999
+
+        # Construct URL
+        url = self.double_decimal_negative.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'doublePath': self._serialize.url("double_path", double_path, 'float'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}  # type: ignore

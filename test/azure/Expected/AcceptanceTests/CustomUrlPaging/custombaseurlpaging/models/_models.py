@@ -12,15 +12,15 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
@@ -28,8 +28,8 @@ class Error(msrest.serialization.Model):
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+        self.status = kwargs.get('status', None)
 
 
 class Product(msrest.serialization.Model):
@@ -54,15 +54,15 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
+    :param id:
+    :type id: int
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
     }
 
     def __init__(
@@ -70,22 +70,22 @@ class ProductProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
+        self.id = kwargs.get('id', None)
 
 
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :param values:
-    :type values: list[~custombaseurlpaging.models.Product]
     :param next_link:
     :type next_link: str
+    :param values:
+    :type values: list[~custombaseurlpaging.models.Product]
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[Product]'},
         'next_link': {'key': 'nextLink', 'type': 'str'},
+        'values': {'key': 'values', 'type': '[Product]'},
     }
 
     def __init__(
@@ -93,5 +93,5 @@ class ProductResult(msrest.serialization.Model):
         **kwargs
     ):
         super(ProductResult, self).__init__(**kwargs)
-        self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
+        self.values = kwargs.get('values', None)

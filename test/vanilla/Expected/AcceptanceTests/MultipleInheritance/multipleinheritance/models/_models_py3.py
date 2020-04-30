@@ -15,27 +15,27 @@ import msrest.serialization
 class Feline(msrest.serialization.Model):
     """Feline.
 
-    :param meows:
-    :type meows: bool
     :param hisses:
     :type hisses: bool
+    :param meows:
+    :type meows: bool
     """
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
         'hisses': {'key': 'hisses', 'type': 'bool'},
+        'meows': {'key': 'meows', 'type': 'bool'},
     }
 
     def __init__(
         self,
         *,
-        meows: Optional[bool] = None,
         hisses: Optional[bool] = None,
+        meows: Optional[bool] = None,
         **kwargs
     ):
         super(Feline, self).__init__(**kwargs)
-        self.meows = meows
         self.hisses = hisses
+        self.meows = meows
 
 
 class Pet(msrest.serialization.Model):
@@ -70,10 +70,10 @@ class Cat(Pet, Feline):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param meows:
-    :type meows: bool
     :param hisses:
     :type hisses: bool
+    :param meows:
+    :type meows: bool
     :param name: Required.
     :type name: str
     :param likes_milk:
@@ -85,8 +85,8 @@ class Cat(Pet, Feline):
     }
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
         'hisses': {'key': 'hisses', 'type': 'bool'},
+        'meows': {'key': 'meows', 'type': 'bool'},
         'name': {'key': 'name', 'type': 'str'},
         'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
     }
@@ -95,14 +95,14 @@ class Cat(Pet, Feline):
         self,
         *,
         name: str,
-        meows: Optional[bool] = None,
         hisses: Optional[bool] = None,
+        meows: Optional[bool] = None,
         likes_milk: Optional[bool] = None,
         **kwargs
     ):
-        super(Cat, self).__init__(name=name, meows=meows, hisses=hisses, **kwargs)
-        self.meows = meows
+        super(Cat, self).__init__(name=name, hisses=hisses, meows=meows, **kwargs)
         self.hisses = hisses
+        self.meows = meows
         self.likes_milk = likes_milk
         self.name = name
         self.likes_milk = likes_milk
@@ -111,27 +111,27 @@ class Cat(Pet, Feline):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
         message: Optional[str] = None,
+        status: Optional[int] = None,
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = status
         self.message = message
+        self.status = status
 
 
 class Horse(Pet):
@@ -170,10 +170,10 @@ class Kitten(Cat):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param meows:
-    :type meows: bool
     :param hisses:
     :type hisses: bool
+    :param meows:
+    :type meows: bool
     :param name: Required.
     :type name: str
     :param likes_milk:
@@ -187,8 +187,8 @@ class Kitten(Cat):
     }
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
         'hisses': {'key': 'hisses', 'type': 'bool'},
+        'meows': {'key': 'meows', 'type': 'bool'},
         'name': {'key': 'name', 'type': 'str'},
         'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
         'eats_mice_yet': {'key': 'eatsMiceYet', 'type': 'bool'},
@@ -198,11 +198,11 @@ class Kitten(Cat):
         self,
         *,
         name: str,
-        meows: Optional[bool] = None,
         hisses: Optional[bool] = None,
+        meows: Optional[bool] = None,
         likes_milk: Optional[bool] = None,
         eats_mice_yet: Optional[bool] = None,
         **kwargs
     ):
-        super(Kitten, self).__init__(meows=meows, hisses=hisses, name=name, likes_milk=likes_milk, **kwargs)
+        super(Kitten, self).__init__(hisses=hisses, meows=meows, name=name, likes_milk=likes_milk, **kwargs)
         self.eats_mice_yet = eats_mice_yet

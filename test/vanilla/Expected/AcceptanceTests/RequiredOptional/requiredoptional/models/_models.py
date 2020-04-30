@@ -101,15 +101,15 @@ class ClassWrapper(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
@@ -117,8 +117,8 @@ class Error(msrest.serialization.Model):
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+        self.status = kwargs.get('status', None)
 
 
 class IntOptionalWrapper(msrest.serialization.Model):
@@ -170,10 +170,10 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required.
-    :type id: int
     :param name:
     :type name: str
+    :param id: Required.
+    :type id: int
     """
 
     _validation = {
@@ -181,8 +181,8 @@ class Product(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
+        'id': {'key': 'id', 'type': 'int'},
     }
 
     def __init__(
@@ -190,8 +190,8 @@ class Product(msrest.serialization.Model):
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)
-        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
+        self.id = kwargs['id']
 
 
 class StringOptionalWrapper(msrest.serialization.Model):

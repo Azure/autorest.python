@@ -15,27 +15,27 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
         message: Optional[str] = None,
+        status: Optional[int] = None,
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = status
         self.message = message
+        self.status = status
 
 
 class ModelThree(msrest.serialization.Model):
@@ -62,27 +62,27 @@ class ModelThree(msrest.serialization.Model):
 class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
-    :param values:
-    :type values: list[~multiapi.v3.models.ModelThree]
     :param next_link:
     :type next_link: str
+    :param values:
+    :type values: list[~multiapi.v3.models.ModelThree]
     """
 
     _attribute_map = {
-        'values': {'key': 'values', 'type': '[ModelThree]'},
         'next_link': {'key': 'nextLink', 'type': 'str'},
+        'values': {'key': 'values', 'type': '[ModelThree]'},
     }
 
     def __init__(
         self,
         *,
-        values: Optional[List["ModelThree"]] = None,
         next_link: Optional[str] = None,
+        values: Optional[List["ModelThree"]] = None,
         **kwargs
     ):
         super(PagingResult, self).__init__(**kwargs)
-        self.values = values
         self.next_link = next_link
+        self.values = values
 
 
 class SourcePath(msrest.serialization.Model):

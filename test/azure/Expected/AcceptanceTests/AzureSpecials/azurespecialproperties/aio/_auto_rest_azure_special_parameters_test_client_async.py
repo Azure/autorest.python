@@ -13,11 +13,11 @@ from msrest import Deserializer, Serializer
 
 from ._configuration_async import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations_async import XMsClientRequestIdOperations
-from .operations_async import SubscriptionInCredentialsOperations
 from .operations_async import SubscriptionInMethodOperations
 from .operations_async import ApiVersionDefaultOperations
 from .operations_async import ApiVersionLocalOperations
 from .operations_async import SkipUrlEncodingOperations
+from .operations_async import SubscriptionInCredentialsOperations
 from .operations_async import OdataOperations
 from .operations_async import HeaderOperations
 from .. import models
@@ -28,8 +28,6 @@ class AutoRestAzureSpecialParametersTestClient(object):
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
     :vartype xms_client_request_id: azurespecialproperties.aio.operations_async.XMsClientRequestIdOperations
-    :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
-    :vartype subscription_in_credentials: azurespecialproperties.aio.operations_async.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
     :vartype subscription_in_method: azurespecialproperties.aio.operations_async.SubscriptionInMethodOperations
     :ivar api_version_default: ApiVersionDefaultOperations operations
@@ -38,6 +36,8 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :vartype api_version_local: azurespecialproperties.aio.operations_async.ApiVersionLocalOperations
     :ivar skip_url_encoding: SkipUrlEncodingOperations operations
     :vartype skip_url_encoding: azurespecialproperties.aio.operations_async.SkipUrlEncodingOperations
+    :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
+    :vartype subscription_in_credentials: azurespecialproperties.aio.operations_async.SubscriptionInCredentialsOperations
     :ivar odata: OdataOperations operations
     :vartype odata: azurespecialproperties.aio.operations_async.OdataOperations
     :ivar header: HeaderOperations operations
@@ -68,8 +68,6 @@ class AutoRestAzureSpecialParametersTestClient(object):
 
         self.xms_client_request_id = XMsClientRequestIdOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
         self.subscription_in_method = SubscriptionInMethodOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.api_version_default = ApiVersionDefaultOperations(
@@ -77,6 +75,8 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self.api_version_local = ApiVersionLocalOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.skip_url_encoding = SkipUrlEncodingOperations(
+            self._client, self._config, self._serialize, self._deserialize)
+        self.subscription_in_credentials = SubscriptionInCredentialsOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.odata = OdataOperations(
             self._client, self._config, self._serialize, self._deserialize)

@@ -15,24 +15,24 @@ class AccessPolicy(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param start: Required. the date-time the policy is active.
-    :type start: ~datetime.datetime
     :param expiry: Required. the date-time the policy expires.
     :type expiry: ~datetime.datetime
     :param permission: Required. the permissions for the acl policy.
     :type permission: str
+    :param start: Required. the date-time the policy is active.
+    :type start: ~datetime.datetime
     """
 
     _validation = {
-        'start': {'required': True},
         'expiry': {'required': True},
         'permission': {'required': True},
+        'start': {'required': True},
     }
 
     _attribute_map = {
-        'start': {'key': 'Start', 'type': 'iso-8601'},
         'expiry': {'key': 'Expiry', 'type': 'iso-8601'},
         'permission': {'key': 'Permission', 'type': 'str'},
+        'start': {'key': 'Start', 'type': 'iso-8601'},
     }
 
     def __init__(
@@ -40,23 +40,23 @@ class AccessPolicy(msrest.serialization.Model):
         **kwargs
     ):
         super(AccessPolicy, self).__init__(**kwargs)
-        self.start = kwargs['start']
         self.expiry = kwargs['expiry']
         self.permission = kwargs['permission']
+        self.start = kwargs['start']
 
 
 class AppleBarrel(msrest.serialization.Model):
     """A barrel of apples.
 
-    :param good_apples:
-    :type good_apples: list[str]
     :param bad_apples:
     :type bad_apples: list[str]
+    :param good_apples:
+    :type good_apples: list[str]
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
         'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
+        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
     }
 
     def __init__(
@@ -64,8 +64,8 @@ class AppleBarrel(msrest.serialization.Model):
         **kwargs
     ):
         super(AppleBarrel, self).__init__(**kwargs)
-        self.good_apples = kwargs.get('good_apples', None)
         self.bad_apples = kwargs.get('bad_apples', None)
+        self.good_apples = kwargs.get('good_apples', None)
 
 
 class Banana(msrest.serialization.Model):
@@ -73,16 +73,16 @@ class Banana(msrest.serialization.Model):
 
     :param name:
     :type name: str
-    :param flavor:
-    :type flavor: str
     :param expiration: The time at which you should reconsider eating this banana.
     :type expiration: ~datetime.datetime
+    :param flavor:
+    :type flavor: str
     """
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str', 'xml': {'name': 'name'}},
-        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
         'expiration': {'key': 'expiration', 'type': 'iso-8601', 'xml': {'name': 'expiration'}},
+        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
     }
     _xml_map = {
         'name': 'banana'
@@ -94,8 +94,8 @@ class Banana(msrest.serialization.Model):
     ):
         super(Banana, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
-        self.flavor = kwargs.get('flavor', None)
         self.expiration = kwargs.get('expiration', None)
+        self.flavor = kwargs.get('flavor', None)
 
 
 class Blob(msrest.serialization.Model):
@@ -103,31 +103,31 @@ class Blob(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required.
-    :type name: str
     :param deleted: Required.
     :type deleted: bool
-    :param snapshot: Required.
-    :type snapshot: str
-    :param properties: Required. Properties of a blob.
-    :type properties: ~xmlservice.models.BlobProperties
     :param metadata: Dictionary of :code:`<string>`.
     :type metadata: dict[str, str]
+    :param name: Required.
+    :type name: str
+    :param properties: Required. Properties of a blob.
+    :type properties: ~xmlservice.models.BlobProperties
+    :param snapshot: Required.
+    :type snapshot: str
     """
 
     _validation = {
-        'name': {'required': True},
         'deleted': {'required': True},
-        'snapshot': {'required': True},
+        'name': {'required': True},
         'properties': {'required': True},
+        'snapshot': {'required': True},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
         'deleted': {'key': 'Deleted', 'type': 'bool'},
-        'snapshot': {'key': 'Snapshot', 'type': 'str'},
-        'properties': {'key': 'Properties', 'type': 'BlobProperties'},
         'metadata': {'key': 'Metadata', 'type': '{str}'},
+        'name': {'key': 'Name', 'type': 'str'},
+        'properties': {'key': 'Properties', 'type': 'BlobProperties'},
+        'snapshot': {'key': 'Snapshot', 'type': 'str'},
     }
     _xml_map = {
         'name': 'Blob'
@@ -138,11 +138,11 @@ class Blob(msrest.serialization.Model):
         **kwargs
     ):
         super(Blob, self).__init__(**kwargs)
-        self.name = kwargs['name']
         self.deleted = kwargs['deleted']
-        self.snapshot = kwargs['snapshot']
-        self.properties = kwargs['properties']
         self.metadata = kwargs.get('metadata', None)
+        self.name = kwargs['name']
+        self.properties = kwargs['properties']
+        self.snapshot = kwargs['snapshot']
 
 
 class BlobPrefix(msrest.serialization.Model):
@@ -175,57 +175,6 @@ class BlobProperties(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required.
-    :type last_modified: ~datetime.datetime
-    :param etag: Required.
-    :type etag: str
-    :param content_length: Size in bytes.
-    :type content_length: long
-    :param content_type:
-    :type content_type: str
-    :param content_encoding:
-    :type content_encoding: str
-    :param content_language:
-    :type content_language: str
-    :param content_md5:
-    :type content_md5: str
-    :param content_disposition:
-    :type content_disposition: str
-    :param cache_control:
-    :type cache_control: str
-    :param blob_sequence_number:
-    :type blob_sequence_number: int
-    :param blob_type:  Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
-    :type blob_type: str or ~xmlservice.models.BlobType
-    :param lease_status:  Possible values include: "locked", "unlocked".
-    :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: "available", "leased", "expired", "breaking",
-     "broken".
-    :type lease_state: str or ~xmlservice.models.LeaseStateType
-    :param lease_duration:  Possible values include: "infinite", "fixed".
-    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :param copy_id:
-    :type copy_id: str
-    :param copy_status:  Possible values include: "pending", "success", "aborted", "failed".
-    :type copy_status: str or ~xmlservice.models.CopyStatusType
-    :param copy_source:
-    :type copy_source: str
-    :param copy_progress:
-    :type copy_progress: str
-    :param copy_completion_time:
-    :type copy_completion_time: ~datetime.datetime
-    :param copy_status_description:
-    :type copy_status_description: str
-    :param server_encrypted:
-    :type server_encrypted: bool
-    :param incremental_copy:
-    :type incremental_copy: bool
-    :param destination_snapshot:
-    :type destination_snapshot: str
-    :param deleted_time:
-    :type deleted_time: ~datetime.datetime
-    :param remaining_retention_days:
-    :type remaining_retention_days: int
     :param access_tier:  Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
      "Hot", "Cool", "Archive".
     :type access_tier: str or ~xmlservice.models.AccessTier
@@ -234,42 +183,93 @@ class BlobProperties(msrest.serialization.Model):
     :param archive_status:  Possible values include: "rehydrate-pending-to-hot", "rehydrate-
      pending-to-cool".
     :type archive_status: str or ~xmlservice.models.ArchiveStatus
+    :param blob_type:  Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
+    :type blob_type: str or ~xmlservice.models.BlobType
+    :param cache_control:
+    :type cache_control: str
+    :param content_disposition:
+    :type content_disposition: str
+    :param content_encoding:
+    :type content_encoding: str
+    :param content_language:
+    :type content_language: str
+    :param content_length: Size in bytes.
+    :type content_length: long
+    :param content_md5:
+    :type content_md5: str
+    :param content_type:
+    :type content_type: str
+    :param copy_completion_time:
+    :type copy_completion_time: ~datetime.datetime
+    :param copy_id:
+    :type copy_id: str
+    :param copy_progress:
+    :type copy_progress: str
+    :param copy_source:
+    :type copy_source: str
+    :param copy_status:  Possible values include: "pending", "success", "aborted", "failed".
+    :type copy_status: str or ~xmlservice.models.CopyStatusType
+    :param copy_status_description:
+    :type copy_status_description: str
+    :param deleted_time:
+    :type deleted_time: ~datetime.datetime
+    :param destination_snapshot:
+    :type destination_snapshot: str
+    :param etag: Required.
+    :type etag: str
+    :param incremental_copy:
+    :type incremental_copy: bool
+    :param last_modified: Required.
+    :type last_modified: ~datetime.datetime
+    :param lease_duration:  Possible values include: "infinite", "fixed".
+    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :param lease_state:  Possible values include: "available", "leased", "expired", "breaking",
+     "broken".
+    :type lease_state: str or ~xmlservice.models.LeaseStateType
+    :param lease_status:  Possible values include: "locked", "unlocked".
+    :type lease_status: str or ~xmlservice.models.LeaseStatusType
+    :param remaining_retention_days:
+    :type remaining_retention_days: int
+    :param server_encrypted:
+    :type server_encrypted: bool
+    :param blob_sequence_number:
+    :type blob_sequence_number: int
     """
 
     _validation = {
-        'last_modified': {'required': True},
         'etag': {'required': True},
+        'last_modified': {'required': True},
     }
 
     _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
-        'etag': {'key': 'Etag', 'type': 'str'},
-        'content_length': {'key': 'Content-Length', 'type': 'long'},
-        'content_type': {'key': 'Content-Type', 'type': 'str'},
-        'content_encoding': {'key': 'Content-Encoding', 'type': 'str'},
-        'content_language': {'key': 'Content-Language', 'type': 'str'},
-        'content_md5': {'key': 'Content-MD5', 'type': 'str'},
-        'content_disposition': {'key': 'Content-Disposition', 'type': 'str'},
-        'cache_control': {'key': 'Cache-Control', 'type': 'str'},
-        'blob_sequence_number': {'key': 'x-ms-blob-sequence-number', 'type': 'int'},
-        'blob_type': {'key': 'BlobType', 'type': 'str'},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
-        'lease_state': {'key': 'LeaseState', 'type': 'str'},
-        'lease_duration': {'key': 'LeaseDuration', 'type': 'str'},
-        'copy_id': {'key': 'CopyId', 'type': 'str'},
-        'copy_status': {'key': 'CopyStatus', 'type': 'str'},
-        'copy_source': {'key': 'CopySource', 'type': 'str'},
-        'copy_progress': {'key': 'CopyProgress', 'type': 'str'},
-        'copy_completion_time': {'key': 'CopyCompletionTime', 'type': 'rfc-1123'},
-        'copy_status_description': {'key': 'CopyStatusDescription', 'type': 'str'},
-        'server_encrypted': {'key': 'ServerEncrypted', 'type': 'bool'},
-        'incremental_copy': {'key': 'IncrementalCopy', 'type': 'bool'},
-        'destination_snapshot': {'key': 'DestinationSnapshot', 'type': 'str'},
-        'deleted_time': {'key': 'DeletedTime', 'type': 'rfc-1123'},
-        'remaining_retention_days': {'key': 'RemainingRetentionDays', 'type': 'int'},
         'access_tier': {'key': 'AccessTier', 'type': 'str'},
         'access_tier_inferred': {'key': 'AccessTierInferred', 'type': 'bool'},
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
+        'blob_type': {'key': 'BlobType', 'type': 'str'},
+        'cache_control': {'key': 'Cache-Control', 'type': 'str'},
+        'content_disposition': {'key': 'Content-Disposition', 'type': 'str'},
+        'content_encoding': {'key': 'Content-Encoding', 'type': 'str'},
+        'content_language': {'key': 'Content-Language', 'type': 'str'},
+        'content_length': {'key': 'Content-Length', 'type': 'long'},
+        'content_md5': {'key': 'Content-MD5', 'type': 'str'},
+        'content_type': {'key': 'Content-Type', 'type': 'str'},
+        'copy_completion_time': {'key': 'CopyCompletionTime', 'type': 'rfc-1123'},
+        'copy_id': {'key': 'CopyId', 'type': 'str'},
+        'copy_progress': {'key': 'CopyProgress', 'type': 'str'},
+        'copy_source': {'key': 'CopySource', 'type': 'str'},
+        'copy_status': {'key': 'CopyStatus', 'type': 'str'},
+        'copy_status_description': {'key': 'CopyStatusDescription', 'type': 'str'},
+        'deleted_time': {'key': 'DeletedTime', 'type': 'rfc-1123'},
+        'destination_snapshot': {'key': 'DestinationSnapshot', 'type': 'str'},
+        'etag': {'key': 'Etag', 'type': 'str'},
+        'incremental_copy': {'key': 'IncrementalCopy', 'type': 'bool'},
+        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
+        'lease_duration': {'key': 'LeaseDuration', 'type': 'str'},
+        'lease_state': {'key': 'LeaseState', 'type': 'str'},
+        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
+        'remaining_retention_days': {'key': 'RemainingRetentionDays', 'type': 'int'},
+        'server_encrypted': {'key': 'ServerEncrypted', 'type': 'bool'},
+        'blob_sequence_number': {'key': 'x-ms-blob-sequence-number', 'type': 'int'},
     }
 
     def __init__(
@@ -277,48 +277,48 @@ class BlobProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(BlobProperties, self).__init__(**kwargs)
-        self.last_modified = kwargs['last_modified']
-        self.etag = kwargs['etag']
-        self.content_length = kwargs.get('content_length', None)
-        self.content_type = kwargs.get('content_type', None)
-        self.content_encoding = kwargs.get('content_encoding', None)
-        self.content_language = kwargs.get('content_language', None)
-        self.content_md5 = kwargs.get('content_md5', None)
-        self.content_disposition = kwargs.get('content_disposition', None)
-        self.cache_control = kwargs.get('cache_control', None)
-        self.blob_sequence_number = kwargs.get('blob_sequence_number', None)
-        self.blob_type = kwargs.get('blob_type', None)
-        self.lease_status = kwargs.get('lease_status', None)
-        self.lease_state = kwargs.get('lease_state', None)
-        self.lease_duration = kwargs.get('lease_duration', None)
-        self.copy_id = kwargs.get('copy_id', None)
-        self.copy_status = kwargs.get('copy_status', None)
-        self.copy_source = kwargs.get('copy_source', None)
-        self.copy_progress = kwargs.get('copy_progress', None)
-        self.copy_completion_time = kwargs.get('copy_completion_time', None)
-        self.copy_status_description = kwargs.get('copy_status_description', None)
-        self.server_encrypted = kwargs.get('server_encrypted', None)
-        self.incremental_copy = kwargs.get('incremental_copy', None)
-        self.destination_snapshot = kwargs.get('destination_snapshot', None)
-        self.deleted_time = kwargs.get('deleted_time', None)
-        self.remaining_retention_days = kwargs.get('remaining_retention_days', None)
         self.access_tier = kwargs.get('access_tier', None)
         self.access_tier_inferred = kwargs.get('access_tier_inferred', None)
         self.archive_status = kwargs.get('archive_status', None)
+        self.blob_type = kwargs.get('blob_type', None)
+        self.cache_control = kwargs.get('cache_control', None)
+        self.content_disposition = kwargs.get('content_disposition', None)
+        self.content_encoding = kwargs.get('content_encoding', None)
+        self.content_language = kwargs.get('content_language', None)
+        self.content_length = kwargs.get('content_length', None)
+        self.content_md5 = kwargs.get('content_md5', None)
+        self.content_type = kwargs.get('content_type', None)
+        self.copy_completion_time = kwargs.get('copy_completion_time', None)
+        self.copy_id = kwargs.get('copy_id', None)
+        self.copy_progress = kwargs.get('copy_progress', None)
+        self.copy_source = kwargs.get('copy_source', None)
+        self.copy_status = kwargs.get('copy_status', None)
+        self.copy_status_description = kwargs.get('copy_status_description', None)
+        self.deleted_time = kwargs.get('deleted_time', None)
+        self.destination_snapshot = kwargs.get('destination_snapshot', None)
+        self.etag = kwargs['etag']
+        self.incremental_copy = kwargs.get('incremental_copy', None)
+        self.last_modified = kwargs['last_modified']
+        self.lease_duration = kwargs.get('lease_duration', None)
+        self.lease_state = kwargs.get('lease_state', None)
+        self.lease_status = kwargs.get('lease_status', None)
+        self.remaining_retention_days = kwargs.get('remaining_retention_days', None)
+        self.server_encrypted = kwargs.get('server_encrypted', None)
+        self.blob_sequence_number = kwargs.get('blob_sequence_number', None)
 
 
 class Blobs(msrest.serialization.Model):
     """Blobs.
 
-    :param blob_prefix:
-    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
     :param blob:
     :type blob: list[~xmlservice.models.Blob]
+    :param blob_prefix:
+    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
     """
 
     _attribute_map = {
-        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]'},
         'blob': {'key': 'Blob', 'type': '[Blob]'},
+        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]'},
     }
 
     def __init__(
@@ -326,8 +326,8 @@ class Blobs(msrest.serialization.Model):
         **kwargs
     ):
         super(Blobs, self).__init__(**kwargs)
-        self.blob_prefix = kwargs.get('blob_prefix', None)
         self.blob = kwargs.get('blob', None)
+        self.blob_prefix = kwargs.get('blob_prefix', None)
 
 
 class ComplexTypeNoMeta(msrest.serialization.Model):
@@ -376,12 +376,12 @@ class Container(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param metadata: Dictionary of :code:`<string>`.
+    :type metadata: dict[str, str]
     :param name: Required.
     :type name: str
     :param properties: Required. Properties of a container.
     :type properties: ~xmlservice.models.ContainerProperties
-    :param metadata: Dictionary of :code:`<string>`.
-    :type metadata: dict[str, str]
     """
 
     _validation = {
@@ -390,9 +390,9 @@ class Container(msrest.serialization.Model):
     }
 
     _attribute_map = {
+        'metadata': {'key': 'Metadata', 'type': '{str}'},
         'name': {'key': 'Name', 'type': 'str'},
         'properties': {'key': 'Properties', 'type': 'ContainerProperties'},
-        'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
 
     def __init__(
@@ -400,9 +400,9 @@ class Container(msrest.serialization.Model):
         **kwargs
     ):
         super(Container, self).__init__(**kwargs)
+        self.metadata = kwargs.get('metadata', None)
         self.name = kwargs['name']
         self.properties = kwargs['properties']
-        self.metadata = kwargs.get('metadata', None)
 
 
 class ContainerProperties(msrest.serialization.Model):
@@ -410,32 +410,32 @@ class ContainerProperties(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required.
-    :type last_modified: ~datetime.datetime
     :param etag: Required.
     :type etag: str
-    :param lease_status:  Possible values include: "locked", "unlocked".
-    :type lease_status: str or ~xmlservice.models.LeaseStatusType
+    :param last_modified: Required.
+    :type last_modified: ~datetime.datetime
+    :param lease_duration:  Possible values include: "infinite", "fixed".
+    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param lease_state:  Possible values include: "available", "leased", "expired", "breaking",
      "broken".
     :type lease_state: str or ~xmlservice.models.LeaseStateType
-    :param lease_duration:  Possible values include: "infinite", "fixed".
-    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :param lease_status:  Possible values include: "locked", "unlocked".
+    :type lease_status: str or ~xmlservice.models.LeaseStatusType
     :param public_access:  Possible values include: "container", "blob".
     :type public_access: str or ~xmlservice.models.PublicAccessType
     """
 
     _validation = {
-        'last_modified': {'required': True},
         'etag': {'required': True},
+        'last_modified': {'required': True},
     }
 
     _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
         'etag': {'key': 'Etag', 'type': 'str'},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
-        'lease_state': {'key': 'LeaseState', 'type': 'str'},
+        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
         'lease_duration': {'key': 'LeaseDuration', 'type': 'str'},
+        'lease_state': {'key': 'LeaseState', 'type': 'str'},
+        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
         'public_access': {'key': 'PublicAccess', 'type': 'str'},
     }
 
@@ -444,11 +444,11 @@ class ContainerProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(ContainerProperties, self).__init__(**kwargs)
-        self.last_modified = kwargs['last_modified']
         self.etag = kwargs['etag']
-        self.lease_status = kwargs.get('lease_status', None)
-        self.lease_state = kwargs.get('lease_state', None)
+        self.last_modified = kwargs['last_modified']
         self.lease_duration = kwargs.get('lease_duration', None)
+        self.lease_state = kwargs.get('lease_state', None)
+        self.lease_status = kwargs.get('lease_status', None)
         self.public_access = kwargs.get('public_access', None)
 
 
@@ -457,18 +457,18 @@ class CorsRule(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param allowed_headers: Required. the request headers that the origin domain may specify on the
+     CORS request.
+    :type allowed_headers: str
+    :param allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
+     use for a CORS request. (comma separated).
+    :type allowed_methods: str
     :param allowed_origins: Required. The origin domains that are permitted to make a request
      against the storage service via CORS. The origin domain is the domain from which the request
      originates. Note that the origin must be an exact case-sensitive match with the origin that the
      user age sends to the service. You can also use the wildcard character '*' to allow all origin
      domains to make requests via CORS.
     :type allowed_origins: str
-    :param allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
-     use for a CORS request. (comma separated).
-    :type allowed_methods: str
-    :param allowed_headers: Required. the request headers that the origin domain may specify on the
-     CORS request.
-    :type allowed_headers: str
     :param exposed_headers: Required. The response headers that may be sent in the response to the
      CORS request and exposed by the browser to the request issuer.
     :type exposed_headers: str
@@ -478,17 +478,17 @@ class CorsRule(msrest.serialization.Model):
     """
 
     _validation = {
-        'allowed_origins': {'required': True},
-        'allowed_methods': {'required': True},
         'allowed_headers': {'required': True},
+        'allowed_methods': {'required': True},
+        'allowed_origins': {'required': True},
         'exposed_headers': {'required': True},
         'max_age_in_seconds': {'required': True, 'minimum': 0},
     }
 
     _attribute_map = {
-        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str'},
-        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str'},
         'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str'},
+        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str'},
+        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str'},
         'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
         'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
     }
@@ -501,9 +501,9 @@ class CorsRule(msrest.serialization.Model):
         **kwargs
     ):
         super(CorsRule, self).__init__(**kwargs)
-        self.allowed_origins = kwargs['allowed_origins']
-        self.allowed_methods = kwargs['allowed_methods']
         self.allowed_headers = kwargs['allowed_headers']
+        self.allowed_methods = kwargs['allowed_methods']
+        self.allowed_origins = kwargs['allowed_origins']
         self.exposed_headers = kwargs['exposed_headers']
         self.max_age_in_seconds = kwargs['max_age_in_seconds']
 
@@ -511,15 +511,15 @@ class CorsRule(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
@@ -527,8 +527,8 @@ class Error(msrest.serialization.Model):
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+        self.status = kwargs.get('status', None)
 
 
 class JSONInput(msrest.serialization.Model):
@@ -574,43 +574,43 @@ class ListBlobsResponse(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint:
-    :type service_endpoint: str
+    :param blobs: Required.
+    :type blobs: ~xmlservice.models.Blobs
     :param container_name: Required.
     :type container_name: str
-    :param prefix: Required.
-    :type prefix: str
+    :param delimiter: Required.
+    :type delimiter: str
     :param marker: Required.
     :type marker: str
     :param max_results: Required.
     :type max_results: int
-    :param delimiter: Required.
-    :type delimiter: str
-    :param blobs: Required.
-    :type blobs: ~xmlservice.models.Blobs
     :param next_marker: Required.
     :type next_marker: str
+    :param prefix: Required.
+    :type prefix: str
+    :param service_endpoint:
+    :type service_endpoint: str
     """
 
     _validation = {
+        'blobs': {'required': True},
         'container_name': {'required': True},
-        'prefix': {'required': True},
+        'delimiter': {'required': True},
         'marker': {'required': True},
         'max_results': {'required': True},
-        'delimiter': {'required': True},
-        'blobs': {'required': True},
         'next_marker': {'required': True},
+        'prefix': {'required': True},
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
+        'blobs': {'key': 'Blobs', 'type': 'Blobs'},
         'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str'},
+        'delimiter': {'key': 'Delimiter', 'type': 'str'},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'delimiter': {'key': 'Delimiter', 'type': 'str'},
-        'blobs': {'key': 'Blobs', 'type': 'Blobs'},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
+        'prefix': {'key': 'Prefix', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
     }
     _xml_map = {
         'name': 'EnumerationResults'
@@ -621,14 +621,14 @@ class ListBlobsResponse(msrest.serialization.Model):
         **kwargs
     ):
         super(ListBlobsResponse, self).__init__(**kwargs)
-        self.service_endpoint = kwargs.get('service_endpoint', None)
+        self.blobs = kwargs['blobs']
         self.container_name = kwargs['container_name']
-        self.prefix = kwargs['prefix']
+        self.delimiter = kwargs['delimiter']
         self.marker = kwargs['marker']
         self.max_results = kwargs['max_results']
-        self.delimiter = kwargs['delimiter']
-        self.blobs = kwargs['blobs']
         self.next_marker = kwargs['next_marker']
+        self.prefix = kwargs['prefix']
+        self.service_endpoint = kwargs.get('service_endpoint', None)
 
 
 class ListContainersResponse(msrest.serialization.Model):
@@ -636,34 +636,34 @@ class ListContainersResponse(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required.
-    :type service_endpoint: str
-    :param prefix: Required.
-    :type prefix: str
+    :param containers:
+    :type containers: list[~xmlservice.models.Container]
     :param marker:
     :type marker: str
     :param max_results: Required.
     :type max_results: int
-    :param containers:
-    :type containers: list[~xmlservice.models.Container]
     :param next_marker: Required.
     :type next_marker: str
+    :param prefix: Required.
+    :type prefix: str
+    :param service_endpoint: Required.
+    :type service_endpoint: str
     """
 
     _validation = {
-        'service_endpoint': {'required': True},
-        'prefix': {'required': True},
         'max_results': {'required': True},
         'next_marker': {'required': True},
+        'prefix': {'required': True},
+        'service_endpoint': {'required': True},
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str'},
+        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'wrapped': True}},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'wrapped': True}},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
+        'prefix': {'key': 'Prefix', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
     }
     _xml_map = {
         'name': 'EnumerationResults'
@@ -674,12 +674,12 @@ class ListContainersResponse(msrest.serialization.Model):
         **kwargs
     ):
         super(ListContainersResponse, self).__init__(**kwargs)
-        self.service_endpoint = kwargs['service_endpoint']
-        self.prefix = kwargs['prefix']
+        self.containers = kwargs.get('containers', None)
         self.marker = kwargs.get('marker', None)
         self.max_results = kwargs['max_results']
-        self.containers = kwargs.get('containers', None)
         self.next_marker = kwargs['next_marker']
+        self.prefix = kwargs['prefix']
+        self.service_endpoint = kwargs['service_endpoint']
 
 
 class Logging(msrest.serialization.Model):
@@ -687,32 +687,32 @@ class Logging(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param version: Required. The version of Storage Analytics to configure.
-    :type version: str
     :param delete: Required. Indicates whether all delete requests should be logged.
     :type delete: bool
     :param read: Required. Indicates whether all read requests should be logged.
     :type read: bool
-    :param write: Required. Indicates whether all write requests should be logged.
-    :type write: bool
     :param retention_policy: Required. the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
+    :param version: Required. The version of Storage Analytics to configure.
+    :type version: str
+    :param write: Required. Indicates whether all write requests should be logged.
+    :type write: bool
     """
 
     _validation = {
-        'version': {'required': True},
         'delete': {'required': True},
         'read': {'required': True},
-        'write': {'required': True},
         'retention_policy': {'required': True},
+        'version': {'required': True},
+        'write': {'required': True},
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
         'delete': {'key': 'Delete', 'type': 'bool'},
         'read': {'key': 'Read', 'type': 'bool'},
-        'write': {'key': 'Write', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        'version': {'key': 'Version', 'type': 'str'},
+        'write': {'key': 'Write', 'type': 'bool'},
     }
 
     def __init__(
@@ -720,11 +720,11 @@ class Logging(msrest.serialization.Model):
         **kwargs
     ):
         super(Logging, self).__init__(**kwargs)
-        self.version = kwargs['version']
         self.delete = kwargs['delete']
         self.read = kwargs['read']
-        self.write = kwargs['write']
         self.retention_policy = kwargs['retention_policy']
+        self.version = kwargs['version']
+        self.write = kwargs['write']
 
 
 class Metrics(msrest.serialization.Model):
@@ -732,8 +732,6 @@ class Metrics(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param version: The version of Storage Analytics to configure.
-    :type version: str
     :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
     :param include_ap_is: Indicates whether metrics should generate summary statistics for called
@@ -741,6 +739,8 @@ class Metrics(msrest.serialization.Model):
     :type include_ap_is: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
+    :param version: The version of Storage Analytics to configure.
+    :type version: str
     """
 
     _validation = {
@@ -748,10 +748,10 @@ class Metrics(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
         'enabled': {'key': 'Enabled', 'type': 'bool'},
         'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        'version': {'key': 'Version', 'type': 'str'},
     }
 
     def __init__(
@@ -759,10 +759,10 @@ class Metrics(msrest.serialization.Model):
         **kwargs
     ):
         super(Metrics, self).__init__(**kwargs)
-        self.version = kwargs.get('version', None)
         self.enabled = kwargs['enabled']
         self.include_ap_is = kwargs.get('include_ap_is', None)
         self.retention_policy = kwargs.get('retention_policy', None)
+        self.version = kwargs.get('version', None)
 
 
 class RetentionPolicy(msrest.serialization.Model):
@@ -770,22 +770,22 @@ class RetentionPolicy(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param enabled: Required. Indicates whether a retention policy is enabled for the storage
-     service.
-    :type enabled: bool
     :param days: Indicates the number of days that metrics or logging or soft-deleted data should
      be retained. All data older than this value will be deleted.
     :type days: int
+    :param enabled: Required. Indicates whether a retention policy is enabled for the storage
+     service.
+    :type enabled: bool
     """
 
     _validation = {
-        'enabled': {'required': True},
         'days': {'minimum': 1},
+        'enabled': {'required': True},
     }
 
     _attribute_map = {
-        'enabled': {'key': 'Enabled', 'type': 'bool'},
         'days': {'key': 'Days', 'type': 'int'},
+        'enabled': {'key': 'Enabled', 'type': 'bool'},
     }
 
     def __init__(
@@ -793,8 +793,8 @@ class RetentionPolicy(msrest.serialization.Model):
         **kwargs
     ):
         super(RetentionPolicy, self).__init__(**kwargs)
-        self.enabled = kwargs['enabled']
         self.days = kwargs.get('days', None)
+        self.enabled = kwargs['enabled']
 
 
 class RootWithRefAndMeta(msrest.serialization.Model):
@@ -848,20 +848,20 @@ class SignedIdentifier(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required. a unique id.
-    :type id: str
     :param access_policy: Required. The access policy.
     :type access_policy: ~xmlservice.models.AccessPolicy
+    :param id: Required. a unique id.
+    :type id: str
     """
 
     _validation = {
-        'id': {'required': True},
         'access_policy': {'required': True},
+        'id': {'required': True},
     }
 
     _attribute_map = {
-        'id': {'key': 'Id', 'type': 'str'},
         'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy'},
+        'id': {'key': 'Id', 'type': 'str'},
     }
     _xml_map = {
         'name': 'SignedIdentifier'
@@ -872,8 +872,8 @@ class SignedIdentifier(msrest.serialization.Model):
         **kwargs
     ):
         super(SignedIdentifier, self).__init__(**kwargs)
-        self.id = kwargs['id']
         self.access_policy = kwargs['access_policy']
+        self.id = kwargs['id']
 
 
 class Slide(msrest.serialization.Model):
@@ -881,16 +881,16 @@ class Slide(msrest.serialization.Model):
 
     :param type:
     :type type: str
-    :param title:
-    :type title: str
     :param items:
     :type items: list[str]
+    :param title:
+    :type title: str
     """
 
     _attribute_map = {
         'type': {'key': 'type', 'type': 'str', 'xml': {'attr': True}},
-        'title': {'key': 'title', 'type': 'str'},
         'items': {'key': 'items', 'type': '[str]', 'xml': {'itemsName': 'item'}},
+        'title': {'key': 'title', 'type': 'str'},
     }
     _xml_map = {
         'name': 'slide'
@@ -902,28 +902,28 @@ class Slide(msrest.serialization.Model):
     ):
         super(Slide, self).__init__(**kwargs)
         self.type = kwargs.get('type', None)
-        self.title = kwargs.get('title', None)
         self.items = kwargs.get('items', None)
+        self.title = kwargs.get('title', None)
 
 
 class Slideshow(msrest.serialization.Model):
     """Data about a slideshow.
 
-    :param title:
-    :type title: str
-    :param date:
-    :type date: str
     :param author:
     :type author: str
+    :param date:
+    :type date: str
     :param slides:
     :type slides: list[~xmlservice.models.Slide]
+    :param title:
+    :type title: str
     """
 
     _attribute_map = {
-        'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
+        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
+        'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
     }
     _xml_map = {
         'name': 'slideshow'
@@ -934,23 +934,15 @@ class Slideshow(msrest.serialization.Model):
         **kwargs
     ):
         super(Slideshow, self).__init__(**kwargs)
-        self.title = kwargs.get('title', None)
-        self.date = kwargs.get('date', None)
         self.author = kwargs.get('author', None)
+        self.date = kwargs.get('date', None)
         self.slides = kwargs.get('slides', None)
+        self.title = kwargs.get('title', None)
 
 
 class StorageServiceProperties(msrest.serialization.Model):
     """Storage Service Properties.
 
-    :param logging: Azure Analytics Logging settings.
-    :type logging: ~xmlservice.models.Logging
-    :param hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
-     blobs.
-    :type hour_metrics: ~xmlservice.models.Metrics
-    :param minute_metrics: a summary of request statistics grouped by API in minute aggregates for
-     blobs.
-    :type minute_metrics: ~xmlservice.models.Metrics
     :param cors: The set of CORS rules.
     :type cors: list[~xmlservice.models.CorsRule]
     :param default_service_version: The default version to use for requests to the Blob service if
@@ -959,15 +951,23 @@ class StorageServiceProperties(msrest.serialization.Model):
     :type default_service_version: str
     :param delete_retention_policy: The Delete Retention Policy for the service.
     :type delete_retention_policy: ~xmlservice.models.RetentionPolicy
+    :param hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
+     blobs.
+    :type hour_metrics: ~xmlservice.models.Metrics
+    :param logging: Azure Analytics Logging settings.
+    :type logging: ~xmlservice.models.Logging
+    :param minute_metrics: a summary of request statistics grouped by API in minute aggregates for
+     blobs.
+    :type minute_metrics: ~xmlservice.models.Metrics
     """
 
     _attribute_map = {
-        'logging': {'key': 'Logging', 'type': 'Logging'},
-        'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
-        'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
         'cors': {'key': 'Cors', 'type': '[CorsRule]', 'xml': {'wrapped': True, 'itemsName': 'CorsRule'}},
         'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
         'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
+        'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
+        'logging': {'key': 'Logging', 'type': 'Logging'},
+        'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
     }
 
     def __init__(
@@ -975,9 +975,9 @@ class StorageServiceProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(StorageServiceProperties, self).__init__(**kwargs)
-        self.logging = kwargs.get('logging', None)
-        self.hour_metrics = kwargs.get('hour_metrics', None)
-        self.minute_metrics = kwargs.get('minute_metrics', None)
         self.cors = kwargs.get('cors', None)
         self.default_service_version = kwargs.get('default_service_version', None)
         self.delete_retention_policy = kwargs.get('delete_retention_policy', None)
+        self.hour_metrics = kwargs.get('hour_metrics', None)
+        self.logging = kwargs.get('logging', None)
+        self.minute_metrics = kwargs.get('minute_metrics', None)

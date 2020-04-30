@@ -103,24 +103,24 @@ class D(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
     :param message:
     :type message: str
+    :param status:
+    :type status: int
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
+        'status': {'key': 'status', 'type': 'int'},
     }
 
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
         message: Optional[str] = None,
+        status: Optional[int] = None,
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
-        self.status = status
         self.message = message
+        self.status = status

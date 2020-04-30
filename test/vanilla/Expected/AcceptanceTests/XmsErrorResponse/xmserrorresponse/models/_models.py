@@ -212,10 +212,10 @@ class PetActionError(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server.
-    :type error_type: str
     :param error_message: the error message.
     :type error_message: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     """
 
     _validation = {
@@ -223,8 +223,8 @@ class PetActionError(msrest.serialization.Model):
     }
 
     _attribute_map = {
-        'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
+        'error_type': {'key': 'errorType', 'type': 'str'},
     }
 
     _subtype_map = {
@@ -236,8 +236,8 @@ class PetActionError(msrest.serialization.Model):
         **kwargs
     ):
         super(PetActionError, self).__init__(**kwargs)
-        self.error_type = None
         self.error_message = kwargs.get('error_message', None)
+        self.error_type = None
 
 
 class PetSadError(PetActionError):
@@ -248,10 +248,10 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server.
-    :type error_type: str
     :param error_message: the error message.
     :type error_message: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param reason: why is the pet sad.
     :type reason: str
     """
@@ -261,8 +261,8 @@ class PetSadError(PetActionError):
     }
 
     _attribute_map = {
-        'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
+        'error_type': {'key': 'errorType', 'type': 'str'},
         'reason': {'key': 'reason', 'type': 'str'},
     }
 
@@ -284,10 +284,10 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server.
-    :type error_type: str
     :param error_message: the error message.
     :type error_message: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param reason: why is the pet sad.
     :type reason: str
     :param hungry_or_thirsty: is the pet hungry or thirsty or both.
@@ -299,8 +299,8 @@ class PetHungryOrThirstyError(PetSadError):
     }
 
     _attribute_map = {
-        'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
+        'error_type': {'key': 'errorType', 'type': 'str'},
         'reason': {'key': 'reason', 'type': 'str'},
         'hungry_or_thirsty': {'key': 'hungryOrThirsty', 'type': 'str'},
     }

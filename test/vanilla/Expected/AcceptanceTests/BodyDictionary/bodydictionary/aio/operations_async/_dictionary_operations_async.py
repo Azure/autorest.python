@@ -179,456 +179,6 @@ class DictionaryOperations:
     put_empty.metadata = {'url': '/dictionary/empty'}  # type: ignore
 
     @distributed_trace_async
-    async def get_null_value(
-        self,
-        **kwargs
-    ) -> Dict[str, str]:
-        """Get Dictionary with null value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_null_value.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{str}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_null_value.metadata = {'url': '/dictionary/nullvalue'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_null_key(
-        self,
-        **kwargs
-    ) -> Dict[str, str]:
-        """Get Dictionary with null key.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_null_key.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{str}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_null_key.metadata = {'url': '/dictionary/nullkey'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_empty_string_key(
-        self,
-        **kwargs
-    ) -> Dict[str, str]:
-        """Get Dictionary with key as empty string.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_empty_string_key.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{str}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_empty_string_key.metadata = {'url': '/dictionary/keyemptystring'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_invalid(
-        self,
-        **kwargs
-    ) -> Dict[str, str]:
-        """Get invalid Dictionary value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, str]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_invalid.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{str}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_invalid.metadata = {'url': '/dictionary/invalid'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_boolean_tfft(
-        self,
-        **kwargs
-    ) -> Dict[str, bool]:
-        """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_boolean_tfft.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{bool}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_boolean_tfft(
-        self,
-        array_body: Dict[str, bool],
-        **kwargs
-    ) -> None:
-        """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
-
-        :param array_body:
-        :type array_body: dict[str, bool]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put_boolean_tfft.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, '{bool}')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_boolean_invalid_null(
-        self,
-        **kwargs
-    ) -> Dict[str, bool]:
-        """Get boolean dictionary value {"0": true, "1": null, "2": false }.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_boolean_invalid_null.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{bool}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_boolean_invalid_null.metadata = {'url': '/dictionary/prim/boolean/true.null.false'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_boolean_invalid_string(
-        self,
-        **kwargs
-    ) -> Dict[str, bool]:
-        """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, bool]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_boolean_invalid_string.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{bool}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_boolean_invalid_string.metadata = {'url': '/dictionary/prim/boolean/true.boolean.false'}  # type: ignore
-
-    @distributed_trace_async
-    async def get_integer_valid(
-        self,
-        **kwargs
-    ) -> Dict[str, int]:
-        """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
-        :rtype: dict[str, int]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-
-        # Construct URL
-        url = self.get_integer_valid.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = self._deserialize('{int}', pipeline_response)
-
-        if cls:
-          return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    get_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}  # type: ignore
-
-    @distributed_trace_async
-    async def put_integer_valid(
-        self,
-        array_body: Dict[str, int],
-        **kwargs
-    ) -> None:
-        """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
-
-        :param array_body:
-        :type array_body: dict[str, int]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = self.put_integer_valid.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-
-        # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, '{int}')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}  # type: ignore
-
-    @distributed_trace_async
     async def get_int_invalid_null(
         self,
         **kwargs
@@ -1216,6 +766,50 @@ class DictionaryOperations:
     get_double_invalid_null.metadata = {'url': '/dictionary/prim/double/0.0-null-1.2e20'}  # type: ignore
 
     @distributed_trace_async
+    async def get_null_value(
+        self,
+        **kwargs
+    ) -> Dict[str, str]:
+        """Get Dictionary with null value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, str]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_null_value.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{str}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_null_value.metadata = {'url': '/dictionary/nullvalue'}  # type: ignore
+
+    @distributed_trace_async
     async def get_double_invalid_string(
         self,
         **kwargs
@@ -1801,6 +1395,50 @@ class DictionaryOperations:
 
         return deserialized
     get_date_time_invalid_chars.metadata = {'url': '/dictionary/prim/date-time/invalidchars'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_null_key(
+        self,
+        **kwargs
+    ) -> Dict[str, str]:
+        """Get Dictionary with null key.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, str]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_null_key.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{str}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_null_key.metadata = {'url': '/dictionary/nullkey'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_rfc1123_valid(
@@ -2439,6 +2077,50 @@ class DictionaryOperations:
     put_complex_valid.metadata = {'url': '/dictionary/complex/valid'}  # type: ignore
 
     @distributed_trace_async
+    async def get_empty_string_key(
+        self,
+        **kwargs
+    ) -> Dict[str, str]:
+        """Get Dictionary with key as empty string.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, str]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_empty_string_key.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{str}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_empty_string_key.metadata = {'url': '/dictionary/keyemptystring'}  # type: ignore
+
+    @distributed_trace_async
     async def get_array_null(
         self,
         **kwargs
@@ -2975,3 +2657,321 @@ class DictionaryOperations:
           return cls(pipeline_response, None, {})
 
     put_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_invalid(
+        self,
+        **kwargs
+    ) -> Dict[str, str]:
+        """Get invalid Dictionary value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, str]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_invalid.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{str}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_invalid.metadata = {'url': '/dictionary/invalid'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_boolean_tfft(
+        self,
+        **kwargs
+    ) -> Dict[str, bool]:
+        """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, bool]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_boolean_tfft.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{bool}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_boolean_tfft(
+        self,
+        array_body: Dict[str, bool],
+        **kwargs
+    ) -> None:
+        """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
+
+        :param array_body:
+        :type array_body: dict[str, bool]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.put_boolean_tfft.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(array_body, '{bool}')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_boolean_invalid_null(
+        self,
+        **kwargs
+    ) -> Dict[str, bool]:
+        """Get boolean dictionary value {"0": true, "1": null, "2": false }.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, bool]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_boolean_invalid_null.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{bool}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_boolean_invalid_null.metadata = {'url': '/dictionary/prim/boolean/true.null.false'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_boolean_invalid_string(
+        self,
+        **kwargs
+    ) -> Dict[str, bool]:
+        """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, bool]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_boolean_invalid_string.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{bool}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_boolean_invalid_string.metadata = {'url': '/dictionary/prim/boolean/true.boolean.false'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_integer_valid(
+        self,
+        **kwargs
+    ) -> Dict[str, int]:
+        """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: dict or the result of cls(response)
+        :rtype: dict[str, int]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_integer_valid.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('{int}', pipeline_response)
+
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}  # type: ignore
+
+    @distributed_trace_async
+    async def put_integer_valid(
+        self,
+        array_body: Dict[str, int],
+        **kwargs
+    ) -> None:
+        """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
+
+        :param array_body:
+        :type array_body: dict[str, int]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.put_integer_valid.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(array_body, '{int}')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+          return cls(pipeline_response, None, {})
+
+    put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}  # type: ignore
