@@ -54,11 +54,18 @@ class CredentialSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import(
-            "azure.core.credentials", "TokenCredential",
-            ImportType.AZURECORE,
-            typing_section=TypingSection.TYPING
-        )
+        if self.async_mode:
+            file_import.add_from_import(
+                "azure.core.credentials_async", "AsyncTokenCredential",
+                ImportType.AZURECORE,
+                typing_section=TypingSection.TYPING
+            )
+        else:
+            file_import.add_from_import(
+                "azure.core.credentials", "TokenCredential",
+                ImportType.AZURECORE,
+                typing_section=TypingSection.TYPING
+            )
         return file_import
 
 

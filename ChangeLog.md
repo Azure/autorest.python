@@ -1,5 +1,10 @@
 # Change Log
 
+### Unreleased
+Modelerfour version: 4.12.301
+
+- Fixing `AsyncTokenCredential` typing import and adding to service client  #591
+
 ### 2020-04-23 - 5.0.0-preview.3
 Modelerfour version: 4.12.301
 
@@ -13,6 +18,7 @@ Modelerfour version: 4.12.301
 **New Features**
 
 - User can now pass in credential scopes through kwargs  #575
+- Default error map always contains a mapping of 404 to `ResourceNotFoundError` and 409 to `ResourceExistsError` #580
 
 **Bug Fixes**
 
