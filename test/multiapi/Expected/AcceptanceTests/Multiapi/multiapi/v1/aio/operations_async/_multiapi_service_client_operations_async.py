@@ -150,7 +150,6 @@ class MultiapiServiceClientOperationsMixin:
         )
 
         # Need to pop these because they were only meant for the call to _test_lro_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 

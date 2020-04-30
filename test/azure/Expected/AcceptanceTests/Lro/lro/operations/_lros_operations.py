@@ -128,7 +128,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put200_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -224,7 +223,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put200_succeeded_no_state_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -320,7 +318,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put202_retry200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -421,7 +418,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put201_creating_succeeded200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -517,7 +513,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put200_updating_succeeded204_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -618,7 +613,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put201_creating_failed200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -714,7 +708,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put200_acceptedcanceled200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -812,7 +805,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_no_header_in_retry_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -915,7 +907,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_async_retry_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1019,7 +1010,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_async_no_retry_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1123,7 +1113,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_async_retry_failed_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1227,7 +1216,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_async_no_retrycanceled_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1329,7 +1317,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_async_no_header_in_retry_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1428,7 +1415,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_non_resource_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1524,7 +1510,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_async_non_resource_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1622,7 +1607,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_sub_resource_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1720,7 +1704,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _put_async_sub_resource_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1810,7 +1793,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_provisioning202_accepted200_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1904,7 +1886,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_provisioning202_deleting_failed200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1998,7 +1979,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_provisioning202_deletingcanceled200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2080,7 +2060,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete204_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2166,7 +2145,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete202_retry200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2255,7 +2233,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete202_no_retry204_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2337,7 +2314,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_no_header_in_retry_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2416,7 +2392,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_async_no_header_in_retry_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2496,7 +2471,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_async_retry_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2576,7 +2550,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_async_no_retry_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2656,7 +2629,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_async_retry_failed_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2736,7 +2708,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _delete_async_retrycanceled_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2820,7 +2791,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post200_with_payload_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2916,7 +2886,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post202_retry200_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3012,7 +2981,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post202_no_retry204_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3098,7 +3066,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post_double_headers_final_location_get_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3180,7 +3147,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post_double_headers_final_azure_header_get_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3262,7 +3228,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post_double_headers_final_azure_header_get_default_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3366,7 +3331,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post_async_retry_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3470,7 +3434,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post_async_no_retry_succeeded_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3567,7 +3530,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post_async_retry_failed_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -3661,7 +3623,6 @@ class LROsOperations(object):
         )
 
         # Need to pop these because they were only meant for the call to _post_async_retrycanceled_initial
-        kwargs.pop('cls', None)
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
