@@ -7,6 +7,7 @@ Modelerfour version: 4.12.301
 
 - Fixing `AsyncTokenCredential` typing import and adding to service client  #591
 - Can now pass `content_type` and `error_map` kwargs to LRO functions without error  #597
+- `include_apis` in `Metrics` for tables swagger now cased correctly  #603
 
 ### 2020-04-23 - 5.0.0-preview.3
 Modelerfour version: 4.12.301
