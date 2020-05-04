@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+from collections import OrderedDict
 from typing import cast, Dict, List, Any, Optional, Union, Set
 
 from .base_model import BaseModel
@@ -48,16 +49,16 @@ def _remove_multiple_content_type_parameters(parameters: List[Parameter]) -> Lis
         remaining_params.append(content_type_params[0])
     return remaining_params
 
-def _accept_content_type_helper(name, responses: List[SchemaResponse], for_exceptions: bool = False) -> List[str]:
-    media_types = list(set(
-        media_type for response in responses for media_type in response.media_types
-    ))
+def _accept_content_type_helper(responses: List[SchemaResponse]) -> List[str]:
+    media_type_dict = OrderedDict()
+    for response in responses:
+        for media_type in response.media_types:
+            media_type_dict[media_type] = None
+
+    media_types = list(media_type_dict.keys())
+
     if not media_types:
-        if for_exceptions:
-            return []
-        raise TypeError(
-            f"Operation {name} has tried to get its accept_content_type even though it has no media types"
-        )
+        return []
 
     if len(media_types) == 1:
         # if there's just one media type, we return it
@@ -82,6 +83,7 @@ def _accept_content_type_helper(name, responses: List[SchemaResponse], for_excep
             non_binary_schema_media_types
         )
         response_media_types = binary_media_types + non_binary_schema_media_types
+
     return response_media_types
 
 class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
@@ -140,13 +142,18 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 "There is an error in the code model we're being supplied. We're getting response media types " +
                 f"even though no response of {self.name} has a body"
             )
-        response_content_types = _accept_content_type_helper(self.name, self.responses)
+        response_content_types = _accept_content_type_helper(self.responses)
 
         # we remove the duplicates between the two groups
         exception_content_types = [
-            e for e in _accept_content_type_helper(self.name, self.exceptions, for_exceptions=True)
+            e for e in _accept_content_type_helper(self.exceptions)
             if e not in response_content_types
         ]
+
+        if not (response_content_types or exception_content_types):
+            raise TypeError(
+                f"Operation {self.name} has tried to get its accept_content_type even though it has no media types"
+            )
 
         if exception_content_types:
             response_content_types.extend(exception_content_types)
