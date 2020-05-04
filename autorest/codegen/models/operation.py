@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from collections import OrderedDict
 from typing import cast, Dict, List, Any, Optional, Union, Set
 
 from .base_model import BaseModel
@@ -21,22 +20,24 @@ from .constant_schema import ConstantSchema
 _LOGGER = logging.getLogger(__name__)
 
 
-def _non_binary_schema_media_types(media_types: List[str]) -> List[str]:
-    response_media_types = []
+def _non_binary_schema_media_types(media_types: List[str]) -> Dict[str, None]:
+    response_media_types: Dict[str, None] = {}
+
     json_media_types = [media_type for media_type in media_types if "json" in media_type]
     xml_media_types = [media_type for media_type in media_types if "xml" in media_type]
+
     if not sorted(json_media_types + xml_media_types) == sorted(media_types):
         raise ValueError("The non-binary responses with schemas of {self.name} have incorrect json or xml mime types")
     if json_media_types:
         if "application/json" in json_media_types:
-            response_media_types.append("application/json")
+            response_media_types["application/json"] = None
         else:
-            response_media_types.append(json_media_types[0])
+            response_media_types[json_media_types[0]] = None
     if xml_media_types:
         if "application/xml" in xml_media_types:
-            response_media_types.append("application/xml")
+            response_media_types["application/xml"] = None
         else:
-            response_media_types.append(xml_media_types[0])
+            response_media_types[xml_media_types[0]] = None
     return response_media_types
 
 def _remove_multiple_content_type_parameters(parameters: List[Parameter]) -> List[Parameter]:
@@ -49,40 +50,38 @@ def _remove_multiple_content_type_parameters(parameters: List[Parameter]) -> Lis
         remaining_params.append(content_type_params[0])
     return remaining_params
 
-def _accept_content_type_helper(responses: List[SchemaResponse]) -> List[str]:
-    media_type_dict = OrderedDict()
-    for response in responses:
-        for media_type in response.media_types:
-            media_type_dict[media_type] = None
-
-    media_types = list(media_type_dict.keys())
+def _accept_content_type_helper(responses: List[SchemaResponse]) -> Dict[str, None]:
+    media_types = {
+        media_type: None for response in responses for media_type in response.media_types
+    }
 
     if not media_types:
-        return []
+        return media_types
 
-    if len(media_types) == 1:
+    if len(media_types.keys()) == 1:
         # if there's just one media type, we return it
         return media_types
     # if not, we want to return them as binary_media_types + non_binary_media types
-    binary_media_types = [
-        media_type for media_type in media_types
+    binary_media_types = {
+        media_type: None for media_type in list(media_types.keys())
         if not "json" in media_type and not "xml" in media_type
-    ]
-    non_binary_schema_media_types = [
-        media_type for media_type in media_types
+    }
+    non_binary_schema_media_types = {
+        media_type: None for media_type in list(media_types.keys())
         if "json" in media_type or "xml" in media_type
-    ]
+    }
     if all([response.binary for response in responses]):
         response_media_types = binary_media_types
     elif all([response.schema for response in responses]):
         response_media_types = _non_binary_schema_media_types(
-            non_binary_schema_media_types
+            list(non_binary_schema_media_types.keys())
         )
     else:
         non_binary_schema_media_types = _non_binary_schema_media_types(
-            non_binary_schema_media_types
+            list(non_binary_schema_media_types.keys())
         )
-        response_media_types = binary_media_types + non_binary_schema_media_types
+        response_media_types = binary_media_types
+        response_media_types.update(non_binary_schema_media_types)
 
     return response_media_types
 
@@ -143,21 +142,14 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 f"even though no response of {self.name} has a body"
             )
         response_content_types = _accept_content_type_helper(self.responses)
+        response_content_types.update(_accept_content_type_helper(self.exceptions))
 
-        # we remove the duplicates between the two groups
-        exception_content_types = [
-            e for e in _accept_content_type_helper(self.exceptions)
-            if e not in response_content_types
-        ]
-
-        if not (response_content_types or exception_content_types):
+        if not response_content_types.keys():
             raise TypeError(
                 f"Operation {self.name} has tried to get its accept_content_type even though it has no media types"
             )
 
-        if exception_content_types:
-            response_content_types.extend(exception_content_types)
-        return ", ".join(response_content_types)
+        return ", ".join(list(response_content_types.keys()))
 
 
     @property
