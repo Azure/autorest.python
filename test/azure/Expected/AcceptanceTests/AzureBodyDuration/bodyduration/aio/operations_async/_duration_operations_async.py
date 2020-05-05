@@ -80,7 +80,7 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/duration/null'}  # type: ignore
@@ -130,7 +130,7 @@ class DurationOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
 
@@ -173,7 +173,7 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
@@ -217,7 +217,7 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/duration/invalid'}  # type: ignore

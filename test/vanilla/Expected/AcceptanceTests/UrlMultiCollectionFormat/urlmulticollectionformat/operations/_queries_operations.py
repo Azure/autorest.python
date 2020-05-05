@@ -86,7 +86,7 @@ class QueriesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}  # type: ignore
 
@@ -132,7 +132,7 @@ class QueriesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}  # type: ignore
 
@@ -179,6 +179,6 @@ class QueriesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}  # type: ignore

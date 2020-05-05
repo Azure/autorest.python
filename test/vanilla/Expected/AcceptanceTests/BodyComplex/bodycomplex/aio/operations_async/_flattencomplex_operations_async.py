@@ -78,7 +78,7 @@ class FlattencomplexOperations:
         deserialized = self._deserialize('MyBaseType', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/flatten/valid'}  # type: ignore

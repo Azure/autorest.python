@@ -81,7 +81,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_existing_key.metadata = {'url': '/header/param/existingkey'}  # type: ignore
 
@@ -124,7 +124,7 @@ class HeaderOperations:
         response_headers['User-Agent']=self._deserialize('str', response.headers.get('User-Agent'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_existing_key.metadata = {'url': '/header/response/existingkey'}  # type: ignore
 
@@ -168,7 +168,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}  # type: ignore
 
@@ -211,7 +211,7 @@ class HeaderOperations:
         response_headers['Content-Type']=self._deserialize('str', response.headers.get('Content-Type'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}  # type: ignore
 
@@ -259,7 +259,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_integer.metadata = {'url': '/header/param/prim/integer'}  # type: ignore
 
@@ -306,7 +306,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('int', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_integer.metadata = {'url': '/header/response/prim/integer'}  # type: ignore
 
@@ -354,7 +354,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_long.metadata = {'url': '/header/param/prim/long'}  # type: ignore
 
@@ -401,7 +401,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('long', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_long.metadata = {'url': '/header/response/prim/long'}  # type: ignore
 
@@ -449,7 +449,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_float.metadata = {'url': '/header/param/prim/float'}  # type: ignore
 
@@ -496,7 +496,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_float.metadata = {'url': '/header/response/prim/float'}  # type: ignore
 
@@ -544,7 +544,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_double.metadata = {'url': '/header/param/prim/double'}  # type: ignore
 
@@ -591,7 +591,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_double.metadata = {'url': '/header/response/prim/double'}  # type: ignore
 
@@ -639,7 +639,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_bool.metadata = {'url': '/header/param/prim/bool'}  # type: ignore
 
@@ -686,7 +686,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('bool', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_bool.metadata = {'url': '/header/response/prim/bool'}  # type: ignore
 
@@ -737,7 +737,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_string.metadata = {'url': '/header/param/prim/string'}  # type: ignore
 
@@ -785,7 +785,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_string.metadata = {'url': '/header/response/prim/string'}  # type: ignore
 
@@ -833,7 +833,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_date.metadata = {'url': '/header/param/prim/date'}  # type: ignore
 
@@ -880,7 +880,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('date', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_date.metadata = {'url': '/header/response/prim/date'}  # type: ignore
 
@@ -929,7 +929,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}  # type: ignore
 
@@ -976,7 +976,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('iso-8601', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}  # type: ignore
 
@@ -1026,7 +1026,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}  # type: ignore
 
@@ -1073,7 +1073,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('rfc-1123', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}  # type: ignore
 
@@ -1121,7 +1121,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_duration.metadata = {'url': '/header/param/prim/duration'}  # type: ignore
 
@@ -1168,7 +1168,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('duration', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_duration.metadata = {'url': '/header/response/prim/duration'}  # type: ignore
 
@@ -1216,7 +1216,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_byte.metadata = {'url': '/header/param/prim/byte'}  # type: ignore
 
@@ -1263,7 +1263,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('bytearray', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_byte.metadata = {'url': '/header/response/prim/byte'}  # type: ignore
 
@@ -1313,7 +1313,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_enum.metadata = {'url': '/header/param/prim/enum'}  # type: ignore
 
@@ -1361,7 +1361,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_enum.metadata = {'url': '/header/response/prim/enum'}  # type: ignore
 
@@ -1401,6 +1401,6 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}  # type: ignore

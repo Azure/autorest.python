@@ -84,7 +84,7 @@ class HeaderOperations:
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}  # type: ignore
 
@@ -135,7 +135,7 @@ class HeaderOperations:
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}  # type: ignore
 
@@ -183,7 +183,7 @@ class HeaderOperations:
             response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
         return 200 <= response.status_code <= 299
     custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}  # type: ignore

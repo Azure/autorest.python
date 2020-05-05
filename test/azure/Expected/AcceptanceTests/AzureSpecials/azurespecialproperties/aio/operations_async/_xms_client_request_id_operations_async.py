@@ -76,7 +76,7 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}  # type: ignore
 
@@ -121,6 +121,6 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}  # type: ignore

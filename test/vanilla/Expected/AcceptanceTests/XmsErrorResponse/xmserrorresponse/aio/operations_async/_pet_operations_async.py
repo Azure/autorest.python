@@ -92,7 +92,7 @@ class PetOperations:
             deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}  # type: ignore
@@ -147,7 +147,7 @@ class PetOperations:
         deserialized = self._deserialize('PetAction', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}  # type: ignore

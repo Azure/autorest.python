@@ -90,7 +90,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
 
@@ -143,7 +143,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
 
@@ -195,7 +195,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
 
@@ -250,7 +250,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
 
@@ -295,7 +295,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
 
@@ -341,7 +341,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore
 
@@ -391,7 +391,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}  # type: ignore
 
@@ -444,7 +444,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}  # type: ignore
 
@@ -496,7 +496,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}  # type: ignore
 
@@ -551,7 +551,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}  # type: ignore
 
@@ -596,7 +596,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}  # type: ignore
 
@@ -642,7 +642,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}  # type: ignore
 
@@ -692,7 +692,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}  # type: ignore
 
@@ -745,7 +745,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}  # type: ignore
 
@@ -797,7 +797,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}  # type: ignore
 
@@ -852,7 +852,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}  # type: ignore
 
@@ -902,7 +902,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}  # type: ignore
 
@@ -955,7 +955,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}  # type: ignore
 
@@ -1007,7 +1007,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}  # type: ignore
 
@@ -1062,7 +1062,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}  # type: ignore
 
@@ -1107,7 +1107,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}  # type: ignore
 
@@ -1153,6 +1153,6 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}  # type: ignore

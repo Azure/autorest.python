@@ -96,7 +96,7 @@ class OperationGroupOneOperations(object):
         deserialized = self._deserialize('ModelThree', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore

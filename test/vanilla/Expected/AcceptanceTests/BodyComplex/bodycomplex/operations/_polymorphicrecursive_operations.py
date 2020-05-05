@@ -84,7 +84,7 @@ class PolymorphicrecursiveOperations(object):
         deserialized = self._deserialize('Fish', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}  # type: ignore
@@ -187,6 +187,6 @@ class PolymorphicrecursiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}  # type: ignore

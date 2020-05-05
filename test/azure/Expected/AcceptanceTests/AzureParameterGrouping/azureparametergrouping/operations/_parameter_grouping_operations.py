@@ -108,7 +108,7 @@ class ParameterGroupingOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}  # type: ignore
 
@@ -162,7 +162,7 @@ class ParameterGroupingOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}  # type: ignore
 
@@ -228,7 +228,7 @@ class ParameterGroupingOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}  # type: ignore
 
@@ -282,6 +282,6 @@ class ParameterGroupingOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}  # type: ignore

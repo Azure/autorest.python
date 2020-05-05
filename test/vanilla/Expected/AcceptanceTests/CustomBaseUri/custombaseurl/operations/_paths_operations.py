@@ -89,6 +89,6 @@ class PathsOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_empty.metadata = {'url': '/customuri'}  # type: ignore

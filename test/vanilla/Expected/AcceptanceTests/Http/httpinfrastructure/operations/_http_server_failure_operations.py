@@ -81,7 +81,7 @@ class HttpServerFailureOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     head501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
@@ -122,7 +122,7 @@ class HttpServerFailureOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
@@ -175,7 +175,7 @@ class HttpServerFailureOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post505.metadata = {'url': '/http/failure/server/505'}  # type: ignore
 
@@ -228,6 +228,6 @@ class HttpServerFailureOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     delete505.metadata = {'url': '/http/failure/server/505'}  # type: ignore

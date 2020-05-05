@@ -73,7 +73,7 @@ class AutoRestValidationTestOperationsMixin:
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
@@ -143,7 +143,7 @@ class AutoRestValidationTestOperationsMixin:
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
@@ -188,7 +188,7 @@ class AutoRestValidationTestOperationsMixin:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore
 
@@ -247,7 +247,7 @@ class AutoRestValidationTestOperationsMixin:
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore

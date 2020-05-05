@@ -78,7 +78,7 @@ class MediaTypesClientOperationsMixin:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     analyze_body.metadata = {'url': '/mediatypes/analyze'}  # type: ignore

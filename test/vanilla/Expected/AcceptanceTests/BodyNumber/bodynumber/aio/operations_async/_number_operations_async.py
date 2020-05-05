@@ -79,7 +79,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/number/null'}  # type: ignore
@@ -123,7 +123,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}  # type: ignore
@@ -167,7 +167,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}  # type: ignore
@@ -211,7 +211,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}  # type: ignore
@@ -261,7 +261,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}  # type: ignore
 
@@ -304,7 +304,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}  # type: ignore
@@ -354,7 +354,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}  # type: ignore
 
@@ -397,7 +397,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}  # type: ignore
@@ -445,7 +445,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}  # type: ignore
 
@@ -488,7 +488,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}  # type: ignore
@@ -536,7 +536,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}  # type: ignore
 
@@ -579,7 +579,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}  # type: ignore
@@ -629,7 +629,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}  # type: ignore
 
@@ -672,7 +672,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}  # type: ignore
@@ -720,7 +720,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}  # type: ignore
 
@@ -763,7 +763,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}  # type: ignore
@@ -811,7 +811,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}  # type: ignore
 
@@ -854,7 +854,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}  # type: ignore
@@ -904,7 +904,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}  # type: ignore
 
@@ -947,7 +947,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}  # type: ignore
@@ -997,7 +997,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}  # type: ignore
 
@@ -1040,7 +1040,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}  # type: ignore
@@ -1090,7 +1090,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}  # type: ignore
 
@@ -1133,7 +1133,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}  # type: ignore

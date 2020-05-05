@@ -84,7 +84,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('Fish', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}  # type: ignore
@@ -167,7 +167,7 @@ class PolymorphismOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}  # type: ignore
 
@@ -211,7 +211,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('DotFish', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}  # type: ignore
@@ -256,7 +256,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}  # type: ignore
@@ -301,7 +301,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}  # type: ignore
@@ -346,7 +346,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('Salmon', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}  # type: ignore
@@ -397,7 +397,7 @@ class PolymorphismOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}  # type: ignore
 
@@ -450,7 +450,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('Salmon', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}  # type: ignore
@@ -527,6 +527,6 @@ class PolymorphismOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}  # type: ignore

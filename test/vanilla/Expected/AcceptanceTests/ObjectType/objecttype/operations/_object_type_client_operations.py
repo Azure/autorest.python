@@ -62,7 +62,7 @@ class ObjectTypeClientOperationsMixin(object):
         deserialized = self._deserialize('object', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get.metadata = {'url': '/objectType/get'}  # type: ignore
@@ -113,6 +113,6 @@ class ObjectTypeClientOperationsMixin(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put.metadata = {'url': '/objectType/put'}  # type: ignore

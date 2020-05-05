@@ -80,7 +80,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/array/null'}  # type: ignore
@@ -124,7 +124,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/array/invalid'}  # type: ignore
@@ -168,7 +168,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/array/empty'}  # type: ignore
@@ -218,7 +218,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/array/empty'}  # type: ignore
 
@@ -261,7 +261,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}  # type: ignore
@@ -311,7 +311,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}  # type: ignore
 
@@ -354,7 +354,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}  # type: ignore
@@ -398,7 +398,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}  # type: ignore
@@ -442,7 +442,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}  # type: ignore
@@ -492,7 +492,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}  # type: ignore
 
@@ -535,7 +535,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}  # type: ignore
@@ -579,7 +579,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}  # type: ignore
@@ -623,7 +623,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}  # type: ignore
@@ -673,7 +673,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}  # type: ignore
 
@@ -716,7 +716,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}  # type: ignore
@@ -760,7 +760,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}  # type: ignore
@@ -804,7 +804,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}  # type: ignore
@@ -854,7 +854,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}  # type: ignore
 
@@ -897,7 +897,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}  # type: ignore
@@ -941,7 +941,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}  # type: ignore
@@ -985,7 +985,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}  # type: ignore
@@ -1035,7 +1035,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}  # type: ignore
 
@@ -1078,7 +1078,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}  # type: ignore
@@ -1122,7 +1122,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}  # type: ignore
@@ -1166,7 +1166,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}  # type: ignore
@@ -1216,7 +1216,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}  # type: ignore
 
@@ -1259,7 +1259,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}  # type: ignore
@@ -1309,7 +1309,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}  # type: ignore
 
@@ -1352,7 +1352,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}  # type: ignore
@@ -1402,7 +1402,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}  # type: ignore
 
@@ -1445,7 +1445,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}  # type: ignore
@@ -1489,7 +1489,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}  # type: ignore
@@ -1533,7 +1533,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}  # type: ignore
@@ -1583,7 +1583,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}  # type: ignore
 
@@ -1626,7 +1626,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}  # type: ignore
@@ -1670,7 +1670,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_valid.metadata = {'url': '/array/prim/date/valid'}  # type: ignore
@@ -1720,7 +1720,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_valid.metadata = {'url': '/array/prim/date/valid'}  # type: ignore
 
@@ -1763,7 +1763,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}  # type: ignore
@@ -1807,7 +1807,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}  # type: ignore
@@ -1851,7 +1851,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}  # type: ignore
@@ -1901,7 +1901,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}  # type: ignore
 
@@ -1944,7 +1944,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}  # type: ignore
@@ -1988,7 +1988,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}  # type: ignore
@@ -2032,7 +2032,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[rfc-1123]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}  # type: ignore
@@ -2082,7 +2082,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}  # type: ignore
 
@@ -2125,7 +2125,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[duration]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}  # type: ignore
@@ -2175,7 +2175,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}  # type: ignore
 
@@ -2218,7 +2218,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}  # type: ignore
@@ -2268,7 +2268,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}  # type: ignore
 
@@ -2311,7 +2311,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}  # type: ignore
@@ -2355,7 +2355,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[base64]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}  # type: ignore
@@ -2399,7 +2399,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_null.metadata = {'url': '/array/complex/null'}  # type: ignore
@@ -2443,7 +2443,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_empty.metadata = {'url': '/array/complex/empty'}  # type: ignore
@@ -2487,7 +2487,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}  # type: ignore
@@ -2531,7 +2531,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}  # type: ignore
@@ -2575,7 +2575,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_valid.metadata = {'url': '/array/complex/valid'}  # type: ignore
@@ -2625,7 +2625,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complex_valid.metadata = {'url': '/array/complex/valid'}  # type: ignore
 
@@ -2668,7 +2668,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_null.metadata = {'url': '/array/array/null'}  # type: ignore
@@ -2712,7 +2712,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_empty.metadata = {'url': '/array/array/empty'}  # type: ignore
@@ -2756,7 +2756,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_item_null.metadata = {'url': '/array/array/itemnull'}  # type: ignore
@@ -2800,7 +2800,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_item_empty.metadata = {'url': '/array/array/itemempty'}  # type: ignore
@@ -2844,7 +2844,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_valid.metadata = {'url': '/array/array/valid'}  # type: ignore
@@ -2894,7 +2894,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_array_valid.metadata = {'url': '/array/array/valid'}  # type: ignore
 
@@ -2937,7 +2937,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_null.metadata = {'url': '/array/dictionary/null'}  # type: ignore
@@ -2981,7 +2981,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}  # type: ignore
@@ -3025,7 +3025,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}  # type: ignore
@@ -3069,7 +3069,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}  # type: ignore
@@ -3113,7 +3113,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}  # type: ignore
@@ -3163,6 +3163,6 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}  # type: ignore

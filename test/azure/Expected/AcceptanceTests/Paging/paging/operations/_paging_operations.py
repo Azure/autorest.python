@@ -1030,7 +1030,7 @@ class PagingOperations(object):
         deserialized = self._deserialize('ProductResult', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore

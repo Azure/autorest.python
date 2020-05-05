@@ -80,7 +80,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/datetime/null'}  # type: ignore
@@ -124,7 +124,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/datetime/invalid'}  # type: ignore
@@ -168,7 +168,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow.metadata = {'url': '/datetime/overflow'}  # type: ignore
@@ -212,7 +212,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow.metadata = {'url': '/datetime/underflow'}  # type: ignore
@@ -262,7 +262,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}  # type: ignore
 
@@ -314,7 +314,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_utc_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms'}  # type: ignore
 
@@ -357,7 +357,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}  # type: ignore
@@ -401,7 +401,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}  # type: ignore
@@ -448,7 +448,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_uppercase_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms/uppercase'}  # type: ignore
@@ -498,7 +498,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}  # type: ignore
 
@@ -541,7 +541,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}  # type: ignore
@@ -585,7 +585,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}  # type: ignore
@@ -635,7 +635,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}  # type: ignore
 
@@ -678,7 +678,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}  # type: ignore
@@ -722,7 +722,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}  # type: ignore
@@ -772,7 +772,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
 
@@ -815,7 +815,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
@@ -865,7 +865,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
 
@@ -908,7 +908,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
@@ -958,7 +958,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore
 
@@ -1001,7 +1001,7 @@ class DatetimeOperations:
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore

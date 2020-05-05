@@ -85,7 +85,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/datetimerfc1123/null'}  # type: ignore
@@ -130,7 +130,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}  # type: ignore
@@ -175,7 +175,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}  # type: ignore
@@ -220,7 +220,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}  # type: ignore
@@ -271,7 +271,7 @@ class Datetimerfc1123Operations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}  # type: ignore
 
@@ -315,7 +315,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}  # type: ignore
@@ -360,7 +360,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}  # type: ignore
@@ -411,7 +411,7 @@ class Datetimerfc1123Operations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore
 
@@ -455,7 +455,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore

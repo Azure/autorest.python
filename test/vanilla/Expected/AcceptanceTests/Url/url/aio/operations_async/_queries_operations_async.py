@@ -79,7 +79,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_boolean_true.metadata = {'url': '/queries/bool/true'}  # type: ignore
 
@@ -121,7 +121,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_boolean_false.metadata = {'url': '/queries/bool/false'}  # type: ignore
 
@@ -166,7 +166,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_boolean_null.metadata = {'url': '/queries/bool/null'}  # type: ignore
 
@@ -208,7 +208,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}  # type: ignore
 
@@ -250,7 +250,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}  # type: ignore
 
@@ -295,7 +295,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_int_null.metadata = {'url': '/queries/int/null'}  # type: ignore
 
@@ -337,7 +337,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}  # type: ignore
 
@@ -379,7 +379,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}  # type: ignore
 
@@ -424,7 +424,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_long_null.metadata = {'url': '/queries/long/null'}  # type: ignore
 
@@ -466,7 +466,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}  # type: ignore
 
@@ -508,7 +508,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}  # type: ignore
 
@@ -553,7 +553,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     float_null.metadata = {'url': '/queries/float/null'}  # type: ignore
 
@@ -595,7 +595,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}  # type: ignore
 
@@ -637,7 +637,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}  # type: ignore
 
@@ -682,7 +682,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     double_null.metadata = {'url': '/queries/double/null'}  # type: ignore
 
@@ -724,7 +724,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     string_unicode.metadata = {'url': '/queries/string/unicode/'}  # type: ignore
 
@@ -766,7 +766,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}  # type: ignore
 
@@ -808,7 +808,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     string_empty.metadata = {'url': '/queries/string/empty'}  # type: ignore
 
@@ -853,7 +853,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     string_null.metadata = {'url': '/queries/string/null'}  # type: ignore
 
@@ -898,7 +898,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}  # type: ignore
 
@@ -943,7 +943,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     enum_null.metadata = {'url': '/queries/enum/null'}  # type: ignore
 
@@ -988,7 +988,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}  # type: ignore
 
@@ -1030,7 +1030,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     byte_empty.metadata = {'url': '/queries/byte/empty'}  # type: ignore
 
@@ -1075,7 +1075,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     byte_null.metadata = {'url': '/queries/byte/null'}  # type: ignore
 
@@ -1117,7 +1117,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}  # type: ignore
 
@@ -1162,7 +1162,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     date_null.metadata = {'url': '/queries/date/null'}  # type: ignore
 
@@ -1204,7 +1204,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}  # type: ignore
 
@@ -1249,7 +1249,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     date_time_null.metadata = {'url': '/queries/datetime/null'}  # type: ignore
 
@@ -1295,7 +1295,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}  # type: ignore
 
@@ -1340,7 +1340,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}  # type: ignore
 
@@ -1385,7 +1385,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}  # type: ignore
 
@@ -1431,7 +1431,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}  # type: ignore
 
@@ -1477,7 +1477,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}  # type: ignore
 
@@ -1523,6 +1523,6 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}  # type: ignore

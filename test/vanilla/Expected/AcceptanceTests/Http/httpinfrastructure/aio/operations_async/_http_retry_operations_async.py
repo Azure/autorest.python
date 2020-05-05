@@ -76,7 +76,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     head408.metadata = {'url': '/http/retry/408'}  # type: ignore
 
@@ -128,7 +128,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put500.metadata = {'url': '/http/retry/500'}  # type: ignore
 
@@ -180,7 +180,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     patch500.metadata = {'url': '/http/retry/500'}  # type: ignore
 
@@ -220,7 +220,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get502.metadata = {'url': '/http/retry/502'}  # type: ignore
 
@@ -263,7 +263,7 @@ class HttpRetryOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     options502.metadata = {'url': '/http/retry/502'}  # type: ignore
@@ -316,7 +316,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post503.metadata = {'url': '/http/retry/503'}  # type: ignore
 
@@ -368,7 +368,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     delete503.metadata = {'url': '/http/retry/503'}  # type: ignore
 
@@ -420,7 +420,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put504.metadata = {'url': '/http/retry/504'}  # type: ignore
 
@@ -472,6 +472,6 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     patch504.metadata = {'url': '/http/retry/504'}  # type: ignore

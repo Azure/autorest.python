@@ -90,7 +90,7 @@ class PetOperations(object):
         deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}  # type: ignore
@@ -146,7 +146,7 @@ class PetOperations(object):
         deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}  # type: ignore
