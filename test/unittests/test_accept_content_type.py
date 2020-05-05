@@ -68,7 +68,7 @@ def test_binary_and_non_binary_response_with_schema(operation):
 
 
 def test_multiple_json_types():
-    assert ["application/json"] == _non_binary_schema_media_types(["text/json", "application/json"])
+    assert ["application/json"] == list(_non_binary_schema_media_types(["text/json", "application/json"]).keys())
 
 def test_no_media_types_schema_error(operation):
     operation.responses = [
