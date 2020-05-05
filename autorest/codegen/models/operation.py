@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, Dict, List, Any, Optional, Union, Set
+from typing import cast, Dict, List, Any, Optional, Union, Set, TypeVar
 
 from .base_model import BaseModel
 from .imports import FileImport, ImportType, TypingSection
@@ -19,9 +19,12 @@ from .constant_schema import ConstantSchema
 
 _LOGGER = logging.getLogger(__name__)
 
+T = TypeVar('T')
+OrderedSet = Dict[T, None]
 
-def _non_binary_schema_media_types(media_types: List[str]) -> Dict[str, None]:
-    response_media_types: Dict[str, None] = {}
+
+def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
+    response_media_types: OrderedSet[str] = {}
 
     json_media_types = [media_type for media_type in media_types if "json" in media_type]
     xml_media_types = [media_type for media_type in media_types if "xml" in media_type]
@@ -50,7 +53,7 @@ def _remove_multiple_content_type_parameters(parameters: List[Parameter]) -> Lis
         remaining_params.append(content_type_params[0])
     return remaining_params
 
-def _accept_content_type_helper(responses: List[SchemaResponse]) -> Dict[str, None]:
+def _accept_content_type_helper(responses: List[SchemaResponse]) -> OrderedSet[str]:
     media_types = {
         media_type: None for response in responses for media_type in response.media_types
     }
