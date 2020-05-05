@@ -52,6 +52,7 @@ modelerfour:
     override:
       $host: $host
       base64: base64
+      IncludeAPIs: include_apis
 
 
 pipeline:
