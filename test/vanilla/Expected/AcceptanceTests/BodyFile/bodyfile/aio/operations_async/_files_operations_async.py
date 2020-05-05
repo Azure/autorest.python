@@ -64,7 +64,7 @@ class FilesOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -108,7 +108,7 @@ class FilesOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -152,7 +152,7 @@ class FilesOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
