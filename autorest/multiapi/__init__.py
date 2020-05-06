@@ -8,7 +8,7 @@ import logging
 import json
 import shutil
 
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast, Any
 from .multiapi_serializer import MultiAPISerializer
@@ -168,7 +168,7 @@ class MultiAPI:
         """
         mixin_operations: Dict[str, Dict[str, Dict[str, Any]]] = {}
         for version_path in paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"), object_pairs_hook=OrderedDict)
             if not metadata_json.get('operation_mixins'):
                 continue
             for func_name, func in metadata_json['operation_mixins'].items():
