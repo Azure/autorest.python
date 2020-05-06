@@ -48,6 +48,13 @@ jobs:
           versionSpec: 3.6
 
       - script: |
+          cd $(Build.SourcesDirectory)
+          pip install -r dev_requirements.txt
+          npm install -g autorest
+          npm install
+        displayName: 'Prepare Environment for Generation'
+
+      - script: |
           pylint autorest
         displayName: 'Pylint'
 
@@ -58,15 +65,6 @@ jobs:
       - script: |
           pytest test/unittests
         displayName: 'Unit tests'
-
-      - script: |
-          inv regenerate
-        displayName: 'Regenerate Code'
-
-      - script: |
-          git add -A  # 'add' first so 'diff' includes untracked files
-          git diff --staged -w
-        displayName: 'Diff regeneration'
 
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
@@ -114,11 +112,13 @@ jobs:
           searchFolder: '$(TestFolder)/multiapi'
 
       - script: |
-          cd $(Build.SourcesDirectory)
-          pip install -r dev_requirements.txt
-          npm install -g autorest
-          npm install
-        displayName: 'Prepare Environment for Generation'
+          inv regenerate
+        displayName: 'Regenerate Code'
+
+      - script: |
+          git add -A  # 'add' first so 'diff' includes untracked files
+          git diff --staged -w
+        displayName: 'Diff regeneration'
 
       - script: |
           npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
