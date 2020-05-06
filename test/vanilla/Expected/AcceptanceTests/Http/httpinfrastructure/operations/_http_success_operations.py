@@ -81,7 +81,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
@@ -125,7 +125,7 @@ class HttpSuccessOperations(object):
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200.metadata = {'url': '/http/success/200'}  # type: ignore
@@ -170,7 +170,7 @@ class HttpSuccessOperations(object):
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     options200.metadata = {'url': '/http/success/200'}  # type: ignore
@@ -224,7 +224,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put200.metadata = {'url': '/http/success/200'}  # type: ignore
 
@@ -277,7 +277,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     patch200.metadata = {'url': '/http/success/200'}  # type: ignore
 
@@ -330,7 +330,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post200.metadata = {'url': '/http/success/200'}  # type: ignore
 
@@ -383,7 +383,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     delete200.metadata = {'url': '/http/success/200'}  # type: ignore
 
@@ -436,7 +436,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put201.metadata = {'url': '/http/success/201'}  # type: ignore
 
@@ -489,7 +489,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post201.metadata = {'url': '/http/success/201'}  # type: ignore
 
@@ -542,7 +542,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put202.metadata = {'url': '/http/success/202'}  # type: ignore
 
@@ -595,7 +595,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     patch202.metadata = {'url': '/http/success/202'}  # type: ignore
 
@@ -648,7 +648,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post202.metadata = {'url': '/http/success/202'}  # type: ignore
 
@@ -701,7 +701,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     delete202.metadata = {'url': '/http/success/202'}  # type: ignore
 
@@ -742,7 +742,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
@@ -795,7 +795,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put204.metadata = {'url': '/http/success/204'}  # type: ignore
 
@@ -848,7 +848,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     patch204.metadata = {'url': '/http/success/204'}  # type: ignore
 
@@ -901,7 +901,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post204.metadata = {'url': '/http/success/204'}  # type: ignore
 
@@ -954,7 +954,7 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     delete204.metadata = {'url': '/http/success/204'}  # type: ignore
 
@@ -995,6 +995,6 @@ class HttpSuccessOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     head404.metadata = {'url': '/http/success/404'}  # type: ignore

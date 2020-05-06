@@ -85,7 +85,7 @@ class IntOperations(object):
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/int/null'}  # type: ignore
@@ -130,7 +130,7 @@ class IntOperations(object):
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/int/invalid'}  # type: ignore
@@ -175,7 +175,7 @@ class IntOperations(object):
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}  # type: ignore
@@ -220,7 +220,7 @@ class IntOperations(object):
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}  # type: ignore
@@ -265,7 +265,7 @@ class IntOperations(object):
         deserialized = self._deserialize('long', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}  # type: ignore
@@ -310,7 +310,7 @@ class IntOperations(object):
         deserialized = self._deserialize('long', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}  # type: ignore
@@ -361,7 +361,7 @@ class IntOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_max32.metadata = {'url': '/int/max/32'}  # type: ignore
 
@@ -411,7 +411,7 @@ class IntOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_max64.metadata = {'url': '/int/max/64'}  # type: ignore
 
@@ -461,7 +461,7 @@ class IntOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_min32.metadata = {'url': '/int/min/32'}  # type: ignore
 
@@ -511,7 +511,7 @@ class IntOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_min64.metadata = {'url': '/int/min/64'}  # type: ignore
 
@@ -555,7 +555,7 @@ class IntOperations(object):
         deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_unix_time.metadata = {'url': '/int/unixtime'}  # type: ignore
@@ -606,7 +606,7 @@ class IntOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_unix_time_date.metadata = {'url': '/int/unixtime'}  # type: ignore
 
@@ -650,7 +650,7 @@ class IntOperations(object):
         deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}  # type: ignore
@@ -695,7 +695,7 @@ class IntOperations(object):
         deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null_unix_time.metadata = {'url': '/int/nullunixtime'}  # type: ignore

@@ -79,7 +79,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_true.metadata = {'url': '/bool/true'}  # type: ignore
@@ -127,7 +127,7 @@ class BoolOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_true.metadata = {'url': '/bool/true'}  # type: ignore
 
@@ -170,7 +170,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_false.metadata = {'url': '/bool/false'}  # type: ignore
@@ -218,7 +218,7 @@ class BoolOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_false.metadata = {'url': '/bool/false'}  # type: ignore
 
@@ -261,7 +261,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/bool/null'}  # type: ignore
@@ -305,7 +305,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/bool/invalid'}  # type: ignore

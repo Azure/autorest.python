@@ -88,7 +88,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPTrue', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}  # type: ignore
@@ -141,7 +141,7 @@ class PetsOperations:
         deserialized = self._deserialize('CatAPTrue', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}  # type: ignore
@@ -194,7 +194,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPObject', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}  # type: ignore
@@ -247,7 +247,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPString', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}  # type: ignore
@@ -300,7 +300,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPInProperties', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}  # type: ignore
@@ -353,7 +353,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}  # type: ignore

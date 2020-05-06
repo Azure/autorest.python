@@ -87,7 +87,7 @@ class LROsCustomHeaderOperations:
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _put_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}  # type: ignore
@@ -189,7 +189,7 @@ class LROsCustomHeaderOperations:
             deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}  # type: ignore
@@ -282,7 +282,7 @@ class LROsCustomHeaderOperations:
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     _post202_retry200_initial.metadata = {'url': '/lro/customheader/post/202/retry/200'}  # type: ignore
 
@@ -372,7 +372,7 @@ class LROsCustomHeaderOperations:
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     _post_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}  # type: ignore
 

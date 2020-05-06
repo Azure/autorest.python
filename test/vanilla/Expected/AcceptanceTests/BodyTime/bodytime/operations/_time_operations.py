@@ -85,7 +85,7 @@ class TimeOperations(object):
         deserialized = self._deserialize('time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get.metadata = {'url': '/time/get'}  # type: ignore
@@ -139,7 +139,7 @@ class TimeOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put.metadata = {'url': '/time/put'}  # type: ignore

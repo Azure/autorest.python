@@ -64,7 +64,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('Horse', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_horse.metadata = {'url': '/multipleInheritance/horse'}  # type: ignore
@@ -117,7 +117,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_horse.metadata = {'url': '/multipleInheritance/horse'}  # type: ignore
@@ -162,7 +162,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_pet.metadata = {'url': '/multipleInheritance/pet'}  # type: ignore
@@ -217,7 +217,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_pet.metadata = {'url': '/multipleInheritance/pet'}  # type: ignore
@@ -262,7 +262,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('Feline', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_feline.metadata = {'url': '/multipleInheritance/feline'}  # type: ignore
@@ -315,7 +315,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_feline.metadata = {'url': '/multipleInheritance/feline'}  # type: ignore
@@ -360,7 +360,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('Cat', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_cat.metadata = {'url': '/multipleInheritance/cat'}  # type: ignore
@@ -413,7 +413,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_cat.metadata = {'url': '/multipleInheritance/cat'}  # type: ignore
@@ -458,7 +458,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('Kitten', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_kitten.metadata = {'url': '/multipleInheritance/kitten'}  # type: ignore
@@ -512,7 +512,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_kitten.metadata = {'url': '/multipleInheritance/kitten'}  # type: ignore

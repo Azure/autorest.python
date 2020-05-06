@@ -84,7 +84,7 @@ class IntOperations:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put.metadata = {'url': '/nonStringEnums/int/put'}  # type: ignore
@@ -127,7 +127,7 @@ class IntOperations:
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get.metadata = {'url': '/nonStringEnums/int/get'}  # type: ignore

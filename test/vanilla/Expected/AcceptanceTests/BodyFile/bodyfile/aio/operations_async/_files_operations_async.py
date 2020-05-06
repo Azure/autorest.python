@@ -79,7 +79,7 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}  # type: ignore
@@ -123,7 +123,7 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}  # type: ignore
@@ -167,7 +167,7 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_file.metadata = {'url': '/files/stream/empty'}  # type: ignore

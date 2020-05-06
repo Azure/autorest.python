@@ -68,7 +68,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_array.metadata = {'url': '/model-flatten/array'}  # type: ignore
 
@@ -111,7 +111,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         deserialized = self._deserialize('[FlattenedProduct]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}  # type: ignore
@@ -164,7 +164,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}  # type: ignore
 
@@ -207,7 +207,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         deserialized = self._deserialize('[ProductWrapper]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}  # type: ignore
@@ -260,7 +260,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}  # type: ignore
 
@@ -303,7 +303,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         deserialized = self._deserialize('{FlattenedProduct}', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}  # type: ignore
@@ -356,7 +356,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}  # type: ignore
 
@@ -399,7 +399,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         deserialized = self._deserialize('ResourceCollection', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}  # type: ignore
@@ -455,7 +455,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}  # type: ignore
@@ -527,7 +527,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}  # type: ignore
@@ -605,7 +605,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}  # type: ignore

@@ -84,7 +84,7 @@ class EnumOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}  # type: ignore
@@ -135,7 +135,7 @@ class EnumOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}  # type: ignore
 
@@ -179,7 +179,7 @@ class EnumOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}  # type: ignore
@@ -230,7 +230,7 @@ class EnumOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_referenced.metadata = {'url': '/string/enum/Referenced'}  # type: ignore
 
@@ -274,7 +274,7 @@ class EnumOperations(object):
         deserialized = self._deserialize('RefColorConstant', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}  # type: ignore
@@ -327,6 +327,6 @@ class EnumOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}  # type: ignore

@@ -71,7 +71,7 @@ class AutoRestReportServiceOperationsMixin(object):
         deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_report.metadata = {'url': '/report'}  # type: ignore
@@ -123,7 +123,7 @@ class AutoRestReportServiceOperationsMixin(object):
         deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_optional_report.metadata = {'url': '/report/optional'}  # type: ignore

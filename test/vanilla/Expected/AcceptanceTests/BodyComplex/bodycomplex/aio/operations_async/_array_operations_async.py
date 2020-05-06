@@ -79,7 +79,7 @@ class ArrayOperations:
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/array/valid'}  # type: ignore
@@ -131,7 +131,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/array/valid'}  # type: ignore
 
@@ -174,7 +174,7 @@ class ArrayOperations:
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/complex/array/empty'}  # type: ignore
@@ -226,7 +226,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/complex/array/empty'}  # type: ignore
 
@@ -269,7 +269,7 @@ class ArrayOperations:
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/array/notprovided'}  # type: ignore

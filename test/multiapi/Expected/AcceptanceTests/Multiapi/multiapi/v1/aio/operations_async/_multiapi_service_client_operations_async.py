@@ -67,7 +67,7 @@ class MultiapiServiceClientOperationsMixin:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
@@ -114,7 +114,7 @@ class MultiapiServiceClientOperationsMixin:
             deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _test_lro_initial.metadata = {'url': '/multiapi/lro'}  # type: ignore

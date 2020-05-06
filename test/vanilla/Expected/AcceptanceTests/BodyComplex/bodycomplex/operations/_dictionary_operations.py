@@ -84,7 +84,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
@@ -137,7 +137,7 @@ class DictionaryOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
 
@@ -181,7 +181,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
@@ -234,7 +234,7 @@ class DictionaryOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
 
@@ -278,7 +278,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}  # type: ignore
@@ -323,7 +323,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}  # type: ignore

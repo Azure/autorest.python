@@ -79,7 +79,7 @@ class BasicOperations:
         deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/basic/valid'}  # type: ignore
@@ -131,7 +131,7 @@ class BasicOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/basic/valid'}  # type: ignore
 
@@ -174,7 +174,7 @@ class BasicOperations:
         deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/complex/basic/invalid'}  # type: ignore
@@ -218,7 +218,7 @@ class BasicOperations:
         deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/complex/basic/empty'}  # type: ignore
@@ -262,7 +262,7 @@ class BasicOperations:
         deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/complex/basic/null'}  # type: ignore
@@ -306,7 +306,7 @@ class BasicOperations:
         deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/basic/notprovided'}  # type: ignore

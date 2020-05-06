@@ -78,7 +78,7 @@ class XmlOperations:
         deserialized = self._deserialize('RootWithRefAndNoMeta', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}  # type: ignore
@@ -127,7 +127,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}  # type: ignore
 
@@ -169,7 +169,7 @@ class XmlOperations:
         deserialized = self._deserialize('RootWithRefAndMeta', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}  # type: ignore
@@ -218,7 +218,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}  # type: ignore
 
@@ -261,7 +261,7 @@ class XmlOperations:
         deserialized = self._deserialize('Slideshow', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_simple.metadata = {'url': '/xml/simple'}  # type: ignore
@@ -311,7 +311,7 @@ class XmlOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_simple.metadata = {'url': '/xml/simple'}  # type: ignore
 
@@ -353,7 +353,7 @@ class XmlOperations:
         deserialized = self._deserialize('AppleBarrel', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}  # type: ignore
@@ -403,7 +403,7 @@ class XmlOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}  # type: ignore
 
@@ -445,7 +445,7 @@ class XmlOperations:
         response_headers['Custom-Header']=self._deserialize('str', response.headers.get('Custom-Header'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     get_headers.metadata = {'url': '/xml/headers'}  # type: ignore
 
@@ -487,7 +487,7 @@ class XmlOperations:
         deserialized = self._deserialize('Slideshow', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_list.metadata = {'url': '/xml/empty-list'}  # type: ignore
@@ -536,7 +536,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_list.metadata = {'url': '/xml/empty-list'}  # type: ignore
 
@@ -578,7 +578,7 @@ class XmlOperations:
         deserialized = self._deserialize('AppleBarrel', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}  # type: ignore
@@ -627,7 +627,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}  # type: ignore
 
@@ -669,7 +669,7 @@ class XmlOperations:
         deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_root_list.metadata = {'url': '/xml/root-list'}  # type: ignore
@@ -719,7 +719,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_root_list.metadata = {'url': '/xml/root-list'}  # type: ignore
 
@@ -761,7 +761,7 @@ class XmlOperations:
         deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}  # type: ignore
@@ -811,7 +811,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}  # type: ignore
 
@@ -853,7 +853,7 @@ class XmlOperations:
         deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}  # type: ignore
@@ -903,7 +903,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}  # type: ignore
 
@@ -945,7 +945,7 @@ class XmlOperations:
         deserialized = self._deserialize('Banana', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
@@ -994,7 +994,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
 
@@ -1038,7 +1038,7 @@ class XmlOperations:
         deserialized = self._deserialize('ListContainersResponse', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list_containers.metadata = {'url': '/xml/'}  # type: ignore
@@ -1085,7 +1085,7 @@ class XmlOperations:
         deserialized = self._deserialize('StorageServiceProperties', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_service_properties.metadata = {'url': '/xml/'}  # type: ignore
@@ -1138,7 +1138,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_service_properties.metadata = {'url': '/xml/'}  # type: ignore
 
@@ -1184,7 +1184,7 @@ class XmlOperations:
         deserialized = self._deserialize('[SignedIdentifier]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
@@ -1238,7 +1238,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
 
@@ -1284,7 +1284,7 @@ class XmlOperations:
         deserialized = self._deserialize('ListBlobsResponse', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list_blobs.metadata = {'url': '/xml/mycontainer'}  # type: ignore
@@ -1335,7 +1335,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     json_input.metadata = {'url': '/xml/jsoninput'}  # type: ignore
 
@@ -1377,7 +1377,7 @@ class XmlOperations:
         deserialized = self._deserialize('JSONOutput', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     json_output.metadata = {'url': '/xml/jsonoutput'}  # type: ignore

@@ -79,7 +79,7 @@ class HttpFailureOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}  # type: ignore
@@ -122,7 +122,7 @@ class HttpFailureOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}  # type: ignore
@@ -165,7 +165,7 @@ class HttpFailureOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}  # type: ignore

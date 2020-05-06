@@ -85,7 +85,7 @@ class DateOperations(object):
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/date/null'}  # type: ignore
@@ -130,7 +130,7 @@ class DateOperations(object):
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}  # type: ignore
@@ -175,7 +175,7 @@ class DateOperations(object):
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}  # type: ignore
@@ -220,7 +220,7 @@ class DateOperations(object):
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}  # type: ignore
@@ -271,7 +271,7 @@ class DateOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_max_date.metadata = {'url': '/date/max'}  # type: ignore
 
@@ -315,7 +315,7 @@ class DateOperations(object):
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}  # type: ignore
@@ -366,7 +366,7 @@ class DateOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_min_date.metadata = {'url': '/date/min'}  # type: ignore
 
@@ -410,7 +410,7 @@ class DateOperations(object):
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_min_date.metadata = {'url': '/date/min'}  # type: ignore

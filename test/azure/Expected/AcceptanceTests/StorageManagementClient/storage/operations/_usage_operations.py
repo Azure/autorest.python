@@ -90,7 +90,7 @@ class UsageOperations(object):
         deserialized = self._deserialize('UsageListResult', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}  # type: ignore

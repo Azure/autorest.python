@@ -96,7 +96,7 @@ class OperationGroupOneOperations(object):
         deserialized = self._deserialize('ModelTwo', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
@@ -139,6 +139,6 @@ class OperationGroupOneOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore

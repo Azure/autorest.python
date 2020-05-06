@@ -84,7 +84,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/byte/null'}  # type: ignore
@@ -129,7 +129,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/byte/empty'}  # type: ignore
@@ -174,7 +174,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
@@ -225,7 +225,7 @@ class ByteOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
 
@@ -269,7 +269,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/byte/invalid'}  # type: ignore

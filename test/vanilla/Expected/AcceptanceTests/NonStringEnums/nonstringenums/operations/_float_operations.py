@@ -89,7 +89,7 @@ class FloatOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put.metadata = {'url': '/nonStringEnums/float/put'}  # type: ignore
@@ -133,7 +133,7 @@ class FloatOperations(object):
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get.metadata = {'url': '/nonStringEnums/float/get'}  # type: ignore
