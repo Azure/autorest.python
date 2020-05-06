@@ -49,7 +49,7 @@
         {% endfor %}
     },
     "operation_mixins": {
-        {% for operation in mixin_operations %}
+        {% for operation in mixin_operations | sort(attribute='name') %}
         {{ operation.name | tojson }} : {
             "sync": {
                 {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
