@@ -48,13 +48,6 @@ jobs:
           versionSpec: 3.6
 
       - script: |
-          cd $(Build.SourcesDirectory)
-          pip install -r dev_requirements.txt
-          npm install -g autorest
-          npm install
-        displayName: 'Prepare Environment for Generation'
-
-      - script: |
           pylint autorest
         displayName: 'Pylint'
 
@@ -119,6 +112,13 @@ jobs:
           testResultsFiles: 'test-junit-multiapi-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - multiapi'
           searchFolder: '$(TestFolder)/multiapi'
+
+      - script: |
+          cd $(Build.SourcesDirectory)
+          pip install -r dev_requirements.txt
+          npm install -g autorest
+          npm install
+        displayName: 'Prepare Environment for Generation'
 
       - script: |
           npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
