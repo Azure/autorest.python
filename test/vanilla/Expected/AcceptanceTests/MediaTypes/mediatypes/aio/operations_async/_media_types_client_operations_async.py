@@ -30,7 +30,8 @@ class MediaTypesClientOperationsMixin:
 
         :param input: Input parameter.
         :type input: str, ~mediatypes.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API.
+        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+         Possible values include: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
