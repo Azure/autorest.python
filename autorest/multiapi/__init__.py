@@ -146,7 +146,9 @@ class MultiAPI:
 
     def _get_paths_to_versions(self) -> List[Path]:
         paths_to_versions = []
-        for child in [x for x in self.output_folder.iterdir() if x.is_dir()]:
+        directory = [x for x in self.output_folder.iterdir() if x.is_dir()]
+        directory.sort()
+        for child in directory:
             child_dir = (self.output_folder / child).resolve()
             if Path(child_dir / '_metadata.json') in child_dir.iterdir():
                 paths_to_versions.append(Path(child.stem))
