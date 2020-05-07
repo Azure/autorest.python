@@ -55,3 +55,8 @@ class TestMediaTypes(object):
     async def test_incorrect_content_type(self, client):
         with pytest.raises(ValueError):
             await client.analyze_body(input=b"PDF", content_type="text/plain")
+
+    @pytest.mark.asyncio
+    async def test_content_type_with_encoding(self, client):
+        result = await client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
+        assert result == "Nice job sending content type with encoding"
