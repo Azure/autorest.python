@@ -29,11 +29,6 @@
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% if constant_parameter.serialized_name == "content_type" %}
     content_type = kwargs.pop("content_type", {{ constant_parameter.schema.constant_value }})
-    if content_type.split(";")[0] not in {{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list }}:
-        raise ValueError(
-            "The content_type '{}' is not one of the allowed values: "
-            "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(content_type.split(";")[0])
-        )
     {% else %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
     {% endif %}

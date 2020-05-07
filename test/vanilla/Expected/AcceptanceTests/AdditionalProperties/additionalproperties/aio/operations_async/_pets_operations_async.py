@@ -59,11 +59,6 @@ class PetsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.create_ap_true.metadata['url']  # type: ignore
@@ -117,11 +112,6 @@ class PetsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.create_cat_ap_true.metadata['url']  # type: ignore
@@ -175,11 +165,6 @@ class PetsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.create_ap_object.metadata['url']  # type: ignore
@@ -233,11 +218,6 @@ class PetsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.create_ap_string.metadata['url']  # type: ignore
@@ -291,11 +271,6 @@ class PetsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.create_ap_in_properties.metadata['url']  # type: ignore
@@ -349,11 +324,6 @@ class PetsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.create_ap_in_properties_with_ap_string.metadata['url']  # type: ignore

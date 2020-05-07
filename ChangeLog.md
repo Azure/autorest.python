@@ -6,7 +6,6 @@ Modelerfour version: 4.13.346
 **Bug Fixes**
 
 - Users can pass in content types with ';' inside (such as 'text/plain; encoding=UTF-8')  #619
-- Throw if user passes in `content_type` that is not allowed for that operation  #619
 
 ### 2020-05-06 - 5.0.0-preview.4
 Modelerfour version: 4.13.346

@@ -155,11 +155,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_empty.metadata['url']  # type: ignore
@@ -435,11 +430,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_boolean_tfft.metadata['url']  # type: ignore
@@ -625,11 +615,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_integer_valid.metadata['url']  # type: ignore
@@ -815,11 +800,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_long_valid.metadata['url']  # type: ignore
@@ -1005,11 +985,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_float_valid.metadata['url']  # type: ignore
@@ -1195,11 +1170,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_double_valid.metadata['url']  # type: ignore
@@ -1385,11 +1355,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_string_valid.metadata['url']  # type: ignore
@@ -1575,11 +1540,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_date_valid.metadata['url']  # type: ignore
@@ -1765,11 +1725,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_date_time_valid.metadata['url']  # type: ignore
@@ -1955,11 +1910,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_date_time_rfc1123_valid.metadata['url']  # type: ignore
@@ -2055,11 +2005,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_duration_valid.metadata['url']  # type: ignore
@@ -2155,11 +2100,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_byte_valid.metadata['url']  # type: ignore
@@ -2525,11 +2465,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_complex_valid.metadata['url']  # type: ignore
@@ -2805,11 +2740,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_array_valid.metadata['url']  # type: ignore
@@ -3085,11 +3015,6 @@ class DictionaryOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_dictionary_valid.metadata['url']  # type: ignore

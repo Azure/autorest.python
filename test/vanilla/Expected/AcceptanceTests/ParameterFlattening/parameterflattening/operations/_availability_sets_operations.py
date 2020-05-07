@@ -72,11 +72,6 @@ class AvailabilitySetsOperations(object):
 
         _tags = models.AvailabilitySetUpdateParameters(tags=tags)
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.update.metadata['url']  # type: ignore

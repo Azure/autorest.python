@@ -67,11 +67,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json', 'text/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'text/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.check_name_availability.metadata['url']  # type: ignore
@@ -122,11 +117,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json', 'text/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'text/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._create_initial.metadata['url']  # type: ignore
@@ -369,11 +359,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json', 'text/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'text/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.update.metadata['url']  # type: ignore
@@ -633,11 +618,6 @@ class StorageAccountsOperations:
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json', 'text/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'text/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.regenerate_key.metadata['url']  # type: ignore

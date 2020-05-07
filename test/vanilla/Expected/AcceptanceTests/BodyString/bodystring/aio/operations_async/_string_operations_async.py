@@ -103,11 +103,6 @@ class StringOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_null.metadata['url']  # type: ignore
@@ -201,11 +196,6 @@ class StringOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
         string_body = ""
 
         # Construct URL
@@ -297,11 +287,6 @@ class StringOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
         # Construct URL
@@ -393,11 +378,6 @@ class StringOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
         # Construct URL
@@ -580,11 +560,6 @@ class StringOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.put_base64_url_encoded.metadata['url']  # type: ignore

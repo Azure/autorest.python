@@ -52,11 +52,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put200_succeeded_initial.metadata['url']  # type: ignore
@@ -151,11 +146,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put200_succeeded_no_state_initial.metadata['url']  # type: ignore
@@ -248,11 +238,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put202_retry200_initial.metadata['url']  # type: ignore
@@ -345,11 +330,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']  # type: ignore
@@ -447,11 +427,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put200_updating_succeeded204_initial.metadata['url']  # type: ignore
@@ -544,11 +519,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put201_creating_failed200_initial.metadata['url']  # type: ignore
@@ -646,11 +616,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put200_acceptedcanceled200_initial.metadata['url']  # type: ignore
@@ -743,11 +708,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_no_header_in_retry_initial.metadata['url']  # type: ignore
@@ -845,11 +805,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_async_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -951,11 +906,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_async_no_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -1055,11 +1005,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_async_retry_failed_initial.metadata['url']  # type: ignore
@@ -1161,11 +1106,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_async_no_retrycanceled_initial.metadata['url']  # type: ignore
@@ -1265,11 +1205,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_async_no_header_in_retry_initial.metadata['url']  # type: ignore
@@ -1367,11 +1302,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_non_resource_initial.metadata['url']  # type: ignore
@@ -1464,11 +1394,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_async_non_resource_initial.metadata['url']  # type: ignore
@@ -1563,11 +1488,6 @@ class LROsOperations:
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_sub_resource_initial.metadata['url']  # type: ignore
@@ -1662,11 +1582,6 @@ class LROsOperations:
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._put_async_sub_resource_initial.metadata['url']  # type: ignore
@@ -2807,11 +2722,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']  # type: ignore
@@ -2901,11 +2811,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._post202_no_retry204_initial.metadata['url']  # type: ignore
@@ -3239,11 +3144,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._post_async_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -3344,11 +3244,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._post_async_no_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -3449,11 +3344,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._post_async_retry_failed_initial.metadata['url']  # type: ignore
@@ -3544,11 +3434,6 @@ class LROsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self._post_async_retrycanceled_initial.metadata['url']  # type: ignore

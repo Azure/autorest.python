@@ -59,11 +59,6 @@ class OperationGroupTwoOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
-        if content_type.split(";")[0] not in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type.split(";")[0])
-            )
 
         # Construct URL
         url = self.test_four.metadata['url']  # type: ignore
@@ -78,9 +73,9 @@ class OperationGroupTwoOperations:
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
+        if header_parameters['Content-Type'] or header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
             body_content_kwargs['stream_content'] = input
-        elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
+        elif header_parameters['Content-Type'] or header_parameters['Content-Type'].split(";")[0] in ['application/json']:
             if input is not None:
                 body_content = self._serialize.body(input, 'SourcePath')
             else:
