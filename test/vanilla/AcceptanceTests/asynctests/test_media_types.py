@@ -54,4 +54,4 @@ class TestMediaTypes(object):
     @pytest.mark.asyncio
     async def test_incorrect_content_type(self, client):
         with pytest.raises(ValueError):
-            await client.analyze_body(input=b"PDF", content_type="not a real content type")
+            await client.analyze_body(input=b"PDF", content_type="text/plain")

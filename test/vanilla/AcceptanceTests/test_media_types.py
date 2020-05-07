@@ -48,4 +48,4 @@ class TestMediaTypes(object):
 
     def test_incorrect_content_type(self, client):
         with pytest.raises(ValueError):
-            client.analyze_body(input=b"PDF", content_type="not a real content type")
+            client.analyze_body(input=b"PDF", content_type="text/plain")
