@@ -28,7 +28,9 @@
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
 {% if (operation.requests | length) > 1 %}
-:keyword str content_type: Media type of the body sent to the API.
+{% set content_type_constant = operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.schema.constant_value }}.
+ Allowed values are: "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(operation) }}
@@ -179,21 +181,21 @@ body_content_kwargs['content'] = body_content{% endmacro %}
 # Construct and send request
 {% if operation.parameters.has_body %}
 body_content_kwargs = {}  # type: Dict[str, Any]
-{% if (operation.requests | length) == 1 %}
-{% if operation.requests[0].is_stream_request %}
+    {% if (operation.requests | length) == 1 %}
+        {% if operation.requests[0].is_stream_request %}
 {{ stream_body_params(operation) }}
-{% elif operation.requests[0].body_parameter_has_schema %}
+        {% elif operation.requests[0].body_parameter_has_schema %}
 {{ non_stream_body_params(operation, send_xml, request_as_xml) }}
-{% endif %}
-{% else %}
-{% for request in operation.requests %}
+        {% endif %}
+    {% else %}
+        {% for request in operation.requests %}
 {{ "el" if not loop.first }}if header_parameters['Content-Type'] in {{ request.media_types }}:
-{% if request.is_stream_request %}
+            {% if request.is_stream_request %}
     {{ stream_body_params(operation)|indent }}
-{% elif request.body_parameter_has_schema %}
+            {% elif request.body_parameter_has_schema %}
     {{ non_stream_body_params(request, send_xml, request_as_xml)|indent }}
-{% endif %}
-{% endfor %}
+            {% endif %}
+        {% endfor %}
 else:
     raise ValueError(
         "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])

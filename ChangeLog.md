@@ -10,6 +10,10 @@ Modelerfour version: 4.13.346
 ### 2020-05-06 - 5.0.0-preview.4
 Modelerfour version: 4.13.346
 
+**New Features**
+
+- Displaying the default and possible values for content type in the docstring for operations with multiple requests  #615
+
 **Bug Fixes**
 
 - Fixing `AsyncTokenCredential` typing import and adding to service client  #591
