@@ -358,7 +358,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     type_annot = ", ".join([
                         param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
                     ])
-                    docstring_type = ", ".join([
+                    docstring_type = " or ".join([
                         param.schema.docstring_type for param in operation.multiple_media_type_parameters
                     ])
                     chosen_parameter = next(

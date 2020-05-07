@@ -52,7 +52,7 @@ class OperationGroupTwoOperations(object):
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: IO, ~multiapiwithsubmodule.submodule.v3.models.SourcePath
+        :type input: IO or ~multiapiwithsubmodule.submodule.v3.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API.
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
