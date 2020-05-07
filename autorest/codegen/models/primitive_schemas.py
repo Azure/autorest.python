@@ -9,7 +9,7 @@ from enum import Enum
 from typing import cast, Any, Dict, List, Optional, Union
 
 from .base_schema import BaseSchema
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -45,6 +45,32 @@ class PrimitiveSchema(BaseSchema):
     @property
     def docstring_text(self) -> str:
         return self.docstring_type
+
+class IOSchema(PrimitiveSchema):
+
+    def __init__(self, namespace, yaml_data) -> None:  # pylint: disable=super-init-not-called
+        self.type = "IO"
+
+    @property
+    def serialization_type(self) -> str:
+        return self.type
+
+    @property
+    def docstring_type(self) -> str:
+        return self.type
+
+    @property
+    def type_annotation(self) -> str:
+        return self.docstring_type
+
+    @property
+    def docstring_text(self) -> str:
+        return "IO"
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        return file_import
 
 
 class AnySchema(PrimitiveSchema):
@@ -347,6 +373,7 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         "duration": DurationSchema,
         "byte-array": ByteArraySchema,
         "any": AnySchema,
+        "binary": IOSchema
     }
     schema_type = yaml_data["type"]
     primitive_schema = cast(

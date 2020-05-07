@@ -252,6 +252,10 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
+        if self.multiple_media_type_parameters:
+            for parameter in self.multiple_media_type_parameters:
+                file_import.merge(parameter.imports())
+
         for response in [r for r in self.responses if r.has_body]:
             file_import.merge(cast(BaseSchema, response.schema).imports())
 
