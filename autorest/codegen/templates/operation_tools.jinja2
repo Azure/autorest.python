@@ -196,7 +196,8 @@ body_content_kwargs = {}  # type: Dict[str, Any]
 {% endfor %}
 else:
     raise ValueError(
-        "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+        "The content_type '{}' is not one of the allowed values: "
+        "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
     )
 {% endif %}
 request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, **body_content_kwargs)

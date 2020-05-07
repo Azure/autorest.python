@@ -83,7 +83,8 @@ class OperationGroupTwoOperations:
             body_content_kwargs['content'] = body_content
         else:
             raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
             )
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
