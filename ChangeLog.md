@@ -1,5 +1,12 @@
 # Change Log
 
+### Unreleased
+Modelerfour version: 4.13.346
+
+**Bug Fixes**
+
+- Allowing parameters to be of type `IO` as well  #618
+
 ### 2020-05-06 - 5.0.0-preview.4
 Modelerfour version: 4.13.346
 
