@@ -179,6 +179,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put400.metadata['url']  # type: ignore
@@ -231,6 +236,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.patch400.metadata['url']  # type: ignore
@@ -283,6 +293,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.post400.metadata['url']  # type: ignore
@@ -335,6 +350,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.delete400.metadata['url']  # type: ignore
@@ -547,6 +567,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put404.metadata['url']  # type: ignore
@@ -599,6 +624,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.patch405.metadata['url']  # type: ignore
@@ -651,6 +681,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.post406.metadata['url']  # type: ignore
@@ -703,6 +738,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.delete407.metadata['url']  # type: ignore
@@ -755,6 +795,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put409.metadata['url']  # type: ignore
@@ -967,6 +1012,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put413.metadata['url']  # type: ignore
@@ -1019,6 +1069,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.patch414.metadata['url']  # type: ignore
@@ -1071,6 +1126,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.post415.metadata['url']  # type: ignore
@@ -1163,6 +1223,11 @@ class HttpClientFailureOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.delete417.metadata['url']  # type: ignore

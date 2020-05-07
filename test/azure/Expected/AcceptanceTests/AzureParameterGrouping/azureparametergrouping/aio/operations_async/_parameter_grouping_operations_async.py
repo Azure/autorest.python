@@ -69,6 +69,11 @@ class ParameterGroupingOperations:
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.post_required.metadata['url']  # type: ignore

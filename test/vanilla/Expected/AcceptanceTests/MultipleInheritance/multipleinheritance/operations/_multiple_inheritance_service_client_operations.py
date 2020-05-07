@@ -89,6 +89,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_horse.metadata['url']  # type: ignore
@@ -189,6 +194,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         _pet = models.Pet(name=name)
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_pet.metadata['url']  # type: ignore
@@ -287,6 +297,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_feline.metadata['url']  # type: ignore
@@ -385,6 +400,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_cat.metadata['url']  # type: ignore
@@ -484,6 +504,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_kitten.metadata['url']  # type: ignore

@@ -104,6 +104,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_int.metadata['url']  # type: ignore
@@ -197,6 +202,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_long.metadata['url']  # type: ignore
@@ -290,6 +300,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_float.metadata['url']  # type: ignore
@@ -384,6 +399,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_double.metadata['url']  # type: ignore
@@ -477,6 +497,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_bool.metadata['url']  # type: ignore
@@ -570,6 +595,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_string.metadata['url']  # type: ignore
@@ -663,6 +693,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_date.metadata['url']  # type: ignore
@@ -756,6 +791,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_date_time.metadata['url']  # type: ignore
@@ -850,6 +890,11 @@ class PrimitiveOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_date_time_rfc1123.metadata['url']  # type: ignore
@@ -945,6 +990,11 @@ class PrimitiveOperations:
 
         _complex_body = models.DurationWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_duration.metadata['url']  # type: ignore
@@ -1040,6 +1090,11 @@ class PrimitiveOperations:
 
         _complex_body = models.ByteWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_byte.metadata['url']  # type: ignore

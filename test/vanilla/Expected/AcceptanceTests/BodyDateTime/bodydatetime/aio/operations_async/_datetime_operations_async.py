@@ -236,6 +236,11 @@ class DatetimeOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']  # type: ignore
@@ -288,6 +293,11 @@ class DatetimeOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_utc_max_date_time7_digits.metadata['url']  # type: ignore
@@ -472,6 +482,11 @@ class DatetimeOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_local_positive_offset_max_date_time.metadata['url']  # type: ignore
@@ -609,6 +624,11 @@ class DatetimeOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_local_negative_offset_max_date_time.metadata['url']  # type: ignore
@@ -746,6 +766,11 @@ class DatetimeOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']  # type: ignore
@@ -839,6 +864,11 @@ class DatetimeOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_local_positive_offset_min_date_time.metadata['url']  # type: ignore
@@ -932,6 +962,11 @@ class DatetimeOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_local_negative_offset_min_date_time.metadata['url']  # type: ignore

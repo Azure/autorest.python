@@ -58,6 +58,11 @@ class OperationGroupOneOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.test_two.metadata['url']  # type: ignore

@@ -108,6 +108,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_complex_type_ref_no_meta.metadata['url']  # type: ignore
@@ -201,6 +206,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_complex_type_ref_with_meta.metadata['url']  # type: ignore
@@ -295,6 +305,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_simple.metadata['url']  # type: ignore
@@ -389,6 +404,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_wrapped_lists.metadata['url']  # type: ignore
@@ -526,6 +546,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_empty_list.metadata['url']  # type: ignore
@@ -619,6 +644,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_empty_wrapped_lists.metadata['url']  # type: ignore
@@ -712,6 +742,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_root_list.metadata['url']  # type: ignore
@@ -806,6 +841,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_root_list_single_item.metadata['url']  # type: ignore
@@ -900,6 +940,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_empty_root_list.metadata['url']  # type: ignore
@@ -994,6 +1039,11 @@ class XmlOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_empty_child_element.metadata['url']  # type: ignore
@@ -1139,6 +1189,11 @@ class XmlOperations(object):
         comp = "properties"
         restype = "service"
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_service_properties.metadata['url']  # type: ignore
@@ -1240,6 +1295,11 @@ class XmlOperations(object):
         comp = "acl"
         restype = "container"
         content_type = kwargs.pop("content_type", "application/xml")
+        if content_type.split(";")[0] not in ['application/xml']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/xml']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.put_acls.metadata['url']  # type: ignore
@@ -1342,6 +1402,11 @@ class XmlOperations(object):
 
         _properties = models.JSONInput(id=id)
         content_type = kwargs.pop("content_type", "application/json")
+        if content_type.split(";")[0] not in ['application/json']:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json']".format(content_type.split(";")[0])
+            )
 
         # Construct URL
         url = self.json_input.metadata['url']  # type: ignore

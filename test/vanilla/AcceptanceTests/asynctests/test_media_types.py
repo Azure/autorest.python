@@ -50,3 +50,8 @@ class TestMediaTypes(object):
         json_input = json.loads('{"source":"foo"}')
         result = await client.analyze_body(input=json_input)
         assert result == "Nice job with JSON"
+
+    @pytest.mark.asyncio
+    async def test_incorrect_content_type(self, client):
+        with pytest.raises(ValueError):
+            await client.analyze_body(input=b"PDF", content_type="not a real content type")

@@ -45,3 +45,7 @@ class TestMediaTypes(object):
         json_input = json.loads('{"source":"foo"}')
         result = client.analyze_body(input=json_input)
         assert result == "Nice job with JSON"
+
+    def test_incorrect_content_type(self, client):
+        with pytest.raises(ValueError):
+            client.analyze_body(input=b"PDF", content_type="not a real content type")
