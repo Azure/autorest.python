@@ -380,9 +380,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 if operation.multiple_media_type_parameters:
-                    type_annot = ", ".join([
+                    type_annotations = [
                         param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
-                    ])
+                    ]
+                    if len(type_annotations) != len(set(type_annotations)):
+                        raise ValueError(
+                            f"Parameter '{operation.multiple_media_type_parameters[0].serialized_name}' "
+                            "has multiple media type entries with the same type"
+                        )
+                    type_annot = ", ".join(type_annotations)
                     docstring_type = ", ".join([
                         param.schema.docstring_type for param in operation.multiple_media_type_parameters
                     ])
