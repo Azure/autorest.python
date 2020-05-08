@@ -21,6 +21,13 @@ class SchemaRequest(BaseModel):
         self.parameters = ParameterList(parameters)
 
     @property
+    def pre_semicolon_media_types(self) -> List[str]:
+        """Splits on semicolon of media types and returns the first half.
+        I.e. ["text/plain; encoding=UTF-8"] -> ["text/plain"]
+        """
+        return [media_type.split(";")[0] for media_type in self.media_types]
+
+    @property
     def body_parameter_has_schema(self) -> bool:
         """Tell if that request has a parameter that defines a body.
         """

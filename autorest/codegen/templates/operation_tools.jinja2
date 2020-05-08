@@ -189,7 +189,7 @@ body_content_kwargs = {}  # type: Dict[str, Any]
         {% endif %}
     {% else %}
         {% for request in operation.requests %}
-{{ "el" if not loop.first }}if header_parameters['Content-Type'][0] in {{ request.media_types }}:
+{{ "el" if not loop.first }}if header_parameters['Content-Type'].split(";")[0] in {{ request.pre_semicolon_media_types }}:
             {% if request.is_stream_request %}
     {{ stream_body_params(operation)|indent }}
             {% elif request.body_parameter_has_schema %}
