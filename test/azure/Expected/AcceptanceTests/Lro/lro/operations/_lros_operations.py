@@ -20,7 +20,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -142,6 +142,93 @@ class LROsOperations(object):
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}  # type: ignore
+
+    def _post202_list_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> List["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self._post202_list_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        request = self._client.post(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize('[Product]', pipeline_response)
+
+        if response.status_code == 202:
+            response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
+            response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+    _post202_list_initial.metadata = {'url': '/lro/list'}  # type: ignore
+
+    @distributed_trace
+    def begin_post202_list(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> LROPoller
+        """Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }].
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: An instance of LROPoller that returns list
+        :rtype: ~azure.core.polling.LROPoller[list[~lro.models.Product]]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = self._post202_list_initial(
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        kwargs.pop('error_map', None)
+        kwargs.pop('content_type', None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('[Product]', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
+        else: polling_method = polling
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post202_list.metadata = {'url': '/lro/list'}  # type: ignore
 
     def _put200_succeeded_no_state_initial(
         self,
