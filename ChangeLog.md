@@ -5,6 +5,7 @@ Modelerfour version: 4.13.346
 
 **Bug Fixes**
 
+- Users can pass in content types with ';' inside (such as 'text/plain; encoding=UTF-8')  #619
 - Allowing parameters to be of type `IO` as well  #618
 
 ### 2020-05-06 - 5.0.0-preview.4

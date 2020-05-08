@@ -45,3 +45,11 @@ class TestMediaTypes(object):
         json_input = json.loads('{"source":"foo"}')
         result = client.analyze_body(input=json_input)
         assert result == "Nice job with JSON"
+
+    def test_incorrect_content_type(self, client):
+        with pytest.raises(ValueError):
+            client.analyze_body(input=b"PDF", content_type="text/plain")
+
+    def test_content_type_with_encoding(self, client):
+        result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
+        assert result == "Nice job sending content type with encoding"
