@@ -4,13 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .imports import ImportType, TypingSection
+from .base_schema import BaseSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -70,7 +71,7 @@ class LROOperation(Operation):
                 )
             response_type = response_types_with_200_status_code[0]
 
-            response_type_schema_name = response_type.schema.serialization_type
+            response_type_schema_name = cast(BaseSchema, response_type.schema).serialization_type
             _LOGGER.warning(
                 "Multiple schema types in responses: %s. Choosing: %s", response_types, response_type_schema_name
             )
