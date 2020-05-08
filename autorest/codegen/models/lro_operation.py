@@ -4,14 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set, cast
+from typing import Dict, List, Any, Optional, Set
 from .imports import FileImport
 from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .imports import ImportType, TypingSection
-from .object_schema import ObjectSchema
 
 _LOGGER = logging.getLogger(__name__)
 
