@@ -1,5 +1,12 @@
 # Change Log
 
+### Unreleased
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+
+- No longer assuming that response with body from an LRO call is an ObjectSchema  #623
+
 ### 2020-05-08 - 5.0.0-preview.5
 Modelerfour version: 4.13.351
 

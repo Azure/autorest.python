@@ -5,7 +5,7 @@
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
 {% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {% macro return_docstring() %}
-:return: {{ "" if async_mode else "An instance of LROPoller that returns " }}{{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
+:return: {{ "" if async_mode else "An instance of LROPoller that returns " }}{{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}} or the result of cls(response)
 :rtype: {{"" if async_mode else "~azure.core.polling.LROPoller["}}{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}{{ "" if async_mode else "]" }}{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro response_headers(response) %}

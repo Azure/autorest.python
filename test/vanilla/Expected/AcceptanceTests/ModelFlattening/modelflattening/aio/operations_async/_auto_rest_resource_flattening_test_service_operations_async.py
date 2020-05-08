@@ -80,7 +80,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """Get External Resource as an Array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of FlattenedProduct or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -176,7 +176,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of ProductWrapper or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -272,7 +272,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """Get External Resource as a Dictionary.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
+        :return: dict of string to FlattenedProduct or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -639,7 +639,7 @@ class XmlOperations:
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -731,7 +731,7 @@ class XmlOperations:
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -823,7 +823,7 @@ class XmlOperations:
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1150,7 +1150,7 @@ class XmlOperations:
         """Gets storage ACLs for a container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of SignedIdentifier or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
