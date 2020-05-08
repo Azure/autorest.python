@@ -5,6 +5,7 @@ Modelerfour version: 4.13.351
 
 **Bug Fixes**
 
+- Users can pass in content types with ';' inside (such as 'text/plain; encoding=UTF-8')  #619
 - Allowing parameters to be of type `IO` as well  #618
 - Can now generate without FATAL: bad indentation error (taken from m4 update - perks PR #105)
 
