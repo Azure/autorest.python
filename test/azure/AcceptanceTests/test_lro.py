@@ -446,3 +446,10 @@ class TestLro:
     def test_passing_kwargs(self, client, product):
         process = self.lro_result(client.lros.begin_put200_succeeded, product, content_type="application/json")
         assert "Succeeded" == process.provisioning_state
+
+    def test_lro_list(self, client, product):
+        products = self.lro_result(client.lros.begin_post202_list, [product])
+        assert len(products) == 1
+        product = products[0]
+        assert product.id == "100"
+        assert product.name == "foo"
