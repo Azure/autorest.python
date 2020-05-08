@@ -17,7 +17,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -27,15 +27,16 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[str, "models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, "models.SourcePath"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: str, ~mediatypes.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API.
+        :type input: IO or ~mediatypes.models.SourcePath
+        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
