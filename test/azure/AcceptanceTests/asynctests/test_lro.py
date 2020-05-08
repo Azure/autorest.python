@@ -498,7 +498,7 @@ class TestLro:
 
     @pytest.mark.asyncio
     async def test_lro_list(self, client, product):
-        products = await self.lro_result(client.lros.post202_list, [product])
+        products = await self.lro_result(client.lros.post202_list)
         assert len(products) == 1
         product = products[0]
         assert product.id == "100"

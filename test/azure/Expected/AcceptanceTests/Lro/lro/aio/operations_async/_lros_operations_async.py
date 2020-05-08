@@ -139,13 +139,11 @@ class LROsOperations:
 
     async def _post202_list_initial(
         self,
-        product: Optional[List["models.Product"]] = None,
         **kwargs
     ) -> List["models.Product"]:
         cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post202_list_initial.metadata['url']  # type: ignore
@@ -155,18 +153,10 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, '[Product]')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
+        request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -192,13 +182,10 @@ class LROsOperations:
     @distributed_trace_async
     async def post202_list(
         self,
-        product: Optional[List["models.Product"]] = None,
         **kwargs
     ) -> List["models.Product"]:
         """Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }].
 
-        :param product: Product to put.
-        :type product: list[~lro.models.Product]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -215,7 +202,6 @@ class LROsOperations:
             self._config.polling_interval
         )
         raw_result = await self._post202_list_initial(
-            product=product,
             cls=lambda x,y,z: x,
             **kwargs
         )
