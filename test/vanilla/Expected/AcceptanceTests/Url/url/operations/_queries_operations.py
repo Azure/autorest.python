@@ -54,7 +54,7 @@ class QueriesOperations(object):
         """Get true Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -97,7 +97,7 @@ class QueriesOperations(object):
         """Get false Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -143,7 +143,7 @@ class QueriesOperations(object):
         :param bool_query: null boolean value.
         :type bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -186,7 +186,7 @@ class QueriesOperations(object):
         """Get '1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -229,7 +229,7 @@ class QueriesOperations(object):
         """Get '-1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -275,7 +275,7 @@ class QueriesOperations(object):
         :param int_query: null integer value.
         :type int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -318,7 +318,7 @@ class QueriesOperations(object):
         """Get '10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -361,7 +361,7 @@ class QueriesOperations(object):
         """Get '-10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -407,7 +407,7 @@ class QueriesOperations(object):
         :param long_query: null 64 bit integer value.
         :type long_query: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -450,7 +450,7 @@ class QueriesOperations(object):
         """Get '1.034E+20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -493,7 +493,7 @@ class QueriesOperations(object):
         """Get '-1.034E-20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -539,7 +539,7 @@ class QueriesOperations(object):
         :param float_query: null numeric value.
         :type float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -582,7 +582,7 @@ class QueriesOperations(object):
         """Get '9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -625,7 +625,7 @@ class QueriesOperations(object):
         """Get '-9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -671,7 +671,7 @@ class QueriesOperations(object):
         :param double_query: null numeric value.
         :type double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -714,7 +714,7 @@ class QueriesOperations(object):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -757,7 +757,7 @@ class QueriesOperations(object):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -800,7 +800,7 @@ class QueriesOperations(object):
         """Get ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -846,7 +846,7 @@ class QueriesOperations(object):
         :param string_query: null string value.
         :type string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -892,7 +892,7 @@ class QueriesOperations(object):
         :param enum_query: 'green color' enum value.
         :type enum_query: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -938,7 +938,7 @@ class QueriesOperations(object):
         :param enum_query: null string value.
         :type enum_query: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -984,7 +984,7 @@ class QueriesOperations(object):
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_query: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1027,7 +1027,7 @@ class QueriesOperations(object):
         """Get '' as byte array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1073,7 +1073,7 @@ class QueriesOperations(object):
         :param byte_query: null as byte array (no query parameters in uri).
         :type byte_query: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1116,7 +1116,7 @@ class QueriesOperations(object):
         """Get '2012-01-01' as date.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1162,7 +1162,7 @@ class QueriesOperations(object):
         :param date_query: null as date (no query parameters in uri).
         :type date_query: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1205,7 +1205,7 @@ class QueriesOperations(object):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1251,7 +1251,7 @@ class QueriesOperations(object):
         :param date_time_query: null as date-time (no query parameters).
         :type date_time_query: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1298,7 +1298,7 @@ class QueriesOperations(object):
          ''] using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1344,7 +1344,7 @@ class QueriesOperations(object):
         :param array_query: a null array of string using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1390,7 +1390,7 @@ class QueriesOperations(object):
         :param array_query: an empty array [] of string using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1437,7 +1437,7 @@ class QueriesOperations(object):
          ''] using the ssv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1484,7 +1484,7 @@ class QueriesOperations(object):
          ''] using the tsv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1531,7 +1531,7 @@ class QueriesOperations(object):
          ''] using the pipes-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

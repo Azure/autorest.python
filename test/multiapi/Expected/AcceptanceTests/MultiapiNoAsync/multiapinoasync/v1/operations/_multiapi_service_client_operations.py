@@ -39,7 +39,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :param message: An optional string parameter.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -140,7 +140,7 @@ class MultiapiServiceClientOperationsMixin(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product or the result of cls(response)
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapinoasync.v1.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """

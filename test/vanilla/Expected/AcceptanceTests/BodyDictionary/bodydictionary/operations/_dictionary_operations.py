@@ -54,7 +54,7 @@ class DictionaryOperations(object):
         """Get null dictionary value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to int or the result of cls(response)
+        :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -99,7 +99,7 @@ class DictionaryOperations(object):
         """Get empty dictionary value {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to int or the result of cls(response)
+        :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -147,7 +147,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -194,7 +194,7 @@ class DictionaryOperations(object):
         """Get Dictionary with null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to str or the result of cls(response)
+        :return: dict mapping str to str, or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -239,7 +239,7 @@ class DictionaryOperations(object):
         """Get Dictionary with null key.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to str or the result of cls(response)
+        :return: dict mapping str to str, or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -284,7 +284,7 @@ class DictionaryOperations(object):
         """Get Dictionary with key as empty string.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to str or the result of cls(response)
+        :return: dict mapping str to str, or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -329,7 +329,7 @@ class DictionaryOperations(object):
         """Get invalid Dictionary value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to str or the result of cls(response)
+        :return: dict mapping str to str, or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -374,7 +374,7 @@ class DictionaryOperations(object):
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to bool or the result of cls(response)
+        :return: dict mapping str to bool, or the result of cls(response)
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -422,7 +422,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, bool]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -469,7 +469,7 @@ class DictionaryOperations(object):
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to bool or the result of cls(response)
+        :return: dict mapping str to bool, or the result of cls(response)
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -514,7 +514,7 @@ class DictionaryOperations(object):
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to bool or the result of cls(response)
+        :return: dict mapping str to bool, or the result of cls(response)
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -559,7 +559,7 @@ class DictionaryOperations(object):
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to int or the result of cls(response)
+        :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -607,7 +607,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, int]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -654,7 +654,7 @@ class DictionaryOperations(object):
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to int or the result of cls(response)
+        :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -699,7 +699,7 @@ class DictionaryOperations(object):
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to int or the result of cls(response)
+        :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -744,7 +744,7 @@ class DictionaryOperations(object):
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to long or the result of cls(response)
+        :return: dict mapping str to long, or the result of cls(response)
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -792,7 +792,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, long]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -839,7 +839,7 @@ class DictionaryOperations(object):
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to long or the result of cls(response)
+        :return: dict mapping str to long, or the result of cls(response)
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -884,7 +884,7 @@ class DictionaryOperations(object):
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to long or the result of cls(response)
+        :return: dict mapping str to long, or the result of cls(response)
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -929,7 +929,7 @@ class DictionaryOperations(object):
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to float or the result of cls(response)
+        :return: dict mapping str to float, or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -977,7 +977,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1024,7 +1024,7 @@ class DictionaryOperations(object):
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to float or the result of cls(response)
+        :return: dict mapping str to float, or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1069,7 +1069,7 @@ class DictionaryOperations(object):
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to float or the result of cls(response)
+        :return: dict mapping str to float, or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1114,7 +1114,7 @@ class DictionaryOperations(object):
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to float or the result of cls(response)
+        :return: dict mapping str to float, or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1162,7 +1162,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1209,7 +1209,7 @@ class DictionaryOperations(object):
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to float or the result of cls(response)
+        :return: dict mapping str to float, or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1254,7 +1254,7 @@ class DictionaryOperations(object):
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to float or the result of cls(response)
+        :return: dict mapping str to float, or the result of cls(response)
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1299,7 +1299,7 @@ class DictionaryOperations(object):
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to str or the result of cls(response)
+        :return: dict mapping str to str, or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1347,7 +1347,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1394,7 +1394,7 @@ class DictionaryOperations(object):
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to str or the result of cls(response)
+        :return: dict mapping str to str, or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1439,7 +1439,7 @@ class DictionaryOperations(object):
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to str or the result of cls(response)
+        :return: dict mapping str to str, or the result of cls(response)
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1484,7 +1484,7 @@ class DictionaryOperations(object):
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to date or the result of cls(response)
+        :return: dict mapping str to date, or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1532,7 +1532,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, ~datetime.date]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1579,7 +1579,7 @@ class DictionaryOperations(object):
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to date or the result of cls(response)
+        :return: dict mapping str to date, or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1624,7 +1624,7 @@ class DictionaryOperations(object):
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to date or the result of cls(response)
+        :return: dict mapping str to date, or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1669,7 +1669,7 @@ class DictionaryOperations(object):
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to datetime or the result of cls(response)
+        :return: dict mapping str to datetime, or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1717,7 +1717,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, ~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1764,7 +1764,7 @@ class DictionaryOperations(object):
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to datetime or the result of cls(response)
+        :return: dict mapping str to datetime, or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1809,7 +1809,7 @@ class DictionaryOperations(object):
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to datetime or the result of cls(response)
+        :return: dict mapping str to datetime, or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1854,7 +1854,7 @@ class DictionaryOperations(object):
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to datetime or the result of cls(response)
+        :return: dict mapping str to datetime, or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1902,7 +1902,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, ~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1949,7 +1949,7 @@ class DictionaryOperations(object):
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to timedelta or the result of cls(response)
+        :return: dict mapping str to timedelta, or the result of cls(response)
         :rtype: dict[str, ~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1997,7 +1997,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, ~datetime.timedelta]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2044,7 +2044,7 @@ class DictionaryOperations(object):
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each item encoded in base64.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to bytearray or the result of cls(response)
+        :return: dict mapping str to bytearray, or the result of cls(response)
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2092,7 +2092,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, bytearray]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2139,7 +2139,7 @@ class DictionaryOperations(object):
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to bytearray or the result of cls(response)
+        :return: dict mapping str to bytearray, or the result of cls(response)
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2184,7 +2184,7 @@ class DictionaryOperations(object):
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test string", "2": "Lorem ipsum"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to bytes or the result of cls(response)
+        :return: dict mapping str to bytes, or the result of cls(response)
         :rtype: dict[str, bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2229,7 +2229,7 @@ class DictionaryOperations(object):
         """Get dictionary of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to Widget or the result of cls(response)
+        :return: dict mapping str to Widget, or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2274,7 +2274,7 @@ class DictionaryOperations(object):
         """Get empty dictionary of complex type {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to Widget or the result of cls(response)
+        :return: dict mapping str to Widget, or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2319,7 +2319,7 @@ class DictionaryOperations(object):
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null, "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to Widget or the result of cls(response)
+        :return: dict mapping str to Widget, or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2364,7 +2364,7 @@ class DictionaryOperations(object):
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {}, "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to Widget or the result of cls(response)
+        :return: dict mapping str to Widget, or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2409,7 +2409,7 @@ class DictionaryOperations(object):
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to Widget or the result of cls(response)
+        :return: dict mapping str to Widget, or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2457,7 +2457,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, ~bodydictionary.models.Widget]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2504,7 +2504,7 @@ class DictionaryOperations(object):
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to list of str or the result of cls(response)
+        :return: dict mapping str to list of str, or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2549,7 +2549,7 @@ class DictionaryOperations(object):
         """Get an empty dictionary {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to list of str or the result of cls(response)
+        :return: dict mapping str to list of str, or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2594,7 +2594,7 @@ class DictionaryOperations(object):
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to list of str or the result of cls(response)
+        :return: dict mapping str to list of str, or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2639,7 +2639,7 @@ class DictionaryOperations(object):
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to list of str or the result of cls(response)
+        :return: dict mapping str to list of str, or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2684,7 +2684,7 @@ class DictionaryOperations(object):
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to list of str or the result of cls(response)
+        :return: dict mapping str to list of str, or the result of cls(response)
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2732,7 +2732,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, list[str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2779,7 +2779,7 @@ class DictionaryOperations(object):
         """Get an dictionaries of dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to object or the result of cls(response)
+        :return: dict mapping str to object, or the result of cls(response)
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2824,7 +2824,7 @@ class DictionaryOperations(object):
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to object or the result of cls(response)
+        :return: dict mapping str to object, or the result of cls(response)
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2869,7 +2869,7 @@ class DictionaryOperations(object):
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to object or the result of cls(response)
+        :return: dict mapping str to object, or the result of cls(response)
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2914,7 +2914,7 @@ class DictionaryOperations(object):
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to object or the result of cls(response)
+        :return: dict mapping str to object, or the result of cls(response)
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2959,7 +2959,7 @@ class DictionaryOperations(object):
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict of string to object or the result of cls(response)
+        :return: dict mapping str to object, or the result of cls(response)
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3007,7 +3007,7 @@ class DictionaryOperations(object):
         :param array_body:
         :type array_body: dict[str, object]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

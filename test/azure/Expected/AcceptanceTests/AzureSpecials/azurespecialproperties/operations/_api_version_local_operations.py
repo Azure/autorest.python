@@ -54,7 +54,7 @@ class ApiVersionLocalOperations(object):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -101,7 +101,7 @@ class ApiVersionLocalOperations(object):
          result in no serialized parameter.
         :type api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -144,7 +144,7 @@ class ApiVersionLocalOperations(object):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -187,7 +187,7 @@ class ApiVersionLocalOperations(object):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

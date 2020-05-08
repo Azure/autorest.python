@@ -48,7 +48,7 @@ class ArrayOperations:
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper or the result of cls(response)
+        :return: ArrayWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -95,7 +95,7 @@ class ArrayOperations:
         :param array:
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -143,7 +143,7 @@ class ArrayOperations:
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper or the result of cls(response)
+        :return: ArrayWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -190,7 +190,7 @@ class ArrayOperations:
         :param array:
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -238,7 +238,7 @@ class ArrayOperations:
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper or the result of cls(response)
+        :return: ArrayWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """

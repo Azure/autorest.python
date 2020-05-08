@@ -53,7 +53,7 @@ class NumberOperations(object):
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -98,7 +98,7 @@ class NumberOperations(object):
         """Get invalid float Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -143,7 +143,7 @@ class NumberOperations(object):
         """Get invalid double Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -188,7 +188,7 @@ class NumberOperations(object):
         """Get invalid decimal Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -236,7 +236,7 @@ class NumberOperations(object):
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -283,7 +283,7 @@ class NumberOperations(object):
         """Get big float value 3.402823e+20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -331,7 +331,7 @@ class NumberOperations(object):
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -378,7 +378,7 @@ class NumberOperations(object):
         """Get big double value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -423,7 +423,7 @@ class NumberOperations(object):
         """Put big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -471,7 +471,7 @@ class NumberOperations(object):
         """Get big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -516,7 +516,7 @@ class NumberOperations(object):
         """Put big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -564,7 +564,7 @@ class NumberOperations(object):
         """Get big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -612,7 +612,7 @@ class NumberOperations(object):
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -659,7 +659,7 @@ class NumberOperations(object):
         """Get big decimal value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -704,7 +704,7 @@ class NumberOperations(object):
         """Put big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -752,7 +752,7 @@ class NumberOperations(object):
         """Get big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -797,7 +797,7 @@ class NumberOperations(object):
         """Put big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -845,7 +845,7 @@ class NumberOperations(object):
         """Get big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -893,7 +893,7 @@ class NumberOperations(object):
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -940,7 +940,7 @@ class NumberOperations(object):
         """Get big double value 3.402823e-20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -988,7 +988,7 @@ class NumberOperations(object):
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1035,7 +1035,7 @@ class NumberOperations(object):
         """Get big double value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1083,7 +1083,7 @@ class NumberOperations(object):
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1130,7 +1130,7 @@ class NumberOperations(object):
         """Get small decimal value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """

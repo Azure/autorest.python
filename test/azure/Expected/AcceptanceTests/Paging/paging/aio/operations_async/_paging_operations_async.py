@@ -53,7 +53,7 @@ class PagingOperations:
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResultValue or the result of cls(response)
+        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -111,7 +111,7 @@ class PagingOperations:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -169,7 +169,7 @@ class PagingOperations:
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -233,7 +233,7 @@ class PagingOperations:
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -307,7 +307,7 @@ class PagingOperations:
      test.
         :type required_query_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -377,7 +377,7 @@ class PagingOperations:
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of OdataProductResult or the result of cls(response)
+        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -453,7 +453,7 @@ class PagingOperations:
         :param client_request_id:
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -529,7 +529,7 @@ class PagingOperations:
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -587,7 +587,7 @@ class PagingOperations:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -645,7 +645,7 @@ class PagingOperations:
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -703,7 +703,7 @@ class PagingOperations:
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -761,7 +761,7 @@ class PagingOperations:
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -825,7 +825,7 @@ class PagingOperations:
         :param tenant: Sets the tenant to use.
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of OdataProductResult or the result of cls(response)
+        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -899,7 +899,7 @@ class PagingOperations:
         :param custom_parameter_group: Parameter group.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of OdataProductResult or the result of cls(response)
+        :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """

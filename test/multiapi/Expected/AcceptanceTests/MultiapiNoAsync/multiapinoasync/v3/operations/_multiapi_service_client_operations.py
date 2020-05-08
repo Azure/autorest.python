@@ -32,7 +32,7 @@ class MultiapiServiceClientOperationsMixin(object):
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of PagingResult or the result of cls(response)
+        :return: An iterator like instance of either PagingResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~multiapinoasync.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
