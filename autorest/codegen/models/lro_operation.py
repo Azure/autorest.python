@@ -71,7 +71,7 @@ class LROOperation(Operation):
                 )
             response_type = response_types_with_200_status_code[0]
 
-            response_type_schema_name = response_type.schema.type_annotation
+            response_type_schema_name = response_type.schema.serialization_type
             _LOGGER.warning(
                 "Multiple schema types in responses: %s. Choosing: %s", response_types, response_type_schema_name
             )
