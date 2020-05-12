@@ -157,6 +157,11 @@ reserved_words = {
         "retry_backoff_max",
         "retry_mode",
         "retry_on_status_codes",
+        # adding these because they're going to be in the reserved kwargs for core and I don't have them
+        # https://github.com/Azure/azure-sdk-for-python/pull/11284/files
+        "stream",
+        "auth",
+        "passthrough",
         *_always_reserved
     ],
     PadType.Model: [
