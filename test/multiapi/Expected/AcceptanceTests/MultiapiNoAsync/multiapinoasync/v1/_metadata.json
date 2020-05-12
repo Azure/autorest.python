@@ -45,7 +45,7 @@
                 "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e None:\n",
                 "coroutine": true
             },
-            "doc": "    \"\"\"TestOne should be in an FirstVersionOperationsMixin.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+            "doc": "    \"\"\"TestOne should be in an FirstVersionOperationsMixin.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": "id, message"
         },
         "_test_lro_initial" : {
@@ -58,7 +58,7 @@
                 "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e \"models.Product\":\n",
                 "coroutine": true
             },
-            "doc": "    \"\"\"\n\n:param product: Product to put.\n:type product: ~multiapinoasync.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+            "doc": "    \"\"\"\n\n:param product: Product to put.\n:type product: ~multiapinoasync.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": "product"
         },
         "test_lro" : {
@@ -71,7 +71,7 @@
                 "signature": "async def test_lro(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e \"models.Product\":\n",
                 "coroutine": true
             },
-            "doc": "    \"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put.\n:type product: ~multiapinoasync.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+            "doc": "    \"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put.\n:type product: ~multiapinoasync.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": "product"
         }
     },

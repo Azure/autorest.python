@@ -57,7 +57,7 @@ class HeaderOperations(object):
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -105,7 +105,7 @@ class HeaderOperations(object):
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
         :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,7 +157,7 @@ class HeaderOperations(object):
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

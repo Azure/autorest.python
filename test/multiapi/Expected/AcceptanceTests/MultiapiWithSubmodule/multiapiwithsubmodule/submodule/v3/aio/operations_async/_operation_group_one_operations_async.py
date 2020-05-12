@@ -49,7 +49,7 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelThree parameter.
         :type parameter_one: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelThree or the result of cls(response)
+        :return: ModelThree, or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """

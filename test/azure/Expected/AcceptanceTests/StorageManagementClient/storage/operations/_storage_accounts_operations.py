@@ -62,7 +62,7 @@ class StorageAccountsOperations(object):
          case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CheckNameAvailabilityResult or the result of cls(response)
+        :return: CheckNameAvailabilityResult, or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -188,7 +188,7 @@ class StorageAccountsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns StorageAccount
+        :return: An instance of LROPoller that returns either StorageAccount or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -239,7 +239,7 @@ class StorageAccountsOperations(object):
          case letters only.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -295,7 +295,7 @@ class StorageAccountsOperations(object):
          case letters only.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount or the result of cls(response)
+        :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -359,7 +359,7 @@ class StorageAccountsOperations(object):
          changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount or the result of cls(response)
+        :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -423,7 +423,7 @@ class StorageAccountsOperations(object):
         :param account_name: The name of the storage account.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccountKeys or the result of cls(response)
+        :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -475,7 +475,7 @@ class StorageAccountsOperations(object):
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of StorageAccountListResult or the result of cls(response)
+        :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -543,7 +543,7 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of StorageAccountListResult or the result of cls(response)
+        :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -620,7 +620,7 @@ class StorageAccountsOperations(object):
         :param key_name:
         :type key_name: str or ~storage.models.KeyName
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccountKeys or the result of cls(response)
+        :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -54,7 +54,7 @@ class PagingOperations:
         :param account_name: Account Name.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -125,7 +125,7 @@ class PagingOperations:
         :param account_name: Account Name.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """

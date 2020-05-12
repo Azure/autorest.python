@@ -53,7 +53,7 @@ class HttpRetryOperations(object):
         """Return 408 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -97,7 +97,7 @@ class HttpRetryOperations(object):
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -150,7 +150,7 @@ class HttpRetryOperations(object):
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -200,7 +200,7 @@ class HttpRetryOperations(object):
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -241,7 +241,7 @@ class HttpRetryOperations(object):
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -289,7 +289,7 @@ class HttpRetryOperations(object):
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -342,7 +342,7 @@ class HttpRetryOperations(object):
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -395,7 +395,7 @@ class HttpRetryOperations(object):
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -448,7 +448,7 @@ class HttpRetryOperations(object):
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

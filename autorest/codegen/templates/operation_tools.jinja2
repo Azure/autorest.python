@@ -1,10 +1,10 @@
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro return_docstring(operation) %}
 {% if operation.responses | selectattr('has_body') | first %}
-:return: {{ operation.responses|selectattr('has_body')|map(attribute='schema')| map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
+:return: {{ operation.responses|selectattr('has_body')|map(attribute='schema')| map(attribute='docstring_text')|unique|join(' or ') }}, or the result of cls(response)
 :rtype: {{ operation.responses|selectattr('has_body')|map(attribute='schema')| map(attribute='docstring_type')|unique|join(' or ') }}{{ " or None" if operation.responses|selectattr('has_body', 'false') | first }}
 {%- else %}
-:return: None or the result of cls(response)
+:return: None, or the result of cls(response)
 :rtype: None
 {%- endif -%}
 {% endmacro %}

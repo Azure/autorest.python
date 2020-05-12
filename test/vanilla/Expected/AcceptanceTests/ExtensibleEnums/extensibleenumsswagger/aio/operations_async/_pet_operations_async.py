@@ -51,7 +51,7 @@ class PetOperations:
         :param pet_id: Pet id.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or the result of cls(response)
+        :return: Pet, or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -101,7 +101,7 @@ class PetOperations:
         :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or the result of cls(response)
+        :return: Pet, or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """

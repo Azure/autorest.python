@@ -52,7 +52,7 @@ class SkipUrlEncodingOperations:
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -99,7 +99,7 @@ class SkipUrlEncodingOperations:
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -143,7 +143,7 @@ class SkipUrlEncodingOperations:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -191,7 +191,7 @@ class SkipUrlEncodingOperations:
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -235,7 +235,7 @@ class SkipUrlEncodingOperations:
         :param q1: Unencoded query parameter with value null.
         :type q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -280,7 +280,7 @@ class SkipUrlEncodingOperations:
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -321,7 +321,7 @@ class SkipUrlEncodingOperations:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
