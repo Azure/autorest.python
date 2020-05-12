@@ -1035,7 +1035,7 @@ class PagingOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: ProductResult or the result of cls(response)
+        :return: ProductResult, or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises ~azure.core.exceptions.HttpResponseError:
         """
