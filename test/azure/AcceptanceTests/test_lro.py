@@ -201,6 +201,13 @@ class TestLro:
         process = self.lro_result(client.lros.begin_put200_succeeded_no_state, product)
         assert "100" == process.id
 
+    def test_put201_succeeded(self, client, product):
+        process = self.lro_result(client.lros.begin_put201_succeeded, product)
+
+        assert "Succeeded" == process.provisioning_state
+        assert "100" == process.id
+        assert "foo" == process.name
+
     def test_happy_put202_retry200(self, client, product):
         process = self.lro_result(client.lros.begin_put202_retry200, product)
         assert "100" == process.id
@@ -453,3 +460,4 @@ class TestLro:
         product = products[0]
         assert product.id == "100"
         assert product.name == "foo"
+
