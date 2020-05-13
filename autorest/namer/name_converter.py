@@ -109,6 +109,7 @@ class NameConverter:
 
         if not(
             schema_name == 'content_type' and
+            schema.get('protocol') and
             schema['protocol'].get('http') and
             schema['protocol']['http']['in'] == "header"
         ):
