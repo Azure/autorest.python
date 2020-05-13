@@ -74,6 +74,11 @@ class TestDatetime(object):
         client.datetime.put_local_negative_offset_min_date_time(
             isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
 
+    def test_get_local_no_offset_min_date_time(self, client):
+        local_no_offset_min_date_time = isodate.parse_datetime("0001-01-01T00:00:00")
+        dt = client.datetime.get_local_no_offset_min_date_time()
+        assert dt == local_no_offset_min_date_time
+
     def test_get_local_negative_offset_lowercase_max_date_time(self, client):
         with pytest.raises(DeserializationError):
             client.datetime.get_local_negative_offset_lowercase_max_date_time()
