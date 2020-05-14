@@ -98,6 +98,7 @@ reserved_words = {
         *_always_reserved
     ],
     PadType.Parameter: [
+        "self",
         # these are kwargs we've reserved for our autorest generated operations
         "content_type",
         "cls",

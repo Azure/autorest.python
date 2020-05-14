@@ -21,7 +21,8 @@ def test_escaped_reserved_words():
     expected_conversion_parameter = {
         "content_type": "content_type_parameter",
         "request_id": "request_id_parameter",
-        "elif": "elif_parameter"
+        "elif": "elif_parameter",
+        "self": "self_parameter"
     }
     for name in expected_conversion_parameter:
         assert NameConverter._to_valid_python_name(name, pad_string=PadType.Parameter) == expected_conversion_parameter[name]
