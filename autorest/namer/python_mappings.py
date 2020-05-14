@@ -94,7 +94,6 @@ _always_reserved = [
 
 reserved_words = {
     PadType.Method: [
-        "self",
         *_always_reserved
     ],
     PadType.Parameter: [
@@ -161,7 +160,6 @@ reserved_words = {
         *_always_reserved
     ],
     PadType.Model: [
-        "self",
         *_always_reserved
     ],
     PadType.Property: [
