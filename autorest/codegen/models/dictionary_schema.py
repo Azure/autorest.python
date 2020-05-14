@@ -50,7 +50,7 @@ class DictionarySchema(BaseSchema):
 
     @property
     def docstring_text(self) -> str:
-        return "dict"
+        return f"dict mapping str to {self.element_type.docstring_text}"
 
     @property
     def docstring_type(self) -> str:

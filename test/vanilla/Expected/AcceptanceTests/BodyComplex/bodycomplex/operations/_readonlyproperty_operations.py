@@ -53,7 +53,7 @@ class ReadonlypropertyOperations(object):
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ReadonlyObj or the result of cls(response)
+        :return: ReadonlyObj, or the result of cls(response)
         :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -101,7 +101,7 @@ class ReadonlypropertyOperations(object):
         :param size:
         :type size: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

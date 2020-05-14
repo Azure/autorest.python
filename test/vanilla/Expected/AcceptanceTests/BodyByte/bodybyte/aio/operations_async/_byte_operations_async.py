@@ -48,7 +48,7 @@ class ByteOperations:
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -92,7 +92,7 @@ class ByteOperations:
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -136,7 +136,7 @@ class ByteOperations:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -183,7 +183,7 @@ class ByteOperations:
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
         :type byte_body: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -229,7 +229,7 @@ class ByteOperations:
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """

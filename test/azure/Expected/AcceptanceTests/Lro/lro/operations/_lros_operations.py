@@ -111,7 +111,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -142,6 +142,100 @@ class LROsOperations(object):
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}  # type: ignore
+
+    def _put201_succeeded_initial(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self._put201_succeeded_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/json'
+
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('Product', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _put201_succeeded_initial.metadata = {'url': '/lro/put/201/succeeded'}  # type: ignore
+
+    @distributed_trace
+    def begin_put201_succeeded(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> LROPoller
+        """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
+        raw_result = self._put201_succeeded_initial(
+            product=product,
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+        kwargs.pop('error_map', None)
+        kwargs.pop('content_type', None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
+
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
+        else: polling_method = polling
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put201_succeeded.metadata = {'url': '/lro/put/201/succeeded'}  # type: ignore
 
     def _post202_list_initial(
         self,
@@ -199,7 +293,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns list
+        :return: An instance of LROPoller that returns either list of Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[list[~lro.models.Product]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -292,7 +386,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -386,7 +480,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -485,7 +579,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -579,7 +673,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -678,7 +772,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -772,7 +866,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -868,7 +962,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -969,7 +1063,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1071,7 +1165,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1173,7 +1267,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1275,7 +1369,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1375,7 +1469,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1472,7 +1566,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Sku
+        :return: An instance of LROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1566,7 +1660,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Sku
+        :return: An instance of LROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1662,7 +1756,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns SubProduct
+        :return: An instance of LROPoller that returns either SubProduct or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.SubProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1758,7 +1852,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns SubProduct
+        :return: An instance of LROPoller that returns either SubProduct or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.SubProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1847,7 +1941,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1939,7 +2033,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2031,7 +2125,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2111,7 +2205,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2195,7 +2289,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2282,7 +2376,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2362,7 +2456,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2439,7 +2533,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2517,7 +2611,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2595,7 +2689,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2673,7 +2767,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2751,7 +2845,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2833,7 +2927,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Sku
+        :return: An instance of LROPoller that returns either Sku or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2926,7 +3020,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3020,7 +3114,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3105,7 +3199,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3185,7 +3279,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3265,7 +3359,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3366,7 +3460,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3468,7 +3562,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3563,7 +3657,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3655,7 +3749,7 @@ class LROsOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
+        :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """

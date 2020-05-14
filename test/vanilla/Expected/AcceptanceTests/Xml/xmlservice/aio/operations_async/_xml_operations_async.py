@@ -48,7 +48,7 @@ class XmlOperations:
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndNoMeta or the result of cls(response)
+        :return: RootWithRefAndNoMeta, or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -94,7 +94,7 @@ class XmlOperations:
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -139,7 +139,7 @@ class XmlOperations:
         """Get a complex type that has a ref to a complex type with XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndMeta or the result of cls(response)
+        :return: RootWithRefAndMeta, or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -185,7 +185,7 @@ class XmlOperations:
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -230,7 +230,7 @@ class XmlOperations:
         """Get a simple XML document.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow or the result of cls(response)
+        :return: Slideshow, or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -277,7 +277,7 @@ class XmlOperations:
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -323,7 +323,7 @@ class XmlOperations:
         """Get an XML document with multiple wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel or the result of cls(response)
+        :return: AppleBarrel, or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -369,7 +369,7 @@ class XmlOperations:
         :param wrapped_lists:
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -415,7 +415,7 @@ class XmlOperations:
         """Get strongly-typed response headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -457,7 +457,7 @@ class XmlOperations:
         """Get an empty list.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow or the result of cls(response)
+        :return: Slideshow, or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -503,7 +503,7 @@ class XmlOperations:
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -548,7 +548,7 @@ class XmlOperations:
         """Gets some empty wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel or the result of cls(response)
+        :return: AppleBarrel, or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -594,7 +594,7 @@ class XmlOperations:
         :param apple_barrel:
         :type apple_barrel: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -639,7 +639,7 @@ class XmlOperations:
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana, or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -685,7 +685,7 @@ class XmlOperations:
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -731,7 +731,7 @@ class XmlOperations:
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana, or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -777,7 +777,7 @@ class XmlOperations:
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -823,7 +823,7 @@ class XmlOperations:
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana, or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -869,7 +869,7 @@ class XmlOperations:
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -915,7 +915,7 @@ class XmlOperations:
         """Gets an XML document with an empty child element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Banana or the result of cls(response)
+        :return: Banana, or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -961,7 +961,7 @@ class XmlOperations:
         :param banana:
         :type banana: ~xmlservice.models.Banana
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1006,7 +1006,7 @@ class XmlOperations:
         """Lists containers in a storage account.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListContainersResponse or the result of cls(response)
+        :return: ListContainersResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1051,7 +1051,7 @@ class XmlOperations:
         """Gets storage service properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageServiceProperties or the result of cls(response)
+        :return: StorageServiceProperties, or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1101,7 +1101,7 @@ class XmlOperations:
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1150,7 +1150,7 @@ class XmlOperations:
         """Gets storage ACLs for a container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of SignedIdentifier, or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1200,7 +1200,7 @@ class XmlOperations:
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1250,7 +1250,7 @@ class XmlOperations:
         """Lists blobs in a storage container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListBlobsResponse or the result of cls(response)
+        :return: ListBlobsResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1300,7 +1300,7 @@ class XmlOperations:
         :param id:
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1347,7 +1347,7 @@ class XmlOperations:
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSONOutput or the result of cls(response)
+        :return: JSONOutput, or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -5,8 +5,15 @@ Modelerfour version: 4.13.351
 
 **Bug Fixes**
 
-- No longer assuming that response with body from an LRO call is an ObjectSchema  #623
 - Added `stream`, `auth`, and `passthrough` to reserved kwargs (these will get padded with `_parameter` suffix). See [here](https://github.com/Azure/autorest.python/blob/fce022935261733071f85b887efcb7b27d3e5cbe/autorest/namer/python_mappings.py#L100) for a complete list  #627
+
+### 2020-05-13 - 5.0.0-preview.6
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+
+- No longer assuming that response with body from an LRO call is an ObjectSchema  #623
+- Checking whether "protocol" entry exists in yaml in name converter to remove erroneous "KeyError: 'protocol'"  #628
 
 ### 2020-05-08 - 5.0.0-preview.5
 Modelerfour version: 4.13.351

@@ -32,7 +32,7 @@ class MultiapiServiceClientOperationsMixin:
         :param message: An optional string parameter.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
+        :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """

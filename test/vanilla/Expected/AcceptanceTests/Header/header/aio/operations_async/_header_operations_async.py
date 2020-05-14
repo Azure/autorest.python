@@ -52,7 +52,7 @@ class HeaderOperations:
         :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
         :type user_agent_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -93,7 +93,7 @@ class HeaderOperations:
         """Get a response with header value "User-Agent": "overwrite".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -139,7 +139,7 @@ class HeaderOperations:
         :param content_type: Send a post request with header value "Content-Type": "text/html".
         :type content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -180,7 +180,7 @@ class HeaderOperations:
         """Get a response with header value "Content-Type": "text/html".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -229,7 +229,7 @@ class HeaderOperations:
         :param value: Send a post request with header values 1 or -2.
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -274,7 +274,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -324,7 +324,7 @@ class HeaderOperations:
         :param value: Send a post request with header values 105 or -2.
         :type value: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -369,7 +369,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -419,7 +419,7 @@ class HeaderOperations:
         :param value: Send a post request with header values 0.07 or -3.0.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -464,7 +464,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -514,7 +514,7 @@ class HeaderOperations:
         :param value: Send a post request with header values 7e120 or -3.0.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -559,7 +559,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -609,7 +609,7 @@ class HeaderOperations:
         :param value: Send a post request with header values true or false.
         :type value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -654,7 +654,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "true" or "false".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -706,7 +706,7 @@ class HeaderOperations:
          dog" or null or "".
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -753,7 +753,7 @@ class HeaderOperations:
          "empty".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -803,7 +803,7 @@ class HeaderOperations:
         :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
         :type value: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -848,7 +848,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -899,7 +899,7 @@ class HeaderOperations:
          "0001-01-01T00:00:00Z".
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -944,7 +944,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -995,7 +995,7 @@ class HeaderOperations:
          01 Jan 0001 00:00:00 GMT".
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1041,7 +1041,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1091,7 +1091,7 @@ class HeaderOperations:
         :param value: Send a post request with header values "P123DT22H14M12.011S".
         :type value: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1136,7 +1136,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1186,7 +1186,7 @@ class HeaderOperations:
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
         :type value: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1231,7 +1231,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1282,7 +1282,7 @@ class HeaderOperations:
         :param value: Send a post request with header values 'GREY'.
         :type value: str or ~header.models.GreyscaleColors
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1329,7 +1329,7 @@ class HeaderOperations:
          "empty".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1373,7 +1373,7 @@ class HeaderOperations:
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

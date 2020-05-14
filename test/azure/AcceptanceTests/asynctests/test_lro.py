@@ -213,6 +213,14 @@ class TestLro:
         assert "100" == process.id
 
     @pytest.mark.asyncio
+    async def test_put201_succeeded(self, client, product):
+        process = await self.lro_result(client.lros.put201_succeeded, product)
+
+        assert "Succeeded" == process.provisioning_state
+        assert "100" == process.id
+        assert "foo" == process.name
+
+    @pytest.mark.asyncio
     async def test_happy_put202_retry200(self, client, product):
         process = await self.lro_result(client.lros.put202_retry200, product)
         assert "100" == process.id

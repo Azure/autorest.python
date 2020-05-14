@@ -56,7 +56,7 @@ class PetOperations(object):
         :param pet_id: pet id.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or the result of cls(response)
+        :return: Pet, or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -114,7 +114,7 @@ class PetOperations(object):
         :param what_action: what action the pet should do.
         :type what_action: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAction or the result of cls(response)
+        :return: PetAction, or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """

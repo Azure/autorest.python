@@ -48,7 +48,7 @@ class HttpClientFailureOperations:
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -88,7 +88,7 @@ class HttpClientFailureOperations:
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -128,7 +128,7 @@ class HttpClientFailureOperations:
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -171,7 +171,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -223,7 +223,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -275,7 +275,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -327,7 +327,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -376,7 +376,7 @@ class HttpClientFailureOperations:
         """Return 401 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -416,7 +416,7 @@ class HttpClientFailureOperations:
         """Return 402 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -456,7 +456,7 @@ class HttpClientFailureOperations:
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -496,7 +496,7 @@ class HttpClientFailureOperations:
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -539,7 +539,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -591,7 +591,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -643,7 +643,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -695,7 +695,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -747,7 +747,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -796,7 +796,7 @@ class HttpClientFailureOperations:
         """Return 410 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -836,7 +836,7 @@ class HttpClientFailureOperations:
         """Return 411 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -876,7 +876,7 @@ class HttpClientFailureOperations:
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -916,7 +916,7 @@ class HttpClientFailureOperations:
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -959,7 +959,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1011,7 +1011,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1063,7 +1063,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1112,7 +1112,7 @@ class HttpClientFailureOperations:
         """Return 416 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1155,7 +1155,7 @@ class HttpClientFailureOperations:
         :param boolean_value: Simple boolean value true.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1204,7 +1204,7 @@ class HttpClientFailureOperations:
         """Return 429 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

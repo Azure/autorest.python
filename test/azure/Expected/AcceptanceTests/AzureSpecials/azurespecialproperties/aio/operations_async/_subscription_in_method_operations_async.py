@@ -53,7 +53,7 @@ class SubscriptionInMethodOperations:
          '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -101,7 +101,7 @@ class SubscriptionInMethodOperations:
          validation should prvenet the call.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -148,7 +148,7 @@ class SubscriptionInMethodOperations:
         :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -196,7 +196,7 @@ class SubscriptionInMethodOperations:
          '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

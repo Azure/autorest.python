@@ -48,7 +48,7 @@ class StringOperations:
         """Get null string value value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -95,7 +95,7 @@ class StringOperations:
         :param string_body:
         :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -144,7 +144,7 @@ class StringOperations:
         """Get empty string value value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -188,7 +188,7 @@ class StringOperations:
         """Set string value empty ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -235,7 +235,7 @@ class StringOperations:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -279,7 +279,7 @@ class StringOperations:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -326,7 +326,7 @@ class StringOperations:
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -370,7 +370,7 @@ class StringOperations:
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -417,7 +417,7 @@ class StringOperations:
         """Get String value when no string value is sent in response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -461,7 +461,7 @@ class StringOperations:
         """Get value that is base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes or the result of cls(response)
+        :return: bytes, or the result of cls(response)
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -505,7 +505,7 @@ class StringOperations:
         """Get value that is base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes or the result of cls(response)
+        :return: bytes, or the result of cls(response)
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -552,7 +552,7 @@ class StringOperations:
         :param string_body:
         :type string_body: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -598,7 +598,7 @@ class StringOperations:
         """Get null value that is expected to be base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes or the result of cls(response)
+        :return: bytes, or the result of cls(response)
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """

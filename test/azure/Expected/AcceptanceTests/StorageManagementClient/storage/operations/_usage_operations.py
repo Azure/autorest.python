@@ -54,7 +54,7 @@ class UsageOperations(object):
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: UsageListResult or the result of cls(response)
+        :return: UsageListResult, or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -50,7 +50,7 @@ class IntOperations(object):
         :param input: Input int enum.
         :type input: str or ~nonstringenums.models.IntEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -103,7 +103,7 @@ class IntOperations(object):
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntEnum or the result of cls(response)
+        :return: IntEnum, or the result of cls(response)
         :rtype: str or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
