@@ -1,5 +1,12 @@
 # Change Log
 
+### Unreleased
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+
+- Adding `self` as a reserved key word for parameters to avoid "duplicate argument 'self' in function definition" error  #630
+
 ### 2020-05-13 - 5.0.0-preview.6
 Modelerfour version: 4.13.351
 
