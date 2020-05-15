@@ -7,7 +7,6 @@ Modelerfour version: 4.13.351
 
 - Adding `self` as a reserved key word for parameters to avoid "duplicate argument 'self' in function definition" error  #630
 - Removed `self` as a reserved key word for method and model names  #630
-- Improve detection on python3 on machine at installation time
 
 ### 2020-05-13 - 5.0.0-preview.6
 Modelerfour version: 4.13.351
