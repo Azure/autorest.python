@@ -132,7 +132,7 @@ class CodeGenerator(Plugin):
             raise ValueError("--credential-scopes must be used with the --add-credential flag")
 
         # check to see if user just passes in --credential-scopes with no value
-        if self._autorestapi.get_boolean_value("credential-scopes", False) and credential_scopes == None:
+        if self._autorestapi.get_boolean_value("credential-scopes", False) and not credential_scopes:
             raise ValueError(
                 "--credential-scopes takes a list of scopes in comma separated format. "
                 "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
