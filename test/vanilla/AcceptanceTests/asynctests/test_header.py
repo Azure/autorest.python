@@ -164,8 +164,11 @@ class TestHeader(object):
 
         response = await client.header.response_datetime_rfc1123("valid", cls=value_header)
         assert response == isodate.parse_datetime("2010-01-01T12:34:56Z")
+
+        # we are not using the min date of year 1 because of the latest msrest update
+        # with msrest update, minimal year we can parse is 100, instead of 1
         response = await client.header.response_datetime_rfc1123("min", cls=value_header)
-        assert response == isodate.parse_datetime("0001-01-01T00:00:00Z")
+        assert response == isodate.parse_datetime("2001-01-01T00:00:00Z")
 
     @pytest.mark.asyncio
     async def test_duration(self, client, value_header):
