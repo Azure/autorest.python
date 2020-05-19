@@ -131,6 +131,13 @@ class CodeGenerator(Plugin):
         if credential_scopes and not credential:
             raise ValueError("--credential-scopes must be used with the --add-credential flag")
 
+        # check to see if user just passes in --credential-scopes with no value
+        if self._autorestapi.get_boolean_value("credential-scopes", False) and not credential_scopes:
+            raise ValueError(
+                "--credential-scopes takes a list of scopes in comma separated format. "
+                "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
+            )
+
 
         if not credential_scopes:
             if azure_arm:
@@ -139,7 +146,8 @@ class CodeGenerator(Plugin):
                 # If add-credential is specified, we still want to add a credential_scopes variable.
                 # Will make it an empty list so we can differentiate between this case and None
                 _LOGGER.warning(
-                    "You have used the --add-credential flag but not the --credential-scopes flag. "
+                    "You have used the --add-credential flag but not the --credential-scopes flag "
+                    "while generating non-management plane code. "
                     "This is not recommend because it forces the customer to pass credential scopes "
                     "through kwargs if they want to authenticate."
                 )
