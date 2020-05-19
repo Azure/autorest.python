@@ -139,9 +139,12 @@ class CodeGenerator(Plugin):
                 # If add-credential is specified, we still want to add a credential_scopes variable.
                 # Will make it an empty list so we can differentiate between this case and None
                 _LOGGER.warning(
-                    "You have used the --add-credential flag but not the --credential-scopes flag. "
+                    "You have used the --add-credential flag but not the --credential-scopes flag "
+                    "while generating non-management plane code. "
                     "This is not recommend because it forces the customer to pass credential scopes "
-                    "through kwargs if they want to authenticate."
+                    "through kwargs if they want to authenticate. "
+                    "If you meant to generate management plane code with a credential, make sure to "
+                    "add the --azure-arm flag."
                 )
                 credential_scopes = []
 
