@@ -142,7 +142,7 @@ class CodeGenerator(Plugin):
                     "You have used the --add-credential flag but not the --credential-scopes flag "
                     "while generating non-management plane code. "
                     "This is not recommend because it forces the customer to pass credential scopes "
-                    "through kwargs if they want to authenticate. "
+                    "through kwargs if they want to authenticate."
                 )
                 credential_scopes = []
 
