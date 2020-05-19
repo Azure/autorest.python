@@ -26,10 +26,10 @@ response_headers = {
 {# overriding sync_return_type_annotation because we know if it's sync, it's return type is just LROPoller #}
     # type: (...) -> LROPoller
 {% endif %}
-    """{{operation.description }}
+    """{{ operation.summary if operation.summary else operation.description }}
     {% if operation.summary %}
 
-    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+    {{ operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
     {% endif %}
 
 {% if operation.deprecated -%}
