@@ -54,7 +54,9 @@ class PathItemsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -120,7 +122,9 @@ class PathItemsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery=null,
+        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -186,7 +190,9 @@ class PathItemsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
+        """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery=null,
+        pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -252,7 +258,9 @@ class PathItemsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+        pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str

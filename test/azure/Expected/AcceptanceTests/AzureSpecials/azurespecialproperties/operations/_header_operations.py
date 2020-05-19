@@ -100,7 +100,8 @@ class HeaderOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
+        """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
+        via a parameter group.
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
         :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters

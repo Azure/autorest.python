@@ -46,7 +46,8 @@ class ExplicitOperations:
         body_parameter: int,
         **kwargs
     ) -> None:
-        """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put null and the client library should throw before
+        the request is sent.
 
         :param body_parameter:
         :type body_parameter: int
@@ -147,7 +148,8 @@ class ExplicitOperations:
         value: int,
         **kwargs
     ) -> None:
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: int
@@ -252,7 +254,8 @@ class ExplicitOperations:
         header_parameter: int,
         **kwargs
     ) -> None:
-        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: int
@@ -341,7 +344,8 @@ class ExplicitOperations:
         body_parameter: str,
         **kwargs
     ) -> None:
-        """Test explicitly required string. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put null and the client library should throw before the
+        request is sent.
 
         :param body_parameter:
         :type body_parameter: str
@@ -442,7 +446,8 @@ class ExplicitOperations:
         value: str,
         **kwargs
     ) -> None:
-        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: str
@@ -547,7 +552,8 @@ class ExplicitOperations:
         header_parameter: str,
         **kwargs
     ) -> None:
-        """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: str
@@ -636,7 +642,8 @@ class ExplicitOperations:
         body_parameter: "models.Product",
         **kwargs
     ) -> None:
-        """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required complex object. Please put null and the client library should throw
+        before the request is sent.
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
@@ -737,7 +744,8 @@ class ExplicitOperations:
         value: "models.Product",
         **kwargs
     ) -> None:
-        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
+        and the client library should throw before the request is sent.
 
         :param value:
         :type value: ~requiredoptional.models.Product
@@ -842,7 +850,8 @@ class ExplicitOperations:
         body_parameter: List[str],
         **kwargs
     ) -> None:
-        """Test explicitly required array. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put null and the client library should throw before the
+        request is sent.
 
         :param body_parameter:
         :type body_parameter: list[str]
@@ -943,7 +952,8 @@ class ExplicitOperations:
         value: List[str],
         **kwargs
     ) -> None:
-        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: list[str]
@@ -1048,7 +1058,8 @@ class ExplicitOperations:
         header_parameter: List[str],
         **kwargs
     ) -> None:
-        """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: list[str]

@@ -1228,7 +1228,8 @@ class MultipleResponsesOperations:
         self,
         **kwargs
     ) -> "models.MyException":
-        """Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A.
+        """Send a 200 response with no payload, when a payload is expected - client should return a null
+        object of thde type for model A.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException, or the result of cls(response)

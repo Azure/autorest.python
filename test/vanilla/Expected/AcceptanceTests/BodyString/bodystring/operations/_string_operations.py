@@ -334,7 +334,9 @@ class StringOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> str
-        """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
+        """Get string value with leading and trailing whitespace
+        ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
+        of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
@@ -379,7 +381,9 @@ class StringOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
+        """Set String value with leading and trailing whitespace
+        ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
+        of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

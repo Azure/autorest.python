@@ -424,7 +424,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Kitten"
-        """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false.
+        """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
+        is false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Kitten, or the result of cls(response)
@@ -470,7 +471,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> str
-        """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is true.
+        """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
+        true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true.

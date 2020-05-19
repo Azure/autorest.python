@@ -1295,7 +1295,8 @@ class XmlOperations:
         id: Optional[int] = None,
         **kwargs
     ) -> None:
-        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
+        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+        number 42.
 
         :param id:
         :type id: int
