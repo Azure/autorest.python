@@ -173,7 +173,10 @@ class StorageAccountsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller
-        """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned.
+        """Asynchronously creates a new storage account with the specified parameters. Existing accounts
+    cannot be updated with this API and should instead use the Update Storage Account API. If an
+    account is already created and subsequent PUT request is issued with exact same set of
+    properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -286,7 +289,9 @@ class StorageAccountsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
-        """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys.
+        """Returns the properties for the specified storage account including but not limited to name,
+        account type, location, and account status. The ListKeys operation should be used to retrieve
+        storage keys.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -347,7 +352,13 @@ class StorageAccountsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
-        """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
+        """Updates the account type or tags for a storage account. It can also be used to add a custom
+        domain (note that custom domains cannot be added via the Create operation). Only one custom
+        domain is supported per storage account. This API can only be used to update one of tags,
+        accountType, or customDomain per call. To update multiple of these properties, call the API
+        multiple times with one change per call. This call does not change the storage keys for the
+        account. If you want to change storage account keys, use the RegenerateKey operation. The
+        location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -472,7 +483,8 @@ class StorageAccountsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Iterable["models.StorageAccountListResult"]
-        """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
+        """Lists all the storage accounts available under the subscription. Note that storage keys are not
+    returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
@@ -538,7 +550,8 @@ class StorageAccountsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Iterable["models.StorageAccountListResult"]
-        """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
+        """Lists all the storage accounts available under the given resource group. Note that storage keys
+    are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str

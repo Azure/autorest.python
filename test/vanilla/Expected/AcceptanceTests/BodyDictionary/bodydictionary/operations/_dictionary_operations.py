@@ -1666,7 +1666,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
-        """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
+        """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
+        "2": "1492-10-12T10:15:01-08:00"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to datetime, or the result of cls(response)
@@ -1712,7 +1713,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
+        """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+        "1492-10-12T10:15:01-08:00"}.
 
         :param array_body:
         :type array_body: dict[str, ~datetime.datetime]
@@ -1851,7 +1853,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
-        """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+        """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
+        1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to datetime, or the result of cls(response)
@@ -1897,7 +1900,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+        """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
+        00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :param array_body:
         :type array_body: dict[str, ~datetime.datetime]
@@ -2041,7 +2045,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bytearray]
-        """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each item encoded in base64.
+        """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
+        with each item encoded in base64.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bytearray, or the result of cls(response)
@@ -2087,7 +2092,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each elementencoded in base 64.
+        """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
+        with each elementencoded in base 64.
 
         :param array_body:
         :type array_body: dict[str, bytearray]
@@ -2136,7 +2142,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bytearray]
-        """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded.
+        """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
+        encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bytearray, or the result of cls(response)
@@ -2181,7 +2188,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bytes]
-        """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test string", "2": "Lorem ipsum"}.
+        """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
+        string", "2": "Lorem ipsum"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to bytes, or the result of cls(response)
@@ -2316,7 +2324,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "models.Widget"]
-        """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null, "2": {"integer": 5, "string": "6"}}.
+        """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
+        "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget, or the result of cls(response)
@@ -2361,7 +2370,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "models.Widget"]
-        """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {}, "2": {"integer": 5, "string": "6"}}.
+        """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
+        "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget, or the result of cls(response)
@@ -2406,7 +2416,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "models.Widget"]
-        """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+        """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
+        "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to Widget, or the result of cls(response)
@@ -2452,7 +2463,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+        """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
+        {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body:
         :type array_body: dict[str, ~bodydictionary.models.Widget]
@@ -2681,7 +2693,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, List[str]]
-        """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
+        """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
+        "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to list of str, or the result of cls(response)
@@ -2727,7 +2740,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
+        """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
+        "9"]}.
 
         :param array_body:
         :type array_body: dict[str, list[str]]
@@ -2866,7 +2880,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, object]
-        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
+        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+        "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to object, or the result of cls(response)
@@ -2911,7 +2926,8 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, object]
-        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
+        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+        "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to object, or the result of cls(response)
@@ -2956,7 +2972,9 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, object]
-        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
+        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+        "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to object, or the result of cls(response)
@@ -3002,7 +3020,9 @@ class DictionaryOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
+        """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
+        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+        "eight", "9": "nine"}}.
 
         :param array_body:
         :type array_body: dict[str, object]

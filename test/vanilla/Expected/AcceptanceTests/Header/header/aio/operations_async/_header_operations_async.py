@@ -222,7 +222,8 @@ class HeaderOperations:
         value: int,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
+        """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
+        "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
@@ -317,7 +318,8 @@ class HeaderOperations:
         value: int,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
+        """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
+        "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
@@ -412,7 +414,8 @@ class HeaderOperations:
         value: float,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
+        """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
+        "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
@@ -507,7 +510,8 @@ class HeaderOperations:
         value: float,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0.
+        """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
+        "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
@@ -602,7 +606,8 @@ class HeaderOperations:
         value: bool,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false.
+        """Send a post request with header values "scenario": "true", "value": true or "scenario":
+        "false", "value": false.
 
         :param scenario: Send a post request with header values "scenario": "true" or "false".
         :type scenario: str
@@ -697,7 +702,8 @@ class HeaderOperations:
         value: Optional[str] = None,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
+        """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
+        over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
@@ -796,7 +802,8 @@ class HeaderOperations:
         value: datetime.date,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01".
+        """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
+        "scenario": "min", "value": "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
@@ -891,7 +898,8 @@ class HeaderOperations:
         value: datetime.datetime,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z".
+        """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
+        "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
@@ -987,7 +995,8 @@ class HeaderOperations:
         value: Optional[datetime.datetime] = None,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
+        """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
+        GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
@@ -1036,7 +1045,8 @@ class HeaderOperations:
         scenario: str,
         **kwargs
     ) -> None:
-        """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
+        """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
+        GMT".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
@@ -1274,7 +1284,8 @@ class HeaderOperations:
         value: Optional[Union[str, "models.GreyscaleColors"]] = None,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null.
+        """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
+        "null", "value": null.
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
@@ -1370,7 +1381,8 @@ class HeaderOperations:
         self,
         **kwargs
     ) -> None:
-        """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
+        """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
+        request.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

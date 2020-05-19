@@ -222,7 +222,9 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.DotFishMarket"
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic
+        element type, with discriminator specified. Deserialization must NOT fail and use the
+        discriminator type specified on the wire.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket, or the result of cls(response)
@@ -267,7 +269,9 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.DotFishMarket"
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic
+        element type, without discriminator specified on wire. Deserialization must NOT fail and use
+        the explicit type of the property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket, or the result of cls(response)
@@ -312,7 +316,8 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Salmon"
-        """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
+        """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
+        additional properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon, or the result of cls(response)
@@ -358,7 +363,8 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
+        """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+        additional properties.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
@@ -462,7 +468,8 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
+        """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+        request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
          allow this data to be sent:

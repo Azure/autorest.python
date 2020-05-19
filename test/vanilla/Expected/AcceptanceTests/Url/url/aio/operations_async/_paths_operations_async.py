@@ -586,9 +586,9 @@ class PathsOperations:
         self,
         **kwargs
     ) -> None:
-        """Get 'begin!*'();:@&=+$,end.
+        """https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
-        https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
+        Get 'begin!*'();:@&=+$,end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1004,7 +1004,8 @@ class PathsOperations:
         date_path: datetime.date,
         **kwargs
     ) -> None:
-        """Get null as date - this should throw or be unusable on the client side, depending on date representation.
+        """Get null as date - this should throw or be unusable on the client side, depending on date
+        representation.
 
         :param date_path: null as date (should throw).
         :type date_path: ~datetime.date
@@ -1190,7 +1191,8 @@ class PathsOperations:
         array_path: List[str],
         **kwargs
     ) -> None:
-        """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
+        """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
+        array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
          using the csv-array format.

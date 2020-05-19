@@ -301,7 +301,8 @@ class PagingOperations:
         required_query_parameter: int,
         **kwargs
     ) -> AsyncIterable["models.ProductResult"]:
-        """A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult.
+        """A paging operation that includes a next operation. It has a different query parameter from it's
+    next operation nextOperationWithQueryParams. Returns a ProductResult.
 
         :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
      test.
@@ -526,7 +527,8 @@ class PagingOperations:
         self,
         **kwargs
     ) -> AsyncIterable["models.ProductResult"]:
-        """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
+        """A paging operation that fails on the first call with 500 and then retries and then get a
+    response including a nextLink that has 10 pages.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -584,7 +586,8 @@ class PagingOperations:
         self,
         **kwargs
     ) -> AsyncIterable["models.ProductResult"]:
-        """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
+        """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
+    first with 500. The client should retry and finish all 10 pages eventually.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)

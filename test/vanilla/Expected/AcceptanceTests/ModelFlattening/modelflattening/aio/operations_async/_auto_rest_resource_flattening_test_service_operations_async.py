@@ -122,7 +122,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         resource_array: Optional[List["models.WrappedProduct"]] = None,
         **kwargs
     ) -> None:
-        """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
 
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
@@ -173,7 +174,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         self,
         **kwargs
     ) -> List["models.ProductWrapper"]:
-        """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of ProductWrapper, or the result of cls(response)

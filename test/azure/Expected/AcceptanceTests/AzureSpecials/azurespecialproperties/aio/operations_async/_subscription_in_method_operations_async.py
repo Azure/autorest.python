@@ -47,7 +47,8 @@ class SubscriptionInMethodOperations:
         subscription_id: str,
         **kwargs
     ) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in the method.  pass in subscription id =
+        '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
          '1234-5678-9012-3456'.
@@ -95,7 +96,8 @@ class SubscriptionInMethodOperations:
         subscription_id: str,
         **kwargs
     ) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side validation should prevent you from making this call.
+        """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-
+        side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value null, client-side
          validation should prvenet the call.
@@ -143,7 +145,8 @@ class SubscriptionInMethodOperations:
         subscription_id: str,
         **kwargs
     ) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in the method.  pass in subscription id =
+        '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
         :type subscription_id: str
@@ -190,7 +193,8 @@ class SubscriptionInMethodOperations:
         subscription_id: str,
         **kwargs
     ) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in the method.  pass in subscription id =
+        '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: The subscriptionId, which appears in the path, the value is always
          '1234-5678-9012-3456'.
