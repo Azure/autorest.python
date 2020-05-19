@@ -186,7 +186,6 @@ class TestComplex(object):
     def test_primitive_get_and_put_date_time_rfc1123(self, client, min_date):
         # GET primitive/datetimerfc1123
         datetimeRfc1123Result = client.primitive.get_date_time_rfc1123()
-        raise ValueError("{} {}".format(min_date, datetimeRfc1123Result.field))
         assert min_date ==  datetimeRfc1123Result.field
 
         datetime_request = Datetimerfc1123Wrapper(
