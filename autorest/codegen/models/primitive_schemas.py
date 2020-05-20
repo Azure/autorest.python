@@ -48,7 +48,8 @@ class PrimitiveSchema(BaseSchema):
 
 class IOSchema(PrimitiveSchema):
 
-    def __init__(self, namespace, yaml_data) -> None:  # pylint: disable=super-init-not-called
+    def __init__(self, namespace, yaml_data) -> None:
+        super(IOSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.type = "IO"
 
     @property
