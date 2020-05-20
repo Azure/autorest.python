@@ -272,9 +272,10 @@ class DatetimeOperations:
         datetime_body: datetime.datetime,
         **kwargs
     ) -> None:
-        """This is against the recommendation that asks for 3 digits, but allow to test what happens in that scenario.
+        """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
-        Put max datetime value 9999-12-31T23:59:59.9999999Z.
+        This is against the recommendation that asks for 3 digits, but allow to test what happens in
+        that scenario.
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
@@ -410,9 +411,10 @@ class DatetimeOperations:
         self,
         **kwargs
     ) -> datetime.datetime:
-        """This is against the recommendation that asks for 3 digits, but allow to test what happens in that scenario.
+        """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
-        Get max datetime value 9999-12-31T23:59:59.9999999Z.
+        This is against the recommendation that asks for 3 digits, but allow to test what happens in
+        that scenario.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime, or the result of cls(response)

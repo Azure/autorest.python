@@ -603,9 +603,9 @@ class PathsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
+        """Get 'begin!*'();:@&=+$,end.
 
-        Get 'begin!*'();:@&=+$,end.
+        https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
