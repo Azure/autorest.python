@@ -6,6 +6,7 @@ Modelerfour version: 4.13.351
 **Bug Fixes**
 
 - Corrected ordering of summary and description in generated methods  #640
+- Have `IOSchema` call super init to get all of the properties shared in `BaseSchema`  #642
 
 ### 2020-05-15 - 5.0.0-preview.7
 Modelerfour version: 4.13.351

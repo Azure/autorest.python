@@ -326,7 +326,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         if isinstance(obj, Parameter) and obj.target_property_name:
             self._populate_target_property(obj)
         if isinstance(obj, SchemaResponse) and obj.is_stream_response:
-            obj.schema = IOSchema(namespace=None, yaml_data=None)
+            obj.schema = IOSchema(namespace=None, yaml_data={})
 
     def add_schema_link_to_operation(self) -> None:
         """Puts created schemas into operation classes `schema` property
