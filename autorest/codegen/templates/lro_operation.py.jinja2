@@ -44,7 +44,7 @@ response_headers = {
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :keyword callable cls: A custom type or function that will be passed the direct response
-    :keyword str continuation_token: A continuation token to restart a poller from a saved state
+    :keyword str continuation_token: A continuation token to restart a poller from a saved state.
     :keyword polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
