@@ -54,6 +54,10 @@ response_headers = {
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
+    lro_delay = kwargs.pop(
+        'polling_interval',
+        self._config.polling_interval
+    )
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
         raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
@@ -81,10 +85,6 @@ response_headers = {
         return deserialized
         {% endif %}
 
-    lro_delay = kwargs.pop(
-        'polling_interval',
-        self._config.polling_interval
-    )
     {% if code_model.options['azure_arm'] %}
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
     {% else %}

@@ -121,6 +121,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_non_retry400_initial(
@@ -139,10 +143,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -233,6 +233,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_non_retry201_creating400_initial(
@@ -251,10 +255,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -345,6 +345,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_non_retry201_creating400_invalid_json_initial(
@@ -363,10 +367,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -456,6 +456,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry400_initial(
@@ -479,10 +483,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -554,6 +554,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete_non_retry400_initial(
@@ -568,10 +572,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -643,6 +643,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete202_non_retry400_initial(
@@ -657,10 +661,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -734,6 +734,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete_async_relative_retry400_initial(
@@ -748,10 +752,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -836,6 +836,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_non_retry400_initial(
@@ -851,10 +855,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -939,6 +939,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post202_non_retry400_initial(
@@ -954,10 +958,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1044,6 +1044,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_async_relative_retry400_initial(
@@ -1059,10 +1063,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1152,6 +1152,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_error201_no_provisioning_state_payload_initial(
@@ -1170,10 +1174,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1264,6 +1264,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_no_status_initial(
@@ -1287,10 +1291,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1381,6 +1381,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_no_status_payload_initial(
@@ -1404,10 +1408,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1475,6 +1475,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete204_succeeded_initial(
@@ -1489,10 +1493,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1566,6 +1566,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete_async_relative_retry_no_status_initial(
@@ -1580,10 +1584,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1669,6 +1669,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post202_no_location_initial(
@@ -1684,10 +1688,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1775,6 +1775,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_async_relative_retry_no_payload_initial(
@@ -1790,10 +1794,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1881,6 +1881,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put200_invalid_json_initial(
@@ -1899,10 +1903,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -1993,6 +1993,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_invalid_header_initial(
@@ -2016,10 +2020,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2110,6 +2110,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._put_async_relative_retry_invalid_json_polling_initial(
@@ -2133,10 +2137,6 @@ class LROSADsOperations(object):
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2209,6 +2209,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete202_retry_invalid_header_initial(
@@ -2223,10 +2227,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2300,6 +2300,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete_async_relative_retry_invalid_header_initial(
@@ -2314,10 +2318,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2391,6 +2391,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete_async_relative_retry_invalid_json_polling_initial(
@@ -2405,10 +2409,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2494,6 +2494,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post202_retry_invalid_header_initial(
@@ -2509,10 +2513,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2600,6 +2600,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_async_relative_retry_invalid_header_initial(
@@ -2615,10 +2619,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
@@ -2706,6 +2706,10 @@ class LROSADsOperations(object):
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._post_async_relative_retry_invalid_json_polling_initial(
@@ -2721,10 +2725,6 @@ class LROSADsOperations(object):
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling

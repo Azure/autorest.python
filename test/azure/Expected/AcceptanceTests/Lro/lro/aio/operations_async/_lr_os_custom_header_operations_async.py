@@ -117,6 +117,10 @@ class LROsCustomHeaderOperations:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_async_retry_succeeded_initial(
@@ -140,10 +144,6 @@ class LROsCustomHeaderOperations:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
@@ -234,6 +234,10 @@ class LROsCustomHeaderOperations:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put201_creating_succeeded200_initial(
@@ -252,10 +256,6 @@ class LROsCustomHeaderOperations:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
@@ -340,6 +340,10 @@ class LROsCustomHeaderOperations:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post202_retry200_initial(
@@ -355,10 +359,6 @@ class LROsCustomHeaderOperations:
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
@@ -445,6 +445,10 @@ class LROsCustomHeaderOperations:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_async_retry_succeeded_initial(
@@ -460,10 +464,6 @@ class LROsCustomHeaderOperations:
             if cls:
                 return cls(pipeline_response, None, {})
 
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
