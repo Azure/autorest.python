@@ -104,7 +104,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -150,7 +150,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}  # type: ignore
-
 
     async def _put_non_retry201_creating400_initial(
         self,
@@ -214,7 +213,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -260,7 +259,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}  # type: ignore
-
 
     async def _put_non_retry201_creating400_invalid_json_initial(
         self,
@@ -324,7 +322,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -370,7 +368,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}  # type: ignore
-
 
     async def _put_async_relative_retry400_initial(
         self,
@@ -433,7 +430,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -485,7 +482,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}  # type: ignore
 
-
     async def _delete_non_retry400_initial(
         self,
         **kwargs
@@ -529,7 +525,7 @@ class LROSADsOperations:
         """Long running delete request, service returns a 400 with an error body.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -571,7 +567,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}  # type: ignore
-
 
     async def _delete202_non_retry400_initial(
         self,
@@ -616,7 +611,7 @@ class LROSADsOperations:
         """Long running delete request, service returns a 202 with a location header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -658,7 +653,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}  # type: ignore
-
 
     async def _delete_async_relative_retry400_initial(
         self,
@@ -705,7 +699,7 @@ class LROSADsOperations:
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -747,7 +741,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}  # type: ignore
-
 
     async def _post_non_retry400_initial(
         self,
@@ -805,7 +798,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -848,7 +841,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}  # type: ignore
-
 
     async def _post202_non_retry400_initial(
         self,
@@ -906,7 +898,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -949,7 +941,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}  # type: ignore
-
 
     async def _post_async_relative_retry400_initial(
         self,
@@ -1009,7 +1000,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1052,7 +1043,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}  # type: ignore
-
 
     async def _put_error201_no_provisioning_state_payload_initial(
         self,
@@ -1115,7 +1105,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1161,7 +1151,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}  # type: ignore
-
 
     async def _put_async_relative_retry_no_status_initial(
         self,
@@ -1225,7 +1214,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1276,7 +1265,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}  # type: ignore
-
 
     async def _put_async_relative_retry_no_status_payload_initial(
         self,
@@ -1340,7 +1328,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1392,7 +1380,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}  # type: ignore
 
-
     async def _delete204_succeeded_initial(
         self,
         **kwargs
@@ -1432,7 +1419,7 @@ class LROSADsOperations:
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1474,7 +1461,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}  # type: ignore
-
 
     async def _delete_async_relative_retry_no_status_initial(
         self,
@@ -1521,7 +1507,7 @@ class LROSADsOperations:
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1563,7 +1549,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}  # type: ignore
-
 
     async def _post202_no_location_initial(
         self,
@@ -1622,7 +1607,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1665,7 +1650,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}  # type: ignore
-
 
     async def _post_async_relative_retry_no_payload_initial(
         self,
@@ -1726,7 +1710,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1769,7 +1753,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}  # type: ignore
-
 
     async def _put200_invalid_json_initial(
         self,
@@ -1830,7 +1813,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1876,7 +1859,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}  # type: ignore
-
 
     async def _put_async_relative_retry_invalid_header_initial(
         self,
@@ -1940,7 +1922,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1991,7 +1973,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}  # type: ignore
-
 
     async def _put_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2055,7 +2036,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2107,7 +2088,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}  # type: ignore
 
-
     async def _delete202_retry_invalid_header_initial(
         self,
         **kwargs
@@ -2152,7 +2132,7 @@ class LROSADsOperations:
     with an invalid 'Location' and 'Retry-After' headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2194,7 +2174,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}  # type: ignore
-
 
     async def _delete_async_relative_retry_invalid_header_initial(
         self,
@@ -2241,7 +2220,7 @@ class LROSADsOperations:
     indicated in the Azure-AsyncOperation header is invalid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2283,7 +2262,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}  # type: ignore
-
 
     async def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2330,7 +2308,7 @@ class LROSADsOperations:
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2372,7 +2350,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}  # type: ignore
-
 
     async def _post202_retry_invalid_header_initial(
         self,
@@ -2431,7 +2408,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2474,7 +2451,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}  # type: ignore
-
 
     async def _post_async_relative_retry_invalid_header_initial(
         self,
@@ -2535,7 +2511,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2578,7 +2554,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}  # type: ignore
-
 
     async def _post_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2639,7 +2614,7 @@ class LROSADsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2682,4 +2657,3 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}  # type: ignore
-

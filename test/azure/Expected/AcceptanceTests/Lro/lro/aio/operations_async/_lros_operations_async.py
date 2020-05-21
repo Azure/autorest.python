@@ -102,7 +102,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -148,7 +148,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}  # type: ignore
-
 
     async def _put201_succeeded_initial(
         self,
@@ -207,7 +206,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -253,7 +252,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_succeeded.metadata = {'url': '/lro/put/201/succeeded'}  # type: ignore
-
 
     async def _post202_list_initial(
         self,
@@ -306,7 +304,7 @@ class LROsOperations:
     with body [{ 'id': '100', 'name': 'foo' }].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -351,7 +349,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_list.metadata = {'url': '/lro/list'}  # type: ignore
-
 
     async def _put200_succeeded_no_state_initial(
         self,
@@ -410,7 +407,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -456,7 +453,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}  # type: ignore
-
 
     async def _put202_retry200_initial(
         self,
@@ -516,7 +512,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -562,7 +558,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}  # type: ignore
-
 
     async def _put201_creating_succeeded200_initial(
         self,
@@ -627,7 +622,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -673,7 +668,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}  # type: ignore
-
 
     async def _put200_updating_succeeded204_initial(
         self,
@@ -733,7 +727,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -779,7 +773,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}  # type: ignore
-
 
     async def _put201_creating_failed200_initial(
         self,
@@ -844,7 +837,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -890,7 +883,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}  # type: ignore
-
 
     async def _put200_acceptedcanceled200_initial(
         self,
@@ -950,7 +942,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -996,7 +988,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}  # type: ignore
-
 
     async def _put_no_header_in_retry_initial(
         self,
@@ -1057,7 +1048,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1106,7 +1097,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}  # type: ignore
-
 
     async def _put_async_retry_succeeded_initial(
         self,
@@ -1170,7 +1160,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1221,7 +1211,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}  # type: ignore
-
 
     async def _put_async_no_retry_succeeded_initial(
         self,
@@ -1284,7 +1273,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1334,7 +1323,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}  # type: ignore
-
 
     async def _put_async_retry_failed_initial(
         self,
@@ -1398,7 +1386,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1449,7 +1437,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}  # type: ignore
-
 
     async def _put_async_no_retrycanceled_initial(
         self,
@@ -1512,7 +1499,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1562,7 +1549,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}  # type: ignore
-
 
     async def _put_async_no_header_in_retry_initial(
         self,
@@ -1624,7 +1610,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1673,7 +1659,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}  # type: ignore
-
 
     async def _put_non_resource_initial(
         self,
@@ -1731,7 +1716,7 @@ class LROsOperations:
         :param sku: sku to put.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1777,7 +1762,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}  # type: ignore
-
 
     async def _put_async_non_resource_initial(
         self,
@@ -1835,7 +1819,7 @@ class LROsOperations:
         :param sku: Sku to put.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1881,7 +1865,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}  # type: ignore
-
 
     async def _put_sub_resource_initial(
         self,
@@ -1941,7 +1924,7 @@ class LROsOperations:
         :param provisioning_state:
         :type provisioning_state: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1987,7 +1970,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}  # type: ignore
-
 
     async def _put_async_sub_resource_initial(
         self,
@@ -2047,7 +2029,7 @@ class LROsOperations:
         :param provisioning_state:
         :type provisioning_state: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2093,7 +2075,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}  # type: ignore
-
 
     async def _delete_provisioning202_accepted200_succeeded_initial(
         self,
@@ -2148,7 +2129,7 @@ class LROsOperations:
     ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2197,7 +2178,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}  # type: ignore
-
 
     async def _delete_provisioning202_deleting_failed200_initial(
         self,
@@ -2252,7 +2232,7 @@ class LROsOperations:
     ‘200’ with ProvisioningState=’Failed’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2301,7 +2281,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}  # type: ignore
-
 
     async def _delete_provisioning202_deletingcanceled200_initial(
         self,
@@ -2356,7 +2335,7 @@ class LROsOperations:
     ‘200’ with ProvisioningState=’Canceled’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2406,7 +2385,6 @@ class LROsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}  # type: ignore
 
-
     async def _delete204_succeeded_initial(
         self,
         **kwargs
@@ -2446,7 +2424,7 @@ class LROsOperations:
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2488,7 +2466,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}  # type: ignore
-
 
     async def _delete202_retry200_initial(
         self,
@@ -2541,7 +2518,7 @@ class LROsOperations:
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2586,7 +2563,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}  # type: ignore
-
 
     async def _delete202_no_retry204_initial(
         self,
@@ -2639,7 +2615,7 @@ class LROsOperations:
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2685,7 +2661,6 @@ class LROsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}  # type: ignore
 
-
     async def _delete_no_header_in_retry_initial(
         self,
         **kwargs
@@ -2730,7 +2705,7 @@ class LROsOperations:
     Subsequent calls to operation status do not contain location header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2772,7 +2747,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}  # type: ignore
-
 
     async def _delete_async_no_header_in_retry_initial(
         self,
@@ -2818,7 +2792,7 @@ class LROsOperations:
     request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2860,7 +2834,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}  # type: ignore
-
 
     async def _delete_async_retry_succeeded_initial(
         self,
@@ -2907,7 +2880,7 @@ class LROsOperations:
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -2949,7 +2922,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}  # type: ignore
-
 
     async def _delete_async_no_retry_succeeded_initial(
         self,
@@ -2996,7 +2968,7 @@ class LROsOperations:
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3038,7 +3010,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}  # type: ignore
-
 
     async def _delete_async_retry_failed_initial(
         self,
@@ -3085,7 +3056,7 @@ class LROsOperations:
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3127,7 +3098,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}  # type: ignore
-
 
     async def _delete_async_retrycanceled_initial(
         self,
@@ -3174,7 +3144,7 @@ class LROsOperations:
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3216,7 +3186,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}  # type: ignore
-
 
     async def _post200_with_payload_initial(
         self,
@@ -3267,7 +3236,7 @@ class LROsOperations:
     header. Poll returns a 200 with a response body after success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3312,7 +3281,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post200_with_payload.metadata = {'url': '/lro/post/payload/200'}  # type: ignore
-
 
     async def _post202_retry200_initial(
         self,
@@ -3371,7 +3339,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3414,7 +3382,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}  # type: ignore
-
 
     async def _post202_no_retry204_initial(
         self,
@@ -3476,7 +3443,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3527,7 +3494,6 @@ class LROsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}  # type: ignore
 
-
     async def _post_double_headers_final_location_get_initial(
         self,
         **kwargs
@@ -3573,7 +3539,7 @@ class LROsOperations:
     object.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3618,7 +3584,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}  # type: ignore
-
 
     async def _post_double_headers_final_azure_header_get_initial(
         self,
@@ -3665,7 +3630,7 @@ class LROsOperations:
     final object.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3710,7 +3675,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}  # type: ignore
-
 
     async def _post_double_headers_final_azure_header_get_default_initial(
         self,
@@ -3757,7 +3721,7 @@ class LROsOperations:
     final object if you support initial Autorest behavior.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3802,7 +3766,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}  # type: ignore
-
 
     async def _post_async_retry_succeeded_initial(
         self,
@@ -3870,7 +3833,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -3916,7 +3879,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}  # type: ignore
-
 
     async def _post_async_no_retry_succeeded_initial(
         self,
@@ -3984,7 +3946,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -4030,7 +3992,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}  # type: ignore
-
 
     async def _post_async_retry_failed_initial(
         self,
@@ -4091,7 +4052,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -4134,7 +4095,6 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}  # type: ignore
-
 
     async def _post_async_retrycanceled_initial(
         self,
@@ -4195,7 +4155,7 @@ class LROsOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -4238,4 +4198,3 @@ class LROsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}  # type: ignore
-

@@ -106,7 +106,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -157,7 +157,6 @@ class LROsCustomHeaderOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}  # type: ignore
-
 
     async def _put201_creating_succeeded200_initial(
         self,
@@ -223,7 +222,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -269,7 +268,6 @@ class LROsCustomHeaderOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}  # type: ignore
-
 
     async def _post202_retry200_initial(
         self,
@@ -329,7 +327,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -372,7 +370,6 @@ class LROsCustomHeaderOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}  # type: ignore
-
 
     async def _post_async_retry_succeeded_initial(
         self,
@@ -434,7 +431,7 @@ class LROsCustomHeaderOperations:
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -477,4 +474,3 @@ class LROsCustomHeaderOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}  # type: ignore
-
