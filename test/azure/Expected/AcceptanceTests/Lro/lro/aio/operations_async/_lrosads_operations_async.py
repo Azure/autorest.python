@@ -151,16 +151,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}  # type: ignore
 
-    async def put_non_retry400(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_non_retry400(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _put_non_retry201_creating400_initial(
         self,
@@ -271,16 +261,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}  # type: ignore
 
-    async def put_non_retry201_creating400(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_non_retry201_creating400(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _put_non_retry201_creating400_invalid_json_initial(
         self,
@@ -390,16 +370,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}  # type: ignore
-
-    async def put_non_retry201_creating400_invalid_json(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_non_retry201_creating400_invalid_json(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _put_async_relative_retry400_initial(
@@ -515,16 +485,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}  # type: ignore
 
-    async def put_async_relative_retry400(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_async_relative_retry400(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _delete_non_retry400_initial(
         self,
@@ -612,14 +572,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}  # type: ignore
 
-    async def delete_non_retry400(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete_non_retry400(
-            **kwargs
-        ))
-
 
     async def _delete202_non_retry400_initial(
         self,
@@ -706,14 +658,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}  # type: ignore
-
-    async def delete202_non_retry400(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete202_non_retry400(
-            **kwargs
-        ))
 
 
     async def _delete_async_relative_retry400_initial(
@@ -803,14 +747,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}  # type: ignore
-
-    async def delete_async_relative_retry400(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete_async_relative_retry400(
-            **kwargs
-        ))
 
 
     async def _post_non_retry400_initial(
@@ -913,16 +849,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}  # type: ignore
 
-    async def post_non_retry400(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post_non_retry400(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _post202_non_retry400_initial(
         self,
@@ -1023,16 +949,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}  # type: ignore
-
-    async def post202_non_retry400(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post202_non_retry400(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _post_async_relative_retry400_initial(
@@ -1136,16 +1052,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}  # type: ignore
-
-    async def post_async_relative_retry400(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post_async_relative_retry400(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _put_error201_no_provisioning_state_payload_initial(
@@ -1255,16 +1161,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}  # type: ignore
-
-    async def put_error201_no_provisioning_state_payload(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_error201_no_provisioning_state_payload(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _put_async_relative_retry_no_status_initial(
@@ -1381,16 +1277,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}  # type: ignore
 
-    async def put_async_relative_retry_no_status(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_async_relative_retry_no_status(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _put_async_relative_retry_no_status_payload_initial(
         self,
@@ -1506,16 +1392,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}  # type: ignore
 
-    async def put_async_relative_retry_no_status_payload(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_async_relative_retry_no_status_payload(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _delete204_succeeded_initial(
         self,
@@ -1598,14 +1474,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}  # type: ignore
-
-    async def delete204_succeeded(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete204_succeeded(
-            **kwargs
-        ))
 
 
     async def _delete_async_relative_retry_no_status_initial(
@@ -1695,14 +1563,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}  # type: ignore
-
-    async def delete_async_relative_retry_no_status(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete_async_relative_retry_no_status(
-            **kwargs
-        ))
 
 
     async def _post202_no_location_initial(
@@ -1805,16 +1665,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}  # type: ignore
-
-    async def post202_no_location(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post202_no_location(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _post_async_relative_retry_no_payload_initial(
@@ -1919,16 +1769,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}  # type: ignore
-
-    async def post_async_relative_retry_no_payload(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post_async_relative_retry_no_payload(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _put200_invalid_json_initial(
@@ -2036,16 +1876,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}  # type: ignore
-
-    async def put200_invalid_json(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put200_invalid_json(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _put_async_relative_retry_invalid_header_initial(
@@ -2162,16 +1992,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}  # type: ignore
 
-    async def put_async_relative_retry_invalid_header(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_async_relative_retry_invalid_header(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _put_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2287,16 +2107,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}  # type: ignore
 
-    async def put_async_relative_retry_invalid_json_polling(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        return await (await self.begin_put_async_relative_retry_invalid_json_polling(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _delete202_retry_invalid_header_initial(
         self,
@@ -2384,14 +2194,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}  # type: ignore
-
-    async def delete202_retry_invalid_header(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete202_retry_invalid_header(
-            **kwargs
-        ))
 
 
     async def _delete_async_relative_retry_invalid_header_initial(
@@ -2482,14 +2284,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}  # type: ignore
 
-    async def delete_async_relative_retry_invalid_header(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete_async_relative_retry_invalid_header(
-            **kwargs
-        ))
-
 
     async def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2578,14 +2372,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}  # type: ignore
-
-    async def delete_async_relative_retry_invalid_json_polling(
-        self,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_delete_async_relative_retry_invalid_json_polling(
-            **kwargs
-        ))
 
 
     async def _post202_retry_invalid_header_initial(
@@ -2688,16 +2474,6 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}  # type: ignore
-
-    async def post202_retry_invalid_header(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post202_retry_invalid_header(
-            product=product,
-            **kwargs
-        ))
 
 
     async def _post_async_relative_retry_invalid_header_initial(
@@ -2803,16 +2579,6 @@ class LROSADsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}  # type: ignore
 
-    async def post_async_relative_retry_invalid_header(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post_async_relative_retry_invalid_header(
-            product=product,
-            **kwargs
-        ))
-
 
     async def _post_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2916,14 +2682,4 @@ class LROSADsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}  # type: ignore
-
-    async def post_async_relative_retry_invalid_json_polling(
-        self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        return await (await self.begin_post_async_relative_retry_invalid_json_polling(
-            product=product,
-            **kwargs
-        ))
 

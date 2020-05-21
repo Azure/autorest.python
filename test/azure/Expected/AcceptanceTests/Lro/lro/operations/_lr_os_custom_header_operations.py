@@ -164,17 +164,6 @@ class LROsCustomHeaderOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}  # type: ignore
 
-    def put_async_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_async_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put201_creating_succeeded200_initial(
         self,
@@ -289,17 +278,6 @@ class LROsCustomHeaderOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}  # type: ignore
 
-    def put201_creating_succeeded200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put201_creating_succeeded200(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _post202_retry200_initial(
         self,
@@ -404,17 +382,6 @@ class LROsCustomHeaderOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}  # type: ignore
-
-    def post202_retry200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_post202_retry200(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _post_async_retry_succeeded_initial(
@@ -522,15 +489,4 @@ class LROsCustomHeaderOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}  # type: ignore
-
-    def post_async_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_post_async_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
 

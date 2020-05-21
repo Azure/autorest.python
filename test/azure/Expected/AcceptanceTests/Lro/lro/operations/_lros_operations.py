@@ -155,17 +155,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}  # type: ignore
 
-    def put200_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put200_succeeded(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put201_succeeded_initial(
         self,
@@ -273,17 +262,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_succeeded.metadata = {'url': '/lro/put/201/succeeded'}  # type: ignore
 
-    def put201_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put201_succeeded(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _post202_list_initial(
         self,
@@ -383,15 +361,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_list.metadata = {'url': '/lro/list'}  # type: ignore
-
-    def post202_list(
-        self,
-        **kwargs  # type: Any
-    ):
-        List["models.Product"]
-        return self.begin_post202_list(
-            **kwargs
-        ).result()
 
 
     def _put200_succeeded_no_state_initial(
@@ -500,17 +469,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}  # type: ignore
 
-    def put200_succeeded_no_state(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put200_succeeded_no_state(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put202_retry200_initial(
         self,
@@ -618,17 +576,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}  # type: ignore
-
-    def put202_retry200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put202_retry200(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _put201_creating_succeeded200_initial(
@@ -743,17 +690,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}  # type: ignore
 
-    def put201_creating_succeeded200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put201_creating_succeeded200(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put200_updating_succeeded204_initial(
         self,
@@ -861,17 +797,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}  # type: ignore
-
-    def put200_updating_succeeded204(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put200_updating_succeeded204(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _put201_creating_failed200_initial(
@@ -986,17 +911,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}  # type: ignore
 
-    def put201_creating_failed200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put201_creating_failed200(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put200_acceptedcanceled200_initial(
         self,
@@ -1104,17 +1018,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}  # type: ignore
-
-    def put200_acceptedcanceled200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put200_acceptedcanceled200(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _put_no_header_in_retry_initial(
@@ -1227,17 +1130,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}  # type: ignore
-
-    def put_no_header_in_retry(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_no_header_in_retry(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _put_async_retry_succeeded_initial(
@@ -1356,17 +1248,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}  # type: ignore
 
-    def put_async_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_async_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put_async_no_retry_succeeded_initial(
         self,
@@ -1481,17 +1362,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}  # type: ignore
-
-    def put_async_no_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_async_no_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _put_async_retry_failed_initial(
@@ -1610,17 +1480,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}  # type: ignore
 
-    def put_async_retry_failed(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_async_retry_failed(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put_async_no_retrycanceled_initial(
         self,
@@ -1736,17 +1595,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}  # type: ignore
 
-    def put_async_no_retrycanceled(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_async_no_retrycanceled(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put_async_no_header_in_retry_initial(
         self,
@@ -1860,17 +1708,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}  # type: ignore
 
-    def put_async_no_header_in_retry(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_async_no_header_in_retry(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put_non_resource_initial(
         self,
@@ -1977,17 +1814,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}  # type: ignore
 
-    def put_non_resource(
-        self,
-        sku=None,  # type: Optional["models.Sku"]
-        **kwargs  # type: Any
-    ):
-        "models.Sku"
-        return self.begin_put_non_resource(
-            sku=sku,
-            **kwargs
-        ).result()
-
 
     def _put_async_non_resource_initial(
         self,
@@ -2093,17 +1919,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}  # type: ignore
-
-    def put_async_non_resource(
-        self,
-        sku=None,  # type: Optional["models.Sku"]
-        **kwargs  # type: Any
-    ):
-        "models.Sku"
-        return self.begin_put_async_non_resource(
-            sku=sku,
-            **kwargs
-        ).result()
 
 
     def _put_sub_resource_initial(
@@ -2213,17 +2028,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}  # type: ignore
 
-    def put_sub_resource(
-        self,
-        provisioning_state=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        "models.SubProduct"
-        return self.begin_put_sub_resource(
-            provisioning_state=provisioning_state,
-            **kwargs
-        ).result()
-
 
     def _put_async_sub_resource_initial(
         self,
@@ -2332,17 +2136,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}  # type: ignore
 
-    def put_async_sub_resource(
-        self,
-        provisioning_state=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        "models.SubProduct"
-        return self.begin_put_async_sub_resource(
-            provisioning_state=provisioning_state,
-            **kwargs
-        ).result()
-
 
     def _delete_provisioning202_accepted200_succeeded_initial(
         self,
@@ -2448,15 +2241,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}  # type: ignore
-
-    def delete_provisioning202_accepted200_succeeded(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_delete_provisioning202_accepted200_succeeded(
-            **kwargs
-        ).result()
 
 
     def _delete_provisioning202_deleting_failed200_initial(
@@ -2564,15 +2348,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}  # type: ignore
 
-    def delete_provisioning202_deleting_failed200(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_delete_provisioning202_deleting_failed200(
-            **kwargs
-        ).result()
-
 
     def _delete_provisioning202_deletingcanceled200_initial(
         self,
@@ -2679,15 +2454,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}  # type: ignore
 
-    def delete_provisioning202_deletingcanceled200(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_delete_provisioning202_deletingcanceled200(
-            **kwargs
-        ).result()
-
 
     def _delete204_succeeded_initial(
         self,
@@ -2772,15 +2538,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}  # type: ignore
-
-    def delete204_succeeded(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete204_succeeded(
-            **kwargs
-        ).result()
 
 
     def _delete202_retry200_initial(
@@ -2882,15 +2639,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}  # type: ignore
 
-    def delete202_retry200(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_delete202_retry200(
-            **kwargs
-        ).result()
-
 
     def _delete202_no_retry204_initial(
         self,
@@ -2991,15 +2739,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}  # type: ignore
 
-    def delete202_no_retry204(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_delete202_no_retry204(
-            **kwargs
-        ).result()
-
 
     def _delete_no_header_in_retry_initial(
         self,
@@ -3090,15 +2829,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}  # type: ignore
 
-    def delete_no_header_in_retry(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete_no_header_in_retry(
-            **kwargs
-        ).result()
-
 
     def _delete_async_no_header_in_retry_initial(
         self,
@@ -3188,15 +2918,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}  # type: ignore
-
-    def delete_async_no_header_in_retry(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete_async_no_header_in_retry(
-            **kwargs
-        ).result()
 
 
     def _delete_async_retry_succeeded_initial(
@@ -3289,15 +3010,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}  # type: ignore
 
-    def delete_async_retry_succeeded(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete_async_retry_succeeded(
-            **kwargs
-        ).result()
-
 
     def _delete_async_no_retry_succeeded_initial(
         self,
@@ -3388,15 +3100,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}  # type: ignore
-
-    def delete_async_no_retry_succeeded(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete_async_no_retry_succeeded(
-            **kwargs
-        ).result()
 
 
     def _delete_async_retry_failed_initial(
@@ -3489,15 +3192,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}  # type: ignore
 
-    def delete_async_retry_failed(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete_async_retry_failed(
-            **kwargs
-        ).result()
-
 
     def _delete_async_retrycanceled_initial(
         self,
@@ -3588,15 +3282,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}  # type: ignore
-
-    def delete_async_retrycanceled(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete_async_retrycanceled(
-            **kwargs
-        ).result()
 
 
     def _post200_with_payload_initial(
@@ -3695,15 +3380,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post200_with_payload.metadata = {'url': '/lro/post/payload/200'}  # type: ignore
-
-    def post200_with_payload(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Sku"
-        return self.begin_post200_with_payload(
-            **kwargs
-        ).result()
 
 
     def _post202_retry200_initial(
@@ -3808,17 +3484,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}  # type: ignore
-
-    def post202_retry200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_post202_retry200(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _post202_no_retry204_initial(
@@ -3934,17 +3599,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}  # type: ignore
 
-    def post202_no_retry204(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_post202_no_retry204(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _post_double_headers_final_location_get_initial(
         self,
@@ -4038,15 +3692,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}  # type: ignore
-
-    def post_double_headers_final_location_get(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_post_double_headers_final_location_get(
-            **kwargs
-        ).result()
 
 
     def _post_double_headers_final_azure_header_get_initial(
@@ -4142,15 +3787,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}  # type: ignore
 
-    def post_double_headers_final_azure_header_get(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_post_double_headers_final_azure_header_get(
-            **kwargs
-        ).result()
-
 
     def _post_double_headers_final_azure_header_get_default_initial(
         self,
@@ -4244,15 +3880,6 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}  # type: ignore
-
-    def post_double_headers_final_azure_header_get_default(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_post_double_headers_final_azure_header_get_default(
-            **kwargs
-        ).result()
 
 
     def _post_async_retry_succeeded_initial(
@@ -4370,17 +3997,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}  # type: ignore
 
-    def post_async_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_post_async_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _post_async_no_retry_succeeded_initial(
         self,
@@ -4497,17 +4113,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}  # type: ignore
 
-    def post_async_no_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_post_async_no_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _post_async_retry_failed_initial(
         self,
@@ -4614,17 +4219,6 @@ class LROsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}  # type: ignore
 
-    def post_async_retry_failed(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_post_async_retry_failed(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _post_async_retrycanceled_initial(
         self,
@@ -4730,15 +4324,4 @@ class LROsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}  # type: ignore
-
-    def post_async_retrycanceled(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_post_async_retrycanceled(
-            product=product,
-            **kwargs
-        ).result()
 

@@ -159,17 +159,6 @@ class LRORetrysOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}  # type: ignore
 
-    def put201_creating_succeeded200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put201_creating_succeeded200(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _put_async_relative_retry_succeeded_initial(
         self,
@@ -287,17 +276,6 @@ class LRORetrysOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}  # type: ignore
 
-    def put_async_relative_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_put_async_relative_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
-
 
     def _delete_provisioning202_accepted200_succeeded_initial(
         self,
@@ -404,15 +382,6 @@ class LRORetrysOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}  # type: ignore
 
-    def delete_provisioning202_accepted200_succeeded(
-        self,
-        **kwargs  # type: Any
-    ):
-        "models.Product"
-        return self.begin_delete_provisioning202_accepted200_succeeded(
-            **kwargs
-        ).result()
-
 
     def _delete202_retry200_initial(
         self,
@@ -502,15 +471,6 @@ class LRORetrysOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}  # type: ignore
-
-    def delete202_retry200(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete202_retry200(
-            **kwargs
-        ).result()
 
 
     def _delete_async_relative_retry_succeeded_initial(
@@ -602,15 +562,6 @@ class LRORetrysOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}  # type: ignore
-
-    def delete_async_relative_retry_succeeded(
-        self,
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_delete_async_relative_retry_succeeded(
-            **kwargs
-        ).result()
 
 
     def _post202_retry200_initial(
@@ -715,17 +666,6 @@ class LRORetrysOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}  # type: ignore
-
-    def post202_retry200(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_post202_retry200(
-            product=product,
-            **kwargs
-        ).result()
 
 
     def _post_async_relative_retry_succeeded_initial(
@@ -832,15 +772,4 @@ class LRORetrysOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}  # type: ignore
-
-    def post_async_relative_retry_succeeded(
-        self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
-        None
-        return self.begin_post_async_relative_retry_succeeded(
-            product=product,
-            **kwargs
-        ).result()
 

@@ -102,23 +102,3 @@ response_headers = {
     else:
         return {{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore
-
-{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode) }}
-{%- if not async_mode %}
-    {{ op_tools.return_type_annotation(operation) }}
-{% endif %}
-{% if async_mode %}
-    return await (await self.begin_{{ operation.python_name }}(
-    {% for param_signature in operation.parameters.method %}
-        {{ param_signature.serialized_name }}={{ param_signature.serialized_name }},
-    {% endfor %}
-        **kwargs
-    ))
-{% else %}
-    return self.begin_{{ operation.python_name }}(
-    {% for param_signature in operation.parameters.method %}
-        {{ param_signature.serialized_name }}={{ param_signature.serialized_name }},
-    {% endfor %}
-        **kwargs
-    ).result()
-{% endif %}
