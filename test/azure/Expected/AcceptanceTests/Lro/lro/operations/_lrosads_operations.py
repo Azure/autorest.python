@@ -1610,7 +1610,7 @@ class LROSADsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> Optional["models.Product"]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
@@ -1675,7 +1675,7 @@ class LROSADsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

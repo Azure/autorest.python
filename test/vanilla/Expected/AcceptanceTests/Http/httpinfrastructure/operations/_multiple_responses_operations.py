@@ -49,7 +49,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -96,7 +96,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -143,7 +143,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -190,7 +190,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -237,7 +237,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

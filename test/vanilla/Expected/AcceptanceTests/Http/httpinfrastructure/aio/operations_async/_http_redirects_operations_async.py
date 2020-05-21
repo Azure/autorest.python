@@ -88,7 +88,7 @@ class HttpRedirectsOperations:
     async def get300(
         self,
         **kwargs
-    ) -> List[str]:
+    ) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

@@ -116,7 +116,7 @@ class StorageAccountsOperations(object):
         parameters,  # type: "models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.StorageAccount"
+        # type: (...) -> Optional["models.StorageAccount"]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
@@ -196,7 +196,7 @@ class StorageAccountsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.StorageAccount"]]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

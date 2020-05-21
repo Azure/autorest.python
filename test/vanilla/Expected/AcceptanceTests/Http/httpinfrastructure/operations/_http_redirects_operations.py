@@ -94,7 +94,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[str]
+        # type: (...) -> Optional[List[str]]
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

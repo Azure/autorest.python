@@ -45,7 +45,7 @@ class PetOperations:
         self,
         pet_id: str,
         **kwargs
-    ) -> "models.Pet":
+    ) -> Optional["models.Pet"]:
         """Gets pets by id.
 
         :param pet_id: pet id.

@@ -24,7 +24,7 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> Optional["models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
