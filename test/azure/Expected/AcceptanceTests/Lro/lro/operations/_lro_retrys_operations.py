@@ -85,7 +85,6 @@ class LRORetrysOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -282,7 +281,6 @@ class LRORetrysOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 

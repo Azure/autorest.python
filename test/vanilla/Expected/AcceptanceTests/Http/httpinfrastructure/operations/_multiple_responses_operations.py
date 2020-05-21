@@ -316,7 +316,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -366,7 +365,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -416,7 +414,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -466,7 +463,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -519,7 +515,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -572,7 +567,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -625,7 +619,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
