@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -57,6 +57,32 @@ class ModelThree(msrest.serialization.Model):
     ):
         super(ModelThree, self).__init__(**kwargs)
         self.optional_property = optional_property
+
+
+class PagingResult(msrest.serialization.Model):
+    """PagingResult.
+
+    :param values:
+    :type values: list[~multiapiwithsubmodule.submodule.v3.models.ModelThree]
+    :param next_link:
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'values': {'key': 'values', 'type': '[ModelThree]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        values: Optional[List["ModelThree"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
+        super(PagingResult, self).__init__(**kwargs)
+        self.values = values
+        self.next_link = next_link
 
 
 class SourcePath(msrest.serialization.Model):

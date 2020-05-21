@@ -65,15 +65,16 @@ class PathsOperations(object):
         :param key_version: The key version. Default value 'v1'.
         :type key_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
         path_format_arguments = {
             'vault': self._serialize.url("vault", vault, 'str', skip_quote=True),
             'secret': self._serialize.url("secret", secret, 'str', skip_quote=True),
@@ -102,6 +103,6 @@ class PathsOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}
+    get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}  # type: ignore

@@ -53,15 +53,16 @@ class PolymorphicrecursiveOperations(object):
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Fish or the result of cls(response)
+        :return: Fish, or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -83,10 +84,10 @@ class PolymorphicrecursiveOperations(object):
         deserialized = self._deserialize('Fish', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}  # type: ignore
 
     @distributed_trace
     def put_valid(
@@ -152,16 +153,17 @@ class PolymorphicrecursiveOperations(object):
          }.
         :type complex_body: ~bodycomplex.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -185,6 +187,6 @@ class PolymorphicrecursiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}  # type: ignore

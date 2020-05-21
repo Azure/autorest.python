@@ -109,6 +109,7 @@ class NameConverter:
 
         if not(
             schema_name == 'content_type' and
+            schema.get('protocol') and
             schema['protocol'].get('http') and
             schema['protocol']['http']['in'] == "header"
         ):
@@ -119,7 +120,7 @@ class NameConverter:
         schema['language']['python']['name'] = schema_python_name.lower()
 
         schema_description = schema["language"]["default"]["description"].strip()
-        if pad_string == PadType.Method and not schema_description:
+        if pad_string == PadType.Method and not schema_description and not schema["language"]["default"].get("summary"):
             schema_description = schema["language"]["python"]["name"]
         if schema_description and schema_description[-1] != ".":
             schema_description += "."

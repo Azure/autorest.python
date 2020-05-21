@@ -48,15 +48,16 @@ class HttpFailureOperations:
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[bool]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_empty_error.metadata['url']
+        url = self.get_empty_error.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -78,10 +79,10 @@ class HttpFailureOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
+    get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}  # type: ignore
 
     @distributed_trace_async
     async def get_no_model_error(
@@ -91,15 +92,16 @@ class HttpFailureOperations:
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[bool]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_no_model_error.metadata['url']
+        url = self.get_no_model_error.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -120,10 +122,10 @@ class HttpFailureOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
+    get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}  # type: ignore
 
     @distributed_trace_async
     async def get_no_model_empty(
@@ -133,15 +135,16 @@ class HttpFailureOperations:
         """Get empty response from server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[bool]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_no_model_empty.metadata['url']
+        url = self.get_no_model_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -162,7 +165,7 @@ class HttpFailureOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}
+    get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}  # type: ignore

@@ -11,7 +11,7 @@ from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .imports import ImportType, TypingSection
-from .object_schema import ObjectSchema
+from .base_schema import BaseSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -70,7 +70,8 @@ class LROOperation(Operation):
                     f" method {self.python_name} and none of them have a 200 status code."
                 )
             response_type = response_types_with_200_status_code[0]
-            response_type_schema_name = cast(ObjectSchema, response_type.schema).name
+
+            response_type_schema_name = cast(BaseSchema, response_type.schema).serialization_type
             _LOGGER.warning(
                 "Multiple schema types in responses: %s. Choosing: %s", response_types, response_type_schema_name
             )

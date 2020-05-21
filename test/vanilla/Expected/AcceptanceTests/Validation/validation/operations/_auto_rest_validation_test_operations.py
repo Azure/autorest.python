@@ -39,16 +39,17 @@ class AutoRestValidationTestOperationsMixin(object):
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
+        :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "1.0.0"
 
         # Construct URL
-        url = self.validation_of_method_parameters.metadata['url']
+        url = self.validation_of_method_parameters.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -77,10 +78,10 @@ class AutoRestValidationTestOperationsMixin(object):
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
 
     @distributed_trace
     def validation_of_body(
@@ -100,17 +101,18 @@ class AutoRestValidationTestOperationsMixin(object):
         :param body:
         :type body: ~validation.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
+        :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "1.0.0"
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.validation_of_body.metadata['url']
+        url = self.validation_of_body.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -147,10 +149,10 @@ class AutoRestValidationTestOperationsMixin(object):
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
 
     @distributed_trace
     def get_with_constant_in_path(
@@ -161,16 +163,17 @@ class AutoRestValidationTestOperationsMixin(object):
         """get_with_constant_in_path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         constant_param = "constant"
 
         # Construct URL
-        url = self.get_with_constant_in_path.metadata['url']
+        url = self.get_with_constant_in_path.metadata['url']  # type: ignore
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str'),
         }
@@ -192,9 +195,9 @@ class AutoRestValidationTestOperationsMixin(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore
 
     @distributed_trace
     def post_with_constant_in_body(
@@ -208,17 +211,18 @@ class AutoRestValidationTestOperationsMixin(object):
         :param body:
         :type body: ~validation.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
+        :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         constant_param = "constant"
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_with_constant_in_body.metadata['url']
+        url = self.post_with_constant_in_body.metadata['url']  # type: ignore
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str'),
         }
@@ -251,7 +255,7 @@ class AutoRestValidationTestOperationsMixin(object):
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore

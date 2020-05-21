@@ -48,22 +48,23 @@ class FilesOperations:
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO or the result of cls(response)
+        :return: IO, or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[IO]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_file.metadata['url']
+        url = self.get_file.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -78,10 +79,10 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_file.metadata = {'url': '/files/stream/nonempty'}
+    get_file.metadata = {'url': '/files/stream/nonempty'}  # type: ignore
 
     @distributed_trace_async
     async def get_file_large(
@@ -91,22 +92,23 @@ class FilesOperations:
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO or the result of cls(response)
+        :return: IO, or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[IO]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_file_large.metadata['url']
+        url = self.get_file_large.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -121,10 +123,10 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_file_large.metadata = {'url': '/files/stream/verylarge'}
+    get_file_large.metadata = {'url': '/files/stream/verylarge'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_file(
@@ -134,22 +136,23 @@ class FilesOperations:
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO or the result of cls(response)
+        :return: IO, or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[IO]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_empty_file.metadata['url']
+        url = self.get_empty_file.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -164,7 +167,7 @@ class FilesOperations:
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_file.metadata = {'url': '/files/stream/empty'}
+    get_empty_file.metadata = {'url': '/files/stream/empty'}  # type: ignore

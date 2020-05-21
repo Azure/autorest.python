@@ -43,10 +43,10 @@ class JinjaSerializer:
         )
 
         # if there was a patch file before, we keep it
-        if self._autorestapi.read_file(namespace_path / "patch.py"):
+        if self._autorestapi.read_file(namespace_path / "_patch.py"):
             self._autorestapi.write_file(
-                namespace_path / Path("patch.py"),
-                self._autorestapi.read_file(namespace_path / "patch.py")
+                namespace_path / Path("_patch.py"),
+                self._autorestapi.read_file(namespace_path / "_patch.py")
             )
 
         if code_model.schemas or code_model.enums:

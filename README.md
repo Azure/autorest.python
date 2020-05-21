@@ -27,7 +27,7 @@ pass-thru:
   - subset-reducer
 # version: 3.0.6258
 use-extension:
-  "@autorest/modelerfour": "4.12.301"
+  "@autorest/modelerfour": "4.13.351"
 
 modelerfour:
   group-parameters: true
@@ -35,6 +35,7 @@ modelerfour:
   flatten-payloads: true
   resolve-schema-name-collisons: true
   always-create-content-type-parameter: true
+  multiple-request-parameter-flattening: false
   naming:
     parameter: snakecase
     property: snakecase
@@ -51,6 +52,7 @@ modelerfour:
     override:
       $host: $host
       base64: base64
+      IncludeAPIs: include_apis
 
 
 pipeline:

@@ -50,16 +50,17 @@ class FloatOperations(object):
         :param input: Input float enum.
         :type input: str or ~nonstringenums.models.FloatEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[str]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put.metadata['url']
+        url = self.put.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -88,10 +89,10 @@ class FloatOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put.metadata = {'url': '/nonStringEnums/float/put'}
+    put.metadata = {'url': '/nonStringEnums/float/put'}  # type: ignore
 
     @distributed_trace
     def get(
@@ -102,15 +103,16 @@ class FloatOperations(object):
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatEnum or the result of cls(response)
+        :return: FloatEnum, or the result of cls(response)
         :rtype: str or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "models.FloatEnum"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -131,7 +133,7 @@ class FloatOperations(object):
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get.metadata = {'url': '/nonStringEnums/float/get'}
+    get.metadata = {'url': '/nonStringEnums/float/get'}  # type: ignore

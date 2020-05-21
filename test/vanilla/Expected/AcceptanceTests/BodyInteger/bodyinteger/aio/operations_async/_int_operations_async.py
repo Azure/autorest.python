@@ -49,15 +49,16 @@ class IntOperations:
         """Get null Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int or the result of cls(response)
+        :return: int, or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[int]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -79,10 +80,10 @@ class IntOperations:
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/int/null'}
+    get_null.metadata = {'url': '/int/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(
@@ -92,15 +93,16 @@ class IntOperations:
         """Get invalid Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int or the result of cls(response)
+        :return: int, or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[int]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -122,10 +124,10 @@ class IntOperations:
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/int/invalid'}
+    get_invalid.metadata = {'url': '/int/invalid'}  # type: ignore
 
     @distributed_trace_async
     async def get_overflow_int32(
@@ -135,15 +137,16 @@ class IntOperations:
         """Get overflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int or the result of cls(response)
+        :return: int, or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[int]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_overflow_int32.metadata['url']
+        url = self.get_overflow_int32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -165,10 +168,10 @@ class IntOperations:
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow_int32.metadata = {'url': '/int/overflowint32'}
+    get_overflow_int32.metadata = {'url': '/int/overflowint32'}  # type: ignore
 
     @distributed_trace_async
     async def get_underflow_int32(
@@ -178,15 +181,16 @@ class IntOperations:
         """Get underflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int or the result of cls(response)
+        :return: int, or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[int]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_underflow_int32.metadata['url']
+        url = self.get_underflow_int32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -208,10 +212,10 @@ class IntOperations:
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow_int32.metadata = {'url': '/int/underflowint32'}
+    get_underflow_int32.metadata = {'url': '/int/underflowint32'}  # type: ignore
 
     @distributed_trace_async
     async def get_overflow_int64(
@@ -221,15 +225,16 @@ class IntOperations:
         """Get overflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long or the result of cls(response)
+        :return: long, or the result of cls(response)
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[int]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_overflow_int64.metadata['url']
+        url = self.get_overflow_int64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -251,10 +256,10 @@ class IntOperations:
         deserialized = self._deserialize('long', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow_int64.metadata = {'url': '/int/overflowint64'}
+    get_overflow_int64.metadata = {'url': '/int/overflowint64'}  # type: ignore
 
     @distributed_trace_async
     async def get_underflow_int64(
@@ -264,15 +269,16 @@ class IntOperations:
         """Get underflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long or the result of cls(response)
+        :return: long, or the result of cls(response)
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[int]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_underflow_int64.metadata['url']
+        url = self.get_underflow_int64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -294,10 +300,10 @@ class IntOperations:
         deserialized = self._deserialize('long', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow_int64.metadata = {'url': '/int/underflowint64'}
+    get_underflow_int64.metadata = {'url': '/int/underflowint64'}  # type: ignore
 
     @distributed_trace_async
     async def put_max32(
@@ -310,16 +316,17 @@ class IntOperations:
         :param int_body:
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_max32.metadata['url']
+        url = self.put_max32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -343,9 +350,9 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_max32.metadata = {'url': '/int/max/32'}
+    put_max32.metadata = {'url': '/int/max/32'}  # type: ignore
 
     @distributed_trace_async
     async def put_max64(
@@ -358,16 +365,17 @@ class IntOperations:
         :param int_body:
         :type int_body: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_max64.metadata['url']
+        url = self.put_max64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -391,9 +399,9 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_max64.metadata = {'url': '/int/max/64'}
+    put_max64.metadata = {'url': '/int/max/64'}  # type: ignore
 
     @distributed_trace_async
     async def put_min32(
@@ -406,16 +414,17 @@ class IntOperations:
         :param int_body:
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_min32.metadata['url']
+        url = self.put_min32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -439,9 +448,9 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_min32.metadata = {'url': '/int/min/32'}
+    put_min32.metadata = {'url': '/int/min/32'}  # type: ignore
 
     @distributed_trace_async
     async def put_min64(
@@ -454,16 +463,17 @@ class IntOperations:
         :param int_body:
         :type int_body: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_min64.metadata['url']
+        url = self.put_min64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -487,9 +497,9 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_min64.metadata = {'url': '/int/min/64'}
+    put_min64.metadata = {'url': '/int/min/64'}  # type: ignore
 
     @distributed_trace_async
     async def get_unix_time(
@@ -499,15 +509,16 @@ class IntOperations:
         """Get datetime encoded as Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_unix_time.metadata['url']
+        url = self.get_unix_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -529,10 +540,10 @@ class IntOperations:
         deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_unix_time.metadata = {'url': '/int/unixtime'}
+    get_unix_time.metadata = {'url': '/int/unixtime'}  # type: ignore
 
     @distributed_trace_async
     async def put_unix_time_date(
@@ -545,16 +556,17 @@ class IntOperations:
         :param int_body:
         :type int_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_unix_time_date.metadata['url']
+        url = self.put_unix_time_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -578,9 +590,9 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_unix_time_date.metadata = {'url': '/int/unixtime'}
+    put_unix_time_date.metadata = {'url': '/int/unixtime'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_unix_time(
@@ -590,15 +602,16 @@ class IntOperations:
         """Get invalid Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_invalid_unix_time.metadata['url']
+        url = self.get_invalid_unix_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -620,10 +633,10 @@ class IntOperations:
         deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
+    get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}  # type: ignore
 
     @distributed_trace_async
     async def get_null_unix_time(
@@ -633,15 +646,16 @@ class IntOperations:
         """Get null Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_null_unix_time.metadata['url']
+        url = self.get_null_unix_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -663,7 +677,7 @@ class IntOperations:
         deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null_unix_time.metadata = {'url': '/int/nullunixtime'}
+    get_null_unix_time.metadata = {'url': '/int/nullunixtime'}  # type: ignore

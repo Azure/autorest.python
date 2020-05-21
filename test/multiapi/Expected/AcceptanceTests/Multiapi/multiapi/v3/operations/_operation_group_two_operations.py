@@ -16,7 +16,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -45,27 +45,29 @@ class OperationGroupTwoOperations(object):
 
     def test_four(
         self,
-        input=None,  # type: Optional[Union[str, "models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, "models.SourcePath"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: str, ~multiapi.v3.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API.
+        :type input: IO or ~multiapi.v3.models.SourcePath
+        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.test_four.metadata['url']
+        url = self.test_four.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -77,9 +79,9 @@ class OperationGroupTwoOperations(object):
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if header_parameters['Content-Type'] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
+        if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
             body_content_kwargs['stream_content'] = input
-        elif header_parameters['Content-Type'] in ['application/json']:
+        elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
             if input is not None:
                 body_content = self._serialize.body(input, 'SourcePath')
             else:
@@ -87,7 +89,8 @@ class OperationGroupTwoOperations(object):
             body_content_kwargs['content'] = body_content
         else:
             raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
             )
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -100,9 +103,9 @@ class OperationGroupTwoOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}
+    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
 
     def test_five(
         self,
@@ -112,16 +115,17 @@ class OperationGroupTwoOperations(object):
         """TestFive should be in OperationGroupTwoOperations.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
 
         # Construct URL
-        url = self.test_five.metadata['url']
+        url = self.test_five.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -141,6 +145,6 @@ class OperationGroupTwoOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}
+    test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore

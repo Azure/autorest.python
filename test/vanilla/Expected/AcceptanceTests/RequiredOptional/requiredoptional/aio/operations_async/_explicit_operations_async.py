@@ -46,21 +46,23 @@ class ExplicitOperations:
         body_parameter: int,
         **kwargs
     ) -> None:
-        """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put null and the client library should throw before
+        the request is sent.
 
         :param body_parameter:
         :type body_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_integer_parameter.metadata['url']
+        url = self.post_required_integer_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -84,9 +86,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
+    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_parameter(
@@ -99,16 +101,17 @@ class ExplicitOperations:
         :param body_parameter:
         :type body_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_integer_parameter.metadata['url']
+        url = self.post_optional_integer_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -135,9 +138,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
+    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_property(
@@ -145,23 +148,25 @@ class ExplicitOperations:
         value: int,
         **kwargs
     ) -> None:
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_integer_property.metadata['url']
+        url = self.post_required_integer_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -185,9 +190,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
+    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_property(
@@ -200,18 +205,19 @@ class ExplicitOperations:
         :param value:
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_integer_property.metadata['url']
+        url = self.post_optional_integer_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -238,9 +244,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
+    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_header(
@@ -248,20 +254,22 @@ class ExplicitOperations:
         header_parameter: int,
         **kwargs
     ) -> None:
-        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.post_required_integer_header.metadata['url']
+        url = self.post_required_integer_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -281,9 +289,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
+    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_header(
@@ -296,15 +304,16 @@ class ExplicitOperations:
         :param header_parameter:
         :type header_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.post_optional_integer_header.metadata['url']
+        url = self.post_optional_integer_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -325,9 +334,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
+    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_parameter(
@@ -335,21 +344,23 @@ class ExplicitOperations:
         body_parameter: str,
         **kwargs
     ) -> None:
-        """Test explicitly required string. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put null and the client library should throw before the
+        request is sent.
 
         :param body_parameter:
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_string_parameter.metadata['url']
+        url = self.post_required_string_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -373,9 +384,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
+    post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_parameter(
@@ -388,16 +399,17 @@ class ExplicitOperations:
         :param body_parameter:
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_string_parameter.metadata['url']
+        url = self.post_optional_string_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -424,9 +436,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
+    post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_property(
@@ -434,23 +446,25 @@ class ExplicitOperations:
         value: str,
         **kwargs
     ) -> None:
-        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_string_property.metadata['url']
+        url = self.post_required_string_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -474,9 +488,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
+    post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_property(
@@ -489,18 +503,19 @@ class ExplicitOperations:
         :param value:
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_string_property.metadata['url']
+        url = self.post_optional_string_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -527,9 +542,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
+    post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_header(
@@ -537,20 +552,22 @@ class ExplicitOperations:
         header_parameter: str,
         **kwargs
     ) -> None:
-        """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.post_required_string_header.metadata['url']
+        url = self.post_required_string_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -570,9 +587,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
+    post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_header(
@@ -585,15 +602,16 @@ class ExplicitOperations:
         :param body_parameter:
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.post_optional_string_header.metadata['url']
+        url = self.post_optional_string_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -614,9 +632,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
+    post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_class_parameter(
@@ -624,21 +642,23 @@ class ExplicitOperations:
         body_parameter: "models.Product",
         **kwargs
     ) -> None:
-        """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required complex object. Please put null and the client library should throw
+        before the request is sent.
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_class_parameter.metadata['url']
+        url = self.post_required_class_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -662,9 +682,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
+    post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_class_parameter(
@@ -677,16 +697,17 @@ class ExplicitOperations:
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_class_parameter.metadata['url']
+        url = self.post_optional_class_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -713,9 +734,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
+    post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_class_property(
@@ -723,23 +744,25 @@ class ExplicitOperations:
         value: "models.Product",
         **kwargs
     ) -> None:
-        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
+        and the client library should throw before the request is sent.
 
         :param value:
         :type value: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_class_property.metadata['url']
+        url = self.post_required_class_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -763,9 +786,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
+    post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_class_property(
@@ -778,18 +801,19 @@ class ExplicitOperations:
         :param value:
         :type value: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_class_property.metadata['url']
+        url = self.post_optional_class_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -816,9 +840,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
+    post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_parameter(
@@ -826,21 +850,23 @@ class ExplicitOperations:
         body_parameter: List[str],
         **kwargs
     ) -> None:
-        """Test explicitly required array. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put null and the client library should throw before the
+        request is sent.
 
         :param body_parameter:
         :type body_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_array_parameter.metadata['url']
+        url = self.post_required_array_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -864,9 +890,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
+    post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_parameter(
@@ -879,16 +905,17 @@ class ExplicitOperations:
         :param body_parameter:
         :type body_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_array_parameter.metadata['url']
+        url = self.post_optional_array_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -915,9 +942,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
+    post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_property(
@@ -925,23 +952,25 @@ class ExplicitOperations:
         value: List[str],
         **kwargs
     ) -> None:
-        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_array_property.metadata['url']
+        url = self.post_required_array_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -965,9 +994,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
+    post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_property(
@@ -980,18 +1009,19 @@ class ExplicitOperations:
         :param value:
         :type value: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _body_parameter = models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_array_property.metadata['url']
+        url = self.post_optional_array_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1018,9 +1048,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
+    post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_header(
@@ -1028,20 +1058,22 @@ class ExplicitOperations:
         header_parameter: List[str],
         **kwargs
     ) -> None:
-        """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.post_required_array_header.metadata['url']
+        url = self.post_required_array_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1061,9 +1093,9 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
+    post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_header(
@@ -1076,15 +1108,16 @@ class ExplicitOperations:
         :param header_parameter:
         :type header_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.post_optional_array_header.metadata['url']
+        url = self.post_optional_array_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1105,6 +1138,6 @@ class ExplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}
+    post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}  # type: ignore

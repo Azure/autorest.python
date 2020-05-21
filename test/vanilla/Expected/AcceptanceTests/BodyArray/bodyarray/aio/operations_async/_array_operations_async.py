@@ -49,15 +49,16 @@ class ArrayOperations:
         """Get null array value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -79,10 +80,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/array/null'}
+    get_null.metadata = {'url': '/array/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(
@@ -92,15 +93,16 @@ class ArrayOperations:
         """Get invalid array [1, 2, 3.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -122,10 +124,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/array/invalid'}
+    get_invalid.metadata = {'url': '/array/invalid'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(
@@ -135,15 +137,16 @@ class ArrayOperations:
         """Get empty array value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -165,10 +168,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/array/empty'}
+    get_empty.metadata = {'url': '/array/empty'}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(
@@ -181,16 +184,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_empty.metadata['url']
+        url = self.put_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -214,9 +218,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {'url': '/array/empty'}
+    put_empty.metadata = {'url': '/array/empty'}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_tfft(
@@ -226,15 +230,16 @@ class ArrayOperations:
         """Get boolean array value [true, false, false, true].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_boolean_tfft.metadata['url']
+        url = self.get_boolean_tfft.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -256,10 +261,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
+    get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}  # type: ignore
 
     @distributed_trace_async
     async def put_boolean_tfft(
@@ -272,16 +277,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[bool]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_boolean_tfft.metadata['url']
+        url = self.put_boolean_tfft.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -305,9 +311,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
+    put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_invalid_null(
@@ -317,15 +323,16 @@ class ArrayOperations:
         """Get boolean array value [true, null, false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_boolean_invalid_null.metadata['url']
+        url = self.get_boolean_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -347,10 +354,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}
+    get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_invalid_string(
@@ -360,15 +367,16 @@ class ArrayOperations:
         """Get boolean array value [true, 'boolean', false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_boolean_invalid_string.metadata['url']
+        url = self.get_boolean_invalid_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -390,10 +398,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}
+    get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}  # type: ignore
 
     @distributed_trace_async
     async def get_integer_valid(
@@ -403,15 +411,16 @@ class ArrayOperations:
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_integer_valid.metadata['url']
+        url = self.get_integer_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -433,10 +442,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
+    get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}  # type: ignore
 
     @distributed_trace_async
     async def put_integer_valid(
@@ -449,16 +458,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[int]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_integer_valid.metadata['url']
+        url = self.put_integer_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -482,9 +492,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
+    put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}  # type: ignore
 
     @distributed_trace_async
     async def get_int_invalid_null(
@@ -494,15 +504,16 @@ class ArrayOperations:
         """Get integer array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_int_invalid_null.metadata['url']
+        url = self.get_int_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -524,10 +535,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}
+    get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}  # type: ignore
 
     @distributed_trace_async
     async def get_int_invalid_string(
@@ -537,15 +548,16 @@ class ArrayOperations:
         """Get integer array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_int_invalid_string.metadata['url']
+        url = self.get_int_invalid_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -567,10 +579,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}
+    get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}  # type: ignore
 
     @distributed_trace_async
     async def get_long_valid(
@@ -580,15 +592,16 @@ class ArrayOperations:
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_long_valid.metadata['url']
+        url = self.get_long_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -610,10 +623,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
+    get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}  # type: ignore
 
     @distributed_trace_async
     async def put_long_valid(
@@ -626,16 +639,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[long]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_long_valid.metadata['url']
+        url = self.put_long_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -659,9 +673,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
+    put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}  # type: ignore
 
     @distributed_trace_async
     async def get_long_invalid_null(
@@ -671,15 +685,16 @@ class ArrayOperations:
         """Get long array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_long_invalid_null.metadata['url']
+        url = self.get_long_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -701,10 +716,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}
+    get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}  # type: ignore
 
     @distributed_trace_async
     async def get_long_invalid_string(
@@ -714,15 +729,16 @@ class ArrayOperations:
         """Get long array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_long_invalid_string.metadata['url']
+        url = self.get_long_invalid_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -744,10 +760,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}
+    get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}  # type: ignore
 
     @distributed_trace_async
     async def get_float_valid(
@@ -757,15 +773,16 @@ class ArrayOperations:
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_float_valid.metadata['url']
+        url = self.get_float_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -787,10 +804,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
+    get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace_async
     async def put_float_valid(
@@ -803,16 +820,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_float_valid.metadata['url']
+        url = self.put_float_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -836,9 +854,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
+    put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace_async
     async def get_float_invalid_null(
@@ -848,15 +866,16 @@ class ArrayOperations:
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_float_invalid_null.metadata['url']
+        url = self.get_float_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -878,10 +897,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}
+    get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}  # type: ignore
 
     @distributed_trace_async
     async def get_float_invalid_string(
@@ -891,15 +910,16 @@ class ArrayOperations:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_float_invalid_string.metadata['url']
+        url = self.get_float_invalid_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -921,10 +941,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}
+    get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}  # type: ignore
 
     @distributed_trace_async
     async def get_double_valid(
@@ -934,15 +954,16 @@ class ArrayOperations:
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_double_valid.metadata['url']
+        url = self.get_double_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -964,10 +985,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
+    get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace_async
     async def put_double_valid(
@@ -980,16 +1001,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_double_valid.metadata['url']
+        url = self.put_double_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1013,9 +1035,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
+    put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace_async
     async def get_double_invalid_null(
@@ -1025,15 +1047,16 @@ class ArrayOperations:
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_double_invalid_null.metadata['url']
+        url = self.get_double_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1055,10 +1078,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}
+    get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}  # type: ignore
 
     @distributed_trace_async
     async def get_double_invalid_string(
@@ -1068,15 +1091,16 @@ class ArrayOperations:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_double_invalid_string.metadata['url']
+        url = self.get_double_invalid_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1098,10 +1122,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}
+    get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}  # type: ignore
 
     @distributed_trace_async
     async def get_string_valid(
@@ -1111,15 +1135,16 @@ class ArrayOperations:
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_string_valid.metadata['url']
+        url = self.get_string_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1141,10 +1166,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
+    get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace_async
     async def put_string_valid(
@@ -1157,16 +1182,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_string_valid.metadata['url']
+        url = self.put_string_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1190,27 +1216,28 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
+    put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace_async
     async def get_enum_valid(
         self,
         **kwargs
-    ) -> List[Union[str, "FooEnum"]]:
+    ) -> List[Union[str, "models.FooEnum"]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of FooEnum, or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "FooEnum"]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.FooEnum"]]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_enum_valid.metadata['url']
+        url = self.get_enum_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1232,15 +1259,15 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
+    get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace_async
     async def put_enum_valid(
         self,
-        array_body: List[Union[str, "FooEnum"]],
+        array_body: List[Union[str, "models.FooEnum"]],
         **kwargs
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1248,16 +1275,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.FooEnum]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_enum_valid.metadata['url']
+        url = self.put_enum_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1281,27 +1309,28 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
+    put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace_async
     async def get_string_enum_valid(
         self,
         **kwargs
-    ) -> List[Union[str, "Enum0"]]:
+    ) -> List[Union[str, "models.Enum0"]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Enum0, or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "Enum0"]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.Enum0"]]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_string_enum_valid.metadata['url']
+        url = self.get_string_enum_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1323,15 +1352,15 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
+    get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace_async
     async def put_string_enum_valid(
         self,
-        array_body: List[Union[str, "Enum1"]],
+        array_body: List[Union[str, "models.Enum1"]],
         **kwargs
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1339,16 +1368,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.Enum1]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_string_enum_valid.metadata['url']
+        url = self.put_string_enum_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1372,9 +1402,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
+    put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace_async
     async def get_string_with_null(
@@ -1384,15 +1414,16 @@ class ArrayOperations:
         """Get string array value ['foo', null, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_string_with_null.metadata['url']
+        url = self.get_string_with_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1414,10 +1445,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}
+    get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}  # type: ignore
 
     @distributed_trace_async
     async def get_string_with_invalid(
@@ -1427,15 +1458,16 @@ class ArrayOperations:
         """Get string array value ['foo', 123, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_string_with_invalid.metadata['url']
+        url = self.get_string_with_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1457,28 +1489,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}
+    get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}  # type: ignore
 
     @distributed_trace_async
     async def get_uuid_valid(
         self,
         **kwargs
     ) -> List[str]:
-        """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+        """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_uuid_valid.metadata['url']
+        url = self.get_uuid_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1500,10 +1534,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
+    get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_uuid_valid(
@@ -1511,21 +1545,23 @@ class ArrayOperations:
         array_body: List[str],
         **kwargs
     ) -> None:
-        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body:
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_uuid_valid.metadata['url']
+        url = self.put_uuid_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1549,9 +1585,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
+    put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_uuid_invalid_chars(
@@ -1561,15 +1597,16 @@ class ArrayOperations:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_uuid_invalid_chars.metadata['url']
+        url = self.get_uuid_invalid_chars.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1591,10 +1628,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}
+    get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_valid(
@@ -1604,15 +1641,16 @@ class ArrayOperations:
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_valid.metadata['url']
+        url = self.get_date_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1634,10 +1672,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_valid.metadata = {'url': '/array/prim/date/valid'}
+    get_date_valid.metadata = {'url': '/array/prim/date/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_date_valid(
@@ -1650,16 +1688,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[~datetime.date]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_date_valid.metadata['url']
+        url = self.put_date_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1683,9 +1722,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_date_valid.metadata = {'url': '/array/prim/date/valid'}
+    put_date_valid.metadata = {'url': '/array/prim/date/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_invalid_null(
@@ -1695,15 +1734,16 @@ class ArrayOperations:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_invalid_null.metadata['url']
+        url = self.get_date_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1725,10 +1765,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}
+    get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_invalid_chars(
@@ -1738,15 +1778,16 @@ class ArrayOperations:
         """Get date array value ['2011-03-22', 'date'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_invalid_chars.metadata['url']
+        url = self.get_date_invalid_chars.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1768,28 +1809,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}
+    get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_valid(
         self,
         **kwargs
     ) -> List[datetime.datetime]:
-        """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
+        """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_time_valid.metadata['url']
+        url = self.get_date_time_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1811,10 +1854,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
+    get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time_valid(
@@ -1822,21 +1865,23 @@ class ArrayOperations:
         array_body: List[datetime.datetime],
         **kwargs
     ) -> None:
-        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
+        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_date_time_valid.metadata['url']
+        url = self.put_date_time_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1860,9 +1905,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
+    put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_invalid_null(
@@ -1872,15 +1917,16 @@ class ArrayOperations:
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_time_invalid_null.metadata['url']
+        url = self.get_date_time_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1902,10 +1948,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}
+    get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_invalid_chars(
@@ -1915,15 +1961,16 @@ class ArrayOperations:
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_time_invalid_chars.metadata['url']
+        url = self.get_date_time_invalid_chars.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1945,28 +1992,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}
+    get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_rfc1123_valid(
         self,
         **kwargs
     ) -> List[datetime.datetime]:
-        """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
+        """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
+        'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_time_rfc1123_valid.metadata['url']
+        url = self.get_date_time_rfc1123_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1988,10 +2037,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[rfc-1123]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
+    get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(
@@ -1999,21 +2048,23 @@ class ArrayOperations:
         array_body: List[datetime.datetime],
         **kwargs
     ) -> None:
-        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
+        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+        Oct 1492 10:15:01 GMT'].
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_date_time_rfc1123_valid.metadata['url']
+        url = self.put_date_time_rfc1123_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2037,9 +2088,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
+    put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_duration_valid(
@@ -2049,15 +2100,16 @@ class ArrayOperations:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of timedelta, or the result of cls(response)
         :rtype: list[~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.timedelta]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_duration_valid.metadata['url']
+        url = self.get_duration_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2079,10 +2131,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[duration]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
+    get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_duration_valid(
@@ -2095,16 +2147,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[~datetime.timedelta]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_duration_valid.metadata['url']
+        url = self.put_duration_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2128,27 +2181,29 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
+    put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_byte_valid(
         self,
         **kwargs
     ) -> List[bytearray]:
-        """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in base64.
+        """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
+        in base64.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bytearray, or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_byte_valid.metadata['url']
+        url = self.get_byte_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2170,10 +2225,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
+    get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_byte_valid(
@@ -2181,21 +2236,23 @@ class ArrayOperations:
         array_body: List[bytearray],
         **kwargs
     ) -> None:
-        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in base 64.
+        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+        elementencoded in base 64.
 
         :param array_body:
         :type array_body: list[bytearray]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_byte_valid.metadata['url']
+        url = self.put_byte_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2219,9 +2276,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
+    put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_byte_invalid_null(
@@ -2231,15 +2288,16 @@ class ArrayOperations:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bytearray, or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_byte_invalid_null.metadata['url']
+        url = self.get_byte_invalid_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2261,28 +2319,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}
+    get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}  # type: ignore
 
     @distributed_trace_async
     async def get_base64_url(
         self,
         **kwargs
     ) -> List[bytes]:
-        """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with the items base64url encoded.
+        """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
+        the items base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bytes, or the result of cls(response)
         :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_base64_url.metadata['url']
+        url = self.get_base64_url.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2304,28 +2364,29 @@ class ArrayOperations:
         deserialized = self._deserialize('[base64]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}
+    get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_null(
         self,
         **kwargs
-    ) -> List["Product"]:
+    ) -> List["models.Product"]:
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_complex_null.metadata['url']
+        url = self.get_complex_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2347,28 +2408,29 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complex_null.metadata = {'url': '/array/complex/null'}
+    get_complex_null.metadata = {'url': '/array/complex/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_empty(
         self,
         **kwargs
-    ) -> List["Product"]:
+    ) -> List["models.Product"]:
         """Get empty array of complex type [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_complex_empty.metadata['url']
+        url = self.get_complex_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2390,28 +2452,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complex_empty.metadata = {'url': '/array/complex/empty'}
+    get_complex_empty.metadata = {'url': '/array/complex/empty'}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_item_null(
         self,
         **kwargs
-    ) -> List["Product"]:
-        """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5, 'string': '6'}].
+    ) -> List["models.Product"]:
+        """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
+        'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_complex_item_null.metadata['url']
+        url = self.get_complex_item_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2433,28 +2497,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}
+    get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_item_empty(
         self,
         **kwargs
-    ) -> List["Product"]:
-        """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5, 'string': '6'}].
+    ) -> List["models.Product"]:
+        """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
+        'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_complex_item_empty.metadata['url']
+        url = self.get_complex_item_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2476,28 +2542,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}
+    get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_valid(
         self,
         **kwargs
-    ) -> List["Product"]:
-        """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
+    ) -> List["models.Product"]:
+        """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
+        {'integer': 5, 'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_complex_valid.metadata['url']
+        url = self.get_complex_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2519,32 +2587,34 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complex_valid.metadata = {'url': '/array/complex/valid'}
+    get_complex_valid.metadata = {'url': '/array/complex/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_valid(
         self,
-        array_body: List["Product"],
+        array_body: List["models.Product"],
         **kwargs
     ) -> None:
-        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
+        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+        'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
         :type array_body: list[~bodyarray.models.Product]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_complex_valid.metadata['url']
+        url = self.put_complex_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2568,9 +2638,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_complex_valid.metadata = {'url': '/array/complex/valid'}
+    put_complex_valid.metadata = {'url': '/array/complex/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_array_null(
@@ -2580,15 +2650,16 @@ class ArrayOperations:
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_array_null.metadata['url']
+        url = self.get_array_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2610,10 +2681,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_array_null.metadata = {'url': '/array/array/null'}
+    get_array_null.metadata = {'url': '/array/array/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_array_empty(
@@ -2623,15 +2694,16 @@ class ArrayOperations:
         """Get an empty array [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_array_empty.metadata['url']
+        url = self.get_array_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2653,10 +2725,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_array_empty.metadata = {'url': '/array/array/empty'}
+    get_array_empty.metadata = {'url': '/array/array/empty'}  # type: ignore
 
     @distributed_trace_async
     async def get_array_item_null(
@@ -2666,15 +2738,16 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_array_item_null.metadata['url']
+        url = self.get_array_item_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2696,10 +2769,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_array_item_null.metadata = {'url': '/array/array/itemnull'}
+    get_array_item_null.metadata = {'url': '/array/array/itemnull'}  # type: ignore
 
     @distributed_trace_async
     async def get_array_item_empty(
@@ -2709,15 +2782,16 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_array_item_empty.metadata['url']
+        url = self.get_array_item_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2739,10 +2813,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_array_item_empty.metadata = {'url': '/array/array/itemempty'}
+    get_array_item_empty.metadata = {'url': '/array/array/itemempty'}  # type: ignore
 
     @distributed_trace_async
     async def get_array_valid(
@@ -2752,15 +2826,16 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_array_valid.metadata['url']
+        url = self.get_array_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2782,10 +2857,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_array_valid.metadata = {'url': '/array/array/valid'}
+    get_array_valid.metadata = {'url': '/array/array/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_array_valid(
@@ -2798,16 +2873,17 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[list[str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_array_valid.metadata['url']
+        url = self.put_array_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2831,9 +2907,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_array_valid.metadata = {'url': '/array/array/valid'}
+    put_array_valid.metadata = {'url': '/array/array/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_null(
@@ -2843,15 +2919,16 @@ class ArrayOperations:
         """Get an array of Dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_dictionary_null.metadata['url']
+        url = self.get_dictionary_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2873,10 +2950,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_dictionary_null.metadata = {'url': '/array/dictionary/null'}
+    get_dictionary_null.metadata = {'url': '/array/dictionary/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_empty(
@@ -2886,15 +2963,16 @@ class ArrayOperations:
         """Get an array of Dictionaries of type <string, string> with value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_dictionary_empty.metadata['url']
+        url = self.get_dictionary_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2916,28 +2994,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}
+    get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_item_null(
         self,
         **kwargs
     ) -> List[Dict[str, str]]:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_dictionary_item_null.metadata['url']
+        url = self.get_dictionary_item_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2959,28 +3039,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}
+    get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_item_empty(
         self,
         **kwargs
     ) -> List[Dict[str, str]]:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_dictionary_item_empty.metadata['url']
+        url = self.get_dictionary_item_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3002,28 +3084,30 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}
+    get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_valid(
         self,
         **kwargs
     ) -> List[Dict[str, str]]:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_dictionary_valid.metadata['url']
+        url = self.get_dictionary_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3045,10 +3129,10 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
+    get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_dictionary_valid(
@@ -3056,21 +3140,23 @@ class ArrayOperations:
         array_body: List[Dict[str, str]],
         **kwargs
     ) -> None:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body:
         :type array_body: list[dict[str, str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_dictionary_valid.metadata['url']
+        url = self.put_dictionary_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3094,6 +3180,6 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
+    put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}  # type: ignore

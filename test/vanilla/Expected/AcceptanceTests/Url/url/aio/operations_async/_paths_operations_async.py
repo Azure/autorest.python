@@ -49,16 +49,17 @@ class PathsOperations:
         """Get true Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         bool_path = True
 
         # Construct URL
-        url = self.get_boolean_true.metadata['url']
+        url = self.get_boolean_true.metadata['url']  # type: ignore
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool'),
         }
@@ -81,9 +82,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
+    get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_false(
@@ -93,16 +94,17 @@ class PathsOperations:
         """Get false Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         bool_path = False
 
         # Construct URL
-        url = self.get_boolean_false.metadata['url']
+        url = self.get_boolean_false.metadata['url']  # type: ignore
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool'),
         }
@@ -125,9 +127,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
+    get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}  # type: ignore
 
     @distributed_trace_async
     async def get_int_one_million(
@@ -137,16 +139,17 @@ class PathsOperations:
         """Get '1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         int_path = 1000000
 
         # Construct URL
-        url = self.get_int_one_million.metadata['url']
+        url = self.get_int_one_million.metadata['url']  # type: ignore
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int'),
         }
@@ -169,9 +172,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
+    get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}  # type: ignore
 
     @distributed_trace_async
     async def get_int_negative_one_million(
@@ -181,16 +184,17 @@ class PathsOperations:
         """Get '-1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         int_path = -1000000
 
         # Construct URL
-        url = self.get_int_negative_one_million.metadata['url']
+        url = self.get_int_negative_one_million.metadata['url']  # type: ignore
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int'),
         }
@@ -213,9 +217,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
+    get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}  # type: ignore
 
     @distributed_trace_async
     async def get_ten_billion(
@@ -225,16 +229,17 @@ class PathsOperations:
         """Get '10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         long_path = 10000000000
 
         # Construct URL
-        url = self.get_ten_billion.metadata['url']
+        url = self.get_ten_billion.metadata['url']  # type: ignore
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long'),
         }
@@ -257,9 +262,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
+    get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}  # type: ignore
 
     @distributed_trace_async
     async def get_negative_ten_billion(
@@ -269,16 +274,17 @@ class PathsOperations:
         """Get '-10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         long_path = -10000000000
 
         # Construct URL
-        url = self.get_negative_ten_billion.metadata['url']
+        url = self.get_negative_ten_billion.metadata['url']  # type: ignore
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long'),
         }
@@ -301,9 +307,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
+    get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_positive(
@@ -313,16 +319,17 @@ class PathsOperations:
         """Get '1.034E+20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         float_path = 103400000000000000000
 
         # Construct URL
-        url = self.float_scientific_positive.metadata['url']
+        url = self.float_scientific_positive.metadata['url']  # type: ignore
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float'),
         }
@@ -345,9 +352,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
+    float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_negative(
@@ -357,16 +364,17 @@ class PathsOperations:
         """Get '-1.034E-20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         float_path = -1.034e-20
 
         # Construct URL
-        url = self.float_scientific_negative.metadata['url']
+        url = self.float_scientific_negative.metadata['url']  # type: ignore
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float'),
         }
@@ -389,9 +397,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
+    float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_positive(
@@ -401,16 +409,17 @@ class PathsOperations:
         """Get '9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         double_path = 9999999.999
 
         # Construct URL
-        url = self.double_decimal_positive.metadata['url']
+        url = self.double_decimal_positive.metadata['url']  # type: ignore
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float'),
         }
@@ -433,9 +442,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
+    double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_negative(
@@ -445,16 +454,17 @@ class PathsOperations:
         """Get '-9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         double_path = -9999999.999
 
         # Construct URL
-        url = self.double_decimal_negative.metadata['url']
+        url = self.double_decimal_negative.metadata['url']  # type: ignore
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float'),
         }
@@ -477,9 +487,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
+    double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}  # type: ignore
 
     @distributed_trace_async
     async def string_unicode(
@@ -489,16 +499,17 @@ class PathsOperations:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
-        url = self.string_unicode.metadata['url']
+        url = self.string_unicode.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -521,9 +532,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
+    string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}  # type: ignore
 
     @distributed_trace_async
     async def string_url_encoded(
@@ -533,16 +544,17 @@ class PathsOperations:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         string_path = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
-        url = self.string_url_encoded.metadata['url']
+        url = self.string_url_encoded.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -565,9 +577,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
+    string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}  # type: ignore
 
     @distributed_trace_async
     async def string_url_non_encoded(
@@ -579,16 +591,17 @@ class PathsOperations:
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         string_path = "begin!*'();:@&=+$,end"
 
         # Construct URL
-        url = self.string_url_non_encoded.metadata['url']
+        url = self.string_url_non_encoded.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str', skip_quote=True),
         }
@@ -611,9 +624,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}
+    string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}  # type: ignore
 
     @distributed_trace_async
     async def string_empty(
@@ -623,16 +636,17 @@ class PathsOperations:
         """Get ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         string_path = ""
 
         # Construct URL
-        url = self.string_empty.metadata['url']
+        url = self.string_empty.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -655,9 +669,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
+    string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}  # type: ignore
 
     @distributed_trace_async
     async def string_null(
@@ -670,15 +684,16 @@ class PathsOperations:
         :param string_path: null string value.
         :type string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.string_null.metadata['url']
+        url = self.string_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -701,9 +716,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
+    string_null.metadata = {'url': '/paths/string/null/{stringPath}'}  # type: ignore
 
     @distributed_trace_async
     async def enum_valid(
@@ -716,15 +731,16 @@ class PathsOperations:
         :param enum_path: send the value green.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.enum_valid.metadata['url']
+        url = self.enum_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'str'),
         }
@@ -747,9 +763,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
+    enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}  # type: ignore
 
     @distributed_trace_async
     async def enum_null(
@@ -762,15 +778,16 @@ class PathsOperations:
         :param enum_path: send null should throw.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.enum_null.metadata['url']
+        url = self.enum_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'str'),
         }
@@ -793,9 +810,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
+    enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}  # type: ignore
 
     @distributed_trace_async
     async def byte_multi_byte(
@@ -808,15 +825,16 @@ class PathsOperations:
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.byte_multi_byte.metadata['url']
+        url = self.byte_multi_byte.metadata['url']  # type: ignore
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray'),
         }
@@ -839,9 +857,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
+    byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}  # type: ignore
 
     @distributed_trace_async
     async def byte_empty(
@@ -851,16 +869,17 @@ class PathsOperations:
         """Get '' as byte array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         byte_path = bytearray("", encoding="utf-8")
 
         # Construct URL
-        url = self.byte_empty.metadata['url']
+        url = self.byte_empty.metadata['url']  # type: ignore
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray'),
         }
@@ -883,9 +902,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
+    byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}  # type: ignore
 
     @distributed_trace_async
     async def byte_null(
@@ -898,15 +917,16 @@ class PathsOperations:
         :param byte_path: null as byte array (should throw).
         :type byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.byte_null.metadata['url']
+        url = self.byte_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray'),
         }
@@ -929,9 +949,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
+    byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}  # type: ignore
 
     @distributed_trace_async
     async def date_valid(
@@ -941,16 +961,17 @@ class PathsOperations:
         """Get '2012-01-01' as date.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         date_path = "2012-01-01"
 
         # Construct URL
-        url = self.date_valid.metadata['url']
+        url = self.date_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'datePath': self._serialize.url("date_path", date_path, 'date'),
         }
@@ -973,9 +994,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
+    date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}  # type: ignore
 
     @distributed_trace_async
     async def date_null(
@@ -983,20 +1004,22 @@ class PathsOperations:
         date_path: datetime.date,
         **kwargs
     ) -> None:
-        """Get null as date - this should throw or be unusable on the client side, depending on date representation.
+        """Get null as date - this should throw or be unusable on the client side, depending on date
+        representation.
 
         :param date_path: null as date (should throw).
         :type date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.date_null.metadata['url']
+        url = self.date_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'datePath': self._serialize.url("date_path", date_path, 'date'),
         }
@@ -1019,9 +1042,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    date_null.metadata = {'url': '/paths/date/null/{datePath}'}
+    date_null.metadata = {'url': '/paths/date/null/{datePath}'}  # type: ignore
 
     @distributed_trace_async
     async def date_time_valid(
@@ -1031,16 +1054,17 @@ class PathsOperations:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         date_time_path = "2012-01-01T01:01:01Z"
 
         # Construct URL
-        url = self.date_time_valid.metadata['url']
+        url = self.date_time_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'dateTimePath': self._serialize.url("date_time_path", date_time_path, 'iso-8601'),
         }
@@ -1063,9 +1087,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
+    date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}  # type: ignore
 
     @distributed_trace_async
     async def date_time_null(
@@ -1078,15 +1102,16 @@ class PathsOperations:
         :param date_time_path: null as date-time.
         :type date_time_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.date_time_null.metadata['url']
+        url = self.date_time_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'dateTimePath': self._serialize.url("date_time_path", date_time_path, 'iso-8601'),
         }
@@ -1109,9 +1134,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
+    date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}  # type: ignore
 
     @distributed_trace_async
     async def base64_url(
@@ -1124,15 +1149,16 @@ class PathsOperations:
         :param base64_url_path: base64url encoded value.
         :type base64_url_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.base64_url.metadata['url']
+        url = self.base64_url.metadata['url']  # type: ignore
         path_format_arguments = {
             'base64UrlPath': self._serialize.url("base64_url_path", base64_url_path, 'base64'),
         }
@@ -1155,9 +1181,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
+    base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}  # type: ignore
 
     @distributed_trace_async
     async def array_csv_in_path(
@@ -1165,21 +1191,23 @@ class PathsOperations:
         array_path: List[str],
         **kwargs
     ) -> None:
-        """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
+        """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
+        array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
          using the csv-array format.
         :type array_path: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.array_csv_in_path.metadata['url']
+        url = self.array_csv_in_path.metadata['url']  # type: ignore
         path_format_arguments = {
             'arrayPath': self._serialize.url("array_path", array_path, '[str]', div=','),
         }
@@ -1202,9 +1230,9 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
+    array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}  # type: ignore
 
     @distributed_trace_async
     async def unix_time_url(
@@ -1217,15 +1245,16 @@ class PathsOperations:
         :param unix_time_url_path: Unix time encoded value.
         :type unix_time_url_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.unix_time_url.metadata['url']
+        url = self.unix_time_url.metadata['url']  # type: ignore
         path_format_arguments = {
             'unixTimeUrlPath': self._serialize.url("unix_time_url_path", unix_time_url_path, 'unix-time'),
         }
@@ -1248,6 +1277,6 @@ class PathsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}
+    unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}  # type: ignore

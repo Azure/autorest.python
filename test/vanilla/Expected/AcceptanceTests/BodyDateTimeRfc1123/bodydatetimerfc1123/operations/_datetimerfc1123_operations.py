@@ -54,15 +54,16 @@ class Datetimerfc1123Operations(object):
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -84,10 +85,10 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/datetimerfc1123/null'}
+    get_null.metadata = {'url': '/datetimerfc1123/null'}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -98,15 +99,16 @@ class Datetimerfc1123Operations(object):
         """Get invalid datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -128,10 +130,10 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
+    get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}  # type: ignore
 
     @distributed_trace
     def get_overflow(
@@ -142,15 +144,16 @@ class Datetimerfc1123Operations(object):
         """Get overflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_overflow.metadata['url']
+        url = self.get_overflow.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -172,10 +175,10 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
+    get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}  # type: ignore
 
     @distributed_trace
     def get_underflow(
@@ -186,15 +189,16 @@ class Datetimerfc1123Operations(object):
         """Get underflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_underflow.metadata['url']
+        url = self.get_underflow.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -216,10 +220,10 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
+    get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(
@@ -233,16 +237,17 @@ class Datetimerfc1123Operations(object):
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_utc_max_date_time.metadata['url']
+        url = self.put_utc_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -266,9 +271,9 @@ class Datetimerfc1123Operations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
+    put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}  # type: ignore
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(
@@ -279,15 +284,16 @@ class Datetimerfc1123Operations(object):
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_utc_lowercase_max_date_time.metadata['url']
+        url = self.get_utc_lowercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -309,10 +315,10 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
+    get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(
@@ -323,15 +329,16 @@ class Datetimerfc1123Operations(object):
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time.metadata['url']
+        url = self.get_utc_uppercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -353,10 +360,10 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
+    get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(
@@ -370,16 +377,17 @@ class Datetimerfc1123Operations(object):
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_utc_min_date_time.metadata['url']
+        url = self.put_utc_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -403,9 +411,9 @@ class Datetimerfc1123Operations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
+    put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore
 
     @distributed_trace
     def get_utc_min_date_time(
@@ -416,15 +424,16 @@ class Datetimerfc1123Operations(object):
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_utc_min_date_time.metadata['url']
+        url = self.get_utc_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -446,7 +455,7 @@ class Datetimerfc1123Operations(object):
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
+    get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore

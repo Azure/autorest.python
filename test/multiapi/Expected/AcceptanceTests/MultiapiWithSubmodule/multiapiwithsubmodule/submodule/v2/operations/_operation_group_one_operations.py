@@ -54,17 +54,18 @@ class OperationGroupOneOperations(object):
         :param parameter_one: A ModelTwo parameter.
         :type parameter_one: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
+        :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0.0"
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.test_two.metadata['url']
+        url = self.test_two.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -95,10 +96,10 @@ class OperationGroupOneOperations(object):
         deserialized = self._deserialize('ModelTwo', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}
+    test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
 
     def test_three(
         self,
@@ -108,16 +109,17 @@ class OperationGroupOneOperations(object):
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0.0"
 
         # Construct URL
-        url = self.test_three.metadata['url']
+        url = self.test_three.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -137,6 +139,6 @@ class OperationGroupOneOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}
+    test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore

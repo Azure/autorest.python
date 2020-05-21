@@ -13,7 +13,7 @@ __version__ = VERSION
 __all__ = ['AutoRestRFC1123DateTimeTestService']
 
 try:
-    from .patch import patch_sdk
+    from ._patch import patch_sdk
     patch_sdk()
 except ImportError:
     pass

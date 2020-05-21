@@ -48,15 +48,16 @@ class FlattencomplexOperations:
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyBaseType or the result of cls(response)
+        :return: MyBaseType, or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyBaseType"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -77,7 +78,7 @@ class FlattencomplexOperations:
         deserialized = self._deserialize('MyBaseType', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/flatten/valid'}
+    get_valid.metadata = {'url': '/complex/flatten/valid'}  # type: ignore

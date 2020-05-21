@@ -19,6 +19,8 @@ from .client import Client
 from .parameter_list import ParameterList
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
+from .property import Property
+from .primitive_schemas import IOSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -53,37 +55,18 @@ class CredentialSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import(
-            "azure.core.credentials", "TokenCredential",
-            ImportType.AZURECORE,
-            typing_section=TypingSection.TYPING
-        )
-        return file_import
-
-
-class IOSchema(BaseSchema):
-    def __init__(self) -> None:  # pylint: disable=super-init-not-called
-        self.type = "IO"
-
-    @property
-    def serialization_type(self) -> str:
-        return self.type
-
-    @property
-    def docstring_type(self) -> str:
-        return self.type
-
-    @property
-    def type_annotation(self) -> str:
-        return self.docstring_type
-
-    @property
-    def docstring_text(self) -> str:
-        return "IO"
-
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if self.async_mode:
+            file_import.add_from_import(
+                "azure.core.credentials_async", "AsyncTokenCredential",
+                ImportType.AZURECORE,
+                typing_section=TypingSection.TYPING
+            )
+        else:
+            file_import.add_from_import(
+                "azure.core.credentials", "TokenCredential",
+                ImportType.AZURECORE,
+                typing_section=TypingSection.TYPING
+            )
         return file_import
 
 
@@ -144,6 +127,28 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
 
+    @staticmethod
+    def _sort_schemas_helper(current, seen_schema_names, seen_schema_yaml_ids):
+        if current.id in seen_schema_yaml_ids:
+            return []
+        if current.name in seen_schema_names:
+            raise ValueError(
+                f"We have already generated a schema with name {current.name}"
+            )
+        ancestors = [current]
+        if current.base_models:
+            for base_model in current.base_models:
+                parent = cast(ObjectSchema, base_model)
+                if parent.id in seen_schema_yaml_ids:
+                    continue
+                seen_schema_names.add(current.name)
+                seen_schema_yaml_ids.add(current.id)
+                ancestors = CodeModel._sort_schemas_helper(parent, seen_schema_names, seen_schema_yaml_ids) + ancestors
+        seen_schema_names.add(current.name)
+        seen_schema_yaml_ids.add(current.id)
+        return ancestors
+
+
     def sort_schemas(self) -> None:
         """Sorts the final object schemas by inheritance and by alphabetical order.
 
@@ -154,26 +159,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         seen_schema_yaml_ids: Set[int] = set()
         sorted_schemas: List[ObjectSchema] = []
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
-            if schema.id in seen_schema_yaml_ids:
-                continue
-            if schema.name in seen_schema_names:
-                raise ValueError(
-                    f"We have already generated a schema with name {schema.name}"
-                )
-            ancestors = []
-            current = schema
-            ancestors.append(schema)
-            while current.base_model:
-                parent = cast(ObjectSchema, current.base_model)
-                if parent.id in seen_schema_yaml_ids:
-                    break
-                ancestors.insert(0, parent)
-                seen_schema_names.add(current.name)
-                seen_schema_yaml_ids.add(current.id)
-                current = parent
-            seen_schema_names.add(current.name)
-            seen_schema_yaml_ids.add(current.id)
-            sorted_schemas += ancestors
+            sorted_schemas.extend(CodeModel._sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids))
         self.sorted_schemas = sorted_schemas
 
     def add_credential_global_parameter(self) -> None:
@@ -256,6 +242,25 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 operation for operation in operation_group.operations if operation not in next_operations
             ]
 
+    @staticmethod
+    def _add_properties_from_inheritance_helper(schema, properties) -> List[Property]:
+        if not schema.base_models:
+            return properties
+        if schema.base_models:
+            for base_model in schema.base_models:
+                parent = cast(ObjectSchema, base_model)
+                schema_property_names = [p.name for p in properties]
+                chosen_parent_properties = [
+                    p for p in parent.properties
+                    if p.name not in schema_property_names
+                ]
+                properties = (
+                    CodeModel._add_properties_from_inheritance_helper(parent, chosen_parent_properties) +
+                    properties
+                )
+
+        return properties
+
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.
 
@@ -263,17 +268,17 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :rtype: None
         """
         for schema in self.schemas.values():
-            base_model = cast(ObjectSchema, schema.base_model)
-            if base_model:
-                parent = base_model
-                while parent:
-                    schema_property_names = [s.name for s in schema.properties]
-                    chosen_parent_properties = [
-                        p for p in parent.properties
-                        if p.name not in schema_property_names
-                    ]
-                    schema.properties = chosen_parent_properties + schema.properties
-                    parent = cast(ObjectSchema, parent.base_model)
+            schema.properties = CodeModel._add_properties_from_inheritance_helper(schema, schema.properties)
+
+    @staticmethod
+    def _add_exceptions_from_inheritance_helper(schema) -> bool:
+        if schema.is_exception:
+            return True
+        parent_is_exception: List[bool] = []
+        for base_model in schema.base_models:
+            parent = cast(ObjectSchema, base_model)
+            parent_is_exception.append(CodeModel._add_exceptions_from_inheritance_helper(parent))
+        return any(parent_is_exception)
 
     def _add_exceptions_from_inheritance(self) -> None:
         """Sets a class as an exception if it's parent is an exception.
@@ -282,14 +287,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :rtype: None
         """
         for schema in self.schemas.values():
-            base_model = cast(ObjectSchema, schema.base_model)
-            if base_model:
-                parent = base_model
-                while parent:
-                    if parent.is_exception:
-                        schema.is_exception = True
-                        break
-                    parent = cast(ObjectSchema, parent.base_model)
+            schema.is_exception = CodeModel._add_exceptions_from_inheritance_helper(schema)
 
     def add_inheritance_to_models(self) -> None:
         """Adds base classes and properties from base classes to schemas with parents.
@@ -298,9 +296,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :rtype: None
         """
         for schema in self.schemas.values():
-            if schema.base_model:
+            if schema.base_models:
                 # right now, the base model property just holds the name of the parent class
-                schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
+                schema.base_models = [b for b in self.schemas.values() if b.id in schema.base_models]
         self._add_properties_from_inheritance()
         self._add_exceptions_from_inheritance()
 
@@ -328,7 +326,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         if isinstance(obj, Parameter) and obj.target_property_name:
             self._populate_target_property(obj)
         if isinstance(obj, SchemaResponse) and obj.is_stream_response:
-            obj.schema = IOSchema()
+            obj.schema = IOSchema(namespace=None, yaml_data={})
 
     def add_schema_link_to_operation(self) -> None:
         """Puts created schemas into operation classes `schema` property
@@ -360,7 +358,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     type_annot = ", ".join([
                         param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
                     ])
-                    docstring_type = ", ".join([
+                    docstring_type = " or ".join([
                         param.schema.docstring_type for param in operation.multiple_media_type_parameters
                     ])
                     chosen_parameter = next(

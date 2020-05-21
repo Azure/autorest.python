@@ -53,15 +53,16 @@ class ByteOperations(object):
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -83,10 +84,10 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/byte/null'}
+    get_null.metadata = {'url': '/byte/null'}  # type: ignore
 
     @distributed_trace
     def get_empty(
@@ -97,15 +98,16 @@ class ByteOperations(object):
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -127,10 +129,10 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/byte/empty'}
+    get_empty.metadata = {'url': '/byte/empty'}  # type: ignore
 
     @distributed_trace
     def get_non_ascii(
@@ -141,15 +143,16 @@ class ByteOperations(object):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_non_ascii.metadata['url']
+        url = self.get_non_ascii.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -171,10 +174,10 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_non_ascii.metadata = {'url': '/byte/nonAscii'}
+    get_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
 
     @distributed_trace
     def put_non_ascii(
@@ -188,16 +191,17 @@ class ByteOperations(object):
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
         :type byte_body: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_non_ascii.metadata['url']
+        url = self.put_non_ascii.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -221,9 +225,9 @@ class ByteOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_non_ascii.metadata = {'url': '/byte/nonAscii'}
+    put_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -234,15 +238,16 @@ class ByteOperations(object):
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -264,7 +269,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/byte/invalid'}
+    get_invalid.metadata = {'url': '/byte/invalid'}  # type: ignore

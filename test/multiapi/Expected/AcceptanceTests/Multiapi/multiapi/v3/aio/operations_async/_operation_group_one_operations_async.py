@@ -49,17 +49,18 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelThree parameter.
         :type parameter_one: ~multiapi.v3.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelThree or the result of cls(response)
+        :return: ModelThree, or the result of cls(response)
         :rtype: ~multiapi.v3.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelThree"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.test_two.metadata['url']
+        url = self.test_two.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -90,7 +91,7 @@ class OperationGroupOneOperations:
         deserialized = self._deserialize('ModelThree', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}
+    test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore

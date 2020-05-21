@@ -49,7 +49,9 @@ class PathItemsOperations:
         local_string_query: Optional[str] = None,
         **kwargs
     ) -> None:
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -61,15 +63,16 @@ class PathItemsOperations:
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_all_with_values.metadata['url']
+        url = self.get_all_with_values.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -100,9 +103,9 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
+    get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}  # type: ignore
 
     @distributed_trace_async
     async def get_global_query_null(
@@ -113,7 +116,9 @@ class PathItemsOperations:
         local_string_query: Optional[str] = None,
         **kwargs
     ) -> None:
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery=null,
+        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -125,15 +130,16 @@ class PathItemsOperations:
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_global_query_null.metadata['url']
+        url = self.get_global_query_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -164,9 +170,9 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
+    get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}  # type: ignore
 
     @distributed_trace_async
     async def get_global_and_local_query_null(
@@ -177,7 +183,9 @@ class PathItemsOperations:
         local_string_query: Optional[str] = None,
         **kwargs
     ) -> None:
-        """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
+        """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery=null,
+        pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -189,15 +197,16 @@ class PathItemsOperations:
         :param local_string_query: should contain null value.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_global_and_local_query_null.metadata['url']
+        url = self.get_global_and_local_query_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -228,9 +237,9 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
+    get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_local_path_item_query_null(
@@ -241,7 +250,9 @@ class PathItemsOperations:
         local_string_query: Optional[str] = None,
         **kwargs
     ) -> None:
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+        pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -252,15 +263,16 @@ class PathItemsOperations:
         :param local_string_query: should contain value null.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_local_path_item_query_null.metadata['url']
+        url = self.get_local_path_item_query_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -291,6 +303,6 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}
+    get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}  # type: ignore

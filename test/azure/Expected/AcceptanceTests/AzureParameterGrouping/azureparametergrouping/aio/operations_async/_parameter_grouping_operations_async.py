@@ -51,12 +51,13 @@ class ParameterGroupingOperations:
         :param parameter_grouping_post_required_parameters: Parameter group.
         :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _custom_header = None
         _query = None
@@ -70,7 +71,7 @@ class ParameterGroupingOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required.metadata['url']
+        url = self.post_required.metadata['url']  # type: ignore
         path_format_arguments = {
             'path': self._serialize.url("path", _path, 'str'),
         }
@@ -102,9 +103,9 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
+    post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}  # type: ignore
 
     @distributed_trace_async
     async def post_optional(
@@ -117,12 +118,13 @@ class ParameterGroupingOperations:
         :param parameter_grouping_post_optional_parameters: Parameter group.
         :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _custom_header = None
         _query = None
@@ -131,7 +133,7 @@ class ParameterGroupingOperations:
             _query = parameter_grouping_post_optional_parameters.query
 
         # Construct URL
-        url = self.post_optional.metadata['url']
+        url = self.post_optional.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -154,9 +156,9 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
+    post_optional.metadata = {'url': '/parameterGrouping/postOptional'}  # type: ignore
 
     @distributed_trace_async
     async def post_multi_param_groups(
@@ -172,12 +174,13 @@ class ParameterGroupingOperations:
         :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
         :type parameter_grouping_post_multi_param_groups_second_param_group: ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _header_one = None
         _query_one = None
@@ -191,7 +194,7 @@ class ParameterGroupingOperations:
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
         # Construct URL
-        url = self.post_multi_param_groups.metadata['url']
+        url = self.post_multi_param_groups.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -218,9 +221,9 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
+    post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}  # type: ignore
 
     @distributed_trace_async
     async def post_shared_parameter_group_object(
@@ -233,12 +236,13 @@ class ParameterGroupingOperations:
         :param first_parameter_group: Parameter group.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _header_one = None
         _query_one = None
@@ -247,7 +251,7 @@ class ParameterGroupingOperations:
             _query_one = first_parameter_group.query_one
 
         # Construct URL
-        url = self.post_shared_parameter_group_object.metadata['url']
+        url = self.post_shared_parameter_group_object.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -270,6 +274,6 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}
+    post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}  # type: ignore

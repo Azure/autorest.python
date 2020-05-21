@@ -34,12 +34,16 @@ class ListSchema(BaseSchema):
         return f"List[{self.element_type.type_annotation}]"
 
     @property
+    def operation_type_annotation(self) -> str:
+        return f"List[{self.element_type.operation_type_annotation}]"
+
+    @property
     def docstring_type(self) -> str:
         return f"list[{self.element_type.docstring_type}]"
 
     @property
     def docstring_text(self) -> str:
-        return "list"
+        return f"list of {self.element_type.docstring_text}"
 
     @property
     def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:

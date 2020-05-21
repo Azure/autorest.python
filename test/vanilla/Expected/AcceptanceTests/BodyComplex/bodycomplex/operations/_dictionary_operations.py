@@ -53,15 +53,16 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -83,10 +84,10 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
+    get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
 
     @distributed_trace
     def put_valid(
@@ -100,18 +101,19 @@ class DictionaryOperations(object):
         :param default_program: Dictionary of :code:`<string>`.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _complex_body = models.DictionaryWrapper(default_program=default_program)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -135,9 +137,9 @@ class DictionaryOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
+    put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
 
     @distributed_trace
     def get_empty(
@@ -148,15 +150,16 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -178,10 +181,10 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
+    get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
 
     @distributed_trace
     def put_empty(
@@ -195,18 +198,19 @@ class DictionaryOperations(object):
         :param default_program: Dictionary of :code:`<string>`.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _complex_body = models.DictionaryWrapper(default_program=default_program)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_empty.metadata['url']
+        url = self.put_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -230,9 +234,9 @@ class DictionaryOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
+    put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
 
     @distributed_trace
     def get_null(
@@ -243,15 +247,16 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -273,10 +278,10 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/complex/dictionary/typed/null'}
+    get_null.metadata = {'url': '/complex/dictionary/typed/null'}  # type: ignore
 
     @distributed_trace
     def get_not_provided(
@@ -287,15 +292,16 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_not_provided.metadata['url']
+        url = self.get_not_provided.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -317,7 +323,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}
+    get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}  # type: ignore

@@ -54,15 +54,16 @@ class TimeOperations(object):
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: time or the result of cls(response)
+        :return: time, or the result of cls(response)
         :rtype: ~datetime.time
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.time]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -84,10 +85,10 @@ class TimeOperations(object):
         deserialized = self._deserialize('time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get.metadata = {'url': '/time/get'}
+    get.metadata = {'url': '/time/get'}  # type: ignore
 
     @distributed_trace
     def put(
@@ -101,16 +102,17 @@ class TimeOperations(object):
         :param time_body: Put time value "08:07:56" in parameter to pass testserver.
         :type time_body: ~datetime.time
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[str]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put.metadata['url']
+        url = self.put.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -137,7 +139,7 @@ class TimeOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put.metadata = {'url': '/time/put'}
+    put.metadata = {'url': '/time/put'}  # type: ignore

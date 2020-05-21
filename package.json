@@ -1,6 +1,6 @@
 {
   "name": "@autorest/python",
-  "version": "5.0.0-preview.1",
+  "version": "5.0.0-preview.7",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "prepare": "python prepare.py",
@@ -24,7 +24,8 @@
   "homepage": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
   "devDependencies": {
     "@autorest/autorest": "^3.0.0",
-    "@microsoft.azure/autorest.testserver": "^2.10.26"
+    "@azure-tools/extension": "^3.0.249",
+    "@microsoft.azure/autorest.testserver": "^2.10.38"
   },
   "files": [
     "autorest/**/*.py",
@@ -33,6 +34,7 @@
     "install.py",
     "prepare.py",
     "start.py",
-    "venvtools.py"
+    "venvtools.py",
+    "run-python3.js"
   ]
 }

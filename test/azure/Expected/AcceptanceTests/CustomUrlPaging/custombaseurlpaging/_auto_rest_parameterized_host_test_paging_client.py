@@ -15,6 +15,8 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
+    from azure.core.credentials import TokenCredential
+
 from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
 from .operations import PagingOperations
 from . import models
@@ -29,6 +31,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :type credential: ~azure.core.credentials.TokenCredential
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(

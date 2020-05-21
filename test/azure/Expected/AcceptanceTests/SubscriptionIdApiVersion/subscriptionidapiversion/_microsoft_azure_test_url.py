@@ -15,6 +15,8 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
+    from azure.core.credentials import TokenCredential
+
 from ._configuration import MicrosoftAzureTestUrlConfiguration
 from .operations import GroupOperations
 from . import models
@@ -30,6 +32,7 @@ class MicrosoftAzureTestUrl(object):
     :param subscription_id: Subscription Id.
     :type subscription_id: str
     :param str base_url: Service URL
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(

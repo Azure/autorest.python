@@ -6,18 +6,23 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from azure.core.credentials_async import AsyncTokenCredential
+
 from ._configuration_async import MultiapiServiceClientConfiguration
+from .operations_async import MultiapiServiceClientOperationsMixin
 from .operations_async import OperationGroupOneOperations
 from .operations_async import OperationGroupTwoOperations
 from .. import models
 
 
-class MultiapiServiceClient(object):
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations
@@ -27,6 +32,7 @@ class MultiapiServiceClient(object):
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param str base_url: Service URL
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(

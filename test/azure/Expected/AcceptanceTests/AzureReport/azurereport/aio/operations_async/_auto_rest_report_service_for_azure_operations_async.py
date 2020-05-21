@@ -33,15 +33,16 @@ class AutoRestReportServiceForAzureOperationsMixin:
          distinguish the generated reports.
         :type qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
+        :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_report.metadata['url']
+        url = self.get_report.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -65,7 +66,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
         deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_report.metadata = {'url': '/report/azure'}
+    get_report.metadata = {'url': '/report/azure'}  # type: ignore

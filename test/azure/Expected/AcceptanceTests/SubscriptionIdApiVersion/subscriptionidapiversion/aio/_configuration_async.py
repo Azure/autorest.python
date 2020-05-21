@@ -15,7 +15,7 @@ from .._version import VERSION
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials_async import AsyncTokenCredential
 
 
 class MicrosoftAzureTestUrlConfiguration(Configuration):
@@ -46,6 +46,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
         self.subscription_id = subscription_id
         self.api_version = "2014-04-01-preview"
         self.credential_scopes = ['https://management.azure.com/.default']
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'microsoftazuretesturl/{}'.format(VERSION))
         self._configure(**kwargs)
 

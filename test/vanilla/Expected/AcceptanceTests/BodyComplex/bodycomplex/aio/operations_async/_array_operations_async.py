@@ -48,15 +48,16 @@ class ArrayOperations:
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper or the result of cls(response)
+        :return: ArrayWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -78,10 +79,10 @@ class ArrayOperations:
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/array/valid'}
+    get_valid.metadata = {'url': '/complex/array/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(
@@ -94,18 +95,19 @@ class ArrayOperations:
         :param array:
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _complex_body = models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -129,9 +131,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/array/valid'}
+    put_valid.metadata = {'url': '/complex/array/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(
@@ -141,15 +143,16 @@ class ArrayOperations:
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper or the result of cls(response)
+        :return: ArrayWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -171,10 +174,10 @@ class ArrayOperations:
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/complex/array/empty'}
+    get_empty.metadata = {'url': '/complex/array/empty'}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(
@@ -187,18 +190,19 @@ class ArrayOperations:
         :param array:
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _complex_body = models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_empty.metadata['url']
+        url = self.put_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -222,9 +226,9 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {'url': '/complex/array/empty'}
+    put_empty.metadata = {'url': '/complex/array/empty'}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(
@@ -234,15 +238,16 @@ class ArrayOperations:
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ArrayWrapper or the result of cls(response)
+        :return: ArrayWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_not_provided.metadata['url']
+        url = self.get_not_provided.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -264,7 +269,7 @@ class ArrayOperations:
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_not_provided.metadata = {'url': '/complex/array/notprovided'}
+    get_not_provided.metadata = {'url': '/complex/array/notprovided'}  # type: ignore

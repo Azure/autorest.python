@@ -51,7 +51,7 @@ class PetOperations:
         :param pet_id: pet id.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or the result of cls(response)
+        :return: Pet, or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +65,7 @@ class PetOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_pet_by_id.metadata['url']
+        url = self.get_pet_by_id.metadata['url']  # type: ignore
         path_format_arguments = {
             'petId': self._serialize.url("pet_id", pet_id, 'str'),
         }
@@ -92,10 +92,10 @@ class PetOperations:
             deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}
+    get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}  # type: ignore
 
     @distributed_trace_async
     async def do_something(
@@ -108,7 +108,7 @@ class PetOperations:
         :param what_action: what action the pet should do.
         :type what_action: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAction or the result of cls(response)
+        :return: PetAction, or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -121,7 +121,7 @@ class PetOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.do_something.metadata['url']
+        url = self.do_something.metadata['url']  # type: ignore
         path_format_arguments = {
             'whatAction': self._serialize.url("what_action", what_action, 'str'),
         }
@@ -147,7 +147,7 @@ class PetOperations:
         deserialized = self._deserialize('PetAction', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}
+    do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}  # type: ignore

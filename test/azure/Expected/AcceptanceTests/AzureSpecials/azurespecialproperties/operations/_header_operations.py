@@ -57,15 +57,16 @@ class HeaderOperations(object):
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.custom_named_request_id.metadata['url']
+        url = self.custom_named_request_id.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -88,9 +89,9 @@ class HeaderOperations(object):
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
+    custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_param_grouping(
@@ -99,24 +100,26 @@ class HeaderOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
+        """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
+        via a parameter group.
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
         :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
         # Construct URL
-        url = self.custom_named_request_id_param_grouping.metadata['url']
+        url = self.custom_named_request_id_param_grouping.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -139,9 +142,9 @@ class HeaderOperations(object):
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
+    custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_head(
@@ -155,15 +158,16 @@ class HeaderOperations(object):
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.custom_named_request_id_head.metadata['url']
+        url = self.custom_named_request_id_head.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -187,7 +191,7 @@ class HeaderOperations(object):
             response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
         return 200 <= response.status_code <= 299
-    custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}
+    custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}  # type: ignore

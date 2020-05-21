@@ -37,16 +37,17 @@ class MultiapiServiceClientOperationsMixin(object):
         :param message: An optional string parameter.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
+        :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0.0"
 
         # Construct URL
-        url = self.test_one.metadata['url']
+        url = self.test_one.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -72,7 +73,7 @@ class MultiapiServiceClientOperationsMixin(object):
         deserialized = self._deserialize('ModelTwo', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}
+    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore

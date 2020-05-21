@@ -183,11 +183,16 @@ class TestComplex(object):
             now=isodate.parse_datetime("2015-05-18T18:38:00Z"))
         client.primitive.put_date_time(datetime_request)
 
-    def test_primitive_get_and_put_date_time_rfc1123(self, client, min_date):
+    def test_primitive_get_and_put_date_time_rfc1123(self, client):
         # GET primitive/datetimerfc1123
         datetimeRfc1123Result = client.primitive.get_date_time_rfc1123()
-        assert min_date ==  datetimeRfc1123Result.field
 
+        # we are not using the min date of year 1 because of the latest msrest update
+        # with msrest update, minimal year we can parse is 100, instead of 1
+        min_date = datetime(2001, 1, 1)
+        assert min_date.replace(tzinfo=UTC()) ==  datetimeRfc1123Result.field
+
+        # we can still model year 1 though with the latest msrest update
         datetime_request = Datetimerfc1123Wrapper(
             field=isodate.parse_datetime("0001-01-01T00:00:00Z"),
             now=isodate.parse_datetime("2015-05-18T11:38:00Z"))

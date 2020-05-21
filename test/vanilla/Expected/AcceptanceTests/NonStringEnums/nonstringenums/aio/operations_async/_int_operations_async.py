@@ -45,16 +45,17 @@ class IntOperations:
         :param input: Input int enum.
         :type input: str or ~nonstringenums.models.IntEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[str]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put.metadata['url']
+        url = self.put.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -83,10 +84,10 @@ class IntOperations:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put.metadata = {'url': '/nonStringEnums/int/put'}
+    put.metadata = {'url': '/nonStringEnums/int/put'}  # type: ignore
 
     @distributed_trace_async
     async def get(
@@ -96,15 +97,16 @@ class IntOperations:
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntEnum or the result of cls(response)
+        :return: IntEnum, or the result of cls(response)
         :rtype: str or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "models.IntEnum"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,7 +127,7 @@ class IntOperations:
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get.metadata = {'url': '/nonStringEnums/int/get'}
+    get.metadata = {'url': '/nonStringEnums/int/get'}  # type: ignore

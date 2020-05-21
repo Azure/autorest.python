@@ -1,0 +1,55 @@
+{
+    "chosen_version": "3.0.0",
+    "total_api_version_list": ["3.0.0"],
+    "client": {
+        "name": "MultiapiServiceClient",
+        "filename": "_multiapi_service_client",
+        "description": "Service client for multiapi client testing."
+    },
+    "global_parameters": {
+        "sync_method": {
+            "credential": {
+                "method_signature": "credential,  # type: \"TokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials.TokenCredential",
+                "required": true
+            }
+        },
+        "async_method": {
+            "credential": {
+                "method_signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
+                "required": true
+            }
+        },
+        "constant": {
+        },
+        "call": "credential"
+    },
+    "config": {
+        "credential": true,
+        "credential_scopes": []
+    },
+    "operation_groups": {
+        "operation_group_one": "OperationGroupOneOperations",
+        "operation_group_two": "OperationGroupTwoOperations"
+    },
+    "operation_mixins": {
+        "test_paging" : {
+            "sync": {
+                "operation_name": "test_paging",
+                "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n"
+            },
+            "async": {
+                "operation_name": "test_paging",
+                "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.PagingResult\"]:\n",
+                "coroutine": false
+            },
+            "doc": "    \"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~multiapinoasync.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+            "call": ""
+        }
+    },
+    "sync_imports": "from typing import TYPE_CHECKING\nimport warnings\n\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.paging import ItemPaged\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import HttpRequest, HttpResponse\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar",
+    "async_imports": "from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar\nimport warnings\n\nfrom azure.core.async_paging import AsyncItemPaged, AsyncList\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest"
+}

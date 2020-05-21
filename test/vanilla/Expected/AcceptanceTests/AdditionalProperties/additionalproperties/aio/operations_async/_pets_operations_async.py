@@ -51,16 +51,17 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPTrue or the result of cls(response)
+        :return: PetAPTrue, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_true.metadata['url']
+        url = self.create_ap_true.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -87,10 +88,10 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPTrue', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_true.metadata = {'url': '/additionalProperties/true'}
+    create_ap_true.metadata = {'url': '/additionalProperties/true'}  # type: ignore
 
     @distributed_trace_async
     async def create_cat_ap_true(
@@ -103,16 +104,17 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.CatAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CatAPTrue or the result of cls(response)
+        :return: CatAPTrue, or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_cat_ap_true.metadata['url']
+        url = self.create_cat_ap_true.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -139,10 +141,10 @@ class PetsOperations:
         deserialized = self._deserialize('CatAPTrue', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
+    create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_object(
@@ -155,16 +157,17 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPObject
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPObject or the result of cls(response)
+        :return: PetAPObject, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_object.metadata['url']
+        url = self.create_ap_object.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -191,10 +194,10 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPObject', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
+    create_ap_object.metadata = {'url': '/additionalProperties/type/object'}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_string(
@@ -207,16 +210,17 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPString or the result of cls(response)
+        :return: PetAPString, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_string.metadata['url']
+        url = self.create_ap_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -243,10 +247,10 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPString', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
+    create_ap_string.metadata = {'url': '/additionalProperties/type/string'}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_in_properties(
@@ -259,16 +263,17 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInProperties or the result of cls(response)
+        :return: PetAPInProperties, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_in_properties.metadata['url']
+        url = self.create_ap_in_properties.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -295,10 +300,10 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPInProperties', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
+    create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
@@ -311,16 +316,17 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInPropertiesWithAPString or the result of cls(response)
+        :return: PetAPInPropertiesWithAPString, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_in_properties_with_ap_string.metadata['url']
+        url = self.create_ap_in_properties_with_ap_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -347,7 +353,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}
+    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}  # type: ignore

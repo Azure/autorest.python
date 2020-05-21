@@ -54,15 +54,16 @@ class PrimitiveOperations(object):
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntWrapper or the result of cls(response)
+        :return: IntWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.IntWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.IntWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_int.metadata['url']
+        url = self.get_int.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -84,10 +85,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('IntWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_int.metadata = {'url': '/complex/primitive/integer'}
+    get_int.metadata = {'url': '/complex/primitive/integer'}  # type: ignore
 
     @distributed_trace
     def put_int(
@@ -101,16 +102,17 @@ class PrimitiveOperations(object):
         :param complex_body: Please put -1 and 2.
         :type complex_body: ~bodycomplex.models.IntWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_int.metadata['url']
+        url = self.put_int.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -134,9 +136,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_int.metadata = {'url': '/complex/primitive/integer'}
+    put_int.metadata = {'url': '/complex/primitive/integer'}  # type: ignore
 
     @distributed_trace
     def get_long(
@@ -147,15 +149,16 @@ class PrimitiveOperations(object):
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: LongWrapper or the result of cls(response)
+        :return: LongWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.LongWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.LongWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_long.metadata['url']
+        url = self.get_long.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -177,10 +180,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('LongWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_long.metadata = {'url': '/complex/primitive/long'}
+    get_long.metadata = {'url': '/complex/primitive/long'}  # type: ignore
 
     @distributed_trace
     def put_long(
@@ -194,16 +197,17 @@ class PrimitiveOperations(object):
         :param complex_body: Please put 1099511627775 and -999511627788.
         :type complex_body: ~bodycomplex.models.LongWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_long.metadata['url']
+        url = self.put_long.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -227,9 +231,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_long.metadata = {'url': '/complex/primitive/long'}
+    put_long.metadata = {'url': '/complex/primitive/long'}  # type: ignore
 
     @distributed_trace
     def get_float(
@@ -240,15 +244,16 @@ class PrimitiveOperations(object):
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatWrapper or the result of cls(response)
+        :return: FloatWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.FloatWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_float.metadata['url']
+        url = self.get_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -270,10 +275,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('FloatWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_float.metadata = {'url': '/complex/primitive/float'}
+    get_float.metadata = {'url': '/complex/primitive/float'}  # type: ignore
 
     @distributed_trace
     def put_float(
@@ -287,16 +292,17 @@ class PrimitiveOperations(object):
         :param complex_body: Please put 1.05 and -0.003.
         :type complex_body: ~bodycomplex.models.FloatWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_float.metadata['url']
+        url = self.put_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -320,9 +326,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_float.metadata = {'url': '/complex/primitive/float'}
+    put_float.metadata = {'url': '/complex/primitive/float'}  # type: ignore
 
     @distributed_trace
     def get_double(
@@ -333,15 +339,16 @@ class PrimitiveOperations(object):
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DoubleWrapper or the result of cls(response)
+        :return: DoubleWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DoubleWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_double.metadata['url']
+        url = self.get_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -363,10 +370,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('DoubleWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_double.metadata = {'url': '/complex/primitive/double'}
+    get_double.metadata = {'url': '/complex/primitive/double'}  # type: ignore
 
     @distributed_trace
     def put_double(
@@ -381,16 +388,17 @@ class PrimitiveOperations(object):
          -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_double.metadata['url']
+        url = self.put_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -414,9 +422,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_double.metadata = {'url': '/complex/primitive/double'}
+    put_double.metadata = {'url': '/complex/primitive/double'}  # type: ignore
 
     @distributed_trace
     def get_bool(
@@ -427,15 +435,16 @@ class PrimitiveOperations(object):
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: BooleanWrapper or the result of cls(response)
+        :return: BooleanWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.BooleanWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_bool.metadata['url']
+        url = self.get_bool.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -457,10 +466,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('BooleanWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_bool.metadata = {'url': '/complex/primitive/bool'}
+    get_bool.metadata = {'url': '/complex/primitive/bool'}  # type: ignore
 
     @distributed_trace
     def put_bool(
@@ -474,16 +483,17 @@ class PrimitiveOperations(object):
         :param complex_body: Please put true and false.
         :type complex_body: ~bodycomplex.models.BooleanWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_bool.metadata['url']
+        url = self.put_bool.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -507,9 +517,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_bool.metadata = {'url': '/complex/primitive/bool'}
+    put_bool.metadata = {'url': '/complex/primitive/bool'}  # type: ignore
 
     @distributed_trace
     def get_string(
@@ -520,15 +530,16 @@ class PrimitiveOperations(object):
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StringWrapper or the result of cls(response)
+        :return: StringWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.StringWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StringWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_string.metadata['url']
+        url = self.get_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -550,10 +561,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('StringWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_string.metadata = {'url': '/complex/primitive/string'}
+    get_string.metadata = {'url': '/complex/primitive/string'}  # type: ignore
 
     @distributed_trace
     def put_string(
@@ -567,16 +578,17 @@ class PrimitiveOperations(object):
         :param complex_body: Please put 'goodrequest', '', and null.
         :type complex_body: ~bodycomplex.models.StringWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_string.metadata['url']
+        url = self.put_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -600,9 +612,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_string.metadata = {'url': '/complex/primitive/string'}
+    put_string.metadata = {'url': '/complex/primitive/string'}  # type: ignore
 
     @distributed_trace
     def get_date(
@@ -613,15 +625,16 @@ class PrimitiveOperations(object):
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DateWrapper or the result of cls(response)
+        :return: DateWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DateWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DateWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date.metadata['url']
+        url = self.get_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -643,10 +656,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('DateWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date.metadata = {'url': '/complex/primitive/date'}
+    get_date.metadata = {'url': '/complex/primitive/date'}  # type: ignore
 
     @distributed_trace
     def put_date(
@@ -660,16 +673,17 @@ class PrimitiveOperations(object):
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
         :type complex_body: ~bodycomplex.models.DateWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_date.metadata['url']
+        url = self.put_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -693,9 +707,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_date.metadata = {'url': '/complex/primitive/date'}
+    put_date.metadata = {'url': '/complex/primitive/date'}  # type: ignore
 
     @distributed_trace
     def get_date_time(
@@ -706,15 +720,16 @@ class PrimitiveOperations(object):
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DatetimeWrapper or the result of cls(response)
+        :return: DatetimeWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DatetimeWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_time.metadata['url']
+        url = self.get_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -736,10 +751,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('DatetimeWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time.metadata = {'url': '/complex/primitive/datetime'}
+    get_date_time.metadata = {'url': '/complex/primitive/datetime'}  # type: ignore
 
     @distributed_trace
     def put_date_time(
@@ -753,16 +768,17 @@ class PrimitiveOperations(object):
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_date_time.metadata['url']
+        url = self.put_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -786,9 +802,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_date_time.metadata = {'url': '/complex/primitive/datetime'}
+    put_date_time.metadata = {'url': '/complex/primitive/datetime'}  # type: ignore
 
     @distributed_trace
     def get_date_time_rfc1123(
@@ -799,15 +815,16 @@ class PrimitiveOperations(object):
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Datetimerfc1123Wrapper or the result of cls(response)
+        :return: Datetimerfc1123Wrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Datetimerfc1123Wrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_date_time_rfc1123.metadata['url']
+        url = self.get_date_time_rfc1123.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -829,10 +846,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('Datetimerfc1123Wrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
+    get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
     def put_date_time_rfc1123(
@@ -847,16 +864,17 @@ class PrimitiveOperations(object):
          GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_date_time_rfc1123.metadata['url']
+        url = self.put_date_time_rfc1123.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -880,9 +898,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
+    put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
     def get_duration(
@@ -893,15 +911,16 @@ class PrimitiveOperations(object):
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DurationWrapper or the result of cls(response)
+        :return: DurationWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.DurationWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_duration.metadata['url']
+        url = self.get_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -923,10 +942,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('DurationWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_duration.metadata = {'url': '/complex/primitive/duration'}
+    get_duration.metadata = {'url': '/complex/primitive/duration'}  # type: ignore
 
     @distributed_trace
     def put_duration(
@@ -940,18 +959,19 @@ class PrimitiveOperations(object):
         :param field:
         :type field: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _complex_body = models.DurationWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_duration.metadata['url']
+        url = self.put_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -975,9 +995,9 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_duration.metadata = {'url': '/complex/primitive/duration'}
+    put_duration.metadata = {'url': '/complex/primitive/duration'}  # type: ignore
 
     @distributed_trace
     def get_byte(
@@ -988,15 +1008,16 @@ class PrimitiveOperations(object):
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ByteWrapper or the result of cls(response)
+        :return: ByteWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ByteWrapper"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_byte.metadata['url']
+        url = self.get_byte.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1018,10 +1039,10 @@ class PrimitiveOperations(object):
         deserialized = self._deserialize('ByteWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_byte.metadata = {'url': '/complex/primitive/byte'}
+    get_byte.metadata = {'url': '/complex/primitive/byte'}  # type: ignore
 
     @distributed_trace
     def put_byte(
@@ -1035,18 +1056,19 @@ class PrimitiveOperations(object):
         :param field:
         :type field: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _complex_body = models.ByteWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_byte.metadata['url']
+        url = self.put_byte.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1070,6 +1092,6 @@ class PrimitiveOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_byte.metadata = {'url': '/complex/primitive/byte'}
+    put_byte.metadata = {'url': '/complex/primitive/byte'}  # type: ignore

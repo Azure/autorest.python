@@ -5,9 +5,8 @@
 {% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
 {% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring() %}
-:return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
-    :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
-{% endmacro %}
+:return: {{ "" if async_mode else "An instance of LROPoller that returns either " }}{{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}}{{ "," if async_mode }} or the result of cls(response)
+:rtype: {{"" if async_mode else "~azure.core.polling.LROPoller["}}{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}{{ "" if async_mode else "]" }}{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
@@ -21,14 +20,16 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode) }}
+{% set return_type_wrapper = "" if async_mode else "LROPoller" %}
+{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+{# overriding sync_return_type_annotation because we know if it's sync, it's return type is just LROPoller #}
+    # type: (...) -> LROPoller
 {% endif %}
-    """{{operation.description }}
-    {% if operation.summary %}
+    """{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+    {% if operation.summary and operation.description %}
 
-    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+    {{ operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
     {% endif %}
 
 {% if operation.deprecated -%}
@@ -47,11 +48,12 @@ response_headers = {
     :keyword polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
-    {{ return_docstring() }}
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+    {{ return_docstring()|indent }}
     :raises ~azure.core.exceptions.HttpResponseError:
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
         raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
@@ -61,6 +63,9 @@ response_headers = {
             cls=lambda x,y,z: x,
             **kwargs
         )
+
+    kwargs.pop('error_map', None)
+    kwargs.pop('content_type', None)
 
     def get_long_running_output(pipeline_response):
         {% if operation.lro_response.has_headers %}
@@ -76,7 +81,7 @@ response_headers = {
         return deserialized
         {% endif %}
 
-    lro_delay = kwargs.get(
+    lro_delay = kwargs.pop(
         'polling_interval',
         self._config.polling_interval
     )
@@ -96,11 +101,11 @@ response_headers = {
         )
     else:
         return {{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
-{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}
+{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore
 
 {{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode) }}
 {%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+    {{ op_tools.return_type_annotation(operation) }}
 {% endif %}
 {% if async_mode %}
     return await (await self.begin_{{ operation.python_name }}(

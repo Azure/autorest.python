@@ -49,15 +49,16 @@ class DurationOperations:
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or the result of cls(response)
+        :return: timedelta, or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -79,10 +80,10 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/duration/null'}
+    get_null.metadata = {'url': '/duration/null'}  # type: ignore
 
     @distributed_trace_async
     async def put_positive_duration(
@@ -95,16 +96,17 @@ class DurationOperations:
         :param duration_body:
         :type duration_body: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_positive_duration.metadata['url']
+        url = self.put_positive_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -128,9 +130,9 @@ class DurationOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
-    put_positive_duration.metadata = {'url': '/duration/positiveduration'}
+    put_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
 
     @distributed_trace_async
     async def get_positive_duration(
@@ -140,15 +142,16 @@ class DurationOperations:
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or the result of cls(response)
+        :return: timedelta, or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_positive_duration.metadata['url']
+        url = self.get_positive_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -170,10 +173,10 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_positive_duration.metadata = {'url': '/duration/positiveduration'}
+    get_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(
@@ -183,15 +186,16 @@ class DurationOperations:
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or the result of cls(response)
+        :return: timedelta, or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -213,7 +217,7 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/duration/invalid'}
+    get_invalid.metadata = {'url': '/duration/invalid'}  # type: ignore

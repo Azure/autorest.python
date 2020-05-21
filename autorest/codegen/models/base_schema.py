@@ -51,6 +51,9 @@ class BaseSchema(BaseModel, ABC):
     def imports(self) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()
 
+    def model_file_imports(self) -> FileImport:
+        return self.imports()
+
     @property
     @abstractmethod
     def serialization_type(self) -> str:

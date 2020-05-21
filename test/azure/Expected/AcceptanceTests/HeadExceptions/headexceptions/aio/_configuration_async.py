@@ -15,7 +15,7 @@ from .._version import VERSION
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials_async import AsyncTokenCredential
 
 
 class AutoRestHeadExceptionTestServiceConfiguration(Configuration):
@@ -39,6 +39,7 @@ class AutoRestHeadExceptionTestServiceConfiguration(Configuration):
 
         self.credential = credential
         self.credential_scopes = ['https://management.azure.com/.default']
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'autorestheadexceptiontestservice/{}'.format(VERSION))
         self._configure(**kwargs)
 
