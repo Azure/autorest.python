@@ -219,7 +219,8 @@ async def test_get_multiple_pages_lro(client):
     polling = AsyncARMPolling(0, lro_options={'final-state-via': 'location'})
     # FIXME Location should be the default once 1.0.0b2 is out
 
-    page1 = await client.paging.get_multiple_pages_lro(polling=polling)
+    poller = await client.paging.begin_get_multiple_pages_lro(polling=polling)
+    page1 = await poller.result()
     assert len(page1.values) == 1
     assert page1.values[0].properties.id == 1
     assert page1.next_link.endswith("paging/multiple/page/2")
