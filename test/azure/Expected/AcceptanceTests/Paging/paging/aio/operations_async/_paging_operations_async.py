@@ -12,7 +12,7 @@ from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
+from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
@@ -1021,7 +1021,7 @@ class PagingOperations:
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
     @distributed_trace_async
-    async def get_multiple_pages_lro(
+    async def begin_get_multiple_pages_lro(
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
@@ -1034,6 +1034,7 @@ class PagingOperations:
         :param paging_get_multiple_pages_lro_options: Parameter group.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
@@ -1048,12 +1049,14 @@ class PagingOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = await self._get_multiple_pages_lro_initial(
-            client_request_id=client_request_id,
-            paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = await self._get_multiple_pages_lro_initial(
+                client_request_id=client_request_id,
+                paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1068,5 +1071,13 @@ class PagingOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+        if cont_token:
+            return AsyncLROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
