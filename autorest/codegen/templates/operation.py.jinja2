@@ -2,6 +2,43 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
+{% macro return_docstring() %}
+{% if operation.responses | selectattr('has_body') | first %}
+:return: {{ operation.responses|selectattr('has_body')|map(attribute='schema')| map(attribute='docstring_text')|unique|join(' or ') }}, or the result of cls(response)
+:rtype: {{ operation.responses|selectattr('has_body')|map(attribute='schema')| map(attribute='docstring_type')|unique|join(' or ') }}{{ " or None" if operation.responses|selectattr('has_body', 'false') | first }}
+{%- else %}
+:return: None, or the result of cls(response)
+:rtype: None
+{%- endif -%}
+{% endmacro %}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+{% macro operation_docstring() %}
+"""{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+{% if operation.summary and operation.description %}
+
+{{ operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+{% endif %}
+
+{% if operation.deprecated -%}
+.. warning::
+    This method is deprecated
+
+{% endif -%}
+{% for parameter in operation.parameters.method %}
+{%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+{{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
+{% endfor %}
+:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
+{% endfor %}
+{% if (operation.requests | length) > 1 %}
+{% set content_type_constant = operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.schema.constant_value }}.
+ Allowed values are: "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".
+{% endif %}
+:keyword callable cls: A custom type or function that will be passed the direct response
+{{ return_docstring() }}
+:raises: ~azure.core.exceptions.HttpResponseError
+"""{% endmacro %}
 {# actual template starts here #}
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
@@ -11,7 +48,7 @@
     {{ op_tools.sync_return_type_annotation(operation, "") }}
 {% endif %}
 {% if operation.want_description_docstring %}
-{{ op_tools.operation_docstring(operation)|indent }}
+    {{ operation_docstring()|indent }}
 {% endif %}
     cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType") }}
 {% if operation.deprecated %}
