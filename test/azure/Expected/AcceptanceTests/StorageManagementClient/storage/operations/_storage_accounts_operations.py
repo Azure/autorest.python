@@ -172,7 +172,7 @@ class StorageAccountsOperations(object):
         parameters,  # type: "models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.StorageAccount"]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
     cannot be updated with this API and should instead use the Update Storage Account API. If an
     account is already created and subsequent PUT request is issued with exact same set of
