@@ -58,7 +58,7 @@
             },
             "async": {
                 {% set coroutine = False if is_paging(operation) else True %}
-                {% set sync_return_type_wrapper = "AsyncLROPoller" if is_lro(operation) else ("ItemPaged" if is_paging(operation) else "") %}
+                {% set async_return_type_wrapper = "AsyncLROPoller" if is_lro(operation) else ("AsyncItemPaged" if is_paging(operation) else "") %}
                 "signature": {{ op_tools.method_signature(operation, operation_name, True, coroutine, async_return_type_wrapper) | tojson }},
                 "coroutine": {{ coroutine | tojson }}
             },

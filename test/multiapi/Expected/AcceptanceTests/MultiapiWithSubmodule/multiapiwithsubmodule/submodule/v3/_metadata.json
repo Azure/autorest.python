@@ -41,7 +41,7 @@
                 "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e \"models.PagingResult\":\n",
+                "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.PagingResult\"]:\n",
                 "coroutine": false
             },
             "doc": "    \"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",

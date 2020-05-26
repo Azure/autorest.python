@@ -24,7 +24,7 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -80,7 +80,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_paging(
         self,
         **kwargs
-    ) -> "models.PagingResult":
+    ) -> AsyncItemPaged["models.PagingResult"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
