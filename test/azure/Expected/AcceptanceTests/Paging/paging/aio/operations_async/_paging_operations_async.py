@@ -1026,7 +1026,7 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
-    ) -> "models.ProductResult":
+    ) -> AsyncLROPoller["models.ProductResult"]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -1039,8 +1039,8 @@ class PagingOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: ProductResult, or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An instance of AsyncLROPoller that returns either ProductResult or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~paging.models.ProductResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]

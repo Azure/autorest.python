@@ -1045,7 +1045,7 @@ class PagingOperations(object):
         paging_get_multiple_pages_lro_options=None,  # type: Optional["models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.ProductResult"]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
