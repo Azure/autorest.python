@@ -37,11 +37,9 @@
     "operation_mixins": {
         "test_one" : {
             "sync": {
-                "operation_name": "test_one",
                 "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "test_one",
                 "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e None:\n",
                 "coroutine": true
             },
@@ -50,25 +48,21 @@
         },
         "_test_lro_initial" : {
             "sync": {
-                "operation_name": "_test_lro_initial",
                 "signature": "def _test_lro_initial(\n    self,\n    product=None,  # type: Optional[\"models.Product\"]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "_test_lro_initial",
                 "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e \"models.Product\":\n",
                 "coroutine": true
             },
             "doc": "    \"\"\"\n\n:param product: Product to put.\n:type product: ~multiapiwithsubmodule.submodule.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": "product"
         },
-        "test_lro" : {
+        "begin_test_lro" : {
             "sync": {
-                "operation_name": "begin_test_lro",
                 "signature": "def begin_test_lro(\n    self,\n    product=None,  # type: Optional[\"models.Product\"]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "test_lro",
-                "signature": "async def test_lro(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e \"models.Product\":\n",
+                "signature": "async def begin_test_lro(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e \"models.Product\":\n",
                 "coroutine": true
             },
             "doc": "    \"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put.\n:type product: ~multiapiwithsubmodule.submodule.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
