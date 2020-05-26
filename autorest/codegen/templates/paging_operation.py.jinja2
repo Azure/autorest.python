@@ -8,9 +8,31 @@
 {% if operation.responses | selectattr('has_body') | first %}
 :return: An iterator like instance of either {{ operation.responses|selectattr('has_body')|map(attribute='schema')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
 :rtype: ~azure.core.{{ "async_" if async_mode else "" }}paging.{{ item_paged }}[{% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
-{% else %}
+{%- else -%}
 :return: None
-:rtype: None{% endif %}{% endmacro %}
+:rtype: None{%- endif -%}{%- endmacro -%}
+{% macro operation_docstring() %}
+"""{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+{% if operation.summary and operation.description %}
+
+{{ operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+{% endif %}
+
+{% if operation.deprecated -%}
+.. warning::
+    This method is deprecated
+
+{% endif -%}
+{% for parameter in operation.parameters.method %}
+{%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+{{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
+{% endfor %}
+:type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+{% endfor %}
+:keyword callable cls: A custom type or function that will be passed the direct response
+{{ return_docstring() }}
+:raises: ~azure.core.exceptions.HttpResponseError
+"""{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {# actual template starts here #}
@@ -23,26 +45,7 @@
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}
 {% if operation.want_description_docstring %}
-    """{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
-    {% if operation.summary and operation.description %}
-
-    {{ operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
-    {% endif %}
-
-{% if operation.deprecated -%}
-    .. warning::
-       This method is deprecated
-
-{% endif -%}
-{% for parameter in operation.parameters.method %}
-    {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
-    {% endfor %}
-    :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
-{% endfor %}
-    :keyword callable cls: A custom type or function that will be passed the direct response
-    {{ return_docstring()|indent }}    :raises: ~azure.core.exceptions.HttpResponseError
-    """
+    {{ operation_docstring() | indent }}
 {% endif %}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)

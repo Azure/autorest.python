@@ -54,7 +54,7 @@ class PagingOperations(object):
     ):
         # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
-    host.
+        host.
 
         :param account_name: Account Name.
         :type account_name: str

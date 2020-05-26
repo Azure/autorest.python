@@ -473,7 +473,7 @@ class StorageAccountsOperations:
         **kwargs
     ) -> AsyncIterable["models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
-    returned; use the ListKeys operation for this.
+        returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
@@ -539,7 +539,7 @@ class StorageAccountsOperations:
         **kwargs
     ) -> AsyncIterable["models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
-    are not returned; use the ListKeys operation for this.
+        are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
