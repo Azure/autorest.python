@@ -5,8 +5,8 @@
 {% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
 {% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring() %}
-:return: {{ "" if async_mode else "An instance of LROPoller that returns either " }}{{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}}{{ "," if async_mode }} or the result of cls(response)
-:rtype: {{"" if async_mode else "~azure.core.polling.LROPoller["}}{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}{{ "" if async_mode else "]" }}{% endmacro %}
+:return: An instance of {{ "Async" if async_mode }}LROPoller that returns either {{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}} or the result of cls(response)
+:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
@@ -20,7 +20,7 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{% set return_type_wrapper = "" if async_mode else "LROPoller" %}
+{% set return_type_wrapper = "AsyncLROPoller" if async_mode else "LROPoller" %}
 {{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
 {# overriding sync_return_type_annotation because we know if it's sync, it's return type is just LROPoller #}

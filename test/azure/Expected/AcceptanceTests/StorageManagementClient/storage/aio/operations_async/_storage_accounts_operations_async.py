@@ -166,7 +166,7 @@ class StorageAccountsOperations:
         account_name: str,
         parameters: "models.StorageAccountCreateParameters",
         **kwargs
-    ) -> "models.StorageAccount":
+    ) -> AsyncLROPoller["models.StorageAccount"]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
     cannot be updated with this API and should instead use the Update Storage Account API. If an
     account is already created and subsequent PUT request is issued with exact same set of
@@ -186,8 +186,8 @@ class StorageAccountsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: StorageAccount, or the result of cls(response)
-        :rtype: ~storage.models.StorageAccount
+        :return: An instance of AsyncLROPoller that returns either StorageAccount or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]

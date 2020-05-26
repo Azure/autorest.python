@@ -95,7 +95,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -107,8 +107,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -199,7 +199,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -211,8 +211,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -299,7 +299,7 @@ class LROsOperations:
     async def begin_post202_list(
         self,
         **kwargs
-    ) -> List["models.Product"]:
+    ) -> AsyncLROPoller[List["models.Product"]]:
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
     with body [{ 'id': '100', 'name': 'foo' }].
 
@@ -309,8 +309,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~lro.models.Product]
+        :return: An instance of AsyncLROPoller that returns either list of Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[list[~lro.models.Product]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -400,7 +400,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
     does not contain ProvisioningState=’Succeeded’.
 
@@ -412,8 +412,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -504,7 +504,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 202 to the initial request, with a location header
     that points to a polling URL that returns a 200 and an entity that doesn't contains
     ProvisioningState.
@@ -517,8 +517,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -614,7 +614,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -627,8 +627,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -719,7 +719,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -732,8 +732,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -829,7 +829,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -842,8 +842,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -934,7 +934,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -947,8 +947,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1041,7 +1041,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 202 to the initial request with location header.
     Subsequent calls to operation status do not contain location header.
 
@@ -1053,8 +1053,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1152,7 +1152,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1165,8 +1165,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1265,7 +1265,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1278,8 +1278,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1378,7 +1378,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1391,8 +1391,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1491,7 +1491,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1504,8 +1504,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1602,7 +1602,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running put request, service returns a 202 to the initial request with Azure-
     AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation
     header.
@@ -1615,8 +1615,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1710,7 +1710,7 @@ class LROsOperations:
         self,
         sku: Optional["models.Sku"] = None,
         **kwargs
-    ) -> "models.Sku":
+    ) -> AsyncLROPoller["models.Sku"]:
         """Long running put request with non resource.
 
         :param sku: sku to put.
@@ -1721,8 +1721,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Sku, or the result of cls(response)
-        :rtype: ~lro.models.Sku
+        :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1813,7 +1813,7 @@ class LROsOperations:
         self,
         sku: Optional["models.Sku"] = None,
         **kwargs
-    ) -> "models.Sku":
+    ) -> AsyncLROPoller["models.Sku"]:
         """Long running put request with non resource.
 
         :param sku: Sku to put.
@@ -1824,8 +1824,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Sku, or the result of cls(response)
-        :rtype: ~lro.models.Sku
+        :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1918,7 +1918,7 @@ class LROsOperations:
         self,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> "models.SubProduct":
+    ) -> AsyncLROPoller["models.SubProduct"]:
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1929,8 +1929,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: SubProduct, or the result of cls(response)
-        :rtype: ~lro.models.SubProduct
+        :return: An instance of AsyncLROPoller that returns either SubProduct or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.SubProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2023,7 +2023,7 @@ class LROsOperations:
         self,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> "models.SubProduct":
+    ) -> AsyncLROPoller["models.SubProduct"]:
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -2034,8 +2034,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: SubProduct, or the result of cls(response)
-        :rtype: ~lro.models.SubProduct
+        :return: An instance of AsyncLROPoller that returns either SubProduct or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.SubProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2123,7 +2123,7 @@ class LROsOperations:
     async def begin_delete_provisioning202_accepted200_succeeded(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -2134,8 +2134,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2226,7 +2226,7 @@ class LROsOperations:
     async def begin_delete_provisioning202_deleting_failed200(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -2237,8 +2237,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2329,7 +2329,7 @@ class LROsOperations:
     async def begin_delete_provisioning202_deletingcanceled200(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -2340,8 +2340,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2420,7 +2420,7 @@ class LROsOperations:
     async def begin_delete204_succeeded(
         self,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2429,8 +2429,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2513,7 +2513,7 @@ class LROsOperations:
     async def begin_delete202_retry200(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2523,8 +2523,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2610,7 +2610,7 @@ class LROsOperations:
     async def begin_delete202_no_retry204(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2620,8 +2620,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2700,7 +2700,7 @@ class LROsOperations:
     async def begin_delete_no_header_in_retry(
         self,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
     Subsequent calls to operation status do not contain location header.
 
@@ -2710,8 +2710,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2787,7 +2787,7 @@ class LROsOperations:
     async def begin_delete_async_no_header_in_retry(
         self,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
     request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -2797,8 +2797,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2875,7 +2875,7 @@ class LROsOperations:
     async def begin_delete_async_retry_succeeded(
         self,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2885,8 +2885,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2963,7 +2963,7 @@ class LROsOperations:
     async def begin_delete_async_no_retry_succeeded(
         self,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2973,8 +2973,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3051,7 +3051,7 @@ class LROsOperations:
     async def begin_delete_async_retry_failed(
         self,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3061,8 +3061,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3139,7 +3139,7 @@ class LROsOperations:
     async def begin_delete_async_retrycanceled(
         self,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3149,8 +3149,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3231,7 +3231,7 @@ class LROsOperations:
     async def begin_post200_with_payload(
         self,
         **kwargs
-    ) -> "models.Sku":
+    ) -> AsyncLROPoller["models.Sku"]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
     header. Poll returns a 200 with a response body after success.
 
@@ -3241,8 +3241,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Sku, or the result of cls(response)
-        :rtype: ~lro.models.Sku
+        :return: An instance of AsyncLROPoller that returns either Sku or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Sku]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3332,7 +3332,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
     'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -3344,8 +3344,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3436,7 +3436,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
     header, 204 with noresponse body after success.
 
@@ -3448,8 +3448,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3533,7 +3533,7 @@ class LROsOperations:
     async def begin_post_double_headers_final_location_get(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
     object.
@@ -3544,8 +3544,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3624,7 +3624,7 @@ class LROsOperations:
     async def begin_post_double_headers_final_azure_header_get(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object.
@@ -3635,8 +3635,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3715,7 +3715,7 @@ class LROsOperations:
     async def begin_post_double_headers_final_azure_header_get_default(
         self,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object if you support initial Autorest behavior.
@@ -3726,8 +3726,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3825,7 +3825,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3838,8 +3838,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -3938,7 +3938,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3951,8 +3951,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~lro.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -4044,7 +4044,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -4057,8 +4057,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -4147,7 +4147,7 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> None:
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -4160,8 +4160,8 @@ class LROsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
