@@ -205,7 +205,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-    201 response code.
+        201 response code.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -305,7 +305,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-    201 response code.
+        201 response code.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -404,7 +404,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
-    endpoint indicated in the Azure-AsyncOperation header for operation status.
+        endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -648,7 +648,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-    indicated in the Azure-AsyncOperation header for operation status.
+        indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
@@ -920,7 +920,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
-    indicated in the Azure-AsyncOperation header for operation status.
+        indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1115,8 +1115,8 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that
-    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-    header for operation status.
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1220,8 +1220,8 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that
-    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-    header for operation status.
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1384,7 +1384,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-    indicated in the Azure-AsyncOperation header for operation status.
+        indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
@@ -1473,7 +1473,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, without a location
-    header.
+        header.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1566,8 +1566,8 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with an entity that
-    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-    header for operation status.
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1661,7 +1661,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that is
-    not a valid json.
+        not a valid json.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1760,8 +1760,8 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that
-    contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-    header is invalid.
+        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+        header is invalid.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1865,8 +1865,8 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that
-    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-    header for operation status.
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1955,7 +1955,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request receing a reponse
-    with an invalid 'Location' and 'Retry-After' headers.
+        with an invalid 'Location' and 'Retry-After' headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
@@ -2034,7 +2034,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. The endpoint
-    indicated in the Azure-AsyncOperation header is invalid.
+        indicated in the Azure-AsyncOperation header is invalid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
@@ -2113,7 +2113,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-    indicated in the Azure-AsyncOperation header for operation status.
+        indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
@@ -2202,7 +2202,7 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with invalid
-    'Location' and 'Retry-After' headers.
+        'Location' and 'Retry-After' headers.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -2295,8 +2295,8 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with an entity that
-    contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-    header is invalid.
+        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+        header is invalid.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -2389,8 +2389,8 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with an entity that
-    contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-    header for operation status.
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
