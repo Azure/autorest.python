@@ -1,3 +1,6 @@
+# Generating with Autorest for Python v5.0.0
+
+See [here](https://github.com/Azure/autorest.python/wiki/Generating-with-autorest-for-python-v5.0.0)
 
 # Contributing
 
