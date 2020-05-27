@@ -11,7 +11,8 @@ import shutil
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast, Any
-from .multiapi_serializer import MultiAPISerializer
+from .serializers import MultiAPISerializer, FileImportSerializer
+from .models import FileImport
 from ..jsonrpc import AutorestAPI
 
 from .. import Plugin
@@ -247,6 +248,20 @@ class MultiAPI:
             self.output_package_name = self.input_package_name
         return module_name
 
+    def _merge_mixin_imports_across_versions(
+        self, paths_to_versions: List[Path], async_mode: bool
+    ) -> FileImport:
+        imports = FileImport()
+        imports_to_load = "async_imports" if async_mode else "sync_imports"
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            if not metadata_json.get('operation_mixins'):
+                continue
+            current_version_imports = FileImport(json.loads(metadata_json[imports_to_load]))
+            imports.merge(current_version_imports)
+
+        return imports
+
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
         # If True, means the auto-profile will consider preview versions.
@@ -324,6 +339,14 @@ class MultiAPI:
             versioned_operations_dict, mixin_operations, last_api_version, preview_mode, async_mode=True
         )
 
+        sync_imports = self._merge_mixin_imports_across_versions(
+            paths_to_versions, async_mode=False
+        )
+
+        async_imports = self._merge_mixin_imports_across_versions(
+            paths_to_versions, async_mode=True
+        )
+
         conf = {
             "client_name": metadata_json["client"]["name"],
             "package_name": self.output_package_name,
@@ -340,8 +363,8 @@ class MultiAPI:
             ),
             "config": metadata_json["config"],
             "global_parameters": metadata_json["global_parameters"],
-            "sync_imports": metadata_json["sync_imports"],
-            "async_imports": metadata_json["async_imports"]
+            "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
+            "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True))
         }
 
         multiapi_serializer = MultiAPISerializer(
