@@ -20,11 +20,11 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 class MultiapiServiceClientOperationsMixin(object):
 
-    async def test_lro(
+    async def begin_test_lro(
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -34,7 +34,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~multiapiwithsubmodule.submodule.v1.models.Product or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        api_version = self._get_api_version('test_lro')
+        api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
             from ..v1.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
         else:
@@ -44,7 +44,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.test_lro(product, **kwargs)
+        return await mixin_instance.begin_test_lro(product, **kwargs)
 
     async def test_one(
         self,

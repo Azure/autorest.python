@@ -38,11 +38,9 @@
     "operation_mixins": {
         "test_paging" : {
             "sync": {
-                "operation_name": "test_paging",
                 "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "test_paging",
                 "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.PagingResult\"]:\n",
                 "coroutine": false
             },
