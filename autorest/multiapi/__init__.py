@@ -11,9 +11,8 @@ import shutil
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast, Any
-from .serializers.multiapi_serializer import MultiAPISerializer
-from .serializers.import_serializer import FileImportSerializer
-from .models.imports import FileImport
+from .serializers import MultiAPISerializer, FileImportSerializer
+from .models import FileImport
 from ..jsonrpc import AutorestAPI
 
 from .. import Plugin
@@ -249,7 +248,9 @@ class MultiAPI:
             self.output_package_name = self.input_package_name
         return module_name
 
-    def _merge_mixin_imports_across_versions(self, paths_to_versions: List[Path], async_mode: bool):
+    def _merge_mixin_imports_across_versions(
+        self, paths_to_versions: List[Path], async_mode: bool
+    ) -> FileImport:
         imports = FileImport()
         imports_to_load = "async_imports" if async_mode else "sync_imports"
         for version_path in paths_to_versions:

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import copy
 import json
-from typing import List, Optional, Set, Tuple
+from typing import List, Optional, Set, Tuple, Dict
 from jinja2 import Environment
 from ..models import (
     CodeModel,
@@ -14,9 +14,10 @@ from ..models import (
     LROOperation,
     PagingOperation,
     CredentialSchema,
-    ParameterList
+    ParameterList,
+    TypingSection,
+    ImportType
 )
-from .import_serializer import FileImportSerializer
 
 def _correct_credential_parameter(global_parameters: ParameterList, async_mode: bool) -> None:
     credential_param = [
@@ -24,7 +25,9 @@ def _correct_credential_parameter(global_parameters: ParameterList, async_mode: 
     ][0]
     credential_param.schema = CredentialSchema(async_mode=async_mode)
 
-def _json_serialize_imports(imports):
+def _json_serialize_imports(
+    imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]]
+):
     if not imports:
         return None
 
@@ -122,6 +125,12 @@ class MetadataSerializer:
             is_lro=_is_lro,
             is_paging=_is_paging,
             str=str,
-            sync_mixin_imports=_json_serialize_imports(sync_mixin_imports.imports),
-            async_mixin_imports=_json_serialize_imports(async_mixin_imports.imports)
+            sync_mixin_imports=(
+                _json_serialize_imports(sync_mixin_imports.imports)
+                if sync_mixin_imports else None
+            ),
+            async_mixin_imports=(
+                _json_serialize_imports(async_mixin_imports.imports)
+                if async_mixin_imports else None
+            )
         )

@@ -13,7 +13,7 @@ from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter
@@ -36,6 +36,7 @@ __all__ = [
     "EnumSchema",
     "FileImport",
     "ImportType",
+    "TypingSection",
     "PrimitiveSchema",
     "LROOperation",
     "Operation",

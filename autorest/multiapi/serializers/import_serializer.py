@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from copy import deepcopy
 from typing import Dict, Set, Optional, List
-from ..models.imports import ImportType, FileImport, TypingSection
+from ..models import ImportType, FileImport, TypingSection
 
 def _serialize_package(package_name: str, module_list: Set[Optional[str]], delimiter: str) -> str:
     buffer = []
