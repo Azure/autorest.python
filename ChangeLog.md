@@ -5,6 +5,8 @@ Modelerfour version: 4.13.351
 
 **Bug Fixes**
 - Corrected generation of the item name of paging response when extracting data  #648
+- Generating correct formatting for LRO and paging operation docstrings  #652
+- Generating correct content and formatting for LRO and paging operations in multiapi mixin  #652
 
 ### 2020-05-22 - 5.0.0-preview.8
 Modelerfour version: 4.13.351
