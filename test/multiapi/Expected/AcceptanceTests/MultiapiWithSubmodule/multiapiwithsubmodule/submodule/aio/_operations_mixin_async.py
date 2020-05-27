@@ -9,13 +9,15 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar
+from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
+from azure.core.polling.async_base_polling import AsyncLROBasePolling
 
 
 class MultiapiServiceClientOperationsMixin(object):
