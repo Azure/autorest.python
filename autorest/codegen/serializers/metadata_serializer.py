@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import copy
+import json
 from typing import List, Optional, Set, Tuple
 from jinja2 import Environment
 from ..models import (
@@ -22,6 +23,29 @@ def _correct_credential_parameter(global_parameters: ParameterList, async_mode: 
         gp for gp in global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
     ][0]
     credential_param.schema = CredentialSchema(async_mode=async_mode)
+
+def _json_serialize_imports(imports):
+    if not imports:
+        return None
+
+    json_serialize_imports = {}
+    # need to make name_import set -> list to make the dictionary json serializable
+    # not using an OrderedDict since we're iterating through a set and the order there varies
+    # going to sort the list instead
+
+    for typing_section_key, typing_section_value in imports.items():
+        json_import_type_dictionary = {}
+        for import_type_key, import_type_value in typing_section_value.items():
+            json_package_name_dictionary = {}
+            for package_name, name_imports in import_type_value.items():
+                name_import_ordered_list = []
+                if name_imports:
+                    name_import_ordered_list = list(name_imports)
+                    name_import_ordered_list.sort()
+                json_package_name_dictionary[package_name] = name_import_ordered_list
+            json_import_type_dictionary[import_type_key] = json_package_name_dictionary
+        json_serialize_imports[typing_section_key] = json_import_type_dictionary
+    return json.dumps(json_serialize_imports)
 
 
 class MetadataSerializer:
@@ -98,12 +122,6 @@ class MetadataSerializer:
             is_lro=_is_lro,
             is_paging=_is_paging,
             str=str,
-            sync_mixin_imports=(
-                FileImportSerializer(sync_mixin_imports, is_python_3_file=False)
-                if sync_mixin_imports else None
-            ),
-            async_mixin_imports=(
-                FileImportSerializer(async_mixin_imports, is_python_3_file=True)
-                if async_mixin_imports else None
-            )
+            sync_mixin_imports=_json_serialize_imports(sync_mixin_imports.imports),
+            async_mixin_imports=_json_serialize_imports(async_mixin_imports.imports)
         )
