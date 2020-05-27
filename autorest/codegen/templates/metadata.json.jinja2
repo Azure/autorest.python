@@ -64,7 +64,14 @@
                 "signature": {{ op_tools.method_signature(operation, operation.name, True, coroutine, async_return_type_wrapper) | tojson }},
                 "coroutine": {{ coroutine | tojson }}
             },
-            "doc": {{ op_tools.operation_docstring(operation) | tojson }},
+            {% if is_lro(operation) %}
+                {% from "lro_operation.py.jinja2" import operation_docstring with context %}
+            {% elif is_paging(operation) %}
+                {% from "paging_operation.py.jinja2" import operation_docstring with context %}
+            {% else %}
+                {% from "operation.py.jinja2" import operation_docstring with context %}
+            {% endif %}
+            "doc": {{ operation_docstring() | tojson }},
             "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
         }{{ "," if not loop.last else "" }}
         {% endfor %}
