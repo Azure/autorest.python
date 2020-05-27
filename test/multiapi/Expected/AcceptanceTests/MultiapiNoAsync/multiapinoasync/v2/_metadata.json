@@ -38,11 +38,9 @@
     "operation_mixins": {
         "test_one" : {
             "sync": {
-                "operation_name": "test_one",
                 "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "test_one",
                 "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e \"models.ModelTwo\":\n",
                 "coroutine": true
             },

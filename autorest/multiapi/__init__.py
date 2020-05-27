@@ -103,8 +103,8 @@ def _build_last_rt_list(
     # Operations at client level
     versioned_dict.update(
         {
-            operation_metadata[sync_or_async]["operation_name"]: operation_metadata[sync_or_async]["available_apis"]
-            for operation_metadata in mixin_operations.values()
+            operation_name: operation_metadata[sync_or_async]["available_apis"]
+            for operation_name, operation_metadata in mixin_operations.items()
         }
     )
     for operation, api_versions_list in versioned_dict.items():
@@ -181,13 +181,11 @@ class MultiAPI:
                 mixin_operations.setdefault(func_name, {}).setdefault('async', {})
                 mixin_operations[func_name]['sync'].update({
                     "signature": func['sync']['signature'],
-                    "operation_name": func['sync']['operation_name'],
                     "doc": func['doc'],
                     "call": func['call']
                 })
                 mixin_operations[func_name]['async'].update({
                     "signature": func['async']['signature'],
-                    "operation_name": func['async']['operation_name'],
                     "coroutine": func['async']['coroutine'],
                     "doc": func['doc'],
                     "call": func['call']
