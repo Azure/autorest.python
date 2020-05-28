@@ -57,7 +57,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -104,7 +104,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -151,7 +151,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -198,7 +198,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -245,7 +245,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

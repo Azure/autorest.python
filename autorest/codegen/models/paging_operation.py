@@ -93,6 +93,11 @@ class PagingOperation(Operation):
             return None
         return self._find_python_name(self._next_link_name, "nextLinkName")
 
+    @property
+    def has_optional_return_type(self) -> bool:
+        """A paging will never have an optional return type, we will always return ItemPaged[return type]"""
+        return False
+
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)
 

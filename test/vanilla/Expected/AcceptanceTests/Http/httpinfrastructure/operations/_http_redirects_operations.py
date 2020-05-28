@@ -102,7 +102,7 @@ class HttpRedirectsOperations(object):
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List[str]]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

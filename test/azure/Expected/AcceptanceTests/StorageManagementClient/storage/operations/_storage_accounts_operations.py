@@ -117,7 +117,7 @@ class StorageAccountsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Optional["models.StorageAccount"]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.StorageAccount"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -172,7 +172,7 @@ class StorageAccountsOperations(object):
         parameters,  # type: "models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.StorageAccount"]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
     cannot be updated with this API and should instead use the Update Storage Account API. If an
     account is already created and subsequent PUT request is issued with exact same set of
@@ -196,7 +196,7 @@ class StorageAccountsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.StorageAccount"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

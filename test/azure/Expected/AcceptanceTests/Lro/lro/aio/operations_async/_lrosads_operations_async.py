@@ -1568,7 +1568,7 @@ class LROSADsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> Optional["models.Product"]:
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1615,7 +1615,7 @@ class LROSADsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> Optional["models.Product"]:
+    ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that is
     not a valid json.
 
@@ -1631,7 +1631,7 @@ class LROSADsOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

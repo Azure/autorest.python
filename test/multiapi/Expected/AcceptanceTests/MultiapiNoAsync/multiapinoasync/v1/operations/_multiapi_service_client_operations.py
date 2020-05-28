@@ -82,7 +82,7 @@ class MultiapiServiceClientOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Optional["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -130,7 +130,7 @@ class MultiapiServiceClientOperationsMixin(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -145,7 +145,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', False)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
