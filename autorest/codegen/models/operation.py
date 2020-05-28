@@ -167,7 +167,9 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
     @property
     def has_optional_return_type(self) -> bool:
-        """Has optional return type if there are multiple response types where some have bodies and some are None"""
+        """Has optional return type if there are multiple successful response types where some have
+        bodies and some are None
+        """
 
         # successful status codes of responses that have bodies
         status_codes_for_responses_with_bodies = [
@@ -175,7 +177,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             if self.get_response_from_status(code).has_body
         ]
 
-        if self.has_response_body and len(self.responses) > 1:
+        successful_responses = [
+            response for response in self.responses
+            if any(code in self.success_status_code for code in response.status_codes)
+        ]
+
+        if self.has_response_body and len(successful_responses) > 1:
             if len(self.success_status_code) != len(status_codes_for_responses_with_bodies):
                 return True
         return False
