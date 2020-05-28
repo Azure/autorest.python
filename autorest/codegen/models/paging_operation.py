@@ -77,14 +77,13 @@ class PagingOperation(Operation):
             # Default value. I still check if I find it,  so I can do a nice message.
             item_name = "value"
             try:
-                self._find_python_name(item_name, "itemName")
+                return self._find_python_name(item_name, "itemName")
             except ValueError:
                 response = self._get_response()
                 raise ValueError(
                     f"While scanning x-ms-pageable, itemName was not defined and object"
                     + f" {response.schema.name} has no array called 'value'"
                 )
-            return item_name
         return self._find_python_name(self._item_name, "itemName")
 
     @property
