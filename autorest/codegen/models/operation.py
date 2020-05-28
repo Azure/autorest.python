@@ -174,7 +174,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         # successful status codes of responses that have bodies
         status_codes_for_responses_with_bodies = [
             code for code in self.success_status_code
-            if self.get_response_from_status(code).has_body
+            if isinstance(code, int) and self.get_response_from_status(code).has_body
         ]
 
         successful_responses = [
