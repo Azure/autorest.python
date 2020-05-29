@@ -82,6 +82,9 @@ class LROOperation(Operation):
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
         file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        # to fix typing issues, we need to cast polling methods to PollingMethod before setting the polling_method
+        # variable to that polling method
+        file_import.add_from_import("typing", "cast", ImportType.STDLIB)
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
             file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)

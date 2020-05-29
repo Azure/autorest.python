@@ -4,6 +4,7 @@
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
 {% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
+{% set polling_method = ("Async" if async_mode) ~ "PollingMethod" %}
 {% macro return_docstring() %}
 :return: {{ "" if async_mode else "An instance of LROPoller that returns either " }}{{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}}{{ "," if async_mode }} or the result of cls(response)
 :rtype: {{"" if async_mode else "~azure.core.polling.LROPoller["}}{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}{{ "" if async_mode else "]" }}{% endmacro %}
@@ -46,12 +47,12 @@ response_headers = {
     :keyword callable cls: A custom type or function that will be passed the direct response
     :keyword polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
-    :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
+    :paramtype polling: bool or ~azure.core.polling.{{ polling_method }}
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     {{ return_docstring()|indent }}
     :raises ~azure.core.exceptions.HttpResponseError:
     """
-    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
+    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ polling_method }}]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     lro_delay = kwargs.pop(
         'polling_interval',
@@ -83,11 +84,11 @@ response_headers = {
         {% endif %}
 
     {% if code_model.options['azure_arm'] %}
-    if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
+    if polling is True: polling_method = cast({{ polling_method }}, {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs))
     {% else %}
-    if polling is True: polling_method = {{ async_prefix }}LROBasePolling(lro_delay{{ lro_options }},  **kwargs)
+    if polling is True: polling_method = cast({{ polling_method }}, {{ async_prefix }}LROBasePolling(lro_delay{{ lro_options }},  **kwargs))
     {% endif %}
-    elif polling is False: polling_method = {{ async_prefix }}NoPolling()
-    else: polling_method = polling
+    elif polling is False: polling_method = cast({{ polling_method }}, {{ async_prefix }}NoPolling())
+    else: polling_method = cast({{ polling_method }}, polling)
     return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore
