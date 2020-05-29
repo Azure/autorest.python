@@ -182,10 +182,11 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             if any(code in self.success_status_code for code in response.status_codes)
         ]
 
-        if self.has_response_body and len(successful_responses) > 1:
-            if len(self.success_status_code) != len(status_codes_for_responses_with_bodies):
-                return True
-        return False
+        return (
+            self.has_response_body and
+            len(successful_responses) > 1 and
+            len(self.success_status_code) != len(status_codes_for_responses_with_bodies)
+        )
 
 
     @staticmethod
