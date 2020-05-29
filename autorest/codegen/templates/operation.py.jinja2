@@ -2,16 +2,18 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
+{# return_type is a variable that holds the return type if we already know what it is #}
+{% set return_type = "bool" if operation.method == 'head' and code_model.options['head_as_boolean'] else None %}
 {# actual template starts here #}
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
 {% endif %}
-{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper="") }}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper="", return_type=return_type) }}
 {%- if not async_mode %}
-    {{ op_tools.sync_return_type_annotation(operation, "") }}
+    {{ op_tools.sync_return_type_annotation(operation, "", return_type=return_type) }}
 {% endif %}
 {% if operation.want_description_docstring %}
-{{ op_tools.operation_docstring(operation)|indent }}
+{{ op_tools.operation_docstring(operation, return_type)|indent }}
 {% endif %}
     cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType") }}
 {% if operation.deprecated %}

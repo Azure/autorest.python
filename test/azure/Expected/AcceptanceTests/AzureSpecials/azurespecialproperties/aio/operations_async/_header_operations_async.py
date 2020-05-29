@@ -145,14 +145,14 @@ class HeaderOperations:
         self,
         foo_client_request_id: str,
         **kwargs
-    ) -> None:
+    ) -> bool:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
