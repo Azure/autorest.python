@@ -18,7 +18,6 @@ try:
     from ._models_py3 import ProductProperties
     from ._models_py3 import ProductResult
     from ._models_py3 import ProductResultValue
-    from ._models_py3 import ProductResultValueWithXMSClientName
 except (SyntaxError, ImportError):
     from ._models import CustomParameterGroup  # type: ignore
     from ._models import OdataProductResult  # type: ignore
@@ -31,7 +30,6 @@ except (SyntaxError, ImportError):
     from ._models import ProductProperties  # type: ignore
     from ._models import ProductResult  # type: ignore
     from ._models import ProductResultValue  # type: ignore
-    from ._models import ProductResultValueWithXMSClientName  # type: ignore
 
 from ._auto_rest_paging_test_service_enums import (
     OperationResultStatus,
@@ -49,6 +47,5 @@ __all__ = [
     'ProductProperties',
     'ProductResult',
     'ProductResultValue',
-    'ProductResultValueWithXMSClientName',
     'OperationResultStatus',
 ]

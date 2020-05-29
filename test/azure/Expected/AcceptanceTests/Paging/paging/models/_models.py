@@ -275,26 +275,3 @@ class ProductResultValue(msrest.serialization.Model):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
-
-
-class ProductResultValueWithXMSClientName(msrest.serialization.Model):
-    """ProductResultValueWithXMSClientName.
-
-    :param indexes:
-    :type indexes: list[~paging.models.Product]
-    :param next_link:
-    :type next_link: str
-    """
-
-    _attribute_map = {
-        'indexes': {'key': 'values', 'type': '[Product]'},
-        'next_link': {'key': 'nextLink', 'type': 'str'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(ProductResultValueWithXMSClientName, self).__init__(**kwargs)
-        self.indexes = kwargs.get('indexes', None)
-        self.next_link = kwargs.get('next_link', None)
