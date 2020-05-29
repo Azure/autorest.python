@@ -10,7 +10,7 @@ from .base_model import BaseModel
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -56,6 +56,40 @@ class OperationGroup(BaseModel):
                 file_import.add_from_import("...", "models", ImportType.LOCAL)
             else:
                 file_import.add_from_import("..", "models", ImportType.LOCAL)
+
+        if self.is_empty_operation_group:
+            # adding imports for abstract class for typing in mixin operation groups
+            if self.code_model.options["azure_arm"]:
+                file_import.add_from_import(
+                    "azure.mgmt.core",
+                    self.code_model.service_client.pipeline_class(self.code_model, async_mode),
+                    ImportType.AZURECORE,
+                    TypingSection.TYPING
+                )
+            else:
+                file_import.add_from_import(
+                    "azure.core",
+                    self.code_model.service_client.pipeline_class(self.code_model, async_mode),
+                    ImportType.AZURECORE,
+                    TypingSection.TYPING
+                )
+
+            file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE, TypingSection.TYPING)
+            file_import.add_from_import("msrest", "Deserializer", ImportType.AZURECORE, TypingSection.TYPING)
+            if async_mode:
+                file_import.add_from_import(
+                    ".._configuration_async",
+                    f"{ self.code_model.class_name }Configuration",
+                    ImportType.LOCAL,
+                    TypingSection.TYPING
+                )
+            else:
+                file_import.add_from_import(
+                    ".._configuration",
+                    f"{ self.code_model.class_name }Configuration",
+                    ImportType.LOCAL,
+                    TypingSection.TYPING
+                )
         return file_import
 
     def get_filename(self, async_mode: bool) -> str:

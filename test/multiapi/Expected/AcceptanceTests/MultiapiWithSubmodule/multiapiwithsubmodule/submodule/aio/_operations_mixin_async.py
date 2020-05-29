@@ -9,13 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar
+from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TYPE_CHECKING, TypeVar
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from azure.core import AsyncPipelineClient
+    from msrest import Deserializer, Serializer
+
+    from .._configuration_async import MultiapiServiceClientConfiguration
 
 
 class MultiapiServiceClientOperationsMixin(object):

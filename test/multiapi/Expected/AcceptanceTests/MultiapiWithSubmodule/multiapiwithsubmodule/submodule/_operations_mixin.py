@@ -21,6 +21,11 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
 
+    from azure.core import PipelineClient
+    from msrest import Deserializer, Serializer
+
+    from .._configuration import MultiapiServiceClientConfiguration
+
 
 class MultiapiServiceClientOperationsMixin(object):
 
