@@ -50,7 +50,7 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Pet"
+        # type: (...) -> Optional["models.Pet"]
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -60,7 +60,7 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Pet"]]
         error_map = {
             409: ResourceExistsError,
             400: HttpResponseError,

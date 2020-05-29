@@ -23,8 +23,7 @@ response_headers = {
 {% set return_type_wrapper = "" if async_mode else "LROPoller" %}
 {{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
-{# overriding sync_return_type_annotation because we know if it's sync, it's return type is just LROPoller #}
-    # type: (...) -> LROPoller
+    {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}
     """{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
     {% if operation.summary and operation.description %}

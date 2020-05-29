@@ -31,7 +31,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :type product: ~multiapi.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
-        :rtype: ~multiapi.v1.models.Product or None
+        :rtype: ~multiapi.v1.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = self._get_api_version('test_lro')
