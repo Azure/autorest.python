@@ -63,6 +63,10 @@ jobs:
         displayName: 'Mypy'
 
       - script: |
+          inv mypy-generated
+        displayName: 'Mypy generated code'
+
+      - script: |
           pytest test/unittests
         displayName: 'Unit tests'
 
