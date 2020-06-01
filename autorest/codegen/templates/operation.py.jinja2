@@ -15,7 +15,7 @@
 {% if operation.want_description_docstring %}
 {{ op_tools.operation_docstring(operation, return_type)|indent }}
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType") }}
+    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType", include_cls_return_type=False) }}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}

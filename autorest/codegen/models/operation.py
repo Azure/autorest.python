@@ -268,6 +268,10 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
+        # always import union since return type annotation for operations is union of ClsReturnType and
+        # swagger return type
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
         # Exceptions
         file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
         if code_model.options["azure_arm"]:
@@ -282,9 +286,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         for response in [r for r in self.responses if r.has_body]:
             file_import.merge(cast(BaseSchema, response.schema).imports())
-
-        if len([r for r in self.responses if r.has_body]) > 1:
-            file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         file_import.add_from_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)

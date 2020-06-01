@@ -1,3 +1,7 @@
+{% macro cls_type_var(async_mode) %}
+T = TypeVar('T')
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], ClsReturnType]]{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro return_docstring(operation, return_type=None) %}
 {%- if return_type -%}
@@ -41,22 +45,22 @@
 {{ return_docstring(operation, return_type) }}
 :raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}
-{% macro return_type_annotation(operation, return_type_wrapper, return_type=None) %}
+{% macro return_type_annotation(operation, return_type_wrapper, return_type=None, include_cls_return_type=True) %}
 {%- if return_type -%}
-{{ return_type }}
+Union[{{ return_type }}, ClsReturnType]
 {%- else -%}
-{% set multiple_response_types = operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | list  | length > 1 %}
-{{ ((return_type_wrapper + "[") if return_type_wrapper else "") ~ ("Optional[" if operation.has_optional_return_type else "" ) ~ ("Union[" if multiple_response_types else "") ~
-(operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | join(', ')) ~
-("]" if multiple_response_types else "") ~ ("]" if operation.has_optional_return_type else "") ~ ( "]" if return_type_wrapper else "")
+{%- set multiple_response_bodies = operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | list  | length > 1 -%}
+{{ ((return_type_wrapper + "[") if return_type_wrapper) ~ ("Union[" if include_cls_return_type and not multiple_response_bodies) ~ ("Optional[" if operation.has_optional_return_type) ~ ("Union[" if multiple_response_bodies) ~
+(operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | join(', ')) ~ (", ClsReturnType" if multiple_response_bodies and include_cls_return_type) ~
+("]" if multiple_response_bodies) ~ ("]" if operation.has_optional_return_type) ~ (", ClsReturnType]" if include_cls_return_type and not multiple_response_bodies) ~ ( "]" if return_type_wrapper)
 if operation.responses | selectattr('has_body') | first
-else ((return_type_wrapper + "[") if return_type_wrapper else "") ~ ("Optional[" if operation.has_optional_return_type else "" ) ~ "None" ~ ("]" if operation.has_optional_return_type else "") ~ ( "]" if return_type_wrapper else "") }}{% endif %}{% endmacro %}
+else ((return_type_wrapper + "[") if return_type_wrapper) ~ ("Optional[ClsReturnType]" if include_cls_return_type else "None") ~ ( "]" if return_type_wrapper) }}{% endif %}{% endmacro %}
 {# get async mypy typing #}
-{% macro async_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
-{{ " -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
+{% macro async_return_type_annotation(operation, return_type_wrapper, return_type=None, include_cls_return_type=True) %}
+{{ " -> " + return_type_annotation(operation, return_type_wrapper, return_type, include_cls_return_type) }}{% endmacro %}
 {# get sync mypy typing #}
-{% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
-{{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
+{% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None, include_cls_return_type=True) %}
+{{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type, include_cls_return_type) }}{% endmacro %}
 {# get method signature #}
 {% macro method_signature(operation, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
 {{ "async " if coroutine else "" }}def {{ operation_name }}(

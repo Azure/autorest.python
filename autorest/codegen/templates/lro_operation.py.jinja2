@@ -52,7 +52,7 @@ response_headers = {
     :raises ~azure.core.exceptions.HttpResponseError:
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ polling_method }}]
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType", include_cls_return_type=False) }}
     lro_delay = kwargs.pop(
         'polling_interval',
         self._config.polling_interval

@@ -1,4 +1,5 @@
 {% set object_base_class = "" if async_mode else "(object)" %}
+{% import 'operation_tools.jinja2' as op_tools %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {{ imports }}
@@ -6,9 +7,8 @@
 
 {% if not async_mode %}
     {# since we define ClsType outside of the typing section in async mode, we will define it below the AbstractServiceClient in async mode #}
-    T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
-    
+    {{ op_tools.cls_type_var(async_mode) | indent(4) }}
+
 {% endif %}
     class AbstractServiceClient(object):
         """Abstract class of a service client to help with type hints for the following mixin class"""
@@ -73,8 +73,7 @@ else:
     _MIXIN_BASE = object
 
 {% if async_mode %}
-T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
+{{ op_tools.cls_type_var(async_mode) }}
 {% endif %}
 
 class {{ operation_group.class_name }}(_MIXIN_BASE):
