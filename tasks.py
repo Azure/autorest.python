@@ -298,3 +298,17 @@ def regenerate_multiapi(c, debug=False):
     success = all(result)
     if not success:
         raise SystemExit("Autorest generation fails")
+
+@task
+def mypy_generated(c):
+    cmds = []
+
+    for folder in default_mappings:
+        cmds.append(f"mypy test/vanilla/Expected/{folder}")
+
+    for folder in list(default_azure_mappings.keys()) + list(default_arm_mappings.keys()):
+        cmds.append(f"mypy test/azure/Expected/{folder}")
+
+    with Pool() as pool:
+        result = pool.map(run_autorest, cmds)
+        success = all(result)
