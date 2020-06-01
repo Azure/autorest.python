@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ByteOperations(object):
     """ByteOperations operations.
@@ -49,7 +50,7 @@ class ByteOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytearray
+        # type: (...) -> Union[bytearray, ClsReturnType]
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class ByteOperations(object):
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -94,7 +95,7 @@ class ByteOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytearray
+        # type: (...) -> Union[bytearray, ClsReturnType]
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -102,7 +103,7 @@ class ByteOperations(object):
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -139,7 +140,7 @@ class ByteOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytearray
+        # type: (...) -> Union[bytearray, ClsReturnType]
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -147,7 +148,7 @@ class ByteOperations(object):
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -185,7 +186,7 @@ class ByteOperations(object):
         byte_body,  # type: bytearray
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -195,7 +196,7 @@ class ByteOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -227,6 +228,7 @@ class ByteOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
 
     @distributed_trace
@@ -234,7 +236,7 @@ class ByteOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytearray
+        # type: (...) -> Union[bytearray, ClsReturnType]
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -242,7 +244,7 @@ class ByteOperations(object):
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

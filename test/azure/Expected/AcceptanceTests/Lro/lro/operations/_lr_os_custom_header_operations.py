@@ -23,7 +23,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class LROsCustomHeaderOperations(object):
     """LROsCustomHeaderOperations operations.
@@ -52,8 +53,8 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -103,7 +104,7 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 200 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
@@ -121,7 +122,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -158,8 +159,8 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -209,7 +210,7 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 201 to the initial request, with an
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -227,7 +228,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -259,8 +260,8 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -298,6 +299,7 @@ class LROsCustomHeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _post202_retry200_initial.metadata = {'url': '/lro/customheader/post/202/retry/200'}  # type: ignore
 
     @distributed_trace
@@ -306,7 +308,7 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -323,7 +325,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -352,8 +354,8 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -392,6 +394,7 @@ class LROsCustomHeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _post_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}  # type: ignore
 
     @distributed_trace
@@ -400,7 +403,7 @@ class LROsCustomHeaderOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
@@ -418,7 +421,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

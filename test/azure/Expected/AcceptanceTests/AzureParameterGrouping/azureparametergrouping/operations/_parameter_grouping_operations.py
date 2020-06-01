@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ParameterGroupingOperations(object):
     """ParameterGroupingOperations operations.
@@ -50,7 +51,7 @@ class ParameterGroupingOperations(object):
         parameter_grouping_post_required_parameters,  # type: "models.ParameterGroupingPostRequiredParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Parameter group.
@@ -60,7 +61,7 @@ class ParameterGroupingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -110,6 +111,7 @@ class ParameterGroupingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}  # type: ignore
 
     @distributed_trace
@@ -118,7 +120,7 @@ class ParameterGroupingOperations(object):
         parameter_grouping_post_optional_parameters=None,  # type: Optional["models.ParameterGroupingPostOptionalParameters"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post a bunch of optional parameters grouped.
 
         :param parameter_grouping_post_optional_parameters: Parameter group.
@@ -128,7 +130,7 @@ class ParameterGroupingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -164,6 +166,7 @@ class ParameterGroupingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}  # type: ignore
 
     @distributed_trace
@@ -173,7 +176,7 @@ class ParameterGroupingOperations(object):
         parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post parameters from multiple different parameter groups.
 
         :param first_parameter_group: Parameter group.
@@ -185,7 +188,7 @@ class ParameterGroupingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -230,6 +233,7 @@ class ParameterGroupingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}  # type: ignore
 
     @distributed_trace
@@ -238,7 +242,7 @@ class ParameterGroupingOperations(object):
         first_parameter_group=None,  # type: Optional["models.FirstParameterGroup"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post parameters with a shared parameter group object.
 
         :param first_parameter_group: Parameter group.
@@ -248,7 +252,7 @@ class ParameterGroupingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -284,4 +288,5 @@ class ParameterGroupingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}  # type: ignore

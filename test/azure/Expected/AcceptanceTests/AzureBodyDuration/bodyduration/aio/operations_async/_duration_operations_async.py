@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
@@ -17,7 +17,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class DurationOperations:
     """DurationOperations async operations.
@@ -45,7 +46,7 @@ class DurationOperations:
     async def get_null(
         self,
         **kwargs
-    ) -> datetime.timedelta:
+    ) -> Union[datetime.timedelta, ClsReturnType]:
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -90,7 +91,7 @@ class DurationOperations:
         self,
         duration_body: datetime.timedelta,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Put a positive duration value.
 
         :param duration_body:
@@ -100,7 +101,7 @@ class DurationOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -132,13 +133,14 @@ class DurationOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
 
     @distributed_trace_async
     async def get_positive_duration(
         self,
         **kwargs
-    ) -> datetime.timedelta:
+    ) -> Union[datetime.timedelta, ClsReturnType]:
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -146,7 +148,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -182,7 +184,7 @@ class DurationOperations:
     async def get_invalid(
         self,
         **kwargs
-    ) -> datetime.timedelta:
+    ) -> Union[datetime.timedelta, ClsReturnType]:
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -190,7 +192,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

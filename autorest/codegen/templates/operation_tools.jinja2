@@ -45,22 +45,31 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_m
 {{ return_docstring(operation, return_type) }}
 :raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}
-{% macro return_type_annotation(operation, return_type_wrapper, return_type=None, include_cls_return_type=True) %}
-{%- if return_type -%}
-Union[{{ return_type }}, ClsReturnType]
-{%- else -%}
+{# This function returns the innermost part of the return type. It doesn't add the return_type_wrapper
+and some of the wrappers that come along with including the cls return type #}
+{% macro inner_most_return_type_annotation(operation, include_cls_return_type_as_type_var=False) %}
 {%- set multiple_response_bodies = operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | list  | length > 1 -%}
-{{ ((return_type_wrapper + "[") if return_type_wrapper) ~ ("Union[" if include_cls_return_type and not multiple_response_bodies) ~ ("Optional[" if operation.has_optional_return_type) ~ ("Union[" if multiple_response_bodies) ~
-(operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | join(', ')) ~ (", ClsReturnType" if multiple_response_bodies and include_cls_return_type) ~
-("]" if multiple_response_bodies) ~ ("]" if operation.has_optional_return_type) ~ (", ClsReturnType]" if include_cls_return_type and not multiple_response_bodies) ~ ( "]" if return_type_wrapper)
+{{ ((("Optional[" if operation.has_optional_return_type) ~ ("Union[" if multiple_response_bodies) ~
+(operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | join(', ')) ~
+(", ClsReturnType" if multiple_response_bodies and not include_cls_return_type_as_type_var) ~ ("]" if multiple_response_bodies) ~ ("]" if operation.has_optional_return_type))
 if operation.responses | selectattr('has_body') | first
-else ((return_type_wrapper + "[") if return_type_wrapper) ~ ("Optional[ClsReturnType]" if include_cls_return_type else "None") ~ ( "]" if return_type_wrapper) }}{% endif %}{% endmacro %}
+else ("Optional[ClsReturnType]" if not include_cls_return_type_as_type_var else "None"))
+}}{% endmacro %}
+{# This function has the complete return type annotation. It is also called by async_return_type_annotation
+and sync_return_type_annotation #}
+{% macro return_type_annotation(operation, return_type_wrapper, return_type=None) %}
+{%- set multiple_response_bodies = operation.responses | selectattr('has_body') | map(attribute='schema') | sum(attribute='operation_type_annotation', start=[]) | unique | list  | length > 1 -%}
+{%- set has_schema_return_type = operation.responses | selectattr('has_body') | first -%}
+{{ ((return_type_wrapper + "[") if return_type_wrapper) ~ ("Union[" if ((has_schema_return_type and not multiple_response_bodies) or return_type)) ~
+(return_type if return_type else inner_most_return_type_annotation(operation)) ~
+(", ClsReturnType]" if ((has_schema_return_type and not multiple_response_bodies) or return_type)) ~
+("]" if return_type_wrapper)}}{% endmacro %}
 {# get async mypy typing #}
-{% macro async_return_type_annotation(operation, return_type_wrapper, return_type=None, include_cls_return_type=True) %}
-{{ " -> " + return_type_annotation(operation, return_type_wrapper, return_type, include_cls_return_type) }}{% endmacro %}
+{% macro async_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
+{{ " -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
 {# get sync mypy typing #}
-{% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None, include_cls_return_type=True) %}
-{{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type, include_cls_return_type) }}{% endmacro %}
+{% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
+{{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
 {# get method signature #}
 {% macro method_signature(operation, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
 {{ "async " if coroutine else "" }}def {{ operation_name }}(

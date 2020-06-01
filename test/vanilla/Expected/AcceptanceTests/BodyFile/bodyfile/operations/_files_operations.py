@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class FilesOperations(object):
     """FilesOperations operations.
@@ -49,7 +50,7 @@ class FilesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> IO
+        # type: (...) -> Union[IO, ClsReturnType]
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class FilesOperations(object):
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -94,7 +95,7 @@ class FilesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> IO
+        # type: (...) -> Union[IO, ClsReturnType]
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -102,7 +103,7 @@ class FilesOperations(object):
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -139,7 +140,7 @@ class FilesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> IO
+        # type: (...) -> Union[IO, ClsReturnType]
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -147,7 +148,7 @@ class FilesOperations(object):
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

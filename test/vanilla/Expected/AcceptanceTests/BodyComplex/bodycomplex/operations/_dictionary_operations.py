@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class DictionaryOperations(object):
     """DictionaryOperations operations.
@@ -49,7 +50,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DictionaryWrapper"
+        # type: (...) -> Union["models.DictionaryWrapper", ClsReturnType]
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class DictionaryOperations(object):
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class DictionaryOperations(object):
         default_program=None,  # type: Optional[Dict[str, str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with dictionary property.
 
         :param default_program: Dictionary of :code:`<string>`.
@@ -105,7 +106,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -139,6 +140,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
 
     @distributed_trace
@@ -146,7 +148,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DictionaryWrapper"
+        # type: (...) -> Union["models.DictionaryWrapper", ClsReturnType]
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -154,7 +156,7 @@ class DictionaryOperations(object):
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -192,7 +194,7 @@ class DictionaryOperations(object):
         default_program=None,  # type: Optional[Dict[str, str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with dictionary property which is empty.
 
         :param default_program: Dictionary of :code:`<string>`.
@@ -202,7 +204,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -236,6 +238,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
 
     @distributed_trace
@@ -243,7 +246,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DictionaryWrapper"
+        # type: (...) -> Union["models.DictionaryWrapper", ClsReturnType]
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -251,7 +254,7 @@ class DictionaryOperations(object):
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -288,7 +291,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DictionaryWrapper"
+        # type: (...) -> Union["models.DictionaryWrapper", ClsReturnType]
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -296,7 +299,7 @@ class DictionaryOperations(object):
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

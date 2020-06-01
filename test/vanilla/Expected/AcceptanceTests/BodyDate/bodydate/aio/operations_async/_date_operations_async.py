@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
@@ -17,7 +17,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class DateOperations:
     """DateOperations async operations.
@@ -45,7 +46,7 @@ class DateOperations:
     async def get_null(
         self,
         **kwargs
-    ) -> datetime.date:
+    ) -> Union[datetime.date, ClsReturnType]:
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -89,7 +90,7 @@ class DateOperations:
     async def get_invalid_date(
         self,
         **kwargs
-    ) -> datetime.date:
+    ) -> Union[datetime.date, ClsReturnType]:
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -97,7 +98,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -133,7 +134,7 @@ class DateOperations:
     async def get_overflow_date(
         self,
         **kwargs
-    ) -> datetime.date:
+    ) -> Union[datetime.date, ClsReturnType]:
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -141,7 +142,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -177,7 +178,7 @@ class DateOperations:
     async def get_underflow_date(
         self,
         **kwargs
-    ) -> datetime.date:
+    ) -> Union[datetime.date, ClsReturnType]:
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -185,7 +186,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -222,7 +223,7 @@ class DateOperations:
         self,
         date_body: datetime.date,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Put max date value 9999-12-31.
 
         :param date_body:
@@ -232,7 +233,7 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -264,13 +265,14 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_max_date.metadata = {'url': '/date/max'}  # type: ignore
 
     @distributed_trace_async
     async def get_max_date(
         self,
         **kwargs
-    ) -> datetime.date:
+    ) -> Union[datetime.date, ClsReturnType]:
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -278,7 +280,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -315,7 +317,7 @@ class DateOperations:
         self,
         date_body: datetime.date,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Put min date value 0000-01-01.
 
         :param date_body:
@@ -325,7 +327,7 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -357,13 +359,14 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_min_date.metadata = {'url': '/date/min'}  # type: ignore
 
     @distributed_trace_async
     async def get_min_date(
         self,
         **kwargs
-    ) -> datetime.date:
+    ) -> Union[datetime.date, ClsReturnType]:
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -371,7 +374,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

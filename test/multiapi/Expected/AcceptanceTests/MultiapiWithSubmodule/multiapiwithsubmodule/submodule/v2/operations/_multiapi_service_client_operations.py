@@ -16,7 +16,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     from azure.core import PipelineClient
     from msrest import Deserializer, Serializer
@@ -25,8 +25,9 @@ if TYPE_CHECKING:
 
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-    
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
+
     class AbstractServiceClient(object):
         """Abstract class of a service client to help with type hints for the following mixin class"""
 
@@ -98,7 +99,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ModelTwo"
+        # type: (...) -> Union["models.ModelTwo", ClsReturnType]
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
@@ -110,7 +111,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0.0"

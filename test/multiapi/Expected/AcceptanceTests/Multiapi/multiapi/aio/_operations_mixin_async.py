@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TYPE_CHECKING, TypeVar
+from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TYPE_CHECKING, TypeVar, Union
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -24,6 +24,10 @@ if TYPE_CHECKING:
 
     from .._configuration_async import MultiapiServiceClientConfiguration
 
+T = TypeVar('T')
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
+
 
 class MultiapiServiceClientOperationsMixin(object):
 
@@ -31,7 +35,7 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> Union["models.Product", ClsReturnType]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -58,7 +62,7 @@ class MultiapiServiceClientOperationsMixin(object):
         id: int,
         message: Optional[str] = None,
         **kwargs
-    ) -> "models.ModelTwo":
+    ) -> Union["models.ModelTwo", ClsReturnType]:
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
@@ -87,7 +91,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_paging(
         self,
         **kwargs
-    ) -> AsyncItemPaged["models.PagingResult"]:
+    ) -> AsyncItemPaged[Union["models.PagingResult", ClsReturnType]]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

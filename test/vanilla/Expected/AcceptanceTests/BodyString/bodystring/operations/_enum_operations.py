@@ -20,7 +20,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class EnumOperations(object):
     """EnumOperations operations.
@@ -49,7 +50,7 @@ class EnumOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "models.Colors"]
+        # type: (...) -> Union[str, "models.Colors", ClsReturnType]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class EnumOperations(object):
         string_body,  # type: Union[str, "models.Colors"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body:
@@ -105,7 +106,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -137,6 +138,7 @@ class EnumOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}  # type: ignore
 
     @distributed_trace
@@ -144,7 +146,7 @@ class EnumOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "models.Colors"]
+        # type: (...) -> Union[str, "models.Colors", ClsReturnType]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,7 +154,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -190,7 +192,7 @@ class EnumOperations(object):
         enum_string_body,  # type: Union[str, "models.Colors"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body:
@@ -200,7 +202,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -232,6 +234,7 @@ class EnumOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_referenced.metadata = {'url': '/string/enum/Referenced'}  # type: ignore
 
     @distributed_trace
@@ -239,7 +242,7 @@ class EnumOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.RefColorConstant"
+        # type: (...) -> Union["models.RefColorConstant", ClsReturnType]
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -247,7 +250,7 @@ class EnumOperations(object):
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.RefColorConstant"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.RefColorConstant", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -285,7 +288,7 @@ class EnumOperations(object):
         field1=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.
@@ -295,7 +298,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -329,4 +332,5 @@ class EnumOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}  # type: ignore

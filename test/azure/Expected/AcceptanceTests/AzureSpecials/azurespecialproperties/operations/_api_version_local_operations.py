@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ApiVersionLocalOperations(object):
     """ApiVersionLocalOperations operations.
@@ -50,7 +51,7 @@ class ApiVersionLocalOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class ApiVersionLocalOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0"
@@ -86,6 +87,7 @@ class ApiVersionLocalOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}  # type: ignore
 
     @distributed_trace
@@ -94,7 +96,7 @@ class ApiVersionLocalOperations(object):
         api_version=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :param api_version: This should appear as a method parameter, use value null, this should
@@ -105,7 +107,7 @@ class ApiVersionLocalOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -133,6 +135,7 @@ class ApiVersionLocalOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}  # type: ignore
 
     @distributed_trace
@@ -140,7 +143,7 @@ class ApiVersionLocalOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -148,7 +151,7 @@ class ApiVersionLocalOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0"
@@ -176,6 +179,7 @@ class ApiVersionLocalOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}  # type: ignore
 
     @distributed_trace
@@ -183,7 +187,7 @@ class ApiVersionLocalOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -191,7 +195,7 @@ class ApiVersionLocalOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0"
@@ -219,4 +223,5 @@ class ApiVersionLocalOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_swagger_local_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'}  # type: ignore

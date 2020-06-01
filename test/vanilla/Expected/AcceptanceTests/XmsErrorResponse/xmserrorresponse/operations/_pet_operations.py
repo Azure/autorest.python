@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PetOperations(object):
     """PetOperations operations.
@@ -50,7 +51,7 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Pet"]
+        # type: (...) -> Union[Optional["models.Pet"], ClsReturnType]
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -60,7 +61,7 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Pet"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Pet"], ClsReturnType]
         error_map = {
             409: ResourceExistsError,
             400: HttpResponseError,
@@ -108,7 +109,7 @@ class PetOperations(object):
         what_action,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAction"
+        # type: (...) -> Union["models.PetAction", ClsReturnType]
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -118,7 +119,7 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction", ClsReturnType]
         error_map = {
             404: ResourceNotFoundError,
             409: ResourceExistsError,

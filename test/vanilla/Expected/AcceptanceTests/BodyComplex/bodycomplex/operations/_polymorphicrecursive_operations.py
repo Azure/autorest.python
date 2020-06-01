@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PolymorphicrecursiveOperations(object):
     """PolymorphicrecursiveOperations operations.
@@ -49,7 +50,7 @@ class PolymorphicrecursiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Fish"
+        # type: (...) -> Union["models.Fish", ClsReturnType]
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class PolymorphicrecursiveOperations(object):
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class PolymorphicrecursiveOperations(object):
         complex_body,  # type: "models.Fish"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -157,7 +158,7 @@ class PolymorphicrecursiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -189,4 +190,5 @@ class PolymorphicrecursiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}  # type: ignore

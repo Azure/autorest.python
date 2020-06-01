@@ -20,7 +20,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class IntOperations(object):
     """IntOperations operations.
@@ -46,7 +47,7 @@ class IntOperations(object):
         input=None,  # type: Optional[Union[int, "models.IntEnum"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Put an int enum.
 
         :param input: Input int enum.
@@ -56,7 +57,7 @@ class IntOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -101,7 +102,7 @@ class IntOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[int, "models.IntEnum"]
+        # type: (...) -> Union[int, "models.IntEnum", ClsReturnType]
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -109,7 +110,7 @@ class IntOperations(object):
         :rtype: str or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "models.IntEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "models.IntEnum"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

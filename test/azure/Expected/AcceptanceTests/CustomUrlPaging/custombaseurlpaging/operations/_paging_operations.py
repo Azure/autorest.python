@@ -19,10 +19,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PagingOperations(object):
     """PagingOperations operations.
@@ -52,7 +53,7 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable[Union["models.ProductResult", ClsReturnType]]
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
     host.
 
@@ -63,7 +64,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -125,7 +126,7 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable[Union["models.ProductResult", ClsReturnType]]
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
@@ -135,7 +136,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PathsOperations(object):
     """PathsOperations operations.
@@ -53,7 +54,7 @@ class PathsOperations(object):
         key_version="v1",  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a 200 to test a valid base uri.
 
         :param vault: The vault name, e.g. https://myvault.
@@ -69,7 +70,7 @@ class PathsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -105,4 +106,5 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}  # type: ignore

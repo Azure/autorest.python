@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class XMsClientRequestIdOperations(object):
     """XMsClientRequestIdOperations operations.
@@ -50,7 +51,7 @@ class XMsClientRequestIdOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -59,7 +60,7 @@ class XMsClientRequestIdOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -84,6 +85,7 @@ class XMsClientRequestIdOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}  # type: ignore
 
     @distributed_trace
@@ -92,7 +94,7 @@ class XMsClientRequestIdOperations(object):
         x_ms_client_request_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -104,7 +106,7 @@ class XMsClientRequestIdOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -131,4 +133,5 @@ class XMsClientRequestIdOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}  # type: ignore

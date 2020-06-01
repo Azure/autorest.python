@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class SkipUrlEncodingOperations(object):
     """SkipUrlEncodingOperations operations.
@@ -51,7 +52,7 @@ class SkipUrlEncodingOperations(object):
         unencoded_path_param,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -61,7 +62,7 @@ class SkipUrlEncodingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -91,6 +92,7 @@ class SkipUrlEncodingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}  # type: ignore
 
     @distributed_trace
@@ -99,7 +101,7 @@ class SkipUrlEncodingOperations(object):
         unencoded_path_param,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -109,7 +111,7 @@ class SkipUrlEncodingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -139,6 +141,7 @@ class SkipUrlEncodingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}  # type: ignore
 
     @distributed_trace
@@ -146,7 +149,7 @@ class SkipUrlEncodingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -154,7 +157,7 @@ class SkipUrlEncodingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         unencoded_path_param = "path1/path2/path3"
@@ -185,6 +188,7 @@ class SkipUrlEncodingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}  # type: ignore
 
     @distributed_trace
@@ -193,7 +197,7 @@ class SkipUrlEncodingOperations(object):
         q1,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -203,7 +207,7 @@ class SkipUrlEncodingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -230,6 +234,7 @@ class SkipUrlEncodingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}  # type: ignore
 
     @distributed_trace
@@ -238,7 +243,7 @@ class SkipUrlEncodingOperations(object):
         q1=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null.
@@ -248,7 +253,7 @@ class SkipUrlEncodingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -276,6 +281,7 @@ class SkipUrlEncodingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}  # type: ignore
 
     @distributed_trace
@@ -284,7 +290,7 @@ class SkipUrlEncodingOperations(object):
         q1,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -294,7 +300,7 @@ class SkipUrlEncodingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -321,6 +327,7 @@ class SkipUrlEncodingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}  # type: ignore
 
     @distributed_trace
@@ -328,7 +335,7 @@ class SkipUrlEncodingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -336,7 +343,7 @@ class SkipUrlEncodingOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         q1 = "value1&q2=value2&q3=value3"
@@ -364,4 +371,5 @@ class SkipUrlEncodingOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}  # type: ignore

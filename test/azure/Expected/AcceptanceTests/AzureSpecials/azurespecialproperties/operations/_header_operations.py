@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class HeaderOperations(object):
     """HeaderOperations operations.
@@ -51,7 +52,7 @@ class HeaderOperations(object):
         foo_client_request_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
@@ -61,7 +62,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -91,6 +92,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}  # type: ignore
 
     @distributed_trace
@@ -99,7 +101,7 @@ class HeaderOperations(object):
         header_custom_named_request_id_param_grouping_parameters,  # type: "models.HeaderCustomNamedRequestIdParamGroupingParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
 
@@ -110,7 +112,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -144,6 +146,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}  # type: ignore
 
     @distributed_trace
@@ -152,7 +155,7 @@ class HeaderOperations(object):
         foo_client_request_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
@@ -162,7 +165,7 @@ class HeaderOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

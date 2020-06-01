@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class DictionaryOperations(object):
     """DictionaryOperations operations.
@@ -50,7 +51,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get null dictionary value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get empty dictionary value {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -103,7 +104,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -141,7 +142,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value empty {}.
 
         :param array_body:
@@ -151,7 +152,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -183,6 +184,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_empty.metadata = {'url': '/dictionary/empty'}  # type: ignore
 
     @distributed_trace
@@ -190,7 +192,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, str]
+        # type: (...) -> Union[Dict[str, str], ClsReturnType]
         """Get Dictionary with null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -198,7 +200,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -235,7 +237,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, str]
+        # type: (...) -> Union[Dict[str, str], ClsReturnType]
         """Get Dictionary with null key.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -243,7 +245,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -280,7 +282,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, str]
+        # type: (...) -> Union[Dict[str, str], ClsReturnType]
         """Get Dictionary with key as empty string.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -288,7 +290,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -325,7 +327,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, str]
+        # type: (...) -> Union[Dict[str, str], ClsReturnType]
         """Get invalid Dictionary value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -333,7 +335,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -370,7 +372,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bool]
+        # type: (...) -> Union[Dict[str, bool], ClsReturnType]
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -378,7 +380,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -416,7 +418,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
         :param array_body:
@@ -426,7 +428,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -458,6 +460,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}  # type: ignore
 
     @distributed_trace
@@ -465,7 +468,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bool]
+        # type: (...) -> Union[Dict[str, bool], ClsReturnType]
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -473,7 +476,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -510,7 +513,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bool]
+        # type: (...) -> Union[Dict[str, bool], ClsReturnType]
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -518,7 +521,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -555,7 +558,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -563,7 +566,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -601,7 +604,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, int]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
@@ -611,7 +614,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -643,6 +646,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}  # type: ignore
 
     @distributed_trace
@@ -650,7 +654,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -658,7 +662,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -695,7 +699,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -703,7 +707,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -740,7 +744,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -748,7 +752,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -786,7 +790,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, int]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
@@ -796,7 +800,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -828,6 +832,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}  # type: ignore
 
     @distributed_trace
@@ -835,7 +840,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -843,7 +848,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -880,7 +885,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -888,7 +893,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -925,7 +930,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, float]
+        # type: (...) -> Union[Dict[str, float], ClsReturnType]
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -933,7 +938,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -971,7 +976,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, float]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
@@ -981,7 +986,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1013,6 +1018,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace
@@ -1020,7 +1026,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, float]
+        # type: (...) -> Union[Dict[str, float], ClsReturnType]
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1028,7 +1034,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1065,7 +1071,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, float]
+        # type: (...) -> Union[Dict[str, float], ClsReturnType]
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1073,7 +1079,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1110,7 +1116,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, float]
+        # type: (...) -> Union[Dict[str, float], ClsReturnType]
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1118,7 +1124,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1156,7 +1162,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, float]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
@@ -1166,7 +1172,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1198,6 +1204,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace
@@ -1205,7 +1212,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, float]
+        # type: (...) -> Union[Dict[str, float], ClsReturnType]
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1213,7 +1220,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1250,7 +1257,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, float]
+        # type: (...) -> Union[Dict[str, float], ClsReturnType]
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1258,7 +1265,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1295,7 +1302,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, str]
+        # type: (...) -> Union[Dict[str, str], ClsReturnType]
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1303,7 +1310,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1341,7 +1348,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :param array_body:
@@ -1351,7 +1358,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1383,6 +1390,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace
@@ -1390,7 +1398,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, str]
+        # type: (...) -> Union[Dict[str, str], ClsReturnType]
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1398,7 +1406,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1435,7 +1443,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, str]
+        # type: (...) -> Union[Dict[str, str], ClsReturnType]
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1443,7 +1451,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1480,7 +1488,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.date]
+        # type: (...) -> Union[Dict[str, datetime.date], ClsReturnType]
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1488,7 +1496,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1526,7 +1534,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, datetime.date]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :param array_body:
@@ -1536,7 +1544,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1568,6 +1576,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}  # type: ignore
 
     @distributed_trace
@@ -1575,7 +1584,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.date]
+        # type: (...) -> Union[Dict[str, datetime.date], ClsReturnType]
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1583,7 +1592,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1620,7 +1629,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.date]
+        # type: (...) -> Union[Dict[str, datetime.date], ClsReturnType]
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1628,7 +1637,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1665,7 +1674,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.datetime]
+        # type: (...) -> Union[Dict[str, datetime.datetime], ClsReturnType]
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
         "2": "1492-10-12T10:15:01-08:00"}.
 
@@ -1674,7 +1683,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1712,7 +1721,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, datetime.datetime]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
         "1492-10-12T10:15:01-08:00"}.
 
@@ -1723,7 +1732,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1755,6 +1764,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}  # type: ignore
 
     @distributed_trace
@@ -1762,7 +1772,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.datetime]
+        # type: (...) -> Union[Dict[str, datetime.datetime], ClsReturnType]
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1770,7 +1780,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1807,7 +1817,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.datetime]
+        # type: (...) -> Union[Dict[str, datetime.datetime], ClsReturnType]
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1815,7 +1825,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1852,7 +1862,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.datetime]
+        # type: (...) -> Union[Dict[str, datetime.datetime], ClsReturnType]
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
         1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -1861,7 +1871,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1899,7 +1909,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, datetime.datetime]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
         00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -1910,7 +1920,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1942,6 +1952,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}  # type: ignore
 
     @distributed_trace
@@ -1949,7 +1960,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, datetime.timedelta]
+        # type: (...) -> Union[Dict[str, datetime.timedelta], ClsReturnType]
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1957,7 +1968,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.timedelta]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.timedelta], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1995,7 +2006,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, datetime.timedelta]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body:
@@ -2005,7 +2016,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2037,6 +2048,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}  # type: ignore
 
     @distributed_trace
@@ -2044,7 +2056,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bytearray]
+        # type: (...) -> Union[Dict[str, bytearray], ClsReturnType]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each item encoded in base64.
 
@@ -2053,7 +2065,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytearray]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytearray], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2091,7 +2103,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, bytearray]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each elementencoded in base 64.
 
@@ -2102,7 +2114,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2134,6 +2146,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}  # type: ignore
 
     @distributed_trace
@@ -2141,7 +2154,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bytearray]
+        # type: (...) -> Union[Dict[str, bytearray], ClsReturnType]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
         encoded.
 
@@ -2150,7 +2163,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytearray]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytearray], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2187,7 +2200,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, bytes]
+        # type: (...) -> Union[Dict[str, bytes], ClsReturnType]
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
         string", "2": "Lorem ipsum"}.
 
@@ -2196,7 +2209,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytes], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2233,7 +2246,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "models.Widget"]
+        # type: (...) -> Union[Dict[str, "models.Widget"], ClsReturnType]
         """Get dictionary of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2241,7 +2254,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2278,7 +2291,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "models.Widget"]
+        # type: (...) -> Union[Dict[str, "models.Widget"], ClsReturnType]
         """Get empty dictionary of complex type {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2286,7 +2299,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2323,7 +2336,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "models.Widget"]
+        # type: (...) -> Union[Dict[str, "models.Widget"], ClsReturnType]
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
@@ -2332,7 +2345,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2369,7 +2382,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "models.Widget"]
+        # type: (...) -> Union[Dict[str, "models.Widget"], ClsReturnType]
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
@@ -2378,7 +2391,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2415,7 +2428,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "models.Widget"]
+        # type: (...) -> Union[Dict[str, "models.Widget"], ClsReturnType]
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -2424,7 +2437,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2462,7 +2475,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, "models.Widget"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -2473,7 +2486,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2505,6 +2518,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_complex_valid.metadata = {'url': '/dictionary/complex/valid'}  # type: ignore
 
     @distributed_trace
@@ -2512,7 +2526,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, List[str]]
+        # type: (...) -> Union[Dict[str, List[str]], ClsReturnType]
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2520,7 +2534,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2557,7 +2571,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, List[str]]
+        # type: (...) -> Union[Dict[str, List[str]], ClsReturnType]
         """Get an empty dictionary {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2565,7 +2579,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2602,7 +2616,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, List[str]]
+        # type: (...) -> Union[Dict[str, List[str]], ClsReturnType]
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2610,7 +2624,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2647,7 +2661,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, List[str]]
+        # type: (...) -> Union[Dict[str, List[str]], ClsReturnType]
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2655,7 +2669,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2692,7 +2706,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, List[str]]
+        # type: (...) -> Union[Dict[str, List[str]], ClsReturnType]
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
@@ -2701,7 +2715,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2739,7 +2753,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
@@ -2750,7 +2764,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2782,6 +2796,7 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_array_valid.metadata = {'url': '/dictionary/array/valid'}  # type: ignore
 
     @distributed_trace
@@ -2789,7 +2804,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Union[Dict[str, object], ClsReturnType]
         """Get an dictionaries of dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2797,7 +2812,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2834,7 +2849,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Union[Dict[str, object], ClsReturnType]
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2842,7 +2857,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2879,7 +2894,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Union[Dict[str, object], ClsReturnType]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
@@ -2888,7 +2903,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2925,7 +2940,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Union[Dict[str, object], ClsReturnType]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
@@ -2934,7 +2949,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2971,7 +2986,7 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Union[Dict[str, object], ClsReturnType]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.
@@ -2981,7 +2996,7 @@ class DictionaryOperations(object):
         :rtype: dict[str, object]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, object], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3019,7 +3034,7 @@ class DictionaryOperations(object):
         array_body,  # type: Dict[str, object]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.
@@ -3031,7 +3046,7 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3063,4 +3078,5 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}  # type: ignore

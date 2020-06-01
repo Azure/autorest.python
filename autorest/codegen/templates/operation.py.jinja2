@@ -15,7 +15,7 @@
 {% if operation.want_description_docstring %}
 {{ op_tools.operation_docstring(operation, return_type)|indent }}
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType", include_cls_return_type=False) }}
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.inner_most_return_type_annotation(operation, include_cls_return_type_as_type_var=True) }}, ClsReturnType]
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
@@ -86,10 +86,13 @@
     if cls:
         return cls(pipeline_response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
-{% if operation.has_response_body %}
-    return deserialized
-{% endif %}
 {% if operation.method == 'head' and code_model.options['head_as_boolean'] %}
     return 200 <= response.status_code <= 299
+{% else %}
+    {% if operation.has_response_body %}
+    return deserialized
+    {% else %}
+    return None
+    {% endif %}
 {% endif %}
 {{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(operation.url) }}}  # type: ignore

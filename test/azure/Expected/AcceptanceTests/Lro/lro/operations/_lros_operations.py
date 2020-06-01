@@ -23,7 +23,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class LROsOperations(object):
     """LROsOperations operations.
@@ -52,8 +53,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        # type: (...) -> Union[Optional["models.Product"], ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -101,7 +102,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -117,7 +118,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -149,8 +150,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -196,7 +197,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -212,7 +213,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -243,8 +244,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[List["models.Product"]]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List["models.Product"]]]
+        # type: (...) -> Union[Optional[List["models.Product"]], ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List["models.Product"]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -287,7 +288,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[List["models.Product"]]
+        # type: (...) -> LROPoller[Union[List["models.Product"], ClsReturnType]]
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
     with body [{ 'id': '100', 'name': 'foo' }].
 
@@ -301,7 +302,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"], ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -332,8 +333,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -379,7 +380,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     does not contain ProvisioningState=’Succeeded’.
 
@@ -395,7 +396,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -427,8 +428,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -474,7 +475,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 202 to the initial request, with a location header
     that points to a polling URL that returns a 200 and an entity that doesn't contains
     ProvisioningState.
@@ -491,7 +492,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -523,8 +524,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -574,7 +575,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -591,7 +592,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -623,8 +624,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -670,7 +671,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -687,7 +688,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -719,8 +720,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -770,7 +771,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -787,7 +788,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -819,8 +820,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -866,7 +867,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -883,7 +884,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -915,8 +916,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -964,7 +965,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 202 to the initial request with location header.
     Subsequent calls to operation status do not contain location header.
 
@@ -980,7 +981,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1015,8 +1016,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1066,7 +1067,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1083,7 +1084,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1120,8 +1121,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1170,7 +1171,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1187,7 +1188,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1223,8 +1224,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1274,7 +1275,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1291,7 +1292,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1328,8 +1329,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1378,7 +1379,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1395,7 +1396,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1431,8 +1432,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1480,7 +1481,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running put request, service returns a 202 to the initial request with Azure-
     AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation
     header.
@@ -1497,7 +1498,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1532,8 +1533,8 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Sku"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
+        # type: (...) -> Union["models.Sku", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1579,7 +1580,7 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Sku"]
+        # type: (...) -> LROPoller[Union["models.Sku", ClsReturnType]]
         """Long running put request with non resource.
 
         :param sku: sku to put.
@@ -1594,7 +1595,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1626,8 +1627,8 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Sku"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
+        # type: (...) -> Union["models.Sku", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1673,7 +1674,7 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Sku"]
+        # type: (...) -> LROPoller[Union["models.Sku", ClsReturnType]]
         """Long running put request with non resource.
 
         :param sku: Sku to put.
@@ -1688,7 +1689,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1720,8 +1721,8 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SubProduct"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
+        # type: (...) -> Union["models.SubProduct", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1769,7 +1770,7 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.SubProduct"]
+        # type: (...) -> LROPoller[Union["models.SubProduct", ClsReturnType]]
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1784,7 +1785,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1816,8 +1817,8 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SubProduct"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
+        # type: (...) -> Union["models.SubProduct", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1865,7 +1866,7 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.SubProduct"]
+        # type: (...) -> LROPoller[Union["models.SubProduct", ClsReturnType]]
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1880,7 +1881,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1911,8 +1912,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1955,7 +1956,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -1970,7 +1971,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2004,8 +2005,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2048,7 +2049,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -2063,7 +2064,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2097,8 +2098,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2141,7 +2142,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -2156,7 +2157,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2190,8 +2191,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2216,6 +2217,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     _delete204_succeeded_initial.metadata = {'url': '/lro/delete/204/succeeded'}  # type: ignore
 
     @distributed_trace
@@ -2223,7 +2225,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2236,7 +2238,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2263,8 +2265,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        # type: (...) -> Union[Optional["models.Product"], ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2307,7 +2309,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2321,7 +2323,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2351,8 +2353,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        # type: (...) -> Union[Optional["models.Product"], ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2395,7 +2397,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2409,7 +2411,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2439,8 +2441,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2469,6 +2471,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _delete_no_header_in_retry_initial.metadata = {'url': '/lro/delete/noheader'}  # type: ignore
 
     @distributed_trace
@@ -2476,7 +2479,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running delete request, service returns a location header in the initial request.
     Subsequent calls to operation status do not contain location header.
 
@@ -2490,7 +2493,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2517,8 +2520,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2547,6 +2550,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _delete_async_no_header_in_retry_initial.metadata = {'url': '/lro/deleteasync/noheader/202/204'}  # type: ignore
 
     @distributed_trace
@@ -2554,7 +2558,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
     request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -2568,7 +2572,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2595,8 +2599,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2626,6 +2630,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _delete_async_retry_succeeded_initial.metadata = {'url': '/lro/deleteasync/retry/succeeded'}  # type: ignore
 
     @distributed_trace
@@ -2633,7 +2638,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2647,7 +2652,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2674,8 +2679,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2705,6 +2710,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _delete_async_no_retry_succeeded_initial.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}  # type: ignore
 
     @distributed_trace
@@ -2712,7 +2718,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2726,7 +2732,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2753,8 +2759,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2784,6 +2790,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _delete_async_retry_failed_initial.metadata = {'url': '/lro/deleteasync/retry/failed'}  # type: ignore
 
     @distributed_trace
@@ -2791,7 +2798,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2805,7 +2812,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2832,8 +2839,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2863,6 +2870,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _delete_async_retrycanceled_initial.metadata = {'url': '/lro/deleteasync/retry/canceled'}  # type: ignore
 
     @distributed_trace
@@ -2870,7 +2878,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2884,7 +2892,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2911,8 +2919,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Sku"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
+        # type: (...) -> Union["models.Sku", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2952,7 +2960,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Sku"]
+        # type: (...) -> LROPoller[Union["models.Sku", ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request, with 'Location'
     header. Poll returns a 200 with a response body after success.
 
@@ -2966,7 +2974,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -2997,8 +3005,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3036,6 +3044,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _post202_retry200_initial.metadata = {'url': '/lro/post/202/retry/200'}  # type: ignore
 
     @distributed_trace
@@ -3044,7 +3053,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
     'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -3060,7 +3069,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3089,8 +3098,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3139,7 +3148,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request, with 'Location'
     header, 204 with noresponse body after success.
 
@@ -3155,7 +3164,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3190,8 +3199,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3227,7 +3236,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
     object.
@@ -3242,7 +3251,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3272,8 +3281,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3309,7 +3318,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object.
@@ -3324,7 +3333,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3354,8 +3363,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Union["models.Product", ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3391,7 +3400,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object if you support initial Autorest behavior.
@@ -3406,7 +3415,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3437,8 +3446,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        # type: (...) -> Union[Optional["models.Product"], ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3492,7 +3501,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3509,7 +3518,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3541,8 +3550,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        # type: (...) -> Union[Optional["models.Product"], ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3596,7 +3605,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller[Union["models.Product", ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3613,7 +3622,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3645,8 +3654,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3685,6 +3694,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _post_async_retry_failed_initial.metadata = {'url': '/lro/postasync/retry/failed'}  # type: ignore
 
     @distributed_trace
@@ -3693,7 +3703,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3710,7 +3720,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -3739,8 +3749,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        # type: (...) -> Optional[ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3779,6 +3789,7 @@ class LROsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     _post_async_retrycanceled_initial.metadata = {'url': '/lro/postasync/retry/canceled'}  # type: ignore
 
     @distributed_trace
@@ -3787,7 +3798,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[None]
+        # type: (...) -> LROPoller[Optional[ClsReturnType]]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3804,7 +3815,7 @@ class LROsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

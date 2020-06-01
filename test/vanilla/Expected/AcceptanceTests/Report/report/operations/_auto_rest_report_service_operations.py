@@ -17,7 +17,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     from azure.core import PipelineClient
     from msrest import Deserializer, Serializer
@@ -26,8 +26,9 @@ if TYPE_CHECKING:
 
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-    
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
+
     class AbstractServiceClient(object):
         """Abstract class of a service client to help with type hints for the following mixin class"""
 
@@ -99,7 +100,7 @@ class AutoRestReportServiceOperationsMixin(_MIXIN_BASE):
         qualifier=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -111,7 +112,7 @@ class AutoRestReportServiceOperationsMixin(_MIXIN_BASE):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -151,7 +152,7 @@ class AutoRestReportServiceOperationsMixin(_MIXIN_BASE):
         qualifier=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, int]
+        # type: (...) -> Union[Dict[str, int], ClsReturnType]
         """Get optional test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -163,7 +164,7 @@ class AutoRestReportServiceOperationsMixin(_MIXIN_BASE):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

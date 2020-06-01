@@ -20,7 +20,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class FloatOperations(object):
     """FloatOperations operations.
@@ -46,7 +47,7 @@ class FloatOperations(object):
         input=None,  # type: Optional[Union[float, "models.FloatEnum"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Put a float enum.
 
         :param input: Input float enum.
@@ -56,7 +57,7 @@ class FloatOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -101,7 +102,7 @@ class FloatOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[float, "models.FloatEnum"]
+        # type: (...) -> Union[float, "models.FloatEnum", ClsReturnType]
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -109,7 +110,7 @@ class FloatOperations(object):
         :rtype: str or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "models.FloatEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "models.FloatEnum"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

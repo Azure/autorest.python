@@ -17,7 +17,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class QueriesOperations:
     """QueriesOperations async operations.
@@ -45,7 +46,7 @@ class QueriesOperations:
     async def get_boolean_true(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get true Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         bool_query = True
@@ -81,13 +82,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_boolean_true.metadata = {'url': '/queries/bool/true'}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_false(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get false Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -95,7 +97,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         bool_query = False
@@ -123,6 +125,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_boolean_false.metadata = {'url': '/queries/bool/false'}  # type: ignore
 
     @distributed_trace_async
@@ -130,7 +133,7 @@ class QueriesOperations:
         self,
         bool_query: Optional[bool] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null Boolean value on query (query string should be absent).
 
         :param bool_query: null boolean value.
@@ -140,7 +143,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -168,13 +171,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_boolean_null.metadata = {'url': '/queries/bool/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_int_one_million(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -182,7 +186,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         int_query = 1000000
@@ -210,13 +214,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}  # type: ignore
 
     @distributed_trace_async
     async def get_int_negative_one_million(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '-1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -224,7 +229,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         int_query = -1000000
@@ -252,6 +257,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}  # type: ignore
 
     @distributed_trace_async
@@ -259,7 +265,7 @@ class QueriesOperations:
         self,
         int_query: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null integer value (no query parameter).
 
         :param int_query: null integer value.
@@ -269,7 +275,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -297,13 +303,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_int_null.metadata = {'url': '/queries/int/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_ten_billion(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -311,7 +318,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         long_query = 10000000000
@@ -339,13 +346,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}  # type: ignore
 
     @distributed_trace_async
     async def get_negative_ten_billion(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '-10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -353,7 +361,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         long_query = -10000000000
@@ -381,6 +389,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}  # type: ignore
 
     @distributed_trace_async
@@ -388,7 +397,7 @@ class QueriesOperations:
         self,
         long_query: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value.
@@ -398,7 +407,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -426,13 +435,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_long_null.metadata = {'url': '/queries/long/null'}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_positive(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '1.034E+20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -440,7 +450,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         float_query = 103400000000000000000
@@ -468,13 +478,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_negative(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '-1.034E-20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -482,7 +493,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         float_query = -1.034e-20
@@ -510,6 +521,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}  # type: ignore
 
     @distributed_trace_async
@@ -517,7 +529,7 @@ class QueriesOperations:
         self,
         float_query: Optional[float] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null numeric value (no query parameter).
 
         :param float_query: null numeric value.
@@ -527,7 +539,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -555,13 +567,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     float_null.metadata = {'url': '/queries/float/null'}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_positive(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -569,7 +582,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         double_query = 9999999.999
@@ -597,13 +610,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_negative(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '-9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -611,7 +625,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         double_query = -9999999.999
@@ -639,6 +653,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}  # type: ignore
 
     @distributed_trace_async
@@ -646,7 +661,7 @@ class QueriesOperations:
         self,
         double_query: Optional[float] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null numeric value (no query parameter).
 
         :param double_query: null numeric value.
@@ -656,7 +671,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -684,13 +699,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     double_null.metadata = {'url': '/queries/double/null'}  # type: ignore
 
     @distributed_trace_async
     async def string_unicode(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -698,7 +714,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
@@ -726,13 +742,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     string_unicode.metadata = {'url': '/queries/string/unicode/'}  # type: ignore
 
     @distributed_trace_async
     async def string_url_encoded(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -740,7 +757,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         string_query = "begin!*'();:@ &=+$,/?#[]end"
@@ -768,13 +785,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}  # type: ignore
 
     @distributed_trace_async
     async def string_empty(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -782,7 +800,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         string_query = ""
@@ -810,6 +828,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     string_empty.metadata = {'url': '/queries/string/empty'}  # type: ignore
 
     @distributed_trace_async
@@ -817,7 +836,7 @@ class QueriesOperations:
         self,
         string_query: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null (no query parameter in url).
 
         :param string_query: null string value.
@@ -827,7 +846,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -855,6 +874,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     string_null.metadata = {'url': '/queries/string/null'}  # type: ignore
 
     @distributed_trace_async
@@ -862,7 +882,7 @@ class QueriesOperations:
         self,
         enum_query: Optional[Union[str, "models.UriColor"]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get using uri with query parameter 'green color'.
 
         :param enum_query: 'green color' enum value.
@@ -872,7 +892,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -900,6 +920,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}  # type: ignore
 
     @distributed_trace_async
@@ -907,7 +928,7 @@ class QueriesOperations:
         self,
         enum_query: Optional[Union[str, "models.UriColor"]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null (no query parameter in url).
 
         :param enum_query: null string value.
@@ -917,7 +938,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -945,6 +966,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     enum_null.metadata = {'url': '/queries/enum/null'}  # type: ignore
 
     @distributed_trace_async
@@ -952,7 +974,7 @@ class QueriesOperations:
         self,
         byte_query: Optional[bytearray] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -962,7 +984,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -990,13 +1012,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}  # type: ignore
 
     @distributed_trace_async
     async def byte_empty(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '' as byte array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1004,7 +1027,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         byte_query = bytearray("", encoding="utf-8")
@@ -1032,6 +1055,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     byte_empty.metadata = {'url': '/queries/byte/empty'}  # type: ignore
 
     @distributed_trace_async
@@ -1039,7 +1063,7 @@ class QueriesOperations:
         self,
         byte_query: Optional[bytearray] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri).
@@ -1049,7 +1073,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1077,13 +1101,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     byte_null.metadata = {'url': '/queries/byte/null'}  # type: ignore
 
     @distributed_trace_async
     async def date_valid(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '2012-01-01' as date.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1091,7 +1116,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         date_query = "2012-01-01"
@@ -1119,6 +1144,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}  # type: ignore
 
     @distributed_trace_async
@@ -1126,7 +1152,7 @@ class QueriesOperations:
         self,
         date_query: Optional[datetime.date] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null as date - this should result in no query parameters in uri.
 
         :param date_query: null as date (no query parameters in uri).
@@ -1136,7 +1162,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1164,13 +1190,14 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     date_null.metadata = {'url': '/queries/date/null'}  # type: ignore
 
     @distributed_trace_async
     async def date_time_valid(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1178,7 +1205,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         date_time_query = "2012-01-01T01:01:01Z"
@@ -1206,6 +1233,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}  # type: ignore
 
     @distributed_trace_async
@@ -1213,7 +1241,7 @@ class QueriesOperations:
         self,
         date_time_query: Optional[datetime.datetime] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get null as date-time, should result in no query parameters in uri.
 
         :param date_time_query: null as date-time (no query parameters).
@@ -1223,7 +1251,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1251,6 +1279,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     date_time_null.metadata = {'url': '/queries/datetime/null'}  # type: ignore
 
     @distributed_trace_async
@@ -1258,7 +1287,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
         array format.
 
@@ -1270,7 +1299,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1298,6 +1327,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}  # type: ignore
 
     @distributed_trace_async
@@ -1305,7 +1335,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format.
@@ -1315,7 +1345,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1343,6 +1373,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}  # type: ignore
 
     @distributed_trace_async
@@ -1350,7 +1381,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array format.
@@ -1360,7 +1391,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1388,6 +1419,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}  # type: ignore
 
     @distributed_trace_async
@@ -1395,7 +1427,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-
         array format.
 
@@ -1407,7 +1439,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1435,6 +1467,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}  # type: ignore
 
     @distributed_trace_async
@@ -1442,7 +1475,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-
         array format.
 
@@ -1454,7 +1487,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1482,6 +1515,7 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}  # type: ignore
 
     @distributed_trace_async
@@ -1489,7 +1523,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
 
@@ -1501,7 +1535,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1529,4 +1563,5 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}  # type: ignore

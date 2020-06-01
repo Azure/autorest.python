@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class SubscriptionInCredentialsOperations(object):
     """SubscriptionInCredentialsOperations operations.
@@ -50,7 +51,7 @@ class SubscriptionInCredentialsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -59,7 +60,7 @@ class SubscriptionInCredentialsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -89,6 +90,7 @@ class SubscriptionInCredentialsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
@@ -96,7 +98,7 @@ class SubscriptionInCredentialsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         null, and client-side validation should prevent you from making this call.
 
@@ -105,7 +107,7 @@ class SubscriptionInCredentialsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -135,6 +137,7 @@ class SubscriptionInCredentialsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
@@ -142,7 +145,7 @@ class SubscriptionInCredentialsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -151,7 +154,7 @@ class SubscriptionInCredentialsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-07-01-preview"
@@ -183,6 +186,7 @@ class SubscriptionInCredentialsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
@@ -190,7 +194,7 @@ class SubscriptionInCredentialsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -199,7 +203,7 @@ class SubscriptionInCredentialsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -229,6 +233,7 @@ class SubscriptionInCredentialsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
@@ -236,7 +241,7 @@ class SubscriptionInCredentialsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -245,7 +250,7 @@ class SubscriptionInCredentialsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -275,4 +280,5 @@ class SubscriptionInCredentialsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_swagger_global_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore

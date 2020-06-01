@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class BoolOperations(object):
     """BoolOperations operations.
@@ -49,7 +50,7 @@ class BoolOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -94,7 +95,7 @@ class BoolOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set Boolean value true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -102,7 +103,7 @@ class BoolOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -135,6 +136,7 @@ class BoolOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_true.metadata = {'url': '/bool/true'}  # type: ignore
 
     @distributed_trace
@@ -142,7 +144,7 @@ class BoolOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -150,7 +152,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -187,7 +189,7 @@ class BoolOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set Boolean value false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -195,7 +197,7 @@ class BoolOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -228,6 +230,7 @@ class BoolOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_false.metadata = {'url': '/bool/false'}  # type: ignore
 
     @distributed_trace
@@ -235,7 +238,7 @@ class BoolOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -243,7 +246,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -280,7 +283,7 @@ class BoolOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -288,7 +291,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class Datetimerfc1123Operations(object):
     """Datetimerfc1123Operations operations.
@@ -50,7 +51,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Union[datetime.datetime, ClsReturnType]
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Union[datetime.datetime, ClsReturnType]
         """Get invalid datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -103,7 +104,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -140,7 +141,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Union[datetime.datetime, ClsReturnType]
         """Get overflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -148,7 +149,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -185,7 +186,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Union[datetime.datetime, ClsReturnType]
         """Get underflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -193,7 +194,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -231,7 +232,7 @@ class Datetimerfc1123Operations(object):
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body:
@@ -241,7 +242,7 @@ class Datetimerfc1123Operations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -273,6 +274,7 @@ class Datetimerfc1123Operations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}  # type: ignore
 
     @distributed_trace
@@ -280,7 +282,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Union[datetime.datetime, ClsReturnType]
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -288,7 +290,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -325,7 +327,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Union[datetime.datetime, ClsReturnType]
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -333,7 +335,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -371,7 +373,7 @@ class Datetimerfc1123Operations(object):
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body:
@@ -381,7 +383,7 @@ class Datetimerfc1123Operations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -413,6 +415,7 @@ class Datetimerfc1123Operations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore
 
     @distributed_trace
@@ -420,7 +423,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Union[datetime.datetime, ClsReturnType]
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -428,7 +431,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

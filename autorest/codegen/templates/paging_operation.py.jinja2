@@ -47,7 +47,7 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType", include_cls_return_type=False) }}
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.inner_most_return_type_annotation(operation, include_cls_return_type_as_type_var=True) }}, ClsReturnType]
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}

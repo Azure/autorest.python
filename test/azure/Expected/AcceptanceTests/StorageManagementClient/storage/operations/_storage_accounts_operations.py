@@ -24,7 +24,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class StorageAccountsOperations(object):
     """StorageAccountsOperations operations.
@@ -54,7 +55,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: "models.StorageAccountCheckNameAvailabilityParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.CheckNameAvailabilityResult"
+        # type: (...) -> Union["models.CheckNameAvailabilityResult", ClsReturnType]
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -66,7 +67,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.CheckNameAvailabilityResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.CheckNameAvailabilityResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -116,8 +117,8 @@ class StorageAccountsOperations(object):
         parameters,  # type: "models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.StorageAccount"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.StorageAccount"]]
+        # type: (...) -> Union[Optional["models.StorageAccount"], ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.StorageAccount"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -172,7 +173,7 @@ class StorageAccountsOperations(object):
         parameters,  # type: "models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.StorageAccount"]
+        # type: (...) -> LROPoller[Union["models.StorageAccount", ClsReturnType]]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
     cannot be updated with this API and should instead use the Update Storage Account API. If an
     account is already created and subsequent PUT request is issued with exact same set of
@@ -196,7 +197,7 @@ class StorageAccountsOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -232,7 +233,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -246,7 +247,7 @@ class StorageAccountsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -279,6 +280,7 @@ class StorageAccountsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}  # type: ignore
 
     @distributed_trace
@@ -288,7 +290,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.StorageAccount"
+        # type: (...) -> Union["models.StorageAccount", ClsReturnType]
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -304,7 +306,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -351,7 +353,7 @@ class StorageAccountsOperations(object):
         parameters,  # type: "models.StorageAccountUpdateParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.StorageAccount"
+        # type: (...) -> Union["models.StorageAccount", ClsReturnType]
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -374,7 +376,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -426,7 +428,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.StorageAccountKeys"
+        # type: (...) -> Union["models.StorageAccountKeys", ClsReturnType]
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -438,7 +440,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -482,7 +484,7 @@ class StorageAccountsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.StorageAccountListResult"]
+        # type: (...) -> Iterable[Union["models.StorageAccountListResult", ClsReturnType]]
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
     returned; use the ListKeys operation for this.
 
@@ -491,7 +493,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -549,7 +551,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.StorageAccountListResult"]
+        # type: (...) -> Iterable[Union["models.StorageAccountListResult", ClsReturnType]]
         """Lists all the storage accounts available under the given resource group. Note that storage keys
     are not returned; use the ListKeys operation for this.
 
@@ -560,7 +562,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
@@ -621,7 +623,7 @@ class StorageAccountsOperations(object):
         key_name=None,  # type: Optional[Union[str, "models.KeyName"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.StorageAccountKeys"
+        # type: (...) -> Union["models.StorageAccountKeys", ClsReturnType]
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -637,7 +639,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

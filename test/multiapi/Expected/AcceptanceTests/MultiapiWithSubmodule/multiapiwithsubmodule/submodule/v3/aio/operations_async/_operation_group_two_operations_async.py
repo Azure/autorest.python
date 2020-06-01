@@ -15,7 +15,8 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class OperationGroupTwoOperations:
     """OperationGroupTwoOperations async operations.
@@ -43,7 +44,7 @@ class OperationGroupTwoOperations:
         self,
         input: Optional[Union[IO, "models.SourcePath"]] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
@@ -55,7 +56,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
@@ -100,12 +101,13 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
 
     async def test_five(
         self,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """TestFive should be in OperationGroupTwoOperations.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -113,7 +115,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
@@ -141,4 +143,5 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore

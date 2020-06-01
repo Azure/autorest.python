@@ -17,7 +17,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
     from azure.core import PipelineClient
     from msrest import Deserializer, Serializer
@@ -26,8 +26,9 @@ if TYPE_CHECKING:
 
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-    
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
+
     class AbstractServiceClient(object):
         """Abstract class of a service client to help with type hints for the following mixin class"""
 
@@ -97,7 +98,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.PagingResult"]
+        # type: (...) -> Iterable[Union["models.PagingResult", ClsReturnType]]
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -105,7 +106,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         :rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

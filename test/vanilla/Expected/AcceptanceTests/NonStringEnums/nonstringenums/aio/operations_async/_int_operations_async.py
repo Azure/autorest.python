@@ -16,7 +16,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class IntOperations:
     """IntOperations async operations.
@@ -41,7 +42,7 @@ class IntOperations:
         self,
         input: Optional[Union[int, "models.IntEnum"]] = None,
         **kwargs
-    ) -> str:
+    ) -> Union[str, ClsReturnType]:
         """Put an int enum.
 
         :param input: Input int enum.
@@ -51,7 +52,7 @@ class IntOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -95,7 +96,7 @@ class IntOperations:
     async def get(
         self,
         **kwargs
-    ) -> Union[int, "models.IntEnum"]:
+    ) -> Union[int, "models.IntEnum", ClsReturnType]:
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -103,7 +104,7 @@ class IntOperations:
         :rtype: str or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "models.IntEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "models.IntEnum"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

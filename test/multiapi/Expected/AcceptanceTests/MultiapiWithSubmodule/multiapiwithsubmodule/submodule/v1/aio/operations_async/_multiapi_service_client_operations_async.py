@@ -87,7 +87,8 @@ else:
     _MIXIN_BASE = object
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
 
@@ -96,7 +97,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         id: int,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ) -> Optional[ClsReturnType]:
         """TestOne should be in an FirstVersionOperationsMixin.
 
         :param id: An int parameter.
@@ -108,7 +109,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "1.0.0"
@@ -139,14 +140,15 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
     async def _test_lro_initial(
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> Optional["models.Product"]:
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+    ) -> Union[Optional["models.Product"], ClsReturnType]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -193,7 +195,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> Union["models.Product", ClsReturnType]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -208,7 +210,7 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', False)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

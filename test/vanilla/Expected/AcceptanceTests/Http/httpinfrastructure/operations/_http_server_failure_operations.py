@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class HttpServerFailureOperations(object):
     """HttpServerFailureOperations operations.
@@ -49,7 +50,7 @@ class HttpServerFailureOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class HttpServerFailureOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -83,6 +84,7 @@ class HttpServerFailureOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     head501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
     @distributed_trace
@@ -90,7 +92,7 @@ class HttpServerFailureOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +100,7 @@ class HttpServerFailureOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -124,6 +126,7 @@ class HttpServerFailureOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
     @distributed_trace
@@ -132,7 +135,7 @@ class HttpServerFailureOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -142,7 +145,7 @@ class HttpServerFailureOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -177,6 +180,7 @@ class HttpServerFailureOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post505.metadata = {'url': '/http/failure/server/505'}  # type: ignore
 
     @distributed_trace
@@ -185,7 +189,7 @@ class HttpServerFailureOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -195,7 +199,7 @@ class HttpServerFailureOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -230,4 +234,5 @@ class HttpServerFailureOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     delete505.metadata = {'url': '/http/failure/server/505'}  # type: ignore

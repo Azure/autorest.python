@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ImplicitOperations(object):
     """ImplicitOperations operations.
@@ -50,7 +51,7 @@ class ImplicitOperations(object):
         path_parameter,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test implicitly required path parameter.
 
         :param path_parameter:
@@ -60,7 +61,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -90,6 +91,7 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}  # type: ignore
 
     @distributed_trace
@@ -98,7 +100,7 @@ class ImplicitOperations(object):
         query_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test implicitly optional query parameter.
 
         :param query_parameter:
@@ -108,7 +110,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -136,6 +138,7 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}  # type: ignore
 
     @distributed_trace
@@ -144,7 +147,7 @@ class ImplicitOperations(object):
         query_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test implicitly optional header parameter.
 
         :param query_parameter:
@@ -154,7 +157,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -182,6 +185,7 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}  # type: ignore
 
     @distributed_trace
@@ -190,7 +194,7 @@ class ImplicitOperations(object):
         body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test implicitly optional body parameter.
 
         :param body_parameter:
@@ -200,7 +204,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -235,6 +239,7 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}  # type: ignore
 
     @distributed_trace
@@ -242,7 +247,7 @@ class ImplicitOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test implicitly required path parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -250,7 +255,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -280,6 +285,7 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}  # type: ignore
 
     @distributed_trace
@@ -287,7 +293,7 @@ class ImplicitOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test implicitly required query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -295,7 +301,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -322,6 +328,7 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}  # type: ignore
 
     @distributed_trace
@@ -329,7 +336,7 @@ class ImplicitOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test implicitly optional query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -337,7 +344,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -365,4 +372,5 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}  # type: ignore

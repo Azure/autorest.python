@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PetOperations(object):
     """PetOperations operations.
@@ -50,7 +51,7 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Pet"
+        # type: (...) -> Union["models.Pet", ClsReturnType]
         """get_by_pet_id.
 
         :param pet_id: Pet id.
@@ -60,7 +61,7 @@ class PetOperations(object):
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -101,7 +102,7 @@ class PetOperations(object):
         pet_param=None,  # type: Optional["models.Pet"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Pet"
+        # type: (...) -> Union["models.Pet", ClsReturnType]
         """add_pet.
 
         :param pet_param:
@@ -111,7 +112,7 @@ class PetOperations(object):
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")

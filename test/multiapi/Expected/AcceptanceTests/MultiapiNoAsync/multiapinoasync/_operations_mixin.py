@@ -19,12 +19,16 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
     from azure.core import PipelineClient
     from msrest import Deserializer, Serializer
 
     from .._configuration import MultiapiServiceClientConfiguration
+
+    T = TypeVar('T')
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 
 class MultiapiServiceClientOperationsMixin(object):

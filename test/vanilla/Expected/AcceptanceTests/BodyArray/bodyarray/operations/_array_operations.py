@@ -21,7 +21,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ArrayOperations(object):
     """ArrayOperations operations.
@@ -50,7 +51,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get null array value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class ArrayOperations(object):
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get invalid array [1, 2, 3.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -103,7 +104,7 @@ class ArrayOperations(object):
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -140,7 +141,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get empty array value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -148,7 +149,7 @@ class ArrayOperations(object):
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -186,7 +187,7 @@ class ArrayOperations(object):
         array_body,  # type: List[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value empty [].
 
         :param array_body:
@@ -196,7 +197,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -228,6 +229,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_empty.metadata = {'url': '/array/empty'}  # type: ignore
 
     @distributed_trace
@@ -235,7 +237,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[bool]
+        # type: (...) -> Union[List[bool], ClsReturnType]
         """Get boolean array value [true, false, false, true].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -243,7 +245,7 @@ class ArrayOperations(object):
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -281,7 +283,7 @@ class ArrayOperations(object):
         array_body,  # type: List[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value empty [true, false, false, true].
 
         :param array_body:
@@ -291,7 +293,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -323,6 +325,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}  # type: ignore
 
     @distributed_trace
@@ -330,7 +333,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[bool]
+        # type: (...) -> Union[List[bool], ClsReturnType]
         """Get boolean array value [true, null, false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -338,7 +341,7 @@ class ArrayOperations(object):
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -375,7 +378,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[bool]
+        # type: (...) -> Union[List[bool], ClsReturnType]
         """Get boolean array value [true, 'boolean', false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -383,7 +386,7 @@ class ArrayOperations(object):
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -420,7 +423,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -428,7 +431,7 @@ class ArrayOperations(object):
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -466,7 +469,7 @@ class ArrayOperations(object):
         array_body,  # type: List[int]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
@@ -476,7 +479,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -508,6 +511,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}  # type: ignore
 
     @distributed_trace
@@ -515,7 +519,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get integer array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -523,7 +527,7 @@ class ArrayOperations(object):
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -560,7 +564,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get integer array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -568,7 +572,7 @@ class ArrayOperations(object):
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -605,7 +609,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -613,7 +617,7 @@ class ArrayOperations(object):
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -651,7 +655,7 @@ class ArrayOperations(object):
         array_body,  # type: List[int]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
@@ -661,7 +665,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -693,6 +697,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}  # type: ignore
 
     @distributed_trace
@@ -700,7 +705,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get long array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -708,7 +713,7 @@ class ArrayOperations(object):
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -745,7 +750,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[int]
+        # type: (...) -> Union[List[int], ClsReturnType]
         """Get long array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -753,7 +758,7 @@ class ArrayOperations(object):
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -790,7 +795,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[float]
+        # type: (...) -> Union[List[float], ClsReturnType]
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -798,7 +803,7 @@ class ArrayOperations(object):
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -836,7 +841,7 @@ class ArrayOperations(object):
         array_body,  # type: List[float]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
@@ -846,7 +851,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -878,6 +883,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace
@@ -885,7 +891,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[float]
+        # type: (...) -> Union[List[float], ClsReturnType]
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -893,7 +899,7 @@ class ArrayOperations(object):
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -930,7 +936,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[float]
+        # type: (...) -> Union[List[float], ClsReturnType]
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -938,7 +944,7 @@ class ArrayOperations(object):
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -975,7 +981,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[float]
+        # type: (...) -> Union[List[float], ClsReturnType]
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -983,7 +989,7 @@ class ArrayOperations(object):
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1021,7 +1027,7 @@ class ArrayOperations(object):
         array_body,  # type: List[float]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
@@ -1031,7 +1037,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1063,6 +1069,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}  # type: ignore
 
     @distributed_trace
@@ -1070,7 +1077,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[float]
+        # type: (...) -> Union[List[float], ClsReturnType]
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1078,7 +1085,7 @@ class ArrayOperations(object):
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1115,7 +1122,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[float]
+        # type: (...) -> Union[List[float], ClsReturnType]
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1123,7 +1130,7 @@ class ArrayOperations(object):
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1160,7 +1167,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[str]
+        # type: (...) -> Union[List[str], ClsReturnType]
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1168,7 +1175,7 @@ class ArrayOperations(object):
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1206,7 +1213,7 @@ class ArrayOperations(object):
         array_body,  # type: List[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
@@ -1216,7 +1223,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1248,6 +1255,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace
@@ -1255,7 +1263,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Union[str, "models.FooEnum"]]
+        # type: (...) -> Union[List[Union[str, "models.FooEnum"]], ClsReturnType]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1263,7 +1271,7 @@ class ArrayOperations(object):
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.FooEnum"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.FooEnum"]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1301,7 +1309,7 @@ class ArrayOperations(object):
         array_body,  # type: List[Union[str, "models.FooEnum"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
@@ -1311,7 +1319,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1343,6 +1351,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace
@@ -1350,7 +1359,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Union[str, "models.Enum0"]]
+        # type: (...) -> Union[List[Union[str, "models.Enum0"]], ClsReturnType]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1358,7 +1367,7 @@ class ArrayOperations(object):
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.Enum0"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.Enum0"]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1396,7 +1405,7 @@ class ArrayOperations(object):
         array_body,  # type: List[Union[str, "models.Enum1"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
@@ -1406,7 +1415,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1438,6 +1447,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}  # type: ignore
 
     @distributed_trace
@@ -1445,7 +1455,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[str]
+        # type: (...) -> Union[List[str], ClsReturnType]
         """Get string array value ['foo', null, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1453,7 +1463,7 @@ class ArrayOperations(object):
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1490,7 +1500,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[str]
+        # type: (...) -> Union[List[str], ClsReturnType]
         """Get string array value ['foo', 123, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1498,7 +1508,7 @@ class ArrayOperations(object):
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1535,7 +1545,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[str]
+        # type: (...) -> Union[List[str], ClsReturnType]
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
@@ -1544,7 +1554,7 @@ class ArrayOperations(object):
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1582,7 +1592,7 @@ class ArrayOperations(object):
         array_body,  # type: List[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
@@ -1593,7 +1603,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1625,6 +1635,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}  # type: ignore
 
     @distributed_trace
@@ -1632,7 +1643,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[str]
+        # type: (...) -> Union[List[str], ClsReturnType]
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1640,7 +1651,7 @@ class ArrayOperations(object):
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1677,7 +1688,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.date]
+        # type: (...) -> Union[List[datetime.date], ClsReturnType]
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1685,7 +1696,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1723,7 +1734,7 @@ class ArrayOperations(object):
         array_body,  # type: List[datetime.date]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body:
@@ -1733,7 +1744,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1765,6 +1776,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_valid.metadata = {'url': '/array/prim/date/valid'}  # type: ignore
 
     @distributed_trace
@@ -1772,7 +1784,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.date]
+        # type: (...) -> Union[List[datetime.date], ClsReturnType]
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1780,7 +1792,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1817,7 +1829,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.date]
+        # type: (...) -> Union[List[datetime.date], ClsReturnType]
         """Get date array value ['2011-03-22', 'date'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1825,7 +1837,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1862,7 +1874,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.datetime]
+        # type: (...) -> Union[List[datetime.datetime], ClsReturnType]
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
@@ -1871,7 +1883,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1909,7 +1921,7 @@ class ArrayOperations(object):
         array_body,  # type: List[datetime.datetime]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
@@ -1920,7 +1932,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1952,6 +1964,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}  # type: ignore
 
     @distributed_trace
@@ -1959,7 +1972,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.datetime]
+        # type: (...) -> Union[List[datetime.datetime], ClsReturnType]
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1967,7 +1980,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2004,7 +2017,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.datetime]
+        # type: (...) -> Union[List[datetime.datetime], ClsReturnType]
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2012,7 +2025,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2049,7 +2062,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.datetime]
+        # type: (...) -> Union[List[datetime.datetime], ClsReturnType]
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
         'Wed, 12 Oct 1492 10:15:01 GMT'].
 
@@ -2058,7 +2071,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2096,7 +2109,7 @@ class ArrayOperations(object):
         array_body,  # type: List[datetime.datetime]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
 
@@ -2107,7 +2120,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2139,6 +2152,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}  # type: ignore
 
     @distributed_trace
@@ -2146,7 +2160,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[datetime.timedelta]
+        # type: (...) -> Union[List[datetime.timedelta], ClsReturnType]
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2154,7 +2168,7 @@ class ArrayOperations(object):
         :rtype: list[~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.timedelta]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.timedelta], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2192,7 +2206,7 @@ class ArrayOperations(object):
         array_body,  # type: List[datetime.timedelta]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body:
@@ -2202,7 +2216,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2234,6 +2248,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}  # type: ignore
 
     @distributed_trace
@@ -2241,7 +2256,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[bytearray]
+        # type: (...) -> Union[List[bytearray], ClsReturnType]
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
         in base64.
 
@@ -2250,7 +2265,7 @@ class ArrayOperations(object):
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2288,7 +2303,7 @@ class ArrayOperations(object):
         array_body,  # type: List[bytearray]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
 
@@ -2299,7 +2314,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2331,6 +2346,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}  # type: ignore
 
     @distributed_trace
@@ -2338,7 +2354,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[bytearray]
+        # type: (...) -> Union[List[bytearray], ClsReturnType]
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2346,7 +2362,7 @@ class ArrayOperations(object):
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2383,7 +2399,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[bytes]
+        # type: (...) -> Union[List[bytes], ClsReturnType]
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
         the items base64url encoded.
 
@@ -2392,7 +2408,7 @@ class ArrayOperations(object):
         :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2429,7 +2445,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> Union[List["models.Product"], ClsReturnType]
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2437,7 +2453,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2474,7 +2490,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> Union[List["models.Product"], ClsReturnType]
         """Get empty array of complex type [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2482,7 +2498,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2519,7 +2535,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> Union[List["models.Product"], ClsReturnType]
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
@@ -2528,7 +2544,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2565,7 +2581,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> Union[List["models.Product"], ClsReturnType]
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
@@ -2574,7 +2590,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2611,7 +2627,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> Union[List["models.Product"], ClsReturnType]
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
@@ -2620,7 +2636,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2658,7 +2674,7 @@ class ArrayOperations(object):
         array_body,  # type: List["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
@@ -2669,7 +2685,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2701,6 +2717,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_complex_valid.metadata = {'url': '/array/complex/valid'}  # type: ignore
 
     @distributed_trace
@@ -2708,7 +2725,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[List[str]]
+        # type: (...) -> Union[List[List[str]], ClsReturnType]
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2716,7 +2733,7 @@ class ArrayOperations(object):
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2753,7 +2770,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[List[str]]
+        # type: (...) -> Union[List[List[str]], ClsReturnType]
         """Get an empty array [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2761,7 +2778,7 @@ class ArrayOperations(object):
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2798,7 +2815,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[List[str]]
+        # type: (...) -> Union[List[List[str]], ClsReturnType]
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2806,7 +2823,7 @@ class ArrayOperations(object):
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2843,7 +2860,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[List[str]]
+        # type: (...) -> Union[List[List[str]], ClsReturnType]
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2851,7 +2868,7 @@ class ArrayOperations(object):
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2888,7 +2905,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[List[str]]
+        # type: (...) -> Union[List[List[str]], ClsReturnType]
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2896,7 +2913,7 @@ class ArrayOperations(object):
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2934,7 +2951,7 @@ class ArrayOperations(object):
         array_body,  # type: List[List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :param array_body:
@@ -2944,7 +2961,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -2976,6 +2993,7 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_array_valid.metadata = {'url': '/array/array/valid'}  # type: ignore
 
     @distributed_trace
@@ -2983,7 +3001,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Dict[str, str]]
+        # type: (...) -> Union[List[Dict[str, str]], ClsReturnType]
         """Get an array of Dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2991,7 +3009,7 @@ class ArrayOperations(object):
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3028,7 +3046,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Dict[str, str]]
+        # type: (...) -> Union[List[Dict[str, str]], ClsReturnType]
         """Get an array of Dictionaries of type <string, string> with value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -3036,7 +3054,7 @@ class ArrayOperations(object):
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3073,7 +3091,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Dict[str, str]]
+        # type: (...) -> Union[List[Dict[str, str]], ClsReturnType]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3082,7 +3100,7 @@ class ArrayOperations(object):
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3119,7 +3137,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Dict[str, str]]
+        # type: (...) -> Union[List[Dict[str, str]], ClsReturnType]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3128,7 +3146,7 @@ class ArrayOperations(object):
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3165,7 +3183,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Dict[str, str]]
+        # type: (...) -> Union[List[Dict[str, str]], ClsReturnType]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3174,7 +3192,7 @@ class ArrayOperations(object):
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -3212,7 +3230,7 @@ class ArrayOperations(object):
         array_body,  # type: List[Dict[str, str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3223,7 +3241,7 @@ class ArrayOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3255,4 +3273,5 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}  # type: ignore
