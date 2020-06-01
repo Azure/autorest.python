@@ -37,7 +37,7 @@ class NonStringEnumsClient(object):
         self._config = NonStringEnumsClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models: Dict[str, Any] = {}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
