@@ -52,8 +52,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Optional["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -101,7 +101,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -196,7 +196,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -243,8 +243,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        # type: (...) -> Optional[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List["models.Product"]]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -287,7 +287,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[List["models.Product"]]
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
     with body [{ 'id': '100', 'name': 'foo' }].
 
@@ -379,7 +379,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     does not contain ProvisioningState=’Succeeded’.
 
@@ -474,7 +474,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 202 to the initial request, with a location header
     that points to a polling URL that returns a 200 and an entity that doesn't contains
     ProvisioningState.
@@ -556,7 +556,6 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -575,7 +574,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -671,7 +670,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -753,7 +752,6 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -772,7 +770,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -868,7 +866,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -966,7 +964,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 202 to the initial request with location header.
     Subsequent calls to operation status do not contain location header.
 
@@ -1068,7 +1066,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1172,7 +1170,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1276,7 +1274,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1380,7 +1378,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -1482,7 +1480,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 202 to the initial request with Azure-
     AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation
     header.
@@ -1581,7 +1579,7 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Sku"]
         """Long running put request with non resource.
 
         :param sku: sku to put.
@@ -1675,7 +1673,7 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Sku"]
         """Long running put request with non resource.
 
         :param sku: Sku to put.
@@ -1771,7 +1769,7 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.SubProduct"]
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1867,7 +1865,7 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.SubProduct"]
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1938,7 +1936,6 @@ class LROsOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -1958,7 +1955,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Succeeded’.
@@ -2032,7 +2029,6 @@ class LROsOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -2052,7 +2048,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Failed’.
@@ -2126,7 +2122,6 @@ class LROsOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -2146,7 +2141,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running delete request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
     ‘200’ with ProvisioningState=’Canceled’.
@@ -2228,7 +2223,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2268,8 +2263,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Optional["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2312,7 +2307,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2356,8 +2351,8 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Optional["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2400,7 +2395,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running delete request, service returns a 202 to the initial request. Polls return this
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -2481,7 +2476,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns a location header in the initial request.
     Subsequent calls to operation status do not contain location header.
 
@@ -2559,7 +2554,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
     request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -2638,7 +2633,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2717,7 +2712,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2796,7 +2791,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2875,7 +2870,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -2940,7 +2935,6 @@ class LROsOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Sku', pipeline_response)
 
@@ -2958,7 +2952,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Sku"]
         """Long running post request, service returns a 202 to the initial request, with 'Location'
     header. Poll returns a 200 with a response body after success.
 
@@ -3050,7 +3044,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
     'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -3145,7 +3139,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running post request, service returns a 202 to the initial request, with 'Location'
     header, 204 with noresponse body after success.
 
@@ -3233,7 +3227,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
     object.
@@ -3315,7 +3309,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object.
@@ -3397,7 +3391,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running post request, service returns a 202 to the initial request with both Location and
     Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
     final object if you support initial Autorest behavior.
@@ -3443,8 +3437,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Optional["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3498,7 +3492,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3547,8 +3541,8 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> Optional["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3602,7 +3596,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3699,7 +3693,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.
@@ -3793,7 +3787,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
     header for operation status.

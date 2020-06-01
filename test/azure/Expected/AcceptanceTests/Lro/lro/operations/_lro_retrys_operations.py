@@ -85,7 +85,6 @@ class LRORetrysOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -104,7 +103,7 @@ class LRORetrysOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -204,7 +203,7 @@ class LRORetrysOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
     AsyncOperation header for operation status.
@@ -282,7 +281,6 @@ class LRORetrysOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -302,7 +300,7 @@ class LRORetrysOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller["models.Product"]
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
     entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
     returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -388,7 +386,7 @@ class LRORetrysOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
     return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -467,7 +465,7 @@ class LRORetrysOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
     endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -556,7 +554,7 @@ class LRORetrysOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running post request, service returns a 500, then a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -649,7 +647,7 @@ class LRORetrysOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller
+        # type: (...) -> LROPoller[None]
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
     AsyncOperation header for operation status.

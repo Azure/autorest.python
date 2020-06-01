@@ -47,8 +47,8 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> Optional["models.Product"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -234,8 +234,8 @@ class LROsOperations:
     async def _post202_list_initial(
         self,
         **kwargs
-    ) -> List["models.Product"]:
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+    ) -> Optional[List["models.Product"]]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List["models.Product"]]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -541,7 +541,6 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -734,7 +733,6 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -1895,7 +1893,6 @@ class LROsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -1987,7 +1984,6 @@ class LROsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -2079,7 +2075,6 @@ class LROsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
 
@@ -2217,8 +2212,8 @@ class LROsOperations:
     async def _delete202_retry200_initial(
         self,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> Optional["models.Product"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2303,8 +2298,8 @@ class LROsOperations:
     async def _delete202_no_retry204_initial(
         self,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> Optional["models.Product"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -2873,7 +2868,6 @@ class LROsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Sku', pipeline_response)
 
@@ -3364,8 +3358,8 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> Optional["models.Product"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -3466,8 +3460,8 @@ class LROsOperations:
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> Optional["models.Product"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")

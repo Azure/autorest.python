@@ -165,6 +165,30 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         """Is the response expected to be streamable, like a download."""
         return any(response.is_stream_response for response in self.responses)
 
+    @property
+    def has_optional_return_type(self) -> bool:
+        """Has optional return type if there are multiple successful response types where some have
+        bodies and some are None
+        """
+
+        # successful status codes of responses that have bodies
+        status_codes_for_responses_with_bodies = [
+            code for code in self.success_status_code
+            if isinstance(code, int) and self.get_response_from_status(code).has_body
+        ]
+
+        successful_responses = [
+            response for response in self.responses
+            if any(code in self.success_status_code for code in response.status_codes)
+        ]
+
+        return (
+            self.has_response_body and
+            len(successful_responses) > 1 and
+            len(self.success_status_code) != len(status_codes_for_responses_with_bodies)
+        )
+
+
     @staticmethod
     def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
 

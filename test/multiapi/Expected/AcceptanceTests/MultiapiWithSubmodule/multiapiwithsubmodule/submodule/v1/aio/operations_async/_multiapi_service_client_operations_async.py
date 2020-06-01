@@ -145,8 +145,8 @@ class MultiapiServiceClientOperationsMixin(_MIXIN_BASE):
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> Optional["models.Product"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")

@@ -94,7 +94,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[str]
+        # type: (...) -> Optional[List[str]]
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -102,7 +102,7 @@ class HttpRedirectsOperations(object):
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List[str]]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

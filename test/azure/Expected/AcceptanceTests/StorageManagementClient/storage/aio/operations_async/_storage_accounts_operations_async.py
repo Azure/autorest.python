@@ -111,8 +111,8 @@ class StorageAccountsOperations:
         account_name: str,
         parameters: "models.StorageAccountCreateParameters",
         **kwargs
-    ) -> "models.StorageAccount":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
+    ) -> Optional["models.StorageAccount"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.StorageAccount"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
