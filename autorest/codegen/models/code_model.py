@@ -356,7 +356,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation in operation_group.operations:
                 if operation.multiple_media_type_parameters:
                     type_annot = ", ".join([
-                        param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
+                        operation_type_annotation
+                        for param in operation.multiple_media_type_parameters
+                        for operation_type_annotation in param.schema.operation_type_annotation
                     ])
                     docstring_type = " or ".join([
                         param.schema.docstring_type for param in operation.multiple_media_type_parameters
@@ -366,5 +368,5 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     )
                     if not chosen_parameter:
                         raise ValueError("You are missing a parameter that has multiple media types")
-                    chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
+                    chosen_parameter.multiple_media_types_type_annot = [f"Union[{type_annot}]"]
                     chosen_parameter.multiple_media_types_docstring_type = docstring_type

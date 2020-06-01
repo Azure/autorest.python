@@ -94,8 +94,13 @@ class BaseSchema(BaseModel, ABC):
         ...
 
     @property
-    def operation_type_annotation(self) -> str:
-        return self.type_annotation
+    def operation_type_annotation(self) -> List[str]:
+        """Make operation type annotation return list of all possible return values per schema.
+
+        This is for an enum schema, since it returns both string and enum, and we want to deal
+        with the union logic in the templates
+        """
+        return [self.type_annotation]
 
     def get_declaration(self, value: Any) -> str:  # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
