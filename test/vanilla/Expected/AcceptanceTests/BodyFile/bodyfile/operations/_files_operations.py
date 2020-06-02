@@ -50,15 +50,15 @@ class FilesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[IO, ClsReturnType]
+        # type: (...) -> Union[IO, bytes, ClsReturnType]
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
+        :return: IO or bytes, or the result of cls(response)
+        :rtype: IO or bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[IO, ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[IO, bytes], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,15 +95,15 @@ class FilesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[IO, ClsReturnType]
+        # type: (...) -> Union[IO, bytes, ClsReturnType]
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
+        :return: IO or bytes, or the result of cls(response)
+        :rtype: IO or bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[IO, ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[IO, bytes], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -140,15 +140,15 @@ class FilesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[IO, ClsReturnType]
+        # type: (...) -> Union[IO, bytes, ClsReturnType]
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
+        :return: IO or bytes, or the result of cls(response)
+        :rtype: IO or bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[IO, ClsReturnType]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[IO, bytes], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

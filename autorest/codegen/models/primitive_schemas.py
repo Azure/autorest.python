@@ -58,15 +58,19 @@ class IOSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return self.type
+        return "IO or bytes"
 
     @property
     def type_annotation(self) -> str:
         return self.docstring_type
 
     @property
+    def operation_type_annotation(self) -> List[str]:
+        return ["IO", "bytes"]
+
+    @property
     def docstring_text(self) -> str:
-        return "IO"
+        return "IO or bytes"
 
     def imports(self) -> FileImport:
         file_import = FileImport()

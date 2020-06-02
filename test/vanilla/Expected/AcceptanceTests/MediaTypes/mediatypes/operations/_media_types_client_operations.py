@@ -97,14 +97,14 @@ class MediaTypesClientOperationsMixin(_MIXIN_BASE):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[IO, "models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, bytes, "models.SourcePath"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> Union[str, ClsReturnType]
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO or ~mediatypes.models.SourcePath
+        :type input: IO or bytes or ~mediatypes.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
