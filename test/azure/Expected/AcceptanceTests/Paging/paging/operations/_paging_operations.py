@@ -1099,3 +1099,63 @@ class PagingOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+
+    @distributed_trace
+    def get_paging_model_with_item_name_with_xms_client_name(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Iterable["models.ProductResultValueWithXMSClientName"]
+        """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
+    name 'indexes'.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValueWithXMSClientName]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValueWithXMSClientName"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
+
+            if not next_link:
+                # Construct URL
+                url = self.get_paging_model_with_item_name_with_xms_client_name.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
+            list_of_elem = deserialized.indexes
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return ItemPaged(
+            get_next, extract_data
+        )
+    get_paging_model_with_item_name_with_xms_client_name.metadata = {'url': '/paging/itemNameWithXMSClientName'}  # type: ignore

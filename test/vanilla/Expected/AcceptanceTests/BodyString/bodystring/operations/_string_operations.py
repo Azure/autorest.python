@@ -466,15 +466,15 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytes
+        # type: (...) -> bytearray
         """Get value that is base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes, or the result of cls(response)
-        :rtype: bytes
+        :return: bytearray, or the result of cls(response)
+        :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -497,7 +497,7 @@ class StringOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('base64', pipeline_response)
+        deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
