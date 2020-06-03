@@ -1,5 +1,5 @@
 msrest>=0.6.11
-git+https://github.com/Azure/azure-sdk-for-python#subdirectory=sdk/core/azure-core&egg=azure-core
+azure-core>=1.6.0
 azure-mgmt-core>=1.1.0
 pytest
 pytest-asyncio==0.10.0;python_full_version>="3.5.2"
