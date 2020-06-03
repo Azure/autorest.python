@@ -6,14 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiple_inheritance_service_client import MultipleInheritanceServiceClient
-from ._version import VERSION
+from ._array_operations_async import ArrayOperations
 
-__version__ = VERSION
-__all__ = ['MultipleInheritanceServiceClient']
-
-try:
-    from ._patch import patch_sdk
-    patch_sdk()
-except ImportError:
-    pass
+__all__ = [
+    'ArrayOperations',
+]

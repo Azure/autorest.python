@@ -9,7 +9,7 @@
 
 from setuptools import setup, find_packages
 
-NAME = "multipleinheritanceserviceclient"
+NAME = "autorestswaggerbatarrayservice"
 VERSION = "0.1.0"
 
 # To install the library, run the following
@@ -24,14 +24,14 @@ REQUIRES = ["msrest>=0.6.0", "azure-core<2.0.0,>=1.2.0"]
 setup(
     name=NAME,
     version=VERSION,
-    description="MultipleInheritanceServiceClient",
+    description="AutoRestSwaggerBATArrayService",
     author_email="",
     url="",
-    keywords=["Swagger", "MultipleInheritanceServiceClient"],
+    keywords=["Swagger", "AutoRestSwaggerBATArrayService"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    Service client for multiinheritance client testing.
+    Test Infrastructure for AutoRest Swagger BAT.
     """
 )

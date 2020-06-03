@@ -224,3 +224,11 @@ async def test_get_multiple_pages_lro(client):
     assert len(page1.values) == 1
     assert page1.values[0].properties.id == 1
     assert page1.next_link.endswith("paging/multiple/page/2")
+
+@pytest.mark.asyncio
+async def test_item_name_with_xms_client_name(client):
+    pages = client.paging.get_paging_model_with_item_name_with_xms_client_name()
+    items = []
+    async for item in pages:
+        items.append(item)
+    assert len(items) == 1

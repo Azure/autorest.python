@@ -62,7 +62,9 @@
 {% if operation.any_response_has_headers %}
     response_headers = {}
 {% endif %}
-{% if operation.has_response_body and operation.responses|count > 1 %}
+{# now we only initialize deserialized to None if we know there is both > 1 response with body and > 1 response of None #}
+{# otherwise, we know that deserialized will be set to a value then returned #}
+{% if operation.has_optional_return_type %}
     deserialized = None
 {% endif %}
 {% if operation.has_response_body or operation.any_response_has_headers %}

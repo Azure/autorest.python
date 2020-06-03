@@ -11,14 +11,16 @@ from typing import Any, Optional
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
-from ._configuration_async import MultipleInheritanceServiceClientConfiguration
-from .operations_async import MultipleInheritanceServiceClientOperationsMixin
+from ._configuration_async import AutoRestSwaggerBATArrayServiceConfiguration
+from .operations_async import ArrayOperations
 from .. import models
 
 
-class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperationsMixin):
-    """Service client for multiinheritance client testing.
+class AutoRestSwaggerBATArrayService(object):
+    """Test Infrastructure for AutoRest Swagger BAT.
 
+    :ivar array: ArrayOperations operations
+    :vartype array: vanilla.body.array.aio.operations_async.ArrayOperations
     :param str base_url: Service URL
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
@@ -30,18 +32,20 @@ class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperation
     ) -> None:
         if not base_url:
             base_url = 'http://localhost:3000'
-        self._config = MultipleInheritanceServiceClientConfiguration(**kwargs)
+        self._config = AutoRestSwaggerBATArrayServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
+        self.array = ArrayOperations(
+            self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "MultipleInheritanceServiceClient":
+    async def __aenter__(self) -> "AutoRestSwaggerBATArrayService":
         await self._client.__aenter__()
         return self
 

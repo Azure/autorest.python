@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiple_inheritance_service_client_operations_async import MultipleInheritanceServiceClientOperationsMixin
+from ._auto_rest_swagger_bat_array_service import AutoRestSwaggerBATArrayService
+from ._version import VERSION
 
-__all__ = [
-    'MultipleInheritanceServiceClientOperationsMixin',
-]
+__version__ = VERSION
+__all__ = ['AutoRestSwaggerBATArrayService']
+
+try:
+    from ._patch import patch_sdk
+    patch_sdk()
+except ImportError:
+    pass

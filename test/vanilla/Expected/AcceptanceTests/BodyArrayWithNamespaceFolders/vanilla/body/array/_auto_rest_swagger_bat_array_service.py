@@ -15,14 +15,16 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-from ._configuration import MultipleInheritanceServiceClientConfiguration
-from .operations import MultipleInheritanceServiceClientOperationsMixin
+from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
+from .operations import ArrayOperations
 from . import models
 
 
-class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperationsMixin):
-    """Service client for multiinheritance client testing.
+class AutoRestSwaggerBATArrayService(object):
+    """Test Infrastructure for AutoRest Swagger BAT.
 
+    :ivar array: ArrayOperations operations
+    :vartype array: vanilla.body.array.operations.ArrayOperations
     :param str base_url: Service URL
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
@@ -35,20 +37,22 @@ class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperation
         # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
-        self._config = MultipleInheritanceServiceClientConfiguration(**kwargs)
+        self._config = AutoRestSwaggerBATArrayServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
+        self.array = ArrayOperations(
+            self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None
         self._client.close()
 
     def __enter__(self):
-        # type: () -> MultipleInheritanceServiceClient
+        # type: () -> AutoRestSwaggerBATArrayService
         self._client.__enter__()
         return self
 

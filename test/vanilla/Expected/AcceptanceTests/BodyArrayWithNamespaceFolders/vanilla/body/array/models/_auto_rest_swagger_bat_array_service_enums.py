@@ -6,8 +6,22 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiple_inheritance_service_client_operations import MultipleInheritanceServiceClientOperationsMixin
+from enum import Enum
 
-__all__ = [
-    'MultipleInheritanceServiceClientOperationsMixin',
-]
+class Enum0(str, Enum):
+
+    foo1 = "foo1"
+    foo2 = "foo2"
+    foo3 = "foo3"
+
+class Enum1(str, Enum):
+
+    foo1 = "foo1"
+    foo2 = "foo2"
+    foo3 = "foo3"
+
+class FooEnum(str, Enum):
+
+    foo1 = "foo1"
+    foo2 = "foo2"
+    foo3 = "foo3"

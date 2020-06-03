@@ -7,25 +7,22 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import Cat
     from ._models_py3 import Error
-    from ._models_py3 import Feline
-    from ._models_py3 import Horse
-    from ._models_py3 import Kitten
-    from ._models_py3 import Pet
+    from ._models_py3 import Product
 except (SyntaxError, ImportError):
-    from ._models import Cat  # type: ignore
     from ._models import Error  # type: ignore
-    from ._models import Feline  # type: ignore
-    from ._models import Horse  # type: ignore
-    from ._models import Kitten  # type: ignore
-    from ._models import Pet  # type: ignore
+    from ._models import Product  # type: ignore
+
+from ._auto_rest_swagger_bat_array_service_enums import (
+    Enum0,
+    Enum1,
+    FooEnum,
+)
 
 __all__ = [
-    'Cat',
     'Error',
-    'Feline',
-    'Horse',
-    'Kitten',
-    'Pet',
+    'Product',
+    'Enum0',
+    'Enum1',
+    'FooEnum',
 ]

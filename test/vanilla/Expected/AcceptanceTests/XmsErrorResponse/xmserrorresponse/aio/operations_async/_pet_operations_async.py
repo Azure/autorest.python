@@ -45,7 +45,7 @@ class PetOperations:
         self,
         pet_id: str,
         **kwargs
-    ) -> "models.Pet":
+    ) -> Optional["models.Pet"]:
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -55,7 +55,7 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Pet"]]
         error_map = {
             409: ResourceExistsError,
             400: HttpResponseError,
@@ -78,7 +78,6 @@ class PetOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -134,7 +133,6 @@ class PetOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
