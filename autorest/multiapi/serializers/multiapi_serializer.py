@@ -7,7 +7,7 @@ from typing import Any, Dict
 from pathlib import Path
 from jinja2 import Environment, PackageLoader
 
-from ..jsonrpc import AutorestAPI
+from ...jsonrpc import AutorestAPI
 
 
 class MultiAPISerializer:

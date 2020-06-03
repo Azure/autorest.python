@@ -102,6 +102,7 @@ reserved_words = {
         "content_type",
         "cls",
         "polling",
+        "continuation_token",  # for LRO calls
         # these are transport kwargs
         # https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/CLIENT_LIBRARY_DEVELOPER.md#transport
         "connection_timeout",

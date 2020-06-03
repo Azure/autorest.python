@@ -88,7 +88,6 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
         body_content_kwargs['content'] = body_content
@@ -141,7 +140,6 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
         body_content_kwargs['content'] = body_content
@@ -187,6 +185,7 @@ class StorageAccountsOperations(object):
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -201,13 +200,15 @@ class StorageAccountsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._create_initial(
-            resource_group_name=resource_group_name,
-            account_name=account_name,
-            parameters=parameters,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._create_initial(
+                resource_group_name=resource_group_name,
+                account_name=account_name,
+                parameters=parameters,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -222,7 +223,15 @@ class StorageAccountsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}  # type: ignore
 
     @distributed_trace
@@ -267,7 +276,6 @@ class StorageAccountsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -326,7 +334,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -398,7 +405,6 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
         body_content_kwargs['content'] = body_content
@@ -460,7 +466,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -512,12 +517,10 @@ class StorageAccountsOperations(object):
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
-                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -584,12 +587,10 @@ class StorageAccountsOperations(object):
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
-                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -667,7 +668,6 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
         body_content_kwargs['content'] = body_content
