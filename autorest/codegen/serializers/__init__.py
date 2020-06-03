@@ -157,10 +157,10 @@ class JinjaSerializer:
 
         self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.serialize_init_file())
         p = namespace_path.parent
-        while p.parent != Path("."):
+        while p != Path("."):
             # write pkgutil init file
             self._autorestapi.write_file(
-                namespace_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file()
+                p / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file()
             )
             p = p.parent
 
