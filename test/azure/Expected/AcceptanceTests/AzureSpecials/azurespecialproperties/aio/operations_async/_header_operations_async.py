@@ -70,7 +70,7 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
-        # Construct and send request
+        # Construct request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -122,7 +122,7 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", _foo_client_request_id, 'str')
 
-        # Construct and send request
+        # Construct request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -169,7 +169,7 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
-        # Construct and send request
+        # Construct request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
