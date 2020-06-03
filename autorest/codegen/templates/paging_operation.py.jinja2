@@ -62,6 +62,7 @@
 {% endif %}
 
     def prepare_request(next_link=None):
+        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
         if not next_link:
             # Construct URL
             url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
@@ -74,6 +75,7 @@
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
             {{ op_tools.query_parameters(operation, async_mode)|indent(12) }}
+            {{ op_tools.body_parameters(operation)|indent(12) }}
         else:
 {% if operation.next_operation %}
             url = '{{ operation.next_operation.url }}'
@@ -86,6 +88,7 @@
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
             {{ op_tools.query_parameters(operation.next_operation, async_mode)|indent(12) }}
+            {{ op_tools.body_parameters(operation.next_operation)|indent(12) }}
 {% else %}
             url = next_link
             query_parameters = {}  # type: Dict[str, Any]
@@ -97,9 +100,8 @@
             }
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
+            {{ op_tools.body_parameters(operation, http_verb="get")|indent(12) }}
 {% endif %}
-        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
-        {{ op_tools.body_parameters(operation)|indent(8) }}
         return request
 
     {{ keywords.def }} extract_data(pipeline_response):
