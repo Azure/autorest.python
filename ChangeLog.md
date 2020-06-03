@@ -6,7 +6,8 @@ Modelerfour version: 4.13.351
 **Bug Fixes**
 - Corrected generation of the item name of paging response when extracting data  #648
 - Corrected return type typing annotation for operations that return an optional body  #656
-- Fixed mypy issue by only setting the generated `deserialized` variable to None if the operation has an optional return typ  #656
+- Fixed mypy issue by only setting the generated `deserialized` variable to None if the operation has an optional return type  #656
+- Fixed generation of pkgutil init files  #661
 
 ### 2020-05-22 - 5.0.0-preview.8
 Modelerfour version: 4.13.351
