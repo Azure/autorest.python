@@ -56,7 +56,7 @@ class MultiapiServiceClientOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
+        # Construct request
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -92,7 +92,7 @@ class MultiapiServiceClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
+        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')

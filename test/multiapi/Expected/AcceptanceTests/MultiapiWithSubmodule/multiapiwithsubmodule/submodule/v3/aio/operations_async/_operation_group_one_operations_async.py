@@ -71,7 +71,7 @@ class OperationGroupOneOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
+        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if parameter_one is not None:
             body_content = self._serialize.body(parameter_one, 'ModelThree')

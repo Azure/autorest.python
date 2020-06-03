@@ -178,7 +178,7 @@ body_content_kwargs['content'] = body_content{% endmacro %}
 {% macro body_parameters(operation, http_verb=None) %}
 {% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
-# Construct and send request
+# Construct request
 {% if operation.parameters.has_body %}
 body_content_kwargs = {}  # type: Dict[str, Any]
     {% if (operation.requests | length) == 1 %}

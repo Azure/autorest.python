@@ -83,7 +83,7 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
@@ -93,7 +93,7 @@ class PagingOperations(object):
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -157,7 +157,7 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = '/paging/customurl/{nextLink}'
@@ -170,7 +170,7 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 

@@ -46,12 +46,12 @@ class MultiapiServiceClientOperationsMixin:
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 

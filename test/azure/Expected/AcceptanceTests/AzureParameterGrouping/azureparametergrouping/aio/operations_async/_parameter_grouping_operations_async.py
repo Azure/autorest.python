@@ -88,7 +88,7 @@ class ParameterGroupingOperations:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
+        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body, 'int')
         body_content_kwargs['content'] = body_content
@@ -145,7 +145,7 @@ class ParameterGroupingOperations:
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
 
-        # Construct and send request
+        # Construct request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -210,7 +210,7 @@ class ParameterGroupingOperations:
         if _header_two is not None:
             header_parameters['header-two'] = self._serialize.header("header_two", _header_two, 'str')
 
-        # Construct and send request
+        # Construct request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -263,7 +263,7 @@ class ParameterGroupingOperations:
         if _header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", _header_one, 'str')
 
-        # Construct and send request
+        # Construct request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

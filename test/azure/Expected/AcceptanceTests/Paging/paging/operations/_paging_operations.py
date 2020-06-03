@@ -76,12 +76,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -137,12 +137,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -198,12 +198,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -277,12 +277,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -346,7 +346,7 @@ class PagingOperations(object):
                 query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
                 query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = '/paging/multiple/nextOperationWithQueryParams'
@@ -354,7 +354,7 @@ class PagingOperations(object):
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -428,12 +428,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -513,12 +513,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -575,12 +575,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -637,12 +637,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -698,12 +698,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -759,12 +759,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -820,12 +820,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -892,7 +892,7 @@ class PagingOperations(object):
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = '/paging/multiple/fragment/{tenant}/{nextLink}'
@@ -905,7 +905,7 @@ class PagingOperations(object):
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -975,7 +975,7 @@ class PagingOperations(object):
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
@@ -988,7 +988,7 @@ class PagingOperations(object):
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
@@ -1049,7 +1049,7 @@ class PagingOperations(object):
             header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
+        # Construct request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1147,12 +1147,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
-                # Construct and send request
+                # Construct request
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
