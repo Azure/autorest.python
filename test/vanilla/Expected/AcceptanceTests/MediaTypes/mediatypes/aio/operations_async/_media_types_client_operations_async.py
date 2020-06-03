@@ -53,7 +53,6 @@ class MediaTypesClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
             body_content_kwargs['stream_content'] = input
@@ -116,7 +115,6 @@ class MediaTypesClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(input, 'str')
         body_content_kwargs['content'] = body_content
