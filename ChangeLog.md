@@ -1,6 +1,6 @@
 # Change Log
 
-### 2020-05-22 - 5.1.0-preview.1
+### 2020-06-03 - 5.1.0-preview.1
 Modelerfour version: 4.13.351
 
 **Disclaimer**
@@ -10,6 +10,7 @@ This version requires azure-core 1.6.0 and contains features and bugfixes 5.0.0-
 **Features**
 
 - Refactor async LRO poller with a AsyncLROPoller class + "begin_" prefix
+- Add continuation_token kwargs to LRO methods
 
 **Bug Fixes**
 - Corrected generation of the item name of paging response when extracting data  #648
