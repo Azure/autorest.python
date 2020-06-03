@@ -6,8 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING, Union
 
+from azure.core.credentials import AzureKeyCredential
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -29,7 +30,7 @@ class StorageManagementClient(object):
     :ivar usage: UsageOperations operations
     :vartype usage: storage.aio.operations_async.UsageOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
     :param str base_url: Service URL
@@ -38,7 +39,7 @@ class StorageManagementClient(object):
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
+        credential: Union[AzureKeyCredential, "AsyncTokenCredential"],
         subscription_id: str,
         base_url: Optional[str] = None,
         **kwargs: Any

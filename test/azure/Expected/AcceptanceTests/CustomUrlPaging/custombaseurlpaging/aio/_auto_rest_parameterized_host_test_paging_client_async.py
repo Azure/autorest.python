@@ -6,8 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, Union
 
+from azure.core.credentials import AzureKeyCredential
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -26,7 +27,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :ivar paging: PagingOperations operations
     :vartype paging: custombaseurlpaging.aio.operations_async.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials_async.AsyncTokenCredential
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
@@ -34,7 +35,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
+        credential: Union[AzureKeyCredential, "AsyncTokenCredential"],
         host: str = "host",
         **kwargs: Any
     ) -> None:

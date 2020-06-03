@@ -6,9 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, Union
 
 from azure.core.configuration import Configuration
+from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 
 from .._version import VERSION
@@ -25,14 +26,14 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials_async.AsyncTokenCredential
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
+        credential: Union[AzureKeyCredential, "AsyncTokenCredential"],
         host: str = "host",
         **kwargs: Any
     ) -> None:

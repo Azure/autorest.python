@@ -29,15 +29,15 @@ _LOGGER = logging.getLogger(__name__)
 class CredentialSchema(BaseSchema):
     def __init__(self, async_mode) -> None:  # pylint: disable=super-init-not-called
         self.async_mode = async_mode
-        self.async_type = "~azure.core.credentials_async.AsyncTokenCredential"
-        self.sync_type = "~azure.core.credentials.TokenCredential"
+        self.azure_key_credential_type = "~azure.core.credentials.AzureKeyCredential"
+        self.async_token_credential_type = "~azure.core.credentials_async.AsyncTokenCredential"
+        self.sync_token_credential_type = "~azure.core.credentials.TokenCredential"
         self.default_value = None
 
     @property
     def serialization_type(self) -> str:
-        if self.async_mode:
-            return self.async_type
-        return self.sync_type
+        token_credential = self.async_token_credential_type if self.async_mode else self.sync_token_credential_type
+        return f"{self.azure_key_credential_type} or {token_credential}"
 
     @property
     def docstring_type(self) -> str:
@@ -46,8 +46,8 @@ class CredentialSchema(BaseSchema):
     @property
     def type_annotation(self) -> str:
         if self.async_mode:
-            return '"AsyncTokenCredential"'
-        return '"TokenCredential"'
+            return 'Union[AzureKeyCredential, "AsyncTokenCredential"]'
+        return 'Union[AzureKeyCredential, "TokenCredential"]'
 
     @property
     def docstring_text(self) -> str:
@@ -67,6 +67,13 @@ class CredentialSchema(BaseSchema):
                 ImportType.AZURECORE,
                 typing_section=TypingSection.TYPING
             )
+        file_import.add_from_import(
+            "azure.core.credentials",
+            "AzureKeyCredential",
+            ImportType.AZURECORE,
+            typing_section=TypingSection.CONDITIONAL
+        )
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL)
         return file_import
 
 

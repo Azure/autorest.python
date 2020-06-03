@@ -13,9 +13,9 @@ from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Optional, Union
 
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials import AzureKeyCredential, TokenCredential
 
 from ._configuration import StorageManagementClientConfiguration
 from .operations import StorageAccountsOperations
@@ -31,7 +31,7 @@ class StorageManagementClient(object):
     :ivar usage: UsageOperations operations
     :vartype usage: storage.operations.UsageOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials.TokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
     :param str base_url: Service URL
@@ -40,7 +40,7 @@ class StorageManagementClient(object):
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
+        credential,  # type: Union[AzureKeyCredential, "TokenCredential"]
         subscription_id,  # type: str
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any

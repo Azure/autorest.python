@@ -6,8 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING, Union
 
+from azure.core.credentials import AzureKeyCredential
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -35,14 +36,14 @@ class AutoRestLongRunningOperationTestService(object):
     :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
     :vartype lr_os_custom_header: lro.aio.operations_async.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials_async.AsyncTokenCredential
     :param str base_url: Service URL
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
+        credential: Union[AzureKeyCredential, "AsyncTokenCredential"],
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:

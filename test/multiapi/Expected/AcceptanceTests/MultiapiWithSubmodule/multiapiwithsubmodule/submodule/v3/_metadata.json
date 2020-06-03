@@ -9,17 +9,17 @@
     "global_parameters": {
         "sync_method": {
             "credential": {
-                "method_signature": "credential,  # type: \"TokenCredential\"",
+                "method_signature": "credential,  # type: Union[AzureKeyCredential, \"TokenCredential\"]",
                 "description": "Credential needed for the client to connect to Azure.",
-                "docstring_type": "~azure.core.credentials.TokenCredential",
+                "docstring_type": "~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials.TokenCredential",
                 "required": true
             }
         },
         "async_method": {
             "credential": {
-                "method_signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "method_signature": "credential,  # type: Union[AzureKeyCredential, \"AsyncTokenCredential\"]",
                 "description": "Credential needed for the client to connect to Azure.",
-                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
+                "docstring_type": "~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials_async.AsyncTokenCredential",
                 "required": true
             }
         },

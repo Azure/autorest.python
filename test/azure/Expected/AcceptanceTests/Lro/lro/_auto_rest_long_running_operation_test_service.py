@@ -13,9 +13,9 @@ from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Optional, Union
 
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials import AzureKeyCredential, TokenCredential
 
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
 from .operations import LROsOperations
@@ -37,14 +37,14 @@ class AutoRestLongRunningOperationTestService(object):
     :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
     :vartype lr_os_custom_header: lro.operations.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials.TokenCredential
     :param str base_url: Service URL
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
+        credential,  # type: Union[AzureKeyCredential, "TokenCredential"]
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):

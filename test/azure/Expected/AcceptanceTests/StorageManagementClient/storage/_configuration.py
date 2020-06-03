@@ -15,9 +15,9 @@ from ._version import VERSION
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
+    from typing import Any, Union
 
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials import AzureKeyCredential, TokenCredential
 
 
 class StorageManagementClientConfiguration(Configuration):
@@ -27,14 +27,14 @@ class StorageManagementClientConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials.TokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
+        credential,  # type: Union[AzureKeyCredential, "TokenCredential"]
         subscription_id,  # type: str
         **kwargs  # type: Any
     ):

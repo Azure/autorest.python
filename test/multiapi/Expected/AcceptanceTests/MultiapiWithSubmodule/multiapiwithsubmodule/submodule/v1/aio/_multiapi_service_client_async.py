@@ -6,9 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, Union
 
 from azure.core import AsyncPipelineClient
+from azure.core.credentials import AzureKeyCredential
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -27,14 +28,14 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapiwithsubmodule.submodule.v1.aio.operations_async.OperationGroupOneOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials_async.AsyncTokenCredential
     :param str base_url: Service URL
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
+        credential: Union[AzureKeyCredential, "AsyncTokenCredential"],
         **kwargs: Any
     ) -> None:
         base_url = 'None'

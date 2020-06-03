@@ -13,9 +13,9 @@ from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Optional, Union
 
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials import AzureKeyCredential, TokenCredential
 
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations import XMsClientRequestIdOperations
@@ -49,7 +49,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :ivar header: HeaderOperations operations
     :vartype header: azurespecialproperties.operations.HeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential or ~azure.core.credentials.TokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
     :param str base_url: Service URL
@@ -58,7 +58,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
+        credential,  # type: Union[AzureKeyCredential, "TokenCredential"]
         subscription_id,  # type: str
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
