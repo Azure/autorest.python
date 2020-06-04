@@ -1,3 +1,9 @@
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+
 import pytest
 from autorest.codegen.models import Operation, SchemaResponse
 from autorest.codegen.models.operation import _non_binary_schema_media_types
