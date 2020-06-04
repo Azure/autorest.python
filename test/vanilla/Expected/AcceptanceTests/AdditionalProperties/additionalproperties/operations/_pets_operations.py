@@ -77,7 +77,6 @@ class PetsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPTrue')
         body_content_kwargs['content'] = body_content
@@ -131,7 +130,6 @@ class PetsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'CatAPTrue')
         body_content_kwargs['content'] = body_content
@@ -185,7 +183,6 @@ class PetsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPObject')
         body_content_kwargs['content'] = body_content
@@ -239,7 +236,6 @@ class PetsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPString')
         body_content_kwargs['content'] = body_content
@@ -293,7 +289,6 @@ class PetsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
         body_content_kwargs['content'] = body_content
@@ -347,7 +342,6 @@ class PetsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
         body_content_kwargs['content'] = body_content

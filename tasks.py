@@ -227,6 +227,22 @@ def regenerate_python_arm(c, swagger_name=None, debug=False):
     }
     regen_expected(c, opts, debug)
 
+@task
+def regenerate_namespace_folders_test(c, debug=False):
+    # regenerate a swagger (randomly chose BodyArray) to have a namespace length > 1
+    # to test pkgutil logic
+    default_mapping = {'AcceptanceTests/BodyArrayWithNamespaceFolders': ['body-array.json', 'vanilla.body.array']}
+    opts = {
+        'output_base_dir': 'test/vanilla',
+        'input_base_dir': swagger_dir,
+        'mappings': default_mapping,
+        'output_dir': 'Expected',
+        'flattening_threshold': '1',
+        'vanilla': True,
+        'keep_version': True,
+        'ns_prefix': True
+    }
+    regen_expected(c, opts, debug)
 
 @task
 def regenerate(c, swagger_name=None, debug=False):
@@ -234,6 +250,7 @@ def regenerate(c, swagger_name=None, debug=False):
     regenerate_python(c, swagger_name, debug)
     regenerate_python_azure(c, swagger_name, debug)
     regenerate_python_arm(c, swagger_name, debug)
+    regenerate_namespace_folders_test(c, debug)
     if not swagger_name:
         regenerate_multiapi(c, debug)
 

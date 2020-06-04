@@ -69,6 +69,10 @@ class PagingOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
+
             if not next_link:
                 # Construct URL
                 url = self.get_pages_partial_url.metadata['url']  # type: ignore
@@ -80,6 +84,7 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
+                request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
@@ -88,12 +93,7 @@ class PagingOperations(object):
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = 'application/json'
-
-            # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+                request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def extract_data(pipeline_response):
@@ -141,6 +141,10 @@ class PagingOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
+
             if not next_link:
                 # Construct URL
                 url = self.get_pages_partial_url_operation.metadata['url']  # type: ignore
@@ -152,6 +156,7 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
+                request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = '/paging/customurl/{nextLink}'
                 path_format_arguments = {
@@ -163,12 +168,7 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = 'application/json'
-
-            # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+                request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def extract_data(pipeline_response):

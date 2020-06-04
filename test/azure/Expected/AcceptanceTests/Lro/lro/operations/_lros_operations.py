@@ -70,7 +70,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -109,6 +108,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -123,11 +123,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put200_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put200_succeeded_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -142,7 +144,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}  # type: ignore
 
     def _put201_succeeded_initial(
@@ -167,7 +177,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -204,6 +213,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -218,11 +228,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put201_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put201_succeeded_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -237,7 +249,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_succeeded.metadata = {'url': '/lro/put/201/succeeded'}  # type: ignore
 
     def _post202_list_initial(
@@ -259,7 +279,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -293,6 +312,7 @@ class LROsOperations(object):
     with body [{ 'id': '100', 'name': 'foo' }].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -307,10 +327,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post202_list_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post202_list_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -325,7 +347,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_list.metadata = {'url': '/lro/list'}  # type: ignore
 
     def _put200_succeeded_no_state_initial(
@@ -350,7 +380,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -387,6 +416,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -401,11 +431,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put200_succeeded_no_state_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put200_succeeded_no_state_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -420,7 +452,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}  # type: ignore
 
     def _put202_retry200_initial(
@@ -445,7 +485,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -483,6 +522,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -497,11 +537,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put202_retry200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put202_retry200_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -516,7 +558,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}  # type: ignore
 
     def _put201_creating_succeeded200_initial(
@@ -541,7 +591,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -583,6 +632,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -597,11 +647,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put201_creating_succeeded200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put201_creating_succeeded200_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -616,7 +668,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}  # type: ignore
 
     def _put200_updating_succeeded204_initial(
@@ -641,7 +701,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -679,6 +738,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -693,11 +753,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put200_updating_succeeded204_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put200_updating_succeeded204_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -712,7 +774,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}  # type: ignore
 
     def _put201_creating_failed200_initial(
@@ -737,7 +807,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -779,6 +848,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -793,11 +863,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put201_creating_failed200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put201_creating_failed200_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -812,7 +884,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}  # type: ignore
 
     def _put200_acceptedcanceled200_initial(
@@ -837,7 +917,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -875,6 +954,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -889,11 +969,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put200_acceptedcanceled200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put200_acceptedcanceled200_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -908,7 +990,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}  # type: ignore
 
     def _put_no_header_in_retry_initial(
@@ -933,7 +1023,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -972,6 +1061,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -986,11 +1076,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_no_header_in_retry_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_no_header_in_retry_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1008,7 +1100,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}  # type: ignore
 
     def _put_async_retry_succeeded_initial(
@@ -1033,7 +1133,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -1075,6 +1174,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1089,11 +1189,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_async_retry_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_async_retry_succeeded_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1113,7 +1215,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}  # type: ignore
 
     def _put_async_no_retry_succeeded_initial(
@@ -1138,7 +1248,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -1179,6 +1288,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1193,11 +1303,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_async_no_retry_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_async_no_retry_succeeded_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1216,7 +1328,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}  # type: ignore
 
     def _put_async_retry_failed_initial(
@@ -1241,7 +1361,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -1283,6 +1402,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1297,11 +1417,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_async_retry_failed_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_async_retry_failed_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1321,7 +1443,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}  # type: ignore
 
     def _put_async_no_retrycanceled_initial(
@@ -1346,7 +1476,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -1387,6 +1516,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1401,11 +1531,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_async_no_retrycanceled_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_async_no_retrycanceled_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1424,7 +1556,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}  # type: ignore
 
     def _put_async_no_header_in_retry_initial(
@@ -1449,7 +1589,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -1489,6 +1628,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1503,11 +1643,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_async_no_header_in_retry_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_async_no_header_in_retry_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1525,7 +1667,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}  # type: ignore
 
     def _put_non_resource_initial(
@@ -1550,7 +1700,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if sku is not None:
             body_content = self._serialize.body(sku, 'Sku')
@@ -1586,6 +1735,7 @@ class LROsOperations(object):
         :param sku: sku to put.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1600,11 +1750,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_non_resource_initial(
-            sku=sku,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_non_resource_initial(
+                sku=sku,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1619,7 +1771,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}  # type: ignore
 
     def _put_async_non_resource_initial(
@@ -1644,7 +1804,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if sku is not None:
             body_content = self._serialize.body(sku, 'Sku')
@@ -1680,6 +1839,7 @@ class LROsOperations(object):
         :param sku: Sku to put.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1694,11 +1854,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_async_non_resource_initial(
-            sku=sku,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_async_non_resource_initial(
+                sku=sku,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1713,7 +1875,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}  # type: ignore
 
     def _put_sub_resource_initial(
@@ -1740,7 +1910,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _product is not None:
             body_content = self._serialize.body(_product, 'SubProduct')
@@ -1776,6 +1945,7 @@ class LROsOperations(object):
         :param provisioning_state:
         :type provisioning_state: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1790,11 +1960,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_sub_resource_initial(
-            provisioning_state=provisioning_state,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_sub_resource_initial(
+                provisioning_state=provisioning_state,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1809,7 +1981,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}  # type: ignore
 
     def _put_async_sub_resource_initial(
@@ -1836,7 +2016,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _product is not None:
             body_content = self._serialize.body(_product, 'SubProduct')
@@ -1872,6 +2051,7 @@ class LROsOperations(object):
         :param provisioning_state:
         :type provisioning_state: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1886,11 +2066,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._put_async_sub_resource_initial(
-            provisioning_state=provisioning_state,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._put_async_sub_resource_initial(
+                provisioning_state=provisioning_state,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1905,7 +2087,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}  # type: ignore
 
     def _delete_provisioning202_accepted200_succeeded_initial(
@@ -1927,7 +2117,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1962,6 +2151,7 @@ class LROsOperations(object):
     ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -1976,10 +2166,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -1998,7 +2190,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}  # type: ignore
 
     def _delete_provisioning202_deleting_failed200_initial(
@@ -2020,7 +2220,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2055,6 +2254,7 @@ class LROsOperations(object):
     ‘200’ with ProvisioningState=’Failed’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2069,10 +2269,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_provisioning202_deleting_failed200_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_provisioning202_deleting_failed200_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2091,7 +2293,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}  # type: ignore
 
     def _delete_provisioning202_deletingcanceled200_initial(
@@ -2113,7 +2323,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2148,6 +2357,7 @@ class LROsOperations(object):
     ‘200’ with ProvisioningState=’Canceled’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2162,10 +2372,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_provisioning202_deletingcanceled200_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_provisioning202_deletingcanceled200_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2184,7 +2396,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}  # type: ignore
 
     def _delete204_succeeded_initial(
@@ -2205,7 +2425,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2229,6 +2448,7 @@ class LROsOperations(object):
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2243,10 +2463,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete204_succeeded_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete204_succeeded_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2258,7 +2480,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}  # type: ignore
 
     def _delete202_retry200_initial(
@@ -2280,7 +2510,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2314,6 +2543,7 @@ class LROsOperations(object):
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2328,10 +2558,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete202_retry200_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete202_retry200_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2346,7 +2578,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}  # type: ignore
 
     def _delete202_no_retry204_initial(
@@ -2368,7 +2608,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2402,6 +2641,7 @@ class LROsOperations(object):
     value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2416,10 +2656,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete202_no_retry204_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete202_no_retry204_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2434,7 +2676,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}  # type: ignore
 
     def _delete_no_header_in_retry_initial(
@@ -2455,7 +2705,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2484,6 +2733,7 @@ class LROsOperations(object):
     Subsequent calls to operation status do not contain location header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2498,10 +2748,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_no_header_in_retry_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_no_header_in_retry_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2513,7 +2765,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}  # type: ignore
 
     def _delete_async_no_header_in_retry_initial(
@@ -2534,7 +2794,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2563,6 +2822,7 @@ class LROsOperations(object):
     request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2577,10 +2837,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_async_no_header_in_retry_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_async_no_header_in_retry_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2592,7 +2854,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}  # type: ignore
 
     def _delete_async_retry_succeeded_initial(
@@ -2613,7 +2883,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2643,6 +2912,7 @@ class LROsOperations(object):
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2657,10 +2927,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_async_retry_succeeded_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_async_retry_succeeded_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2672,7 +2944,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}  # type: ignore
 
     def _delete_async_no_retry_succeeded_initial(
@@ -2693,7 +2973,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2723,6 +3002,7 @@ class LROsOperations(object):
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2737,10 +3017,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_async_no_retry_succeeded_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_async_no_retry_succeeded_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2752,7 +3034,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}  # type: ignore
 
     def _delete_async_retry_failed_initial(
@@ -2773,7 +3063,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2803,6 +3092,7 @@ class LROsOperations(object):
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2817,10 +3107,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_async_retry_failed_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_async_retry_failed_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2832,7 +3124,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}  # type: ignore
 
     def _delete_async_retrycanceled_initial(
@@ -2853,7 +3153,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2883,6 +3182,7 @@ class LROsOperations(object):
     indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2897,10 +3197,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._delete_async_retrycanceled_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._delete_async_retrycanceled_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2912,7 +3214,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}  # type: ignore
 
     def _post200_with_payload_initial(
@@ -2934,7 +3244,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2965,6 +3274,7 @@ class LROsOperations(object):
     header. Poll returns a 200 with a response body after success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -2979,10 +3289,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post200_with_payload_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post200_with_payload_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -2997,7 +3309,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post200_with_payload.metadata = {'url': '/lro/post/payload/200'}  # type: ignore
 
     def _post202_retry200_initial(
@@ -3021,7 +3341,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -3060,6 +3379,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3074,11 +3394,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post202_retry200_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post202_retry200_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3090,7 +3412,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}  # type: ignore
 
     def _post202_no_retry204_initial(
@@ -3115,7 +3445,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -3155,6 +3484,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3169,11 +3499,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post202_no_retry204_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post202_no_retry204_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3192,7 +3524,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}  # type: ignore
 
     def _post_double_headers_final_location_get_initial(
@@ -3214,7 +3554,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -3242,6 +3581,7 @@ class LROsOperations(object):
     object.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3256,10 +3596,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post_double_headers_final_location_get_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post_double_headers_final_location_get_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3274,7 +3616,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay, lro_options={'final-state-via': 'location'},  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}  # type: ignore
 
     def _post_double_headers_final_azure_header_get_initial(
@@ -3296,7 +3646,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -3324,6 +3673,7 @@ class LROsOperations(object):
     final object.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3338,10 +3688,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post_double_headers_final_azure_header_get_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post_double_headers_final_azure_header_get_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3356,7 +3708,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'},  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}  # type: ignore
 
     def _post_double_headers_final_azure_header_get_default_initial(
@@ -3378,7 +3738,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -3406,6 +3765,7 @@ class LROsOperations(object):
     final object if you support initial Autorest behavior.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3420,10 +3780,12 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post_double_headers_final_azure_header_get_default_initial(
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post_double_headers_final_azure_header_get_default_initial(
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3438,7 +3800,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}  # type: ignore
 
     def _post_async_retry_succeeded_initial(
@@ -3463,7 +3833,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -3509,6 +3878,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3523,11 +3893,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post_async_retry_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post_async_retry_succeeded_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3542,7 +3914,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}  # type: ignore
 
     def _post_async_no_retry_succeeded_initial(
@@ -3567,7 +3947,6 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -3613,6 +3992,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3627,11 +4007,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post_async_no_retry_succeeded_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post_async_no_retry_succeeded_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3646,7 +4028,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}  # type: ignore
 
     def _post_async_retry_failed_initial(
@@ -3670,7 +4060,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -3711,6 +4100,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3725,11 +4115,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post_async_retry_failed_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post_async_retry_failed_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3741,7 +4133,15 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}  # type: ignore
 
     def _post_async_retrycanceled_initial(
@@ -3765,7 +4165,6 @@ class LROsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -3806,6 +4205,7 @@ class LROsOperations(object):
         :param product: Product to put.
         :type product: ~lro.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
@@ -3820,11 +4220,13 @@ class LROsOperations(object):
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = self._post_async_retrycanceled_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = self._post_async_retrycanceled_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -3836,5 +4238,13 @@ class LROsOperations(object):
         if polling is True: polling_method = cast(PollingMethod, ARMPolling(lro_delay,  **kwargs))
         elif polling is False: polling_method = cast(PollingMethod, NoPolling())
         else: polling_method = cast(PollingMethod, polling)
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        if cont_token:
+            return LROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}  # type: ignore

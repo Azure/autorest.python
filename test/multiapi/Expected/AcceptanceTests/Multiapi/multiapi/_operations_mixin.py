@@ -9,13 +9,15 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 import warnings
 
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.polling.base_polling import LROBasePolling
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

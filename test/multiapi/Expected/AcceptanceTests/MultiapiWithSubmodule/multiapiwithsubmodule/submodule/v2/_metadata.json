@@ -38,11 +38,9 @@
     "operation_mixins": {
         "test_one" : {
             "sync": {
-                "operation_name": "test_one",
                 "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "test_one",
                 "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e Union[\"models.ModelTwo\", ClsReturnType]:\n",
                 "coroutine": true
             },
@@ -50,6 +48,6 @@
             "call": "id, message"
         }
     },
-    "sync_imports": "from typing import TYPE_CHECKING\nimport warnings\n\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import HttpRequest, HttpResponse\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union\n\n    from azure.core import PipelineClient\n    from msrest import Deserializer, Serializer\n\n    from .._configuration import MultiapiServiceClientConfiguration",
-    "async_imports": "from typing import Any, Callable, Dict, Generic, Optional, TYPE_CHECKING, TypeVar, Union\nimport warnings\n\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from azure.core import AsyncPipelineClient\n    from msrest import Deserializer, Serializer\n\n    from .._configuration_async import MultiapiServiceClientConfiguration"
+    "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\", \"Union\"]}}, \"typing\": {\"azurecore\": {\"azure.core\": [\"PipelineClient\"], \"msrest\": [\"Deserializer\", \"Serializer\"]}, \"local\": {\".._configuration\": [\"MultiapiServiceClientConfiguration\"]}}}",
+    "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\", \"Union\"]}}, \"typing\": {\"azurecore\": {\"azure.core\": [\"AsyncPipelineClient\"], \"msrest\": [\"Deserializer\", \"Serializer\"]}, \"local\": {\".._configuration_async\": [\"MultiapiServiceClientConfiguration\"]}}}"
 }

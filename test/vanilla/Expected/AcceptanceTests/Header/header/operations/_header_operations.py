@@ -76,7 +76,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['User-Agent'] = self._serialize.header("user_agent_parameter", user_agent_parameter, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -118,7 +117,6 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -167,7 +165,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -209,7 +206,6 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -263,7 +259,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'int')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -309,7 +304,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -363,7 +357,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'long')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -409,7 +402,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -463,7 +455,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -509,7 +500,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -563,7 +553,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -609,7 +598,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -663,7 +651,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -709,7 +696,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -766,7 +752,6 @@ class HeaderOperations(object):
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -813,7 +798,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -867,7 +851,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'date')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -913,7 +896,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -968,7 +950,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1014,7 +995,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1070,7 +1050,6 @@ class HeaderOperations(object):
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1117,7 +1096,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1170,7 +1148,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1216,7 +1193,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1269,7 +1245,6 @@ class HeaderOperations(object):
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1315,7 +1290,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1371,7 +1345,6 @@ class HeaderOperations(object):
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1418,7 +1391,6 @@ class HeaderOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1464,7 +1436,6 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

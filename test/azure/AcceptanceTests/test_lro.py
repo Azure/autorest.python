@@ -130,6 +130,14 @@ class TestLro:
             kwargs["polling"] = AutorestTestARMPolling(0)
         return func(*args, **kwargs).result()
 
+    def test_post_double_headers_final_continuation_token(self, client):
+        poller = client.lros.begin_post_double_headers_final_location_get()
+        continuation_token = poller.continuation_token()
+
+        poller = client.lros.begin_post_double_headers_final_location_get(continuation_token=continuation_token)
+        product = poller.result()
+        assert product.id == "100"
+
     def test_post_double_headers_final(self, client):
         product = client.lros.begin_post_double_headers_final_location_get().result()
         assert product.id == "100"

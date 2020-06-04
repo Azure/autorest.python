@@ -19,7 +19,7 @@ from ._operations_mixin_async import MultiapiServiceClientOperationsMixin
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."
-        Will be removed in final version of multiapi azure-core based clientcd ../a
+        Will be removed in final version of multiapi azure-core based client
         """
         pass
 
@@ -49,7 +49,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
-            'test_lro': '1.0.0',
+            'begin_test_lro': '1.0.0',
             'test_one': '2.0.0',
         }},
         _PROFILE_TAG + " latest"

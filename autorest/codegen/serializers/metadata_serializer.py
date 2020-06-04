@@ -4,7 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import copy
-from typing import List, Optional, Set, Tuple
+import json
+from typing import List, Optional, Set, Tuple, Dict
 from jinja2 import Environment
 from ..models import (
     CodeModel,
@@ -13,15 +14,41 @@ from ..models import (
     LROOperation,
     PagingOperation,
     CredentialSchema,
-    ParameterList
+    ParameterList,
+    TypingSection,
+    ImportType
 )
-from .import_serializer import FileImportSerializer
 
 def _correct_credential_parameter(global_parameters: ParameterList, async_mode: bool) -> None:
     credential_param = [
         gp for gp in global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
     ][0]
     credential_param.schema = CredentialSchema(async_mode=async_mode)
+
+def _json_serialize_imports(
+    imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]]
+):
+    if not imports:
+        return None
+
+    json_serialize_imports = {}
+    # need to make name_import set -> list to make the dictionary json serializable
+    # not using an OrderedDict since we're iterating through a set and the order there varies
+    # going to sort the list instead
+
+    for typing_section_key, typing_section_value in imports.items():
+        json_import_type_dictionary = {}
+        for import_type_key, import_type_value in typing_section_value.items():
+            json_package_name_dictionary = {}
+            for package_name, name_imports in import_type_value.items():
+                name_import_ordered_list = []
+                if name_imports:
+                    name_import_ordered_list = list(name_imports)
+                    name_import_ordered_list.sort()
+                json_package_name_dictionary[package_name] = name_import_ordered_list
+            json_import_type_dictionary[import_type_key] = json_package_name_dictionary
+        json_serialize_imports[typing_section_key] = json_import_type_dictionary
+    return json.dumps(json_serialize_imports)
 
 
 class MetadataSerializer:
@@ -99,11 +126,11 @@ class MetadataSerializer:
             is_paging=_is_paging,
             str=str,
             sync_mixin_imports=(
-                FileImportSerializer(sync_mixin_imports, is_python_3_file=False)
+                _json_serialize_imports(sync_mixin_imports.imports)
                 if sync_mixin_imports else None
             ),
             async_mixin_imports=(
-                FileImportSerializer(async_mixin_imports, is_python_3_file=True)
+                _json_serialize_imports(async_mixin_imports.imports)
                 if async_mixin_imports else None
             )
         )

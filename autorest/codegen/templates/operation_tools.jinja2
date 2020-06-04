@@ -197,10 +197,9 @@ else:
 {% endif %}
 body_content_kwargs['content'] = body_content{% endmacro %}
 {# write body parameters #}
-{% macro body_parameters(operation) %}
+{% macro body_parameters(operation, http_verb=None) %}
 {% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
-# Construct and send request
 {% if operation.parameters.has_body %}
 body_content_kwargs = {}  # type: Dict[str, Any]
 {% if (operation.requests | length) == 1 %}
@@ -224,6 +223,6 @@ else:
         "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
     )
 {% endif %}
-request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, **body_content_kwargs)
+request = self._client.{{ http_verb if http_verb else operation.method }}(url, query_parameters, header_parameters, **body_content_kwargs)
 {% else %}
-request = self._client.{{ operation.method }}(url, query_parameters, header_parameters){% endif %}{% endmacro %}
+request = self._client.{{ http_verb if http_verb else operation.method }}(url, query_parameters, header_parameters){% endif %}{% endmacro %}

@@ -49,7 +49,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
-            'test_lro': '1.0.0',
+            'begin_test_lro': '1.0.0',
             'test_one': '2.0.0',
         }},
         _PROFILE_TAG + " latest"
