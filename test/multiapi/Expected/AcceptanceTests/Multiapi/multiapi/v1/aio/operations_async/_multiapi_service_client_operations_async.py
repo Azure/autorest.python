@@ -11,7 +11,7 @@ import warnings
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
+from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.polling.async_base_polling import AsyncLROBasePolling
 
 from ... import models
@@ -56,7 +56,6 @@ class MultiapiServiceClientOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -92,7 +91,6 @@ class MultiapiServiceClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
@@ -119,22 +117,23 @@ class MultiapiServiceClientOperationsMixin:
         return deserialized
     _test_lro_initial.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
-    async def test_lro(
+    async def begin_test_lro(
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> AsyncLROPoller["models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
         :type product: ~multiapi.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: Product, or the result of cls(response)
-        :rtype: ~multiapi.v1.models.Product
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~multiapi.v1.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', False)  # type: Union[bool, AsyncPollingMethod]
@@ -143,11 +142,13 @@ class MultiapiServiceClientOperationsMixin:
             'polling_interval',
             self._config.polling_interval
         )
-        raw_result = await self._test_lro_initial(
-            product=product,
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
+        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = await self._test_lro_initial(
+                product=product,
+                cls=lambda x,y,z: x,
+                **kwargs
+            )
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
@@ -162,5 +163,13 @@ class MultiapiServiceClientOperationsMixin:
         if polling is True: polling_method = AsyncLROBasePolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore
+        if cont_token:
+            return AsyncLROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output
+            )
+        else:
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore

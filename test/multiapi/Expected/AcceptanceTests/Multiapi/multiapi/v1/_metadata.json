@@ -37,11 +37,9 @@
     "operation_mixins": {
         "test_one" : {
             "sync": {
-                "operation_name": "test_one",
                 "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "test_one",
                 "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e None:\n",
                 "coroutine": true
             },
@@ -50,31 +48,27 @@
         },
         "_test_lro_initial" : {
             "sync": {
-                "operation_name": "_test_lro_initial",
                 "signature": "def _test_lro_initial(\n    self,\n    product=None,  # type: Optional[\"models.Product\"]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "_test_lro_initial",
                 "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e Optional[\"models.Product\"]:\n",
                 "coroutine": true
             },
             "doc": "    \"\"\"\n\n:param product: Product to put.\n:type product: ~multiapi.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapi.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": "product"
         },
-        "test_lro" : {
+        "begin_test_lro" : {
             "sync": {
-                "operation_name": "begin_test_lro",
                 "signature": "def begin_test_lro(\n    self,\n    product=None,  # type: Optional[\"models.Product\"]\n    **kwargs  # type: Any\n):\n"
             },
             "async": {
-                "operation_name": "test_lro",
-                "signature": "async def test_lro(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e \"models.Product\":\n",
+                "signature": "async def begin_test_lro(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e AsyncLROPoller[\"models.Product\"]:\n",
                 "coroutine": true
             },
             "doc": "    \"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put.\n:type product: ~multiapi.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapi.v1.models.Product\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": "product"
         }
     },
-    "sync_imports": "from typing import TYPE_CHECKING\nimport warnings\n\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import HttpRequest, HttpResponse\nfrom azure.core.polling import LROPoller, NoPolling, PollingMethod\nfrom azure.core.polling.base_polling import LROBasePolling\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union",
-    "async_imports": "from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union\nimport warnings\n\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest\nfrom azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller\nfrom azure.core.polling.async_base_polling import AsyncLROBasePolling"
+    "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"], \"azure.core.polling\": [\"LROPoller\", \"NoPolling\", \"PollingMethod\"], \"azure.core.polling.base_polling\": [\"LROBasePolling\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\", \"Union\"]}}}",
+    "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"], \"azure.core.polling\": [\"AsyncLROPoller\", \"AsyncNoPolling\", \"AsyncPollingMethod\"], \"azure.core.polling.async_base_polling\": [\"AsyncLROBasePolling\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\", \"Union\"]}}}"
 }
