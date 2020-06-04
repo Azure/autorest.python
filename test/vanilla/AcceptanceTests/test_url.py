@@ -180,6 +180,9 @@ class TestUrl(object):
         client.queries.enum_valid(UriColor.green_color)
         client.queries.enum_null(None)
 
+    def test_queries_unicode(self, client):
+        client.queries.string_unicode()
+
     def test_array_string_csv(self, client, test_array_query):
         client.queries.array_string_csv_empty([])
         client.queries.array_string_csv_null(None)

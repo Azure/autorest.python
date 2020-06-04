@@ -216,6 +216,10 @@ class TestUrl(object):
         await client.queries.enum_null(None)
 
     @pytest.mark.asyncio
+    async def test_queries_unicode(self, client):
+        await client.queries.string_unicode()
+
+    @pytest.mark.asyncio
     async def test_array_string_csv(self, client, test_array_query):
         await client.queries.array_string_csv_empty([])
         await client.queries.array_string_csv_null(None)
