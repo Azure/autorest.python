@@ -116,6 +116,9 @@ class TestUrl(object):
     def test_string_url_encoded(self, client):
         client.paths.string_url_encoded()
 
+    def test_paths_unicode(self, client):
+        client.paths.string_unicode()
+
     def test_string_url_non_encoded(self, client):
         client.paths.string_url_non_encoded()
 

@@ -137,6 +137,10 @@ class TestUrl(object):
         await client.paths.string_url_encoded()
 
     @pytest.mark.asyncio
+    async def test_paths_unicode(self, client):
+        await client.paths.string_unicode()
+
+    @pytest.mark.asyncio
     async def test_string_url_non_encoded(self, client):
         await client.paths.string_url_non_encoded()
 
