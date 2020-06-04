@@ -137,6 +137,10 @@ class TestUrl(object):
         await client.paths.string_url_encoded()
 
     @pytest.mark.asyncio
+    async def test_paths_unicode(self, client):
+        await client.paths.string_unicode()
+
+    @pytest.mark.asyncio
     async def test_string_url_non_encoded(self, client):
         await client.paths.string_url_non_encoded()
 
@@ -210,6 +214,10 @@ class TestUrl(object):
     async def test_queries_enum(self, client):
         await client.queries.enum_valid(UriColor.green_color)
         await client.queries.enum_null(None)
+
+    @pytest.mark.asyncio
+    async def test_queries_unicode(self, client):
+        await client.queries.string_unicode()
 
     @pytest.mark.asyncio
     async def test_array_string_csv(self, client, test_array_query):
