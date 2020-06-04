@@ -38,13 +38,14 @@
     "operation_mixins": {
         "test_paging" : {
             "sync": {
-                "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n"
+                "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
             "async": {
                 "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.PagingResult\"]:\n",
-                "coroutine": false
+                "coroutine": false,
+                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
-            "doc": "    \"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": ""
         }
     },

@@ -1,5 +1,12 @@
 # Change Log
 
+### Unreleased
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+- Generating correct formatting for LRO and paging operation docstrings  #652
+- Generating correct content and formatting for LRO and paging operations in multiapi mixin  #652
+
 ### 2020-06-03 - 5.1.0-preview.1
 Modelerfour version: 4.13.351
 

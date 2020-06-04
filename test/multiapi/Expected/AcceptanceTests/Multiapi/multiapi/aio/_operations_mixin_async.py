@@ -32,9 +32,14 @@ class MultiapiServiceClientOperationsMixin(object):
         :param product: Product to put.
         :type product: ~multiapi.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~multiapi.v1.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~multiapi.v1.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
@@ -86,8 +91,8 @@ class MultiapiServiceClientOperationsMixin(object):
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PagingResult, or the result of cls(response)
-        :rtype: ~multiapi.v3.models.PagingResult
+        :return: An iterator like instance of either PagingResult or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapi.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = self._get_api_version('test_paging')
