@@ -38,13 +38,14 @@
     "operation_mixins": {
         "test_one" : {
             "sync": {
-                "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n"
+                "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo, or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
             "async": {
                 "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e \"models.ModelTwo\":\n",
-                "coroutine": true
+                "coroutine": true,
+                "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo, or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
-            "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo, or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
             "call": "id, message"
         }
     },

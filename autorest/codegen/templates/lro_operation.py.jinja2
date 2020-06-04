@@ -4,7 +4,7 @@
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
 {% set operation_name = "begin_"+operation.python_name %}
-{% macro return_docstring() %}
+{% macro return_docstring(async_mode) %}
 :return: An instance of {{ "Async" if async_mode }}LROPoller that returns either {{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}} or the result of cls(response)
 :rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
@@ -15,7 +15,7 @@ response_headers = {
     {% endfor %}
 }
 {% endmacro %}
-{% macro operation_docstring() %}
+{% macro operation_docstring(async_mode) %}
 """{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
 {% if operation.summary and operation.description %}
 
@@ -39,7 +39,7 @@ response_headers = {
  polling object for personal polling strategy
 :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
 :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-{{ return_docstring() }}
+{{ return_docstring(async_mode) }}
 :raises ~azure.core.exceptions.HttpResponseError:
 """{% endmacro %}
 {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
@@ -52,7 +52,7 @@ response_headers = {
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}
-    {{ operation_docstring() | indent }}
+    {{ operation_docstring(async_mode) | indent }}
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     lro_delay = kwargs.pop(
