@@ -452,15 +452,15 @@ class StringOperations:
     async def get_base64_encoded(
         self,
         **kwargs
-    ) -> bytearray:
+    ) -> bytes:
         """Get value that is base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
+        :return: bytes, or the result of cls(response)
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -483,7 +483,7 @@ class StringOperations:
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bytearray', pipeline_response)
+        deserialized = self._deserialize('base64', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})

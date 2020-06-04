@@ -172,15 +172,15 @@ class StorageAccountsOperations(object):
     ):
         # type: (...) -> LROPoller["models.StorageAccount"]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
-    cannot be updated with this API and should instead use the Update Storage Account API. If an
-    account is already created and subsequent PUT request is issued with exact same set of
-    properties, then HTTP 200 would be returned.
+        cannot be updated with this API and should instead use the Update Storage Account API. If an
+        account is already created and subsequent PUT request is issued with exact same set of
+        properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-     case letters only.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
@@ -489,7 +489,7 @@ class StorageAccountsOperations(object):
     ):
         # type: (...) -> Iterable["models.StorageAccountListResult"]
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
-    returned; use the ListKeys operation for this.
+        returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
@@ -556,7 +556,7 @@ class StorageAccountsOperations(object):
     ):
         # type: (...) -> Iterable["models.StorageAccountListResult"]
         """Lists all the storage accounts available under the given resource group. Note that storage keys
-    are not returned; use the ListKeys operation for this.
+        are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
