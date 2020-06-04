@@ -12,6 +12,15 @@
 {%- endif -%}
 {% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+{% macro return_docstring(operation) %}
+{% if operation.responses | selectattr('has_body') | first %}
+:return: {{ operation.responses|selectattr('has_body')|map(attribute='schema')| map(attribute='docstring_text')|unique|join(' or ') }}, or the result of cls(response)
+:rtype: {{ operation.responses|selectattr('has_body')|map(attribute='schema')| map(attribute='docstring_type')|unique|join(' or ') }}{{ " or None" if operation.has_optional_return_type }}
+{%- else %}
+:return: None, or the result of cls(response)
+:rtype: None
+{%- endif -%}
+{% endmacro %}
 {% macro operation_docstring() %}
 """{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
 {% if operation.summary and operation.description %}
@@ -36,7 +45,7 @@
  Allowed values are: "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
-{{ return_docstring() }}
+{{ return_docstring(operation) }}
 :raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}
 {# actual template starts here #}
@@ -99,7 +108,9 @@
 {% if operation.any_response_has_headers %}
     response_headers = {}
 {% endif %}
-{% if operation.has_response_body and operation.responses|count > 1 %}
+{# now we only initialize deserialized to None if we know there is both > 1 response with body and > 1 response of None #}
+{# otherwise, we know that deserialized will be set to a value then returned #}
+{% if operation.has_optional_return_type %}
     deserialized = None
 {% endif %}
 {% if operation.has_response_body or operation.any_response_has_headers %}

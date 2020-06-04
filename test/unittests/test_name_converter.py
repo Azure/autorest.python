@@ -22,14 +22,16 @@ def test_escaped_reserved_words():
         "content_type": "content_type_parameter",
         "request_id": "request_id_parameter",
         "elif": "elif_parameter",
-        "self": "self_parameter"
+        "self": "self_parameter",
+        "continuation_token": "continuation_token_parameter"
     }
     for name in expected_conversion_parameter:
         assert NameConverter._to_valid_python_name(name, pad_string=PadType.Parameter) == expected_conversion_parameter[name]
 
     expected_conversion_enum = {
         "self": "self",
-        "mro": "mro_enum"
+        "mro": "mro_enum",
+        "continuation_token": "continuation_token"
     }
     for name in expected_conversion_enum:
         assert NameConverter._to_valid_python_name(name, pad_string=PadType.Enum) == expected_conversion_enum[name]

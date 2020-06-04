@@ -4,9 +4,27 @@
 Modelerfour version: 4.13.351
 
 **Bug Fixes**
-- Corrected generation of the item name of paging response when extracting data  #648
 - Generating correct formatting for LRO and paging operation docstrings  #652
 - Generating correct content and formatting for LRO and paging operations in multiapi mixin  #652
+
+### 2020-06-03 - 5.1.0-preview.1
+Modelerfour version: 4.13.351
+
+**Disclaimer**
+
+This version requires azure-core 1.6.0 and contains features and bugfixes 5.0.0-preview.8
+
+**Features**
+
+- Refactor async LRO poller with a AsyncLROPoller class + "begin_" prefix
+- Add continuation_token kwargs to LRO methods
+
+**Bug Fixes**
+- Corrected generation of the item name of paging response when extracting data  #648
+- Corrected return type typing annotation for operations that return an optional body  #656
+- Fixed mypy issue by only setting the generated `deserialized` variable to None if the operation has an optional return type  #656
+- Fixed generation of pkgutil init files  #661
+- Have the next operation in a paging call use the HTTP verb GET if the next operation is not defined  #664
 
 ### 2020-05-22 - 5.0.0-preview.8
 Modelerfour version: 4.13.351

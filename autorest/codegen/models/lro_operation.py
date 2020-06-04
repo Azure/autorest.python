@@ -79,12 +79,17 @@ class LROOperation(Operation):
             response_type = response_types[0]
         self.lro_response = response_type
 
+    @property
+    def has_optional_return_type(self) -> bool:
+        """An LROOperation will never have an optional return type, we will always return LROPoller[return type]"""
+        return False
+
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
         file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-            file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)
+            file_import.add_from_import("azure.core.polling", "AsyncLROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)
             if code_model.options['azure_arm']:
