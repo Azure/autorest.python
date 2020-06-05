@@ -19,10 +19,78 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
+    from azure.core import PipelineClient
+    from msrest import Deserializer, Serializer
+
+    from .._configuration import MultipleInheritanceServiceClientConfiguration
+
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
-class MultipleInheritanceServiceClientOperationsMixin(object):
+    class AbstractServiceClient(object):
+        """Abstract class of a service client to help with type hints for the following mixin class"""
+
+        def __init__(self):
+            # type: () -> None
+            """
+            Init for abstract service client class
+            """
+
+        @property
+        def _client(self):
+            # type: () -> PipelineClient
+            """Pipeline client
+            :rtype: PipelineClient
+            """
+
+        @_client.setter
+        def _client(self, value):
+            # type: (PipelineClient) -> None
+            """Set the pipeline client"""
+
+        @property
+        def _config(self):
+            # type: () -> MultipleInheritanceServiceClientConfiguration
+            """Configuration of service client
+            :rtype: MultipleInheritanceServiceClientConfiguration
+            """
+
+        @_config.setter
+        def _config(self, value):
+            # type: (MultipleInheritanceServiceClientConfiguration) -> None
+            """Set the configuration"""
+
+        @property
+        def _serialize(self):
+            # type: () -> Serializer
+            """Serializer
+            :rtype: Serializer
+            """
+
+        @_serialize.setter
+        def _serialize(self, value):
+            # type: (Serializer) -> None
+            """Set the serializer"""
+
+        @property
+        def _deserialize(self):
+            # type: () -> Deserializer
+            """Deserializer
+            :rtype: Deserializer
+            """
+
+        @_deserialize.setter
+        def _deserialize(self, value):
+            # type: (Deserializer) -> None
+            """Set the deserializer"""
+
+    # https://github.com/python/mypy/issues/5837
+    _MIXIN_BASE = AbstractServiceClient
+else:
+    _MIXIN_BASE = object
+
+
+class MultipleInheritanceServiceClientOperationsMixin(_MIXIN_BASE):
 
     @distributed_trace
     def get_horse(
