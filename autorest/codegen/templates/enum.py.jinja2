@@ -1,3 +1,4 @@
+{% set enums_mypy_does_not_recognize = ["count"] %}
 
 class {{ enum.name }}({{ enum.enum_type.type_annotation }}, Enum):
     {% if enum.description %}
@@ -6,5 +7,8 @@ class {{ enum.name }}({{ enum.enum_type.type_annotation }}, Enum):
     {% endif %}
 
     {% for value in enum.values %}
-    {{ value.name }} = {{ enum.enum_type.get_declaration(value.value) }}{{ "  #: " + value.description if value.description else "" }}
+    {% if value.description and value.name in enums_mypy_does_not_recognize %}
+    {{ "#: " + value.description }}
+    {% endif %}
+    {{ value.name }} = {{ enum.enum_type.get_declaration(value.value) }}{{ "  # type: ignore" if value.name in enums_mypy_does_not_recognize else ("  #: " + value.description if value.description else "") }}
     {% endfor %}

@@ -51,7 +51,7 @@ class UsageUnit(str, Enum):
     """Gets the unit of measurement.
     """
 
-    count = "Count"
+    count = "Count"  # type: ignore
     bytes = "Bytes"
     seconds = "Seconds"
     percent = "Percent"
