@@ -12,7 +12,7 @@ __all__ = ['{{ code_model.class_name }}']
 {% if not async_mode %}
 
 try:
-    from ._patch import patch_sdk
+    from ._patch import patch_sdk  # type: ignore
     patch_sdk()
 except ImportError:
     pass
