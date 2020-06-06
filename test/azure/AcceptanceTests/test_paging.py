@@ -166,10 +166,13 @@ def test_get_multiple_pages_lro(client):
     # FIXME Location should be the default once 1.0.0b2 is out
 
     poller = client.paging.begin_get_multiple_pages_lro(polling=polling)
-    page1 = poller.result()
-    assert len(page1.values) == 1
-    assert page1.values[0].properties.id == 1
-    assert page1.next_link.endswith("paging/multiple/page/2")
+    pager = poller.result()
+
+    all_pages = list(pager)
+
+    assert len(all_pages) == 10
+    assert all_pages[0].properties.id == 1
+    assert all_pages[1].properties.id == 2
 
 def test_item_name_with_xms_client_name(client):
     pages = client.paging.get_paging_model_with_item_name_with_xms_client_name()
