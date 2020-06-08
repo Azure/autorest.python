@@ -13,7 +13,7 @@ from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
     from azure.core.credentials import TokenCredential
 
@@ -44,7 +44,7 @@ class AutoRestHeadTestService(object):
         self._config = AutoRestHeadTestServiceConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}
+        client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
