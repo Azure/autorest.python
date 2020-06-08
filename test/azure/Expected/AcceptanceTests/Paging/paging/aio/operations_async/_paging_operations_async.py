@@ -240,7 +240,7 @@ class PagingOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_options is not None:
@@ -385,7 +385,7 @@ class PagingOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _maxresults = None
         _timeout = None
         if paging_get_odata_multiple_pages_options is not None:
@@ -461,7 +461,7 @@ class PagingOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _maxresults = None
         _offset = None
         _timeout = None
@@ -909,7 +909,7 @@ class PagingOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _api_version = None
         _tenant = None
         if custom_parameter_group is not None:
@@ -980,7 +980,7 @@ class PagingOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_lro_options is not None:
@@ -1060,12 +1060,49 @@ class PagingOperations:
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
-        def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
 
+            if not next_link:
+                raise ValueError("Impossible")
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
+            list_of_elem = deserialized.values
             if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        def get_long_running_output(pipeline_response):
+            async def internal_get_next(next_link=None):
+                if next_link is None:
+                    return pipeline_response
+                else:
+                    return await get_next(next_link)
+
+            return AsyncItemPaged(
+                internal_get_next, extract_data
+            )
 
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()

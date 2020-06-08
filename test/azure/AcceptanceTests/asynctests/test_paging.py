@@ -212,18 +212,17 @@ async def test_custom_url_get_pages_partial_url_operation(custom_url_client):
 @pytest.mark.asyncio
 async def test_get_multiple_pages_lro(client):
     """LRO + Paging at the same time.
-
-    Python decides to poll, but not follow paging. Check that at least you get read the first page.
     """
-    from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
-    polling = AsyncARMPolling(0, lro_options={'final-state-via': 'location'})
-    # FIXME Location should be the default once 1.0.0b2 is out
+    poller = await client.paging.begin_get_multiple_pages_lro()
+    pager = await poller.result()
 
-    poller = await client.paging.begin_get_multiple_pages_lro(polling=polling)
-    page1 = await poller.result()
-    assert len(page1.values) == 1
-    assert page1.values[0].properties.id == 1
-    assert page1.next_link.endswith("paging/multiple/page/2")
+    items = []
+    async for item in pager:
+        items.append(item)
+
+    assert len(items) == 10
+    assert items[0].properties.id == 1
+    assert items[1].properties.id == 2
 
 @pytest.mark.asyncio
 async def test_item_name_with_xms_client_name(client):
