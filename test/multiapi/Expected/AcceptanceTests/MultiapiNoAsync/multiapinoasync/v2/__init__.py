@@ -10,7 +10,7 @@ from ._multiapi_service_client import MultiapiServiceClient
 __all__ = ['MultiapiServiceClient']
 
 try:
-    from ._patch import patch_sdk
+    from ._patch import patch_sdk  # type: ignore
     patch_sdk()
 except ImportError:
     pass

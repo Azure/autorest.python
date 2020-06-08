@@ -12,7 +12,9 @@ const extension = require("@azure-tools/extension");
 async function runPython3(scriptName) {
   const command = ["python"];
   await extension.updatePythonPath(command);
-  cp.execSync(command[0] + " " + scriptName);
+  cp.execSync(command[0] + " " + scriptName, {
+    stdio: [0, 1, 2]
+  });
 }
 
 runPython3(process.argv[2]).catch(err => {
