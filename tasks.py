@@ -250,8 +250,8 @@ def regenerate(c, swagger_name=None, debug=False):
     regenerate_python(c, swagger_name, debug)
     regenerate_python_azure(c, swagger_name, debug)
     regenerate_python_arm(c, swagger_name, debug)
-    regenerate_namespace_folders_test(c, debug)
     if not swagger_name:
+        regenerate_namespace_folders_test(c, debug)
         regenerate_multiapi(c, debug)
 
 

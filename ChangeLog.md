@@ -1,9 +1,10 @@
 # Change Log
 
-### Unreleased
+### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351
 
 **Bug Fixes**
+- Fixed "Failed to install or start extension" issue arising when invoking autorest from a tar file, by correcctly calling Python 3. #678
 - Generating correct formatting for LRO and paging operation docstrings  #652
 - Generating correct content and formatting for LRO and paging operations in multiapi mixin  #652
 
