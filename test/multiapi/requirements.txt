@@ -9,3 +9,4 @@ aiohttp>=3.0; python_full_version >= '3.5.2'
 -e ./Expected/AcceptanceTests/Multiapi
 -e ./Expected/AcceptanceTests/MultiapiWithSubmodule
 -e ./Expected/AcceptanceTests/MultiapiNoAsync
+-e ./Expected/AcceptanceTests/MultiapiCredentialDefaultPolicy

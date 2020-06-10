@@ -1,0 +1,56 @@
+{
+    "chosen_version": "3.0.0",
+    "total_api_version_list": ["3.0.0"],
+    "client": {
+        "name": "MultiapiServiceClient",
+        "filename": "_multiapi_service_client",
+        "description": "Service client for multiapi client testing."
+    },
+    "global_parameters": {
+        "sync_method": {
+            "credential": {
+                "method_signature": "credential,  # type: \"TokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials.TokenCredential",
+                "required": true
+            }
+        },
+        "async_method": {
+            "credential": {
+                "method_signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
+                "required": true
+            }
+        },
+        "constant": {
+        },
+        "call": "credential"
+    },
+    "config": {
+        "credential": true,
+        "credential_scopes": null,
+        "credential_default_policy_type": "AzureKeyCredentialPolicy",
+        "credential_default_policy_type_has_async_version": false
+    },
+    "operation_groups": {
+        "operation_group_one": "OperationGroupOneOperations",
+        "operation_group_two": "OperationGroupTwoOperations"
+    },
+    "operation_mixins": {
+        "test_paging" : {
+            "sync": {
+                "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapicredentialdefaultpolicy.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "async": {
+                "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.PagingResult\"]:\n",
+                "coroutine": false,
+                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "call": ""
+        }
+    },
+    "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"], \"azure.core.paging\": [\"ItemPaged\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Iterable\", \"Optional\", \"TypeVar\"]}}}",
+    "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"], \"azure.core.async_paging\": [\"AsyncItemPaged\", \"AsyncList\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"AsyncIterable\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\"]}}}"
+}
