@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, List
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
@@ -34,8 +34,16 @@ class ListSchema(BaseSchema):
         return f"List[{self.element_type.type_annotation}]"
 
     @property
+    def element_type_operation_type_annotation(self) -> str:
+        if len(self.element_type.operation_type_annotation) > 1:
+            return "Union[{}]".format(
+                ", ".join(self.element_type.operation_type_annotation)
+            )
+        return self.element_type.operation_type_annotation[0]
+
+    @property
     def operation_type_annotation(self) -> str:
-        return f"List[{self.element_type.operation_type_annotation}]"
+        return [f"List[{self.element_type_operation_type_annotation}]"]
 
     @property
     def docstring_type(self) -> str:

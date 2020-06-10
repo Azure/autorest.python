@@ -78,7 +78,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self._client_default_value = client_default_value
         self.is_kwarg: bool = False
         self.has_multiple_media_types: bool = False
-        self.multiple_media_types_type_annot: Optional[str] = None
+        self.multiple_media_types_type_annot: Optional[List[str]] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
 
     @property
@@ -118,7 +118,11 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self._implementation
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
-        type_annot = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
+        type_annot_list = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
+        if len(type_annot_list) > 1:
+            type_annot = "Union[{}]".format(", ".join(type_annot_list))
+        else:
+            type_annot = type_annot_list[0]
         if not self.required:
             type_annot = f"Optional[{type_annot}]"
 

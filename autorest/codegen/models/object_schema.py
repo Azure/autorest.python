@@ -43,8 +43,8 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return f'"{self.name}"'
 
     @property
-    def operation_type_annotation(self) -> str:
-        return f'"models.{self.name}"'
+    def operation_type_annotation(self) -> List[str]:
+        return [f'"models.{self.name}"']
 
     @property
     def docstring_type(self) -> str:
