@@ -18,8 +18,6 @@ from .serializers import JinjaSerializer
 
 
 _LOGGER = logging.getLogger(__name__)
-
-
 class CodeGenerator(Plugin):
     @staticmethod
     def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
@@ -138,8 +136,17 @@ class CodeGenerator(Plugin):
                 "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
             )
 
+        credential_default_policy_type = self._autorestapi.get_value("credential-default-policy-type") or "BearerTokenCredentialPolicy"
 
-        if not credential_scopes:
+        if credential_scopes and credential_default_policy_type != "BearerTokenCredentialPolicy":
+            _LOGGER.warning(
+                "You have --credential-default-policy-type not set as BearerTokenCredentialPolicy and a value for "
+                "--credential-scopes. Since credential scopes are tied to the BearerTokenCredentialPolicy, "
+                "we will ignore your credential scopes."
+            )
+            credential_scopes = []
+
+        elif not credential_scopes and credential_default_policy_type == "BearerTokenCredentialPolicy":
             if azure_arm:
                 credential_scopes = ["https://management.azure.com/.default"]
             elif credential:
@@ -176,7 +183,9 @@ class CodeGenerator(Plugin):
             "package_version": self._autorestapi.get_value("package-version"),
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", False),
             "tracing": self._autorestapi.get_boolean_value("trace", False),
-            "multiapi": self._autorestapi.get_boolean_value("multiapi", False)
+            "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
+            "credential_default_policy_type": credential_default_policy_type,
+            "credential_default_policy_type_has_async_version": credential_default_policy_type == "BearerTokenCredentialPolicy"
         }
 
         if options["basic_setup_py"] and not options["package_version"]:
