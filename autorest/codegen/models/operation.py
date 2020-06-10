@@ -268,9 +268,16 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
-        # always import union since return type annotation for operations is union of ClsReturnType and
-        # swagger return type
-        file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        # we will always have to import Union or Optional
+        # we need to import Union if the operation has a response body, for Union[response body, ClsReturnType]
+        # we also need to import Union if the return type is None, but the operation is a head operation and the
+        # flag head-as-boolean is set, since we will return a bool in this case
+        # Optional will already always be imported for the definition of ClsType
+        if (
+            len([r for r in self.responses if r.has_body]) >= 1 or
+            self.method == 'head' and code_model.options['head_as_boolean']
+        ):
+            file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         # Exceptions
         file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
