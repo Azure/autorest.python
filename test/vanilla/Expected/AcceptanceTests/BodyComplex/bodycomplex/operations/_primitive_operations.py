@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PrimitiveOperations(object):
     """PrimitiveOperations operations.
@@ -50,7 +51,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.IntWrapper"
+        # type: (...) -> Union["models.IntWrapper", ClsReturnType]
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.IntWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.IntWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.IntWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.IntWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
@@ -105,7 +106,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -136,6 +137,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_int.metadata = {'url': '/complex/primitive/integer'}  # type: ignore
 
     @distributed_trace
@@ -143,7 +145,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.LongWrapper"
+        # type: (...) -> Union["models.LongWrapper", ClsReturnType]
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -151,7 +153,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.LongWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.LongWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.LongWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -188,7 +190,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.LongWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
@@ -198,7 +200,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -229,6 +231,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_long.metadata = {'url': '/complex/primitive/long'}  # type: ignore
 
     @distributed_trace
@@ -236,7 +239,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.FloatWrapper"
+        # type: (...) -> Union["models.FloatWrapper", ClsReturnType]
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -244,7 +247,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.FloatWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.FloatWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -281,7 +284,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.FloatWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
@@ -291,7 +294,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -322,6 +325,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_float.metadata = {'url': '/complex/primitive/float'}  # type: ignore
 
     @distributed_trace
@@ -329,7 +333,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DoubleWrapper"
+        # type: (...) -> Union["models.DoubleWrapper", ClsReturnType]
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -337,7 +341,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DoubleWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DoubleWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -374,7 +378,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.DoubleWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -385,7 +389,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -416,6 +420,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_double.metadata = {'url': '/complex/primitive/double'}  # type: ignore
 
     @distributed_trace
@@ -423,7 +428,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.BooleanWrapper"
+        # type: (...) -> Union["models.BooleanWrapper", ClsReturnType]
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -431,7 +436,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.BooleanWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.BooleanWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -468,7 +473,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.BooleanWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
@@ -478,7 +483,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -509,6 +514,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_bool.metadata = {'url': '/complex/primitive/bool'}  # type: ignore
 
     @distributed_trace
@@ -516,7 +522,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.StringWrapper"
+        # type: (...) -> Union["models.StringWrapper", ClsReturnType]
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -524,7 +530,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.StringWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StringWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StringWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -561,7 +567,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.StringWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
@@ -571,7 +577,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -602,6 +608,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_string.metadata = {'url': '/complex/primitive/string'}  # type: ignore
 
     @distributed_trace
@@ -609,7 +616,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DateWrapper"
+        # type: (...) -> Union["models.DateWrapper", ClsReturnType]
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -617,7 +624,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DateWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DateWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DateWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -654,7 +661,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.DateWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
@@ -664,7 +671,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -695,6 +702,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date.metadata = {'url': '/complex/primitive/date'}  # type: ignore
 
     @distributed_trace
@@ -702,7 +710,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DatetimeWrapper"
+        # type: (...) -> Union["models.DatetimeWrapper", ClsReturnType]
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -710,7 +718,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DatetimeWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DatetimeWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -747,7 +755,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.DatetimeWrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
@@ -757,7 +765,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -788,6 +796,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}  # type: ignore
 
     @distributed_trace
@@ -795,7 +804,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Datetimerfc1123Wrapper"
+        # type: (...) -> Union["models.Datetimerfc1123Wrapper", ClsReturnType]
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -803,7 +812,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Datetimerfc1123Wrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Datetimerfc1123Wrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -840,7 +849,7 @@ class PrimitiveOperations(object):
         complex_body,  # type: "models.Datetimerfc1123Wrapper"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -851,7 +860,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -882,6 +891,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
@@ -889,7 +899,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DurationWrapper"
+        # type: (...) -> Union["models.DurationWrapper", ClsReturnType]
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -897,7 +907,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DurationWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DurationWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -934,7 +944,7 @@ class PrimitiveOperations(object):
         field=None,  # type: Optional[datetime.timedelta]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with duration properties.
 
         :param field:
@@ -944,7 +954,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -977,6 +987,7 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_duration.metadata = {'url': '/complex/primitive/duration'}  # type: ignore
 
     @distributed_trace
@@ -984,7 +995,7 @@ class PrimitiveOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ByteWrapper"
+        # type: (...) -> Union["models.ByteWrapper", ClsReturnType]
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -992,7 +1003,7 @@ class PrimitiveOperations(object):
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ByteWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ByteWrapper", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1029,7 +1040,7 @@ class PrimitiveOperations(object):
         field=None,  # type: Optional[bytearray]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types with byte properties.
 
         :param field:
@@ -1039,7 +1050,7 @@ class PrimitiveOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1072,4 +1083,5 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_byte.metadata = {'url': '/complex/primitive/byte'}  # type: ignore

@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PetsOperations(object):
     """PetsOperations operations.
@@ -50,7 +51,7 @@ class PetsOperations(object):
         create_parameters,  # type: "models.PetAPTrue"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPTrue"
+        # type: (...) -> Union["models.PetAPTrue", ClsReturnType]
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -60,7 +61,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -103,7 +104,7 @@ class PetsOperations(object):
         create_parameters,  # type: "models.CatAPTrue"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.CatAPTrue"
+        # type: (...) -> Union["models.CatAPTrue", ClsReturnType]
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -113,7 +114,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -156,7 +157,7 @@ class PetsOperations(object):
         create_parameters,  # type: "models.PetAPObject"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPObject"
+        # type: (...) -> Union["models.PetAPObject", ClsReturnType]
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -166,7 +167,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -209,7 +210,7 @@ class PetsOperations(object):
         create_parameters,  # type: "models.PetAPString"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPString"
+        # type: (...) -> Union["models.PetAPString", ClsReturnType]
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -219,7 +220,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -262,7 +263,7 @@ class PetsOperations(object):
         create_parameters,  # type: "models.PetAPInProperties"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPInProperties"
+        # type: (...) -> Union["models.PetAPInProperties", ClsReturnType]
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -272,7 +273,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -315,7 +316,7 @@ class PetsOperations(object):
         create_parameters,  # type: "models.PetAPInPropertiesWithAPString"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPInPropertiesWithAPString"
+        # type: (...) -> Union["models.PetAPInPropertiesWithAPString", ClsReturnType]
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -325,7 +326,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")

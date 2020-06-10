@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class HttpRedirectsOperations(object):
     """HttpRedirectsOperations operations.
@@ -49,7 +50,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -86,6 +87,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     head300.metadata = {'url': '/http/redirect/300'}  # type: ignore
 
     @distributed_trace
@@ -93,7 +95,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[List[str]]
+        # type: (...) -> Union[Optional[List[str]], ClsReturnType]
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -101,7 +103,7 @@ class HttpRedirectsOperations(object):
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[List[str]], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -141,7 +143,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -149,7 +151,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -178,6 +180,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     head301.metadata = {'url': '/http/redirect/301'}  # type: ignore
 
     @distributed_trace
@@ -185,7 +188,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -193,7 +196,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -222,6 +225,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     get301.metadata = {'url': '/http/redirect/301'}  # type: ignore
 
     @distributed_trace
@@ -230,7 +234,7 @@ class HttpRedirectsOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
@@ -241,7 +245,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -278,6 +282,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     put301.metadata = {'url': '/http/redirect/301'}  # type: ignore
 
     @distributed_trace
@@ -285,7 +290,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -293,7 +298,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -322,6 +327,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     head302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace
@@ -329,7 +335,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -337,7 +343,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -366,6 +372,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     get302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace
@@ -374,7 +381,7 @@ class HttpRedirectsOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
@@ -385,7 +392,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -422,6 +429,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     patch302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace
@@ -430,7 +438,7 @@ class HttpRedirectsOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
@@ -441,7 +449,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -479,6 +487,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     post303.metadata = {'url': '/http/redirect/303'}  # type: ignore
 
     @distributed_trace
@@ -486,7 +495,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Redirect with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -494,7 +503,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -523,6 +532,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     head307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
@@ -530,7 +540,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Redirect get with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -538,7 +548,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -567,6 +577,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     get307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
@@ -574,7 +585,7 @@ class HttpRedirectsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """options redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -582,7 +593,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -611,6 +622,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     options307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
@@ -619,7 +631,7 @@ class HttpRedirectsOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true.
@@ -629,7 +641,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -667,6 +679,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     put307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
@@ -675,7 +688,7 @@ class HttpRedirectsOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true.
@@ -685,7 +698,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -723,6 +736,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     patch307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
@@ -731,7 +745,7 @@ class HttpRedirectsOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true.
@@ -741,7 +755,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -779,6 +793,7 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     post307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
@@ -787,7 +802,7 @@ class HttpRedirectsOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true.
@@ -797,7 +812,7 @@ class HttpRedirectsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -835,4 +850,5 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     delete307.metadata = {'url': '/http/redirect/307'}  # type: ignore

@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class StringOperations(object):
     """StringOperations operations.
@@ -49,7 +50,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Get null string value value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -94,7 +95,7 @@ class StringOperations(object):
         string_body=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set string value null.
 
         :param string_body:
@@ -104,7 +105,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -138,6 +139,7 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_null.metadata = {'url': '/string/null'}  # type: ignore
 
     @distributed_trace
@@ -145,7 +147,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Get empty string value value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -153,7 +155,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -189,7 +191,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set string value empty ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -197,7 +199,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -229,6 +231,7 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_empty.metadata = {'url': '/string/empty'}  # type: ignore
 
     @distributed_trace
@@ -236,7 +239,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -244,7 +247,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -280,7 +283,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -288,7 +291,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -320,6 +323,7 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_mbcs.metadata = {'url': '/string/mbcs'}  # type: ignore
 
     @distributed_trace
@@ -327,7 +331,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Get string value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -337,7 +341,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -373,7 +377,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -383,7 +387,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -415,6 +419,7 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_whitespace.metadata = {'url': '/string/whitespace'}  # type: ignore
 
     @distributed_trace
@@ -422,7 +427,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Get String value when no string value is sent in response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -430,7 +435,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -466,7 +471,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytearray
+        # type: (...) -> Union[bytearray, ClsReturnType]
         """Get value that is base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -474,7 +479,7 @@ class StringOperations(object):
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -510,7 +515,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytes
+        # type: (...) -> Union[bytes, ClsReturnType]
         """Get value that is base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -518,7 +523,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -555,7 +560,7 @@ class StringOperations(object):
         string_body,  # type: bytes
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put value that is base64url encoded.
 
         :param string_body:
@@ -565,7 +570,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -596,6 +601,7 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}  # type: ignore
 
     @distributed_trace
@@ -603,7 +609,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bytes
+        # type: (...) -> Union[bytes, ClsReturnType]
         """Get null value that is expected to be base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -611,7 +617,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

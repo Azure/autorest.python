@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PathItemsOperations(object):
     """PathItemsOperations operations.
@@ -53,7 +54,7 @@ class PathItemsOperations(object):
         local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
@@ -72,7 +73,7 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -109,6 +110,7 @@ class PathItemsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}  # type: ignore
 
     @distributed_trace
@@ -120,7 +122,7 @@ class PathItemsOperations(object):
         local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
@@ -139,7 +141,7 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -176,6 +178,7 @@ class PathItemsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}  # type: ignore
 
     @distributed_trace
@@ -187,7 +190,7 @@ class PathItemsOperations(object):
         local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery=null,
         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
@@ -206,7 +209,7 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -243,6 +246,7 @@ class PathItemsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}  # type: ignore
 
     @distributed_trace
@@ -254,7 +258,7 @@ class PathItemsOperations(object):
         local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
         pathItemStringQuery=null, localStringQuery=null.
@@ -272,7 +276,7 @@ class PathItemsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -309,4 +313,5 @@ class PathItemsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}  # type: ignore

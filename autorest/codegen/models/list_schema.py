@@ -42,7 +42,7 @@ class ListSchema(BaseSchema):
         return self.element_type.operation_type_annotation[0]
 
     @property
-    def operation_type_annotation(self) -> str:
+    def operation_type_annotation(self) -> List[str]:
         return [f"List[{self.element_type_operation_type_annotation}]"]
 
     @property

@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class GroupOperations(object):
     """GroupOperations operations.
@@ -51,7 +52,7 @@ class GroupOperations(object):
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SampleResourceGroup"
+        # type: (...) -> Union["models.SampleResourceGroup", ClsReturnType]
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
@@ -61,7 +62,7 @@ class GroupOperations(object):
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2014-04-01-preview"

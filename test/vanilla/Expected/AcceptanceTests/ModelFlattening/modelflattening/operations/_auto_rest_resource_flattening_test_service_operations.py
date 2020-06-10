@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
@@ -30,7 +31,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         resource_array=None,  # type: Optional[List["models.Resource"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put.
@@ -40,7 +41,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -74,6 +75,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_array.metadata = {'url': '/model-flatten/array'}  # type: ignore
 
     @distributed_trace
@@ -81,7 +83,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.FlattenedProduct"]
+        # type: (...) -> Union[List["models.FlattenedProduct"], ClsReturnType]
         """Get External Resource as an Array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -89,7 +91,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.FlattenedProduct"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.FlattenedProduct"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -126,7 +128,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         resource_array=None,  # type: Optional[List["models.WrappedProduct"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -137,7 +139,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -171,6 +173,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}  # type: ignore
 
     @distributed_trace
@@ -178,7 +181,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.ProductWrapper"]
+        # type: (...) -> Union[List["models.ProductWrapper"], ClsReturnType]
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -187,7 +190,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.ProductWrapper"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.ProductWrapper"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -224,7 +227,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         resource_dictionary=None,  # type: Optional[Dict[str, "models.FlattenedProduct"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put.
@@ -234,7 +237,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -268,6 +271,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}  # type: ignore
 
     @distributed_trace
@@ -275,7 +279,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "models.FlattenedProduct"]
+        # type: (...) -> Union[Dict[str, "models.FlattenedProduct"], ClsReturnType]
         """Get External Resource as a Dictionary.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -283,7 +287,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.FlattenedProduct"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.FlattenedProduct"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -320,7 +324,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         resource_complex_object=None,  # type: Optional["models.ResourceCollection"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a ResourceCollection to put.
@@ -330,7 +334,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -364,6 +368,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}  # type: ignore
 
     @distributed_trace
@@ -371,7 +376,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ResourceCollection"
+        # type: (...) -> Union["models.ResourceCollection", ClsReturnType]
         """Get External Resource as a ResourceCollection.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -379,7 +384,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.ResourceCollection
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ResourceCollection"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ResourceCollection", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -416,7 +421,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         simple_body_product=None,  # type: Optional["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SimpleProduct"
+        # type: (...) -> Union["models.SimpleProduct", ClsReturnType]
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put.
@@ -426,7 +431,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -476,7 +481,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         odata_value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SimpleProduct"
+        # type: (...) -> Union["models.SimpleProduct", ClsReturnType]
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param product_id: Unique identifier representing a specific product for a given latitude &
@@ -496,7 +501,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -544,7 +549,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         flatten_parameter_group,  # type: "models.FlattenParameterGroup"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SimpleProduct"
+        # type: (...) -> Union["models.SimpleProduct", ClsReturnType]
         """Put Simple Product with client flattening true on the model.
 
         :param flatten_parameter_group: Parameter group.
@@ -554,7 +559,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         

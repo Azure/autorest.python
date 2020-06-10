@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class UsageOperations(object):
     """UsageOperations operations.
@@ -50,7 +51,7 @@ class UsageOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.UsageListResult"
+        # type: (...) -> Union["models.UsageListResult", ClsReturnType]
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class UsageOperations(object):
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"

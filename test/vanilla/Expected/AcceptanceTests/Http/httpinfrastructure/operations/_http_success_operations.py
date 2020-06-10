@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class HttpSuccessOperations(object):
     """HttpSuccessOperations operations.
@@ -49,7 +50,7 @@ class HttpSuccessOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -82,6 +83,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace
@@ -89,7 +91,7 @@ class HttpSuccessOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -97,7 +99,7 @@ class HttpSuccessOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -133,7 +135,7 @@ class HttpSuccessOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Options 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -141,7 +143,7 @@ class HttpSuccessOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -178,7 +180,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true.
@@ -188,7 +190,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -222,6 +224,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace
@@ -230,7 +233,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true.
@@ -240,7 +243,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -274,6 +277,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     patch200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace
@@ -282,7 +286,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true.
@@ -292,7 +296,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -326,6 +330,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace
@@ -334,7 +339,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true.
@@ -344,7 +349,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -378,6 +383,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     delete200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace
@@ -386,7 +392,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true.
@@ -396,7 +402,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -430,6 +436,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put201.metadata = {'url': '/http/success/201'}  # type: ignore
 
     @distributed_trace
@@ -438,7 +445,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true.
@@ -448,7 +455,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -482,6 +489,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post201.metadata = {'url': '/http/success/201'}  # type: ignore
 
     @distributed_trace
@@ -490,7 +498,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true.
@@ -500,7 +508,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -534,6 +542,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace
@@ -542,7 +551,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true.
@@ -552,7 +561,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -586,6 +595,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     patch202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace
@@ -594,7 +604,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true.
@@ -604,7 +614,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -638,6 +648,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace
@@ -646,7 +657,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true.
@@ -656,7 +667,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -690,6 +701,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     delete202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace
@@ -697,7 +709,7 @@ class HttpSuccessOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -705,7 +717,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -730,6 +742,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace
@@ -738,7 +751,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -748,7 +761,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -782,6 +795,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace
@@ -790,7 +804,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -800,7 +814,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -834,6 +848,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     patch204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace
@@ -842,7 +857,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -852,7 +867,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -886,6 +901,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace
@@ -894,7 +910,7 @@ class HttpSuccessOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true.
@@ -904,7 +920,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -938,6 +954,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     delete204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace
@@ -945,7 +962,7 @@ class HttpSuccessOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 404 status code.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -953,7 +970,7 @@ class HttpSuccessOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -978,4 +995,5 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     head404.metadata = {'url': '/http/success/404'}  # type: ignore

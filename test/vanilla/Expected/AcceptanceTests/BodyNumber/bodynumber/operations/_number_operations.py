@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class NumberOperations(object):
     """NumberOperations operations.
@@ -49,7 +50,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -93,7 +94,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get invalid float Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -101,7 +102,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -137,7 +138,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get invalid double Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -145,7 +146,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -181,7 +182,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get invalid decimal Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -189,7 +190,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -226,7 +227,7 @@ class NumberOperations(object):
         number_body,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put big float value 3.402823e+20.
 
         :param number_body:
@@ -236,7 +237,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -267,6 +268,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}  # type: ignore
 
     @distributed_trace
@@ -274,7 +276,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big float value 3.402823e+20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -282,7 +284,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -319,7 +321,7 @@ class NumberOperations(object):
         number_body,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put big double value 2.5976931e+101.
 
         :param number_body:
@@ -329,7 +331,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -360,6 +362,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}  # type: ignore
 
     @distributed_trace
@@ -367,7 +370,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big double value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -375,7 +378,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -411,7 +414,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -419,7 +422,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -451,6 +454,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}  # type: ignore
 
     @distributed_trace
@@ -458,7 +462,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -466,7 +470,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -502,7 +506,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -510,7 +514,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -542,6 +546,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}  # type: ignore
 
     @distributed_trace
@@ -549,7 +554,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -557,7 +562,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -594,7 +599,7 @@ class NumberOperations(object):
         number_body,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put big decimal value 2.5976931e+101.
 
         :param number_body:
@@ -604,7 +609,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -635,6 +640,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}  # type: ignore
 
     @distributed_trace
@@ -642,7 +648,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big decimal value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -650,7 +656,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -686,7 +692,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -694,7 +700,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -726,6 +732,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}  # type: ignore
 
     @distributed_trace
@@ -733,7 +740,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -741,7 +748,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -777,7 +784,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -785,7 +792,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -817,6 +824,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}  # type: ignore
 
     @distributed_trace
@@ -824,7 +832,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -832,7 +840,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -869,7 +877,7 @@ class NumberOperations(object):
         number_body,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put small float value 3.402823e-20.
 
         :param number_body:
@@ -879,7 +887,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -910,6 +918,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}  # type: ignore
 
     @distributed_trace
@@ -917,7 +926,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big double value 3.402823e-20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -925,7 +934,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -962,7 +971,7 @@ class NumberOperations(object):
         number_body,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put small double value 2.5976931e-101.
 
         :param number_body:
@@ -972,7 +981,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1003,6 +1012,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}  # type: ignore
 
     @distributed_trace
@@ -1010,7 +1020,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get big double value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1018,7 +1028,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1055,7 +1065,7 @@ class NumberOperations(object):
         number_body,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put small decimal value 2.5976931e-101.
 
         :param number_body:
@@ -1065,7 +1075,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -1096,6 +1106,7 @@ class NumberOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}  # type: ignore
 
     @distributed_trace
@@ -1103,7 +1114,7 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Union[float, ClsReturnType]
         """Get small decimal value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1111,7 +1122,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

@@ -21,7 +21,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class HeaderOperations(object):
     """HeaderOperations operations.
@@ -51,7 +52,7 @@ class HeaderOperations(object):
         user_agent_parameter,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header value "User-Agent": "overwrite".
 
         :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
@@ -61,7 +62,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -87,6 +88,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_existing_key.metadata = {'url': '/header/param/existingkey'}  # type: ignore
 
     @distributed_trace
@@ -94,7 +96,7 @@ class HeaderOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header value "User-Agent": "overwrite".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -102,7 +104,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -130,6 +132,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_existing_key.metadata = {'url': '/header/response/existingkey'}  # type: ignore
 
     @distributed_trace
@@ -138,7 +141,7 @@ class HeaderOperations(object):
         content_type,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header value "Content-Type": "text/html".
 
         :param content_type: Send a post request with header value "Content-Type": "text/html".
@@ -148,7 +151,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -174,6 +177,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}  # type: ignore
 
     @distributed_trace
@@ -181,7 +185,7 @@ class HeaderOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header value "Content-Type": "text/html".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -189,7 +193,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -217,6 +221,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}  # type: ignore
 
     @distributed_trace
@@ -226,7 +231,7 @@ class HeaderOperations(object):
         value,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
         "negative", "value": -2.
 
@@ -239,7 +244,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -266,6 +271,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_integer.metadata = {'url': '/header/param/prim/integer'}  # type: ignore
 
     @distributed_trace
@@ -274,7 +280,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header value "value": 1 or -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -284,7 +290,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -313,6 +319,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_integer.metadata = {'url': '/header/response/prim/integer'}  # type: ignore
 
     @distributed_trace
@@ -322,7 +329,7 @@ class HeaderOperations(object):
         value,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
         "negative", "value": -2.
 
@@ -335,7 +342,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -362,6 +369,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_long.metadata = {'url': '/header/param/prim/long'}  # type: ignore
 
     @distributed_trace
@@ -370,7 +378,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header value "value": 105 or -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -380,7 +388,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -409,6 +417,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_long.metadata = {'url': '/header/response/prim/long'}  # type: ignore
 
     @distributed_trace
@@ -418,7 +427,7 @@ class HeaderOperations(object):
         value,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
         "negative", "value": -3.0.
 
@@ -431,7 +440,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -458,6 +467,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_float.metadata = {'url': '/header/param/prim/float'}  # type: ignore
 
     @distributed_trace
@@ -466,7 +476,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header value "value": 0.07 or -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -476,7 +486,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -505,6 +515,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_float.metadata = {'url': '/header/response/prim/float'}  # type: ignore
 
     @distributed_trace
@@ -514,7 +525,7 @@ class HeaderOperations(object):
         value,  # type: float
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
         "negative", "value": -3.0.
 
@@ -527,7 +538,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -554,6 +565,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_double.metadata = {'url': '/header/param/prim/double'}  # type: ignore
 
     @distributed_trace
@@ -562,7 +574,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header value "value": 7e120 or -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -572,7 +584,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -601,6 +613,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_double.metadata = {'url': '/header/response/prim/double'}  # type: ignore
 
     @distributed_trace
@@ -610,7 +623,7 @@ class HeaderOperations(object):
         value,  # type: bool
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
         "false", "value": false.
 
@@ -623,7 +636,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -650,6 +663,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_bool.metadata = {'url': '/header/param/prim/bool'}  # type: ignore
 
     @distributed_trace
@@ -658,7 +672,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header value "value": true or false.
 
         :param scenario: Send a post request with header values "scenario": "true" or "false".
@@ -668,7 +682,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -697,6 +711,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_bool.metadata = {'url': '/header/response/prim/bool'}  # type: ignore
 
     @distributed_trace
@@ -706,7 +721,7 @@ class HeaderOperations(object):
         value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
@@ -721,7 +736,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -749,6 +764,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_string.metadata = {'url': '/header/param/prim/string'}  # type: ignore
 
     @distributed_trace
@@ -757,7 +773,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -768,7 +784,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -797,6 +813,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_string.metadata = {'url': '/header/response/prim/string'}  # type: ignore
 
     @distributed_trace
@@ -806,7 +823,7 @@ class HeaderOperations(object):
         value,  # type: datetime.date
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
 
@@ -819,7 +836,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -846,6 +863,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_date.metadata = {'url': '/header/param/prim/date'}  # type: ignore
 
     @distributed_trace
@@ -854,7 +872,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -864,7 +882,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -893,6 +911,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_date.metadata = {'url': '/header/response/prim/date'}  # type: ignore
 
     @distributed_trace
@@ -902,7 +921,7 @@ class HeaderOperations(object):
         value,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
@@ -916,7 +935,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -943,6 +962,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}  # type: ignore
 
     @distributed_trace
@@ -951,7 +971,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -961,7 +981,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -990,6 +1010,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}  # type: ignore
 
     @distributed_trace
@@ -999,7 +1020,7 @@ class HeaderOperations(object):
         value=None,  # type: Optional[datetime.datetime]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
@@ -1013,7 +1034,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1041,6 +1062,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
@@ -1049,7 +1071,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
 
@@ -1060,7 +1082,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1089,6 +1111,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
@@ -1098,7 +1121,7 @@ class HeaderOperations(object):
         value,  # type: datetime.timedelta
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1110,7 +1133,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1137,6 +1160,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_duration.metadata = {'url': '/header/param/prim/duration'}  # type: ignore
 
     @distributed_trace
@@ -1145,7 +1169,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header values "P123DT22H14M12.011S".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1155,7 +1179,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1184,6 +1208,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_duration.metadata = {'url': '/header/response/prim/duration'}  # type: ignore
 
     @distributed_trace
@@ -1193,7 +1218,7 @@ class HeaderOperations(object):
         value,  # type: bytearray
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1205,7 +1230,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1232,6 +1257,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_byte.metadata = {'url': '/header/param/prim/byte'}  # type: ignore
 
     @distributed_trace
@@ -1240,7 +1266,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1250,7 +1276,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1279,6 +1305,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_byte.metadata = {'url': '/header/response/prim/byte'}  # type: ignore
 
     @distributed_trace
@@ -1288,7 +1315,7 @@ class HeaderOperations(object):
         value=None,  # type: Optional[Union[str, "models.GreyscaleColors"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.
 
@@ -1302,7 +1329,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1330,6 +1357,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     param_enum.metadata = {'url': '/header/param/prim/enum'}  # type: ignore
 
     @distributed_trace
@@ -1338,7 +1366,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a response with header values "GREY" or null.
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -1349,7 +1377,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1378,6 +1406,7 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+        return None
     response_enum.metadata = {'url': '/header/response/prim/enum'}  # type: ignore
 
     @distributed_trace
@@ -1385,7 +1414,7 @@ class HeaderOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
         request.
 
@@ -1394,7 +1423,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1419,4 +1448,5 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}  # type: ignore

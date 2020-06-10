@@ -16,7 +16,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class MediaTypesClientOperationsMixin:
 
@@ -25,7 +26,7 @@ class MediaTypesClientOperationsMixin:
         self,
         input: Optional[Union[IO, "models.SourcePath"]] = None,
         **kwargs
-    ) -> str:
+    ) -> Union[str, ClsReturnType]:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
@@ -37,7 +38,7 @@ class MediaTypesClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -89,7 +90,7 @@ class MediaTypesClientOperationsMixin:
         self,
         input: str,
         **kwargs
-    ) -> str:
+    ) -> Union[str, ClsReturnType]:
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
         :param input: Input parameter.
@@ -99,7 +100,7 @@ class MediaTypesClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "text/plain")

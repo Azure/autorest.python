@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
@@ -17,7 +17,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class TimeOperations:
     """TimeOperations async operations.
@@ -45,7 +46,7 @@ class TimeOperations:
     async def get(
         self,
         **kwargs
-    ) -> datetime.time:
+    ) -> Union[datetime.time, ClsReturnType]:
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class TimeOperations:
         :rtype: ~datetime.time
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.time]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.time, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -89,7 +90,7 @@ class TimeOperations:
         self,
         time_body: datetime.time,
         **kwargs
-    ) -> str:
+    ) -> Union[str, ClsReturnType]:
         """Put time value "08:07:56".
 
         :param time_body: Put time value "08:07:56" in parameter to pass testserver.
@@ -99,7 +100,7 @@ class TimeOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")

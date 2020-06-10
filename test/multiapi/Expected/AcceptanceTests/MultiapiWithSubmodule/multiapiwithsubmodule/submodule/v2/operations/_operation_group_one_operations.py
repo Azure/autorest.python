@@ -16,10 +16,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class OperationGroupOneOperations(object):
     """OperationGroupOneOperations operations.
@@ -48,7 +49,7 @@ class OperationGroupOneOperations(object):
         parameter_one=None,  # type: Optional["models.ModelTwo"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ModelTwo"
+        # type: (...) -> Union["models.ModelTwo", ClsReturnType]
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter.
@@ -58,7 +59,7 @@ class OperationGroupOneOperations(object):
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0.0"
@@ -104,7 +105,7 @@ class OperationGroupOneOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -112,7 +113,7 @@ class OperationGroupOneOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2.0.0"
@@ -139,4 +140,5 @@ class OperationGroupOneOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore

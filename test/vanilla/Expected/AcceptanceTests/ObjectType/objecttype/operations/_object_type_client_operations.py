@@ -15,10 +15,11 @@ from azure.core.tracing.decorator import distributed_trace
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ObjectTypeClientOperationsMixin(object):
 
@@ -27,7 +28,7 @@ class ObjectTypeClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> object
+        # type: (...) -> Union[object, ClsReturnType]
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
@@ -36,7 +37,7 @@ class ObjectTypeClientOperationsMixin(object):
         :rtype: object
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[object]
+        cls = kwargs.pop('cls', None)  # type: ClsType[object, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -73,7 +74,7 @@ class ObjectTypeClientOperationsMixin(object):
         put_object,  # type: object
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 
@@ -84,7 +85,7 @@ class ObjectTypeClientOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -115,4 +116,5 @@ class ObjectTypeClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put.metadata = {'url': '/objectType/put'}  # type: ignore

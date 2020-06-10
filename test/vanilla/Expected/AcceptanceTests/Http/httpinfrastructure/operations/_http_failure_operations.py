@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class HttpFailureOperations(object):
     """HttpFailureOperations operations.
@@ -49,7 +50,7 @@ class HttpFailureOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class HttpFailureOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -93,7 +94,7 @@ class HttpFailureOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -101,7 +102,7 @@ class HttpFailureOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -136,7 +137,7 @@ class HttpFailureOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Get empty response from server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -144,7 +145,7 @@ class HttpFailureOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

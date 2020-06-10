@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class HttpRetryOperations(object):
     """HttpRetryOperations operations.
@@ -49,7 +50,7 @@ class HttpRetryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 408 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -82,6 +83,7 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     head408.metadata = {'url': '/http/retry/408'}  # type: ignore
 
     @distributed_trace
@@ -90,7 +92,7 @@ class HttpRetryOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -100,7 +102,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -134,6 +136,7 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put500.metadata = {'url': '/http/retry/500'}  # type: ignore
 
     @distributed_trace
@@ -142,7 +145,7 @@ class HttpRetryOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -152,7 +155,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -186,6 +189,7 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     patch500.metadata = {'url': '/http/retry/500'}  # type: ignore
 
     @distributed_trace
@@ -193,7 +197,7 @@ class HttpRetryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -201,7 +205,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -226,6 +230,7 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get502.metadata = {'url': '/http/retry/502'}  # type: ignore
 
     @distributed_trace
@@ -233,7 +238,7 @@ class HttpRetryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Union[bool, ClsReturnType]
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -241,7 +246,7 @@ class HttpRetryOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -278,7 +283,7 @@ class HttpRetryOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -288,7 +293,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -322,6 +327,7 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post503.metadata = {'url': '/http/retry/503'}  # type: ignore
 
     @distributed_trace
@@ -330,7 +336,7 @@ class HttpRetryOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -340,7 +346,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -374,6 +380,7 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     delete503.metadata = {'url': '/http/retry/503'}  # type: ignore
 
     @distributed_trace
@@ -382,7 +389,7 @@ class HttpRetryOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -392,7 +399,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -426,6 +433,7 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put504.metadata = {'url': '/http/retry/504'}  # type: ignore
 
     @distributed_trace
@@ -434,7 +442,7 @@ class HttpRetryOperations(object):
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true.
@@ -444,7 +452,7 @@ class HttpRetryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -478,4 +486,5 @@ class HttpRetryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     patch504.metadata = {'url': '/http/retry/504'}  # type: ignore

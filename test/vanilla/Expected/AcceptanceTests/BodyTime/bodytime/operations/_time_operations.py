@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class TimeOperations(object):
     """TimeOperations operations.
@@ -50,7 +51,7 @@ class TimeOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.time
+        # type: (...) -> Union[datetime.time, ClsReturnType]
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class TimeOperations(object):
         :rtype: ~datetime.time
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.time]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.time, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -95,7 +96,7 @@ class TimeOperations(object):
         time_body,  # type: datetime.time
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Put time value "08:07:56".
 
         :param time_body: Put time value "08:07:56" in parameter to pass testserver.
@@ -105,7 +106,7 @@ class TimeOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")

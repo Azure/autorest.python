@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class QueriesOperations(object):
     """QueriesOperations operations.
@@ -50,7 +51,7 @@ class QueriesOperations(object):
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array format.
@@ -60,7 +61,7 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -87,6 +88,7 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}  # type: ignore
 
     @distributed_trace
@@ -95,7 +97,7 @@ class QueriesOperations(object):
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array format.
@@ -105,7 +107,7 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -132,6 +134,7 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}  # type: ignore
 
     @distributed_trace
@@ -140,7 +143,7 @@ class QueriesOperations(object):
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.
 
@@ -152,7 +155,7 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -179,4 +182,5 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}  # type: ignore

@@ -16,7 +16,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class FloatOperations:
     """FloatOperations async operations.
@@ -41,7 +42,7 @@ class FloatOperations:
         self,
         input: Optional[Union[float, "models.FloatEnum"]] = None,
         **kwargs
-    ) -> str:
+    ) -> Union[str, ClsReturnType]:
         """Put a float enum.
 
         :param input: Input float enum.
@@ -51,7 +52,7 @@ class FloatOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -94,7 +95,7 @@ class FloatOperations:
     async def get(
         self,
         **kwargs
-    ) -> Union[float, "models.FloatEnum"]:
+    ) -> Union[float, "models.FloatEnum", ClsReturnType]:
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -102,7 +103,7 @@ class FloatOperations:
         :rtype: str or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "models.FloatEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "models.FloatEnum"], ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

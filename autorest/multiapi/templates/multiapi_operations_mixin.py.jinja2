@@ -10,9 +10,11 @@
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
 {% set imports = async_imports if async_mode else sync_imports %}
-{% if imports %}
 {{ imports }}
-{% endif %}
+
+{{ "    " if not async_mode }}T = TypeVar('T')
+{{ "    " if not async_mode }}ClsReturnType = TypeVar('ClsReturnType')
+{{ "    " if not async_mode }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 
 class {{ client_name }}OperationsMixin(object):

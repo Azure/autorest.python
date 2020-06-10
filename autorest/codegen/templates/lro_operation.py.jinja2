@@ -54,7 +54,7 @@ response_headers = {
 {% endif %}
     {{ operation_docstring(async_mode) | indent }}
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.inner_most_return_type_annotation(operation, include_cls_return_type_as_type_var=True) }}, ClsReturnType]
     lro_delay = kwargs.pop(
         'polling_interval',
         self._config.polling_interval

@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PolymorphismOperations(object):
     """PolymorphismOperations operations.
@@ -49,7 +50,7 @@ class PolymorphismOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Fish"
+        # type: (...) -> Union["models.Fish", ClsReturnType]
         """Get complex types that are polymorphic.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -94,7 +95,7 @@ class PolymorphismOperations(object):
         complex_body,  # type: "models.Fish"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -136,7 +137,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -167,6 +168,7 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}  # type: ignore
 
     @distributed_trace
@@ -174,7 +176,7 @@ class PolymorphismOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DotFish"
+        # type: (...) -> Union["models.DotFish", ClsReturnType]
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -182,7 +184,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFish"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFish", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -218,7 +220,7 @@ class PolymorphismOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DotFishMarket"
+        # type: (...) -> Union["models.DotFishMarket", ClsReturnType]
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, with discriminator specified. Deserialization must NOT fail and use the
         discriminator type specified on the wire.
@@ -228,7 +230,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFishMarket"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFishMarket", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -264,7 +266,7 @@ class PolymorphismOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.DotFishMarket"
+        # type: (...) -> Union["models.DotFishMarket", ClsReturnType]
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, without discriminator specified on wire. Deserialization must NOT fail and use
         the explicit type of the property.
@@ -274,7 +276,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFishMarket"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFishMarket", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -310,7 +312,7 @@ class PolymorphismOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Salmon"
+        # type: (...) -> Union["models.Salmon", ClsReturnType]
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
@@ -319,7 +321,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Salmon"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Salmon", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -356,7 +358,7 @@ class PolymorphismOperations(object):
         complex_body,  # type: "models.Salmon"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
@@ -367,7 +369,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -398,6 +400,7 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}  # type: ignore
 
     @distributed_trace
@@ -406,7 +409,7 @@ class PolymorphismOperations(object):
         complex_body,  # type: "models.Salmon"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Salmon"
+        # type: (...) -> Union["models.Salmon", ClsReturnType]
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
@@ -416,7 +419,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Salmon"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Salmon", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -459,7 +462,7 @@ class PolymorphismOperations(object):
         complex_body,  # type: "models.Fish"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 
@@ -496,7 +499,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -527,4 +530,5 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}  # type: ignore

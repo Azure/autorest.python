@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class BasicOperations(object):
     """BasicOperations operations.
@@ -49,7 +50,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> Union["models.Basic", ClsReturnType]
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -94,7 +95,7 @@ class BasicOperations(object):
         complex_body,  # type: "models.Basic"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -104,7 +105,7 @@ class BasicOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2016-02-29"
@@ -137,6 +138,7 @@ class BasicOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     put_valid.metadata = {'url': '/complex/basic/valid'}  # type: ignore
 
     @distributed_trace
@@ -144,7 +146,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> Union["models.Basic", ClsReturnType]
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,7 +154,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -188,7 +190,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> Union["models.Basic", ClsReturnType]
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -196,7 +198,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -232,7 +234,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> Union["models.Basic", ClsReturnType]
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -240,7 +242,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -276,7 +278,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> Union["models.Basic", ClsReturnType]
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -284,7 +286,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

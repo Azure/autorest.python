@@ -19,6 +19,10 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.polling.async_base_polling import AsyncLROBasePolling
 
+T = TypeVar('T')
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
+
 
 class MultiapiServiceClientOperationsMixin(object):
 
@@ -26,7 +30,7 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         product: Optional["models.Product"] = None,
         **kwargs
-    ) -> AsyncLROPoller["models.Product"]:
+    ) -> AsyncLROPoller[Union["models.Product", ClsReturnType]]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -58,7 +62,7 @@ class MultiapiServiceClientOperationsMixin(object):
         id: int,
         message: Optional[str] = None,
         **kwargs
-    ) -> "models.ModelTwo":
+    ) -> Union["models.ModelTwo", ClsReturnType]:
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
@@ -87,7 +91,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_paging(
         self,
         **kwargs
-    ) -> AsyncItemPaged["models.PagingResult"]:
+    ) -> AsyncItemPaged[Union["models.PagingResult", ClsReturnType]]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

@@ -21,7 +21,8 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from ... import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsReturnType = TypeVar('ClsReturnType')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class PagingOperations:
     """PagingOperations async operations.
@@ -49,7 +50,7 @@ class PagingOperations:
     def get_no_item_name_pages(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResultValue"]:
+    ) -> AsyncIterable[Union["models.ProductResultValue", ClsReturnType]]:
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +58,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -107,7 +108,7 @@ class PagingOperations:
     def get_null_next_link_name_pages(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -115,7 +116,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -165,7 +166,7 @@ class PagingOperations:
     def get_single_pages(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -173,7 +174,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -225,7 +226,7 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_options: Optional["models.PagingGetMultiplePagesOptions"] = None,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -237,7 +238,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -300,7 +301,7 @@ class PagingOperations:
         self,
         required_query_parameter: int,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -312,7 +313,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         query_constant = True
@@ -370,7 +371,7 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional["models.PagingGetOdataMultiplePagesOptions"] = None,
         **kwargs
-    ) -> AsyncIterable["models.OdataProductResult"]:
+    ) -> AsyncIterable[Union["models.OdataProductResult", ClsReturnType]]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :param client_request_id:
@@ -382,7 +383,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -446,7 +447,7 @@ class PagingOperations:
         paging_get_multiple_pages_with_offset_options: "models.PagingGetMultiplePagesWithOffsetOptions",
         client_request_id: Optional[str] = None,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
@@ -458,7 +459,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -526,7 +527,7 @@ class PagingOperations:
     def get_multiple_pages_retry_first(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -535,7 +536,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -585,7 +586,7 @@ class PagingOperations:
     def get_multiple_pages_retry_second(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -594,7 +595,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -644,7 +645,7 @@ class PagingOperations:
     def get_single_pages_failure(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -652,7 +653,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -702,7 +703,7 @@ class PagingOperations:
     def get_multiple_pages_failure(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -710,7 +711,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -760,7 +761,7 @@ class PagingOperations:
     def get_multiple_pages_failure_uri(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable[Union["models.ProductResult", ClsReturnType]]:
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -768,7 +769,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -820,7 +821,7 @@ class PagingOperations:
         api_version: str,
         tenant: str,
         **kwargs
-    ) -> AsyncIterable["models.OdataProductResult"]:
+    ) -> AsyncIterable[Union["models.OdataProductResult", ClsReturnType]]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
@@ -832,7 +833,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -896,7 +897,7 @@ class PagingOperations:
         self,
         custom_parameter_group: "models.CustomParameterGroup",
         **kwargs
-    ) -> AsyncIterable["models.OdataProductResult"]:
+    ) -> AsyncIterable[Union["models.OdataProductResult", ClsReturnType]]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param custom_parameter_group: Parameter group.
@@ -906,7 +907,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -976,8 +977,8 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
-    ) -> "models.ProductResult":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+    ) -> Union["models.ProductResult", ClsReturnType]:
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         
@@ -1025,7 +1026,7 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
-    ) -> AsyncLROPoller["models.ProductResult"]:
+    ) -> AsyncLROPoller[Union["models.ProductResult", ClsReturnType]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -1043,7 +1044,7 @@ class PagingOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult", ClsReturnType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1085,7 +1086,7 @@ class PagingOperations:
     def get_paging_model_with_item_name_with_xms_client_name(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResultValueWithXMSClientName"]:
+    ) -> AsyncIterable[Union["models.ProductResultValueWithXMSClientName", ClsReturnType]]:
         """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
         name 'indexes'.
 
@@ -1094,7 +1095,7 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValueWithXMSClientName"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValueWithXMSClientName", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 

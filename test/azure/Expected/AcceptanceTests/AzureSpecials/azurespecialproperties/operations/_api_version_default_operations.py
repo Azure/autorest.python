@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ApiVersionDefaultOperations(object):
     """ApiVersionDefaultOperations operations.
@@ -50,7 +51,7 @@ class ApiVersionDefaultOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +59,7 @@ class ApiVersionDefaultOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-07-01-preview"
@@ -85,6 +86,7 @@ class ApiVersionDefaultOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}  # type: ignore
 
     @distributed_trace
@@ -92,7 +94,7 @@ class ApiVersionDefaultOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -100,7 +102,7 @@ class ApiVersionDefaultOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-07-01-preview"
@@ -127,6 +129,7 @@ class ApiVersionDefaultOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}  # type: ignore
 
     @distributed_trace
@@ -134,7 +137,7 @@ class ApiVersionDefaultOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -142,7 +145,7 @@ class ApiVersionDefaultOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-07-01-preview"
@@ -169,6 +172,7 @@ class ApiVersionDefaultOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}  # type: ignore
 
     @distributed_trace
@@ -176,7 +180,7 @@ class ApiVersionDefaultOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -184,7 +188,7 @@ class ApiVersionDefaultOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-07-01-preview"
@@ -211,4 +215,5 @@ class ApiVersionDefaultOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_swagger_global_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'}  # type: ignore

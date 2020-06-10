@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class ExplicitOperations(object):
     """ExplicitOperations operations.
@@ -50,7 +51,7 @@ class ExplicitOperations(object):
         body_parameter,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required integer. Please put null and the client library should throw before
         the request is sent.
 
@@ -61,7 +62,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -92,6 +93,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
 
     @distributed_trace
@@ -100,7 +102,7 @@ class ExplicitOperations(object):
         body_parameter=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional integer. Please put null.
 
         :param body_parameter:
@@ -110,7 +112,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -144,6 +146,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
 
     @distributed_trace
@@ -152,7 +155,7 @@ class ExplicitOperations(object):
         value,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -163,7 +166,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -196,6 +199,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
 
     @distributed_trace
@@ -204,7 +208,7 @@ class ExplicitOperations(object):
         value=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param value:
@@ -214,7 +218,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -250,6 +254,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
 
     @distributed_trace
@@ -258,7 +263,7 @@ class ExplicitOperations(object):
         header_parameter,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -269,7 +274,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -295,6 +300,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
 
     @distributed_trace
@@ -303,7 +309,7 @@ class ExplicitOperations(object):
         header_parameter=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :param header_parameter:
@@ -313,7 +319,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -340,6 +346,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore
 
     @distributed_trace
@@ -348,7 +355,7 @@ class ExplicitOperations(object):
         body_parameter,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required string. Please put null and the client library should throw before the
         request is sent.
 
@@ -359,7 +366,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -390,6 +397,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}  # type: ignore
 
     @distributed_trace
@@ -398,7 +406,7 @@ class ExplicitOperations(object):
         body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional string. Please put null.
 
         :param body_parameter:
@@ -408,7 +416,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -442,6 +450,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}  # type: ignore
 
     @distributed_trace
@@ -450,7 +459,7 @@ class ExplicitOperations(object):
         value,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -461,7 +470,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -494,6 +503,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}  # type: ignore
 
     @distributed_trace
@@ -502,7 +512,7 @@ class ExplicitOperations(object):
         value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param value:
@@ -512,7 +522,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -548,6 +558,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}  # type: ignore
 
     @distributed_trace
@@ -556,7 +567,7 @@ class ExplicitOperations(object):
         header_parameter,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -567,7 +578,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -593,6 +604,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}  # type: ignore
 
     @distributed_trace
@@ -601,7 +613,7 @@ class ExplicitOperations(object):
         body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
         :param body_parameter:
@@ -611,7 +623,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -638,6 +650,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}  # type: ignore
 
     @distributed_trace
@@ -646,7 +659,7 @@ class ExplicitOperations(object):
         body_parameter,  # type: "models.Product"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
@@ -657,7 +670,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -688,6 +701,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}  # type: ignore
 
     @distributed_trace
@@ -696,7 +710,7 @@ class ExplicitOperations(object):
         body_parameter=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
@@ -706,7 +720,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -740,6 +754,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}  # type: ignore
 
     @distributed_trace
@@ -748,7 +763,7 @@ class ExplicitOperations(object):
         value,  # type: "models.Product"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
@@ -759,7 +774,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -792,6 +807,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}  # type: ignore
 
     @distributed_trace
@@ -800,7 +816,7 @@ class ExplicitOperations(object):
         value=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param value:
@@ -810,7 +826,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -846,6 +862,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}  # type: ignore
 
     @distributed_trace
@@ -854,7 +871,7 @@ class ExplicitOperations(object):
         body_parameter,  # type: List[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
@@ -865,7 +882,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -896,6 +913,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}  # type: ignore
 
     @distributed_trace
@@ -904,7 +922,7 @@ class ExplicitOperations(object):
         body_parameter=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional array. Please put null.
 
         :param body_parameter:
@@ -914,7 +932,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -948,6 +966,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}  # type: ignore
 
     @distributed_trace
@@ -956,7 +975,7 @@ class ExplicitOperations(object):
         value,  # type: List[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -967,7 +986,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1000,6 +1019,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}  # type: ignore
 
     @distributed_trace
@@ -1008,7 +1028,7 @@ class ExplicitOperations(object):
         value=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param value:
@@ -1018,7 +1038,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1054,6 +1074,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}  # type: ignore
 
     @distributed_trace
@@ -1062,7 +1083,7 @@ class ExplicitOperations(object):
         header_parameter,  # type: List[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -1073,7 +1094,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1099,6 +1120,7 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}  # type: ignore
 
     @distributed_trace
@@ -1107,7 +1129,7 @@ class ExplicitOperations(object):
         header_parameter=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :param header_parameter:
@@ -1117,7 +1139,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -1144,4 +1166,5 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}  # type: ignore

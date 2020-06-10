@@ -18,10 +18,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class SubscriptionInMethodOperations(object):
     """SubscriptionInMethodOperations operations.
@@ -51,7 +52,7 @@ class SubscriptionInMethodOperations(object):
         subscription_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -63,7 +64,7 @@ class SubscriptionInMethodOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -92,6 +93,7 @@ class SubscriptionInMethodOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
@@ -100,7 +102,7 @@ class SubscriptionInMethodOperations(object):
         subscription_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-
         side validation should prevent you from making this call.
 
@@ -112,7 +114,7 @@ class SubscriptionInMethodOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -141,6 +143,7 @@ class SubscriptionInMethodOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
@@ -149,7 +152,7 @@ class SubscriptionInMethodOperations(object):
         subscription_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -160,7 +163,7 @@ class SubscriptionInMethodOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -189,6 +192,7 @@ class SubscriptionInMethodOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
@@ -197,7 +201,7 @@ class SubscriptionInMethodOperations(object):
         subscription_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -209,7 +213,7 @@ class SubscriptionInMethodOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -238,4 +242,5 @@ class SubscriptionInMethodOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     post_swagger_local_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore

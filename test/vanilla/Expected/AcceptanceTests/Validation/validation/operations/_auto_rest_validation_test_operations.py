@@ -17,10 +17,11 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class AutoRestValidationTestOperationsMixin(object):
 
@@ -31,7 +32,7 @@ class AutoRestValidationTestOperationsMixin(object):
         id,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> Union["models.Product", ClsReturnType]
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -43,7 +44,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "1.0.0"
@@ -90,7 +91,7 @@ class AutoRestValidationTestOperationsMixin(object):
         body=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> Union["models.Product", ClsReturnType]
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -104,7 +105,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "1.0.0"
@@ -157,7 +158,7 @@ class AutoRestValidationTestOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> Optional[ClsReturnType]
         """get_with_constant_in_path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -165,7 +166,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         constant_param = "constant"
@@ -194,6 +195,7 @@ class AutoRestValidationTestOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
+        return None
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore
 
     @distributed_trace
@@ -202,7 +204,7 @@ class AutoRestValidationTestOperationsMixin(object):
         body=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> Union["models.Product", ClsReturnType]
         """post_with_constant_in_body.
 
         :param body:
@@ -212,7 +214,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product", ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         constant_param = "constant"

@@ -20,7 +20,8 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar('T')
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+    ClsReturnType = TypeVar('ClsReturnType')
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], ClsReturnType]]
 
 class MediaTypesClientOperationsMixin(object):
 
@@ -30,7 +31,7 @@ class MediaTypesClientOperationsMixin(object):
         input=None,  # type: Optional[Union[IO, "models.SourcePath"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
@@ -42,7 +43,7 @@ class MediaTypesClientOperationsMixin(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
@@ -95,7 +96,7 @@ class MediaTypesClientOperationsMixin(object):
         input,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> str
+        # type: (...) -> Union[str, ClsReturnType]
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
         :param input: Input parameter.
@@ -105,7 +106,7 @@ class MediaTypesClientOperationsMixin(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str, ClsReturnType]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "text/plain")
