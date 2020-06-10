@@ -136,7 +136,9 @@ class CodeGenerator(Plugin):
                 "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
             )
 
-        credential_default_policy_type = self._autorestapi.get_value("credential-default-policy-type") or "BearerTokenCredentialPolicy"
+        credential_default_policy_type = (
+            self._autorestapi.get_value("credential-default-policy-type") or "BearerTokenCredentialPolicy"
+        )
 
         if credential_scopes and credential_default_policy_type != "BearerTokenCredentialPolicy":
             _LOGGER.warning(
@@ -185,7 +187,9 @@ class CodeGenerator(Plugin):
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "credential_default_policy_type": credential_default_policy_type,
-            "credential_default_policy_type_has_async_version": credential_default_policy_type == "BearerTokenCredentialPolicy"
+            "credential_default_policy_type_has_async_version": (
+                credential_default_policy_type == "BearerTokenCredentialPolicy"
+            )
         }
 
         if options["basic_setup_py"] and not options["package_version"]:
