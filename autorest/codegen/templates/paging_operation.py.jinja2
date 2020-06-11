@@ -1,8 +1,7 @@
-{% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
+{% import 'paging_operation_helper.jinja2' as helper %}
 {% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type  %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
-{% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set item_paged = "AsyncItemPaged" if async_mode else "ItemPaged" %}
 {% macro return_docstring(async_mode) %}
 {% if operation.responses | selectattr('has_body') | first %}
@@ -35,7 +34,6 @@
 :raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
-{% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace
@@ -51,89 +49,7 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
-    {{ op_tools.error_map(operation, code_model)|indent }}
-{% if operation.parameters.grouped %}
-    {{ op_tools.grouped_parameters(operation)|indent }}
-{%- endif -%}
-{% if operation.parameters.is_flattened %}
-    {{ operation.parameters.build_flattened_object() }}
-{% endif %}
-{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
-    {% endfor %}
-{% endif %}
-
-    def prepare_request(next_link=None):
-        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
-        if not next_link:
-            # Construct URL
-            url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
-        {% if operation.parameters.path %}
-            path_format_arguments = {
-        {% for path_parameter in operation.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.query_parameters(operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation)|indent(12) }}
-        else:
-{% if operation.next_operation %}
-            url = '{{ operation.next_operation.url }}'
-        {% if operation.next_operation.parameters.path %}
-            path_format_arguments = {
-        {% for path_parameter in operation.next_operation.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.next_operation.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.query_parameters(operation.next_operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation.next_operation)|indent(12) }}
-{% else %}
-            url = next_link
-            query_parameters = {}  # type: Dict[str, Any]
-        {% if operation.parameters.path and not code_model.base_url%}
-            path_format_arguments = {
-        {% for path_parameter in operation.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.body_parameters(operation, http_verb="get")|indent(12) }}
-{% endif %}
-        return request
-
-    {{ keywords.def }} extract_data(pipeline_response):
-        {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.schema.serialization_type }}', pipeline_response)
-        list_of_elem = deserialized.{{ operation.item_name }}
-        if cls:
-            list_of_elem = cls(list_of_elem)
-        {% if async_mode %}
-        return {{ next_link_str }}, AsyncList(list_of_elem)
-        {% else %}
-        return {{ next_link_str }}, iter(list_of_elem)
-        {% endif %}
-
-    {{ keywords.def }} get_next(next_link=None):
-        request = prepare_request(next_link)
-
-        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in {{ operation.success_status_code|string() }}:
-            {% if operation.default_exception %}
-            error = self._deserialize({{ operation.default_exception }}, response)
-            {% endif %}
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
-
-        return pipeline_response
+    {{ helper.paging_operation(code_model, operation, async_mode) }}
 
     return {{ item_paged }}(
         get_next, extract_data
