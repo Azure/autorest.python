@@ -31,10 +31,6 @@
 
 {% macro lro_operation(code_model, operation, async_mode) %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
-{% set async_prefix = "Async" if async_mode else "" %}
-{% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
-{% set operation_name = "begin_"+operation.python_name %}
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     lro_delay = kwargs.pop(
@@ -53,21 +49,13 @@
 
     kwargs.pop('error_map', None)
     kwargs.pop('content_type', None)
+    {%- endmacro -%}
 
-    def get_long_running_output(pipeline_response):
-        {% if operation.lro_response.has_headers %}
-        response_headers = {}
-        response = pipeline_response.http_response
-        {% endif %}
-        {% if operation.lro_response %}
-        {{ op_tools.response_handling(operation.lro_response)|indent(8) }}
-        {% endif %}
-        if cls:
-            return cls(pipeline_response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
-        {% if operation.lro_response.has_body %}
-        return deserialized
-        {% endif %}
-
+    {% macro lro_operation_return(code_model, operation, async_mode) %}
+    {% set async_prefix = "Async" if async_mode else "" %}
+    {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
+    {% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
+    {% set operation_name = "begin_"+operation.python_name %}
     {% if code_model.options['azure_arm'] %}
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
     {% else %}

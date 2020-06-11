@@ -1131,14 +1131,16 @@ class PagingOperations(object):
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
-
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            def internal_get_next(next_link=None):
+                if next_link is None:
+                    return pipeline_response
+                else:
+                    return get_next(next_link)
 
-            if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
-
+            return ItemPaged(
+                internal_get_next, extract_data
+            )
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
