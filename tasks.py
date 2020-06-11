@@ -320,7 +320,7 @@ def _multiapi_command_line(location):
     )
 
 @task
-def regenerate_multiapi(c, swagger_name="test", debug=False):
+def regenerate_multiapi(c, debug=False, swagger_name="test"):
     # being hacky: making default swagger_name 'test', since it appears in each spec name
     available_specifications = [
         # create basic multiapi client (package-name=multapi)
