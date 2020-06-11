@@ -108,6 +108,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
+        **kwargs: Any
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
