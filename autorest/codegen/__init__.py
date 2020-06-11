@@ -17,6 +17,13 @@ from .models.parameter_list import ParameterList
 from .serializers import JinjaSerializer
 
 
+def _get_credential_default_policy_type_has_async_version(credential_default_policy_type: str) -> bool:
+    mapping = {
+        "BearerTokenCredentialPolicy": True,
+        "AzureKeyCredentialPolicy": False
+    }
+    return mapping[credential_default_policy_type]
+
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
     @staticmethod
@@ -136,9 +143,21 @@ class CodeGenerator(Plugin):
                 "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
             )
 
-        credential_default_policy_type = (
+        passed_in_credential_default_policy_type = (
             self._autorestapi.get_value("credential-default-policy-type") or "BearerTokenCredentialPolicy"
         )
+
+        # right now, we only allow BearerTokenCredentialPolicy and AzureKeyCredentialPolicy
+        allowed_policies = ["BearerTokenCredentialPolicy", "AzureKeyCredentialPolicy"]
+        credential_default_policy_type = [
+            cp for cp in allowed_policies if cp.lower() == passed_in_credential_default_policy_type.lower()
+        ]
+        if not credential_default_policy_type:
+            raise ValueError(
+                "The credential you pass in with --credential-default-policy-type must be either"
+                "BearerTokenCredentialPolicy or AzureKeyCredentialPolicy"
+            )
+        credential_default_policy_type = credential_default_policy_type[0]
 
         if credential_scopes and credential_default_policy_type != "BearerTokenCredentialPolicy":
             _LOGGER.warning(
@@ -188,7 +207,7 @@ class CodeGenerator(Plugin):
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "credential_default_policy_type": credential_default_policy_type,
             "credential_default_policy_type_has_async_version": (
-                credential_default_policy_type == "BearerTokenCredentialPolicy"
+                _get_credential_default_policy_type_has_async_version(credential_default_policy_type)
             )
         }
 
