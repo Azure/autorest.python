@@ -146,6 +146,8 @@ def regen_expected(c, opts, debug):
             args.append(f"--override-info.title={opts['override-info.title']}")
         if opts.get('override-info.description'):
             args.append(f"--override-info.description={opts['override-info.description']}")
+        if opts.get('credential-default-policy-type'):
+            args.append(f"--credential-default-policy-type={opts['credential-default-policy-type']}")
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
@@ -245,6 +247,21 @@ def regenerate_namespace_folders_test(c, debug=False):
     regen_expected(c, opts, debug)
 
 @task
+def regenerate_credential_default_policy(c, debug=False):
+    default_mapping = {'AcceptanceTests/HeadWithAzureKeyCredentialPolicy': 'head.json'}
+    opts = {
+        'output_base_dir': 'test/azure',
+        'input_base_dir': swagger_dir,
+        'mappings': default_mapping,
+        'output_dir': 'Expected',
+        'azure_arm': True,
+        'flattening_threshold': '1',
+        'ns_prefix': True,
+        'credential-default-policy-type': 'AzureKeyCredentialPolicy'
+    }
+    regen_expected(c, opts, debug)
+
+@task
 def regenerate(c, swagger_name=None, debug=False):
     # regenerate expected code for tests
     regenerate_python(c, swagger_name, debug)
@@ -253,6 +270,7 @@ def regenerate(c, swagger_name=None, debug=False):
     if not swagger_name:
         regenerate_namespace_folders_test(c, debug)
         regenerate_multiapi(c, debug)
+        regenerate_credential_default_policy(c, debug)
 
 
 @task
@@ -302,16 +320,25 @@ def _multiapi_command_line(location):
     )
 
 @task
-def regenerate_multiapi(c, debug=False):
-    cmds = []
-    # create basic multiapi client (package-name=multapi)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapi/README.md"))
-    # create multiapi client with submodule (package-name=multiapi#submodule)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapiwithsubmodule/README.md"))
-    # create multiapi client with no aio folder (package-name=multiapinoasync)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapinoasync/README.md"))
-    with Pool() as pool:
-        result = pool.map(run_autorest, cmds)
-    success = all(result)
-    if not success:
-        raise SystemExit("Autorest generation fails")
+def regenerate_multiapi(c, debug=False, swagger_name="test"):
+    # being hacky: making default swagger_name 'test', since it appears in each spec name
+    available_specifications = [
+        # create basic multiapi client (package-name=multapi)
+        "test/multiapi/specification/multiapi/README.md",
+        # create multiapi client with submodule (package-name=multiapi#submodule)
+        "test/multiapi/specification/multiapiwithsubmodule/README.md",
+        # create multiapi client with no aio folder (package-name=multiapinoasync)
+        "test/multiapi/specification/multiapinoasync/README.md",
+        # create multiapi client with AzureKeyCredentialPolicy
+        "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md"
+    ]
+
+    cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]
+
+    if len(cmds) == 1:
+        success = run_autorest(cmds[0], debug=debug)
+    else:
+        # Execute actual taks in parallel
+        with Pool() as pool:
+            result = pool.map(run_autorest, cmds)
+        success = all(result)
