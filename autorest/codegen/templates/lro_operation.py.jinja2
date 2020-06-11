@@ -21,7 +21,7 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{% set return_type_wrapper = "AsyncLROPoller" if async_mode else "LROPoller" %}
+{% set return_type_wrapper = ["AsyncLROPoller" if async_mode else "LROPoller"] %}
 {{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
