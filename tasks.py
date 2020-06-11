@@ -320,16 +320,25 @@ def _multiapi_command_line(location):
     )
 
 @task
-def regenerate_multiapi(c, debug=False):
-    cmds = []
-    # create basic multiapi client (package-name=multapi)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapi/README.md"))
-    # create multiapi client with submodule (package-name=multiapi#submodule)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapiwithsubmodule/README.md"))
-    # create multiapi client with no aio folder (package-name=multiapinoasync)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapinoasync/README.md"))
-    with Pool() as pool:
-        result = pool.map(run_autorest, cmds)
-    success = all(result)
-    if not success:
-        raise SystemExit("Autorest generation fails")
+def regenerate_multiapi(c, swagger_name="test", debug=False):
+    # being hacky: making default swagger_name 'test', since it appears in each spec name
+    available_specifications = [
+        # create basic multiapi client (package-name=multapi)
+        "test/multiapi/specification/multiapi/README.md",
+        # create multiapi client with submodule (package-name=multiapi#submodule)
+        "test/multiapi/specification/multiapiwithsubmodule/README.md",
+        # create multiapi client with no aio folder (package-name=multiapinoasync)
+        "test/multiapi/specification/multiapinoasync/README.md",
+        # create multiapi client with AzureKeyCredentialPolicy
+        "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md"
+    ]
+
+    cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]
+
+    if len(cmds) == 1:
+        success = run_autorest(cmds[0], debug=debug)
+    else:
+        # Execute actual taks in parallel
+        with Pool() as pool:
+            result = pool.map(run_autorest, cmds)
+        success = all(result)
