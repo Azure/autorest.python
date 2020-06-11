@@ -1,13 +1,10 @@
-{% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
+{% import 'lro_operation_helper.jinja2' as helper %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
-{% set async_prefix = "Async" if async_mode else "" %}
-{% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
 {% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring(async_mode) %}
 :return: An instance of {{ "Async" if async_mode }}LROPoller that returns either {{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}} or the result of cls(response)
 :rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]{% endmacro %}
-{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
@@ -16,33 +13,10 @@ response_headers = {
 }
 {% endmacro %}
 {% macro operation_docstring(async_mode) %}
-"""{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
-{% if operation.summary and operation.description %}
-
-{{ operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
-{% endif %}
-
-{% if operation.deprecated -%}
-.. warning::
-    This method is deprecated
-
-{% endif -%}
-{% for parameter in operation.parameters.method %}
-{%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-{{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
-{% endfor %}
-:type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
-{% endfor %}
-:keyword callable cls: A custom type or function that will be passed the direct response
-:keyword str continuation_token: A continuation token to restart a poller from a saved state.
-:keyword polling: True for ARMPolling, False for no polling, or a
- polling object for personal polling strategy
-:paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
-:keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+{{ helper.operation_docstring_helper(operation, async_mode) }}
 {{ return_docstring(async_mode) }}
 :raises ~azure.core.exceptions.HttpResponseError:
 """{% endmacro %}
-{% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
@@ -53,53 +27,4 @@ response_headers = {
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}
     {{ operation_docstring(async_mode) | indent }}
-    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
-    lro_delay = kwargs.pop(
-        'polling_interval',
-        self._config.polling_interval
-    )
-    cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
-    if cont_token is None:
-        raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
-            {% for parameter in operation.parameters.method %}
-            {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-            {% endfor %}
-            cls=lambda x,y,z: x,
-            **kwargs
-        )
-
-    kwargs.pop('error_map', None)
-    kwargs.pop('content_type', None)
-
-    def get_long_running_output(pipeline_response):
-        {% if operation.lro_response.has_headers %}
-        response_headers = {}
-        response = pipeline_response.http_response
-        {% endif %}
-        {% if operation.lro_response %}
-        {{ op_tools.response_handling(operation.lro_response)|indent(8) }}
-        {% endif %}
-        if cls:
-            return cls(pipeline_response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
-        {% if operation.lro_response.has_body %}
-        return deserialized
-        {% endif %}
-
-    {% if code_model.options['azure_arm'] %}
-    if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
-    {% else %}
-    if polling is True: polling_method = {{ async_prefix }}LROBasePolling(lro_delay{{ lro_options }},  **kwargs)
-    {% endif %}
-    elif polling is False: polling_method = {{ async_prefix }}NoPolling()
-    else: polling_method = polling
-    if cont_token:
-        return {{ poller }}.from_continuation_token(
-            polling_method=polling_method,
-            continuation_token=cont_token,
-            client=self._client,
-            deserialization_callback=get_long_running_output
-        )
-    else:
-        return {{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
-{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore
+{{ helper.lro_operation(code_model, operation, async_mode) }}
