@@ -1,5 +1,11 @@
 # Change Log
 
+### Unreleased
+
+**New Features**
+
+- Supports a function that is both LRO and paging  #689
+
 ### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351
 
