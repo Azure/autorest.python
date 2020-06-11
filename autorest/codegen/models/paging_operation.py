@@ -31,6 +31,8 @@ class PagingOperation(Operation):
         multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
+        want_description_docstring: bool = True,
+        want_tracing: bool = True
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
@@ -44,7 +46,9 @@ class PagingOperation(Operation):
             parameters,
             multiple_media_type_parameters,
             responses,
-            exceptions
+            exceptions,
+            want_description_docstring,
+            want_tracing
         )
         self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
