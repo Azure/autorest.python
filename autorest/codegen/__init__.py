@@ -149,15 +149,15 @@ class CodeGenerator(Plugin):
 
         # right now, we only allow BearerTokenCredentialPolicy and AzureKeyCredentialPolicy
         allowed_policies = ["BearerTokenCredentialPolicy", "AzureKeyCredentialPolicy"]
-        credential_default_policy_type = [
-            cp for cp in allowed_policies if cp.lower() == passed_in_credential_default_policy_type.lower()
-        ]
-        if not credential_default_policy_type:
+        try:
+            credential_default_policy_type = [
+                cp for cp in allowed_policies if cp.lower() == passed_in_credential_default_policy_type.lower()
+            ][0]
+        except IndexError:
             raise ValueError(
-                "The credential you pass in with --credential-default-policy-type must be either"
+                "The credential you pass in with --credential-default-policy-type must be either "
                 "BearerTokenCredentialPolicy or AzureKeyCredentialPolicy"
             )
-        credential_default_policy_type = credential_default_policy_type[0]
 
         if credential_scopes and credential_default_policy_type != "BearerTokenCredentialPolicy":
             _LOGGER.warning(
