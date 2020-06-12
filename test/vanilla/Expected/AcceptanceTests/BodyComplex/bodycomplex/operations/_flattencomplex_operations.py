@@ -53,7 +53,7 @@ class FlattencomplexOperations(object):
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyBaseType or the result of cls(response)
+        :return: MyBaseType, or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class FlattencomplexOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -83,7 +82,7 @@ class FlattencomplexOperations(object):
         deserialized = self._deserialize('MyBaseType', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/flatten/valid'}  # type: ignore

@@ -38,7 +38,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
          distinguish the generated reports.
         :type qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
+        :return: dict mapping str to int, or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -58,7 +58,6 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -71,7 +70,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_report.metadata = {'url': '/report/azure'}  # type: ignore

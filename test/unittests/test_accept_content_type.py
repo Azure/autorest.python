@@ -1,3 +1,9 @@
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+
 import pytest
 from autorest.codegen.models import Operation, SchemaResponse
 from autorest.codegen.models.operation import _non_binary_schema_media_types
@@ -14,11 +20,6 @@ def operation():
         requests=[]
     )
 
-def _get_sorted_content_types(operation):
-    accept_content_type = operation.accept_content_type.split(",")
-    accept_content_type.sort()
-    return accept_content_type
-
 def test_multiple_binary(operation):
     operation.responses = [
         SchemaResponse(
@@ -29,7 +30,10 @@ def test_multiple_binary(operation):
         )
     ]
 
-    assert ["application/pdf", "image/png"] == _get_sorted_content_types(operation)
+    content_type_list = operation.accept_content_type.split(", ")
+    assert len(content_type_list) == 2
+    assert "application/pdf" in content_type_list
+    assert "image/png" in content_type_list
 
 def test_multiple_non_binary(operation):
     operation.responses = [
@@ -41,14 +45,14 @@ def test_multiple_non_binary(operation):
         )
     ]
 
-    assert ["application/json", "application/xml"] == _get_sorted_content_types(operation)
+    assert "application/json, application/xml" == operation.accept_content_type
 
 def test_non_binary_single_response_with_schema(operation):
     operation.responses = [
         SchemaResponse(yaml_data={}, media_types=["image/png", "application/json", "application/xml"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200])
     ]
 
-    assert ["application/json", "application/xml"] == _get_sorted_content_types(operation)
+    assert "application/json, application/xml" == operation.accept_content_type
 
 def test_binary_and_non_binary_response_with_schema(operation):
     operation.responses = [
@@ -60,10 +64,17 @@ def test_binary_and_non_binary_response_with_schema(operation):
         )
     ]
 
-    assert ["application/pdf", "application/xml", "image/png"] == _get_sorted_content_types(operation)
+    content_type_list = operation.accept_content_type.split(", ")
+    assert len(content_type_list) == 3
+
+    assert "application/pdf" in content_type_list
+    assert "application/xml" in content_type_list
+    assert "image/png" in content_type_list
+    assert content_type_list.index("application/xml") == 2
+
 
 def test_multiple_json_types():
-    assert ["application/json"] == _non_binary_schema_media_types(["text/json", "application/json"])
+    assert ["application/json"] == list(_non_binary_schema_media_types(["text/json", "application/json"]).keys())
 
 def test_no_media_types_schema_error(operation):
     operation.responses = [
@@ -86,3 +97,27 @@ def test_no_response_body_error(operation):
 
     with pytest.raises(TypeError):
         operation.accept_content_type
+
+def test_exception_schema(operation):
+    operation.responses = [
+        SchemaResponse(
+            yaml_data={}, media_types=["image/png"], headers=[], binary=True, schema=None, status_codes=[204]
+        ),
+        SchemaResponse(
+            yaml_data={}, media_types=["application/pdf"], headers=[], binary=False, schema=None, status_codes=[200]
+        )
+    ]
+
+    operation.exceptions = [
+        SchemaResponse(
+            yaml_data={}, media_types=["application/xml"], headers=[], binary=False, schema=None, status_codes=[200]
+        )
+    ]
+
+    content_type_list = operation.accept_content_type.split(", ")
+    assert len(content_type_list) == 3
+
+    assert "application/pdf" in content_type_list
+    assert "application/xml" in content_type_list
+    assert "image/png" in content_type_list
+    assert content_type_list.index("application/xml") == 2

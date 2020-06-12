@@ -46,7 +46,7 @@ class OperationGroupOneOperations:
         """TestTwo should be in OperationGroupOneOperations.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +65,6 @@ class OperationGroupOneOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -76,6 +75,6 @@ class OperationGroupOneOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore

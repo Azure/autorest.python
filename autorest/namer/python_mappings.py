@@ -94,14 +94,15 @@ _always_reserved = [
 
 reserved_words = {
     PadType.Method: [
-        "self",
         *_always_reserved
     ],
     PadType.Parameter: [
+        "self",
         # these are kwargs we've reserved for our autorest generated operations
         "content_type",
         "cls",
         "polling",
+        "continuation_token",  # for LRO calls
         # these are transport kwargs
         # https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/CLIENT_LIBRARY_DEVELOPER.md#transport
         "connection_timeout",
@@ -160,7 +161,6 @@ reserved_words = {
         *_always_reserved
     ],
     PadType.Model: [
-        "self",
         *_always_reserved
     ],
     PadType.Property: [

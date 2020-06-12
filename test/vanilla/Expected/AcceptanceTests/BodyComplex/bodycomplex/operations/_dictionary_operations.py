@@ -53,7 +53,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class DictionaryOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -84,7 +83,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
@@ -101,7 +100,7 @@ class DictionaryOperations(object):
         :param default_program: Dictionary of :code:`<string>`.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -122,7 +121,6 @@ class DictionaryOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_complex_body, 'DictionaryWrapper')
         body_content_kwargs['content'] = body_content
@@ -137,7 +135,7 @@ class DictionaryOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
 
@@ -150,7 +148,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -168,7 +166,6 @@ class DictionaryOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -181,7 +178,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
@@ -198,7 +195,7 @@ class DictionaryOperations(object):
         :param default_program: Dictionary of :code:`<string>`.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -219,7 +216,6 @@ class DictionaryOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_complex_body, 'DictionaryWrapper')
         body_content_kwargs['content'] = body_content
@@ -234,7 +230,7 @@ class DictionaryOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
 
@@ -247,7 +243,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -265,7 +261,6 @@ class DictionaryOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -278,7 +273,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}  # type: ignore
@@ -292,7 +287,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper or the result of cls(response)
+        :return: DictionaryWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -310,7 +305,6 @@ class DictionaryOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -323,7 +317,7 @@ class DictionaryOperations(object):
         deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}  # type: ignore

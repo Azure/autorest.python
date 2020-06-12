@@ -1,3 +1,6 @@
+# Generating with Autorest for Python v5.0.0
+
+See [here](https://github.com/Azure/autorest.python/wiki/Generating-with-autorest-for-python-v5.0.0)
 
 # Contributing
 
@@ -27,7 +30,7 @@ pass-thru:
   - subset-reducer
 # version: 3.0.6258
 use-extension:
-  "@autorest/modelerfour": "4.12.301"
+  "@autorest/modelerfour": "4.13.351"
 
 modelerfour:
   group-parameters: true
@@ -52,6 +55,7 @@ modelerfour:
     override:
       $host: $host
       base64: base64
+      IncludeAPIs: include_apis
 
 
 pipeline:

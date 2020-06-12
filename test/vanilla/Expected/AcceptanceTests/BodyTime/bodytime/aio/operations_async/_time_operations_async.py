@@ -49,7 +49,7 @@ class TimeOperations:
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: time or the result of cls(response)
+        :return: time, or the result of cls(response)
         :rtype: ~datetime.time
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -67,7 +67,6 @@ class TimeOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -80,7 +79,7 @@ class TimeOperations:
         deserialized = self._deserialize('time', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get.metadata = {'url': '/time/get'}  # type: ignore
@@ -96,7 +95,7 @@ class TimeOperations:
         :param time_body: Put time value "08:07:56" in parameter to pass testserver.
         :type time_body: ~datetime.time
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -116,7 +115,6 @@ class TimeOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(time_body, 'time')
         body_content_kwargs['content'] = body_content
@@ -133,7 +131,7 @@ class TimeOperations:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put.metadata = {'url': '/time/put'}  # type: ignore

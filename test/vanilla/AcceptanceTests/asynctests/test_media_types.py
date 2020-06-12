@@ -50,3 +50,13 @@ class TestMediaTypes(object):
         json_input = json.loads('{"source":"foo"}')
         result = await client.analyze_body(input=json_input)
         assert result == "Nice job with JSON"
+
+    @pytest.mark.asyncio
+    async def test_incorrect_content_type(self, client):
+        with pytest.raises(ValueError):
+            await client.analyze_body(input=b"PDF", content_type="text/plain")
+
+    @pytest.mark.asyncio
+    async def test_content_type_with_encoding(self, client):
+        result = await client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
+        assert result == "Nice job sending content type with encoding"

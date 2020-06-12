@@ -48,7 +48,7 @@ class BoolOperations:
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -66,7 +66,6 @@ class BoolOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -79,7 +78,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_true.metadata = {'url': '/bool/true'}  # type: ignore
@@ -92,7 +91,7 @@ class BoolOperations:
         """Set Boolean value true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -112,7 +111,6 @@ class BoolOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(bool_body, 'bool')
         body_content_kwargs['content'] = body_content
@@ -127,7 +125,7 @@ class BoolOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_true.metadata = {'url': '/bool/true'}  # type: ignore
 
@@ -139,7 +137,7 @@ class BoolOperations:
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,7 +155,6 @@ class BoolOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -170,7 +167,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_false.metadata = {'url': '/bool/false'}  # type: ignore
@@ -183,7 +180,7 @@ class BoolOperations:
         """Set Boolean value false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -203,7 +200,6 @@ class BoolOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(bool_body, 'bool')
         body_content_kwargs['content'] = body_content
@@ -218,7 +214,7 @@ class BoolOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_false.metadata = {'url': '/bool/false'}  # type: ignore
 
@@ -230,7 +226,7 @@ class BoolOperations:
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -248,7 +244,6 @@ class BoolOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -261,7 +256,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/bool/null'}  # type: ignore
@@ -274,7 +269,7 @@ class BoolOperations:
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or the result of cls(response)
+        :return: bool, or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -292,7 +287,6 @@ class BoolOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -305,7 +299,7 @@ class BoolOperations:
         deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/bool/invalid'}  # type: ignore

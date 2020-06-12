@@ -52,7 +52,7 @@ class HeaderOperations:
         :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
         :type user_agent_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -70,7 +70,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['User-Agent'] = self._serialize.header("user_agent_parameter", user_agent_parameter, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -81,7 +80,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_existing_key.metadata = {'url': '/header/param/existingkey'}  # type: ignore
 
@@ -93,7 +92,7 @@ class HeaderOperations:
         """Get a response with header value "User-Agent": "overwrite".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -110,7 +109,6 @@ class HeaderOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -124,7 +122,7 @@ class HeaderOperations:
         response_headers['User-Agent']=self._deserialize('str', response.headers.get('User-Agent'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_existing_key.metadata = {'url': '/header/response/existingkey'}  # type: ignore
 
@@ -139,7 +137,7 @@ class HeaderOperations:
         :param content_type: Send a post request with header value "Content-Type": "text/html".
         :type content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,7 +155,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -168,7 +165,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}  # type: ignore
 
@@ -180,7 +177,7 @@ class HeaderOperations:
         """Get a response with header value "Content-Type": "text/html".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -197,7 +194,6 @@ class HeaderOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -211,7 +207,7 @@ class HeaderOperations:
         response_headers['Content-Type']=self._deserialize('str', response.headers.get('Content-Type'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}  # type: ignore
 
@@ -222,14 +218,15 @@ class HeaderOperations:
         value: int,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
+        """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
+        "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param value: Send a post request with header values 1 or -2.
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -248,7 +245,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'int')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -259,7 +255,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_integer.metadata = {'url': '/header/param/prim/integer'}  # type: ignore
 
@@ -274,7 +270,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -292,7 +288,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -306,7 +301,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('int', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_integer.metadata = {'url': '/header/response/prim/integer'}  # type: ignore
 
@@ -317,14 +312,15 @@ class HeaderOperations:
         value: int,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
+        """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
+        "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param value: Send a post request with header values 105 or -2.
         :type value: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -343,7 +339,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'long')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -354,7 +349,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_long.metadata = {'url': '/header/param/prim/long'}  # type: ignore
 
@@ -369,7 +364,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -387,7 +382,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -401,7 +395,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('long', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_long.metadata = {'url': '/header/response/prim/long'}  # type: ignore
 
@@ -412,14 +406,15 @@ class HeaderOperations:
         value: float,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
+        """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
+        "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param value: Send a post request with header values 0.07 or -3.0.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -438,7 +433,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -449,7 +443,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_float.metadata = {'url': '/header/param/prim/float'}  # type: ignore
 
@@ -464,7 +458,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -482,7 +476,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -496,7 +489,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_float.metadata = {'url': '/header/response/prim/float'}  # type: ignore
 
@@ -507,14 +500,15 @@ class HeaderOperations:
         value: float,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0.
+        """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
+        "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param value: Send a post request with header values 7e120 or -3.0.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -533,7 +527,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -544,7 +537,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_double.metadata = {'url': '/header/param/prim/double'}  # type: ignore
 
@@ -559,7 +552,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -577,7 +570,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -591,7 +583,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_double.metadata = {'url': '/header/response/prim/double'}  # type: ignore
 
@@ -602,14 +594,15 @@ class HeaderOperations:
         value: bool,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false.
+        """Send a post request with header values "scenario": "true", "value": true or "scenario":
+        "false", "value": false.
 
         :param scenario: Send a post request with header values "scenario": "true" or "false".
         :type scenario: str
         :param value: Send a post request with header values true or false.
         :type value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -628,7 +621,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -639,7 +631,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_bool.metadata = {'url': '/header/param/prim/bool'}  # type: ignore
 
@@ -654,7 +646,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "true" or "false".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -672,7 +664,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -686,7 +677,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('bool', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_bool.metadata = {'url': '/header/response/prim/bool'}  # type: ignore
 
@@ -697,7 +688,8 @@ class HeaderOperations:
         value: Optional[str] = None,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
+        """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
+        over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
@@ -706,7 +698,7 @@ class HeaderOperations:
          dog" or null or "".
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -726,7 +718,6 @@ class HeaderOperations:
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -737,7 +728,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_string.metadata = {'url': '/header/param/prim/string'}  # type: ignore
 
@@ -753,7 +744,7 @@ class HeaderOperations:
          "empty".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -771,7 +762,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -785,7 +775,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_string.metadata = {'url': '/header/response/prim/string'}  # type: ignore
 
@@ -796,14 +786,15 @@ class HeaderOperations:
         value: datetime.date,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01".
+        """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
+        "scenario": "min", "value": "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
         :type value: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -822,7 +813,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'date')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -833,7 +823,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_date.metadata = {'url': '/header/param/prim/date'}  # type: ignore
 
@@ -848,7 +838,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -866,7 +856,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -880,7 +869,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('date', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_date.metadata = {'url': '/header/response/prim/date'}  # type: ignore
 
@@ -891,7 +880,8 @@ class HeaderOperations:
         value: datetime.datetime,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z".
+        """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
+        "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
@@ -899,7 +889,7 @@ class HeaderOperations:
          "0001-01-01T00:00:00Z".
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -918,7 +908,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -929,7 +918,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}  # type: ignore
 
@@ -944,7 +933,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -962,7 +951,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -976,7 +964,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('iso-8601', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}  # type: ignore
 
@@ -987,7 +975,8 @@ class HeaderOperations:
         value: Optional[datetime.datetime] = None,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
+        """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
+        GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
@@ -995,7 +984,7 @@ class HeaderOperations:
          01 Jan 0001 00:00:00 GMT".
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1015,7 +1004,6 @@ class HeaderOperations:
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1026,7 +1014,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}  # type: ignore
 
@@ -1036,12 +1024,13 @@ class HeaderOperations:
         scenario: str,
         **kwargs
     ) -> None:
-        """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
+        """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
+        GMT".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1059,7 +1048,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1073,7 +1061,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('rfc-1123', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}  # type: ignore
 
@@ -1091,7 +1079,7 @@ class HeaderOperations:
         :param value: Send a post request with header values "P123DT22H14M12.011S".
         :type value: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1110,7 +1098,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1121,7 +1108,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_duration.metadata = {'url': '/header/param/prim/duration'}  # type: ignore
 
@@ -1136,7 +1123,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1154,7 +1141,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1168,7 +1154,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('duration', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_duration.metadata = {'url': '/header/response/prim/duration'}  # type: ignore
 
@@ -1186,7 +1172,7 @@ class HeaderOperations:
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
         :type value: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1205,7 +1191,6 @@ class HeaderOperations:
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1216,7 +1201,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_byte.metadata = {'url': '/header/param/prim/byte'}  # type: ignore
 
@@ -1231,7 +1216,7 @@ class HeaderOperations:
         :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1249,7 +1234,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1263,7 +1247,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('bytearray', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_byte.metadata = {'url': '/header/response/prim/byte'}  # type: ignore
 
@@ -1274,7 +1258,8 @@ class HeaderOperations:
         value: Optional[Union[str, "models.GreyscaleColors"]] = None,
         **kwargs
     ) -> None:
-        """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null.
+        """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
+        "null", "value": null.
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
@@ -1282,7 +1267,7 @@ class HeaderOperations:
         :param value: Send a post request with header values 'GREY'.
         :type value: str or ~header.models.GreyscaleColors
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1302,7 +1287,6 @@ class HeaderOperations:
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1313,7 +1297,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     param_enum.metadata = {'url': '/header/param/prim/enum'}  # type: ignore
 
@@ -1329,7 +1313,7 @@ class HeaderOperations:
          "empty".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1347,7 +1331,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1361,7 +1344,7 @@ class HeaderOperations:
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     response_enum.metadata = {'url': '/header/response/prim/enum'}  # type: ignore
 
@@ -1370,10 +1353,11 @@ class HeaderOperations:
         self,
         **kwargs
     ) -> None:
-        """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
+        """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
+        request.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1390,7 +1374,6 @@ class HeaderOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1401,6 +1384,6 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}  # type: ignore

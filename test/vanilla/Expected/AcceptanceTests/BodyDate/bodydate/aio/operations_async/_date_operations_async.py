@@ -49,7 +49,7 @@ class DateOperations:
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or the result of cls(response)
+        :return: date, or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -67,7 +67,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -80,7 +79,7 @@ class DateOperations:
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/date/null'}  # type: ignore
@@ -93,7 +92,7 @@ class DateOperations:
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or the result of cls(response)
+        :return: date, or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -111,7 +110,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -124,7 +122,7 @@ class DateOperations:
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}  # type: ignore
@@ -137,7 +135,7 @@ class DateOperations:
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or the result of cls(response)
+        :return: date, or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -155,7 +153,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -168,7 +165,7 @@ class DateOperations:
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}  # type: ignore
@@ -181,7 +178,7 @@ class DateOperations:
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or the result of cls(response)
+        :return: date, or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -199,7 +196,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -212,7 +208,7 @@ class DateOperations:
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}  # type: ignore
@@ -228,7 +224,7 @@ class DateOperations:
         :param date_body:
         :type date_body: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -247,7 +243,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(date_body, 'date')
         body_content_kwargs['content'] = body_content
@@ -262,7 +257,7 @@ class DateOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_max_date.metadata = {'url': '/date/max'}  # type: ignore
 
@@ -274,7 +269,7 @@ class DateOperations:
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or the result of cls(response)
+        :return: date, or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -292,7 +287,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -305,7 +299,7 @@ class DateOperations:
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}  # type: ignore
@@ -321,7 +315,7 @@ class DateOperations:
         :param date_body:
         :type date_body: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -340,7 +334,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(date_body, 'date')
         body_content_kwargs['content'] = body_content
@@ -355,7 +348,7 @@ class DateOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_min_date.metadata = {'url': '/date/min'}  # type: ignore
 
@@ -367,7 +360,7 @@ class DateOperations:
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: date or the result of cls(response)
+        :return: date, or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -385,7 +378,6 @@ class DateOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -398,7 +390,7 @@ class DateOperations:
         deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_min_date.metadata = {'url': '/date/min'}  # type: ignore

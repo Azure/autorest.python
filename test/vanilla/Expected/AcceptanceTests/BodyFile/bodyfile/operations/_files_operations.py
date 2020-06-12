@@ -53,7 +53,7 @@ class FilesOperations(object):
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO or the result of cls(response)
+        :return: IO, or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -69,9 +69,8 @@ class FilesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -84,7 +83,7 @@ class FilesOperations(object):
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_file.metadata = {'url': '/files/stream/nonempty'}  # type: ignore
@@ -98,7 +97,7 @@ class FilesOperations(object):
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO or the result of cls(response)
+        :return: IO, or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -114,9 +113,8 @@ class FilesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -129,7 +127,7 @@ class FilesOperations(object):
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_file_large.metadata = {'url': '/files/stream/verylarge'}  # type: ignore
@@ -143,7 +141,7 @@ class FilesOperations(object):
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO or the result of cls(response)
+        :return: IO, or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -159,9 +157,8 @@ class FilesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png'
+        header_parameters['Accept'] = 'image/png, application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -174,7 +171,7 @@ class FilesOperations(object):
         deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_file.metadata = {'url': '/files/stream/empty'}  # type: ignore

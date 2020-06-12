@@ -28,7 +28,7 @@ jobs:
           OSVmImage: 'ubuntu-16.04'
           PythonVersion: '3.5'
           CoverageArg: ''
-        Linux_Python36:
+        Linux_Python38:
           OSName: 'Linux'
           OSVmImage: 'ubuntu-16.04'
           PythonVersion: '3.8'

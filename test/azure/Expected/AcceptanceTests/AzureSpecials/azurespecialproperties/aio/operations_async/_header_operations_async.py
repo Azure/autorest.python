@@ -52,7 +52,7 @@ class HeaderOperations:
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -70,7 +70,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -84,7 +83,7 @@ class HeaderOperations:
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}  # type: ignore
 
@@ -94,12 +93,13 @@ class HeaderOperations:
         header_custom_named_request_id_param_grouping_parameters: "models.HeaderCustomNamedRequestIdParamGroupingParameters",
         **kwargs
     ) -> None:
-        """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
+        """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
+        via a parameter group.
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
         :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -121,7 +121,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", _foo_client_request_id, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -135,7 +134,7 @@ class HeaderOperations:
         response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}  # type: ignore
 
@@ -144,14 +143,14 @@ class HeaderOperations:
         self,
         foo_client_request_id: str,
         **kwargs
-    ) -> None:
+    ) -> bool:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -168,7 +167,6 @@ class HeaderOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
-        # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -183,7 +181,7 @@ class HeaderOperations:
             response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
         return 200 <= response.status_code <= 299
     custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}  # type: ignore

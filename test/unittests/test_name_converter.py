@@ -1,9 +1,15 @@
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+
 from autorest.namer.name_converter import NameConverter
 from autorest.namer.python_mappings import PadType
 
 def test_escaped_reserved_words():
     expected_conversion_model = {
-        "self": "self_model",
+        "self": "self",
         "and": "and_model"
     }
     for name in expected_conversion_model:
@@ -11,7 +17,7 @@ def test_escaped_reserved_words():
 
 
     expected_conversion_method = {
-        "self": "self_method",
+        "self": "self",
         "and": "and_method",
         "content_type": "content_type"
     }
@@ -21,14 +27,17 @@ def test_escaped_reserved_words():
     expected_conversion_parameter = {
         "content_type": "content_type_parameter",
         "request_id": "request_id_parameter",
-        "elif": "elif_parameter"
+        "elif": "elif_parameter",
+        "self": "self_parameter",
+        "continuation_token": "continuation_token_parameter"
     }
     for name in expected_conversion_parameter:
         assert NameConverter._to_valid_python_name(name, pad_string=PadType.Parameter) == expected_conversion_parameter[name]
 
     expected_conversion_enum = {
         "self": "self",
-        "mro": "mro_enum"
+        "mro": "mro_enum",
+        "continuation_token": "continuation_token"
     }
     for name in expected_conversion_enum:
         assert NameConverter._to_valid_python_name(name, pad_string=PadType.Enum) == expected_conversion_enum[name]

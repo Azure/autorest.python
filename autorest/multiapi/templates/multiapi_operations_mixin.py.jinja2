@@ -16,10 +16,10 @@ from msrest import Serializer, Deserializer
 
 
 class {{ client_name }}OperationsMixin(object):
-{% for operation_name, metadata in mixin_operations|dictsort %}
+{% for operation_name, metadata_sync_and_async in mixin_operations|dictsort %}
 
-    {% set signature = "async_signature" if async_mode else "sync_signature" %}
-    {{ metadata[signature] | indent }}    {{ metadata['doc'] | indent(8)}}
+    {% set metadata = metadata_sync_and_async['async'] if async_mode else metadata_sync_and_async['sync'] %}
+    {{ metadata['signature'] | indent }}        {{ metadata['doc'] | indent(8) }}
         api_version = self._get_api_version('{{ operation_name }}')
         {% for api in metadata['available_apis']|sort %}
         {% set if_statement = "if" if loop.first else "elif" %}

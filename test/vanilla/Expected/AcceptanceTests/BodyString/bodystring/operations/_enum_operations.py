@@ -53,7 +53,7 @@ class EnumOperations(object):
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Colors or the result of cls(response)
+        :return: Colors, or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class EnumOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -84,7 +83,7 @@ class EnumOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}  # type: ignore
@@ -101,7 +100,7 @@ class EnumOperations(object):
         :param string_body:
         :type string_body: str or ~bodystring.models.Colors
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -120,7 +119,6 @@ class EnumOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(string_body, 'str')
         body_content_kwargs['content'] = body_content
@@ -135,7 +133,7 @@ class EnumOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}  # type: ignore
 
@@ -148,7 +146,7 @@ class EnumOperations(object):
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Colors or the result of cls(response)
+        :return: Colors, or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -166,7 +164,6 @@ class EnumOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -179,7 +176,7 @@ class EnumOperations(object):
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}  # type: ignore
@@ -196,7 +193,7 @@ class EnumOperations(object):
         :param enum_string_body:
         :type enum_string_body: str or ~bodystring.models.Colors
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -215,7 +212,6 @@ class EnumOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(enum_string_body, 'str')
         body_content_kwargs['content'] = body_content
@@ -230,7 +226,7 @@ class EnumOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_referenced.metadata = {'url': '/string/enum/Referenced'}  # type: ignore
 
@@ -243,7 +239,7 @@ class EnumOperations(object):
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RefColorConstant or the result of cls(response)
+        :return: RefColorConstant, or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -261,7 +257,6 @@ class EnumOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -274,7 +269,7 @@ class EnumOperations(object):
         deserialized = self._deserialize('RefColorConstant', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}  # type: ignore
@@ -291,7 +286,7 @@ class EnumOperations(object):
         :param field1: Sample string.
         :type field1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -312,7 +307,6 @@ class EnumOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_enum_string_body, 'RefColorConstant')
         body_content_kwargs['content'] = body_content
@@ -327,6 +321,6 @@ class EnumOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}  # type: ignore

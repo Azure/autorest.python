@@ -53,12 +53,13 @@ class PagingOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Iterable["models.ProductResult"]
-        """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
+        """A paging operation that combines custom url, paging and partial URL and expect to concat after
+        host.
 
         :param account_name: Account Name.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -67,6 +68,10 @@ class PagingOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
+
             if not next_link:
                 # Construct URL
                 url = self.get_pages_partial_url.metadata['url']  # type: ignore
@@ -75,23 +80,19 @@ class PagingOperations(object):
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
                 path_format_arguments = {
                     'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = 'application/json'
-
-            # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+                request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def extract_data(pipeline_response):
@@ -130,7 +131,7 @@ class PagingOperations(object):
         :param account_name: Account Name.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -139,6 +140,10 @@ class PagingOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
+
             if not next_link:
                 # Construct URL
                 url = self.get_pages_partial_url_operation.metadata['url']  # type: ignore
@@ -147,6 +152,10 @@ class PagingOperations(object):
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = '/paging/customurl/{nextLink}'
                 path_format_arguments = {
@@ -155,16 +164,10 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
 
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = 'application/json'
-
-            # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+                request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def extract_data(pipeline_response):

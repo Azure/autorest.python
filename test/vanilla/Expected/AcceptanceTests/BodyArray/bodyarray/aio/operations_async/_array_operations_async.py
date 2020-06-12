@@ -49,7 +49,7 @@ class ArrayOperations:
         """Get null array value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -67,7 +67,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -80,7 +79,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/array/null'}  # type: ignore
@@ -93,7 +92,7 @@ class ArrayOperations:
         """Get invalid array [1, 2, 3.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -111,7 +110,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -124,7 +122,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/array/invalid'}  # type: ignore
@@ -137,7 +135,7 @@ class ArrayOperations:
         """Get empty array value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -155,7 +153,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -168,7 +165,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/array/empty'}  # type: ignore
@@ -184,7 +181,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -203,7 +200,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[str]')
         body_content_kwargs['content'] = body_content
@@ -218,7 +214,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/array/empty'}  # type: ignore
 
@@ -230,7 +226,7 @@ class ArrayOperations:
         """Get boolean array value [true, false, false, true].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -248,7 +244,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -261,7 +256,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}  # type: ignore
@@ -277,7 +272,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[bool]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -296,7 +291,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[bool]')
         body_content_kwargs['content'] = body_content
@@ -311,7 +305,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}  # type: ignore
 
@@ -323,7 +317,7 @@ class ArrayOperations:
         """Get boolean array value [true, null, false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -341,7 +335,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -354,7 +347,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}  # type: ignore
@@ -367,7 +360,7 @@ class ArrayOperations:
         """Get boolean array value [true, 'boolean', false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bool, or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -385,7 +378,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -398,7 +390,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bool]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}  # type: ignore
@@ -411,7 +403,7 @@ class ArrayOperations:
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -429,7 +421,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -442,7 +433,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}  # type: ignore
@@ -458,7 +449,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[int]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -477,7 +468,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[int]')
         body_content_kwargs['content'] = body_content
@@ -492,7 +482,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}  # type: ignore
 
@@ -504,7 +494,7 @@ class ArrayOperations:
         """Get integer array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -522,7 +512,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -535,7 +524,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}  # type: ignore
@@ -548,7 +537,7 @@ class ArrayOperations:
         """Get integer array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of int, or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -566,7 +555,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -579,7 +567,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[int]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}  # type: ignore
@@ -592,7 +580,7 @@ class ArrayOperations:
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -610,7 +598,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -623,7 +610,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}  # type: ignore
@@ -639,7 +626,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[long]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -658,7 +645,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[long]')
         body_content_kwargs['content'] = body_content
@@ -673,7 +659,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}  # type: ignore
 
@@ -685,7 +671,7 @@ class ArrayOperations:
         """Get long array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -703,7 +689,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -716,7 +701,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}  # type: ignore
@@ -729,7 +714,7 @@ class ArrayOperations:
         """Get long array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of long, or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -747,7 +732,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -760,7 +744,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[long]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}  # type: ignore
@@ -773,7 +757,7 @@ class ArrayOperations:
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -791,7 +775,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -804,7 +787,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}  # type: ignore
@@ -820,7 +803,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -839,7 +822,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[float]')
         body_content_kwargs['content'] = body_content
@@ -854,7 +836,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}  # type: ignore
 
@@ -866,7 +848,7 @@ class ArrayOperations:
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -884,7 +866,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -897,7 +878,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}  # type: ignore
@@ -910,7 +891,7 @@ class ArrayOperations:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -928,7 +909,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -941,7 +921,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}  # type: ignore
@@ -954,7 +934,7 @@ class ArrayOperations:
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -972,7 +952,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -985,7 +964,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}  # type: ignore
@@ -1001,7 +980,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1020,7 +999,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[float]')
         body_content_kwargs['content'] = body_content
@@ -1035,7 +1013,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}  # type: ignore
 
@@ -1047,7 +1025,7 @@ class ArrayOperations:
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1065,7 +1043,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1078,7 +1055,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}  # type: ignore
@@ -1091,7 +1068,7 @@ class ArrayOperations:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of float, or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1109,7 +1086,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1122,7 +1098,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[float]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}  # type: ignore
@@ -1135,7 +1111,7 @@ class ArrayOperations:
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1153,7 +1129,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1166,7 +1141,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}  # type: ignore
@@ -1182,7 +1157,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1201,7 +1176,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[str]')
         body_content_kwargs['content'] = body_content
@@ -1216,7 +1190,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}  # type: ignore
 
@@ -1228,7 +1202,7 @@ class ArrayOperations:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of FooEnum, or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1246,7 +1220,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1259,7 +1232,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}  # type: ignore
@@ -1275,7 +1248,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.FooEnum]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1294,7 +1267,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[str]')
         body_content_kwargs['content'] = body_content
@@ -1309,7 +1281,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}  # type: ignore
 
@@ -1321,7 +1293,7 @@ class ArrayOperations:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Enum0, or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1339,7 +1311,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1352,7 +1323,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}  # type: ignore
@@ -1368,7 +1339,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.Enum1]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1387,7 +1358,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[str]')
         body_content_kwargs['content'] = body_content
@@ -1402,7 +1372,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}  # type: ignore
 
@@ -1414,7 +1384,7 @@ class ArrayOperations:
         """Get string array value ['foo', null, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1432,7 +1402,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1445,7 +1414,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}  # type: ignore
@@ -1458,7 +1427,7 @@ class ArrayOperations:
         """Get string array value ['foo', 123, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1476,7 +1445,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1489,7 +1457,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}  # type: ignore
@@ -1499,10 +1467,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[str]:
-        """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+        """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1520,7 +1489,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1533,7 +1501,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}  # type: ignore
@@ -1544,12 +1512,13 @@ class ArrayOperations:
         array_body: List[str],
         **kwargs
     ) -> None:
-        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body:
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1568,7 +1537,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[str]')
         body_content_kwargs['content'] = body_content
@@ -1583,7 +1551,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}  # type: ignore
 
@@ -1595,7 +1563,7 @@ class ArrayOperations:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of str, or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1613,7 +1581,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1626,7 +1593,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}  # type: ignore
@@ -1639,7 +1606,7 @@ class ArrayOperations:
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1657,7 +1624,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1670,7 +1636,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_valid.metadata = {'url': '/array/prim/date/valid'}  # type: ignore
@@ -1686,7 +1652,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[~datetime.date]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1705,7 +1671,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[date]')
         body_content_kwargs['content'] = body_content
@@ -1720,7 +1685,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_valid.metadata = {'url': '/array/prim/date/valid'}  # type: ignore
 
@@ -1732,7 +1697,7 @@ class ArrayOperations:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1750,7 +1715,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1763,7 +1727,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}  # type: ignore
@@ -1776,7 +1740,7 @@ class ArrayOperations:
         """Get date array value ['2011-03-22', 'date'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of date, or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1794,7 +1758,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1807,7 +1770,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[date]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}  # type: ignore
@@ -1817,10 +1780,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[datetime.datetime]:
-        """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
+        """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1838,7 +1802,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1851,7 +1814,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}  # type: ignore
@@ -1862,12 +1825,13 @@ class ArrayOperations:
         array_body: List[datetime.datetime],
         **kwargs
     ) -> None:
-        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
+        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1886,7 +1850,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[iso-8601]')
         body_content_kwargs['content'] = body_content
@@ -1901,7 +1864,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}  # type: ignore
 
@@ -1913,7 +1876,7 @@ class ArrayOperations:
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1931,7 +1894,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1944,7 +1906,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}  # type: ignore
@@ -1957,7 +1919,7 @@ class ArrayOperations:
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1975,7 +1937,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1988,7 +1949,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[iso-8601]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}  # type: ignore
@@ -1998,10 +1959,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[datetime.datetime]:
-        """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
+        """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
+        'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of datetime, or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2019,7 +1981,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2032,7 +1993,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[rfc-1123]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}  # type: ignore
@@ -2043,12 +2004,13 @@ class ArrayOperations:
         array_body: List[datetime.datetime],
         **kwargs
     ) -> None:
-        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
+        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+        Oct 1492 10:15:01 GMT'].
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2067,7 +2029,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[rfc-1123]')
         body_content_kwargs['content'] = body_content
@@ -2082,7 +2043,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}  # type: ignore
 
@@ -2094,7 +2055,7 @@ class ArrayOperations:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of timedelta, or the result of cls(response)
         :rtype: list[~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2112,7 +2073,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2125,7 +2085,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[duration]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}  # type: ignore
@@ -2141,7 +2101,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[~datetime.timedelta]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2160,7 +2120,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[duration]')
         body_content_kwargs['content'] = body_content
@@ -2175,7 +2134,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}  # type: ignore
 
@@ -2184,10 +2143,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[bytearray]:
-        """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in base64.
+        """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
+        in base64.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bytearray, or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2205,7 +2165,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2218,7 +2177,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}  # type: ignore
@@ -2229,12 +2188,13 @@ class ArrayOperations:
         array_body: List[bytearray],
         **kwargs
     ) -> None:
-        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in base 64.
+        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+        elementencoded in base 64.
 
         :param array_body:
         :type array_body: list[bytearray]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2253,7 +2213,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[bytearray]')
         body_content_kwargs['content'] = body_content
@@ -2268,7 +2227,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}  # type: ignore
 
@@ -2280,7 +2239,7 @@ class ArrayOperations:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bytearray, or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2298,7 +2257,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2311,7 +2269,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[bytearray]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}  # type: ignore
@@ -2321,10 +2279,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[bytes]:
-        """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with the items base64url encoded.
+        """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
+        the items base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of bytes, or the result of cls(response)
         :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2342,7 +2301,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2355,7 +2313,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[base64]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}  # type: ignore
@@ -2368,7 +2326,7 @@ class ArrayOperations:
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2386,7 +2344,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2399,7 +2356,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_null.metadata = {'url': '/array/complex/null'}  # type: ignore
@@ -2412,7 +2369,7 @@ class ArrayOperations:
         """Get empty array of complex type [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2430,7 +2387,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2443,7 +2399,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_empty.metadata = {'url': '/array/complex/empty'}  # type: ignore
@@ -2453,10 +2409,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List["models.Product"]:
-        """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5, 'string': '6'}].
+        """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
+        'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2474,7 +2431,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2487,7 +2443,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}  # type: ignore
@@ -2497,10 +2453,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List["models.Product"]:
-        """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5, 'string': '6'}].
+        """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
+        'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2518,7 +2475,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2531,7 +2487,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}  # type: ignore
@@ -2541,10 +2497,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List["models.Product"]:
-        """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
+        """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
+        {'integer': 5, 'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Product, or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2562,7 +2519,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2575,7 +2531,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[Product]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_valid.metadata = {'url': '/array/complex/valid'}  # type: ignore
@@ -2586,12 +2542,13 @@ class ArrayOperations:
         array_body: List["models.Product"],
         **kwargs
     ) -> None:
-        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
+        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+        'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
         :type array_body: list[~bodyarray.models.Product]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2610,7 +2567,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[Product]')
         body_content_kwargs['content'] = body_content
@@ -2625,7 +2581,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complex_valid.metadata = {'url': '/array/complex/valid'}  # type: ignore
 
@@ -2637,7 +2593,7 @@ class ArrayOperations:
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2655,7 +2611,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2668,7 +2623,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_null.metadata = {'url': '/array/array/null'}  # type: ignore
@@ -2681,7 +2636,7 @@ class ArrayOperations:
         """Get an empty array [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2699,7 +2654,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2712,7 +2666,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_empty.metadata = {'url': '/array/array/empty'}  # type: ignore
@@ -2725,7 +2679,7 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2743,7 +2697,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2756,7 +2709,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_item_null.metadata = {'url': '/array/array/itemnull'}  # type: ignore
@@ -2769,7 +2722,7 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2787,7 +2740,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2800,7 +2752,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_item_empty.metadata = {'url': '/array/array/itemempty'}  # type: ignore
@@ -2813,7 +2765,7 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of list of str, or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2831,7 +2783,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2844,7 +2795,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[[str]]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array_valid.metadata = {'url': '/array/array/valid'}  # type: ignore
@@ -2860,7 +2811,7 @@ class ArrayOperations:
         :param array_body:
         :type array_body: list[list[str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2879,7 +2830,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[[str]]')
         body_content_kwargs['content'] = body_content
@@ -2894,7 +2844,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_array_valid.metadata = {'url': '/array/array/valid'}  # type: ignore
 
@@ -2906,7 +2856,7 @@ class ArrayOperations:
         """Get an array of Dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2924,7 +2874,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2937,7 +2886,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_null.metadata = {'url': '/array/dictionary/null'}  # type: ignore
@@ -2950,7 +2899,7 @@ class ArrayOperations:
         """Get an array of Dictionaries of type <string, string> with value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2968,7 +2917,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2981,7 +2929,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}  # type: ignore
@@ -2991,10 +2939,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[Dict[str, str]]:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3012,7 +2961,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -3025,7 +2973,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}  # type: ignore
@@ -3035,10 +2983,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[Dict[str, str]]:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3056,7 +3005,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -3069,7 +3017,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}  # type: ignore
@@ -3079,10 +3027,11 @@ class ArrayOperations:
         self,
         **kwargs
     ) -> List[Dict[str, str]]:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of dict mapping str to str, or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3100,7 +3049,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -3113,7 +3061,7 @@ class ArrayOperations:
         deserialized = self._deserialize('[{str}]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}  # type: ignore
@@ -3124,12 +3072,13 @@ class ArrayOperations:
         array_body: List[Dict[str, str]],
         **kwargs
     ) -> None:
-        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body:
         :type array_body: list[dict[str, str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3148,7 +3097,6 @@ class ArrayOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(array_body, '[{str}]')
         body_content_kwargs['content'] = body_content
@@ -3163,6 +3111,6 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}  # type: ignore

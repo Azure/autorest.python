@@ -49,7 +49,7 @@ class PrimitiveOperations:
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntWrapper or the result of cls(response)
+        :return: IntWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.IntWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -67,7 +67,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -80,7 +79,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('IntWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_int.metadata = {'url': '/complex/primitive/integer'}  # type: ignore
@@ -96,7 +95,7 @@ class PrimitiveOperations:
         :param complex_body: Please put -1 and 2.
         :type complex_body: ~bodycomplex.models.IntWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -115,7 +114,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'IntWrapper')
         body_content_kwargs['content'] = body_content
@@ -130,7 +128,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_int.metadata = {'url': '/complex/primitive/integer'}  # type: ignore
 
@@ -142,7 +140,7 @@ class PrimitiveOperations:
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: LongWrapper or the result of cls(response)
+        :return: LongWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.LongWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -160,7 +158,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -173,7 +170,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('LongWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long.metadata = {'url': '/complex/primitive/long'}  # type: ignore
@@ -189,7 +186,7 @@ class PrimitiveOperations:
         :param complex_body: Please put 1099511627775 and -999511627788.
         :type complex_body: ~bodycomplex.models.LongWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -208,7 +205,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'LongWrapper')
         body_content_kwargs['content'] = body_content
@@ -223,7 +219,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_long.metadata = {'url': '/complex/primitive/long'}  # type: ignore
 
@@ -235,7 +231,7 @@ class PrimitiveOperations:
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatWrapper or the result of cls(response)
+        :return: FloatWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -253,7 +249,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -266,7 +261,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('FloatWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float.metadata = {'url': '/complex/primitive/float'}  # type: ignore
@@ -282,7 +277,7 @@ class PrimitiveOperations:
         :param complex_body: Please put 1.05 and -0.003.
         :type complex_body: ~bodycomplex.models.FloatWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -301,7 +296,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'FloatWrapper')
         body_content_kwargs['content'] = body_content
@@ -316,7 +310,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_float.metadata = {'url': '/complex/primitive/float'}  # type: ignore
 
@@ -328,7 +322,7 @@ class PrimitiveOperations:
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DoubleWrapper or the result of cls(response)
+        :return: DoubleWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -346,7 +340,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -359,7 +352,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('DoubleWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double.metadata = {'url': '/complex/primitive/double'}  # type: ignore
@@ -376,7 +369,7 @@ class PrimitiveOperations:
          -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -395,7 +388,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'DoubleWrapper')
         body_content_kwargs['content'] = body_content
@@ -410,7 +402,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_double.metadata = {'url': '/complex/primitive/double'}  # type: ignore
 
@@ -422,7 +414,7 @@ class PrimitiveOperations:
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: BooleanWrapper or the result of cls(response)
+        :return: BooleanWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -440,7 +432,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -453,7 +444,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('BooleanWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_bool.metadata = {'url': '/complex/primitive/bool'}  # type: ignore
@@ -469,7 +460,7 @@ class PrimitiveOperations:
         :param complex_body: Please put true and false.
         :type complex_body: ~bodycomplex.models.BooleanWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -488,7 +479,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'BooleanWrapper')
         body_content_kwargs['content'] = body_content
@@ -503,7 +493,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_bool.metadata = {'url': '/complex/primitive/bool'}  # type: ignore
 
@@ -515,7 +505,7 @@ class PrimitiveOperations:
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StringWrapper or the result of cls(response)
+        :return: StringWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.StringWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -533,7 +523,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -546,7 +535,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('StringWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string.metadata = {'url': '/complex/primitive/string'}  # type: ignore
@@ -562,7 +551,7 @@ class PrimitiveOperations:
         :param complex_body: Please put 'goodrequest', '', and null.
         :type complex_body: ~bodycomplex.models.StringWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -581,7 +570,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'StringWrapper')
         body_content_kwargs['content'] = body_content
@@ -596,7 +584,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_string.metadata = {'url': '/complex/primitive/string'}  # type: ignore
 
@@ -608,7 +596,7 @@ class PrimitiveOperations:
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DateWrapper or the result of cls(response)
+        :return: DateWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DateWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -626,7 +614,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -639,7 +626,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('DateWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date.metadata = {'url': '/complex/primitive/date'}  # type: ignore
@@ -655,7 +642,7 @@ class PrimitiveOperations:
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
         :type complex_body: ~bodycomplex.models.DateWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -674,7 +661,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'DateWrapper')
         body_content_kwargs['content'] = body_content
@@ -689,7 +675,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date.metadata = {'url': '/complex/primitive/date'}  # type: ignore
 
@@ -701,7 +687,7 @@ class PrimitiveOperations:
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DatetimeWrapper or the result of cls(response)
+        :return: DatetimeWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -719,7 +705,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -732,7 +717,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('DatetimeWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}  # type: ignore
@@ -748,7 +733,7 @@ class PrimitiveOperations:
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -767,7 +752,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'DatetimeWrapper')
         body_content_kwargs['content'] = body_content
@@ -782,7 +766,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}  # type: ignore
 
@@ -794,7 +778,7 @@ class PrimitiveOperations:
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Datetimerfc1123Wrapper or the result of cls(response)
+        :return: Datetimerfc1123Wrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -812,7 +796,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -825,7 +808,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('Datetimerfc1123Wrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}  # type: ignore
@@ -842,7 +825,7 @@ class PrimitiveOperations:
          GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -861,7 +844,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'Datetimerfc1123Wrapper')
         body_content_kwargs['content'] = body_content
@@ -876,7 +858,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}  # type: ignore
 
@@ -888,7 +870,7 @@ class PrimitiveOperations:
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DurationWrapper or the result of cls(response)
+        :return: DurationWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -906,7 +888,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -919,7 +900,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('DurationWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_duration.metadata = {'url': '/complex/primitive/duration'}  # type: ignore
@@ -935,7 +916,7 @@ class PrimitiveOperations:
         :param field:
         :type field: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -956,7 +937,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_complex_body, 'DurationWrapper')
         body_content_kwargs['content'] = body_content
@@ -971,7 +951,7 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_duration.metadata = {'url': '/complex/primitive/duration'}  # type: ignore
 
@@ -983,7 +963,7 @@ class PrimitiveOperations:
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ByteWrapper or the result of cls(response)
+        :return: ByteWrapper, or the result of cls(response)
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1001,7 +981,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1014,7 +993,7 @@ class PrimitiveOperations:
         deserialized = self._deserialize('ByteWrapper', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_byte.metadata = {'url': '/complex/primitive/byte'}  # type: ignore
@@ -1030,7 +1009,7 @@ class PrimitiveOperations:
         :param field:
         :type field: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1051,7 +1030,6 @@ class PrimitiveOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_complex_body, 'ByteWrapper')
         body_content_kwargs['content'] = body_content
@@ -1066,6 +1044,6 @@ class PrimitiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_byte.metadata = {'url': '/complex/primitive/byte'}  # type: ignore

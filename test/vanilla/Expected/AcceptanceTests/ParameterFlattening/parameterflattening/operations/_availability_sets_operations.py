@@ -62,7 +62,7 @@ class AvailabilitySetsOperations(object):
         :param tags: A description about the set of tags.
         :type tags: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -88,7 +88,6 @@ class AvailabilitySetsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_tags, 'AvailabilitySetUpdateParameters')
         body_content_kwargs['content'] = body_content
@@ -102,6 +101,6 @@ class AvailabilitySetsOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}  # type: ignore

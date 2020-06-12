@@ -34,7 +34,7 @@ class AutoRestValidationTestOperationsMixin:
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
+        :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -60,7 +60,6 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -73,7 +72,7 @@ class AutoRestValidationTestOperationsMixin:
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
@@ -95,7 +94,7 @@ class AutoRestValidationTestOperationsMixin:
         :param body:
         :type body: ~validation.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
+        :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -123,7 +122,6 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
             body_content = self._serialize.body(body, 'Product')
@@ -143,7 +141,7 @@ class AutoRestValidationTestOperationsMixin:
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
@@ -156,7 +154,7 @@ class AutoRestValidationTestOperationsMixin:
         """get_with_constant_in_path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -178,7 +176,6 @@ class AutoRestValidationTestOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -188,7 +185,7 @@ class AutoRestValidationTestOperationsMixin:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore
 
@@ -203,7 +200,7 @@ class AutoRestValidationTestOperationsMixin:
         :param body:
         :type body: ~validation.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
+        :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -228,7 +225,6 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
             body_content = self._serialize.body(body, 'Product')
@@ -247,7 +243,7 @@ class AutoRestValidationTestOperationsMixin:
         deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore

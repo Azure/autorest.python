@@ -1,16 +1,112 @@
 # Change Log
 
 ### Unreleased
+Modelerfour version: 4.13.351
+
+**New Features**
+
+- We have added a `--credential-default-policy-type` flag. Its default value is `BearerTokenCredentialPolicy`, but it can also accept
+`AzureKeyCredentialPolicy`. The value passed in will be the default authentication policy in the client's config, so users using the
+generated library will use that auth policy unless they pass in a separate one through kwargs  #686
+
+### 2020-06-08 - 5.1.0-preview.2
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+- Fixed "Failed to install or start extension" issue arising when invoking autorest from a tar file, by correcctly calling Python 3. #678
+- Generating correct formatting for LRO and paging operation docstrings  #652
+- Generating correct content and formatting for LRO and paging operations in multiapi mixin  #652
+
+### 2020-06-03 - 5.1.0-preview.1
+Modelerfour version: 4.13.351
+
+**Disclaimer**
+
+This version requires azure-core 1.6.0 and contains features and bugfixes 5.0.0-preview.8
+
+**Features**
+
+- Refactor async LRO poller with a AsyncLROPoller class + "begin_" prefix
+- Add continuation_token kwargs to LRO methods
+
+**Bug Fixes**
+- Corrected generation of the item name of paging response when extracting data  #648
+- Corrected return type typing annotation for operations that return an optional body  #656
+- Fixed mypy issue by only setting the generated `deserialized` variable to None if the operation has an optional return type  #656
+- Fixed generation of pkgutil init files  #661
+- Have the next operation in a paging call use the HTTP verb GET if the next operation is not defined  #664
+
+### 2020-05-22 - 5.0.0-preview.8
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+
+- Corrected ordering of summary and description in generated methods  #640
+- Have `IOSchema` call super init to get all of the properties shared in `BaseSchema`  #642
+
+### 2020-05-15 - 5.0.0-preview.7
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+
+- Adding `self` as a reserved key word for parameters to avoid "duplicate argument 'self' in function definition" error  #630
+- Removed `self` as a reserved key word for method and model names  #630
+
+### 2020-05-13 - 5.0.0-preview.6
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+
+- No longer assuming that response with body from an LRO call is an ObjectSchema  #623
+- Checking whether "protocol" entry exists in yaml in name converter to remove erroneous "KeyError: 'protocol'"  #628
+
+### 2020-05-08 - 5.0.0-preview.5
+Modelerfour version: 4.13.351
+
+**Bug Fixes**
+
+- Users can pass in content types with ';' inside (such as 'text/plain; encoding=UTF-8')  #619
+- Allowing parameters to be of type `IO` as well  #618
+- Can now generate without FATAL: bad indentation error (taken from m4 update - perks PR #105)
+
+### 2020-05-06 - 5.0.0-preview.4
+Modelerfour version: 4.13.346
+
+**New Features**
+
+- Displaying the default and possible values for content type in the docstring for operations with multiple requests  #615
+
+**Bug Fixes**
+
+- Fixing `AsyncTokenCredential` typing import and adding to service client  #591
+- Can now pass `content_type` and `error_map` kwargs to LRO functions without error  #597
+- Now making sure to include the content type of exceptions when passing content types to 'Accept' header  #602
+- `include_apis` in `Metrics` for tables swagger now cased correctly  #603
+- Corrected spacing after `if cls:` block in operations  #606
+
+### 2020-04-23 - 5.0.0-preview.3
+Modelerfour version: 4.12.301
+
+**Bug Fixes**
+
+- Fixed sync lro method naming in MultiAPI operation mixins  #572
+
+### 2020-04-22 - 5.0.0-preview.2
+Modelerfour version: 4.12.301
 
 **New Features**
 
 - User can now pass in credential scopes through kwargs  #575
+- Default error map always contains a mapping of 404 to `ResourceNotFoundError` and 409 to `ResourceExistsError` #580
 
 **Bug Fixes**
 
 - Not generating async multiapi client if `--no-async` flag is specified  #586
+- Fixes query parameter handling in paging operations  #172
+- Fixes losing 404/409 default is user pass a user_map  #580
 
 ### 2020-04-16 - 5.0.0-preview.1
+Modelerfour version: 4.12.301
 
 **Breaking Changes**
 

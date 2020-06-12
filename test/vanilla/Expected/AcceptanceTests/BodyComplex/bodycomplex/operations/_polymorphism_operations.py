@@ -53,7 +53,7 @@ class PolymorphismOperations(object):
         """Get complex types that are polymorphic.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Fish or the result of cls(response)
+        :return: Fish, or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -84,7 +83,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('Fish', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}  # type: ignore
@@ -133,7 +132,7 @@ class PolymorphismOperations(object):
                };.
         :type complex_body: ~bodycomplex.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -152,7 +151,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'Fish')
         body_content_kwargs['content'] = body_content
@@ -167,7 +165,7 @@ class PolymorphismOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}  # type: ignore
 
@@ -180,7 +178,7 @@ class PolymorphismOperations(object):
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFish or the result of cls(response)
+        :return: DotFish, or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -198,7 +196,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -211,7 +208,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('DotFish', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}  # type: ignore
@@ -222,10 +219,12 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.DotFishMarket"
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic
+        element type, with discriminator specified. Deserialization must NOT fail and use the
+        discriminator type specified on the wire.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFishMarket or the result of cls(response)
+        :return: DotFishMarket, or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -243,7 +242,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -256,7 +254,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}  # type: ignore
@@ -267,10 +265,12 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.DotFishMarket"
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic
+        element type, without discriminator specified on wire. Deserialization must NOT fail and use
+        the explicit type of the property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFishMarket or the result of cls(response)
+        :return: DotFishMarket, or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -288,7 +288,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -301,7 +300,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}  # type: ignore
@@ -312,10 +311,11 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Salmon"
-        """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
+        """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
+        additional properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon or the result of cls(response)
+        :return: Salmon, or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -333,7 +333,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -346,7 +345,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('Salmon', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}  # type: ignore
@@ -358,12 +357,13 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
+        """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+        additional properties.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -382,7 +382,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'Salmon')
         body_content_kwargs['content'] = body_content
@@ -397,7 +396,7 @@ class PolymorphismOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}  # type: ignore
 
@@ -413,7 +412,7 @@ class PolymorphismOperations(object):
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon or the result of cls(response)
+        :return: Salmon, or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -433,7 +432,6 @@ class PolymorphismOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'Salmon')
         body_content_kwargs['content'] = body_content
@@ -450,7 +448,7 @@ class PolymorphismOperations(object):
         deserialized = self._deserialize('Salmon', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}  # type: ignore
@@ -462,7 +460,8 @@ class PolymorphismOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
+        """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+        request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
          allow this data to be sent:
@@ -493,7 +492,7 @@ class PolymorphismOperations(object):
          }.
         :type complex_body: ~bodycomplex.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -512,7 +511,6 @@ class PolymorphismOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(complex_body, 'Fish')
         body_content_kwargs['content'] = body_content
@@ -527,6 +525,6 @@ class PolymorphismOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}  # type: ignore

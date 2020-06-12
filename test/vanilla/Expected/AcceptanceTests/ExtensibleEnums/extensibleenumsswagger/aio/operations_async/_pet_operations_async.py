@@ -51,7 +51,7 @@ class PetOperations:
         :param pet_id: Pet id.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or the result of cls(response)
+        :return: Pet, or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -73,7 +73,6 @@ class PetOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -85,7 +84,7 @@ class PetOperations:
         deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}  # type: ignore
@@ -101,7 +100,7 @@ class PetOperations:
         :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or the result of cls(response)
+        :return: Pet, or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -121,7 +120,6 @@ class PetOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if pet_param is not None:
             body_content = self._serialize.body(pet_param, 'Pet')
@@ -140,7 +138,7 @@ class PetOperations:
         deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}  # type: ignore

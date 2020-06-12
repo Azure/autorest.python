@@ -11,7 +11,7 @@ from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .imports import ImportType, TypingSection
-from .object_schema import ObjectSchema
+from .base_schema import BaseSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -70,7 +70,8 @@ class LROOperation(Operation):
                     f" method {self.python_name} and none of them have a 200 status code."
                 )
             response_type = response_types_with_200_status_code[0]
-            response_type_schema_name = cast(ObjectSchema, response_type.schema).name
+
+            response_type_schema_name = cast(BaseSchema, response_type.schema).serialization_type
             _LOGGER.warning(
                 "Multiple schema types in responses: %s. Choosing: %s", response_types, response_type_schema_name
             )
@@ -78,12 +79,17 @@ class LROOperation(Operation):
             response_type = response_types[0]
         self.lro_response = response_type
 
+    @property
+    def has_optional_return_type(self) -> bool:
+        """An LROOperation will never have an optional return type, we will always return LROPoller[return type]"""
+        return False
+
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
         file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-            file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)
+            file_import.add_from_import("azure.core.polling", "AsyncLROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)
             if code_model.options['azure_arm']:

@@ -53,7 +53,7 @@ class XmlOperations(object):
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndNoMeta or the result of cls(response)
+        :return: RootWithRefAndNoMeta, or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -83,7 +82,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('RootWithRefAndNoMeta', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}  # type: ignore
@@ -100,7 +99,7 @@ class XmlOperations(object):
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -119,7 +118,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(model, 'RootWithRefAndNoMeta', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -133,7 +131,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}  # type: ignore
 
@@ -146,7 +144,7 @@ class XmlOperations(object):
         """Get a complex type that has a ref to a complex type with XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RootWithRefAndMeta or the result of cls(response)
+        :return: RootWithRefAndMeta, or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -164,7 +162,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -176,7 +173,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('RootWithRefAndMeta', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}  # type: ignore
@@ -193,7 +190,7 @@ class XmlOperations(object):
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -212,7 +209,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(model, 'RootWithRefAndMeta', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -226,7 +222,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}  # type: ignore
 
@@ -239,7 +235,7 @@ class XmlOperations(object):
         """Get a simple XML document.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow or the result of cls(response)
+        :return: Slideshow, or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -257,7 +253,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -270,7 +265,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('Slideshow', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_simple.metadata = {'url': '/xml/simple'}  # type: ignore
@@ -287,7 +282,7 @@ class XmlOperations(object):
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -306,7 +301,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -321,7 +315,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_simple.metadata = {'url': '/xml/simple'}  # type: ignore
 
@@ -334,7 +328,7 @@ class XmlOperations(object):
         """Get an XML document with multiple wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel or the result of cls(response)
+        :return: AppleBarrel, or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -352,7 +346,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -364,7 +357,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('AppleBarrel', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}  # type: ignore
@@ -381,7 +374,7 @@ class XmlOperations(object):
         :param wrapped_lists:
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -400,7 +393,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(wrapped_lists, 'AppleBarrel', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -415,7 +407,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}  # type: ignore
 
@@ -428,7 +420,7 @@ class XmlOperations(object):
         """Get strongly-typed response headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -445,7 +437,6 @@ class XmlOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -458,7 +449,7 @@ class XmlOperations(object):
         response_headers['Custom-Header']=self._deserialize('str', response.headers.get('Custom-Header'))
 
         if cls:
-          return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)
 
     get_headers.metadata = {'url': '/xml/headers'}  # type: ignore
 
@@ -471,7 +462,7 @@ class XmlOperations(object):
         """Get an empty list.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Slideshow or the result of cls(response)
+        :return: Slideshow, or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -489,7 +480,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -501,7 +491,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('Slideshow', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_list.metadata = {'url': '/xml/empty-list'}  # type: ignore
@@ -518,7 +508,7 @@ class XmlOperations(object):
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -537,7 +527,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -551,7 +540,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_list.metadata = {'url': '/xml/empty-list'}  # type: ignore
 
@@ -564,7 +553,7 @@ class XmlOperations(object):
         """Gets some empty wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: AppleBarrel or the result of cls(response)
+        :return: AppleBarrel, or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -582,7 +571,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -594,7 +582,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('AppleBarrel', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}  # type: ignore
@@ -611,7 +599,7 @@ class XmlOperations(object):
         :param apple_barrel:
         :type apple_barrel: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -630,7 +618,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(apple_barrel, 'AppleBarrel', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -644,7 +631,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}  # type: ignore
 
@@ -657,7 +644,7 @@ class XmlOperations(object):
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana, or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -675,7 +662,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -687,7 +673,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_root_list.metadata = {'url': '/xml/root-list'}  # type: ignore
@@ -704,7 +690,7 @@ class XmlOperations(object):
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -723,7 +709,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
@@ -738,7 +723,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_root_list.metadata = {'url': '/xml/root-list'}  # type: ignore
 
@@ -751,7 +736,7 @@ class XmlOperations(object):
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana, or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -769,7 +754,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -781,7 +765,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}  # type: ignore
@@ -798,7 +782,7 @@ class XmlOperations(object):
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -817,7 +801,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
@@ -832,7 +815,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}  # type: ignore
 
@@ -845,7 +828,7 @@ class XmlOperations(object):
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of Banana, or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -863,7 +846,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -875,7 +857,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}  # type: ignore
@@ -892,7 +874,7 @@ class XmlOperations(object):
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -911,7 +893,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
@@ -926,7 +907,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}  # type: ignore
 
@@ -939,7 +920,7 @@ class XmlOperations(object):
         """Gets an XML document with an empty child element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Banana or the result of cls(response)
+        :return: Banana, or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -957,7 +938,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -969,7 +949,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('Banana', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
@@ -986,7 +966,7 @@ class XmlOperations(object):
         :param banana:
         :type banana: ~xmlservice.models.Banana
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1005,7 +985,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(banana, 'Banana', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -1019,7 +998,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
 
@@ -1032,7 +1011,7 @@ class XmlOperations(object):
         """Lists containers in a storage account.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListContainersResponse or the result of cls(response)
+        :return: ListContainersResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1052,7 +1031,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1064,7 +1042,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('ListContainersResponse', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list_containers.metadata = {'url': '/xml/'}  # type: ignore
@@ -1078,7 +1056,7 @@ class XmlOperations(object):
         """Gets storage service properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageServiceProperties or the result of cls(response)
+        :return: StorageServiceProperties, or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1100,7 +1078,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1112,7 +1089,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('StorageServiceProperties', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_service_properties.metadata = {'url': '/xml/'}  # type: ignore
@@ -1129,7 +1106,7 @@ class XmlOperations(object):
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1152,7 +1129,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(properties, 'StorageServiceProperties', is_xml=True)
         body_content_kwargs['content'] = body_content
@@ -1166,7 +1142,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_service_properties.metadata = {'url': '/xml/'}  # type: ignore
 
@@ -1179,7 +1155,7 @@ class XmlOperations(object):
         """Gets storage ACLs for a container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of SignedIdentifier, or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1201,7 +1177,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1213,7 +1188,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('[SignedIdentifier]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
@@ -1230,7 +1205,7 @@ class XmlOperations(object):
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1253,7 +1228,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'wrapped': True, 'itemsName': 'SignedIdentifier'}}
         body_content = self._serialize.body(properties, '[SignedIdentifier]', is_xml=True, serialization_ctxt=serialization_ctxt)
@@ -1268,7 +1242,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
 
@@ -1281,7 +1255,7 @@ class XmlOperations(object):
         """Lists blobs in a storage container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListBlobsResponse or the result of cls(response)
+        :return: ListBlobsResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1303,7 +1277,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/xml'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1315,7 +1288,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('ListBlobsResponse', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list_blobs.metadata = {'url': '/xml/mycontainer'}  # type: ignore
@@ -1327,12 +1300,13 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
+        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+        number 42.
 
         :param id:
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1353,7 +1327,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_properties, 'JSONInput')
         body_content_kwargs['content'] = body_content
@@ -1367,7 +1340,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     json_input.metadata = {'url': '/xml/jsoninput'}  # type: ignore
 
@@ -1380,7 +1353,7 @@ class XmlOperations(object):
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSONOutput or the result of cls(response)
+        :return: JSONOutput, or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1398,7 +1371,6 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1410,7 +1382,7 @@ class XmlOperations(object):
         deserialized = self._deserialize('JSONOutput', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     json_output.metadata = {'url': '/xml/jsonoutput'}  # type: ignore

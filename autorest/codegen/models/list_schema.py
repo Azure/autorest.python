@@ -43,7 +43,7 @@ class ListSchema(BaseSchema):
 
     @property
     def docstring_text(self) -> str:
-        return "list"
+        return f"list of {self.element_type.docstring_text}"
 
     @property
     def validation_map(self) -> Dict[str, Union[bool, int, str]]:

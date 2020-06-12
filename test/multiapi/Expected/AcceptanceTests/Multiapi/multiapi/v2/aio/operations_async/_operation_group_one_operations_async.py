@@ -49,7 +49,7 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelTwo parameter.
         :type parameter_one: ~multiapi.v2.models.ModelTwo
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
+        :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class OperationGroupOneOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if parameter_one is not None:
             body_content = self._serialize.body(parameter_one, 'ModelTwo')
@@ -91,7 +90,7 @@ class OperationGroupOneOperations:
         deserialized = self._deserialize('ModelTwo', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
@@ -103,7 +102,7 @@ class OperationGroupOneOperations:
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -122,7 +121,6 @@ class OperationGroupOneOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -133,6 +131,6 @@ class OperationGroupOneOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore

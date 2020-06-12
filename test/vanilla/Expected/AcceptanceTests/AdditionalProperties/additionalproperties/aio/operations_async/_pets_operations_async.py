@@ -51,7 +51,7 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPTrue or the result of cls(response)
+        :return: PetAPTrue, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class PetsOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPTrue')
         body_content_kwargs['content'] = body_content
@@ -88,7 +87,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPTrue', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}  # type: ignore
@@ -104,7 +103,7 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.CatAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CatAPTrue or the result of cls(response)
+        :return: CatAPTrue, or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -124,7 +123,6 @@ class PetsOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'CatAPTrue')
         body_content_kwargs['content'] = body_content
@@ -141,7 +139,7 @@ class PetsOperations:
         deserialized = self._deserialize('CatAPTrue', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}  # type: ignore
@@ -157,7 +155,7 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPObject
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPObject or the result of cls(response)
+        :return: PetAPObject, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -177,7 +175,6 @@ class PetsOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPObject')
         body_content_kwargs['content'] = body_content
@@ -194,7 +191,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPObject', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}  # type: ignore
@@ -210,7 +207,7 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPString or the result of cls(response)
+        :return: PetAPString, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -230,7 +227,6 @@ class PetsOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPString')
         body_content_kwargs['content'] = body_content
@@ -247,7 +243,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPString', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}  # type: ignore
@@ -263,7 +259,7 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInProperties or the result of cls(response)
+        :return: PetAPInProperties, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -283,7 +279,6 @@ class PetsOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
         body_content_kwargs['content'] = body_content
@@ -300,7 +295,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPInProperties', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}  # type: ignore
@@ -316,7 +311,7 @@ class PetsOperations:
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInPropertiesWithAPString or the result of cls(response)
+        :return: PetAPInPropertiesWithAPString, or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -336,7 +331,6 @@ class PetsOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
         body_content_kwargs['content'] = body_content
@@ -353,7 +347,7 @@ class PetsOperations:
         deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}  # type: ignore

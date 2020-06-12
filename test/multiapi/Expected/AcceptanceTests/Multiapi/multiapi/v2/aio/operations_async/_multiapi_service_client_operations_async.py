@@ -32,7 +32,7 @@ class MultiapiServiceClientOperationsMixin:
         :param message: An optional string parameter.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
+        :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -55,7 +55,6 @@ class MultiapiServiceClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -68,7 +67,7 @@ class MultiapiServiceClientOperationsMixin:
         deserialized = self._deserialize('ModelTwo', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore

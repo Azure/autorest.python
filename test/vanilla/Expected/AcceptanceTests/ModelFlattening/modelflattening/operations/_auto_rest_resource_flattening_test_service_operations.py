@@ -36,7 +36,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.Resource]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -55,7 +55,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_array is not None:
             body_content = self._serialize.body(resource_array, '[Resource]')
@@ -73,7 +72,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_array.metadata = {'url': '/model-flatten/array'}  # type: ignore
 
@@ -86,7 +85,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         """Get External Resource as an Array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of FlattenedProduct, or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -104,7 +103,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -117,7 +115,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         deserialized = self._deserialize('[FlattenedProduct]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}  # type: ignore
@@ -129,12 +127,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
 
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -153,7 +152,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_array is not None:
             body_content = self._serialize.body(resource_array, '[WrappedProduct]')
@@ -171,7 +169,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}  # type: ignore
 
@@ -181,10 +179,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> List["models.ProductWrapper"]
-        """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list or the result of cls(response)
+        :return: list of ProductWrapper, or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -202,7 +201,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -215,7 +213,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         deserialized = self._deserialize('[ProductWrapper]', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}  # type: ignore
@@ -232,7 +230,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param resource_dictionary: External Resource as a Dictionary to put.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -251,7 +249,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_dictionary is not None:
             body_content = self._serialize.body(resource_dictionary, '{FlattenedProduct}')
@@ -269,7 +266,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}  # type: ignore
 
@@ -282,7 +279,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         """Get External Resource as a Dictionary.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict or the result of cls(response)
+        :return: dict mapping str to FlattenedProduct, or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -300,7 +297,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -313,7 +309,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         deserialized = self._deserialize('{FlattenedProduct}', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}  # type: ignore
@@ -330,7 +326,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param resource_complex_object: External Resource as a ResourceCollection to put.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -349,7 +345,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_complex_object is not None:
             body_content = self._serialize.body(resource_complex_object, 'ResourceCollection')
@@ -367,7 +362,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}  # type: ignore
 
@@ -380,7 +375,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         """Get External Resource as a ResourceCollection.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ResourceCollection or the result of cls(response)
+        :return: ResourceCollection, or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -398,7 +393,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -411,7 +405,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         deserialized = self._deserialize('ResourceCollection', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}  # type: ignore
@@ -428,7 +422,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param simple_body_product: Simple body product to put.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SimpleProduct or the result of cls(response)
+        :return: SimpleProduct, or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -448,7 +442,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if simple_body_product is not None:
             body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
@@ -468,7 +461,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}  # type: ignore
@@ -499,7 +492,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param odata_value: URL value.
         :type odata_value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SimpleProduct or the result of cls(response)
+        :return: SimpleProduct, or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -521,7 +514,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _simple_body_product is not None:
             body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
@@ -541,7 +533,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}  # type: ignore
@@ -558,7 +550,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :param flatten_parameter_group: Parameter group.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SimpleProduct or the result of cls(response)
+        :return: SimpleProduct, or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -600,7 +592,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _simple_body_product is not None:
             body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
@@ -620,7 +611,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}  # type: ignore

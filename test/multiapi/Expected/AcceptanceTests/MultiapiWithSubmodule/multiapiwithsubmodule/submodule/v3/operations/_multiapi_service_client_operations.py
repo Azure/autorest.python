@@ -32,7 +32,7 @@ class MultiapiServiceClientOperationsMixin(object):
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of PagingResult or the result of cls(response)
+        :return: An iterator like instance of either PagingResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -41,21 +41,21 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
-            if not next_link:
-                # Construct URL
-                url = self.test_paging.metadata['url']  # type: ignore
-            else:
-                url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
-            # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+            if not next_link:
+                # Construct URL
+                url = self.test_paging.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def extract_data(pipeline_response):

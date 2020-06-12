@@ -13,6 +13,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ... import models
+
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -45,7 +47,7 @@ class IntOperations:
         :param input: Input int enum.
         :type input: str or ~nonstringenums.models.IntEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -65,7 +67,6 @@ class IntOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if input is not None:
             body_content = self._serialize.body(input, 'int')
@@ -84,7 +85,7 @@ class IntOperations:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put.metadata = {'url': '/nonStringEnums/int/put'}  # type: ignore
@@ -97,7 +98,7 @@ class IntOperations:
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntEnum or the result of cls(response)
+        :return: IntEnum, or the result of cls(response)
         :rtype: str or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -115,7 +116,6 @@ class IntOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -127,7 +127,7 @@ class IntOperations:
         deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get.metadata = {'url': '/nonStringEnums/int/get'}  # type: ignore

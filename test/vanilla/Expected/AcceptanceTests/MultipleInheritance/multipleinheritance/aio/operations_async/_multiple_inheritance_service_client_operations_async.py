@@ -28,7 +28,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Horse or the result of cls(response)
+        :return: Horse, or the result of cls(response)
         :rtype: ~multipleinheritance.models.Horse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -46,7 +46,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -59,7 +58,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('Horse', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_horse.metadata = {'url': '/multipleInheritance/horse'}  # type: ignore
@@ -75,7 +74,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :param horse: Put a horse with name 'General' and isAShowHorse false.
         :type horse: ~multipleinheritance.models.Horse
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -95,7 +94,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(horse, 'Horse')
         body_content_kwargs['content'] = body_content
@@ -111,7 +109,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_horse.metadata = {'url': '/multipleInheritance/horse'}  # type: ignore
@@ -124,7 +122,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         """Get a pet with name 'Peanut'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or the result of cls(response)
+        :return: Pet, or the result of cls(response)
         :rtype: ~multipleinheritance.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -142,7 +140,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -155,7 +152,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_pet.metadata = {'url': '/multipleInheritance/pet'}  # type: ignore
@@ -171,7 +168,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :param name:
         :type name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -193,7 +190,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_pet, 'Pet')
         body_content_kwargs['content'] = body_content
@@ -209,7 +205,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_pet.metadata = {'url': '/multipleInheritance/pet'}  # type: ignore
@@ -222,7 +218,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         """Get a feline where meows and hisses are true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Feline or the result of cls(response)
+        :return: Feline, or the result of cls(response)
         :rtype: ~multipleinheritance.models.Feline
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -240,7 +236,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -253,7 +248,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('Feline', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_feline.metadata = {'url': '/multipleInheritance/feline'}  # type: ignore
@@ -269,7 +264,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :param feline: Put a feline who hisses and doesn't meow.
         :type feline: ~multipleinheritance.models.Feline
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -289,7 +284,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(feline, 'Feline')
         body_content_kwargs['content'] = body_content
@@ -305,7 +299,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_feline.metadata = {'url': '/multipleInheritance/feline'}  # type: ignore
@@ -318,7 +312,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Cat or the result of cls(response)
+        :return: Cat, or the result of cls(response)
         :rtype: ~multipleinheritance.models.Cat
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -336,7 +330,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -349,7 +342,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('Cat', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_cat.metadata = {'url': '/multipleInheritance/cat'}  # type: ignore
@@ -365,7 +358,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
         :type cat: ~multipleinheritance.models.Cat
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -385,7 +378,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(cat, 'Cat')
         body_content_kwargs['content'] = body_content
@@ -401,7 +393,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_cat.metadata = {'url': '/multipleInheritance/cat'}  # type: ignore
@@ -411,10 +403,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
         self,
         **kwargs
     ) -> "models.Kitten":
-        """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false.
+        """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
+        is false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Kitten or the result of cls(response)
+        :return: Kitten, or the result of cls(response)
         :rtype: ~multipleinheritance.models.Kitten
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -432,7 +425,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -445,7 +437,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('Kitten', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_kitten.metadata = {'url': '/multipleInheritance/kitten'}  # type: ignore
@@ -456,13 +448,14 @@ class MultipleInheritanceServiceClientOperationsMixin:
         kitten: "models.Kitten",
         **kwargs
     ) -> str:
-        """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is true.
+        """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
+        true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true.
         :type kitten: ~multipleinheritance.models.Kitten
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str or the result of cls(response)
+        :return: str, or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -482,7 +475,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(kitten, 'Kitten')
         body_content_kwargs['content'] = body_content
@@ -498,7 +490,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_kitten.metadata = {'url': '/multipleInheritance/kitten'}  # type: ignore

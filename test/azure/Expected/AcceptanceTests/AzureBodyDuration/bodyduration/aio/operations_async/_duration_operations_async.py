@@ -49,7 +49,7 @@ class DurationOperations:
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or the result of cls(response)
+        :return: timedelta, or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -67,7 +67,6 @@ class DurationOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -80,7 +79,7 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/duration/null'}  # type: ignore
@@ -96,7 +95,7 @@ class DurationOperations:
         :param duration_body:
         :type duration_body: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -115,7 +114,6 @@ class DurationOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(duration_body, 'duration')
         body_content_kwargs['content'] = body_content
@@ -130,7 +128,7 @@ class DurationOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
 
@@ -142,7 +140,7 @@ class DurationOperations:
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or the result of cls(response)
+        :return: timedelta, or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -160,7 +158,6 @@ class DurationOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -173,7 +170,7 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}  # type: ignore
@@ -186,7 +183,7 @@ class DurationOperations:
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or the result of cls(response)
+        :return: timedelta, or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -204,7 +201,6 @@ class DurationOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -217,7 +213,7 @@ class DurationOperations:
         deserialized = self._deserialize('duration', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/duration/invalid'}  # type: ignore

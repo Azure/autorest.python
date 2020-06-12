@@ -48,7 +48,7 @@ class NumberOperations:
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -66,7 +66,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -79,7 +78,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/number/null'}  # type: ignore
@@ -92,7 +91,7 @@ class NumberOperations:
         """Get invalid float Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -110,7 +109,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -123,7 +121,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}  # type: ignore
@@ -136,7 +134,7 @@ class NumberOperations:
         """Get invalid double Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -154,7 +152,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -167,7 +164,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}  # type: ignore
@@ -180,7 +177,7 @@ class NumberOperations:
         """Get invalid decimal Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -198,7 +195,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -211,7 +207,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}  # type: ignore
@@ -227,7 +223,7 @@ class NumberOperations:
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -246,7 +242,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -261,7 +256,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}  # type: ignore
 
@@ -273,7 +268,7 @@ class NumberOperations:
         """Get big float value 3.402823e+20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -291,7 +286,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -304,7 +298,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}  # type: ignore
@@ -320,7 +314,7 @@ class NumberOperations:
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -339,7 +333,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -354,7 +347,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}  # type: ignore
 
@@ -366,7 +359,7 @@ class NumberOperations:
         """Get big double value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -384,7 +377,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -397,7 +389,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}  # type: ignore
@@ -410,7 +402,7 @@ class NumberOperations:
         """Put big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -430,7 +422,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -445,7 +436,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}  # type: ignore
 
@@ -457,7 +448,7 @@ class NumberOperations:
         """Get big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -475,7 +466,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -488,7 +478,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}  # type: ignore
@@ -501,7 +491,7 @@ class NumberOperations:
         """Put big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -521,7 +511,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -536,7 +525,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}  # type: ignore
 
@@ -548,7 +537,7 @@ class NumberOperations:
         """Get big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -566,7 +555,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -579,7 +567,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}  # type: ignore
@@ -595,7 +583,7 @@ class NumberOperations:
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -614,7 +602,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -629,7 +616,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}  # type: ignore
 
@@ -641,7 +628,7 @@ class NumberOperations:
         """Get big decimal value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -659,7 +646,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -672,7 +658,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}  # type: ignore
@@ -685,7 +671,7 @@ class NumberOperations:
         """Put big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -705,7 +691,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -720,7 +705,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}  # type: ignore
 
@@ -732,7 +717,7 @@ class NumberOperations:
         """Get big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -750,7 +735,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -763,7 +747,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}  # type: ignore
@@ -776,7 +760,7 @@ class NumberOperations:
         """Put big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -796,7 +780,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -811,7 +794,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}  # type: ignore
 
@@ -823,7 +806,7 @@ class NumberOperations:
         """Get big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -841,7 +824,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -854,7 +836,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}  # type: ignore
@@ -870,7 +852,7 @@ class NumberOperations:
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -889,7 +871,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -904,7 +885,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}  # type: ignore
 
@@ -916,7 +897,7 @@ class NumberOperations:
         """Get big double value 3.402823e-20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -934,7 +915,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -947,7 +927,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}  # type: ignore
@@ -963,7 +943,7 @@ class NumberOperations:
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -982,7 +962,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -997,7 +976,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}  # type: ignore
 
@@ -1009,7 +988,7 @@ class NumberOperations:
         """Get big double value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1027,7 +1006,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1040,7 +1018,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}  # type: ignore
@@ -1056,7 +1034,7 @@ class NumberOperations:
         :param number_body:
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1075,7 +1053,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(number_body, 'float')
         body_content_kwargs['content'] = body_content
@@ -1090,7 +1067,7 @@ class NumberOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}  # type: ignore
 
@@ -1102,7 +1079,7 @@ class NumberOperations:
         """Get small decimal value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or the result of cls(response)
+        :return: float, or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1120,7 +1097,6 @@ class NumberOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1133,7 +1109,7 @@ class NumberOperations:
         deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}  # type: ignore

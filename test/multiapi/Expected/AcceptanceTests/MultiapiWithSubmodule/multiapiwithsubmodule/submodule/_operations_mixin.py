@@ -10,10 +10,18 @@
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
 from typing import TYPE_CHECKING
+import warnings
+
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.paging import ItemPaged
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.polling.base_polling import LROBasePolling
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional, Union
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -28,11 +36,16 @@ class MultiapiServiceClientOperationsMixin(object):
         :param product: Product to put.
         :type product: ~multiapiwithsubmodule.submodule.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
-        :rtype: ~multiapiwithsubmodule.submodule.v1.models.Product or None
-        :raises: ~azure.core.exceptions.HttpResponseError
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: True for ARMPolling, False for no polling, or a
+         polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :return: An instance of LROPoller that returns either Product or the result of cls(response)
+        :rtype: ~azure.core.polling.LROPoller[~multiapiwithsubmodule.submodule.v1.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
-        api_version = self._get_api_version('test_lro')
+        api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
@@ -42,7 +55,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test_lro(product, **kwargs)
+        return mixin_instance.begin_test_lro(product, **kwargs)
 
     def test_one(
         self,
@@ -57,7 +70,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :param message: An optional string parameter.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
+        :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -82,8 +95,8 @@ class MultiapiServiceClientOperationsMixin(object):
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PagingResult or the result of cls(response)
-        :rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult
+        :return: An iterator like instance of either PagingResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = self._get_api_version('test_paging')

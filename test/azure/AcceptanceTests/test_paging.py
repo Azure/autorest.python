@@ -88,6 +88,11 @@ def test_get_multiple_pages(client):
     items = [i for i in pages]
     assert len(items) == 10
 
+def test_query_params(client):
+    pages = client.paging.get_with_query_params(required_query_parameter='100')
+    items = [i for i in pages]
+    assert len(items) == 2
+
 def test_get_odata_multiple_pages(client):
     pages = client.paging.get_odata_multiple_pages()
     items = [i for i in pages]
@@ -165,3 +170,8 @@ def test_get_multiple_pages_lro(client):
     assert len(page1.values) == 1
     assert page1.values[0].properties.id == 1
     assert page1.next_link.endswith("paging/multiple/page/2")
+
+def test_item_name_with_xms_client_name(client):
+    pages = client.paging.get_paging_model_with_item_name_with_xms_client_name()
+    items = [i for i in pages]
+    assert len(items) == 1

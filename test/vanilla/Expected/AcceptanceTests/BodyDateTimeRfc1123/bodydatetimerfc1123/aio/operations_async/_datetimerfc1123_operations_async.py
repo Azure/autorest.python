@@ -49,7 +49,7 @@ class Datetimerfc1123Operations:
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -67,7 +67,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -80,7 +79,7 @@ class Datetimerfc1123Operations:
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/datetimerfc1123/null'}  # type: ignore
@@ -93,7 +92,7 @@ class Datetimerfc1123Operations:
         """Get invalid datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -111,7 +110,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -124,7 +122,7 @@ class Datetimerfc1123Operations:
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}  # type: ignore
@@ -137,7 +135,7 @@ class Datetimerfc1123Operations:
         """Get overflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -155,7 +153,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -168,7 +165,7 @@ class Datetimerfc1123Operations:
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}  # type: ignore
@@ -181,7 +178,7 @@ class Datetimerfc1123Operations:
         """Get underflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -199,7 +196,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -212,7 +208,7 @@ class Datetimerfc1123Operations:
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}  # type: ignore
@@ -228,7 +224,7 @@ class Datetimerfc1123Operations:
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -247,7 +243,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
         body_content_kwargs['content'] = body_content
@@ -262,7 +257,7 @@ class Datetimerfc1123Operations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}  # type: ignore
 
@@ -274,7 +269,7 @@ class Datetimerfc1123Operations:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -292,7 +287,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -305,7 +299,7 @@ class Datetimerfc1123Operations:
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}  # type: ignore
@@ -318,7 +312,7 @@ class Datetimerfc1123Operations:
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -336,7 +330,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -349,7 +342,7 @@ class Datetimerfc1123Operations:
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}  # type: ignore
@@ -365,7 +358,7 @@ class Datetimerfc1123Operations:
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -384,7 +377,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
         body_content_kwargs['content'] = body_content
@@ -399,7 +391,7 @@ class Datetimerfc1123Operations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore
 
@@ -411,7 +403,7 @@ class Datetimerfc1123Operations:
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or the result of cls(response)
+        :return: datetime, or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -429,7 +421,6 @@ class Datetimerfc1123Operations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -442,7 +433,7 @@ class Datetimerfc1123Operations:
         deserialized = self._deserialize('rfc-1123', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore

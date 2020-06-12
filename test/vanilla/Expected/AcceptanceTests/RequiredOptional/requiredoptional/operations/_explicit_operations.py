@@ -51,12 +51,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put null and the client library should throw before
+        the request is sent.
 
         :param body_parameter:
         :type body_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -75,7 +76,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, 'int')
         body_content_kwargs['content'] = body_content
@@ -90,7 +90,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
 
@@ -106,7 +106,7 @@ class ExplicitOperations(object):
         :param body_parameter:
         :type body_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -125,7 +125,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, 'int')
@@ -143,7 +142,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
 
@@ -154,12 +153,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -180,7 +180,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'IntWrapper')
         body_content_kwargs['content'] = body_content
@@ -195,7 +194,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
 
@@ -211,7 +210,7 @@ class ExplicitOperations(object):
         :param value:
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -232,7 +231,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
@@ -250,7 +248,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
 
@@ -261,12 +259,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -284,7 +283,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -295,7 +293,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
 
@@ -311,7 +309,7 @@ class ExplicitOperations(object):
         :param header_parameter:
         :type header_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -330,7 +328,6 @@ class ExplicitOperations(object):
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -341,7 +338,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore
 
@@ -352,12 +349,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required string. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put null and the client library should throw before the
+        request is sent.
 
         :param body_parameter:
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -376,7 +374,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, 'str')
         body_content_kwargs['content'] = body_content
@@ -391,7 +388,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}  # type: ignore
 
@@ -407,7 +404,7 @@ class ExplicitOperations(object):
         :param body_parameter:
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -426,7 +423,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, 'str')
@@ -444,7 +440,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}  # type: ignore
 
@@ -455,12 +451,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -481,7 +478,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'StringWrapper')
         body_content_kwargs['content'] = body_content
@@ -496,7 +492,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}  # type: ignore
 
@@ -512,7 +508,7 @@ class ExplicitOperations(object):
         :param value:
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -533,7 +529,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'StringOptionalWrapper')
@@ -551,7 +546,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}  # type: ignore
 
@@ -562,12 +557,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required string. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -585,7 +581,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -596,7 +591,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}  # type: ignore
 
@@ -612,7 +607,7 @@ class ExplicitOperations(object):
         :param body_parameter:
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -631,7 +626,6 @@ class ExplicitOperations(object):
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -642,7 +636,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}  # type: ignore
 
@@ -653,12 +647,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required complex object. Please put null and the client library should throw
+        before the request is sent.
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -677,7 +672,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, 'Product')
         body_content_kwargs['content'] = body_content
@@ -692,7 +686,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}  # type: ignore
 
@@ -708,7 +702,7 @@ class ExplicitOperations(object):
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -727,7 +721,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, 'Product')
@@ -745,7 +738,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}  # type: ignore
 
@@ -756,12 +749,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
+        and the client library should throw before the request is sent.
 
         :param value:
         :type value: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -782,7 +776,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
         body_content_kwargs['content'] = body_content
@@ -797,7 +790,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}  # type: ignore
 
@@ -813,7 +806,7 @@ class ExplicitOperations(object):
         :param value:
         :type value: ~requiredoptional.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -834,7 +827,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'ClassOptionalWrapper')
@@ -852,7 +844,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}  # type: ignore
 
@@ -863,12 +855,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required array. Please put null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put null and the client library should throw before the
+        request is sent.
 
         :param body_parameter:
         :type body_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -887,7 +880,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, '[str]')
         body_content_kwargs['content'] = body_content
@@ -902,7 +894,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}  # type: ignore
 
@@ -918,7 +910,7 @@ class ExplicitOperations(object):
         :param body_parameter:
         :type body_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -937,7 +929,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, '[str]')
@@ -955,7 +946,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}  # type: ignore
 
@@ -966,12 +957,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
+        client library should throw before the request is sent.
 
         :param value:
         :type value: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -992,7 +984,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
         body_content_kwargs['content'] = body_content
@@ -1007,7 +998,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}  # type: ignore
 
@@ -1023,7 +1014,7 @@ class ExplicitOperations(object):
         :param value:
         :type value: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1044,7 +1035,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'ArrayOptionalWrapper')
@@ -1062,7 +1052,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}  # type: ignore
 
@@ -1073,12 +1063,13 @@ class ExplicitOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
+        """Test explicitly required array. Please put a header 'headerParameter' => null and the client
+        library should throw before the request is sent.
 
         :param header_parameter:
         :type header_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1096,7 +1087,6 @@ class ExplicitOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1107,7 +1097,7 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}  # type: ignore
 
@@ -1123,7 +1113,7 @@ class ExplicitOperations(object):
         :param header_parameter:
         :type header_parameter: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1142,7 +1132,6 @@ class ExplicitOperations(object):
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
 
-        # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1153,6 +1142,6 @@ class ExplicitOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}  # type: ignore

@@ -54,7 +54,7 @@ class OperationGroupOneOperations(object):
         :param parameter_one: A ModelThree parameter.
         :type parameter_one: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelThree or the result of cls(response)
+        :return: ModelThree, or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -76,7 +76,6 @@ class OperationGroupOneOperations(object):
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if parameter_one is not None:
             body_content = self._serialize.body(parameter_one, 'ModelThree')
@@ -96,7 +95,7 @@ class OperationGroupOneOperations(object):
         deserialized = self._deserialize('ModelThree', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore

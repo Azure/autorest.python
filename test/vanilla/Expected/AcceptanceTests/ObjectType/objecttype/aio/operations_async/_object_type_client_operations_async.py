@@ -23,10 +23,11 @@ class ObjectTypeClientOperationsMixin:
         self,
         **kwargs
     ) -> object:
-        """Basic get that returns an object. Returns object { 'message': 'An object was successfully returned' }.
+        """Basic get that returns an object. Returns object { 'message': 'An object was successfully
+        returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: object or the result of cls(response)
+        :return: object, or the result of cls(response)
         :rtype: object
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -44,7 +45,6 @@ class ObjectTypeClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -57,7 +57,7 @@ class ObjectTypeClientOperationsMixin:
         deserialized = self._deserialize('object', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get.metadata = {'url': '/objectType/get'}  # type: ignore
@@ -68,12 +68,13 @@ class ObjectTypeClientOperationsMixin:
         put_object: object,
         **kwargs
     ) -> None:
-        """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an object error.
+        """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
+        object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
         :type put_object: object
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -92,7 +93,6 @@ class ObjectTypeClientOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(put_object, 'object')
         body_content_kwargs['content'] = body_content
@@ -107,6 +107,6 @@ class ObjectTypeClientOperationsMixin:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put.metadata = {'url': '/objectType/put'}  # type: ignore

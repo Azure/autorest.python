@@ -116,6 +116,9 @@ class TestUrl(object):
     def test_string_url_encoded(self, client):
         client.paths.string_url_encoded()
 
+    def test_paths_unicode(self, client):
+        client.paths.string_unicode()
+
     def test_string_url_non_encoded(self, client):
         client.paths.string_url_non_encoded()
 
@@ -176,6 +179,9 @@ class TestUrl(object):
     def test_queries_enum(self, client):
         client.queries.enum_valid(UriColor.green_color)
         client.queries.enum_null(None)
+
+    def test_queries_unicode(self, client):
+        client.queries.string_unicode()
 
     def test_array_string_csv(self, client, test_array_query):
         client.queries.array_string_csv_empty([])

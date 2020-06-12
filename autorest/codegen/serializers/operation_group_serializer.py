@@ -33,7 +33,10 @@ class OperationGroupSerializer:
             code_model=self.code_model,
             operation_group=self.operation_group,
             imports=FileImportSerializer(
-                self.operation_group.imports(self.async_mode, bool(self.code_model.schemas)),
+                self.operation_group.imports(
+                    self.async_mode,
+                    bool(self.code_model.schemas or self.code_model.enums)
+                ),
                 is_python_3_file=self.async_mode
             ),
             async_mode=self.async_mode,

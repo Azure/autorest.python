@@ -49,15 +49,15 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -71,7 +71,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -86,7 +85,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}  # type: ignore
@@ -96,15 +95,15 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -118,7 +117,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -133,7 +131,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}  # type: ignore
@@ -143,15 +141,15 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -165,7 +163,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -180,7 +177,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}  # type: ignore
@@ -190,15 +187,15 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -212,7 +209,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -227,7 +223,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}  # type: ignore
@@ -237,15 +233,15 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> Optional["models.MyException"]
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -259,7 +255,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -274,7 +269,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}  # type: ignore
@@ -288,7 +283,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B or the result of cls(response)
+        :return: MyException or B, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -306,7 +301,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -316,7 +310,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -324,7 +317,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}  # type: ignore
@@ -338,7 +331,7 @@ class MultipleResponsesOperations(object):
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B or the result of cls(response)
+        :return: MyException or B, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -356,7 +349,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -366,7 +358,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -374,7 +365,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}  # type: ignore
@@ -388,7 +379,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or B or the result of cls(response)
+        :return: MyException or B, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -406,7 +397,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -416,7 +406,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -424,7 +413,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}  # type: ignore
@@ -438,7 +427,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D or the result of cls(response)
+        :return: MyException or C or D, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -456,7 +445,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -466,7 +454,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -477,7 +464,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}  # type: ignore
@@ -491,7 +478,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D or the result of cls(response)
+        :return: MyException or C or D, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -509,7 +496,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -519,7 +505,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -530,7 +515,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}  # type: ignore
@@ -544,7 +529,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D or the result of cls(response)
+        :return: MyException or C or D, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -562,7 +547,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -572,7 +556,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -583,7 +566,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}  # type: ignore
@@ -597,7 +580,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or C or D or the result of cls(response)
+        :return: MyException or C or D, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -615,7 +598,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -625,7 +607,6 @@ class MultipleResponsesOperations(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('MyException', pipeline_response)
 
@@ -636,7 +617,7 @@ class MultipleResponsesOperations(object):
             deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}  # type: ignore
@@ -650,7 +631,7 @@ class MultipleResponsesOperations(object):
         """Send a 202 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -667,7 +648,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -678,7 +658,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}  # type: ignore
 
@@ -691,7 +671,7 @@ class MultipleResponsesOperations(object):
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -708,7 +688,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -719,7 +698,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}  # type: ignore
 
@@ -732,7 +711,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -749,7 +728,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -760,7 +738,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}  # type: ignore
 
@@ -773,7 +751,7 @@ class MultipleResponsesOperations(object):
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -790,7 +768,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -800,7 +777,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}  # type: ignore
 
@@ -813,7 +790,7 @@ class MultipleResponsesOperations(object):
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -830,7 +807,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -840,7 +816,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}  # type: ignore
 
@@ -853,7 +829,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -870,7 +846,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -880,7 +855,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}  # type: ignore
 
@@ -893,7 +868,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -910,7 +885,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -920,7 +894,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}  # type: ignore
 
@@ -933,7 +907,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -951,7 +925,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -963,7 +936,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}  # type: ignore
@@ -977,7 +950,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -995,7 +968,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1007,7 +979,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}  # type: ignore
@@ -1021,7 +993,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1038,7 +1010,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1049,7 +1020,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}  # type: ignore
 
@@ -1062,7 +1033,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1079,7 +1050,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1090,7 +1060,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}  # type: ignore
 
@@ -1103,7 +1073,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1120,7 +1090,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1130,7 +1099,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}  # type: ignore
 
@@ -1143,7 +1112,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1160,7 +1129,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1170,7 +1138,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}  # type: ignore
 
@@ -1183,7 +1151,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1200,7 +1168,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1210,7 +1177,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}  # type: ignore
 
@@ -1223,7 +1190,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1240,7 +1207,6 @@ class MultipleResponsesOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1250,7 +1216,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}  # type: ignore
 
@@ -1260,10 +1226,11 @@ class MultipleResponsesOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.MyException"
-        """Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A.
+        """Send a 200 response with no payload, when a payload is expected - client should return a null
+        object of thde type for model A.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1281,7 +1248,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1293,7 +1259,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}  # type: ignore
@@ -1307,7 +1273,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1325,7 +1291,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1337,7 +1302,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}  # type: ignore
@@ -1351,7 +1316,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1369,7 +1334,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1381,7 +1345,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}  # type: ignore
@@ -1395,7 +1359,7 @@ class MultipleResponsesOperations(object):
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1413,7 +1377,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1425,7 +1388,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}  # type: ignore
@@ -1439,7 +1402,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1457,7 +1420,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1469,7 +1431,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}  # type: ignore
@@ -1483,7 +1445,7 @@ class MultipleResponsesOperations(object):
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1501,7 +1463,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1513,7 +1474,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}  # type: ignore
@@ -1527,7 +1488,7 @@ class MultipleResponsesOperations(object):
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or the result of cls(response)
+        :return: MyException, or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1545,7 +1506,6 @@ class MultipleResponsesOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1557,7 +1517,7 @@ class MultipleResponsesOperations(object):
         deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a202_valid.metadata = {'url': '/http/payloads/200/A/response/202/valid'}  # type: ignore

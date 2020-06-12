@@ -28,8 +28,6 @@ class Client:
         file_import.add_from_import("msrest", "Deserializer", ImportType.AZURECORE)
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
-        # if code_model.options["credential"]:
-        #     file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
         any_optional_gp = any(not gp.required for gp in code_model.global_parameters)
 
         if any_optional_gp or code_model.base_url:
@@ -43,4 +41,10 @@ class Client:
             file_import.add_from_import(
                 "azure.core", Client.pipeline_class(code_model, async_mode), ImportType.AZURECORE
             )
+
+        if not code_model.sorted_schemas:
+            # in this case, we have client_models = {} in the service client, which needs a type annotation
+            # this import will always be commented, so will always add it to the typing section
+            file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.TYPING)
+
         return file_import

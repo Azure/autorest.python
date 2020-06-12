@@ -53,7 +53,7 @@ class ByteOperations(object):
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -71,7 +71,6 @@ class ByteOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -84,7 +83,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/byte/null'}  # type: ignore
@@ -98,7 +97,7 @@ class ByteOperations(object):
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -116,7 +115,6 @@ class ByteOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -129,7 +127,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/byte/empty'}  # type: ignore
@@ -143,7 +141,7 @@ class ByteOperations(object):
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -161,7 +159,6 @@ class ByteOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -174,7 +171,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
@@ -191,7 +188,7 @@ class ByteOperations(object):
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
         :type byte_body: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -210,7 +207,6 @@ class ByteOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(byte_body, 'bytearray')
         body_content_kwargs['content'] = body_content
@@ -225,7 +221,7 @@ class ByteOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
 
@@ -238,7 +234,7 @@ class ByteOperations(object):
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray or the result of cls(response)
+        :return: bytearray, or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -256,7 +252,6 @@ class ByteOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
-        # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -269,7 +264,7 @@ class ByteOperations(object):
         deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/byte/invalid'}  # type: ignore

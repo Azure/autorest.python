@@ -1,0 +1,79 @@
+{
+    "chosen_version": "1.0.0",
+    "total_api_version_list": ["1.0.0"],
+    "client": {
+        "name": "MultiapiServiceClient",
+        "filename": "_multiapi_service_client",
+        "description": "Service client for multiapi client testing."
+    },
+    "global_parameters": {
+        "sync_method": {
+            "credential": {
+                "method_signature": "credential,  # type: \"TokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials.TokenCredential",
+                "required": true
+            }
+        },
+        "async_method": {
+            "credential": {
+                "method_signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
+                "required": true
+            }
+        },
+        "constant": {
+        },
+        "call": "credential"
+    },
+    "config": {
+        "credential": true,
+        "credential_scopes": null,
+        "credential_default_policy_type": "AzureKeyCredentialPolicy",
+        "credential_default_policy_type_has_async_version": false
+    },
+    "operation_groups": {
+        "operation_group_one": "OperationGroupOneOperations"
+    },
+    "operation_mixins": {
+        "test_one" : {
+            "sync": {
+                "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"TestOne should be in an FirstVersionOperationsMixin.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "async": {
+                "signature": "async def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs\n) -\u003e None:\n",
+                "coroutine": true,
+                "doc": "\"\"\"TestOne should be in an FirstVersionOperationsMixin.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "call": "id, message"
+        },
+        "_test_lro_initial" : {
+            "sync": {
+                "signature": "def _test_lro_initial(\n    self,\n    product=None,  # type: Optional[\"models.Product\"]\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"\n\n:param product: Product to put.\n:type product: ~multiapicredentialdefaultpolicy.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapicredentialdefaultpolicy.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "async": {
+                "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e Optional[\"models.Product\"]:\n",
+                "coroutine": true,
+                "doc": "\"\"\"\n\n:param product: Product to put.\n:type product: ~multiapicredentialdefaultpolicy.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapicredentialdefaultpolicy.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "call": "product"
+        },
+        "begin_test_lro" : {
+            "sync": {
+                "signature": "def begin_test_lro(\n    self,\n    product=None,  # type: Optional[\"models.Product\"]\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put.\n:type product: ~multiapicredentialdefaultpolicy.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword str continuation_token: A continuation token to restart a poller from a saved state.\n:keyword polling: True for ARMPolling, False for no polling, or a\n polling object for personal polling strategy\n:paramtype polling: bool or ~azure.core.polling.PollingMethod\n:keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.\n:return: An instance of LROPoller that returns either Product or the result of cls(response)\n:rtype: ~azure.core.polling.LROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\""
+            },
+            "async": {
+                "signature": "async def begin_test_lro(\n    self,\n    product: Optional[\"models.Product\"] = None,\n    **kwargs\n) -\u003e AsyncLROPoller[\"models.Product\"]:\n",
+                "coroutine": true,
+                "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put.\n:type product: ~multiapicredentialdefaultpolicy.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword str continuation_token: A continuation token to restart a poller from a saved state.\n:keyword polling: True for ARMPolling, False for no polling, or a\n polling object for personal polling strategy\n:paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod\n:keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.\n:return: An instance of AsyncLROPoller that returns either Product or the result of cls(response)\n:rtype: ~azure.core.polling.AsyncLROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\""
+            },
+            "call": "product"
+        }
+    },
+    "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"], \"azure.core.polling\": [\"LROPoller\", \"NoPolling\", \"PollingMethod\"], \"azure.core.polling.base_polling\": [\"LROBasePolling\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\", \"Union\"]}}}",
+    "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"], \"azure.core.polling\": [\"AsyncLROPoller\", \"AsyncNoPolling\", \"AsyncPollingMethod\"], \"azure.core.polling.async_base_polling\": [\"AsyncLROBasePolling\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\", \"Union\"]}}}"
+}

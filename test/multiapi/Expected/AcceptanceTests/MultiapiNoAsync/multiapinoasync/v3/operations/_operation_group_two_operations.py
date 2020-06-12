@@ -16,7 +16,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -45,17 +45,18 @@ class OperationGroupTwoOperations(object):
 
     def test_four(
         self,
-        input=None,  # type: Optional[Union[str, "models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, "models.SourcePath"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: str, ~multiapinoasync.v3.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API.
+        :type input: IO or ~multiapinoasync.v3.models.SourcePath
+        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -76,11 +77,10 @@ class OperationGroupTwoOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
-        # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if header_parameters['Content-Type'] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
+        if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
             body_content_kwargs['stream_content'] = input
-        elif header_parameters['Content-Type'] in ['application/json']:
+        elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
             if input is not None:
                 body_content = self._serialize.body(input, 'SourcePath')
             else:
@@ -88,7 +88,8 @@ class OperationGroupTwoOperations(object):
             body_content_kwargs['content'] = body_content
         else:
             raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
             )
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -101,7 +102,7 @@ class OperationGroupTwoOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
 
@@ -113,7 +114,7 @@ class OperationGroupTwoOperations(object):
         """TestFive should be in OperationGroupTwoOperations.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -132,7 +133,6 @@ class OperationGroupTwoOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -143,6 +143,6 @@ class OperationGroupTwoOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-          return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})
 
     test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore

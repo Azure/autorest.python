@@ -20,6 +20,7 @@ from .parameter_list import ParameterList
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 from .property import Property
+from .primitive_schemas import IOSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -54,37 +55,18 @@ class CredentialSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import(
-            "azure.core.credentials", "TokenCredential",
-            ImportType.AZURECORE,
-            typing_section=TypingSection.TYPING
-        )
-        return file_import
-
-
-class IOSchema(BaseSchema):
-    def __init__(self) -> None:  # pylint: disable=super-init-not-called
-        self.type = "IO"
-
-    @property
-    def serialization_type(self) -> str:
-        return self.type
-
-    @property
-    def docstring_type(self) -> str:
-        return self.type
-
-    @property
-    def type_annotation(self) -> str:
-        return self.docstring_type
-
-    @property
-    def docstring_text(self) -> str:
-        return "IO"
-
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if self.async_mode:
+            file_import.add_from_import(
+                "azure.core.credentials_async", "AsyncTokenCredential",
+                ImportType.AZURECORE,
+                typing_section=TypingSection.TYPING
+            )
+        else:
+            file_import.add_from_import(
+                "azure.core.credentials", "TokenCredential",
+                ImportType.AZURECORE,
+                typing_section=TypingSection.TYPING
+            )
         return file_import
 
 
@@ -344,7 +326,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         if isinstance(obj, Parameter) and obj.target_property_name:
             self._populate_target_property(obj)
         if isinstance(obj, SchemaResponse) and obj.is_stream_response:
-            obj.schema = IOSchema()
+            obj.schema = IOSchema(namespace=None, yaml_data={})
 
     def add_schema_link_to_operation(self) -> None:
         """Puts created schemas into operation classes `schema` property
@@ -376,7 +358,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     type_annot = ", ".join([
                         param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
                     ])
-                    docstring_type = ", ".join([
+                    docstring_type = " or ".join([
                         param.schema.docstring_type for param in operation.multiple_media_type_parameters
                     ])
                     chosen_parameter = next(

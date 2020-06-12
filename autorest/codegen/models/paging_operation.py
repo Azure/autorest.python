@@ -77,14 +77,13 @@ class PagingOperation(Operation):
             # Default value. I still check if I find it,  so I can do a nice message.
             item_name = "value"
             try:
-                self._find_python_name(item_name, "itemName")
+                return self._find_python_name(item_name, "itemName")
             except ValueError:
                 response = self._get_response()
                 raise ValueError(
                     f"While scanning x-ms-pageable, itemName was not defined and object"
                     + f" {response.schema.name} has no array called 'value'"
                 )
-            return item_name
         return self._find_python_name(self._item_name, "itemName")
 
     @property
@@ -93,6 +92,11 @@ class PagingOperation(Operation):
             # That's an ok scenario, it just means no next page possible
             return None
         return self._find_python_name(self._next_link_name, "nextLinkName")
+
+    @property
+    def has_optional_return_type(self) -> bool:
+        """A paging will never have an optional return type, we will always return ItemPaged[return type]"""
+        return False
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)
