@@ -9,6 +9,10 @@ Modelerfour version: 4.13.351
 `AzureKeyCredentialPolicy`. The value passed in will be the default authentication policy in the client's config, so users using the
 generated library will use that auth policy unless they pass in a separate one through kwargs  #686
 
+**Bug Fixes**
+
+- Fix typing for discriminator values in models, so Python 3.5 can import py3 file for models  #691
+
 ### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351
 
