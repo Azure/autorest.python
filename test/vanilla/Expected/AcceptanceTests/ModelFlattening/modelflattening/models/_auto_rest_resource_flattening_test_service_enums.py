@@ -6,18 +6,36 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from enum import Enum, EnumMeta
 
-class FlattenedProductPropertiesProvisioningStateValues(str, Enum):
+class CaseInsensitiveEnumMeta(EnumMeta):
+    def __getitem__(self, name):
+        return super().__getitem__(name.upper())
 
-    succeeded = "Succeeded"
-    failed = "Failed"
-    canceled = "canceled"
-    accepted = "Accepted"
-    creating = "Creating"
-    created = "Created"
-    updating = "Updating"
-    updated = "Updated"
-    deleting = "Deleting"
-    deleted = "Deleted"
-    ok = "OK"
+    def __getattr__(cls, name):
+        """Return the enum member matching `name`
+        We use __getattr__ instead of descriptors or inserting into the enum
+        class' __dict__ in order to support `name` and `value` being both
+        properties for enum members (which live in the class' __dict__) and
+        enum members themselves.
+        """
+        try:
+            return cls._member_map_[name.upper()]
+        except KeyError:
+            raise AttributeError(name) from None
+
+
+
+class FlattenedProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+
+    SUCCEEDED = "Succeeded"
+    FAILED = "Failed"
+    CANCELED = "canceled"
+    ACCEPTED = "Accepted"
+    CREATING = "Creating"
+    CREATED = "Created"
+    UPDATING = "Updating"
+    UPDATED = "Updated"
+    DELETING = "Deleting"
+    DELETED = "Deleted"
+    OK = "OK"

@@ -6,13 +6,31 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from enum import Enum, EnumMeta
 
-class ContentType(str, Enum):
+class CaseInsensitiveEnumMeta(EnumMeta):
+    def __getitem__(self, name):
+        return super().__getitem__(name.upper())
+
+    def __getattr__(cls, name):
+        """Return the enum member matching `name`
+        We use __getattr__ instead of descriptors or inserting into the enum
+        class' __dict__ in order to support `name` and `value` being both
+        properties for enum members (which live in the class' __dict__) and
+        enum members themselves.
+        """
+        try:
+            return cls._member_map_[name.upper()]
+        except KeyError:
+            raise AttributeError(name) from None
+
+
+
+class ContentType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload
     """
 
-    application_pdf = "application/pdf"  #: Content Type 'application/pdf'.
-    image_jpeg = "image/jpeg"  #: Content Type 'image/jpeg'.
-    image_png = "image/png"  #: Content Type 'image/png'.
-    image_tiff = "image/tiff"  #: Content Type 'image/tiff'.
+    APPLICATION_PDF = "application/pdf"  #: Content Type 'application/pdf'.
+    IMAGE_JPEG = "image/jpeg"  #: Content Type 'image/jpeg'.
+    IMAGE_PNG = "image/png"  #: Content Type 'image/png'.
+    IMAGE_TIFF = "image/tiff"  #: Content Type 'image/tiff'.

@@ -6,22 +6,40 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from enum import Enum, EnumMeta
 
-class Enum0(str, Enum):
+class CaseInsensitiveEnumMeta(EnumMeta):
+    def __getitem__(self, name):
+        return super().__getitem__(name.upper())
 
-    foo1 = "foo1"
-    foo2 = "foo2"
-    foo3 = "foo3"
+    def __getattr__(cls, name):
+        """Return the enum member matching `name`
+        We use __getattr__ instead of descriptors or inserting into the enum
+        class' __dict__ in order to support `name` and `value` being both
+        properties for enum members (which live in the class' __dict__) and
+        enum members themselves.
+        """
+        try:
+            return cls._member_map_[name.upper()]
+        except KeyError:
+            raise AttributeError(name) from None
 
-class Enum1(str, Enum):
 
-    foo1 = "foo1"
-    foo2 = "foo2"
-    foo3 = "foo3"
 
-class FooEnum(str, Enum):
+class Enum0(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
-    foo1 = "foo1"
-    foo2 = "foo2"
-    foo3 = "foo3"
+    FOO1 = "foo1"
+    FOO2 = "foo2"
+    FOO3 = "foo3"
+
+class Enum1(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+
+    FOO1 = "foo1"
+    FOO2 = "foo2"
+    FOO3 = "foo3"
+
+class FooEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+
+    FOO1 = "foo1"
+    FOO2 = "foo2"
+    FOO3 = "foo3"

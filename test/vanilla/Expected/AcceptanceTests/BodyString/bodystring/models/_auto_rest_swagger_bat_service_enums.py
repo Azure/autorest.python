@@ -6,10 +6,28 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from enum import Enum, EnumMeta
 
-class Colors(str, Enum):
+class CaseInsensitiveEnumMeta(EnumMeta):
+    def __getitem__(self, name):
+        return super().__getitem__(name.upper())
 
-    red_color = "red color"
-    green_color = "green-color"
-    blue_color = "blue_color"
+    def __getattr__(cls, name):
+        """Return the enum member matching `name`
+        We use __getattr__ instead of descriptors or inserting into the enum
+        class' __dict__ in order to support `name` and `value` being both
+        properties for enum members (which live in the class' __dict__) and
+        enum members themselves.
+        """
+        try:
+            return cls._member_map_[name.upper()]
+        except KeyError:
+            raise AttributeError(name) from None
+
+
+
+class Colors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+
+    RED_COLOR = "red color"
+    GREEN_COLOR = "green-color"
+    BLUE_COLOR = "blue_color"
