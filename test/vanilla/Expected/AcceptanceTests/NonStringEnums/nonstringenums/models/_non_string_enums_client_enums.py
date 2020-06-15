@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class FloatEnum(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     """List of float enums
     """

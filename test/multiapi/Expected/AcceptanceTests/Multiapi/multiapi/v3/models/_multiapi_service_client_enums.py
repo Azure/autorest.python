@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class ContentType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload
     """

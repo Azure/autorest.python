@@ -19,7 +19,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
         except KeyError:
             raise AttributeError(name) from None
 
-
 {% for enum in code_model.enums.values() | sort %}
 {% include "enum.py.jinja2" %}
 {% endfor %}

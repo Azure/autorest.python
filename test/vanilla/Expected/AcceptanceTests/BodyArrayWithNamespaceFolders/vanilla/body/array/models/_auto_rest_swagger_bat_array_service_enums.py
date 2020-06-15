@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class Enum0(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     FOO1 = "foo1"

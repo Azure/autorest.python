@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class FlattenedProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     SUCCEEDED = "Succeeded"

@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class AccountStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Gets the status indicating whether the primary location of the storage account is available or
     unavailable.

@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class DaysOfWeekExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of Pet
     """

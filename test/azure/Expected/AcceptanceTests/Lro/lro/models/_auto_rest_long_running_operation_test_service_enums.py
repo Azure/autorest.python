@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class OperationResultStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The status of the request
     """

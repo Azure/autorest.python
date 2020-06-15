@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class CMYKColors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     CYAN = "cyan"

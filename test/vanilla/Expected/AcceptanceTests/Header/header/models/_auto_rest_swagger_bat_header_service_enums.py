@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class GreyscaleColors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     WHITE = "White"

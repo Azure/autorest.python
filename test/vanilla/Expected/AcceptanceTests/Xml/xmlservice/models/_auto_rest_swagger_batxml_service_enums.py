@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class AccessTier(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     P4 = "P4"

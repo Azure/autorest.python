@@ -25,7 +25,6 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-
 class UriColor(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     RED_COLOR = "red color"
