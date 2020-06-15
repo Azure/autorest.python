@@ -218,7 +218,7 @@ class Fish(msrest.serialization.Model):
         **kwargs
     ):
         super(Fish, self).__init__(**kwargs)
-        self.fishtype: Optional[str] = None
+        self.fishtype = None  # type: Optional[str]
         self.species = species
         self.length = length
         self.siblings = siblings
@@ -276,7 +276,7 @@ class Shark(Fish):
         **kwargs
     ):
         super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype: str = 'shark'
+        self.fishtype = 'shark'  # type: str
         self.age = age
         self.birthday = birthday
 
@@ -326,7 +326,7 @@ class Cookiecuttershark(Shark):
         **kwargs
     ):
         super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype: str = 'cookiecuttershark'
+        self.fishtype = 'cookiecuttershark'  # type: str
 
 
 class Datetimerfc1123Wrapper(msrest.serialization.Model):
@@ -491,7 +491,7 @@ class DotFish(msrest.serialization.Model):
         **kwargs
     ):
         super(DotFish, self).__init__(**kwargs)
-        self.fish_type: Optional[str] = None
+        self.fish_type = None  # type: Optional[str]
         self.species = species
 
 
@@ -566,7 +566,7 @@ class DotSalmon(DotFish):
         **kwargs
     ):
         super(DotSalmon, self).__init__(species=species, **kwargs)
-        self.fish_type: str = 'DotSalmon'
+        self.fish_type = 'DotSalmon'  # type: str
         self.location = location
         self.iswild = iswild
 
@@ -727,7 +727,7 @@ class Goblinshark(Shark):
         **kwargs
     ):
         super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype: str = 'goblin'
+        self.fishtype = 'goblin'  # type: str
         self.jawsize = jawsize
         self.color = color
 
@@ -822,7 +822,7 @@ class MyBaseType(msrest.serialization.Model):
         **kwargs
     ):
         super(MyBaseType, self).__init__(**kwargs)
-        self.kind: Optional[str] = None
+        self.kind = None  # type: Optional[str]
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
 
@@ -862,7 +862,7 @@ class MyDerivedType(MyBaseType):
         **kwargs
     ):
         super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
-        self.kind: str = 'Kind1'
+        self.kind = 'Kind1'  # type: str
         self.prop_d1 = prop_d1
 
 
@@ -948,7 +948,7 @@ class Salmon(Fish):
         **kwargs
     ):
         super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype: str = 'salmon'
+        self.fishtype = 'salmon'  # type: str
         self.location = location
         self.iswild = iswild
 
@@ -1002,7 +1002,7 @@ class Sawshark(Shark):
         **kwargs
     ):
         super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype: str = 'sawshark'
+        self.fishtype = 'sawshark'  # type: str
         self.picture = picture
 
 
@@ -1096,7 +1096,7 @@ class SmartSalmon(Salmon):
         **kwargs
     ):
         super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
-        self.fishtype: str = 'smart_salmon'
+        self.fishtype = 'smart_salmon'  # type: str
         self.additional_properties = additional_properties
         self.college_degree = college_degree
 
