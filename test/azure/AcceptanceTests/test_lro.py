@@ -469,3 +469,12 @@ class TestLro:
         assert product.id == "100"
         assert product.name == "foo"
 
+    def test_models(self):
+        from lro.models import OperationResult
+
+        if sys.version_info >= (3,5):
+            from lro.models._models_py3 import OperationResult as OperationResultPy3
+            assert OperationResult == OperationResultPy3
+        else:
+            from lro.models._models import OperationResult as OperationResultPy2
+            assert OperationResult == OperationResultPy2

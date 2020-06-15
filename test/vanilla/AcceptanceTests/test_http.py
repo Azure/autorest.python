@@ -417,3 +417,13 @@ class TestHttp(object):
     def test_empty_no_content(self, client):
         self.assert_raises_with_status(requests.codes.bad_request,
             client.http_failure.get_no_model_empty)
+
+    def test_models(self):
+        from httpinfrastructure.models import Error
+
+        if sys.version_info >= (3,5):
+            from httpinfrastructure.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from httpinfrastructure.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

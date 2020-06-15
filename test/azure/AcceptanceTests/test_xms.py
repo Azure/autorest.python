@@ -91,3 +91,13 @@ class TestXmsRequestClientId(object):
             foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
         )
         client.header.custom_named_request_id_param_grouping(header_custom_named_request_id_param_grouping_parameters=param_group)
+
+    def test_models(self):
+        from azurespecialproperties.models import Error
+
+        if sys.version_info >= (3,5):
+            from azurespecialproperties.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from azurespecialproperties.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

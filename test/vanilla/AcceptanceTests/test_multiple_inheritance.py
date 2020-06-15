@@ -29,6 +29,7 @@
 from multipleinheritance import MultipleInheritanceServiceClient
 from multipleinheritance.models import *
 import pytest
+import sys
 
 @pytest.fixture
 def client():
@@ -71,3 +72,13 @@ class TestMultipleInheritance(object):
     def test_put_kitten(self, client):
         result = client.put_kitten(Kitten(name="Kitty", likes_milk=False, meows=True, hisses=False, eats_mice_yet=True))
         assert result == "Kitten was correct!"
+
+    def test_models(self):
+        from multipleinheritance.models import Error
+
+        if sys.version_info >= (3,5):
+            from multipleinheritance.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from multipleinheritance.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

@@ -70,3 +70,13 @@ class TestCustomBaseUri(object):
         client._config.host = "badhost:3000"
         with pytest.raises(ServiceRequestError):
             client.paths.get_empty("local")
+
+    def test_models(self):
+        from custombaseurl.models import Error
+
+        if sys.version_info >= (3,5):
+            from custombaseurl.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from custombaseurl.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

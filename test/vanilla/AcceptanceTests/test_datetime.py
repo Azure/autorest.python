@@ -120,3 +120,13 @@ class TestDatetime(object):
         with pytest.raises(SerializationError):
             client.datetime.put_local_negative_offset_max_date_time(
                 isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00"))
+
+    def test_models(self):
+        from bodydatetime.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodydatetime.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodydatetime.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

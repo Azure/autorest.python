@@ -51,3 +51,13 @@ class TestAzureUrl(object):
             group = client.group.get_sample_resource_group("testgoup101")
             assert group.name ==  "testgroup101"
             assert group.location ==  "West US"
+
+    def test_models(self):
+        from subscriptionidapiversion.models import Error
+
+        if sys.version_info >= (3,5):
+            from subscriptionidapiversion.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from subscriptionidapiversion.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2
