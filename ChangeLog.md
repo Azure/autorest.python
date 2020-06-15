@@ -9,6 +9,11 @@ Modelerfour version: 4.13.351
 `AzureKeyCredentialPolicy`. The value passed in will be the default authentication policy in the client's config, so users using the
 generated library will use that auth policy unless they pass in a separate one through kwargs  #686
 
+**Bug Fixes**
+
+- Make enum names all upper case. This fixes issues that arise if the name of an enum is also a method that can be applied to, say, a string.
+For example, if an enum's name is count. Made sure this fix will not break users currently accessing with lower case enum names  #692
+
 ### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351
 
