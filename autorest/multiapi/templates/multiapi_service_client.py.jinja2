@@ -98,10 +98,12 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
         if not base_url:
             base_url = {{ base_url }}
         {% endif %}
-        self._config = {{ client_name }}Configuration({{ global_parameters["call"] }}, **kwargs)
+        self._config = {{ client_name }}Configuration({{ global_parameters["call"] }}{{ ", " if global_parameters["call"] }}**kwargs)
         self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
         super({{ client_name }}, self).__init__(
-            credential,
+            {% for serialized_name in global_parameters_method %}
+            {{ serialized_name }},
+            {% endfor %}
             self._config,
             api_version=api_version,
             profile=profile
