@@ -102,10 +102,6 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
         self._config = {{ client_name }}Configuration({{ global_parameters["call"] }}{{ ", " if global_parameters["call"] }}**kwargs)
         self._client = {{ async_prefix }}{{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
         super({{ client_name }}, self).__init__(
-            {% for serialized_name in global_parameters_method %}
-            {{ serialized_name }},
-            {% endfor %}
-            self._config,
             api_version=api_version,
             profile=profile
         )
