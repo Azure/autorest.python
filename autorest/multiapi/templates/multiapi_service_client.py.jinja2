@@ -20,10 +20,11 @@ def __init__(
 {# actual template starts here #}
 {% set config_import = "._configuration_async" if async_mode else "._configuration" %}
 {% set operations_mixin_import = "._operations_mixin_async" if async_mode else "._operations_mixin" %}
-{% set pipeline_client = "AsyncARMPipelineClient" if async_mode else "ARMPipelineClient" %}
+{% set pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient" %}
 {% set relative_path = ".." if async_mode else "." %}
 {% set def = "async def" if async_mode else "def" %}
-{% set async_prefix = "a" if async_mode else "" %}
+{% set async_prefix = "Async" if async_mode else "" %}
+{% set a_prefix = "a" if async_mode else "" %}
 {% set await = "await " if async_mode else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
@@ -36,7 +37,7 @@ def __init__(
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.mgmt.core import {{ pipeline_client }}
+from azure.{{ "mgmt." if azure_arm }}core import {{ async_prefix }}{{ pipeline_client }}
 from msrest import Serializer, Deserializer
 
 from azure.profiles import KnownProfiles, ProfileDefinition
@@ -99,7 +100,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
             base_url = {{ base_url }}
         {% endif %}
         self._config = {{ client_name }}Configuration({{ global_parameters["call"] }}{{ ", " if global_parameters["call"] }}**kwargs)
-        self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
+        self._client = {{ async_prefix }}{{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
         super({{ client_name }}, self).__init__(
             {% for serialized_name in global_parameters_method %}
             {{ serialized_name }},
@@ -151,8 +152,8 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
 
     {{ def }} close(self):
         {{ await }}self._client.close()
-    {{ def }} __{{ async_prefix }}enter__(self):
-        {{ await }}self._client.__{{ async_prefix }}enter__()
+    {{ def }} __{{ a_prefix }}enter__(self):
+        {{ await }}self._client.__{{ a_prefix }}enter__()
         return self
-    {{ def }} __{{ async_prefix }}exit__(self, *exc_details):
-        {{ await }}self._client.__{{ async_prefix }}exit__(*exc_details)
+    {{ def }} __{{ a_prefix }}exit__(self, *exc_details):
+        {{ await }}self._client.__{{ a_prefix }}exit__(*exc_details)
