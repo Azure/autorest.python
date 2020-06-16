@@ -27,7 +27,7 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/
 package-name: multiapi
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
-azure: true
+azure-arm: true
 add-credentials: true
 ```
 

@@ -1,11 +1,15 @@
 {% import 'operation_tools.jinja2' as op_tools %}
+{% import 'keywords.jinja2' as keywords %}
 {
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
-        "description": {{ code_model.description | tojson }}
+        "description": {{ code_model.description | tojson }},
+        {% set base_url =  code_model.base_url if code_model.base_url else ('https://management.azure.com' if code_model.options["azure_arm"] else None )%}
+        "base_url": {{ (keywords.escape_str(base_url) if base_url else None) | tojson }},
+        "custom_base_url": {{ (keywords.escape_str(code_model.custom_base_url) if code_model.custom_base_url else None) | tojson }}
     },
     "global_parameters": {
         "sync_method": {

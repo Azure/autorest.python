@@ -27,7 +27,7 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiN
 package-name: multiapinoasync
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
-azure: true
+azure-arm: true
 add-credentials: true
 no-async: true
 ```
