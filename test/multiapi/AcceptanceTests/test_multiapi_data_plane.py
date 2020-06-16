@@ -26,14 +26,14 @@
 import pytest
 import inspect
 import json
-from azure.mgmt.core import ARMPipelineClient
 from azure.profiles import KnownProfiles
+from azure.core import PipelineClient
 from .multiapi_base import NotTested
 
 
 @pytest.fixture
 def default_client(credential, authentication_policy):
-    from multiapi import MultiapiServiceClient
+    from multiapidataplane import MultiapiServiceClient
     with MultiapiServiceClient(
 		base_url="http://localhost:3000",
         credential=credential,
@@ -43,7 +43,7 @@ def default_client(credential, authentication_policy):
 
 @pytest.fixture
 def client(credential, authentication_policy, api_version):
-    from multiapi import MultiapiServiceClient
+    from multiapidataplane import MultiapiServiceClient
 
     with MultiapiServiceClient(
 		base_url="http://localhost:3000",
@@ -55,24 +55,21 @@ def client(credential, authentication_policy, api_version):
 
 @pytest.fixture
 def namespace_models():
-    from multiapi import models
+    from multiapidataplane import models
     return models
 
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):
-    assert client.profile.label == "multiapi.MultiapiServiceClient 2.0.0"
+    assert client.profile.label == "multiapidataplane.MultiapiServiceClient 2.0.0"
 
 def test_configuration_kwargs(default_client):
     # making sure that the package name is correct in the sdk moniker
-    assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapi/")
-
-def test_patch_file():
-    from multiapi.models import PatchAddedModel
+    assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapidataplane/")
 
 def test_pipeline_client(default_client):
-    # assert the pipeline client is ARMPipelineClient from azure.mgmt.core, since this is mgmt plane
-    assert isinstance(default_client._client, ARMPipelineClient)
+    # assert the pipeline client is PipelineClient from azure.core, since this is data plane
+    assert isinstance(default_client._client, PipelineClient)
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass

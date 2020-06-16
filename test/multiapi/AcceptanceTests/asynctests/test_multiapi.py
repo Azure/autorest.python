@@ -28,6 +28,7 @@ import pytest
 import inspect
 import json
 from azure.profiles import KnownProfiles
+from azure.mgmt.core import AsyncARMPipelineClient
 from .multiapi_base import NotTested
 
 
@@ -67,6 +68,10 @@ def test_specify_api_version_multiapi_client(client):
 def test_configuration_kwargs(default_client):
     # making sure that the package name is correct in the sdk moniker
     assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapi/")
+
+def test_pipeline_client(default_client):
+    # assert the pipeline client is AsyncARMPipelineClient from azure.mgmt.core, since this is mgmt plane
+    assert isinstance(default_client._client, AsyncARMPipelineClient)
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
