@@ -72,7 +72,7 @@ def test_patch_file():
 
 def test_pipeline_client(default_client):
     # assert the pipeline client is ARMPipelineClient from azure.mgmt.core, since this is mgmt plane
-    assert isinstance(default_client._client, ARMPipelineClient)
+    assert type(default_client._client) == ARMPipelineClient
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass

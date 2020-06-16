@@ -69,7 +69,7 @@ def test_configuration_kwargs(default_client):
 
 def test_pipeline_client(default_client):
     # assert the pipeline client is PipelineClient from azure.core, since this is data plane
-    assert isinstance(default_client._client, PipelineClient)
+    assert type(default_client._client) == PipelineClient
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass

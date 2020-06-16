@@ -27,7 +27,6 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiD
 package-name: multiapidataplane
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
-azure-arm: true
 add-credentials: true
 ```
 

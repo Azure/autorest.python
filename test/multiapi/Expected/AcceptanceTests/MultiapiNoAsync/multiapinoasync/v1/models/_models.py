@@ -33,6 +33,29 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get('message', None)
 
 
+class PagingResult(msrest.serialization.Model):
+    """PagingResult.
+
+    :param values:
+    :type values: list[~multiapinoasync.v1.models.Product]
+    :param next_link:
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'values': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingResult, self).__init__(**kwargs)
+        self.values = kwargs.get('values', None)
+        self.next_link = kwargs.get('next_link', None)
+
+
 class Product(msrest.serialization.Model):
     """Product.
 
@@ -50,3 +73,27 @@ class Product(msrest.serialization.Model):
     ):
         super(Product, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
+
+
+class TestLroAndPagingOptions(msrest.serialization.Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(TestLroAndPagingOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)

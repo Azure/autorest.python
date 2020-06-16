@@ -50,6 +50,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
             'begin_test_lro': '1.0.0',
+            'begin_test_lro_and_paging': '1.0.0',
             'test_one': '2.0.0',
         }},
         _PROFILE_TAG + " latest"
@@ -64,7 +65,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         **kwargs  # type: Any
     ) -> None:
         if not base_url:
-            base_url = 'https://management.azure.com'
+            base_url = 'http://localhost:3000'
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiServiceClient, self).__init__(

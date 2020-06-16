@@ -71,7 +71,7 @@ def test_configuration_kwargs(default_client):
 
 def test_pipeline_client(default_client):
     # assert the pipeline client is AsyncARMPipelineClient from azure.mgmt.core, since this is mgmt plane
-    assert isinstance(default_client._client, AsyncARMPipelineClient)
+    assert type(default_client._client) == AsyncARMPipelineClient
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass

@@ -13,7 +13,7 @@ from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
+    from typing import Any, Optional
 
     from azure.core.credentials import TokenCredential
 
@@ -37,10 +37,12 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     def __init__(
         self,
         credential,  # type: "TokenCredential"
+        base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        base_url = 'None'
+        if not base_url:
+            base_url = 'http://localhost:3000'
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
