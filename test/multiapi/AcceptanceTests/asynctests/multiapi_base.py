@@ -194,3 +194,17 @@ class NotTested(object):
             assert len(items) == 1
             assert isinstance(items[0], namespace_models.ModelThree)
             assert items[0].optional_property == "paged"
+
+        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.asyncio
+        async def test_lro_and_paging(self, client, namespace_models):
+            poller = await client.begin_test_lro_and_paging()
+            pager = await poller.result()
+
+            items = []
+            async for item in pager:
+                items.append(item)
+
+            assert len(items) == 1
+            assert isinstance(items[0], namespace_models.Product)
+            assert items[0].id == 100

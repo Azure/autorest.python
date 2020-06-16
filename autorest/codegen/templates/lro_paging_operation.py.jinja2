@@ -1,0 +1,38 @@
+{% import 'operation_tools.jinja2' as op_tools %}
+{% import 'keywords.jinja2' as keywords with context %}
+{% import 'lro_operation_helper.jinja2' as lro_helper %}
+{% import 'paging_operation_helper.jinja2' as paging_helper %}
+{% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
+{% set operation_name = "begin_"+operation.python_name %}
+{% macro return_docstring(async_mode) %}
+:return: An instance of {{ "Async" if async_mode }}LROPoller that returns an iterator like instance of either {{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}} or the result of cls(response)
+:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[~azure.core.{{ "async_" if async_mode else "" }}paging.{{ "Async" if async_mode }}ItemPaged[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]]{% endmacro %}
+{% macro operation_docstring(async_mode) %}
+{{ lro_helper.operation_docstring_helper(operation, async_mode) }}
+{{ return_docstring(async_mode) }}
+:raises ~azure.core.exceptions.HttpResponseError:
+"""{% endmacro %}
+{# actual template starts here #}
+{% if code_model.options['tracing'] %}
+{{ trace_decorator }}
+{% endif %}
+{% set return_type_wrapper = [("Async" if async_mode else "") ~ "LROPoller", ("Async" if async_mode else "") ~ "ItemPaged"] %}
+{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
+{%- if not async_mode %}
+    {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
+{% endif %}
+    {{ operation_docstring(async_mode) | indent }}
+    {{ paging_helper.paging_operation(code_model, operation, async_mode) }}
+
+{{ lro_helper.lro_operation(code_model, operation, async_mode) }}
+    def get_long_running_output(pipeline_response):
+        {{ keywords.def }} internal_get_next(next_link=None):
+            if next_link is None:
+                return pipeline_response
+            else:
+                return {{ keywords.await }}get_next(next_link)
+
+        return {{ "Async" if async_mode }}ItemPaged(
+            internal_get_next, extract_data
+        )
+{{ lro_helper.lro_operation_return(code_model, operation, async_mode) }}
