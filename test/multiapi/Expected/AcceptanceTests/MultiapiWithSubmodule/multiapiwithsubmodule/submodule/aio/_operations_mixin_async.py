@@ -54,12 +54,12 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return await mixin_instance.begin_test_lro(product, **kwargs)
 
-    async def begin_test_lro_and_paging(
+    def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["models.TestLroAndPagingOptions"] = None,
         **kwargs
-    ) -> AsyncLROPoller["models.PagingResult"]:
+    ) -> AsyncLROPoller[AsyncItemPaged["models.PagingResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -72,8 +72,8 @@ class MultiapiServiceClientOperationsMixin(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.polling.AsyncLROPoller[~multiapiwithsubmodule.submodule.v1.models.PagingResult]
+        :return: An instance of AsyncLROPoller that returns an iterator like instance of either PagingResult or the result of cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapiwithsubmodule.submodule.v1.models.PagingResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('begin_test_lro_and_paging')
@@ -86,7 +86,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
+        return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
 
     async def test_one(
         self,
