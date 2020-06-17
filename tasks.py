@@ -330,7 +330,9 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         # create multiapi client with no aio folder (package-name=multiapinoasync)
         "test/multiapi/specification/multiapinoasync/README.md",
         # create multiapi client with AzureKeyCredentialPolicy
-        "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md"
+        "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
+        # create multiapi client data plane
+        "test/multiapi/specification/multiapidataplane/README.md"
     ]
 
     cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]

@@ -364,7 +364,10 @@ class MultiAPI:
             "config": metadata_json["config"],
             "global_parameters": metadata_json["global_parameters"],
             "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
-            "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True))
+            "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
+            "base_url": metadata_json["client"]["base_url"],
+            "custom_base_url": metadata_json["client"]["custom_base_url"],
+            "azure_arm": metadata_json["client"]["azure_arm"]
         }
 
         multiapi_serializer = MultiAPISerializer(

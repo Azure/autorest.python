@@ -26,6 +26,7 @@
 import pytest
 import inspect
 import json
+from azure.mgmt.core import ARMPipelineClient
 from azure.profiles import KnownProfiles
 from .multiapi_base import NotTested
 
@@ -68,6 +69,10 @@ def test_configuration_kwargs(default_client):
 
 def test_patch_file():
     from multiapi.models import PatchAddedModel
+
+def test_pipeline_client(default_client):
+    # assert the pipeline client is ARMPipelineClient from azure.mgmt.core, since this is mgmt plane
+    assert type(default_client._client) == ARMPipelineClient
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass

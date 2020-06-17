@@ -9,6 +9,7 @@ Modelerfour version: 4.13.351
 - We have added a `--credential-default-policy-type` flag. Its default value is `BearerTokenCredentialPolicy`, but it can also accept
 `AzureKeyCredentialPolicy`. The value passed in will be the default authentication policy in the client's config, so users using the
 generated library will use that auth policy unless they pass in a separate one through kwargs  #686
+- Added support for a data plane multiapi client  #693
 
 ### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351
