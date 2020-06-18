@@ -11,6 +11,10 @@ Modelerfour version: 4.13.351
 generated library will use that auth policy unless they pass in a separate one through kwargs  #686
 - Added support for a data plane multiapi client  #693
 
+**Bug Fixes**
+
+- Fix typing for discriminator values in models, so Python 3.5 can import py3 file for models  #691
+
 ### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351
 

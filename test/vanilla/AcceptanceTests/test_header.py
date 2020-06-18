@@ -195,3 +195,13 @@ class TestHeader(object):
         custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
         response = client.header.custom_request_id(headers=custom_headers, cls=status_code)
         assert response == 200
+
+    def test_models(self):
+        from header.models import Error
+
+        if sys.version_info >= (3,5):
+            from header.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from header.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

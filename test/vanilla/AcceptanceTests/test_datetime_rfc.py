@@ -73,3 +73,13 @@ class TestDateTimeRfc(object):
         min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
         client.datetimerfc1123.get_utc_min_date_time()
         client.datetimerfc1123.put_utc_min_date_time(min_date)
+
+    def test_models(self):
+        from bodydatetimerfc1123.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodydatetimerfc1123.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodydatetimerfc1123.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

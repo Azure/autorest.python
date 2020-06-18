@@ -135,3 +135,13 @@ class TestString(object):
 
     def test_patch_file(self):
         from bodystring.models import PatchAddedModel
+
+    def test_models(self):
+        from bodystring.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodystring.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodystring.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

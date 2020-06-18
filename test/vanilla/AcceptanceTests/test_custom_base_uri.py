@@ -72,3 +72,13 @@ class TestCustomBaseUri(object):
     def test_more_options(self):
         with AutoRestParameterizedCustomHostTestClient("test12", "host:3000") as client:
             client.paths.get_empty("http://lo", "cal", "key1")
+
+    def test_models(self):
+        from custombaseurl.models import Error
+
+        if sys.version_info >= (3,5):
+            from custombaseurl.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from custombaseurl.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

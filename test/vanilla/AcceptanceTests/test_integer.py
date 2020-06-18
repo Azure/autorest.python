@@ -80,3 +80,13 @@ class TestInteger(object):
 
         with pytest.raises(DecodeError):
             client.int.get_invalid_unix_time()
+
+    def test_models(self):
+        from bodyinteger.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodyinteger.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodyinteger.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

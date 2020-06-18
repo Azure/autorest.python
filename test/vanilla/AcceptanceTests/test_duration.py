@@ -56,3 +56,13 @@ class TestDuration(object):
     def test_positive_duration(self, client):
         client.duration.get_positive_duration()
         client.duration.put_positive_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+
+    def test_models(self):
+        from bodyduration.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodyduration.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodyduration.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

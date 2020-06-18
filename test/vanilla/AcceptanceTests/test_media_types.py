@@ -28,6 +28,7 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 import json
+import sys
 
 @pytest.fixture
 def client():
@@ -53,3 +54,13 @@ class TestMediaTypes(object):
     def test_content_type_with_encoding(self, client):
         result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
         assert result == "Nice job sending content type with encoding"
+
+    def test_models(self):
+        from mediatypes.models import SourcePath
+
+        if sys.version_info >= (3,5):
+            from mediatypes.models._models_py3 import SourcePath as SourcePathPy3
+            assert SourcePath == SourcePathPy3
+        else:
+            from mediatypes.models._models import SourcePath as SourcePathPy2
+            assert SourcePath == SourcePathPy2
