@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, Dict, List, Any, Optional, Set
+from typing import cast, Dict, List, Any, Optional, Set, Union
 
 from .operation import Operation
 from .parameter import Parameter
@@ -31,6 +31,10 @@ class PagingOperation(Operation):
         multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
+        want_description_docstring: bool = True,
+        want_tracing: bool = True,
+        *,
+        override_success_response_to_200: bool = False
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
@@ -44,12 +48,15 @@ class PagingOperation(Operation):
             parameters,
             multiple_media_type_parameters,
             responses,
-            exceptions
+            exceptions,
+            want_description_docstring,
+            want_tracing
         )
         self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
+        self.override_success_response_to_200 = override_success_response_to_200
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
@@ -97,6 +104,14 @@ class PagingOperation(Operation):
     def has_optional_return_type(self) -> bool:
         """A paging will never have an optional return type, we will always return ItemPaged[return type]"""
         return False
+
+    @property
+    def success_status_code(self) -> List[Union[str, int]]:
+        """The list of all successfull status code.
+        """
+        if self.override_success_response_to_200:
+            return [200]
+        return super(PagingOperation, self).success_status_code
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)

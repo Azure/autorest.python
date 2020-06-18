@@ -10,6 +10,7 @@ from .base_model import BaseModel
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
+from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType
 
 
@@ -82,9 +83,13 @@ class OperationGroup(BaseModel):
         operations = []
         api_versions: Set[str] = set()
         for operation_yaml in yaml_data["operations"]:
-            if operation_yaml.get("extensions", {}).get("x-ms-long-running-operation"):
+            lro_operation = operation_yaml.get("extensions", {}).get("x-ms-long-running-operation")
+            paging_operation = operation_yaml.get("extensions", {}).get("x-ms-pageable")
+            if lro_operation and paging_operation:
+                operation = LROPagingOperation.from_yaml(operation_yaml)
+            elif lro_operation:
                 operation = LROOperation.from_yaml(operation_yaml)
-            elif operation_yaml.get("extensions", {}).get("x-ms-pageable"):
+            elif paging_operation:
                 operation = PagingOperation.from_yaml(operation_yaml)
             else:
                 operation = Operation.from_yaml(operation_yaml)

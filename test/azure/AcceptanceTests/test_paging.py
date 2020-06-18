@@ -53,8 +53,7 @@ def custom_url_client(credential, authentication_policy):
     with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
         yield client
 
-class TestPaging:
-
+class TestPaging(object):
     def test_get_no_item_name_pages(self, client):
         pages = client.paging.get_no_item_name_pages()
         items = [i for i in pages]
@@ -159,18 +158,16 @@ class TestPaging:
 
     def test_get_multiple_pages_lro(self, client):
         """LRO + Paging at the same time.
-
-        Python decides to poll, but not follow paging. Check that at least you get read the first page.
         """
-        from azure.mgmt.core.polling.arm_polling import ARMPolling
-        polling = ARMPolling(0, lro_options={'final-state-via': 'location'})
-        # FIXME Location should be the default once 1.0.0b2 is out
 
-        poller = client.paging.begin_get_multiple_pages_lro(polling=polling)
-        page1 = poller.result()
-        assert len(page1.values) == 1
-        assert page1.values[0].properties.id == 1
-        assert page1.next_link.endswith("paging/multiple/page/2")
+        poller = client.paging.begin_get_multiple_pages_lro()
+        pager = poller.result()
+
+        items = list(pager)
+
+        assert len(items) == 10
+        assert items[0].properties.id == 1
+        assert items[1].properties.id == 2
 
     def test_item_name_with_xms_client_name(self, client):
         pages = client.paging.get_paging_model_with_item_name_with_xms_client_name()

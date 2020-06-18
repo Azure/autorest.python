@@ -41,7 +41,7 @@ class MultiapiServiceClientConfiguration(Configuration):
 
         self.credential = credential
         self.api_version = "1.0.0"
-        self.credential_scopes = []
+        self.credential_scopes = ['https://management.azure.com/.default']
         self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'multiapinoasync/{}'.format(VERSION))
         self._configure(**kwargs)
@@ -59,7 +59,5 @@ class MultiapiServiceClientConfiguration(Configuration):
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
-        if not self.credential_scopes and not self.authentication_policy:
-            raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         if self.credential and not self.authentication_policy:
             self.authentication_policy = policies.BearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)

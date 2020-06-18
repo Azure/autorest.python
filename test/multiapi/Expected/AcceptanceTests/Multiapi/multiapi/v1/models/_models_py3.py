@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -38,6 +38,32 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
+class PagingResult(msrest.serialization.Model):
+    """PagingResult.
+
+    :param values:
+    :type values: list[~multiapi.v1.models.Product]
+    :param next_link:
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'values': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
+        super(PagingResult, self).__init__(**kwargs)
+        self.values = values
+        self.next_link = next_link
+
+
 class Product(msrest.serialization.Model):
     """Product.
 
@@ -57,3 +83,30 @@ class Product(msrest.serialization.Model):
     ):
         super(Product, self).__init__(**kwargs)
         self.id = id
+
+
+class TestLroAndPagingOptions(msrest.serialization.Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
+        super(TestLroAndPagingOptions, self).__init__(**kwargs)
+        self.maxresults = maxresults
+        self.timeout = timeout
