@@ -38,6 +38,32 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
+class LanguagePagingResult(msrest.serialization.Model):
+    """LanguagePagingResult.
+
+    :param values:
+    :type values: list[~multiapi.v3.models.PersonWhoSpeaksTheLanguage]
+    :param next_link:
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'values': {'key': 'values', 'type': '[PersonWhoSpeaksTheLanguage]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        values: Optional[List["PersonWhoSpeaksTheLanguage"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
+        super(LanguagePagingResult, self).__init__(**kwargs)
+        self.values = values
+        self.next_link = next_link
+
+
 class ModelThree(msrest.serialization.Model):
     """Only exists in api version 3.0.0.
 
@@ -83,6 +109,27 @@ class PagingResult(msrest.serialization.Model):
         super(PagingResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
+
+
+class PersonWhoSpeaksTheLanguage(msrest.serialization.Model):
+    """PersonWhoSpeaksTheLanguage.
+
+    :param name:
+    :type name: str
+    """
+
+    _attribute_map = {
+        'name': {'key': 'name', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        **kwargs
+    ):
+        super(PersonWhoSpeaksTheLanguage, self).__init__(**kwargs)
+        self.name = name
 
 
 class SourcePath(msrest.serialization.Model):

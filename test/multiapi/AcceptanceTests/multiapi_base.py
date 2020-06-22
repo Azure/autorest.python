@@ -183,3 +183,22 @@ class NotTested(object):
             assert len(items) == 1
             assert isinstance(items[0], namespace_models.Product)
             assert items[0].id == 100
+
+
+        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        def test_different_signatures_api_1(self, client):
+            continent = client.test_different_signatures(location='France', population=67)
+
+            assert continent.name == 'Europe'
+
+        def test_different_signatures_api_3(self, default_client, namespace_models):
+            pages = default_client.test_different_signatures(country='China')
+
+            items = list(pages)
+
+            assert len(items) == 2
+            assert isinstance(items[0], namespace_models.PersonWhoSpeaksTheLanguage)
+            assert items[0].name == "Hu Jintao"
+
+            assert isinstance(items[1], namespace_models.PersonWhoSpeaksTheLanguage)
+            assert items[1].name == "Wen Jiabao"

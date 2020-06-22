@@ -52,6 +52,18 @@
                 "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapi.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
             "call": ""
+        },
+        "test_different_signatures" : {
+            "sync": {
+                "signature": "def test_different_signatures(\n    self,\n    country,  # type: str\n    location=\"Beijing\",  # type: Optional[str]\n    greeting=\"nihao\",  # type: Optional[str]\n    dialect=\"Mandarin\",  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"Will have a different signature than the same function name in 1.0.0. Pass in \u0027China\u0027 for\ncountry and keep other parameters default.\n\n:param country: Country. Pass in \u0027China\u0027.\n:type country: str\n:param location: Location. Pass the default value of \u0027Beijing\u0027.\n:type location: str\n:param greeting: Greeting. Pass the default value of \u0027nihao\u0027.\n:type greeting: str\n:param dialect: Dialect. Pass the default value of \u0027Mandarin\u0027.\n:type dialect: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either LanguagePagingResult or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapi.v3.models.LanguagePagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "async": {
+                "coroutine": false,
+                "signature": "def test_different_signatures(\n    self,\n    country: str,\n    location: Optional[str] = \"Beijing\",\n    greeting: Optional[str] = \"nihao\",\n    dialect: Optional[str] = \"Mandarin\",\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.LanguagePagingResult\"]:\n",
+                "doc": "\"\"\"Will have a different signature than the same function name in 1.0.0. Pass in \u0027China\u0027 for\ncountry and keep other parameters default.\n\n:param country: Country. Pass in \u0027China\u0027.\n:type country: str\n:param location: Location. Pass the default value of \u0027Beijing\u0027.\n:type location: str\n:param greeting: Greeting. Pass the default value of \u0027nihao\u0027.\n:type greeting: str\n:param dialect: Dialect. Pass the default value of \u0027Mandarin\u0027.\n:type dialect: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either LanguagePagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapi.v3.models.LanguagePagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "call": "country, location, greeting, dialect"
         }
     },
     "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.mgmt.core.exceptions\": [\"ARMErrorFormat\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"], \"azure.core.paging\": [\"ItemPaged\"]}, \"stdlib\": {\"warnings\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Iterable\", \"Optional\", \"TypeVar\"]}}}",

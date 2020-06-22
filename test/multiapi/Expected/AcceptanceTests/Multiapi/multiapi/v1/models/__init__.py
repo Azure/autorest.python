@@ -7,17 +7,20 @@
 # --------------------------------------------------------------------------
 
 try:
+    from ._models_py3 import Continent
     from ._models_py3 import Error
     from ._models_py3 import PagingResult
     from ._models_py3 import Product
     from ._models_py3 import TestLroAndPagingOptions
 except (SyntaxError, ImportError):
+    from ._models import Continent  # type: ignore
     from ._models import Error  # type: ignore
     from ._models import PagingResult  # type: ignore
     from ._models import Product  # type: ignore
     from ._models import TestLroAndPagingOptions  # type: ignore
 
 __all__ = [
+    'Continent',
     'Error',
     'PagingResult',
     'Product',

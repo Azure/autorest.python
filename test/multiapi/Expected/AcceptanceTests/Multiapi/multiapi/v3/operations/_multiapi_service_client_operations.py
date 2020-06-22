@@ -82,3 +82,83 @@ class MultiapiServiceClientOperationsMixin(object):
             get_next, extract_data
         )
     test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore
+
+    def test_different_signatures(
+        self,
+        country,  # type: str
+        location="Beijing",  # type: Optional[str]
+        greeting="nihao",  # type: Optional[str]
+        dialect="Mandarin",  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Iterable["models.LanguagePagingResult"]
+        """Will have a different signature than the same function name in 1.0.0. Pass in 'China' for
+        country and keep other parameters default.
+
+        :param country: Country. Pass in 'China'.
+        :type country: str
+        :param location: Location. Pass the default value of 'Beijing'.
+        :type location: str
+        :param greeting: Greeting. Pass the default value of 'nihao'.
+        :type greeting: str
+        :param dialect: Dialect. Pass the default value of 'Mandarin'.
+        :type dialect: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either LanguagePagingResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~multiapi.v3.models.LanguagePagingResult]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.LanguagePagingResult"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        api_version = "3.0.0"
+
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
+
+            if not next_link:
+                # Construct URL
+                url = self.test_different_signatures.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+                query_parameters['country'] = self._serialize.query("country", country, 'str')
+                if location is not None:
+                    query_parameters['location'] = self._serialize.query("location", location, 'str')
+                if greeting is not None:
+                    query_parameters['greeting'] = self._serialize.query("greeting", greeting, 'str')
+                if dialect is not None:
+                    query_parameters['dialect'] = self._serialize.query("dialect", dialect, 'str')
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('LanguagePagingResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return ItemPaged(
+            get_next, extract_data
+        )
+    test_different_signatures.metadata = {'url': '/multiapi/testDifferentSignatures'}  # type: ignore

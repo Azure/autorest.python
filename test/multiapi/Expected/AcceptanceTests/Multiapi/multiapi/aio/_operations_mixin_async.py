@@ -11,6 +11,7 @@
 from msrest import Serializer, Deserializer
 from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
+import re
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
@@ -19,6 +20,31 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+
+api_version_and_func_name_to_func = {}
+
+def api_versions(api_versions):
+    def function(func):
+        func_name = func.__name__
+        for api_version in api_versions:
+            api_version_and_func_name_to_func[(api_version, func_name)] = func
+        def wrapper(self, *args, **kwargs):
+            api_version = self._get_api_version(func_name)
+            function_to_call = api_version_and_func_name_to_func[(api_version, func_name)]
+            try:
+                return function_to_call(self, *args, **kwargs)
+            except TypeError as e:
+                invalid_parameter = re.search(
+                    r".*\'(.*)\'",
+                    str(e)
+                ).group(1)
+                raise TypeError(
+                    "The parameter '{}' is not valid for function '{}' with api version '{}'.".format(
+                        invalid_parameter, func_name, api_version
+                    )
+                )
+        return wrapper
+    return function
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -87,6 +113,81 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
+
+    @api_versions(['1.0.0'])
+    async def test_different_signatures(
+        self,
+        location: str,
+        population: int,
+        greeting: Optional[str] = "bonjour",
+        language: Optional[str] = "French",
+        **kwargs
+    ) -> "models.Continent":
+        """Will have a different signature than the same function name in 3.0.0. Pass in 'France' for
+        location, 67 for population, and keep other parameters default.
+
+        :param location: Location. Pass in 'France'.
+        :type location: str
+        :param population: An int parameter representing population number in millions. Pass in 67 to
+         pass.
+        :type population: int
+        :param greeting: Greeting. Pass the default value of 'bonjour'.
+        :type greeting: str
+        :param language: Language. Pass the default value of 'French'.
+        :type language: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Continent, or the result of cls(response)
+        :rtype: ~multiapi.v1.models.Continent
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        api_version = self._get_api_version('test_different_signatures')
+        if api_version == '1.0.0':
+            from ..v1.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
+        else:
+            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+        mixin_instance = OperationClass()
+        mixin_instance._client = self._client
+        mixin_instance._config = self._config
+        mixin_instance._serialize = Serializer(self._models_dict(api_version))
+        mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
+        return await mixin_instance.test_different_signatures(location, population, greeting, language, **kwargs)
+
+    @api_versions(["3.0.0"])
+    def test_different_signatures(
+        self,
+        country: str,
+        location: Optional[str] = "Beijing",
+        greeting: Optional[str] = "nihao",
+        dialect: Optional[str] = "Mandarin",
+        **kwargs
+    ) -> AsyncItemPaged["models.LanguagePagingResult"]:
+        """Will have a different signature than the same function name in 1.0.0. Pass in 'China' for
+        country and keep other parameters default.
+
+        :param country: Country. Pass in 'China'.
+        :type country: str
+        :param location: Location. Pass the default value of 'Beijing'.
+        :type location: str
+        :param greeting: Greeting. Pass the default value of 'nihao'.
+        :type greeting: str
+        :param dialect: Dialect. Pass the default value of 'Mandarin'.
+        :type dialect: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either LanguagePagingResult or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapi.v3.models.LanguagePagingResult]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        api_version = self._get_api_version('test_different_signatures')
+        if api_version == '3.0.0':
+            from ..v3.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
+        else:
+            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+        mixin_instance = OperationClass()
+        mixin_instance._client = self._client
+        mixin_instance._config = self._config
+        mixin_instance._serialize = Serializer(self._models_dict(api_version))
+        mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
+        return mixin_instance.test_different_signatures(country, location, greeting, dialect, **kwargs)
 
     async def test_one(
         self,

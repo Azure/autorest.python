@@ -12,6 +12,27 @@ from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
+class Continent(msrest.serialization.Model):
+    """Continent.
+
+    :param name:
+    :type name: str
+    """
+
+    _attribute_map = {
+        'name': {'key': 'name', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        **kwargs
+    ):
+        super(Continent, self).__init__(**kwargs)
+        self.name = name
+
+
 class Error(msrest.serialization.Model):
     """Error.
 

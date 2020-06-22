@@ -339,3 +339,66 @@ class MultiapiServiceClientOperationsMixin:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
+
+    async def test_different_signatures(
+        self,
+        location: str,
+        population: int,
+        greeting: Optional[str] = "bonjour",
+        language: Optional[str] = "French",
+        **kwargs
+    ) -> "models.Continent":
+        """Will have a different signature than the same function name in 3.0.0. Pass in 'France' for
+        location, 67 for population, and keep other parameters default.
+
+        :param location: Location. Pass in 'France'.
+        :type location: str
+        :param population: An int parameter representing population number in millions. Pass in 67 to
+         pass.
+        :type population: int
+        :param greeting: Greeting. Pass the default value of 'bonjour'.
+        :type greeting: str
+        :param language: Language. Pass the default value of 'French'.
+        :type language: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Continent, or the result of cls(response)
+        :rtype: ~multiapi.v1.models.Continent
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Continent"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        api_version = "1.0.0"
+
+        # Construct URL
+        url = self.test_different_signatures.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        query_parameters['location'] = self._serialize.query("location", location, 'str')
+        query_parameters['population'] = self._serialize.query("population", population, 'int')
+        if greeting is not None:
+            query_parameters['greeting'] = self._serialize.query("greeting", greeting, 'str')
+        if language is not None:
+            query_parameters['language'] = self._serialize.query("language", language, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('Continent', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    test_different_signatures.metadata = {'url': '/multiapi/testDifferentSignatures'}  # type: ignore
