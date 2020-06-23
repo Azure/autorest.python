@@ -1,11 +1,16 @@
 {% import 'operation_tools.jinja2' as op_tools %}
+{% import 'keywords.jinja2' as keywords %}
 {
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
-        "description": {{ code_model.description | tojson }}
+        "description": {{ code_model.description | tojson }},
+        {% set base_url =  code_model.base_url if code_model.base_url else ('https://management.azure.com' if code_model.options["azure_arm"] else None )%}
+        "base_url": {{ (keywords.escape_str(base_url) if base_url else None) | tojson }},
+        "custom_base_url": {{ (keywords.escape_str(code_model.custom_base_url) if code_model.custom_base_url else None) | tojson }},
+        "azure_arm": {{ code_model.options["azure_arm"]  | tojson }}
     },
     "global_parameters": {
         "sync_method": {
@@ -55,29 +60,39 @@
         {% set operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
         {{ operation_name | tojson }} : {
             "sync": {
-                {% set sync_return_type_wrapper = "LROPoller" if is_lro(operation) else ("ItemPaged" if is_paging(operation) else "") %}
-                "signature": {{ op_tools.method_signature(operation, operation_name, False, False, sync_return_type_wrapper) | tojson }},
-                {% if is_lro(operation) %}
+                {% if is_lro(operation) and is_paging(operation) %}
+                    {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
+                    {% set sync_return_type_wrapper = ["LROPoller", "ItemPaged"] %}
+                {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
+                    {% set sync_return_type_wrapper = ["LROPoller"] %}
                 {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
+                    {% set sync_return_type_wrapper = ["ItemPaged"] %}
                 {% else %}
                     {% from "operation.py.jinja2" import operation_docstring with context %}
+                    {% set sync_return_type_wrapper = "" %}
                 {% endif %}
+                "signature": {{ op_tools.method_signature(operation, operation_name, False, False, sync_return_type_wrapper) | tojson }},
                 "doc": {{ operation_docstring(async_mode=False) | tojson }}
             },
             "async": {
                 {% set coroutine = False if is_paging(operation) else True %}
-                {% set async_return_type_wrapper = "AsyncLROPoller" if is_lro(operation) else ("AsyncItemPaged" if is_paging(operation) else "") %}
-                "signature": {{ op_tools.method_signature(operation, operation_name, True, coroutine, async_return_type_wrapper) | tojson }},
                 "coroutine": {{ coroutine | tojson }},
-                {% if is_lro(operation) %}
+                {% if is_lro(operation) and is_paging(operation) %}
+                    {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
+                    {% set async_return_type_wrapper = ["AsyncLROPoller", "AsyncItemPaged"] %}
+                {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
+                    {% set async_return_type_wrapper = ["AsyncLROPoller"] %}
                 {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
+                    {% set async_return_type_wrapper = ["AsyncItemPaged"] %}
                 {% else %}
                     {% from "operation.py.jinja2" import operation_docstring with context %}
+                    {% set async_return_type_wrapper = "" %}
                 {% endif %}
+                "signature": {{ op_tools.method_signature(operation, operation_name, True, coroutine, async_return_type_wrapper) | tojson }},
                 "doc": {{ operation_docstring(async_mode=True) | tojson }}
             },
             "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}

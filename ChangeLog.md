@@ -5,9 +5,15 @@ Modelerfour version: 4.13.351
 
 **New Features**
 
+- Supports a function that is both LRO and paging  #689
 - We have added a `--credential-default-policy-type` flag. Its default value is `BearerTokenCredentialPolicy`, but it can also accept
 `AzureKeyCredentialPolicy`. The value passed in will be the default authentication policy in the client's config, so users using the
 generated library will use that auth policy unless they pass in a separate one through kwargs  #686
+- Added support for a data plane multiapi client  #693
+
+**Bug Fixes**
+
+- Fix typing for discriminator values in models, so Python 3.5 can import py3 file for models  #691
 
 **Bug Fixes**
 

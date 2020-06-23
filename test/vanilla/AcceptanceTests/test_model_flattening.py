@@ -258,3 +258,13 @@ class TestModelFlatteningTests(object):
         result = client.put_simple_product_with_grouping(group)
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
+
+    def test_models(self):
+        from modelflattening.models import Error
+
+        if sys.version_info >= (3,5):
+            from modelflattening.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from modelflattening.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

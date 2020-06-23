@@ -65,3 +65,13 @@ class TestBool(object):
     def test_model_get_invalid(self, client):
         with pytest.raises(DecodeError):
             client.bool.get_invalid()
+
+    def test_models(self):
+        from bodyboolean.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodyboolean.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodyboolean.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

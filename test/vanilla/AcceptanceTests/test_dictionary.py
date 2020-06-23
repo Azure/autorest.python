@@ -304,3 +304,13 @@ class TestDictionary(object):
                      "2":{"7":"seven","8":"eight","9":"nine"}}
         dict_result = client.dictionary.get_dictionary_item_empty()
         assert dict_dict ==  dict_result
+
+    def test_models(self):
+        from bodydictionary.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodydictionary.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodydictionary.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

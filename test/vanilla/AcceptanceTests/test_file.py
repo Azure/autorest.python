@@ -137,3 +137,13 @@ class TestFile(object):
                 file_handle.write(data)
 
             assert file_length ==  0
+
+    def test_models(self):
+        from bodyfile.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodyfile.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodyfile.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

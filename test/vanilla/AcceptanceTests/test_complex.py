@@ -460,3 +460,13 @@ class TestComplex(object):
         dot_salmon = client.polymorphism.get_dot_syntax()
         assert dot_salmon.fish_type == "DotSalmon"
         assert dot_salmon.location == "sweden"
+
+    def test_models(self):
+        from bodycomplex.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodycomplex.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodycomplex.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

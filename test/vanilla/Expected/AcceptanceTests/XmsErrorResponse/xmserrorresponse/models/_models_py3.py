@@ -93,7 +93,7 @@ class NotFoundErrorBase(BaseError):
     ):
         super(NotFoundErrorBase, self).__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
-        self.what_not_found: str = 'NotFoundErrorBase'
+        self.what_not_found = 'NotFoundErrorBase'  # type: str
 
 
 class AnimalNotFound(NotFoundErrorBase):
@@ -131,7 +131,7 @@ class AnimalNotFound(NotFoundErrorBase):
         **kwargs
     ):
         super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found: str = 'AnimalNotFound'
+        self.what_not_found = 'AnimalNotFound'  # type: str
         self.name = name
 
 
@@ -170,7 +170,7 @@ class LinkNotFound(NotFoundErrorBase):
         **kwargs
     ):
         super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found: str = 'InvalidResourceLink'
+        self.what_not_found = 'InvalidResourceLink'  # type: str
         self.what_sub_address = what_sub_address
 
 
@@ -259,7 +259,7 @@ class PetActionError(msrest.serialization.Model):
         **kwargs
     ):
         super(PetActionError, self).__init__(**kwargs)
-        self.error_type: Optional[str] = None
+        self.error_type = None  # type: Optional[str]
         self.error_message = error_message
 
 
@@ -301,7 +301,7 @@ class PetSadError(PetActionError):
         **kwargs
     ):
         super(PetSadError, self).__init__(error_message=error_message, **kwargs)
-        self.error_type: str = 'PetSadError'
+        self.error_type = 'PetSadError'  # type: str
         self.reason = reason
 
 
@@ -340,5 +340,5 @@ class PetHungryOrThirstyError(PetSadError):
         **kwargs
     ):
         super(PetHungryOrThirstyError, self).__init__(error_message=error_message, reason=reason, **kwargs)
-        self.error_type: str = 'PetHungryOrThirstyError'
+        self.error_type = 'PetHungryOrThirstyError'  # type: str
         self.hungry_or_thirsty = hungry_or_thirsty

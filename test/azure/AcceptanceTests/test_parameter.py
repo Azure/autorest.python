@@ -178,3 +178,13 @@ class TestParameter(object):
     def test_azure_odata(self, azure_client):
         azure_client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
 
+    def test_models(self):
+        from azureparametergrouping.models import Error
+
+        if sys.version_info >= (3,5):
+            from azureparametergrouping.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from azureparametergrouping.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2
+

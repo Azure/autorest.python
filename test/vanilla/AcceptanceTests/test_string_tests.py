@@ -139,3 +139,13 @@ class TestString(object):
     def test_lowercase_enum_retrieval(self):
         assert Colors.green_color == Colors.GREEN_COLOR
         assert "green-color" == Colors.GREEN_COLOR
+
+    def test_models(self):
+        from bodystring.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodystring.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodystring.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2
