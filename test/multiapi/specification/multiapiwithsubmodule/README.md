@@ -25,7 +25,7 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiW
 ### Settings
 ``` yaml
 license-header: MICROSOFT_MIT_NO_VERSION
-azure: true
+azure-arm: true
 add-credentials: true
 no-namespace-folders: true
 ```

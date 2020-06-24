@@ -33,6 +33,7 @@ import json
 from decimal import Decimal
 from datetime import date, datetime, timedelta
 import os
+import pytest
 from os.path import dirname, pardir, join, realpath
 
 from azure.core.exceptions import DecodeError
@@ -102,3 +103,13 @@ class TestNumber(object):
     def test_get_invalid_float(self, client):
         with pytest.raises(DecodeError):
             client.number.get_invalid_float()
+
+    def test_models(self):
+        from bodynumber.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodynumber.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodynumber.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

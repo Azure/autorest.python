@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 import json
 import pytest
+import sys
 
 from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 
@@ -90,4 +91,13 @@ class TestXmsErrorResponse(object):
 
         with pytest.raises(ResourceNotFoundError) as excinfo:
             client.pet.do_something("fetch")
-            
+
+    def test_models(self):
+        from xmserrorresponse.models import Animal
+
+        if sys.version_info >= (3,5):
+            from xmserrorresponse.models._models_py3 import Animal as AnimalPy3
+            assert Animal == AnimalPy3
+        else:
+            from xmserrorresponse.models._models import Animal as AnimalPy2
+            assert Animal == AnimalPy2

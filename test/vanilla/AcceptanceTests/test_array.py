@@ -280,3 +280,13 @@ class TestArray(object):
     def test_array_string_enum_valid(self, client):
         array = client.array.get_string_enum_valid()
         client.array.put_string_enum_valid(array)
+
+    def test_models(self):
+        from bodyarray.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodyarray.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodyarray.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2

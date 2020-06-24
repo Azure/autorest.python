@@ -29,6 +29,7 @@ import datetime
 
 from bodytime import AutoRestTimeTestService
 import pytest
+import sys
 
 @pytest.fixture
 def client():
@@ -43,3 +44,13 @@ class TestTime(object):
     def test_put(self, client):
         result = client.time.put(datetime.time(8, 7, 56))
         assert result == "Nice job posting time"
+
+    def test_models(self):
+        from bodytime.models import Error
+
+        if sys.version_info >= (3,5):
+            from bodytime.models._models_py3 import Error as ErrorPy3
+            assert Error == ErrorPy3
+        else:
+            from bodytime.models._models import Error as ErrorPy2
+            assert Error == ErrorPy2
