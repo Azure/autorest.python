@@ -1,6 +1,6 @@
 # Change Log
 
-### Unreleased
+### 2020-06-24 - 5.1.0-preview.3
 Modelerfour version: 4.13.351
 
 **New Features**
