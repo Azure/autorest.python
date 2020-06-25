@@ -24,6 +24,7 @@ class ListSchema(BaseSchema):
         self.max_items = max_items
         self.min_items = min_items
         self.unique_items = unique_items
+        self.nullable = False  # this is for clarity, since ListSchemas cannot be nullable
 
     @property
     def serialization_type(self) -> str:
