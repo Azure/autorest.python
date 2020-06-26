@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum, EnumMeta
+from six import with_metaclass
 
 class CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
@@ -25,7 +26,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-class AccessTier(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class AccessTier(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     P4 = "P4"
     P6 = "P6"
@@ -38,30 +39,30 @@ class AccessTier(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     COOL = "Cool"
     ARCHIVE = "Archive"
 
-class ArchiveStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ArchiveStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     REHYDRATE_PENDING_TO_HOT = "rehydrate-pending-to-hot"
     REHYDRATE_PENDING_TO_COOL = "rehydrate-pending-to-cool"
 
-class BlobType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class BlobType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     BLOCK_BLOB = "BlockBlob"
     PAGE_BLOB = "PageBlob"
     APPEND_BLOB = "AppendBlob"
 
-class CopyStatusType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class CopyStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     PENDING = "pending"
     SUCCESS = "success"
     ABORTED = "aborted"
     FAILED = "failed"
 
-class LeaseDurationType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class LeaseDurationType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     INFINITE = "infinite"
     FIXED = "fixed"
 
-class LeaseStateType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class LeaseStateType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     AVAILABLE = "available"
     LEASED = "leased"
@@ -69,12 +70,12 @@ class LeaseStateType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     BREAKING = "breaking"
     BROKEN = "broken"
 
-class LeaseStatusType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class LeaseStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     LOCKED = "locked"
     UNLOCKED = "unlocked"
 
-class PublicAccessType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class PublicAccessType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     CONTAINER = "container"
     BLOB = "blob"

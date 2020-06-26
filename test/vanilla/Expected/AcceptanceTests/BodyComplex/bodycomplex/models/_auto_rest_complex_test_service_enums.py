@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum, EnumMeta
+from six import with_metaclass
 
 class CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
@@ -25,14 +26,14 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-class CMYKColors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class CMYKColors(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     CYAN = "cyan"
     MAGENTA = "Magenta"
     YELLOW = "YELLOW"
     BLAC_K = "blacK"
 
-class GoblinSharkColor(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class GoblinSharkColor(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     """Colors possible
     """
 

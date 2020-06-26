@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum, EnumMeta
+from six import with_metaclass
 
 class CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
@@ -25,19 +26,19 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-class Enum0(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class Enum0(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     FOO1 = "foo1"
     FOO2 = "foo2"
     FOO3 = "foo3"
 
-class Enum1(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class Enum1(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     FOO1 = "foo1"
     FOO2 = "foo2"
     FOO3 = "foo3"
 
-class FooEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class FooEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     FOO1 = "foo1"
     FOO2 = "foo2"

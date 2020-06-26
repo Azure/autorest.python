@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum, EnumMeta
+from six import with_metaclass
 
 class CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
@@ -25,7 +26,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-class FlattenedProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class FlattenedProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"

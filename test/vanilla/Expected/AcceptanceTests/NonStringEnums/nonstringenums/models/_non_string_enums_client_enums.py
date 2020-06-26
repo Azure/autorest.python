@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum, EnumMeta
+from six import with_metaclass
 
 class CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
@@ -25,7 +26,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name) from None
 
 
-class FloatEnum(float, Enum, metaclass=CaseInsensitiveEnumMeta):
+class FloatEnum(with_metaclass(CaseInsensitiveEnumMeta, float, Enum)):
     """List of float enums
     """
 
@@ -35,7 +36,7 @@ class FloatEnum(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     FOUR_HUNDRED_SIX2 = 406.2
     FOUR_HUNDRED_TWENTY_NINE1 = 429.1
 
-class IntEnum(int, Enum, metaclass=CaseInsensitiveEnumMeta):
+class IntEnum(with_metaclass(CaseInsensitiveEnumMeta, int, Enum)):
     """List of integer enums
     """
 

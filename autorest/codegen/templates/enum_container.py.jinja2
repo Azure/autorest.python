@@ -2,6 +2,7 @@
 {{ code_model.options['license_header'] }}
 
 from enum import Enum, EnumMeta
+from six import with_metaclass
 
 class CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
