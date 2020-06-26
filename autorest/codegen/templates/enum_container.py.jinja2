@@ -18,7 +18,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
         try:
             return cls._member_map_[name.upper()]
         except KeyError:
-            raise AttributeError(name) from None
+            raise AttributeError(name)
 
 {% for enum in code_model.enums.values() | sort %}
 {% include "enum.py.jinja2" %}

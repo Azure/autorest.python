@@ -23,7 +23,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
         try:
             return cls._member_map_[name.upper()]
         except KeyError:
-            raise AttributeError(name) from None
+            raise AttributeError(name)
 
 
 class FloatEnum(with_metaclass(CaseInsensitiveEnumMeta, float, Enum)):
