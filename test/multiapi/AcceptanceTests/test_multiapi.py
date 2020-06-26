@@ -27,6 +27,7 @@ import pytest
 import inspect
 import json
 from azure.mgmt.core import ARMPipelineClient
+from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 from azure.profiles import KnownProfiles
 from .multiapi_base import NotTested
 
@@ -73,6 +74,25 @@ def test_patch_file():
 def test_pipeline_client(default_client):
     # assert the pipeline client is ARMPipelineClient from azure.mgmt.core, since this is mgmt plane
     assert type(default_client._client) == ARMPipelineClient
+
+def test_arm_http_logging_policy_default(default_client):
+    assert isinstance(default_client._config.http_logging_policy, ARMHttpLoggingPolicy)
+    assert default_client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+
+def test_arm_http_logging_policy_custom(credential):
+    from multiapi import MultiapiServiceClient
+    http_logging_policy = ARMHttpLoggingPolicy(base_url="test")
+    http_logging_policy = ARMHttpLoggingPolicy()
+    http_logging_policy.allowed_header_names.update(
+        {"x-ms-added-header"}
+    )
+    with MultiapiServiceClient(
+		base_url="http://localhost:3000",
+        credential=credential,
+        http_logging_policy=http_logging_policy
+    ) as default_client:
+        assert isinstance(default_client._config.http_logging_policy, ARMHttpLoggingPolicy)
+        assert default_client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
