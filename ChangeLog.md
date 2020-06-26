@@ -1,5 +1,12 @@
 # Change Log
 
+### Unreleased
+Modelerfour version: 4.13.351
+
+**New Features**
+
+- Add `http_logging_policy` setting for config, and users can override the default by passing in the kwarg `http_logging_policy`  #698
+
 ### 2020-06-24 - 5.1.0-preview.3
 Modelerfour version: 4.13.351
 
