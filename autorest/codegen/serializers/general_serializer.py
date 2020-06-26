@@ -59,6 +59,8 @@ class GeneralSerializer:
                 file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
             for gp in self.code_model.global_parameters:
                 file_import.merge(gp.imports())
+            if self.code_model.options["azure_arm"]:
+                file_import.add_from_import("azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE)
             return file_import
 
         package_name = self.code_model.options['package_name']
