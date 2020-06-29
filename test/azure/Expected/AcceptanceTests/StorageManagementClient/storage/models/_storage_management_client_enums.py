@@ -9,7 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
-class CaseInsensitiveEnumMeta(EnumMeta):
+class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
 
@@ -26,7 +26,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name)
 
 
-class AccountStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class AccountStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the status indicating whether the primary location of the storage account is available or
     unavailable.
     """
@@ -34,7 +34,7 @@ class AccountStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     AVAILABLE = "Available"
     UNAVAILABLE = "Unavailable"
 
-class AccountType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class AccountType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """Gets or sets the account type.
     """
 
@@ -44,12 +44,12 @@ class AccountType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     STANDARD_RAGRS = "Standard_RAGRS"
     PREMIUM_LRS = "Premium_LRS"
 
-class KeyName(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class KeyName(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     KEY1 = "key1"
     KEY2 = "key2"
 
-class ProvisioningState(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class ProvisioningState(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the status of the storage account at the time the operation was called.
     """
 
@@ -57,7 +57,7 @@ class ProvisioningState(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     RESOLVING_DNS = "ResolvingDNS"
     SUCCEEDED = "Succeeded"
 
-class Reason(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class Reason(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the reason that a storage account name could not be used. The Reason element is only
     returned if NameAvailable is false.
     """
@@ -65,7 +65,7 @@ class Reason(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     ACCOUNT_NAME_INVALID = "AccountNameInvalid"
     ALREADY_EXISTS = "AlreadyExists"
 
-class UsageUnit(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class UsageUnit(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the unit of measurement.
     """
 

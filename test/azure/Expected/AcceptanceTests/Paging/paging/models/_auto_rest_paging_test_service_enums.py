@@ -9,7 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
-class CaseInsensitiveEnumMeta(EnumMeta):
+class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
 
@@ -26,7 +26,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name)
 
 
-class OperationResultStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class OperationResultStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """The status of the request
     """
 

@@ -1,5 +1,5 @@
 
-class {{ enum.name }}(with_metaclass(CaseInsensitiveEnumMeta, {{ enum.enum_type.type_annotation }}, Enum)):
+class {{ enum.name }}(with_metaclass(_CaseInsensitiveEnumMeta, {{ enum.enum_type.type_annotation }}, Enum)):
     {% if enum.description %}
     """{{ enum.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
     """

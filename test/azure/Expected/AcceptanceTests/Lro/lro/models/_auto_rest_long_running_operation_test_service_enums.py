@@ -9,7 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
-class CaseInsensitiveEnumMeta(EnumMeta):
+class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
 
@@ -26,7 +26,7 @@ class CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name)
 
 
-class OperationResultStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class OperationResultStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """The status of the request
     """
 
@@ -42,7 +42,7 @@ class OperationResultStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     DELETED = "Deleted"
     OK = "OK"
 
-class ProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class ProductPropertiesProvisioningStateValues(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"
@@ -56,7 +56,7 @@ class ProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnu
     DELETED = "Deleted"
     OK = "OK"
 
-class SubProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class SubProductPropertiesProvisioningStateValues(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"
