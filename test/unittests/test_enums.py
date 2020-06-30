@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from enum import Enum, EnumMeta
+from six import with_metaclass
 
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
