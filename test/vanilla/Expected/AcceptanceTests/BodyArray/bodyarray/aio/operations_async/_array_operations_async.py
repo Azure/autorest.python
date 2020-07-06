@@ -153,7 +153,7 @@ class ArrayOperations:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]')
+            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]

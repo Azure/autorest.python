@@ -134,6 +134,52 @@ class ArrayOperations(object):
     get_invalid.metadata = {'url': '/array/invalid'}  # type: ignore
 
     @distributed_trace
+    def get_with_array_query(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get a 200 empty OK response if you correctly pass in ['hello', 'nihao', 'bonjour'] for the
+        'arrayQuery' parameter to the service.
+
+        :param array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
+        :type array_query: list[str]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_with_array_query.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        if array_query is not None:
+            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    get_with_array_query.metadata = {'url': '/array/query'}  # type: ignore
+
+    @distributed_trace
     def get_empty(
         self,
         **kwargs  # type: Any
