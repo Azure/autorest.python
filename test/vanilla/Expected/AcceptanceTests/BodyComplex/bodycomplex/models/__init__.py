@@ -76,6 +76,7 @@ except (SyntaxError, ImportError):
 from ._auto_rest_complex_test_service_enums import (
     CMYKColors,
     GoblinSharkColor,
+    MyKind,
 )
 
 __all__ = [
@@ -113,4 +114,5 @@ __all__ = [
     'StringWrapper',
     'CMYKColors',
     'GoblinSharkColor',
+    'MyKind',
 ]
