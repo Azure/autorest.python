@@ -22,6 +22,11 @@ generated library will use that auth policy unless they pass in a separate one t
 
 - Fix typing for discriminator values in models, so Python 3.5 can import py3 file for models  #691
 
+**Bug Fixes**
+
+- Make enum names all upper case. This fixes issues that arise if the name of an enum is also a method that can be applied to, say, a string.
+For example, if an enum's name is count. Made sure this fix will not break users currently accessing with lower case enum names  #692
+
 ### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351
 
