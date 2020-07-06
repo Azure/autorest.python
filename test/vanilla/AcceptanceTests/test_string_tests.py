@@ -105,9 +105,9 @@ class TestString(object):
         assert client.string.get_not_provided() is None
 
     def test_enum_not_expandable(self, client):
-        assert Colors.red_color ==  client.enum.get_not_expandable()
+        assert Colors.RED_COLOR ==  client.enum.get_not_expandable()
         client.enum.put_not_expandable('red color')
-        client.enum.put_not_expandable(Colors.red_color)
+        client.enum.put_not_expandable(Colors.RED_COLOR)
         # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
         # but now we allow the user to pass strings as enums, so the raised exception is different.
         with pytest.raises(HttpResponseError):
@@ -124,17 +124,21 @@ class TestString(object):
         assert client.string.get_null_base64_url_encoded() is None
 
     def test_enum_referenced(self, client):
-        client.enum.put_referenced(Colors.red_color)
+        client.enum.put_referenced(Colors.RED_COLOR)
         client.enum.put_referenced("red color")
 
-        assert client.enum.get_referenced() ==  Colors.red_color
+        assert client.enum.get_referenced() ==  Colors.RED_COLOR
 
     def test_enum_referenced_constant(self, client):
         client.enum.put_referenced_constant()
-        assert client.enum.get_referenced_constant().color_constant ==  Colors.green_color.value
+        assert client.enum.get_referenced_constant().color_constant ==  Colors.GREEN_COLOR.value
 
     def test_patch_file(self):
         from bodystring.models import PatchAddedModel
+
+    def test_lowercase_enum_retrieval(self):
+        assert Colors.green_color == Colors.GREEN_COLOR
+        assert "green-color" == Colors.GREEN_COLOR
 
     def test_models(self):
         from bodystring.models import Error

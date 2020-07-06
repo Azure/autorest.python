@@ -6,24 +6,42 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from enum import Enum, EnumMeta
+from six import with_metaclass
 
-class FloatEnum(float, Enum):
+class _CaseInsensitiveEnumMeta(EnumMeta):
+    def __getitem__(self, name):
+        return super().__getitem__(name.upper())
+
+    def __getattr__(cls, name):
+        """Return the enum member matching `name`
+        We use __getattr__ instead of descriptors or inserting into the enum
+        class' __dict__ in order to support `name` and `value` being both
+        properties for enum members (which live in the class' __dict__) and
+        enum members themselves.
+        """
+        try:
+            return cls._member_map_[name.upper()]
+        except KeyError:
+            raise AttributeError(name)
+
+
+class FloatEnum(with_metaclass(_CaseInsensitiveEnumMeta, float, Enum)):
     """List of float enums
     """
 
-    two_hundred4 = 200.4
-    four_hundred_three4 = 403.4
-    four_hundred_five3 = 405.3
-    four_hundred_six2 = 406.2
-    four_hundred_twenty_nine1 = 429.1
+    TWO_HUNDRED4 = 200.4
+    FOUR_HUNDRED_THREE4 = 403.4
+    FOUR_HUNDRED_FIVE3 = 405.3
+    FOUR_HUNDRED_SIX2 = 406.2
+    FOUR_HUNDRED_TWENTY_NINE1 = 429.1
 
-class IntEnum(int, Enum):
+class IntEnum(with_metaclass(_CaseInsensitiveEnumMeta, int, Enum)):
     """List of integer enums
     """
 
-    two_hundred = 200
-    four_hundred_three = 403
-    four_hundred_five = 405
-    four_hundred_six = 406
-    four_hundred_twenty_nine = 429
+    TWO_HUNDRED = 200
+    FOUR_HUNDRED_THREE = 403
+    FOUR_HUNDRED_FIVE = 405
+    FOUR_HUNDRED_SIX = 406
+    FOUR_HUNDRED_TWENTY_NINE = 429

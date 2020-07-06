@@ -45,7 +45,7 @@ modelerfour:
     operation: snakecase
     operationGroup:  pascalcase
     choice:  pascalcase
-    choiceValue:  snakecase
+    choiceValue:  uppercase
     constant:  snakecase
     constantParameter:  snakecase
     type:  pascalcase
