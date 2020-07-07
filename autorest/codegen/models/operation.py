@@ -235,7 +235,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         serialize_line = f'self._serialize.{function_name}({parameters_line})'
 
         if parameter.explode:
-            return f"[{serialize_line} for q in {origin_name}]"
+            return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
         else:
             return serialize_line
 
