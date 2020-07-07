@@ -15,6 +15,7 @@ from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
+from .list_schema import ListSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -197,7 +198,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if parameter.skip_url_encoding:
             optional_parameters.append("skip_quote=True")
 
-        if parameter.style:
+        if parameter.style and not parameter.explode:
             if parameter.style in [ParameterStyle.simple, ParameterStyle.form]:
                 div_char = ","
             elif parameter.style in [ParameterStyle.spaceDelimited]:
@@ -210,17 +211,33 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 raise ValueError(f"Do not support {parameter.style} yet")
             optional_parameters.append(f"div='{div_char}'")
 
-        serialization_constraints = parameter.schema.serialization_constraints
-        optional_parameters += serialization_constraints if serialization_constraints else ""
+        if parameter.explode:
+            if not isinstance(parameter.schema, ListSchema):
+                raise ValueError("Got a explode boolean on a non-array schema")
+            serialization_schema = parameter.schema.element_type
+        else:
+            serialization_schema = parameter.schema
 
-        optional_parameters_string = "" if not optional_parameters else ", " + ", ".join(optional_parameters)
+        serialization_constraints = serialization_schema.serialization_constraints
+        if serialization_constraints:
+            optional_parameters += serialization_constraints
 
         origin_name = parameter.full_serialized_name
 
-        return (
-            f"""self._serialize.{function_name}("{origin_name.lstrip('_')}", {origin_name}, """
-            + f"""'{parameter.schema.serialization_type}'{optional_parameters_string})"""
-        )
+        parameters = [
+            f'"{origin_name.lstrip("_")}"',
+            "q" if parameter.explode else origin_name,
+            f"'{serialization_schema.serialization_type}'",
+            *optional_parameters
+        ]
+        parameters_line = ', '.join(parameters)
+
+        serialize_line = f'self._serialize.{function_name}({parameters_line})'
+
+        if parameter.explode:
+            return f"[{serialize_line} for q in {origin_name}]"
+        else:
+            return serialize_line
 
     @property
     def serialization_context(self) -> str:

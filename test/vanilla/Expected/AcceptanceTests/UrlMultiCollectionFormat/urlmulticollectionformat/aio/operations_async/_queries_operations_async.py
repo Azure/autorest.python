@@ -65,7 +65,7 @@ class QueriesOperations:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') for q in array_query]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -109,7 +109,7 @@ class QueriesOperations:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') for q in array_query]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -155,7 +155,7 @@ class QueriesOperations:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') for q in array_query]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
