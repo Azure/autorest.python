@@ -78,10 +78,6 @@ class TestArray(object):
         await client.array.put_empty([])
 
     @pytest.mark.asyncio
-    async def test_query_array(self, client):
-        await client.array.get_with_array_query(['hello', 'nihao', 'bonjour'])
-
-    @pytest.mark.asyncio
     async def test_boolean_tfft(self, client):
         assert [True, False, False, True] ==  (await client.array.get_boolean_tfft())
         await client.array.put_boolean_tfft([True, False, False, True])

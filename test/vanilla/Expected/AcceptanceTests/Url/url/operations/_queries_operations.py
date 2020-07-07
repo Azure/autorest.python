@@ -1395,6 +1395,52 @@ class QueriesOperations(object):
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}  # type: ignore
 
     @distributed_trace
+    def array_string_no_collection_format_empty(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Get an empty array [] of string with no collection format. Pass in ['hello', 'nihao',
+        'bonjour'] for the 'arrayQuery' parameter to the service.
+
+        :param array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
+        :type array_query: list[str]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.array_string_no_collection_format_empty.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        if array_query is not None:
+            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    array_string_no_collection_format_empty.metadata = {'url': '/queries/array/none/string/empty'}  # type: ignore
+
+    @distributed_trace
     def array_string_ssv_valid(
         self,
         array_query=None,  # type: Optional[List[str]]

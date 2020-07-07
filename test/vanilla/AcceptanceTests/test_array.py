@@ -74,9 +74,6 @@ class TestArray(object):
         assert client.array.get_null() is None
         client.array.put_empty([])
 
-    def test_query_array(self, client):
-        client.array.get_with_array_query(['hello', 'nihao', 'bonjour'])
-
     def test_boolean_tfft(self, client):
         assert [True, False, False, True] ==  client.array.get_boolean_tfft()
         client.array.put_boolean_tfft([True, False, False, True])
