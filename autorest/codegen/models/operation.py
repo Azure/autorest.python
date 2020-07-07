@@ -9,10 +9,9 @@ from typing import cast, Dict, List, Any, Optional, Union, Set, TypeVar
 from .base_model import BaseModel
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter, ParameterStyle, ParameterLocation
+from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
-from .list_schema import ListSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
@@ -197,10 +196,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         if parameter.skip_url_encoding:
             optional_parameters.append("skip_quote=True")
-
-        # for query parameters without a style, we want to default to csv format
-        if parameter.location == ParameterLocation.Query and isinstance(parameter.schema, ListSchema):
-            parameter.style = parameter.style or ParameterStyle.simple
 
         if parameter.style:
             if parameter.style in [ParameterStyle.simple, ParameterStyle.form]:
