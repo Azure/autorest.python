@@ -792,8 +792,8 @@ class MyBaseType(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.
-    :type kind: str
+    :param kind: Required. Constant filled by server.  Possible values include: "Kind1".
+    :type kind: str or ~bodycomplex.models.MyKind
     :param prop_b1:
     :type prop_b1: str
     :param prop_bh1:
@@ -832,8 +832,8 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.
-    :type kind: str
+    :param kind: Required. Constant filled by server.  Possible values include: "Kind1".
+    :type kind: str or ~bodycomplex.models.MyKind
     :param prop_b1:
     :type prop_b1: str
     :param prop_bh1:
