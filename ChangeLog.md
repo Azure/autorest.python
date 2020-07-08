@@ -1,5 +1,13 @@
 # Change Log
 
+### 2020-07-07 - 5.1.0-preview.4
+Modelerfour version: 4.15.378
+
+**New Features**
+
+- Enum values are uppercase (with an alias from the lowercase version)  #692
+- Add `http_logging_policy` setting for config, and users can override the default by passing in the kwarg `http_logging_policy`  #698
+
 ### 2020-06-24 - 5.1.0-preview.3
 Modelerfour version: 4.13.351
 
