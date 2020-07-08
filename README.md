@@ -28,7 +28,7 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 pass-thru:
   - model-deduplicator
   - subset-reducer
-# version: 3.0.6258
+version: 3.0.6287
 use-extension:
   "@autorest/modelerfour": "4.13.351"
 
