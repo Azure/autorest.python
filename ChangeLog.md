@@ -8,7 +8,7 @@ Modelerfour version: 4.15.378
 
 - Correctly have default behavior of csv for array query parameters when collection format is not specified in the swagger
 (taken from m4 update - perks PR #118)
-
+- Fix bug when generating parameters with client default value and constant schema  #707
 
 ### 2020-07-07 - 5.1.0-preview.4
 Modelerfour version: 4.15.378

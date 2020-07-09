@@ -131,7 +131,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             default_value_declaration = "None"
         else:
             if isinstance(self.schema, ConstantSchema):
-                default_value = self.schema.constant_value
+                default_value = self.schema.get_declaration(self.schema.value)
                 default_value_declaration = default_value
             else:
                 default_value = self.schema.default_value
