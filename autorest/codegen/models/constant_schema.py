@@ -35,7 +35,7 @@ class ConstantSchema(BaseSchema):
         if value != self.value:
             raise ValueError("The value of the declaration is different than the constant value")
         return self.schema.get_declaration(value)
-        
+
     @property
     def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
