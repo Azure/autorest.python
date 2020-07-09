@@ -133,8 +133,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def request_content_type(self) -> str:
         return next(iter(
             [
-                cast(ConstantSchema, p.schema).constant_value for p in self.parameters.constant
-                if p.serialized_name == "content_type"
+                p.schema.get_declaration(cast(ConstantSchema, p.schema).value)
+                for p in self.parameters.constant if p.serialized_name == "content_type"
             ]
         ))
 

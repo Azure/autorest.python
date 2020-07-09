@@ -39,7 +39,7 @@
 {% endfor %}
 {% if (operation.requests | length) > 1 %}
 {% set content_type_constant = operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
-:keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.schema.constant_value }}.
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.schema.get_declaration(content_type_constant.schema.value) }}.
  Allowed values are: "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
@@ -72,9 +72,9 @@
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% if constant_parameter.serialized_name == "content_type" %}
-    content_type = kwargs.pop("content_type", {{ constant_parameter.schema.constant_value }})
+    content_type = kwargs.pop("content_type", {{ constant_parameter.schema.get_declaration(constant_parameter.schema.value) }})
     {% else %}
-    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_declaration(constant_parameter.schema.value) }}
     {% endif %}
     {% endfor %}
 {% endif %}
