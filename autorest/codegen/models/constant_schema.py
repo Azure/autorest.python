@@ -30,11 +30,14 @@ class ConstantSchema(BaseSchema):
         self.schema = schema
 
     def get_declaration(self, value: Any):
-        if value is None:
-            return "None"
         if value != self.value:
-            raise ValueError("The value of the declaration is different than the constant value")
-        return self.schema.get_declaration(value)
+            _LOGGER.warning(
+                "Passed in value of %s differs from constant value of %s. Choosing constant value",
+                str(value), str(self.value)
+            )
+        if self.value is None:
+            return "None"
+        return self.schema.get_declaration(self.value)
 
     @property
     def serialization_type(self) -> str:
