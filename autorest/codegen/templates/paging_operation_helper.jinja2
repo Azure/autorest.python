@@ -13,7 +13,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
 {% endif %}
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_declaration(constant_parameter.schema.value) }}
     {% endfor %}
 {% endif %}
 

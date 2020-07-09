@@ -30,16 +30,12 @@ class ConstantSchema(BaseSchema):
         self.schema = schema
 
     def get_declaration(self, value: Any):
-        raise TypeError("Should not call get_declaration on a ConstantSchema. Use the constant_value property instead")
-
-    @property
-    def constant_value(self) -> str:
-        """This string is used directly in template, as-is
-        """
-        if self.value is None:
+        if value is None:
             return "None"
-        return self.schema.get_declaration(self.value)
-
+        if value != self.value:
+            raise ValueError("The value of the declaration is different than the constant value")
+        return self.schema.get_declaration(value)
+        
     @property
     def serialization_type(self) -> str:
         """Returns the serialization value for msrest.

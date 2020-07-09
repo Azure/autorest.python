@@ -63,7 +63,7 @@ class {{ model.name }}(msrest.serialization.Model):
     {% if (model.properties | selectattr('constant') | first) is defined %}
 
         {% for p in model.properties | selectattr('constant')%}
-    {{ p.name }} = {{ p.schema.constant_value }}
+    {{ p.name }} = {{ p.schema.get_declaration(p.schema.value) }}
         {% endfor %}
     {% endif %}
 

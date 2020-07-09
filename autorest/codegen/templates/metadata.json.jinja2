@@ -36,7 +36,7 @@
         "constant": {
             {% for gp in code_model.global_parameters.constant %}
             {% if gp.serialized_name != "api_version" %}
-            {{ gp.serialized_name | tojson }}: {{ gp.schema.constant_value | tojson }}{{ "," if not loop.last else "" }}
+            {{ gp.serialized_name | tojson }}: {{ gp.schema.get_declaration(gp.schema.value) | tojson }}{{ "," if not loop.last else "" }}
             {% endif %}
             {% endfor %}
         },

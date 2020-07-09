@@ -123,11 +123,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             type_annot = f"Optional[{type_annot}]"
 
         if self._client_default_value is not None:
-            if isinstance(self.schema, ConstantSchema):
-                default_value_declaration = self.schema.constant_value
-            else:
-                default_value_declaration = self.schema.get_declaration(self._client_default_value)
-            return self._client_default_value, default_value_declaration, type_annot
+            return self._client_default_value, self.schema.get_declaration(self._client_default_value), type_annot
 
         if self.multiple_media_types_type_annot:
             # means this parameter has multiple media types. We force default value to be None.
@@ -135,7 +131,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             default_value_declaration = "None"
         else:
             if isinstance(self.schema, ConstantSchema):
-                default_value = self.schema.constant_value
+                default_value = self.schema.get_declaration(self.schema.value)
                 default_value_declaration = default_value
             else:
                 default_value = self.schema.default_value
