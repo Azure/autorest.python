@@ -54,7 +54,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% endfor %}
 {% if code_model.global_parameters.constant %}
     {% for constant_parameter in code_model.global_parameters.constant %}
-        self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
+        self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_declaration(constant_parameter.schema.value) }}
     {% endfor %}
 {% endif %}
 {% if code_model.options['credential_scopes'] is not none %}

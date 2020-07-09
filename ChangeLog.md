@@ -1,5 +1,12 @@
 # Change Log
 
+### 2020-xx-xx - 5.1.0-preview.5
+Modelerfour version: 4.15.378
+
+**Bug Fixes**
+
+- Fix bug when generating parameters with client default value and constant schema  #707
+
 ### 2020-07-07 - 5.1.0-preview.4
 Modelerfour version: 4.15.378
 
