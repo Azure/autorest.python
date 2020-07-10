@@ -1401,7 +1401,7 @@ class QueriesOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Get an empty array [] of string with no collection format. Pass in ['hello', 'nihao',
+        """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
 
         :param array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
