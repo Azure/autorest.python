@@ -198,6 +198,9 @@ class TestUrl(object):
         multi_client.queries.array_string_multi_null()
         multi_client.queries.array_string_multi_valid(test_array_query)
 
+    def test_array_string_no_collection_format(self, client):
+        client.queries.array_string_no_collection_format_empty(['hello', 'nihao', 'bonjour'])
+
     def test_get_all_with_values(self, client):
         client._config.global_string_path = "globalStringPath"
         client._config.global_string_query = "globalStringQuery"
