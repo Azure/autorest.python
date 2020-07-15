@@ -201,6 +201,16 @@ class MultiAPI:
 
         return mixin_operations
 
+    def _build_custom_base_url_to_api_version(
+        self, paths_to_versions: List[Path]
+    ) -> Dict[str, List[str]]:
+        custom_base_url_to_api_version: Dict[str, List[str]] = {}
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            custom_base_url = metadata_json["client"]["custom_base_url"]
+            custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version_path.name)
+        return custom_base_url_to_api_version
+
     def _build_operation_meta(
         self, paths_to_versions: List[Path]
     ) -> Tuple[Dict[str, List[Tuple[str, str]]], Dict[str, str]]:
@@ -366,7 +376,7 @@ class MultiAPI:
             "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
             "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
             "base_url": metadata_json["client"]["base_url"],
-            "custom_base_url": metadata_json["client"]["custom_base_url"],
+            "custom_base_url_to_api_version": self._build_custom_base_url_to_api_version(paths_to_versions),
             "azure_arm": metadata_json["client"]["azure_arm"]
         }
 

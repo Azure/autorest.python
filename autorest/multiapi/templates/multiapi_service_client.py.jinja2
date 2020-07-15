@@ -73,7 +73,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
 {% endfor %}
     :param str api_version: API version to use if no profile is provided, or if
      missing in profile.
-    {% if not custom_base_url %}
+    {% if base_url %}
     :param str base_url: Service URL
     {% endif %}
     :param profile: A profile definition, from KnownProfiles to dict.
@@ -96,7 +96,13 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
 
     {{ method_signature()|indent }}
         {% if not base_url %}
-        base_url = {{ custom_base_url }}
+        {% for custom_base_url, api_versions in custom_base_url_to_api_version|dictsort %}
+        {% set if_statement = "if" if loop.first else "elif" %}
+        {{ if_statement ~ " api_version == '" ~ api_versions|join("' or api_version == '") ~ "'" }}:
+            base_url = {{ custom_base_url }}
+        {% endfor %}
+        else:
+            raise NotImplementedError("APIVersion {} is not available".format(api_version))
         {% else %}
         if not base_url:
             base_url = {{ base_url }}
