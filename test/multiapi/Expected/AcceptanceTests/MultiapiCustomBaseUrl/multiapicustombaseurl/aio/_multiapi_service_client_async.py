@@ -59,7 +59,6 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         credential,  # type: "AsyncTokenCredential"
         endpoint,  # type: str
         api_version=None,
-        base_url=None,
         profile=KnownProfiles.default,
         **kwargs  # type: Any
     ) -> None:

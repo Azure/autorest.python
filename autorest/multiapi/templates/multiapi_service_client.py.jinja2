@@ -13,7 +13,9 @@ def __init__(
         {% endif %}
     {% endfor %}
     api_version=None,
+    {% if base_url %}
     base_url=None,
+    {% endif %}
     profile=KnownProfiles.default,
     **kwargs  # type: Any
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
