@@ -62,7 +62,12 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         profile=KnownProfiles.default,
         **kwargs  # type: Any
     ):
-        base_url = '{Endpoint}/multiapi/custom/base/url/v2'
+        if api_version == 'v1':
+            base_url = '{Endpoint}/multiapiCustomBaseUrl/v1'
+        elif api_version == 'v2':
+            base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
+        else:
+            raise NotImplementedError("APIVersion {} is not available".format(api_version))
         self._config = MultiapiServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiServiceClient, self).__init__(

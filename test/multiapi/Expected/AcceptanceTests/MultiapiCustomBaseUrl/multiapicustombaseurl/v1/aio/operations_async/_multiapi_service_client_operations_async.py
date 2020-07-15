@@ -19,18 +19,16 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultiapiServiceClientOperationsMixin:
 
-    async def test_one(
+    async def test(
         self,
         id: int,
-        message: Optional[str] = None,
         **kwargs
     ) -> None:
-        """TestOne should be in an FirstVersionOperationsMixin.
+        """Should be a mixin operation. Put in 1 for the required parameter and have the correct api
+        version of 1.0.0 to pass.
 
-        :param id: An int parameter.
+        :param id: An int parameter. Put in 1 to pass.
         :type id: int
-        :param message: An optional string parameter.
-        :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -42,7 +40,7 @@ class MultiapiServiceClientOperationsMixin:
         api_version = "1.0.0"
 
         # Construct URL
-        url = self.test_one.metadata['url']  # type: ignore
+        url = self.test.metadata['url']  # type: ignore
         path_format_arguments = {
             'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }
@@ -51,14 +49,12 @@ class MultiapiServiceClientOperationsMixin:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         query_parameters['id'] = self._serialize.query("id", id, 'int')
-        if message is not None:
-            query_parameters['message'] = self._serialize.query("message", message, 'str')
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        request = self._client.put(url, query_parameters, header_parameters)
+        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -70,4 +66,4 @@ class MultiapiServiceClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_one.metadata = {'url': '/testOneEndpoint'}  # type: ignore
+    test.metadata = {'url': '/test'}  # type: ignore

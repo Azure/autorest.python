@@ -23,24 +23,22 @@ if TYPE_CHECKING:
 
 class MultiapiServiceClientOperationsMixin(object):
 
-    def test_one(
+    def test(
         self,
         id,  # type: int
-        message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
+        """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
+        version of 2.0.0 to pass.
 
-        :param id: An int parameter.
+        :param id: An int parameter. Put in 2 to pass.
         :type id: int
-        :param message: An optional string parameter.
-        :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        api_version = self._get_api_version('test_one')
+        api_version = self._get_api_version('test')
         if api_version == '1.0.0':
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
         elif api_version == '2.0.0':
@@ -52,4 +50,4 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test_one(id, message, **kwargs)
+        return mixin_instance.test(id, **kwargs)

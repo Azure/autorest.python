@@ -36,7 +36,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         endpoint: str,
         **kwargs: Any
     ) -> None:
-        base_url = '{Endpoint}/multiapi/custom/base/url/v1'
+        base_url = '{Endpoint}/multiapiCustomBaseUrl/v1'
         self._config = MultiapiServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

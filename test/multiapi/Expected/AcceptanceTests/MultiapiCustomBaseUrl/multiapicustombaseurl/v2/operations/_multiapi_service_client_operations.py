@@ -23,19 +23,17 @@ if TYPE_CHECKING:
 
 class MultiapiServiceClientOperationsMixin(object):
 
-    def test_one(
+    def test(
         self,
         id,  # type: int
-        message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
+        """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
+        version of 2.0.0 to pass.
 
-        :param id: An int parameter.
+        :param id: An int parameter. Put in 2 to pass.
         :type id: int
-        :param message: An optional string parameter.
-        :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -47,7 +45,7 @@ class MultiapiServiceClientOperationsMixin(object):
         api_version = "2.0.0"
 
         # Construct URL
-        url = self.test_one.metadata['url']  # type: ignore
+        url = self.test.metadata['url']  # type: ignore
         path_format_arguments = {
             'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }
@@ -56,8 +54,6 @@ class MultiapiServiceClientOperationsMixin(object):
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         query_parameters['id'] = self._serialize.query("id", id, 'int')
-        if message is not None:
-            query_parameters['message'] = self._serialize.query("message", message, 'str')
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
@@ -75,4 +71,4 @@ class MultiapiServiceClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_one.metadata = {'url': '/testOneEndpoint'}  # type: ignore
+    test.metadata = {'url': '/test'}  # type: ignore
