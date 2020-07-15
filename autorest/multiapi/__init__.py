@@ -155,7 +155,36 @@ class MultiAPI:
                 paths_to_versions.append(Path(child.stem))
         return paths_to_versions
 
-    def _build_operation_mixin_meta(self, paths_to_versions: List[Path]) -> Dict[str, Dict[str, Dict[str, Any]]]:
+    def _make_signature_of_mixin_based_on_default_api_version(
+        self,
+        mixin_operations: Dict[str, Dict[str, Dict[str, Any]]],
+        last_api_version_path: Path
+    ) -> Dict[str, Dict[str, Dict[str, Any]]]:
+        metadata_json = json.loads(self._autorestapi.read_file(last_api_version_path / "_metadata.json"))
+        if not metadata_json.get('operation_mixins'):
+            return mixin_operations
+        for func_name, func in metadata_json['operation_mixins'].items():
+            if func_name.startswith("_"):
+                continue
+
+            mixin_operations.setdefault(func_name, {}).setdefault('sync', {})
+            mixin_operations.setdefault(func_name, {}).setdefault('async', {})
+            mixin_operations[func_name]['sync'].update({
+                "signature": func['sync']['signature'],
+                "doc": func['sync']['doc'],
+                "call": func['call']
+            })
+            mixin_operations[func_name]['async'].update({
+                "signature": func['async']['signature'],
+                "coroutine": func['async']['coroutine'],
+                "doc": func['async']['doc'],
+                "call": func['call']
+            })
+        return mixin_operations
+
+    def _build_operation_mixin_meta(
+        self, paths_to_versions: List[Path], last_api_version: str
+    ) -> Dict[str, Dict[str, Dict[str, Any]]]:
         """Introspect the client:
 
         version_dict => {
@@ -198,8 +227,14 @@ class MultiAPI:
                     "available_apis", []
                 ).append(version_path.name)
 
-
-        return mixin_operations
+        # make sure that the signature, doc, call, and coroutine is based off of the default api version,
+        # if the default api version has a definition for it.
+        # will hopefully get this removed once we deal with mixin operations with different signatures
+        # for different api versions
+        last_api_version_path = [
+            version_path for version_path in paths_to_versions if version_path.name == last_api_version
+        ][0]
+        return self._make_signature_of_mixin_based_on_default_api_version(mixin_operations, last_api_version_path)
 
     def _build_operation_meta(
         self, paths_to_versions: List[Path]
@@ -302,7 +337,7 @@ class MultiAPI:
 
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
-        mixin_operations = self._build_operation_mixin_meta(paths_to_versions)
+        mixin_operations = self._build_operation_mixin_meta(paths_to_versions, last_api_version)
 
         # get client name from default api version
         path_to_default_version = Path()
