@@ -62,9 +62,9 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         profile=KnownProfiles.default,
         **kwargs  # type: Any
     ) -> None:
-        if api_version == 'v1':
+        if api_version == '1.0.0':
             base_url = '{Endpoint}/multiapiCustomBaseUrl/v1'
-        elif api_version == 'v2':
+        elif api_version == '2.0.0':
             base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
