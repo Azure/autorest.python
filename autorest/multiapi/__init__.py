@@ -124,6 +124,20 @@ def _build_last_rt_list(
         last_rt_list[operation] = local_last_api_version
     return last_rt_list
 
+def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
+    version = metadata_json['chosen_version']
+    total_api_version_list = metadata_json['total_api_version_list']
+    if not version:
+        if total_api_version_list:
+            sys.exit(
+                f"Unable to match {total_api_version_list} to label {version_path.stem}"
+            )
+        else:
+            sys.exit(
+                f"Unable to extract api version of {version_path.stem}"
+            )
+    return version
+
 class MultiAPI:
     def __init__(
         self,
@@ -208,7 +222,8 @@ class MultiAPI:
         for version_path in paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
             custom_base_url = metadata_json["client"]["custom_base_url"]
-            custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version_path.name)
+            version = _extract_version(metadata_json, version_path)
+            custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version)
         return custom_base_url_to_api_version
 
     def _build_operation_meta(
@@ -228,17 +243,7 @@ class MultiAPI:
         for version_path in paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
             operation_groups = metadata_json['operation_groups']
-            version = metadata_json['chosen_version']
-            total_api_version_list = metadata_json['total_api_version_list']
-            if not version:
-                if total_api_version_list:
-                    sys.exit(
-                        f"Unable to match {total_api_version_list} to label {version_path.stem}"
-                    )
-                else:
-                    sys.exit(
-                        f"Unable to extract api version of {version_path.stem}"
-                    )
+            version = _extract_version(metadata_json, version_path)
             mod_to_api_version[version_path.name] = version
             for operation_group, operation_group_class_name in operation_groups.items():
                 versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
