@@ -2,9 +2,9 @@
     "chosen_version": "2.0.0",
     "total_api_version_list": ["2.0.0"],
     "client": {
-        "name": "MultiapiServiceClient",
-        "filename": "_multiapi_service_client",
-        "description": "Service client for multiapi client testing.",
+        "name": "MultiapiCustomBaseUrlServiceClient",
+        "filename": "_multiapi_custom_base_url_service_client",
+        "description": "Service client for multiapi custom base url testing.",
         "base_url": null,
         "custom_base_url": "\u0027{Endpoint}/multiapiCustomBaseUrl/v2\u0027",
         "azure_arm": false

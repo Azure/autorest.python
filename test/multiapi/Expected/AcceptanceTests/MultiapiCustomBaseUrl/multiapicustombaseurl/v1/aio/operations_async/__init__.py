@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiapi_service_client_operations_async import MultiapiServiceClientOperationsMixin
+from ._multiapi_custom_base_url_service_client_operations_async import MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 __all__ = [
-    'MultiapiServiceClientOperationsMixin',
+    'MultiapiCustomBaseUrlServiceClientOperationsMixin',
 ]

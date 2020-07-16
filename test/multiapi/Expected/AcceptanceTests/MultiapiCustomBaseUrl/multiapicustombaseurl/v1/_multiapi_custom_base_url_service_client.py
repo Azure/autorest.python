@@ -17,13 +17,13 @@ if TYPE_CHECKING:
 
     from azure.core.credentials import TokenCredential
 
-from ._configuration import MultiapiServiceClientConfiguration
-from .operations import MultiapiServiceClientOperationsMixin
+from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
+from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
 from . import models
 
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
-    """Service client for multiapi client testing.
+class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
+    """Service client for multiapi custom base url testing.
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
@@ -40,7 +40,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     ):
         # type: (...) -> None
         base_url = '{Endpoint}/multiapiCustomBaseUrl/v1'
-        self._config = MultiapiServiceClientConfiguration(credential, endpoint, **kwargs)
+        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -53,7 +53,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self._client.close()
 
     def __enter__(self):
-        # type: () -> MultiapiServiceClient
+        # type: () -> MultiapiCustomBaseUrlServiceClient
         self._client.__enter__()
         return self
 

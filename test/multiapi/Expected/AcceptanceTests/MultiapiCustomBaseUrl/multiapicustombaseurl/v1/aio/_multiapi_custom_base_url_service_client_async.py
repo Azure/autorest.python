@@ -15,13 +15,13 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
-from ._configuration_async import MultiapiServiceClientConfiguration
-from .operations_async import MultiapiServiceClientOperationsMixin
+from ._configuration_async import MultiapiCustomBaseUrlServiceClientConfiguration
+from .operations_async import MultiapiCustomBaseUrlServiceClientOperationsMixin
 from .. import models
 
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
-    """Service client for multiapi client testing.
+class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
+    """Service client for multiapi custom base url testing.
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
@@ -36,8 +36,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         endpoint: str,
         **kwargs: Any
     ) -> None:
-        base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
-        self._config = MultiapiServiceClientConfiguration(credential, endpoint, **kwargs)
+        base_url = '{Endpoint}/multiapiCustomBaseUrl/v1'
+        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -48,7 +48,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "MultiapiServiceClient":
+    async def __aenter__(self) -> "MultiapiCustomBaseUrlServiceClient":
         await self._client.__aenter__()
         return self
 

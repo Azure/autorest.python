@@ -14,8 +14,8 @@ from msrest import Serializer, Deserializer
 
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
-from ._configuration_async import MultiapiServiceClientConfiguration
-from ._operations_mixin_async import MultiapiServiceClientOperationsMixin
+from ._configuration_async import MultiapiCustomBaseUrlServiceClientConfiguration
+from ._operations_mixin_async import MultiapiCustomBaseUrlServiceClientOperationsMixin
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."
@@ -23,8 +23,8 @@ class _SDKClient(object):
         """
         pass
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin, _SDKClient):
-    """Service client for multiapi client testing.
+class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin, MultiApiClientMixin, _SDKClient):
+    """Service client for multiapi custom base url testing.
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
     (Azure Stack, Azure Government, Azure China, etc.).
@@ -46,7 +46,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     """
 
     DEFAULT_API_VERSION = '2.0.0'
-    _PROFILE_TAG = "multiapicustombaseurl.MultiapiServiceClient"
+    _PROFILE_TAG = "multiapicustombaseurl.MultiapiCustomBaseUrlServiceClient"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
@@ -68,9 +68,9 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
             base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
-        self._config = MultiapiServiceClientConfiguration(credential, endpoint, **kwargs)
+        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
-        super(MultiapiServiceClient, self).__init__(
+        super(MultiapiCustomBaseUrlServiceClient, self).__init__(
             api_version=api_version,
             profile=profile
         )

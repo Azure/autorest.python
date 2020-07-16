@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
 
-class MultiapiServiceClientOperationsMixin(object):
+class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
     def test(
         self,
@@ -40,9 +40,9 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         api_version = self._get_api_version('test')
         if api_version == '1.0.0':
-            from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from .v1.operations import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
         elif api_version == '2.0.0':
-            from .v2.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from .v2.operations import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()

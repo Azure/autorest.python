@@ -19,8 +19,8 @@ if TYPE_CHECKING:
 
 VERSION = "unknown"
 
-class MultiapiServiceClientConfiguration(Configuration):
-    """Configuration for MultiapiServiceClient.
+class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
+    """Configuration for MultiapiCustomBaseUrlServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -42,7 +42,7 @@ class MultiapiServiceClientConfiguration(Configuration):
             raise ValueError("Parameter 'credential' must not be None.")
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
+        super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.endpoint = endpoint

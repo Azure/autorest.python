@@ -17,7 +17,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 
-class MultiapiServiceClientOperationsMixin(object):
+class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
     async def test(
         self,
@@ -36,9 +36,9 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         api_version = self._get_api_version('test')
         if api_version == '1.0.0':
-            from ..v1.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v1.aio.operations_async import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
         elif api_version == '2.0.0':
-            from ..v2.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v2.aio.operations_async import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()
