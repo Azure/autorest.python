@@ -183,3 +183,8 @@ class TestXml(object):
         else:
             from xmlservice.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_xms_text(self, client):
+        xml_object = client.xml.get_xms_text()
+        assert xml_object.language == "english"
+        assert xml_object.content == "I am text"
