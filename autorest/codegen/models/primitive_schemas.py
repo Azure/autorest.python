@@ -19,7 +19,7 @@ class RawString(object):
         self.string = string
 
     def __repr__(self) -> str:
-        return f"r'{self.string}'"
+        return f"r'{self.string.replace('\'', '\\\'')}'"
 
 
 class PrimitiveSchema(BaseSchema):
