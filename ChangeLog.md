@@ -10,6 +10,7 @@ Modelerfour version: 4.15.378
 (taken from m4 update - perks PR #118)
 - Fix bug when generating parameters with client default value and constant schema  #707
 - Fix name in setup.py to default to `package-name` if set  #721
+- Allowing single quote in regexp  #726
 
 ### 2020-07-07 - 5.1.0-preview.4
 Modelerfour version: 4.15.378
