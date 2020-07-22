@@ -1,10 +1,11 @@
+{% set name = code_model.options["package_name"] or code_model.class_name %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 # coding: utf-8
 
 from setuptools import setup, find_packages
 
-NAME = "{{ code_model.class_name|lower }}"
+NAME = "{{ name|lower }}"
 VERSION = "{{ code_model.options.get('package_version', '0.0.0') }}"
 
 # To install the library, run the following
@@ -19,7 +20,7 @@ REQUIRES = ["msrest>=0.6.0", "azure-core<2.0.0,>=1.2.0"]
 setup(
     name=NAME,
     version=VERSION,
-    description="{{ code_model.class_name }}",
+    description="{{ name }}",
     author_email="",
     url="",
     keywords=["Swagger", "{{ code_model.class_name }}"],
