@@ -59,8 +59,7 @@ async def _assert_with_log(func, *args, **kwargs):
 
 class TestXml(object):
 
-    @pytest.mark.a
-    @pytest.mark.asynciosyncio
+    @pytest.mark.asyncio
     async def test_json_xml(self, client):
         await client.xml.json_input(id=42)
 
