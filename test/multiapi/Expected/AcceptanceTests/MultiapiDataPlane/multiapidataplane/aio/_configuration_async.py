@@ -31,7 +31,6 @@ class MultiapiServiceClientConfiguration(Configuration):
         credential,  # type: "AsyncTokenCredential"
         **kwargs  # type: Any
     ) -> None:
-        # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
