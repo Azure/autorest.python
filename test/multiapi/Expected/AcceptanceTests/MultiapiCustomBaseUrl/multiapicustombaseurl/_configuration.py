@@ -12,48 +12,57 @@ from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
-from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 
-from .._version import VERSION
+from ._version import VERSION
 
 
-class MultiapiServiceClientConfiguration(Configuration):
-    """Configuration for MultiapiServiceClient.
+class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
+    """Configuration for MultiapiCustomBaseUrlServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.TokenCredential
+    :param endpoint: Pass in https://localhost:3000.
+    :type endpoint: str
     """
 
     def __init__(
         self,
-        credential,  # type: "AsyncTokenCredential"
+        credential,  # type: "TokenCredential"
+        endpoint,  # type: str
         **kwargs  # type: Any
-    ) -> None:
+    ):
+        # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
+        if endpoint is None:
+            raise ValueError("Parameter 'endpoint' must not be None.")
+        super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
-        self.credential_scopes = ['https://management.azure.com/.default']
+        self.endpoint = endpoint
+        self.credential_scopes = []
         self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
-        kwargs.setdefault('sdk_moniker', 'multiapi/{}'.format(VERSION))
+        kwargs.setdefault('sdk_moniker', 'multiapicustombaseurl/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(
         self,
-        **kwargs: Any
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.http_logging_policy = kwargs.get('http_logging_policy') or ARMHttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get('retry_policy') or policies.AsyncRetryPolicy(**kwargs)
+        self.http_logging_policy = kwargs.get('http_logging_policy') or policies.HttpLoggingPolicy(**kwargs)
+        self.retry_policy = kwargs.get('retry_policy') or policies.RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get('redirect_policy') or policies.AsyncRedirectPolicy(**kwargs)
+        self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
+        if not self.credential_scopes and not self.authentication_policy:
+            raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)
+            self.authentication_policy = policies.BearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)
