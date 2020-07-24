@@ -1,5 +1,13 @@
 # Change Log
 
+### 2020-xx-xx - 5.1.0-preview.6
+Autorest Core version: 3.0.6287
+Modelerfour version: 4.15.378
+
+**Bug Fixes**
+
+- Fix duplicate type signatures in multiapi async config file  #727
+
 ### 2020-06-23 - 5.1.0-preview.5
 Autorest Core version: 3.0.6287
 Modelerfour version: 4.15.378
