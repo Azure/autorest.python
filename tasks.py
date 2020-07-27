@@ -149,6 +149,10 @@ def regen_expected(c, opts, debug):
             args.append(f"--override-info.description={opts['override-info.description']}")
         if opts.get('credential-default-policy-type'):
             args.append(f"--credential-default-policy-type={opts['credential-default-policy-type']}")
+        if opts.get('package-name'):
+            args.append(f"--package-name={opts['package-name']}")
+        if opts.get('override-client-name'):
+            args.append(f"--override-client-name={opts['override-client-name']}")
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
@@ -263,6 +267,24 @@ def regenerate_credential_default_policy(c, debug=False):
     regen_expected(c, opts, debug)
 
 @task
+def regenerate_package_name_setup_py(c, debug=False):
+    default_mapping = {'AcceptanceTests/BodyByteWithPackageName': 'body-byte.json'}
+    opts = {
+        'output_base_dir': 'test/vanilla',
+        'input_base_dir': swagger_dir,
+        'mappings': default_mapping,
+        'output_dir': 'Expected',
+        'flattening_threshold': '1',
+        'vanilla': True,
+        'keep_version': True,
+        'ns_prefix': True,
+        'package-name': 'package-name',
+        'override-client-name': 'class_name'
+    }
+    regen_expected(c, opts, debug)
+
+
+@task
 def regenerate(c, swagger_name=None, debug=False):
     # regenerate expected code for tests
     regenerate_python(c, swagger_name, debug)
@@ -272,6 +294,7 @@ def regenerate(c, swagger_name=None, debug=False):
         regenerate_namespace_folders_test(c, debug)
         regenerate_multiapi(c, debug)
         regenerate_credential_default_policy(c, debug)
+        regenerate_package_name_setup_py(c, debug)
 
 
 @task
@@ -330,10 +353,12 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapiwithsubmodule/README.md",
         # create multiapi client with no aio folder (package-name=multiapinoasync)
         "test/multiapi/specification/multiapinoasync/README.md",
-        # create multiapi client with AzureKeyCredentialPolicy
+        # create multiapi client with AzureKeyCredentialPolicy (package-name=multiapicredentialdefaultpolicy)
         "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
-        # create multiapi client data plane
-        "test/multiapi/specification/multiapidataplane/README.md"
+        # create multiapi client data plane (package-name=multiapidataplane)
+        "test/multiapi/specification/multiapidataplane/README.md",
+        # multiapi client with custom base url (package-name=multiapicustombaseurl)
+        "test/multiapi/specification/multiapicustombaseurl/README.md",
     ]
 
     cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]
