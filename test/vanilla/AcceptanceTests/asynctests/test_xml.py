@@ -189,3 +189,9 @@ class TestXml(object):
         assert len(acls) == 1
         assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
         await _assert_with_log(client.xml.put_acls, acls)
+
+    @pytest.mark.asyncio
+    async def test_xms_text(self, client):
+        xml_object = await client.xml.get_xms_text()
+        assert xml_object.language == "english"
+        assert xml_object.content == "I am text"

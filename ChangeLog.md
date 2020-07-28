@@ -12,6 +12,10 @@ Modelerfour version: 4.15.378
 Autorest Core version: 3.0.6287
 Modelerfour version: 4.15.378
 
+**New Features**
+
+- Add support for `x-ms-text` XML extension  #722
+
 **Bug Fixes**
 
 - Correctly have default behavior of csv for array query parameters when collection format is not specified in the swagger
