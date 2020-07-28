@@ -353,10 +353,12 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapiwithsubmodule/README.md",
         # create multiapi client with no aio folder (package-name=multiapinoasync)
         "test/multiapi/specification/multiapinoasync/README.md",
-        # create multiapi client with AzureKeyCredentialPolicy
+        # create multiapi client with AzureKeyCredentialPolicy (package-name=multiapicredentialdefaultpolicy)
         "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
-        # create multiapi client data plane
-        "test/multiapi/specification/multiapidataplane/README.md"
+        # create multiapi client data plane (package-name=multiapidataplane)
+        "test/multiapi/specification/multiapidataplane/README.md",
+        # multiapi client with custom base url (package-name=multiapicustombaseurl)
+        "test/multiapi/specification/multiapicustombaseurl/README.md",
     ]
 
     cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]
