@@ -11,6 +11,7 @@ Modelerfour version: 4.15.378
 **Bug Fixes**
 
 - Fix duplicate type signatures in multiapi async config file  #727
+- Allowing single quote in regexp  #726
 
 ### 2020-06-23 - 5.1.0-preview.5
 Autorest Core version: 3.0.6287
