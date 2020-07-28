@@ -4,10 +4,13 @@
 Autorest Core version: 3.0.6287
 Modelerfour version: 4.15.378
 
+**New Features**
+
+- Add support for `x-ms-text` XML extension  #722
+
 **Bug Fixes**
 
 - Fix duplicate type signatures in multiapi async config file  #727
-- Add support for `x-ms-text` XML extension  #722
 
 ### 2020-06-23 - 5.1.0-preview.5
 Autorest Core version: 3.0.6287
