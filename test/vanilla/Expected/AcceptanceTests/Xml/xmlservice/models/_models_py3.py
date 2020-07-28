@@ -876,6 +876,35 @@ class Metrics(msrest.serialization.Model):
         self.retention_policy = retention_policy
 
 
+class ObjectWithXMsTextProperty(msrest.serialization.Model):
+    """Contans property.
+
+    :param language: Returned value should be 'english'.
+    :type language: str
+    :param content: Returned value should be 'I am text'.
+    :type content: str
+    """
+
+    _attribute_map = {
+        'language': {'key': 'language', 'type': 'str', 'xml': {'name': 'language', 'attr': True}},
+        'content': {'key': 'content', 'type': 'str', 'xml': {'text': True}},
+    }
+    _xml_map = {
+        'name': 'Data'
+    }
+
+    def __init__(
+        self,
+        *,
+        language: Optional[str] = None,
+        content: Optional[str] = None,
+        **kwargs
+    ):
+        super(ObjectWithXMsTextProperty, self).__init__(**kwargs)
+        self.language = language
+        self.content = content
+
+
 class RetentionPolicy(msrest.serialization.Model):
     """the retention policy.
 

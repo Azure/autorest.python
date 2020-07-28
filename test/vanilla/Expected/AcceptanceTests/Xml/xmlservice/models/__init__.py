@@ -26,6 +26,7 @@ try:
     from ._models_py3 import ListContainersResponse
     from ._models_py3 import Logging
     from ._models_py3 import Metrics
+    from ._models_py3 import ObjectWithXMsTextProperty
     from ._models_py3 import RetentionPolicy
     from ._models_py3 import RootWithRefAndMeta
     from ._models_py3 import RootWithRefAndNoMeta
@@ -53,6 +54,7 @@ except (SyntaxError, ImportError):
     from ._models import ListContainersResponse  # type: ignore
     from ._models import Logging  # type: ignore
     from ._models import Metrics  # type: ignore
+    from ._models import ObjectWithXMsTextProperty  # type: ignore
     from ._models import RetentionPolicy  # type: ignore
     from ._models import RootWithRefAndMeta  # type: ignore
     from ._models import RootWithRefAndNoMeta  # type: ignore
@@ -92,6 +94,7 @@ __all__ = [
     'ListContainersResponse',
     'Logging',
     'Metrics',
+    'ObjectWithXMsTextProperty',
     'RetentionPolicy',
     'RootWithRefAndMeta',
     'RootWithRefAndNoMeta',
