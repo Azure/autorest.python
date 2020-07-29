@@ -109,3 +109,7 @@ class LROOperation(Operation):
             else:
                 file_import.add_from_import("azure.core.polling.base_polling", "LROBasePolling", ImportType.AZURECORE)
         return file_import
+
+    @property
+    def is_lro(self):
+        return True

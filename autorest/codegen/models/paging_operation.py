@@ -113,6 +113,10 @@ class PagingOperation(Operation):
             return [200]
         return super(PagingOperation, self).success_status_code
 
+    @property
+    def is_paging(self):
+        return True
+
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)
 

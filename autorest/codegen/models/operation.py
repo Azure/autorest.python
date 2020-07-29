@@ -306,6 +306,14 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         return file_import
 
+    @property
+    def is_lro(self):
+        return False
+
+    @property
+    def is_paging(self):
+        return False
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Operation":
         name = yaml_data["language"]["python"]["name"]

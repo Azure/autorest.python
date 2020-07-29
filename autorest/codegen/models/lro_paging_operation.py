@@ -55,4 +55,11 @@ class LROPagingOperation(PagingOperation, LROOperation):
         file_import = lro_imports
         file_import.merge(paging_imports)
         return file_import
-        
+
+    @property
+    def is_lro(self):
+        return True
+
+    @property
+    def is_paging(self):
+        return True
