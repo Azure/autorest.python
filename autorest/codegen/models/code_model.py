@@ -368,3 +368,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                         raise ValueError("You are missing a parameter that has multiple media types")
                     chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
                     chosen_parameter.multiple_media_types_docstring_type = docstring_type
+
+    @property
+    def has_lro_operations(self) -> bool:
+        return any([
+            operation.is_lro
+            for operation_group in self.operation_groups
+            for operation in operation_group.operations
+        ])
