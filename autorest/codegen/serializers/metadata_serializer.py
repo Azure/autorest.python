@@ -11,8 +11,6 @@ from ..models import (
     CodeModel,
     Operation,
     OperationGroup,
-    LROOperation,
-    PagingOperation,
     CredentialSchema,
     ParameterList,
     TypingSection,
