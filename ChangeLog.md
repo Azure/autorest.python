@@ -1,11 +1,30 @@
 # Change Log
 
-### 2020-xx-xx - 5.1.0-preview.5
+### 2020-xx-xx - 5.1.0-preview.6
+Autorest Core version: 3.0.6287
+Modelerfour version: 4.15.378
+
+**New Features**
+
+- Add support for `x-ms-text` XML extension  #722
+
+**Bug Fixes**
+
+- Fix duplicate type signatures in multiapi async config file  #727
+- Allowing single quote in regexp  #726
+
+### 2020-06-23 - 5.1.0-preview.5
+Autorest Core version: 3.0.6287
 Modelerfour version: 4.15.378
 
 **Bug Fixes**
 
+- Correctly have default behavior of csv for array query parameters when collection format is not specified in the swagger
+(taken from m4 update - perks PR #118)
 - Fix bug when generating parameters with client default value and constant schema  #707
+- Make operation mixin signatures for multiapi default to default api version  #715
+- Fix name in setup.py to default to `package-name` if set  #721
+- Allow different custom base url host templates across API versions  #719
 
 ### 2020-07-07 - 5.1.0-preview.4
 Modelerfour version: 4.15.378

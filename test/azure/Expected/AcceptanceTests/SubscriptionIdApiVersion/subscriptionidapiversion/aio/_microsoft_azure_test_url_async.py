@@ -41,7 +41,7 @@ class MicrosoftAzureTestUrl(object):
         **kwargs: Any
     ) -> None:
         if not base_url:
-            base_url = 'https://management.azure.com'
+            base_url = 'http://localhost:3000'
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

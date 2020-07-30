@@ -230,7 +230,7 @@ class DatetimeOperations(object):
         # type: (...) -> None
         """Put max datetime value 9999-12-31T23:59:59.999Z.
 
-        :param datetime_body:
+        :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -282,7 +282,7 @@ class DatetimeOperations(object):
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
         that scenario.
 
-        :param datetime_body:
+        :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -466,7 +466,7 @@ class DatetimeOperations(object):
         # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
-        :param datetime_body:
+        :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -603,7 +603,7 @@ class DatetimeOperations(object):
         # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
-        :param datetime_body:
+        :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -740,7 +740,7 @@ class DatetimeOperations(object):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00Z.
 
-        :param datetime_body:
+        :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -833,7 +833,7 @@ class DatetimeOperations(object):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
-        :param datetime_body:
+        :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -926,7 +926,7 @@ class DatetimeOperations(object):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
-        :param datetime_body:
+        :param datetime_body: datetime body.
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

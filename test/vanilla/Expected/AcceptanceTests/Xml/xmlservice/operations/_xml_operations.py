@@ -1386,3 +1386,47 @@ class XmlOperations(object):
 
         return deserialized
     json_output.metadata = {'url': '/xml/jsonoutput'}  # type: ignore
+
+    @distributed_trace
+    def get_xms_text(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ObjectWithXMsTextProperty"
+        """Get back an XML object with an x-ms-text property, which should translate to the returned
+        object's 'language' property being 'english' and its 'content' property being 'I am text'.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ObjectWithXMsTextProperty, or the result of cls(response)
+        :rtype: ~xmlservice.models.ObjectWithXMsTextProperty
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ObjectWithXMsTextProperty"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+
+        # Construct URL
+        url = self.get_xms_text.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/xml'
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize('ObjectWithXMsTextProperty', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_xms_text.metadata = {'url': '/xml/x-ms-text'}  # type: ignore
