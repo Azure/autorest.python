@@ -7,6 +7,9 @@ Modelerfour version: 4.15.378
 **New Features**
 
 - Add support for `x-ms-text` XML extension  #722
+- Allow users to pass the name of the key header for `AzureKeyCredentialPolicy` during generation. To use, pass in
+`AzureKeyCredentialPolicy` with the `--credential-default-policcy-type` flag, and pass in the key header name using
+the `--credential-param-name` flag  #736
 
 **Bug Fixes**
 
