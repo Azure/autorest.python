@@ -11,6 +11,8 @@ from ..models import (
     CodeModel,
     Operation,
     OperationGroup,
+    LROOperation,
+    PagingOperation,
     CredentialSchema,
     ParameterList,
     TypingSection,
@@ -81,6 +83,12 @@ class MetadataSerializer:
         return global_parameters
 
     def serialize(self) -> str:
+        def _is_lro(operation):
+            return isinstance(operation, LROOperation)
+
+        def _is_paging(operation):
+            return isinstance(operation, PagingOperation)
+
         mixin_operation_group: Optional[OperationGroup] = next(
             (operation_group
             for operation_group in self.code_model.operation_groups if operation_group.is_empty_operation_group),
@@ -114,6 +122,8 @@ class MetadataSerializer:
             async_global_parameters=async_global_parameters,
             mixin_operations=mixin_operations,
             any=any,
+            is_lro=_is_lro,
+            is_paging=_is_paging,
             str=str,
             sync_mixin_imports=(
                 _json_serialize_imports(sync_mixin_imports.imports)

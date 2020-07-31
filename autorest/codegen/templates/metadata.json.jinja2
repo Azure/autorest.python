@@ -58,16 +58,16 @@
     },
     "operation_mixins": {
         {% for operation in mixin_operations %}
-        {% set operation_name = "begin_" + operation.name if operation.is_lro else operation.name %}
+        {% set operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
         {{ operation_name | tojson }} : {
             "sync": {
-                {% if operation.is_lro and operation.is_paging %}
+                {% if is_lro(operation) and is_paging(operation) %}
                     {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
                     {% set sync_return_type_wrapper = ["LROPoller", "ItemPaged"] %}
-                {% elif operation.is_lro %}
+                {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
                     {% set sync_return_type_wrapper = ["LROPoller"] %}
-                {% elif operation.is_paging %}
+                {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
                     {% set sync_return_type_wrapper = ["ItemPaged"] %}
                 {% else %}
@@ -78,15 +78,15 @@
                 "doc": {{ operation_docstring(async_mode=False) | tojson }}
             },
             "async": {
-                {% set coroutine = False if operation.is_paging else True %}
+                {% set coroutine = False if is_paging(operation) else True %}
                 "coroutine": {{ coroutine | tojson }},
-                {% if operation.is_lro and operation.is_paging %}
+                {% if is_lro(operation) and is_paging(operation) %}
                     {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
                     {% set async_return_type_wrapper = ["AsyncLROPoller", "AsyncItemPaged"] %}
-                {% elif operation.is_lro %}
+                {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
                     {% set async_return_type_wrapper = ["AsyncLROPoller"] %}
-                {% elif operation.is_paging %}
+                {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
                     {% set async_return_type_wrapper = ["AsyncItemPaged"] %}
                 {% else %}
