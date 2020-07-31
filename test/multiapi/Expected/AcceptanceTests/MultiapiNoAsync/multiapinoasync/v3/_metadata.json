@@ -34,7 +34,8 @@
         "credential": true,
         "credential_scopes": ["https://management.azure.com/.default"],
         "credential_default_policy_type": "BearerTokenCredentialPolicy",
-        "credential_default_policy_type_has_async_version": true
+        "credential_default_policy_type_has_async_version": true,
+        "credential_param_name": null
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations",
