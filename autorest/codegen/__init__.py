@@ -122,7 +122,7 @@ class CodeGenerator(Plugin):
 
         return code_model
 
-    def _get_credential_scopes(self):
+    def _get_credential_scopes(self, credential):
         credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
         credential_scopes = credential_scopes_temp.split(",") if credential_scopes_temp else None
         if credential_scopes and not credential:
@@ -137,7 +137,7 @@ class CodeGenerator(Plugin):
         return credential_scopes
 
     def _get_credential_param(self, azure_arm, credential, credential_default_policy_type):
-        credential_scopes = self._get_credential_scopes()
+        credential_scopes = self._get_credential_scopes(credential)
         credential_param_name = self._autorestapi.get_value('credential-param-name')
 
         if credential_default_policy_type == "BearerTokenCredentialPolicy":
@@ -196,7 +196,9 @@ class CodeGenerator(Plugin):
                 "BearerTokenCredentialPolicy or AzureKeyCredentialPolicy"
             )
 
-        credential_scopes, credential_param_name = self._get_credential_param(azure_arm, credential, credential_default_policy_type)
+        credential_scopes, credential_param_name = self._get_credential_param(
+            azure_arm, credential, credential_default_policy_type
+        )
 
         return credential_default_policy_type, credential_scopes, credential_param_name
 
@@ -210,8 +212,10 @@ class CodeGenerator(Plugin):
             self._autorestapi.get_boolean_value("add-credential", False)
         )
 
-        credential_default_policy_type, credential_scopes, credential_param_name = self._handle_default_authentication_policy(
-            azure_arm, credential
+        credential_default_policy_type, credential_scopes, credential_param_name = (
+            self._handle_default_authentication_policy(
+                azure_arm, credential
+            )
         )
 
 
