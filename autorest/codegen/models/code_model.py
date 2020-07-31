@@ -373,7 +373,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     @property
     def has_lro_operations(self) -> bool:
         return any([
-            (type(operation) == LROOperation or type(operation) == LROPagingOperation)
+            isinstance(operation, LROOperation)
             for operation_group in self.operation_groups
             for operation in operation_group.operations
         ])
