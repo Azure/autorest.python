@@ -122,15 +122,7 @@ class CodeGenerator(Plugin):
 
         return code_model
 
-    def _build_code_model_options(self) -> Dict[str, Any]:
-        """Build en options dict from the user input while running autorest.
-        """
-        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
-        credential = (
-            self._autorestapi.get_boolean_value("add-credentials", False) or
-            self._autorestapi.get_boolean_value("add-credential", False)
-        )
-
+    def _get_credential_scopes(self):
         credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
         credential_scopes = credential_scopes_temp.split(",") if credential_scopes_temp else None
         if credential_scopes and not credential:
@@ -142,6 +134,51 @@ class CodeGenerator(Plugin):
                 "--credential-scopes takes a list of scopes in comma separated format. "
                 "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
             )
+        return credential_scopes
+
+    def _get_credential_param(self, azure_arm, credential, credential_default_policy_type):
+        credential_scopes = self._get_credential_scopes()
+        credential_param_name = self._autorestapi.get_value('credential-param-name')
+
+        if credential_default_policy_type == "BearerTokenCredentialPolicy":
+            if not credential_scopes:
+                if azure_arm:
+                    credential_scopes = ["https://management.azure.com/.default"]
+                elif credential:
+                    # If add-credential is specified, we still want to add a credential_scopes variable.
+                    # Will make it an empty list so we can differentiate between this case and None
+                    _LOGGER.warning(
+                        "You have used the --add-credential flag but not the --credential-scopes flag "
+                        "while generating non-management plane code. "
+                        "This is not recommend because it forces the customer to pass credential scopes "
+                        "through kwargs if they want to authenticate."
+                    )
+                    credential_scopes = []
+            if credential_param_name:
+                _LOGGER.warning(
+                    "You have --credential-param-name passed in and not AzureKeyCredentialPolicy "
+                    "as your default credential authentication policy. Since credential param name is tied "
+                    "to AzureKeyCredentialPolicy, we will ignore your credential param name"
+                )
+                credential_param_name = ""
+        else:
+            # currently the only other credential policy is AzureKeyCredentialPolicy
+            if credential_scopes:
+                _LOGGER.warning(
+                    "You have --credential-default-policy-type as AzureKeyCredentialPolicy and a value for "
+                    "--credential-scopes. Since credential scopes are tied to the BearerTokenCredentialPolicy, "
+                    "we will ignore your credential scopes."
+                )
+                credential_scopes = []
+            if not credential_param_name:
+                _LOGGER.warning(
+                    "You are using AzureKeyCredentialPolicy without passing in --credential-param-name."
+                    "This is not recommended, since users will need to pass in the kwarg 'name' with the name "
+                    "of the authentication header"
+                )
+        return credential_scopes, credential_param_name
+
+    def _handle_default_authentication_policy(self, azure_arm, credential):
 
         passed_in_credential_default_policy_type = (
             self._autorestapi.get_value("credential-default-policy-type") or "BearerTokenCredentialPolicy"
@@ -159,27 +196,23 @@ class CodeGenerator(Plugin):
                 "BearerTokenCredentialPolicy or AzureKeyCredentialPolicy"
             )
 
-        if credential_scopes and credential_default_policy_type != "BearerTokenCredentialPolicy":
-            _LOGGER.warning(
-                "You have --credential-default-policy-type not set as BearerTokenCredentialPolicy and a value for "
-                "--credential-scopes. Since credential scopes are tied to the BearerTokenCredentialPolicy, "
-                "we will ignore your credential scopes."
-            )
-            credential_scopes = []
+        credential_scopes, credential_param_name = self._get_credential_param(azure_arm, credential, credential_default_policy_type)
 
-        elif not credential_scopes and credential_default_policy_type == "BearerTokenCredentialPolicy":
-            if azure_arm:
-                credential_scopes = ["https://management.azure.com/.default"]
-            elif credential:
-                # If add-credential is specified, we still want to add a credential_scopes variable.
-                # Will make it an empty list so we can differentiate between this case and None
-                _LOGGER.warning(
-                    "You have used the --add-credential flag but not the --credential-scopes flag "
-                    "while generating non-management plane code. "
-                    "This is not recommend because it forces the customer to pass credential scopes "
-                    "through kwargs if they want to authenticate."
-                )
-                credential_scopes = []
+        return credential_default_policy_type, credential_scopes, credential_param_name
+
+
+    def _build_code_model_options(self) -> Dict[str, Any]:
+        """Build en options dict from the user input while running autorest.
+        """
+        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
+        credential = (
+            self._autorestapi.get_boolean_value("add-credentials", False) or
+            self._autorestapi.get_boolean_value("add-credential", False)
+        )
+
+        credential_default_policy_type, credential_scopes, credential_param_name = self._handle_default_authentication_policy(
+            azure_arm, credential
+        )
 
 
         license_header = self._autorestapi.get_value("header-text")
@@ -194,6 +227,7 @@ class CodeGenerator(Plugin):
             "azure_arm": azure_arm,
             "credential": credential,
             "credential_scopes": credential_scopes,
+            "credential_param_name": credential_param_name,
             "head_as_boolean": self._autorestapi.get_boolean_value("head-as-boolean", False),
             "license_header": license_header,
             "keep_version_file": self._autorestapi.get_boolean_value("keep-version-file", False),

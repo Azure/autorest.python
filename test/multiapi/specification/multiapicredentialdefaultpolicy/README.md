@@ -30,6 +30,7 @@ license-header: MICROSOFT_MIT_NO_VERSION
 azure-arm: true
 add-credentials: true
 credential-default-policy-type: AzureKeyCredentialPolicy
+credential-param-name: Authorization
 ```
 
 ``` yaml $(multiapi)

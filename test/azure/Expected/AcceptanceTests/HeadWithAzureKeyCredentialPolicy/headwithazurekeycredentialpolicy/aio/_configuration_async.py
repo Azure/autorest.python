@@ -56,4 +56,4 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
         self.redirect_policy = kwargs.get('redirect_policy') or policies.AsyncRedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, **kwargs)
+            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, 'Authorization', **kwargs)
