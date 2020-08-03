@@ -1,7 +1,7 @@
 requests>=2.14.0
 pytest
 pytest-cov
-pytest-asyncio==0.10.0;python_full_version>="3.5.2"
+pytest-asyncio;python_full_version>="3.5.2"
 async_generator;python_full_version>="3.5.2"
 azure-core>=1.7.0
 azure-mgmt-core>=1.2.0
