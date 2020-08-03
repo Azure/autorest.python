@@ -7,6 +7,7 @@ Modelerfour version: 4.15.378
 **New Features**
 
 - Add support for `x-ms-text` XML extension  #722
+- Add `azure-mgmt-core` as a dependency in the generated setup.py file  #738
 
 **Bug Fixes**
 
