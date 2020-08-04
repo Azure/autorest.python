@@ -155,26 +155,24 @@ class CodeGenerator(Plugin):
                     )
                     credential_scopes = []
             if credential_param_name:
-                _LOGGER.warning(
-                    "You have --credential-param-name passed in and not AzureKeyCredentialPolicy "
-                    "as your default credential authentication policy. Since credential param name is tied "
-                    "to AzureKeyCredentialPolicy, we will ignore your credential param name"
+                raise ValueError(
+                    "You have passed in credential param name with default credential policy type "
+                    "BearerTokenCredentialPolicy. This is not allowed, since credential param name is tied with "
+                    "AzureKeyCredentialPolicy. Instead, with this policy it is recommend you pass in "
+                    "--credential-scopes."
                 )
-                credential_param_name = ""
         else:
             # currently the only other credential policy is AzureKeyCredentialPolicy
             if credential_scopes:
-                _LOGGER.warning(
-                    "You have --credential-default-policy-type as AzureKeyCredentialPolicy and a value for "
-                    "--credential-scopes. Since credential scopes are tied to the BearerTokenCredentialPolicy, "
-                    "we will ignore your credential scopes."
+                raise ValueError(
+                    "You have passed in credential scopes with default credential policy type "
+                    "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
+                    "BearerTokenCredentialPolicy. Instead, with this policy you must pass in --credential-param-name."
                 )
-                credential_scopes = []
             if not credential_param_name:
-                _LOGGER.warning(
-                    "You are using AzureKeyCredentialPolicy without passing in --credential-param-name."
-                    "This is not recommended, since users will need to pass in the kwarg 'name' with the name "
-                    "of the authentication header"
+                raise ValueError(
+                    "With default credential policy type AzureKeyCredentialPolicy, you must pass in the name "
+                    "of the authentication header with the flag --credential-param-name"
                 )
         return credential_scopes, credential_param_name
 
