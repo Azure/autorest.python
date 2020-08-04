@@ -38,7 +38,7 @@ default_mappings = {
   'AcceptanceTests/BodyDictionary': 'body-dictionary.json',
   'AcceptanceTests/BodyFile': 'body-file.json',
   'AcceptanceTests/Constants': 'constants.json',
-#  'AcceptanceTests/BodyFormData': 'body-formdata.json',
+ 'AcceptanceTests/BodyFormData': 'body-formdata.json',
   'AcceptanceTests/BodyInteger': 'body-integer.json',
   'AcceptanceTests/BodyNumber': 'body-number.json',
   'AcceptanceTests/BodyString': 'body-string.json',

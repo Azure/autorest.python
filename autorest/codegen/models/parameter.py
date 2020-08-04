@@ -37,6 +37,7 @@ class ParameterStyle(Enum):
     json = "json"
     binary = "binary"
     xml = "xml"
+    multipart = "multipart"
 
 
 class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
