@@ -30,7 +30,7 @@ pass-thru:
   - subset-reducer
 version: 3.0.6302
 use-extension:
-  "@autorest/modelerfour": "http://tinyurl.com/y349ccjl" 
+  "@autorest/modelerfour": "http://tinyurl.com/y349ccjl"
 
 modelerfour:
   group-parameters: true

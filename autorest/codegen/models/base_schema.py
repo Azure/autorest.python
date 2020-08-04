@@ -46,7 +46,7 @@ class BaseSchema(BaseModel, ABC):
             attrs_list.append(f"'prefix': '{self.xml_metadata['prefix']}'")
         if self.xml_metadata.get("namespace", False):
             attrs_list.append(f"'ns': '{self.xml_metadata['namespace']}'")
-        if self.xml_metadata.get("extensions", {}).get("x-ms-text", False):
+        if self.xml_metadata.get("text"):
             attrs_list.append(f"'text': True")
         return ", ".join(attrs_list)
 
