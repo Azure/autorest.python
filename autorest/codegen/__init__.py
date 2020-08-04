@@ -167,7 +167,8 @@ class CodeGenerator(Plugin):
                 raise ValueError(
                     "You have passed in credential scopes with default credential policy type "
                     "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    "BearerTokenCredentialPolicy. Instead, with this policy you must pass in --credential-key-header-name."
+                    "BearerTokenCredentialPolicy. Instead, with this policy you must pass in "
+                    "--credential-key-header-name."
                 )
             if not credential_key_header_name:
                 raise ValueError(
