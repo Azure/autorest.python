@@ -47,7 +47,7 @@
         "credential_scopes": {{ code_model.options['credential_scopes'] | tojson }},
         "credential_default_policy_type": {{ code_model.options['credential_default_policy_type'] | tojson }},
         "credential_default_policy_type_has_async_version": {{ code_model.options['credential_default_policy_type_has_async_version'] | tojson }},
-        "credential_param_name": {{ code_model.options['credential_param_name'] | tojson }}
+        "credential_key_header_name": {{ code_model.options['credential_key_header_name'] | tojson }}
     },
     "operation_groups": {
         {% for operation_group in code_model.operation_groups %}

@@ -138,7 +138,7 @@ class CodeGenerator(Plugin):
 
     def _get_credential_param(self, azure_arm, credential, credential_default_policy_type):
         credential_scopes = self._get_credential_scopes(credential)
-        credential_param_name = self._autorestapi.get_value('credential-param-name')
+        credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
 
         if credential_default_policy_type == "BearerTokenCredentialPolicy":
             if not credential_scopes:
@@ -154,10 +154,10 @@ class CodeGenerator(Plugin):
                         "through kwargs if they want to authenticate."
                     )
                     credential_scopes = []
-            if credential_param_name:
+            if credential_key_header_name:
                 raise ValueError(
-                    "You have passed in credential param name with default credential policy type "
-                    "BearerTokenCredentialPolicy. This is not allowed, since credential param name is tied with "
+                    "You have passed in a credential key header name with default credential policy type "
+                    "BearerTokenCredentialPolicy. This is not allowed, since credential key header name is tied with "
                     "AzureKeyCredentialPolicy. Instead, with this policy it is recommend you pass in "
                     "--credential-scopes."
                 )
@@ -167,14 +167,14 @@ class CodeGenerator(Plugin):
                 raise ValueError(
                     "You have passed in credential scopes with default credential policy type "
                     "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    "BearerTokenCredentialPolicy. Instead, with this policy you must pass in --credential-param-name."
+                    "BearerTokenCredentialPolicy. Instead, with this policy you must pass in --credential-key-header-name."
                 )
-            if not credential_param_name:
+            if not credential_key_header_name:
                 raise ValueError(
                     "With default credential policy type AzureKeyCredentialPolicy, you must pass in the name "
-                    "of the authentication header with the flag --credential-param-name"
+                    "of the key header with the flag --credential-key-header-name"
                 )
-        return credential_scopes, credential_param_name
+        return credential_scopes, credential_key_header_name
 
     def _handle_default_authentication_policy(self, azure_arm, credential):
 
@@ -194,11 +194,11 @@ class CodeGenerator(Plugin):
                 "BearerTokenCredentialPolicy or AzureKeyCredentialPolicy"
             )
 
-        credential_scopes, credential_param_name = self._get_credential_param(
+        credential_scopes, credential_key_header_name = self._get_credential_param(
             azure_arm, credential, credential_default_policy_type
         )
 
-        return credential_default_policy_type, credential_scopes, credential_param_name
+        return credential_default_policy_type, credential_scopes, credential_key_header_name
 
 
     def _build_code_model_options(self) -> Dict[str, Any]:
@@ -210,7 +210,7 @@ class CodeGenerator(Plugin):
             self._autorestapi.get_boolean_value("add-credential", False)
         )
 
-        credential_default_policy_type, credential_scopes, credential_param_name = (
+        credential_default_policy_type, credential_scopes, credential_key_header_name = (
             self._handle_default_authentication_policy(
                 azure_arm, credential
             )
@@ -229,7 +229,7 @@ class CodeGenerator(Plugin):
             "azure_arm": azure_arm,
             "credential": credential,
             "credential_scopes": credential_scopes,
-            "credential_param_name": credential_param_name,
+            "credential_key_header_name": credential_key_header_name,
             "head_as_boolean": self._autorestapi.get_boolean_value("head-as-boolean", False),
             "license_header": license_header,
             "keep_version_file": self._autorestapi.get_boolean_value("keep-version-file", False),

@@ -35,7 +35,7 @@
         "credential_scopes": null,
         "credential_default_policy_type": "AzureKeyCredentialPolicy",
         "credential_default_policy_type_has_async_version": false,
-        "credential_param_name": "Authorization"
+        "credential_key_header_name": "Authorization"
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations",

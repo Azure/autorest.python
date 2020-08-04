@@ -103,6 +103,6 @@ class {{ client_name }}Configuration(Configuration):
         {% endif %}
         if self.credential and not self.authentication_policy:
             {% set credential_default_policy_type = ("Async" if (async_mode and config['credential_default_policy_type_has_async_version']) else "") + config['credential_default_policy_type'] %}
-            {% set credential_param_type = ("'" + config['credential_param_name'] + "', ") if config['credential_param_name'] else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
+            {% set credential_param_type = ("'" + config['credential_key_header_name'] + "', ") if config['credential_key_header_name'] else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
             self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ credential_param_type if credential_param_type }}**kwargs)
         {% endif %}
