@@ -312,6 +312,17 @@ class MultiAPI:
 
         return imports
 
+    def _has_lro_operations(
+        self, paths_to_versions: List[Path]
+    ) -> bool:
+        has_lro_operations = False
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            current_client_has_lro_operations = metadata_json["client"]["has_lro_operations"]
+            if current_client_has_lro_operations:
+                has_lro_operations = True
+        return has_lro_operations
+
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
         # If True, means the auto-profile will consider preview versions.
@@ -417,7 +428,8 @@ class MultiAPI:
             "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
             "base_url": metadata_json["client"]["base_url"],
             "custom_base_url_to_api_version": self._build_custom_base_url_to_api_version(paths_to_versions),
-            "azure_arm": metadata_json["client"]["azure_arm"]
+            "azure_arm": metadata_json["client"]["azure_arm"],
+            "has_lro_operations": self._has_lro_operations(paths_to_versions)
         }
 
         multiapi_serializer = MultiAPISerializer(

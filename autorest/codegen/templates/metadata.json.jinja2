@@ -10,7 +10,8 @@
         {% set base_url =  code_model.base_url if code_model.base_url else ('https://management.azure.com' if code_model.options["azure_arm"] else None )%}
         "base_url": {{ (keywords.escape_str(base_url) if base_url else None) | tojson }},
         "custom_base_url": {{ (keywords.escape_str(code_model.custom_base_url) if code_model.custom_base_url else None) | tojson }},
-        "azure_arm": {{ code_model.options["azure_arm"]  | tojson }}
+        "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
+        "has_lro_operations": {{ code_model.has_lro_operations | tojson }}
     },
     "global_parameters": {
         "sync_method": {
