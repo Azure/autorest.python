@@ -14,7 +14,6 @@ from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .lro_paging_operation import LROPagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
 from .parameter_list import ParameterList
