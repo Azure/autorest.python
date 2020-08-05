@@ -33,11 +33,11 @@ async def default_client(credential, authentication_policy):
     from multiapicredentialdefaultpolicy.aio import MultiapiServiceClient
     async with MultiapiServiceClient(
 		base_url="http://localhost:3000",
-        credential="12345",
-        name="azure_key_credential_policy"
+        credential="12345"
     ) as default_client:
         await yield_(default_client)
 
 def test_multiapi_credential_default_policy_type(default_client):
     # making sure that the authentication policy is AzureKeyCredentialPolicy
     assert isinstance(default_client._config.authentication_policy, AzureKeyCredentialPolicy)
+    assert default_client._config.authentication_policy._name == "Authorization"
