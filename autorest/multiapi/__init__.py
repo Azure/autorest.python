@@ -36,94 +36,6 @@ class MultiApiScriptPlugin(Plugin):
         return generator.process()
 
 
-def _get_floating_latest(api_versions_list: List[str], preview_mode: bool) -> str:
-    """Get the floating latest, from a random list of API versions.
-    """
-    api_versions_list = list(api_versions_list)
-    absolute_latest = sorted(api_versions_list)[-1]
-    trimmed_preview = [
-        version for version in api_versions_list if "preview" not in version
-    ]
-
-    # If there is no preview, easy: the absolute latest is the only latest
-    if not trimmed_preview:
-        return absolute_latest
-
-    # If preview mode, let's use the absolute latest, I don't care preview or stable
-    if preview_mode:
-        return absolute_latest
-
-    # If not preview mode, and there is preview, take the latest known stable
-    return sorted(trimmed_preview)[-1]
-
-def _build_last_rt_list(
-    versioned_operations_dict: Dict[str, List[Tuple[str, str]]],
-    mixin_operations: Dict[str, Dict[str, Dict[str, Any]]],
-    last_api_version: str,
-    preview_mode: bool,
-    async_mode: bool
-) -> Dict[str, str]:
-    """Build the a mapping RT => API version if RT doesn't exist in latest detected API version.
-
-    Example:
-    last_rt_list = {
-    'check_dns_name_availability': '2018-05-01'
-    }
-
-    There is one subtle scenario if PREVIEW mode is disabled:
-    - RT1 available on 2019-05-01 and 2019-06-01-preview
-    - RT2 available on 2019-06-01-preview
-    - RT3 available on 2019-07-01-preview
-
-    Then, if I put "RT2: 2019-06-01-preview" in the list, this means I have to make
-    "2019-06-01-preview" the default for models loading (otherwise "RT2: 2019-06-01-preview" won't work).
-    But this likely breaks RT1 default operations at "2019-05-01", with default models at "2019-06-01-preview"
-    since "models" are shared for the entire set of operations groups (I wished models would be split by
-    operation groups, but meh, that's not the case)
-
-    So, until we have a smarter Autorest to deal with that, only preview RTs which do not share models with
-    a stable RT can be added to this map. In this case, RT2 is out, RT3 is in.
-    """
-
-    def there_is_a_rt_that_contains_api_version(rt_dict, api_version):
-        "Test in the given api_version is is one of those RT."
-        for rt_api_version in rt_dict.values():
-            if api_version in rt_api_version:
-                return True
-        return False
-
-    last_rt_list = {}
-
-    sync_or_async = "async" if async_mode else "sync"
-
-    # Operation groups
-    versioned_dict = {
-        operation_group_name: [meta[0] for meta in operation_metadata]
-        for operation_group_name, operation_metadata in versioned_operations_dict.items()
-    }
-    # Operations at client level
-    versioned_dict.update(
-        {
-            operation_name: operation_metadata[sync_or_async]["available_apis"]
-            for operation_name, operation_metadata in mixin_operations.items()
-        }
-    )
-    for operation, api_versions_list in versioned_dict.items():
-        local_last_api_version = _get_floating_latest(api_versions_list, preview_mode)
-        if local_last_api_version == last_api_version:
-            continue
-        # If some others RT contains "local_last_api_version", and
-        # if it's greater than the future default, danger, don't profile it
-        if (
-            there_is_a_rt_that_contains_api_version(
-                versioned_dict, local_last_api_version
-            )
-            and local_last_api_version > last_api_version
-        ):
-            continue
-        last_rt_list[operation] = local_last_api_version
-    return last_rt_list
-
 def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
     version = metadata_json['chosen_version']
     total_api_version_list = metadata_json['total_api_version_list']
@@ -158,6 +70,130 @@ class MultiAPI:
         self.no_async = no_async
         self._autorestapi = autorestapi
         self.default_api = default_api
+
+    def _build_last_rt_list(
+        self,
+        versioned_operations_dict: Dict[str, List[Tuple[str, str]]],
+        mixin_operations: Dict[str, Dict[str, Dict[str, Any]]],
+        last_api_version: str,
+        preview_mode: bool,
+        async_mode: bool
+    ) -> Dict[str, str]:
+        """Build the a mapping RT => API version if RT doesn't exist in latest detected API version.
+
+        Example:
+        last_rt_list = {
+        'check_dns_name_availability': '2018-05-01'
+        }
+
+        There is one subtle scenario if PREVIEW mode is disabled:
+        - RT1 available on 2019-05-01 and 2019-06-01-preview
+        - RT2 available on 2019-06-01-preview
+        - RT3 available on 2019-07-01-preview
+
+        Then, if I put "RT2: 2019-06-01-preview" in the list, this means I have to make
+        "2019-06-01-preview" the default for models loading (otherwise "RT2: 2019-06-01-preview" won't work).
+        But this likely breaks RT1 default operations at "2019-05-01", with default models at "2019-06-01-preview"
+        since "models" are shared for the entire set of operations groups (I wished models would be split by
+        operation groups, but meh, that's not the case)
+
+        So, until we have a smarter Autorest to deal with that, only preview RTs which do not share models with
+        a stable RT can be added to this map. In this case, RT2 is out, RT3 is in.
+        """
+
+        def there_is_a_rt_that_contains_api_version(rt_dict, api_version):
+            "Test in the given api_version is is one of those RT."
+            for rt_api_version in rt_dict.values():
+                if api_version in rt_api_version:
+                    return True
+            return False
+
+        last_rt_list = {}
+
+        sync_or_async = "async" if async_mode else "sync"
+
+        # Operation groups
+        versioned_dict = {
+            operation_group_name: [meta[0] for meta in operation_metadata]
+            for operation_group_name, operation_metadata in versioned_operations_dict.items()
+        }
+        # Operations at client level
+        versioned_dict.update(
+            {
+                operation_name: operation_metadata[sync_or_async]["available_apis"]
+                for operation_name, operation_metadata in mixin_operations.items()
+            }
+        )
+        for operation, api_versions_list in versioned_dict.items():
+            local_last_api_version = self._get_last_api_version(api_versions_list, preview_mode)
+            if local_last_api_version == last_api_version:
+                continue
+            # If some others RT contains "local_last_api_version", and
+            # if it's greater than the future default, danger, don't profile it
+            if (
+                there_is_a_rt_that_contains_api_version(
+                    versioned_dict, local_last_api_version
+                )
+                and local_last_api_version > last_api_version
+            ):
+                continue
+            last_rt_list[operation] = local_last_api_version
+        return last_rt_list
+
+    def _get_last_api_version(
+        self,
+        api_versions_list: List[str],
+        preview_mode: bool,
+        mod_to_api_version: Optional[Dict[str, str]] = None,
+    ) -> str:
+        """Get the floating latest, from a random list of API versions.
+        """
+
+        # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
+        # and change it automatically so I can take both syntax as input
+        if mod_to_api_version and self.default_api and not self.default_api.startswith("v"):
+            last_api_version = [
+                mod_api
+                for mod_api, real_api in mod_to_api_version.items()
+                if real_api == self.default_api
+            ][0]
+            _LOGGER.info("Default API version will be: %s", last_api_version)
+            return last_api_version
+
+        absolute_latest = sorted(api_versions_list)[-1]
+        not_preview_versions = [
+            version for version in api_versions_list if "preview" not in version
+        ]
+
+        # If there is no preview, easy: the absolute latest is the only latest
+        if not not_preview_versions:
+            return absolute_latest
+
+        # If preview mode, let's use the absolute latest, I don't care preview or stable
+        if preview_mode:
+            return absolute_latest
+
+        # If not preview mode, and there is preview, take the latest known stable
+        return sorted(not_preview_versions)[-1]
+
+    def _get_mod_to_api_version(self, paths_to_versions: List[Path]) -> Dict[str, str]:
+        mod_to_api_version: Dict[str, str] = defaultdict(str)
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            version = metadata_json['chosen_version']
+            total_api_version_list = metadata_json['total_api_version_list']
+            if not version:
+                if total_api_version_list:
+                    sys.exit(
+                        f"Unable to match {total_api_version_list} to label {version_path.stem}"
+                    )
+                else:
+                    sys.exit(
+                        f"Unable to extract api version of {version_path.stem}"
+                    )
+            mod_to_api_version[version_path.name] = version
+        return mod_to_api_version
+
 
     def _get_paths_to_versions(self) -> List[Path]:
         paths_to_versions = []
@@ -261,7 +297,7 @@ class MultiAPI:
             custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version)
         return custom_base_url_to_api_version
 
-    def _build_operation_meta(
+    def _get_versioned_operations_dict(
         self, paths_to_versions: List[Path]
     ) -> Tuple[Dict[str, List[Tuple[str, str]]], Dict[str, str]]:
         """Introspect the client:
@@ -273,16 +309,14 @@ class MultiAPI:
         }
         mod_to_api_version => {'v2018_05_01': '2018-05-01'}
         """
-        mod_to_api_version: Dict[str, str] = defaultdict(str)
         versioned_operations_dict: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
         for version_path in paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
             operation_groups = metadata_json['operation_groups']
             version = _extract_version(metadata_json, version_path)
-            mod_to_api_version[version_path.name] = version
             for operation_group, operation_group_class_name in operation_groups.items():
                 versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
-        return versioned_operations_dict, mod_to_api_version
+        return versioned_operations_dict
 
     def _parse_package_name_input(self) -> str:
         """From a syntax like package_name#submodule, build a package name
@@ -331,31 +365,24 @@ class MultiAPI:
 
         module_name = self._parse_package_name_input()
         paths_to_versions = self._get_paths_to_versions()
-        versioned_operations_dict, mod_to_api_version = self._build_operation_meta(
-            paths_to_versions
+
+        mod_to_api_version = self._get_mod_to_api_version(paths_to_versions)
+
+        last_api_version = self._get_last_api_version(
+            [p.name for p in paths_to_versions],
+            preview_mode,
+            mod_to_api_version,
         )
 
-        last_api_version = _get_floating_latest(list(mod_to_api_version.keys()), preview_mode)
+        # get client name from default api version
+        path_to_default_version = Path()
+        for path_to_version in paths_to_versions:
+            if last_api_version.replace("-", "_") == path_to_version.stem:
+                path_to_default_version = path_to_version
+                break
+        metadata_json = json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
 
-        # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
-        # and change it automatically so I can take both syntax as input
-        if self.default_api and not self.default_api.startswith("v"):
-            last_api_version = [
-                mod_api
-                for mod_api, real_api in mod_to_api_version.items()
-                if real_api == self.default_api
-            ][0]
-            _LOGGER.info("Default API version will be: %s", last_api_version)
-
-        # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
-        # and change it automatically so I can take both syntax as input
-        if self.default_api and not self.default_api.startswith("v"):
-            last_api_version = [
-                mod_api
-                for mod_api, real_api in mod_to_api_version.items()
-                if real_api == self.default_api
-            ][0]
-            _LOGGER.info("Default API version will be: %s", last_api_version)
+        versioned_operations_dict = self._get_versioned_operations_dict(paths_to_versions)
 
         # In case we are transitioning from a single api generation, clean old folders
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
@@ -365,13 +392,6 @@ class MultiAPI:
         # Operation mixins are available since Autorest.Python 4.x
         mixin_operations = self._build_operation_mixin_meta(paths_to_versions, last_api_version)
 
-        # get client name from default api version
-        path_to_default_version = Path()
-        for path_to_version in paths_to_versions:
-            if last_api_version.replace("-", "_") == path_to_version.stem:
-                path_to_default_version = path_to_version
-                break
-        metadata_json = json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
 
         # versioned_operations_dict => {
         #     'application_gateways': [
@@ -393,10 +413,10 @@ class MultiAPI:
         #    'check_dns_name_availability': '2018-05-01'
         # }
 
-        last_rt_list_sync = _build_last_rt_list(
+        last_rt_list_sync = self._build_last_rt_list(
             versioned_operations_dict, mixin_operations, last_api_version, preview_mode, async_mode=False
         )
-        last_rt_list_async = _build_last_rt_list(
+        last_rt_list_async = self._build_last_rt_list(
             versioned_operations_dict, mixin_operations, last_api_version, preview_mode, async_mode=True
         )
 
