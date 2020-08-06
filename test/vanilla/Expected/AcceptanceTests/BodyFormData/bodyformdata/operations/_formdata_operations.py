@@ -47,14 +47,17 @@ class FormdataOperations(object):
     @distributed_trace
     def upload_file(
         self,
-        file_name=None,  # type: Optional["models.Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema"]
+        file_content,  # type: IO
+        file_name,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
         """Upload file.
 
-        :param file_name:
-        :type file_name: ~bodyformdata.models.Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema
+        :param file_content: File to upload.
+        :type file_content: IO
+        :param file_name: File name to upload. Name has to be spelled exactly as written here.
+        :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO, or the result of cls(response)
         :rtype: IO
@@ -77,10 +80,7 @@ class FormdataOperations(object):
         header_parameters['Accept'] = 'application/octet-stream, application/json'
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if file_name is not None:
-            body_content = self._serialize.body(file_name, 'Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema')
-        else:
-            body_content = None
+        body_content = self._serialize.body(file_content, 'IO')
         body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
