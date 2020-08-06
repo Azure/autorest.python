@@ -83,7 +83,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
     {% endif %}
     """
 
-    DEFAULT_API_VERSION = '{{ last_api_version }}'
+    DEFAULT_API_VERSION = '{{ default_api_version }}'
     _PROFILE_TAG = "{{ module_name }}.{{ client_name }}"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
