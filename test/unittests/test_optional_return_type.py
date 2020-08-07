@@ -15,6 +15,7 @@ def operation():
         description="Operation to test optional return types",
         url="http://www.optional_return_type.com",
         method="method",
+        multipart=False,
         api_versions=set(["2020-05-01"]),
         requests=[]
     )
@@ -27,6 +28,7 @@ def lro_operation():
         description="LRO Operation to test optional return types",
         url="http://www.optional_return_type.com",
         method="method",
+        multipart=False,
         api_versions=set(["2020-05-01"]),
         requests=[]
     )
@@ -39,6 +41,7 @@ def paging_operation():
         description="Paging Operation to test optional return types",
         url="http://www.optional_return_type.com",
         method="method",
+        multipart=False,
         api_versions=set(["2020-05-01"]),
         requests=[]
     )
