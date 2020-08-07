@@ -17,7 +17,7 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/BodyDictionary
 -e ./Expected/AcceptanceTests/BodyDuration
 -e ./Expected/AcceptanceTests/BodyFile
-#-e ./Expected/AcceptanceTests/BodyFormData
+-e ./Expected/AcceptanceTests/BodyFormData
 -e ./Expected/AcceptanceTests/BodyInteger
 -e ./Expected/AcceptanceTests/BodyNumber
 -e ./Expected/AcceptanceTests/BodyString
