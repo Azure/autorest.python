@@ -5,7 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 from .base_model import BaseModel
-from .code_model import CodeModel, CredentialSchema
+from .code_model import CodeModel
+from .credential_schema import CredentialSchema
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
