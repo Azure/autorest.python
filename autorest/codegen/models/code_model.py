@@ -5,10 +5,10 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, List, Dict, Optional, Any, Set
+from typing import cast, List, Dict, Optional, Any, Set, Union
 
 from .base_schema import BaseSchema
-from .credential_schema import CredentialSchema
+from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .enum_schema import EnumSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
@@ -124,7 +124,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :return: None
         :rtype: None
         """
-        credential_schema = CredentialSchema(async_mode=False)
+        credential_schema: Union[AzureKeyCredentialSchema, TokenCredentialSchema]
+        if self.options["credential_default_policy_type"] == "BearerTokenCredentialPolicy":
+            credential_schema = TokenCredentialSchema(async_mode=False)
+        else:
+            credential_schema = AzureKeyCredentialSchema()
         credential_parameter = Parameter(
             yaml_data={},
             schema=credential_schema,

@@ -6,7 +6,7 @@
 from typing import Any, Dict
 from .base_model import BaseModel
 from .code_model import CodeModel
-from .credential_schema import CredentialSchema
+from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
@@ -26,10 +26,10 @@ from .parameter_list import ParameterList
 
 
 __all__ = [
+    "AzureKeyCredentialSchema",
     "BaseModel",
     "BaseSchema",
     "CodeModel",
-    "CredentialSchema",
     "ConstantSchema",
     "ObjectSchema",
     "DictionarySchema",
@@ -46,7 +46,8 @@ __all__ = [
     "ParameterList",
     "OperationGroup",
     "Property",
-    "SchemaResponse"
+    "SchemaResponse",
+    "TokenCredentialSchema",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
