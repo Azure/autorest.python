@@ -6,14 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Optional
 
+from azure.core.credentials import AzureKeyCredential
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from azure.core.credentials_async import AsyncTokenCredential
 
 from ._configuration_async import MultiapiServiceClientConfiguration
 from .operations_async import MultiapiServiceClientOperationsMixin
@@ -30,13 +27,13 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :ivar operation_group_two: OperationGroupTwoOperations operations
     :vartype operation_group_two: multiapicredentialdefaultpolicy.v2.aio.operations_async.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     :param str base_url: Service URL
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
+        credential: AzureKeyCredential,
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:
