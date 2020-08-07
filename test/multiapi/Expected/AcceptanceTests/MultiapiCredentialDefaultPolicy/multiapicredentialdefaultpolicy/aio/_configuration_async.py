@@ -24,12 +24,12 @@ class MultiapiServiceClientConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
     def __init__(
         self,
-        credential,  # type: "AsyncTokenCredential"
+        credential,  # type: AzureKeyCredential
         **kwargs  # type: Any
     ) -> None:
         if credential is None:
