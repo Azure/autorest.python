@@ -1,5 +1,13 @@
 # Change Log
 
+### 2020-xx-xx - 5.1.0-preview.8
+Autorest Core version: 3.0.6302
+Modelerfour version: 4.15.407
+
+**New Features**
+
+- Support for `multipart/form-data`  #746
+
 ### 2020-08-07 - 5.1.0-preview.7
 Autorest Core version: 3.0.6302
 Modelerfour version: 4.15.400
