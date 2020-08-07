@@ -71,14 +71,7 @@ class MultiAPI:
         self._autorestapi = autorestapi
         self.default_api = default_api
 
-    def _build_last_rt_list(
-        self,
-        versioned_operations_dict: Dict[str, List[Tuple[str, str]]],
-        mixin_operations: Dict[str, Dict[str, Dict[str, Any]]],
-        default_api_version: str,
-        preview_mode: bool,
-        async_mode: bool
-    ) -> Dict[str, str]:
+    def _build_last_rt_list(self, async_mode: bool) -> Dict[str, str]:
         """Build the a mapping RT => API version if RT doesn't exist in latest detected API version.
 
         Example:
@@ -115,18 +108,18 @@ class MultiAPI:
         # Operation groups
         versioned_dict = {
             operation_group_name: [meta[0] for meta in operation_metadata]
-            for operation_group_name, operation_metadata in versioned_operations_dict.items()
+            for operation_group_name, operation_metadata in self.versioned_operations_dict.items()
         }
         # Operations at client level
         versioned_dict.update(
             {
                 operation_name: operation_metadata[sync_or_async]["available_apis"]
-                for operation_name, operation_metadata in mixin_operations.items()
+                for operation_name, operation_metadata in self.mixin_operations.items()
             }
         )
         for operation, api_versions_list in versioned_dict.items():
-            local_default_api_version = self._get_default_api_version(api_versions_list, preview_mode)
-            if local_default_api_version == default_api_version:
+            local_default_api_version = self._get_default_api_version_from_list(api_versions_list)
+            if local_default_api_version == self.default_api_version:
                 continue
             # If some others RT contains "local_default_api_version", and
             # if it's greater than the future default, danger, don't profile it
@@ -134,27 +127,22 @@ class MultiAPI:
                 there_is_a_rt_that_contains_api_version(
                     versioned_dict, local_default_api_version
                 )
-                and local_default_api_version > default_api_version
+                and local_default_api_version > self.default_api_version
             ):
                 continue
             last_rt_list[operation] = local_default_api_version
         return last_rt_list
 
-    def _get_default_api_version(
-        self,
-        api_versions_list: List[str],
-        preview_mode: bool,
-        mod_to_api_version: Optional[Dict[str, str]] = None,
-    ) -> str:
+    def _get_default_api_version_from_list(self, api_versions_list: List[str]) -> str:
         """Get the floating latest, from a random list of API versions.
         """
 
         # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
         # and change it automatically so I can take both syntax as input
-        if mod_to_api_version and self.default_api and not self.default_api.startswith("v"):
+        if self.default_api and not self.default_api.startswith("v"):
             default_api_version = [
                 mod_api
-                for mod_api, real_api in mod_to_api_version.items()
+                for mod_api, real_api in self.mod_to_api_version.items()
                 if real_api == self.default_api
             ][0]
             _LOGGER.info("Default API version will be: %s", default_api_version)
@@ -170,32 +158,91 @@ class MultiAPI:
             return absolute_latest
 
         # If preview mode, let's use the absolute latest, I don't care preview or stable
-        if preview_mode:
+        if self.preview_mode:
             return absolute_latest
 
         # If not preview mode, and there is preview, take the latest known stable
         return sorted(not_preview_versions)[-1]
 
-    def _get_mod_to_api_version(self, paths_to_versions: List[Path]) -> Dict[str, str]:
-        mod_to_api_version: Dict[str, str] = defaultdict(str)
-        for version_path in paths_to_versions:
+    def _merge_mixin_imports_across_versions(self, async_mode: bool) -> FileImport:
+        imports = FileImport()
+        imports_to_load = "async_imports" if async_mode else "sync_imports"
+        for version_path in self.paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            version = metadata_json['chosen_version']
-            total_api_version_list = metadata_json['total_api_version_list']
-            if not version:
-                if total_api_version_list:
-                    sys.exit(
-                        f"Unable to match {total_api_version_list} to label {version_path.stem}"
-                    )
-                else:
-                    sys.exit(
-                        f"Unable to extract api version of {version_path.stem}"
-                    )
-            mod_to_api_version[version_path.name] = version
-        return mod_to_api_version
+            if not metadata_json.get('operation_mixins'):
+                continue
+            current_version_imports = FileImport(json.loads(metadata_json[imports_to_load]))
+            imports.merge(current_version_imports)
 
+        return imports
 
-    def _get_paths_to_versions(self) -> List[Path]:
+    @property
+    def default_api_version(self) -> str:
+        return self._get_default_api_version_from_list([p.name for p in self.paths_to_versions])
+
+    @property
+    def default_version_metadata(self) -> Dict[str, Any]:
+        # get client name from default api version
+        path_to_default_version = Path()
+        for path_to_version in self.paths_to_versions:
+            if self.default_api_version.replace("-", "_") == path_to_version.stem:
+                path_to_default_version = path_to_version
+                break
+        return json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
+
+    @property
+    def has_lro_operations(self) -> bool:
+        has_lro_operations = False
+        for version_path in self.paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            current_client_has_lro_operations = metadata_json["client"]["has_lro_operations"]
+            if current_client_has_lro_operations:
+                has_lro_operations = True
+        return has_lro_operations
+
+    @property
+    def versioned_operations_dict(self) -> Tuple[Dict[str, List[Tuple[str, str]]], Dict[str, str]]:
+        """Introspect the client:
+
+        version_dict => {
+            'application_gateways': [
+                ('v2018_05_01', 'ApplicationGatewaysOperations')
+            ]
+        }
+        mod_to_api_version => {'v2018_05_01': '2018-05-01'}
+        """
+        versioned_operations_dict: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
+        for version_path in self.paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            operation_groups = metadata_json['operation_groups']
+            version = _extract_version(metadata_json, version_path)
+            for operation_group, operation_group_class_name in operation_groups.items():
+                versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
+        return versioned_operations_dict
+
+    @property
+    def module_name(self) -> str:
+        """From a syntax like package_name#submodule, build a package name
+        and complete module name.
+        """
+        split_package_name = self.input_package_name.split("#")
+        package_name = split_package_name[0]
+        module_name = package_name.replace("-", ".")
+        if len(split_package_name) >= 2:
+            module_name = ".".join([module_name, split_package_name[1]])
+            self.output_package_name = package_name
+        else:
+            self.output_package_name = self.input_package_name
+        return module_name
+
+    @property
+    def preview_mode(self) -> bool:
+        # If True, means the auto-profile will consider preview versions.
+        # If not, if it exists a stable API version for a global or RT, will always be used
+        return cast(bool, self.default_api and "preview" in self.default_api)
+
+    @property
+    def paths_to_versions(self) -> List[Path]:
         paths_to_versions = []
         directory = [x for x in self.output_folder.iterdir() if x.is_dir()]
         directory.sort()
@@ -204,6 +251,16 @@ class MultiAPI:
             if Path(child_dir / '_metadata.json') in child_dir.iterdir():
                 paths_to_versions.append(Path(child.stem))
         return paths_to_versions
+
+    @property
+    def custom_base_url_to_api_version(self) -> Dict[str, List[str]]:
+        custom_base_url_to_api_version: Dict[str, List[str]] = {}
+        for version_path in self.paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            custom_base_url = metadata_json["client"]["custom_base_url"]
+            version = _extract_version(metadata_json, version_path)
+            custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version)
+        return custom_base_url_to_api_version
 
     def _make_signature_of_mixin_based_on_default_api_version(
         self,
@@ -232,9 +289,8 @@ class MultiAPI:
             })
         return mixin_operations
 
-    def _build_operation_mixin_meta(
-        self, paths_to_versions: List[Path], default_api_version: str
-    ) -> Dict[str, Dict[str, Dict[str, Any]]]:
+    @property
+    def mixin_operations(self) -> Dict[str, Dict[str, Dict[str, Any]]]:
         """Introspect the client:
 
         version_dict => {
@@ -249,7 +305,7 @@ class MultiAPI:
         }
         """
         mixin_operations: Dict[str, Dict[str, Dict[str, Any]]] = {}
-        for version_path in paths_to_versions:
+        for version_path in self.paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
             if not metadata_json.get('operation_mixins'):
                 continue
@@ -282,127 +338,42 @@ class MultiAPI:
         # will hopefully get this removed once we deal with mixin operations with different signatures
         # for different api versions
         default_api_version_path = [
-            version_path for version_path in paths_to_versions if version_path.name == default_api_version
+            version_path for version_path in self.paths_to_versions if version_path.name == self.default_api_version
         ][0]
         return self._make_signature_of_mixin_based_on_default_api_version(mixin_operations, default_api_version_path)
 
-    def _build_custom_base_url_to_api_version(
-        self, paths_to_versions: List[Path]
-    ) -> Dict[str, List[str]]:
-        custom_base_url_to_api_version: Dict[str, List[str]] = {}
-        for version_path in paths_to_versions:
+    @property
+    def mod_to_api_version(self) -> Dict[str, str]:
+        mod_to_api_version: Dict[str, str] = defaultdict(str)
+        for version_path in self.paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            custom_base_url = metadata_json["client"]["custom_base_url"]
-            version = _extract_version(metadata_json, version_path)
-            custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version)
-        return custom_base_url_to_api_version
-
-    def _get_versioned_operations_dict(
-        self, paths_to_versions: List[Path]
-    ) -> Tuple[Dict[str, List[Tuple[str, str]]], Dict[str, str]]:
-        """Introspect the client:
-
-        version_dict => {
-            'application_gateways': [
-                ('v2018_05_01', 'ApplicationGatewaysOperations')
-            ]
-        }
-        mod_to_api_version => {'v2018_05_01': '2018-05-01'}
-        """
-        versioned_operations_dict: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
-        for version_path in paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            operation_groups = metadata_json['operation_groups']
-            version = _extract_version(metadata_json, version_path)
-            for operation_group, operation_group_class_name in operation_groups.items():
-                versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
-        return versioned_operations_dict
-
-    def _get_module_name(self) -> str:
-        """From a syntax like package_name#submodule, build a package name
-        and complete module name.
-        """
-        split_package_name = self.input_package_name.split("#")
-        package_name = split_package_name[0]
-        module_name = package_name.replace("-", ".")
-        if len(split_package_name) >= 2:
-            module_name = ".".join([module_name, split_package_name[1]])
-            self.output_package_name = package_name
-        else:
-            self.output_package_name = self.input_package_name
-        return module_name
-
-    def _get_default_version_metadata(
-        self, default_api_version: str, paths_to_versions: List[Path]
-    ) -> Dict[str, Any]:
-        # get client name from default api version
-        path_to_default_version = Path()
-        for path_to_version in paths_to_versions:
-            if default_api_version.replace("-", "_") == path_to_version.stem:
-                path_to_default_version = path_to_version
-                break
-        return json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
-
-    def _merge_mixin_imports_across_versions(
-        self, paths_to_versions: List[Path], async_mode: bool
-    ) -> FileImport:
-        imports = FileImport()
-        imports_to_load = "async_imports" if async_mode else "sync_imports"
-        for version_path in paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            if not metadata_json.get('operation_mixins'):
-                continue
-            current_version_imports = FileImport(json.loads(metadata_json[imports_to_load]))
-            imports.merge(current_version_imports)
-
-        return imports
-
-    def _has_lro_operations(
-        self, paths_to_versions: List[Path]
-    ) -> bool:
-        has_lro_operations = False
-        for version_path in paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            current_client_has_lro_operations = metadata_json["client"]["has_lro_operations"]
-            if current_client_has_lro_operations:
-                has_lro_operations = True
-        return has_lro_operations
+            version = metadata_json['chosen_version']
+            total_api_version_list = metadata_json['total_api_version_list']
+            if not version:
+                if total_api_version_list:
+                    sys.exit(
+                        f"Unable to match {total_api_version_list} to label {version_path.stem}"
+                    )
+                else:
+                    sys.exit(
+                        f"Unable to extract api version of {version_path.stem}"
+                    )
+            mod_to_api_version[version_path.name] = version
+        return mod_to_api_version
 
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
-        # If True, means the auto-profile will consider preview versions.
-        # If not, if it exists a stable API version for a global or RT, will always be used
-        preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
-
-        module_name = self._get_module_name()
-        paths_to_versions = self._get_paths_to_versions()
-        mod_to_api_version = self._get_mod_to_api_version(paths_to_versions)
-
-        default_api_version = self._get_default_api_version(
-            [p.name for p in paths_to_versions],
-            preview_mode,
-            mod_to_api_version,
-        )
-
-        default_version_metadata = self._get_default_version_metadata(default_api_version, paths_to_versions)
 
         code_model = CodeModel(
-            module_name=module_name,
-            default_api_version=default_api_version,
-            default_version_metadata=default_version_metadata,
-            mod_to_api_version=mod_to_api_version
+            module_name=self.module_name,
+            default_api_version=self.default_api_version,
+            default_version_metadata=self.default_version_metadata,
+            mod_to_api_version=self.mod_to_api_version,
         )
-
-        versioned_operations_dict = self._get_versioned_operations_dict(paths_to_versions)
 
         # In case we are transitioning from a single api generation, clean old folders
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
-
-        # Detect if this client is using an operation mixin (Network)
-        # Operation mixins are available since Autorest.Python 4.x
-        mixin_operations = self._build_operation_mixin_meta(paths_to_versions, default_api_version)
-
 
         # versioned_operations_dict => {
         #     'application_gateways': [
@@ -424,50 +395,42 @@ class MultiAPI:
         #    'check_dns_name_availability': '2018-05-01'
         # }
 
-        last_rt_list_sync = self._build_last_rt_list(
-            versioned_operations_dict, mixin_operations, default_api_version, preview_mode, async_mode=False
-        )
-        last_rt_list_async = self._build_last_rt_list(
-            versioned_operations_dict, mixin_operations, default_api_version, preview_mode, async_mode=True
-        )
+        last_rt_list_sync = self._build_last_rt_list(async_mode=False)
+        last_rt_list_async = self._build_last_rt_list(async_mode=True)
 
-        sync_imports = self._merge_mixin_imports_across_versions(
-            paths_to_versions, async_mode=False
-        )
+        sync_imports = self._merge_mixin_imports_across_versions(async_mode=False)
 
-        async_imports = self._merge_mixin_imports_across_versions(
-            paths_to_versions, async_mode=True
-        )
+        async_imports = self._merge_mixin_imports_across_versions(async_mode=True)
 
         conf = {
-            "client_name": default_version_metadata["client"]["name"],
+            "client_name": self.default_version_metadata["client"]["name"],
             "package_name": self.output_package_name,
             "module_name": code_model.module_name,
-            "operations": versioned_operations_dict,
-            "mixin_operations": mixin_operations,
-            "mod_to_api_version": mod_to_api_version,
-            "default_api_version": mod_to_api_version[default_api_version],
-            "client_doc": default_version_metadata["client"]["description"],
+            "operations": self.versioned_operations_dict,
+            "mixin_operations": self.mixin_operations,
+            "mod_to_api_version": self.mod_to_api_version,
+            "default_api_version": self.mod_to_api_version[self.default_api_version],
+            "client_doc": self.default_version_metadata["client"]["description"],
             "last_rt_list_sync": last_rt_list_sync,
             "last_rt_list_async": last_rt_list_async,
             "default_models": sorted(
-                {default_api_version} | {versions for _, versions in last_rt_list_sync.items()}
+                {self.default_api_version} | {versions for _, versions in last_rt_list_sync.items()}
             ),
-            "config": default_version_metadata["config"],
-            "global_parameters": default_version_metadata["global_parameters"],
+            "config": self.default_version_metadata["config"],
+            "global_parameters": self.default_version_metadata["global_parameters"],
             "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
             "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
-            "base_url": default_version_metadata["client"]["base_url"],
-            "custom_base_url_to_api_version": self._build_custom_base_url_to_api_version(paths_to_versions),
-            "azure_arm": default_version_metadata["client"]["azure_arm"],
-            "has_lro_operations": self._has_lro_operations(paths_to_versions)
+            "base_url": self.default_version_metadata["client"]["base_url"],
+            "custom_base_url_to_api_version": self.custom_base_url_to_api_version,
+            "azure_arm": self.default_version_metadata["client"]["azure_arm"],
+            "has_lro_operations": self.has_lro_operations
         }
 
         multiapi_serializer = MultiAPISerializer(
             conf=conf,
             async_mode=False,
             autorestapi=self._autorestapi,
-            service_client_filename=default_version_metadata["client"]["filename"]
+            service_client_filename=self.default_version_metadata["client"]["filename"]
         )
         multiapi_serializer.serialize()
 
@@ -476,7 +439,7 @@ class MultiAPI:
                 conf=conf,
                 async_mode=True,
                 autorestapi=self._autorestapi,
-                service_client_filename=default_version_metadata["client"]["filename"]
+                service_client_filename=self.default_version_metadata["client"]["filename"]
             )
             async_multiapi_serializer.serialize()
 
