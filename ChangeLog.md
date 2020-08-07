@@ -7,6 +7,7 @@ Modelerfour version: 4.15.400
 **New Features**
 
 - Add `azure-mgmt-core` as a dependency in the generated setup.py file  #738
+- Replace instead of extending scopes  #745
 
 ### 2020-08-04 - 5.1.0-preview.6
 Autorest Core version: 3.0.6287
