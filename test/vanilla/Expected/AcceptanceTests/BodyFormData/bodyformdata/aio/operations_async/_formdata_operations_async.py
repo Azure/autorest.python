@@ -74,11 +74,12 @@ class FormdataOperations:
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/octet-stream, application/json'
 
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(file_content, 'IO')
-        body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
+        # Construct form data
+        _form_content = {
+            'fileContent': file_content,
+            'fileName': file_name,
+        }
+        request = self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
@@ -129,7 +130,6 @@ class FormdataOperations:
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content_kwargs['stream_content'] = file_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
