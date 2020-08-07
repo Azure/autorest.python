@@ -47,8 +47,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
         self.credential = credential
         self.endpoint = endpoint
         self.api_version = "2.0.0"
-        self.credential_scopes = []
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
+        self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapicustombaseurl/{}'.format(VERSION))
         self._configure(**kwargs)
 
