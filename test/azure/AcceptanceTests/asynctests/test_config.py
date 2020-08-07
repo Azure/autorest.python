@@ -45,3 +45,13 @@ class TestConfig(object):
         async with AutoRestHeadTestService(credential, base_url="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
             assert isinstance(client._config.http_logging_policy, ARMHttpLoggingPolicy)
             assert client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+
+    @pytest.mark.asyncio
+    async def test_credential_scopes_default(self, credential):
+        async with AutoRestHeadTestService(credential) as client:
+            assert client._config.credential_scopes == ['https://management.azure.com/.default']
+
+    @pytest.mark.asyncio
+    async def test_credential_scopes_override(self, credential):
+        async with AutoRestHeadTestService(credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
+            assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]

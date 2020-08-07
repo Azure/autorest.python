@@ -8,6 +8,7 @@ Modelerfour version: 4.15.400
 
 - Add `azure-mgmt-core` as a dependency in the generated setup.py file  #738
 - Correct typing for `credential` when default credential policy type is `AzureKeyCredentialPolicy`  #744
+- Replace instead of extending `credential_scopes` if user has inputted their own  #745
 
 ### 2020-08-04 - 5.1.0-preview.6
 Autorest Core version: 3.0.6287

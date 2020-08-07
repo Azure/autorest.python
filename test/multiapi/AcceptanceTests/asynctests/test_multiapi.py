@@ -94,5 +94,17 @@ async def test_arm_http_logging_policy_custom(credential):
         assert isinstance(default_client._config.http_logging_policy, ARMHttpLoggingPolicy)
         assert default_client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
 
+@pytest.mark.asyncio
+async def test_credential_scopes_default(credential):
+    from multiapi.aio import MultiapiServiceClient
+    async with MultiapiServiceClient(credential=credential) as client:
+        assert client._config.credential_scopes == ['https://management.azure.com/.default']
+
+@pytest.mark.asyncio
+async def test_credential_scopes_override(credential):
+    from multiapi.aio import MultiapiServiceClient
+    async with MultiapiServiceClient(credential=credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
+        assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]
+
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
