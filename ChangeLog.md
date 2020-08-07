@@ -1,12 +1,25 @@
 # Change Log
 
-### 2020-xx-xx - 5.1.0-preview.6
+### 2020-08-07 - 5.1.0-preview.7
+Autorest Core version: 3.0.6302
+Modelerfour version: 4.15.400
+
+**New Features**
+
+- Add `azure-mgmt-core` as a dependency in the generated setup.py file  #738
+- Correct typing for `credential` when default credential policy type is `AzureKeyCredentialPolicy`  #744
+- Replace instead of extending `credential_scopes` if user has inputted their own  #745
+
+### 2020-08-04 - 5.1.0-preview.6
 Autorest Core version: 3.0.6287
 Modelerfour version: 4.15.378
 
 **New Features**
 
 - Add support for `x-ms-text` XML extension  #722
+- Allow users to pass the name of the key header for `AzureKeyCredentialPolicy` during generation. To use, pass in
+`AzureKeyCredentialPolicy` with the `--credential-default-policy-type` flag, and pass in the key header name using
+the `--credential-key-header-name` flag  #736
 
 **Bug Fixes**
 

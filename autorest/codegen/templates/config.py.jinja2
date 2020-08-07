@@ -58,8 +58,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
     {% endfor %}
 {% endif %}
 {% if code_model.options['credential_scopes'] is not none %}
-        self.credential_scopes = {{ code_model.options['credential_scopes'] }}
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.options['credential_scopes'] }})
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ sdk_moniker }}/{}'.format(VERSION))
         self._configure(**kwargs)
@@ -88,6 +87,6 @@ class {{ code_model.class_name }}Configuration(Configuration):
         {% endif %}
         if self.credential and not self.authentication_policy:
         {% set credential_default_policy_type = ("Async" if (async_mode and code_model.options['credential_default_policy_type_has_async_version']) else "") + code_model.options['credential_default_policy_type'] %}
-        {% set bearer_token_specific_params = "*self.credential_scopes, " %}
-            self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ bearer_token_specific_params if "BearerTokenCredentialPolicy" in credential_default_policy_type }}**kwargs)
+        {% set credential_param_type = ("'" + code_model.options['credential_key_header_name'] + "', ") if code_model.options['credential_key_header_name'] else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
+            self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ credential_param_type if credential_param_type }}**kwargs)
         {% endif %}

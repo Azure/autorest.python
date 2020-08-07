@@ -7,22 +7,23 @@
         "description": "Service client for multiapi client testing.",
         "base_url": "\u0027http://localhost:3000\u0027",
         "custom_base_url": null,
-        "azure_arm": true
+        "azure_arm": true,
+        "has_lro_operations": true
     },
     "global_parameters": {
         "sync_method": {
             "credential": {
-                "method_signature": "credential,  # type: \"TokenCredential\"",
+                "method_signature": "credential,  # type: AzureKeyCredential",
                 "description": "Credential needed for the client to connect to Azure.",
-                "docstring_type": "~azure.core.credentials.TokenCredential",
+                "docstring_type": "~azure.core.credentials.AzureKeyCredential",
                 "required": true
             }
         },
         "async_method": {
             "credential": {
-                "method_signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "method_signature": "credential,  # type: AzureKeyCredential",
                 "description": "Credential needed for the client to connect to Azure.",
-                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
+                "docstring_type": "~azure.core.credentials.AzureKeyCredential",
                 "required": true
             }
         },
@@ -34,7 +35,8 @@
         "credential": true,
         "credential_scopes": null,
         "credential_default_policy_type": "AzureKeyCredentialPolicy",
-        "credential_default_policy_type_has_async_version": false
+        "credential_default_policy_type_has_async_version": false,
+        "credential_key_header_name": "Authorization"
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations"
