@@ -42,8 +42,7 @@ class MultiapiServiceClientConfiguration(Configuration):
 
         self.credential = credential
         self.api_version = "3.0.0"
-        self.credential_scopes = ['https://management.azure.com/.default']
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
+        self.credential_scopes = kwargs.pop('credential_scopes', ['https://management.azure.com/.default'])
         kwargs.setdefault('sdk_moniker', 'multiapiwithsubmodule/{}'.format(VERSION))
         self._configure(**kwargs)
 

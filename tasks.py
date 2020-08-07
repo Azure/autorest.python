@@ -149,6 +149,8 @@ def regen_expected(c, opts, debug):
             args.append(f"--override-info.description={opts['override-info.description']}")
         if opts.get('credential-default-policy-type'):
             args.append(f"--credential-default-policy-type={opts['credential-default-policy-type']}")
+        if opts.get('credential-key-header-name'):
+            args.append(f"--credential-key-header-name={opts['credential-key-header-name']}")
         if opts.get('package-name'):
             args.append(f"--package-name={opts['package-name']}")
         if opts.get('override-client-name'):
@@ -262,7 +264,8 @@ def regenerate_credential_default_policy(c, debug=False):
         'azure_arm': True,
         'flattening_threshold': '1',
         'ns_prefix': True,
-        'credential-default-policy-type': 'AzureKeyCredentialPolicy'
+        'credential-default-policy-type': 'AzureKeyCredentialPolicy',
+        'credential-key-header-name': 'Authorization'
     }
     regen_expected(c, opts, debug)
 

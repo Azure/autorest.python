@@ -22,7 +22,6 @@ class AutoRestBoolTestService(object):
     :ivar bool: BoolOperations operations
     :vartype bool: bodyboolean.aio.operations_async.BoolOperations
     :param str base_url: Service URL
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
