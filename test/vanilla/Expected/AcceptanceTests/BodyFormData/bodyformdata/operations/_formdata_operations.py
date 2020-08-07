@@ -17,7 +17,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, IO, List, Optional, TypeVar
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -151,3 +151,56 @@ class FormdataOperations(object):
 
         return deserialized
     upload_file_via_body.metadata = {'url': '/formdata/stream/uploadfile'}  # type: ignore
+
+    @distributed_trace
+    def upload_files(
+        self,
+        file_content,  # type: List[IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> IO
+        """Upload multiple files.
+
+        :param file_content: Files to upload.
+        :type file_content: list[IO]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: IO, or the result of cls(response)
+        :rtype: IO
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = kwargs.pop("content_type", "multipart/form-data")
+
+        # Construct URL
+        url = self.upload_files.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = 'application/octet-stream, application/json'
+
+        # Construct form data
+        _form_content = {
+            'fileContent': file_content,
+        }
+        request = self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+        pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = response.stream_download(self._client._pipeline)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    upload_files.metadata = {'url': '/formdata/stream/uploadfiles'}  # type: ignore

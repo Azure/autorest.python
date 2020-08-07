@@ -62,3 +62,28 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = kwargs['file_content']
         self.file_name = kwargs['file_name']
+
+
+class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(msrest.serialization.Model):
+    """Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param file_content: Required. Files to upload.
+    :type file_content: list[IO]
+    """
+
+    _validation = {
+        'file_content': {'required': True},
+    }
+
+    _attribute_map = {
+        'file_content': {'key': 'fileContent', 'type': '[IO]'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
+        self.file_content = kwargs['file_content']

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import IO, Optional
+from typing import IO, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -70,3 +70,30 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = file_content
         self.file_name = file_name
+
+
+class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(msrest.serialization.Model):
+    """Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param file_content: Required. Files to upload.
+    :type file_content: list[IO]
+    """
+
+    _validation = {
+        'file_content': {'required': True},
+    }
+
+    _attribute_map = {
+        'file_content': {'key': 'fileContent', 'type': '[IO]'},
+    }
+
+    def __init__(
+        self,
+        *,
+        file_content: List[IO],
+        **kwargs
+    ):
+        super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
+        self.file_content = file_content
