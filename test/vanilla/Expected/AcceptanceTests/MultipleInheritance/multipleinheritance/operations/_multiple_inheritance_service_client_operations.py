@@ -104,7 +104,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(horse, 'Horse')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -202,7 +201,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(_pet, 'Pet')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -298,7 +296,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(feline, 'Feline')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -394,7 +391,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(cat, 'Cat')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -493,7 +489,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(kitten, 'Kitten')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

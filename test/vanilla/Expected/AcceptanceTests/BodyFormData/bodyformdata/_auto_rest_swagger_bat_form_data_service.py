@@ -26,7 +26,6 @@ class AutoRestSwaggerBATFormDataService(object):
     :ivar formdata: FormdataOperations operations
     :vartype formdata: bodyformdata.operations.FormdataOperations
     :param str base_url: Service URL
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
