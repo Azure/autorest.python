@@ -24,12 +24,12 @@ class MultiapiServiceClientConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
     def __init__(
         self,
-        credential,  # type: "AsyncTokenCredential"
+        credential,  # type: AzureKeyCredential
         **kwargs  # type: Any
     ) -> None:
         if credential is None:
@@ -54,4 +54,4 @@ class MultiapiServiceClientConfiguration(Configuration):
         self.redirect_policy = kwargs.get('redirect_policy') or policies.AsyncRedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, **kwargs)
+            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, 'Authorization', **kwargs)

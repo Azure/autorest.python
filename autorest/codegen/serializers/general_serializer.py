@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
-from ..models import FileImport, ImportType, CodeModel, CredentialSchema
+from ..models import FileImport, ImportType, CodeModel, TokenCredentialSchema
 
 
 class GeneralSerializer:
@@ -24,9 +24,9 @@ class GeneralSerializer:
 
     def _correct_credential_parameter(self):
         credential_param = [
-            gp for gp in self.code_model.global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
+            gp for gp in self.code_model.global_parameters.parameters if isinstance(gp.schema, TokenCredentialSchema)
         ][0]
-        credential_param.schema = CredentialSchema(async_mode=self.async_mode)
+        credential_param.schema = TokenCredentialSchema(async_mode=self.async_mode)
 
     def serialize_service_client_file(self) -> str:
         def _service_client_imports() -> FileImport:
@@ -37,7 +37,10 @@ class GeneralSerializer:
 
         template = self.env.get_template("service_client.py.jinja2")
 
-        if self.code_model.options['credential']:
+        if (
+            self.code_model.options['credential'] and
+            self.code_model.options['credential_default_policy_type'] == "BearerTokenCredentialPolicy"
+        ):
             self._correct_credential_parameter()
 
         return template.render(
@@ -68,7 +71,10 @@ class GeneralSerializer:
             package_name = package_name[len("azure-"):]
         sdk_moniker = package_name if package_name else self.code_model.class_name.lower()
 
-        if self.code_model.options['credential']:
+        if (
+            self.code_model.options['credential'] and
+            self.code_model.options['credential_default_policy_type'] == "BearerTokenCredentialPolicy"
+        ):
             self._correct_credential_parameter()
 
         template = self.env.get_template("config.py.jinja2")

@@ -19,7 +19,7 @@ VERSION = "0.1.0"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["msrest>=0.6.18", "azure-core<2.0.0,>=1.8.0"]
+REQUIRES = ["msrest>=0.6.18", "azure-core<2.0.0,>=1.8.0", "azure-mgmt-core<2.0.0,>=1.2.0"]
 
 setup(
     name=NAME,

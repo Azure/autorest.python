@@ -13,7 +13,7 @@ from ..models import (
     OperationGroup,
     LROOperation,
     PagingOperation,
-    CredentialSchema,
+    TokenCredentialSchema,
     ParameterList,
     TypingSection,
     ImportType
@@ -21,9 +21,9 @@ from ..models import (
 
 def _correct_credential_parameter(global_parameters: ParameterList, async_mode: bool) -> None:
     credential_param = [
-        gp for gp in global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
+        gp for gp in global_parameters.parameters if isinstance(gp.schema, TokenCredentialSchema)
     ][0]
-    credential_param.schema = CredentialSchema(async_mode=async_mode)
+    credential_param.schema = TokenCredentialSchema(async_mode=async_mode)
 
 def _json_serialize_imports(
     imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]]
@@ -107,8 +107,11 @@ class MetadataSerializer:
         # In this case, we need two copies of the credential global parameter
         # for typing purposes.
         async_global_parameters = self.code_model.global_parameters
-        if self.code_model.options['credential']:
-            # this ensures that the CredentialSchema showing up in the list of code model's global parameters
+        if (
+            self.code_model.options['credential'] and
+            self.code_model.options['credential_default_policy_type'] == "BearerTokenCredentialPolicy"
+        ):
+            # this ensures that the TokenCredentialSchema showing up in the list of code model's global parameters
             # is sync. This way we only have to make a copy for an async_credential
             _correct_credential_parameter(self.code_model.global_parameters, False)
             async_global_parameters = self._make_async_copy_of_global_parameters()

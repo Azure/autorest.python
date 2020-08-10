@@ -8,14 +8,13 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
+from azure.core.credentials import AzureKeyCredential
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
-
-    from azure.core.credentials_async import AsyncTokenCredential
 
 from ._configuration_async import AutoRestHeadTestServiceConfiguration
 from .operations_async import HttpSuccessOperations
@@ -27,14 +26,13 @@ class AutoRestHeadTestService(object):
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: headwithazurekeycredentialpolicy.aio.operations_async.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     :param str base_url: Service URL
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
+        credential: AzureKeyCredential,
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:

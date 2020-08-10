@@ -51,7 +51,7 @@ class PetOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
-        """get_by_pet_id.
+        """get pet by id.
 
         :param pet_id: Pet id.
         :type pet_id: str
@@ -101,9 +101,9 @@ class PetOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
-        """add_pet.
+        """add pet.
 
-        :param pet_param:
+        :param pet_param: pet param.
         :type pet_param: ~extensibleenumsswagger.models.Pet
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet, or the result of cls(response)
