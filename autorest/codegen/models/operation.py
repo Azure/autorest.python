@@ -236,8 +236,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         if parameter.explode:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
-        else:
-            return serialize_line
+        return serialize_line
 
     @property
     def serialization_context(self) -> str:
