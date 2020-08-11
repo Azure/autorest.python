@@ -65,7 +65,7 @@ class QueriesOperations:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') if q is not None else '' for q in array_query]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -92,6 +92,8 @@ class QueriesOperations:
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
+        No query parameter should be sent, since the array is empty.
+
         :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -109,7 +111,7 @@ class QueriesOperations:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') if q is not None else '' for q in array_query]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -134,11 +136,13 @@ class QueriesOperations:
         array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
-        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        mult-array format.
+        """Get an array of string using the multi-array format.
+
+        Parameter is ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']. null is sent as empty
+        string.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the mult-array format.
+         ''] using the multi-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -155,7 +159,7 @@ class QueriesOperations:
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') if q is not None else '' for q in array_query]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
