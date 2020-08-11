@@ -98,6 +98,14 @@ class NameConverter:
             NameConverter._convert_language_default_python_case(schema=prop, pad_string=PadType.Property)
 
     @staticmethod
+    def _is_schema_an_m4_header_parameter(schema_name: str, schema: Dict[str, Any]) -> bool:
+        m4_header_parameters = ["content_type", "accept"]
+        return (
+            schema_name in m4_header_parameters and
+            schema.get('protocol', {}).get('http', {}).get('in', {}) == 'header'
+        )
+
+    @staticmethod
     def _convert_language_default_python_case(
         schema: Dict[str, Any],
         *,
@@ -111,11 +119,8 @@ class NameConverter:
         schema_name = schema['language']['default']['name']
         schema_python_name = schema['language']['python']['name']
 
-        if not(
-            schema_name == 'content_type' and
-            schema.get('protocol') and
-            schema['protocol'].get('http') and
-            schema['protocol']['http']['in'] == "header"
+        if not NameConverter._is_schema_an_m4_header_parameter(
+            schema_name, schema
         ):
             # only escaping name if it's not a content_type header parameter
             schema_python_name = NameConverter._to_valid_python_name(
