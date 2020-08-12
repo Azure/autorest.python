@@ -8,6 +8,7 @@ Modelerfour version: 4.15.400
 
 - Updated minimum `azure-core` version to 1.8.0  #747
 - Updated minimum `msrest` version to 0.6.18  #747
+- Support for `multipart/form-data`  #746
 
 **Bug fixes**
 

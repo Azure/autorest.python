@@ -123,7 +123,6 @@ class EnumOperations(object):
         body_content = self._serialize.body(string_body, 'str')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -216,7 +215,6 @@ class EnumOperations(object):
         body_content = self._serialize.body(enum_string_body, 'str')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -311,7 +309,6 @@ class EnumOperations(object):
         body_content = self._serialize.body(_enum_string_body, 'RefColorConstant')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

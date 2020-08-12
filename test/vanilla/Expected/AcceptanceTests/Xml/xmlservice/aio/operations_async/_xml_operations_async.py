@@ -116,7 +116,6 @@ class XmlOperations:
         body_content = self._serialize.body(model, 'RootWithRefAndNoMeta', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -205,7 +204,6 @@ class XmlOperations:
         body_content = self._serialize.body(model, 'RootWithRefAndMeta', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -295,7 +293,6 @@ class XmlOperations:
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -385,7 +382,6 @@ class XmlOperations:
         body_content = self._serialize.body(wrapped_lists, 'AppleBarrel', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -516,7 +512,6 @@ class XmlOperations:
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -605,7 +600,6 @@ class XmlOperations:
         body_content = self._serialize.body(apple_barrel, 'AppleBarrel', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -695,7 +689,6 @@ class XmlOperations:
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -785,7 +778,6 @@ class XmlOperations:
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -875,7 +867,6 @@ class XmlOperations:
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -964,7 +955,6 @@ class XmlOperations:
         body_content = self._serialize.body(banana, 'Banana', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1105,7 +1095,6 @@ class XmlOperations:
         body_content = self._serialize.body(properties, 'StorageServiceProperties', is_xml=True)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1203,7 +1192,6 @@ class XmlOperations:
         body_content = self._serialize.body(properties, '[SignedIdentifier]', is_xml=True, serialization_ctxt=serialization_ctxt)
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1299,7 +1287,6 @@ class XmlOperations:
         body_content = self._serialize.body(_properties, 'JSONInput')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
