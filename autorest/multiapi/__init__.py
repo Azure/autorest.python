@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast, Any
 from .serializers import MultiAPISerializer, FileImportSerializer
 from .models import CodeModel, FileImport
+from .utils import _extract_version
 from ..jsonrpc import AutorestAPI
 
 from .. import Plugin
@@ -35,20 +36,6 @@ class MultiApiScriptPlugin(Plugin):
         )
         return generator.process()
 
-
-def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
-    version = metadata_json['chosen_version']
-    total_api_version_list = metadata_json['total_api_version_list']
-    if not version:
-        if total_api_version_list:
-            sys.exit(
-                f"Unable to match {total_api_version_list} to label {version_path.stem}"
-            )
-        else:
-            sys.exit(
-                f"Unable to extract api version of {version_path.stem}"
-            )
-    return version
 
 class MultiAPI:
     def __init__(
@@ -191,16 +178,6 @@ class MultiAPI:
         return json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
 
     @property
-    def has_lro_operations(self) -> bool:
-        has_lro_operations = False
-        for version_path in self.paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            current_client_has_lro_operations = metadata_json["client"]["has_lro_operations"]
-            if current_client_has_lro_operations:
-                has_lro_operations = True
-        return has_lro_operations
-
-    @property
     def versioned_operations_dict(self) -> Tuple[Dict[str, List[Tuple[str, str]]], Dict[str, str]]:
         """Introspect the client:
 
@@ -253,14 +230,11 @@ class MultiAPI:
         return paths_to_versions
 
     @property
-    def custom_base_url_to_api_version(self) -> Dict[str, List[str]]:
-        custom_base_url_to_api_version: Dict[str, List[str]] = {}
-        for version_path in self.paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            custom_base_url = metadata_json["client"]["custom_base_url"]
-            version = _extract_version(metadata_json, version_path)
-            custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version)
-        return custom_base_url_to_api_version
+    def version_path_to_metadata(self) -> Dict[Path, Dict[str, Any]]:
+        return {
+            version_path: json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            for version_path in self.paths_to_versions
+        }
 
     def _make_signature_of_mixin_based_on_default_api_version(
         self,
@@ -369,6 +343,7 @@ class MultiAPI:
             default_api_version=self.default_api_version,
             default_version_metadata=self.default_version_metadata,
             mod_to_api_version=self.mod_to_api_version,
+            version_path_to_metadata=self.version_path_to_metadata
         )
 
         # In case we are transitioning from a single api generation, clean old folders
@@ -403,14 +378,14 @@ class MultiAPI:
         async_imports = self._merge_mixin_imports_across_versions(async_mode=True)
 
         conf = {
-            "client_name": self.default_version_metadata["client"]["name"],
+            "client_name": code_model.service_client.name,
             "package_name": self.output_package_name,
             "module_name": code_model.module_name,
             "operations": self.versioned_operations_dict,
             "mixin_operations": self.mixin_operations,
             "mod_to_api_version": self.mod_to_api_version,
             "default_api_version": self.mod_to_api_version[self.default_api_version],
-            "client_doc": self.default_version_metadata["client"]["description"],
+            "client_description": code_model.service_client.description,
             "last_rt_list_sync": last_rt_list_sync,
             "last_rt_list_async": last_rt_list_async,
             "default_models": sorted(
@@ -421,9 +396,9 @@ class MultiAPI:
             "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
             "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
             "base_url": self.default_version_metadata["client"]["base_url"],
-            "custom_base_url_to_api_version": self.custom_base_url_to_api_version,
-            "azure_arm": self.default_version_metadata["client"]["azure_arm"],
-            "has_lro_operations": self.has_lro_operations
+            "custom_base_url_to_api_version": code_model.service_client.custom_base_url_to_api_version,
+            "azure_arm": code_model.azure_arm,
+            "has_lro_operations": code_model.service_client.has_lro_operations
         }
 
         multiapi_serializer = MultiAPISerializer(

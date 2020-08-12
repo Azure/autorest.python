@@ -55,7 +55,7 @@ class _SDKClient(object):
         pass
 
 class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
-    """{{ client_doc }}
+    """{{ client_description }}
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
     (Azure Stack, Azure Government, Azure China, etc.).

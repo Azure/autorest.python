@@ -5,6 +5,9 @@
 # --------------------------------------------------------------------------
 
 from typing import Any, Dict
+from pathlib import Path
+from .client import Client
+
 
 class CodeModel(object):
     def __init__(
@@ -12,11 +15,13 @@ class CodeModel(object):
         module_name: str,
         default_api_version: str,
         default_version_metadata: Dict[str, Any],
-        mod_to_api_version: Dict[str, str]
+        mod_to_api_version: Dict[str, str],
+        version_path_to_metadata: Dict[Path, Dict[str, Any]]
     ):
         self.module_name = module_name
+        self.azure_arm = default_version_metadata["client"]["azure_arm"]
         self.default_version_metadata = default_version_metadata
-        self.service_client = None
+        self.service_client = Client(default_version_metadata, version_path_to_metadata)
         self.config = None
         self.operation_groups = None
         self.mixin_operations = None
