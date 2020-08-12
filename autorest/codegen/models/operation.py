@@ -23,7 +23,7 @@ _LOGGER = logging.getLogger(__name__)
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
-_m4_header_parameters = ["content_type", "accept"]
+_M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
 def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
     response_media_types: OrderedSet[str] = {}
@@ -48,9 +48,9 @@ def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
 def _remove_multiple_m4_header_parameters(parameters: List[Parameter]) -> List[Parameter]:
     m4_header_params_in_schema = {
         k: [p for p in parameters if p.serialized_name == k]
-        for k in _m4_header_parameters
+        for k in _M4_HEADER_PARAMETERS
     }
-    remaining_params = [p for p in parameters if p.serialized_name not in _m4_header_parameters]
+    remaining_params = [p for p in parameters if p.serialized_name not in _M4_HEADER_PARAMETERS]
     json_m4_header_params = {
         k: [p for p in m4_header_params_in_schema[k] if p.yaml_data["schema"]["type"] == "constant"]
         for k in m4_header_params_in_schema
@@ -295,7 +295,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for request in yaml_data["requests"]:
             for yaml in request.get("parameters", []):
                 parameter = Parameter.from_yaml(yaml)
-                if yaml["language"]["python"]["name"] in _m4_header_parameters:
+                if yaml["language"]["python"]["name"] in _M4_HEADER_PARAMETERS:
                     parameter.is_kwarg = True
                     parameters.append(parameter)
                 elif multiple_requests:
