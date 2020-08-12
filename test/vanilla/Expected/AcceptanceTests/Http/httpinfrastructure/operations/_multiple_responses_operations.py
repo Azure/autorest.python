@@ -60,6 +60,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model204_no_model_default_error200_valid.metadata['url']  # type: ignore
@@ -69,7 +70,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -106,6 +107,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model204_no_model_default_error204_valid.metadata['url']  # type: ignore
@@ -115,7 +117,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -152,6 +154,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model204_no_model_default_error201_invalid.metadata['url']  # type: ignore
@@ -161,7 +164,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -198,6 +201,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model204_no_model_default_error202_none.metadata['url']  # type: ignore
@@ -207,7 +211,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -244,6 +248,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model204_no_model_default_error400_valid.metadata['url']  # type: ignore
@@ -253,7 +258,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -290,6 +295,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model201_model_default_error200_valid.metadata['url']  # type: ignore
@@ -299,7 +305,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -338,6 +344,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model201_model_default_error201_valid.metadata['url']  # type: ignore
@@ -347,7 +354,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -386,6 +393,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model201_model_default_error400_valid.metadata['url']  # type: ignore
@@ -395,7 +403,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -434,6 +442,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url']  # type: ignore
@@ -443,7 +452,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -485,6 +494,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url']  # type: ignore
@@ -494,7 +504,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -536,6 +546,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url']  # type: ignore
@@ -545,7 +556,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -587,6 +598,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url']  # type: ignore
@@ -596,7 +608,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -638,6 +650,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get202_none204_none_default_error202_none.metadata['url']  # type: ignore
@@ -647,6 +660,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -678,6 +692,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get202_none204_none_default_error204_none.metadata['url']  # type: ignore
@@ -687,6 +702,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -718,6 +734,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get202_none204_none_default_error400_valid.metadata['url']  # type: ignore
@@ -727,6 +744,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -914,6 +932,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_default_model_a200_valid.metadata['url']  # type: ignore
@@ -923,7 +942,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -957,6 +976,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_default_model_a200_none.metadata['url']  # type: ignore
@@ -966,7 +986,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1000,6 +1020,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_default_model_a400_valid.metadata['url']  # type: ignore
@@ -1009,6 +1030,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1040,6 +1062,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_default_model_a400_none.metadata['url']  # type: ignore
@@ -1049,6 +1072,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1237,6 +1261,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a200_none.metadata['url']  # type: ignore
@@ -1246,7 +1271,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1280,6 +1305,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a200_valid.metadata['url']  # type: ignore
@@ -1289,7 +1315,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1323,6 +1349,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a200_invalid.metadata['url']  # type: ignore
@@ -1332,7 +1359,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1366,6 +1393,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a400_none.metadata['url']  # type: ignore
@@ -1375,7 +1403,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1409,6 +1437,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a400_valid.metadata['url']  # type: ignore
@@ -1418,7 +1447,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1452,6 +1481,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a400_invalid.metadata['url']  # type: ignore
@@ -1461,7 +1491,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1495,6 +1525,7 @@ class MultipleResponsesOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get200_model_a202_valid.metadata['url']  # type: ignore
@@ -1504,7 +1535,7 @@ class MultipleResponsesOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -54,6 +54,7 @@ class OperationGroupOneOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "1.0.0"
+        accept = "application/json"
 
         # Construct URL
         url = self.test_two.metadata['url']  # type: ignore
@@ -64,6 +65,7 @@ class OperationGroupOneOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
