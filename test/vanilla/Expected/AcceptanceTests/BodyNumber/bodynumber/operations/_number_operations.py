@@ -229,7 +229,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big float value 3.402823e+20.
 
-        :param number_body:
+        :param number_body: number body.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -321,7 +321,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value 2.5976931e+101.
 
-        :param number_body:
+        :param number_body: number body.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -593,7 +593,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value 2.5976931e+101.
 
-        :param number_body:
+        :param number_body: number body.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -865,7 +865,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put small float value 3.402823e-20.
 
-        :param number_body:
+        :param number_body: number body.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -957,7 +957,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put small double value 2.5976931e-101.
 
-        :param number_body:
+        :param number_body: number body.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1049,7 +1049,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put small decimal value 2.5976931e-101.
 
-        :param number_body:
+        :param number_body: number body.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

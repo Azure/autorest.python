@@ -2,11 +2,17 @@
 
 ### 2020-xx-xx - 5.1.0-preview.8
 Autorest Core version: 3.0.6302
-Modelerfour version: 4.15.407
+Modelerfour version: 4.15.400
 
 **New Features**
 
+- Updated minimum `azure-core` version to 1.8.0  #747
+- Updated minimum `msrest` version to 0.6.18  #747
 - Support for `multipart/form-data`  #746
+
+**Bug fixes**
+
+- Fix "multi" in Swagger (will generate correctly multiple query param now)
 
 ### 2020-08-07 - 5.1.0-preview.7
 Autorest Core version: 3.0.6302

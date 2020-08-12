@@ -91,7 +91,7 @@ class StringOperations:
     ) -> None:
         """Set string value null.
 
-        :param string_body:
+        :param string_body: string body.
         :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -538,7 +538,7 @@ class StringOperations:
     ) -> None:
         """Put value that is base64url encoded.
 
-        :param string_body:
+        :param string_body: string body.
         :type string_body: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

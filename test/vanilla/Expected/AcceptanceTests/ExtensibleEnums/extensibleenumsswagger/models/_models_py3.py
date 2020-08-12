@@ -18,7 +18,7 @@ class Pet(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name:
+    :param name: name.
     :type name: str
     :param days_of_week: Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday",
      "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
