@@ -7,6 +7,7 @@
 from typing import Any, Dict
 from pathlib import Path
 from .client import Client
+from .config import Config
 
 
 class CodeModel(object):
@@ -22,7 +23,7 @@ class CodeModel(object):
         self.azure_arm = default_version_metadata["client"]["azure_arm"]
         self.default_version_metadata = default_version_metadata
         self.service_client = Client(default_version_metadata, version_path_to_metadata)
-        self.config = None
+        self.config = Config(default_version_metadata)
         self.operation_groups = None
         self.mixin_operations = None
         self.global_parameters = None

@@ -391,7 +391,7 @@ class MultiAPI:
             "default_models": sorted(
                 {self.default_api_version} | {versions for _, versions in last_rt_list_sync.items()}
             ),
-            "config": self.default_version_metadata["config"],
+            "config": code_model.config,
             "global_parameters": self.default_version_metadata["global_parameters"],
             "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
             "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),

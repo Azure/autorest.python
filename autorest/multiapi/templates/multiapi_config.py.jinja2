@@ -72,8 +72,8 @@ class {{ client_name }}Configuration(Configuration):
         self.{{ serialized_name }} = {{ constant_value }}
     {% endfor %}
 {% endif %}
-{% if config["credential_scopes"] is not none %}
-        self.credential_scopes = {{ config['credential_scopes'] }}
+{% if config.credential_scopes is not none %}
+        self.credential_scopes = {{ config.credential_scopes }}
         self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ package_name|lower }}/{}'.format(VERSION))
@@ -95,14 +95,14 @@ class {{ client_name }}Configuration(Configuration):
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ async_prefix }}RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
-        {% if config["credential"] %}
+        {% if config.credential %}
         {# only adding this if credential_scopes is not passed during code generation #}
-        {% if config["credential_scopes"] is not none and config["credential_scopes"]|length == 0 %}
+        {% if config.credential_scopes is not none and config.credential_scopes|length == 0 %}
         if not self.credential_scopes and not self.authentication_policy:
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         {% endif %}
         if self.credential and not self.authentication_policy:
-            {% set credential_default_policy_type = ("Async" if (async_mode and config['credential_default_policy_type_has_async_version']) else "") + config['credential_default_policy_type'] %}
-            {% set credential_param_type = ("'" + config['credential_key_header_name'] + "', ") if config['credential_key_header_name'] else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
+            {% set credential_default_policy_type = ("Async" if (async_mode and config.credential_default_policy_type_has_async_version) else "") + config.credential_default_policy_type %}
+            {% set credential_param_type = ("'" + config.credential_key_header_name + "', ") if config.credential_key_header_name else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
             self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ credential_param_type if credential_param_type }}**kwargs)
         {% endif %}
