@@ -256,7 +256,6 @@ class Datetimerfc1123Operations(object):
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -393,7 +392,6 @@ class Datetimerfc1123Operations(object):
         body_content = self._serialize.body(datetime_body, 'rfc-1123')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

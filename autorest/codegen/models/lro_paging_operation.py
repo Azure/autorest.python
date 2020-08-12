@@ -20,6 +20,7 @@ class LROPagingOperation(PagingOperation, LROOperation):
         description: str,
         url: str,
         method: str,
+        multipart: bool,
         api_versions: Set[str],
         requests: List[SchemaRequest],
         summary: Optional[str] = None,
@@ -36,6 +37,7 @@ class LROPagingOperation(PagingOperation, LROOperation):
             description,
             url,
             method,
+            multipart,
             api_versions,
             requests,
             summary,
@@ -55,4 +57,3 @@ class LROPagingOperation(PagingOperation, LROOperation):
         file_import = lro_imports
         file_import.merge(paging_imports)
         return file_import
-        

@@ -124,7 +124,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'IntWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -217,7 +216,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'LongWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -310,7 +308,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'FloatWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -404,7 +401,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'DoubleWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -497,7 +493,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'BooleanWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -590,7 +585,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'StringWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -683,7 +677,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'DateWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -776,7 +769,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'DatetimeWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -870,7 +862,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, 'Datetimerfc1123Wrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -965,7 +956,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(_complex_body, 'DurationWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1060,7 +1050,6 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(_complex_body, 'ByteWrapper')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -100,6 +100,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         description: str,
         url: str,
         method: str,
+        multipart: bool,
         api_versions: Set[str],
         requests: List[SchemaRequest],
         summary: Optional[str] = None,
@@ -115,6 +116,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.description = description
         self.url = url
         self.method = method
+        self.multipart = multipart
         self.api_versions = api_versions
         self.requests = requests
         self.summary = summary
@@ -387,6 +389,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             description=yaml_data["language"]["python"]["description"],
             url=first_request["protocol"]["http"]["path"],
             method=first_request["protocol"]["http"]["method"],
+            multipart=first_request["protocol"]["http"].get("multipart", False),
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
             requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
             summary=yaml_data["language"]["python"].get("summary"),

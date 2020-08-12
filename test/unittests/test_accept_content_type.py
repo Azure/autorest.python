@@ -16,6 +16,7 @@ def operation():
         description="Operation to test accept_content_type",
         url="http://www.accept_content_type.com",
         method="method",
+        multipart=False,
         api_versions=set(["2020-03-01"]),
         requests=[]
     )

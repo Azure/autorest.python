@@ -1,4 +1,4 @@
-﻿# --------------------------------------------------------------------------
+# --------------------------------------------------------------------------
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
 #
@@ -32,7 +32,12 @@ import os
 import tempfile
 from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError
+cwd = dirname(realpath(__file__))
+log_level = int(os.environ.get('PythonLogLevel', 30))
+
+tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
+sys.path.append(join(tests, "BodyFormData"))
+
 
 from bodyformdata import AutoRestSwaggerBATFormDataService
 
