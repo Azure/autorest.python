@@ -98,8 +98,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an empty array [] of string using the multi-array format.
 
-        No query parameter should be sent, since the array is empty.
-
         :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -143,13 +141,11 @@ class QueriesOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Get an array of string using the multi-array format.
-
-        Parameter is ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']. null is sent as empty
-        string.
+        """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+        mult-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the multi-array format.
+         ''] using the mult-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
