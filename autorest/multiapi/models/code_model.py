@@ -9,6 +9,7 @@ from pathlib import Path
 from .client import Client
 from .config import Config
 from .operation_group import OperationGroup
+from .operation_mixin_group import OperationMixinGroup
 from ..utils import _extract_version
 
 class CodeModel(object):
@@ -26,7 +27,7 @@ class CodeModel(object):
         self.version_path_to_metadata = version_path_to_metadata
         self.service_client = Client(default_version_metadata, version_path_to_metadata)
         self.config = Config(default_version_metadata)
-        self.mixin_operations = None
+        self.mixin_operation_group = OperationMixinGroup(version_path_to_metadata)
         self.global_parameters = None
 
     @property

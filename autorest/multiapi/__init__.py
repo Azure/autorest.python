@@ -373,9 +373,9 @@ class MultiAPI:
         last_rt_list_sync = self._build_last_rt_list(async_mode=False)
         last_rt_list_async = self._build_last_rt_list(async_mode=True)
 
-        sync_imports = self._merge_mixin_imports_across_versions(async_mode=False)
+        sync_imports = code_model.mixin_operation_group.imports(async_mode=False)
 
-        async_imports = self._merge_mixin_imports_across_versions(async_mode=True)
+        async_imports = code_model.mixin_operation_group.imports(async_mode=True)
 
         conf = {
             "client_name": code_model.service_client.name,
