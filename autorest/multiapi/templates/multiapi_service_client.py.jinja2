@@ -135,21 +135,21 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
             return models
         {% endfor %}
         raise NotImplementedError("APIVersion {} is not available".format(api_version))
-    {% for operation_group, available_apis in operations|dictsort %}
+    {% for operation_group in operation_groups %}
 
     @property
-    def {{ operation_group }}(self):
+    def {{ operation_group.name }}(self):
         """Instance depends on the API version:
 
-        {% for api in available_apis | sort %}
-           * {{ mod_to_api_version[api[0]] }}: :class:`{{ api[1] }}<{{ module_name }}.{{ api[0] }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }}.{{ api[1] }}>`
+        {% for api in operation_group.available_apis | sort %}
+           * {{ mod_to_api_version[api] }}: :class:`{{ operation_group.class_name }}<{{ module_name }}.{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }}.{{ operation_group.class_name }}>`
         {% endfor %}
         """
-        api_version = self._get_api_version('{{ operation_group }}')
-        {% for api in available_apis | sort %}
+        api_version = self._get_api_version('{{ operation_group.name }}')
+        {% for api in operation_group.available_apis | sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
-        {{ if_statement }} api_version == '{{ mod_to_api_version[api[0]] }}':
-            from {{ relative_path }}{{ api[0] }}.{{ "aio." if async_mode else "" }}operations{{ "_async" if async_mode else "" }} import {{ api[1] }} as OperationClass
+        {{ if_statement }} api_version == '{{ mod_to_api_version[api] }}':
+            from {{ relative_path }}{{ api }}.{{ "aio." if async_mode else "" }}operations{{ "_async" if async_mode else "" }} import {{ operation_group.class_name }} as OperationClass
         {% endfor %}
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))

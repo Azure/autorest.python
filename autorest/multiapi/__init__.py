@@ -381,7 +381,7 @@ class MultiAPI:
             "client_name": code_model.service_client.name,
             "package_name": self.output_package_name,
             "module_name": code_model.module_name,
-            "operations": self.versioned_operations_dict,
+            "operation_groups": code_model.operation_groups,
             "mixin_operations": self.mixin_operations,
             "mod_to_api_version": self.mod_to_api_version,
             "default_api_version": self.mod_to_api_version[self.default_api_version],
