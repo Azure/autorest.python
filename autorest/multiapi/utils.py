@@ -19,3 +19,6 @@ def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
                 f"Unable to extract api version of {version_path.stem}"
             )
     return version
+
+def _sync_or_async(async_mode: bool) -> str:
+    return "async" if async_mode else "sync"

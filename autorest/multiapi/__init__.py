@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast, Any
 from .serializers import MultiAPISerializer, FileImportSerializer
 from .models import CodeModel, FileImport
-from .utils import _extract_version
+from .utils import _extract_version, _sync_or_async
 from ..jsonrpc import AutorestAPI
 
 from .. import Plugin
@@ -90,8 +90,6 @@ class MultiAPI:
 
         last_rt_list = {}
 
-        sync_or_async = "async" if async_mode else "sync"
-
         # Operation groups
         versioned_dict = {
             operation_group_name: [meta[0] for meta in operation_metadata]
@@ -100,7 +98,7 @@ class MultiAPI:
         # Operations at client level
         versioned_dict.update(
             {
-                operation_name: operation_metadata[sync_or_async]["available_apis"]
+                operation_name: operation_metadata[_sync_or_async(async_mode)]["available_apis"]
                 for operation_name, operation_metadata in self.mixin_operations.items()
             }
         )
@@ -377,12 +375,14 @@ class MultiAPI:
 
         async_imports = code_model.mixin_operation_group.imports(async_mode=True)
 
+        code_model.mixin_operation_group.mixin_operations
+
         conf = {
             "client_name": code_model.service_client.name,
             "package_name": self.output_package_name,
             "module_name": code_model.module_name,
             "operation_groups": code_model.operation_groups,
-            "mixin_operations": self.mixin_operations,
+            "operation_mixin_group": code_model.mixin_operation_group,
             "mod_to_api_version": self.mod_to_api_version,
             "default_api_version": self.mod_to_api_version[self.default_api_version],
             "client_description": code_model.service_client.description,

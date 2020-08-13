@@ -27,13 +27,15 @@ class CodeModel(object):
         self.version_path_to_metadata = version_path_to_metadata
         self.service_client = Client(default_version_metadata, version_path_to_metadata)
         self.config = Config(default_version_metadata)
-        self.mixin_operation_group = OperationMixinGroup(version_path_to_metadata)
+        self.mixin_operation_group = OperationMixinGroup(version_path_to_metadata, default_api_version)
         self.global_parameters = None
 
     @property
     def operation_groups(self) -> List[OperationGroup]:
         operation_groups = []
         for version_path, metadata_json in self.version_path_to_metadata.items():
+            if not metadata_json.get('operation_groups'):
+                continue
             operation_groups_metadata = metadata_json['operation_groups']
             version = _extract_version(metadata_json, version_path)
             for operation_group_name, operation_group_class_name in operation_groups_metadata.items():

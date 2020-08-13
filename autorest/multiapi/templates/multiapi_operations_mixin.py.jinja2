@@ -16,12 +16,11 @@ from msrest import Serializer, Deserializer
 
 
 class {{ client_name }}OperationsMixin(object):
-{% for operation_name, metadata_sync_and_async in mixin_operations|dictsort %}
+{% for mixin_operation in operation_mixin_group.mixin_operations %}
 
-    {% set metadata = metadata_sync_and_async['async'] if async_mode else metadata_sync_and_async['sync'] %}
-    {{ metadata['signature'] | indent }}        {{ metadata['doc'] | indent(8) }}
-        api_version = self._get_api_version('{{ operation_name }}')
-        {% for api in metadata['available_apis']|sort %}
+    {{ mixin_operation.signature(async_mode) | indent }}        {{ mixin_operation.description(async_mode) | indent(8) }}
+        api_version = self._get_api_version('{{ mixin_operation.name }}')
+        {% for api in mixin_operation.available_apis|sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api] }}':
             from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }} import {{ client_name }}OperationsMixin as OperationClass
@@ -33,5 +32,5 @@ class {{ client_name }}OperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return {{ "await " if async_mode and metadata['coroutine'] else "" }}mixin_instance.{{ operation_name }}({{ metadata['call'] }}{{ ", **kwargs" if metadata['call'] else "**kwargs" }})
+        return {{ "await " if mixin_operation.coroutine(async_mode) }}mixin_instance.{{ mixin_operation.name }}({{ mixin_operation.call }}{{ ", **kwargs" if  mixin_operation.call else "**kwargs" }})
 {% endfor %}

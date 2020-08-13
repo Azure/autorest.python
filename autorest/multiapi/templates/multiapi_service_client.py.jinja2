@@ -45,7 +45,7 @@ from msrest import Serializer, Deserializer
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
 from {{ config_import }} import {{ client_name }}Configuration
-{% if mixin_operations %}from {{ operations_mixin_import }} import {{ client_name }}OperationsMixin{% endif %}
+{% if operation_mixin_group %}from {{ operations_mixin_import }} import {{ client_name }}OperationsMixin{% endif %}
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
@@ -54,7 +54,7 @@ class _SDKClient(object):
         """
         pass
 
-class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
+class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
     """{{ client_description }}
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds

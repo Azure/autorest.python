@@ -48,7 +48,7 @@ class MultiAPISerializer:
         )
 
         operation_mixins_filename = "_operations_mixin_async.py" if self.async_mode else "_operations_mixin.py"
-        if self.conf["mixin_operations"]:
+        if self.conf["operation_mixin_group"]:
             self._autorestapi.write_file(
                 self._get_file_path(operation_mixins_filename),
                 self.serialize_multiapi_operation_mixins()
