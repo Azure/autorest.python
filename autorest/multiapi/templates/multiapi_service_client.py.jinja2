@@ -104,7 +104,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
             base_url = {{ custom_base_url }}
         {% endfor %}
         else:
-            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+            raise NotImplementedError("API version {} is not available".format(api_version))
         {% else %}
         if not base_url:
             base_url = {{ base_url }}
@@ -134,7 +134,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
             from {{ relative_path }}{{ mod_api_version }} import models
             return models
         {% endfor %}
-        raise NotImplementedError("APIVersion {} is not available".format(api_version))
+        raise NotImplementedError("API version {} is not available".format(api_version))
     {% for operation_group, available_apis in operations|dictsort %}
 
     @property
@@ -152,7 +152,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
             from {{ relative_path }}{{ api[0] }}.{{ "aio." if async_mode else "" }}operations{{ "_async" if async_mode else "" }} import {{ api[1] }} as OperationClass
         {% endfor %}
         else:
-            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+            raise NotImplementedError("API version {} does not have operation group '{{ operation_group }}'".format(api_version))
         return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
     {% endfor %}
 

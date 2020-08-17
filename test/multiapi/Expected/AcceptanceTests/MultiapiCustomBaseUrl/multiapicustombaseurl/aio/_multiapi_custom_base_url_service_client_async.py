@@ -66,7 +66,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         elif api_version == '2.0.0':
             base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
         else:
-            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+            raise NotImplementedError("API version {} is not available".format(api_version))
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiCustomBaseUrlServiceClient, self).__init__(
@@ -91,7 +91,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         elif api_version == '2.0.0':
             from ..v2 import models
             return models
-        raise NotImplementedError("APIVersion {} is not available".format(api_version))
+        raise NotImplementedError("API version {} is not available".format(api_version))
 
     async def close(self):
         await self._client.close()
