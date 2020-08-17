@@ -118,9 +118,6 @@ if {{ header_parameter.full_serialized_name }} is not None:
     header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% endif %}
     {% endfor %}
-{% endif %}
-{% if operation.has_response_body %}
-header_parameters['Accept'] = '{{ operation.accept_content_type }}'
 {% endif %}{% endmacro %}
 {# helper for stream body params #}
 {% macro stream_body_params(operation) %}body_content_kwargs['stream_content'] = {{ operation.parameters.body[0].serialized_name }}{% endmacro %}

@@ -55,6 +55,7 @@ class FilesOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "image/png, application/json"
 
         # Construct URL
         url = self.get_file.metadata['url']  # type: ignore
@@ -64,7 +65,7 @@ class FilesOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png, application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -98,6 +99,7 @@ class FilesOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "image/png, application/json"
 
         # Construct URL
         url = self.get_file_large.metadata['url']  # type: ignore
@@ -107,7 +109,7 @@ class FilesOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png, application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -141,6 +143,7 @@ class FilesOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "image/png, application/json"
 
         # Construct URL
         url = self.get_empty_file.metadata['url']  # type: ignore
@@ -150,7 +153,7 @@ class FilesOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'image/png, application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)

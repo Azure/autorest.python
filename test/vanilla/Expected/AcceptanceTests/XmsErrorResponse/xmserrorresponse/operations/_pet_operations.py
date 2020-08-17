@@ -68,6 +68,7 @@ class PetOperations(object):
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_pet_by_id.metadata['url']  # type: ignore
@@ -81,7 +82,7 @@ class PetOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -124,6 +125,7 @@ class PetOperations(object):
             500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),
         }
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.do_something.metadata['url']  # type: ignore
@@ -137,7 +139,7 @@ class PetOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

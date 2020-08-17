@@ -67,6 +67,7 @@ class FormdataOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "multipart/form-data")
+        accept = "application/octet-stream, application/json"
 
         # Construct URL
         url = self.upload_file.metadata['url']  # type: ignore
@@ -77,7 +78,7 @@ class FormdataOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/octet-stream, application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         # Construct form data
         _form_content = {
@@ -121,6 +122,7 @@ class FormdataOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/octet-stream")
+        accept = "application/octet-stream, application/json"
 
         # Construct URL
         url = self.upload_file_via_body.metadata['url']  # type: ignore
@@ -131,7 +133,7 @@ class FormdataOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/octet-stream, application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content_kwargs['stream_content'] = file_content
@@ -172,6 +174,7 @@ class FormdataOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "multipart/form-data")
+        accept = "application/octet-stream, application/json"
 
         # Construct URL
         url = self.upload_files.metadata['url']  # type: ignore
@@ -182,7 +185,7 @@ class FormdataOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/octet-stream, application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         # Construct form data
         _form_content = {

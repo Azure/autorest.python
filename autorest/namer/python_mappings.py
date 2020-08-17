@@ -100,6 +100,7 @@ reserved_words = {
         "self",
         # these are kwargs we've reserved for our autorest generated operations
         "content_type",
+        "accept",
         "cls",
         "polling",
         "continuation_token",  # for LRO calls

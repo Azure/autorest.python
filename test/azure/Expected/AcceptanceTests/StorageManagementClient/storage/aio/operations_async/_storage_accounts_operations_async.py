@@ -67,6 +67,7 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json, text/json"
 
         # Construct URL
         url = self.check_name_availability.metadata['url']  # type: ignore
@@ -82,7 +83,7 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
@@ -115,6 +116,7 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json, text/json"
 
         # Construct URL
         url = self._create_initial.metadata['url']  # type: ignore
@@ -132,7 +134,7 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
@@ -306,6 +308,7 @@ class StorageAccountsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
+        accept = "application/json, text/json"
 
         # Construct URL
         url = self.get_properties.metadata['url']  # type: ignore
@@ -322,7 +325,7 @@ class StorageAccountsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -375,6 +378,7 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json, text/json"
 
         # Construct URL
         url = self.update.metadata['url']  # type: ignore
@@ -392,7 +396,7 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
@@ -435,6 +439,7 @@ class StorageAccountsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
+        accept = "application/json, text/json"
 
         # Construct URL
         url = self.list_keys.metadata['url']  # type: ignore
@@ -451,7 +456,7 @@ class StorageAccountsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -486,11 +491,12 @@ class StorageAccountsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
+        accept = "application/json, text/json"
 
         def prepare_request(next_link=None):
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = 'application/json'
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
             if not next_link:
                 # Construct URL
@@ -554,11 +560,12 @@ class StorageAccountsOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
+        accept = "application/json, text/json"
 
         def prepare_request(next_link=None):
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = 'application/json'
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
             if not next_link:
                 # Construct URL
@@ -633,6 +640,7 @@ class StorageAccountsOperations:
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json, text/json"
 
         # Construct URL
         url = self.regenerate_key.metadata['url']  # type: ignore
@@ -650,7 +658,7 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')

@@ -60,6 +60,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_integer_parameter.metadata['url']  # type: ignore
@@ -70,6 +71,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, 'int')
@@ -107,6 +109,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_integer_parameter.metadata['url']  # type: ignore
@@ -117,6 +120,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
@@ -160,6 +164,7 @@ class ExplicitOperations:
 
         _body_parameter = models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_integer_property.metadata['url']  # type: ignore
@@ -170,6 +175,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'IntWrapper')
@@ -209,6 +215,7 @@ class ExplicitOperations:
 
         _body_parameter = models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_integer_property.metadata['url']  # type: ignore
@@ -219,6 +226,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
@@ -259,6 +267,7 @@ class ExplicitOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_integer_header.metadata['url']  # type: ignore
@@ -269,6 +278,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -302,6 +312,7 @@ class ExplicitOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_integer_header.metadata['url']  # type: ignore
@@ -313,6 +324,7 @@ class ExplicitOperations:
         header_parameters = {}  # type: Dict[str, Any]
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -348,6 +360,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_string_parameter.metadata['url']  # type: ignore
@@ -358,6 +371,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, 'str')
@@ -395,6 +409,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_string_parameter.metadata['url']  # type: ignore
@@ -405,6 +420,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
@@ -448,6 +464,7 @@ class ExplicitOperations:
 
         _body_parameter = models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_string_property.metadata['url']  # type: ignore
@@ -458,6 +475,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'StringWrapper')
@@ -497,6 +515,7 @@ class ExplicitOperations:
 
         _body_parameter = models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_string_property.metadata['url']  # type: ignore
@@ -507,6 +526,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
@@ -547,6 +567,7 @@ class ExplicitOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_string_header.metadata['url']  # type: ignore
@@ -557,6 +578,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -590,6 +612,7 @@ class ExplicitOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_string_header.metadata['url']  # type: ignore
@@ -601,6 +624,7 @@ class ExplicitOperations:
         header_parameters = {}  # type: Dict[str, Any]
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -636,6 +660,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_class_parameter.metadata['url']  # type: ignore
@@ -646,6 +671,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, 'Product')
@@ -683,6 +709,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_class_parameter.metadata['url']  # type: ignore
@@ -693,6 +720,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
@@ -736,6 +764,7 @@ class ExplicitOperations:
 
         _body_parameter = models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_class_property.metadata['url']  # type: ignore
@@ -746,6 +775,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
@@ -785,6 +815,7 @@ class ExplicitOperations:
 
         _body_parameter = models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_class_property.metadata['url']  # type: ignore
@@ -795,6 +826,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
@@ -836,6 +868,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_array_parameter.metadata['url']  # type: ignore
@@ -846,6 +879,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(body_parameter, '[str]')
@@ -883,6 +917,7 @@ class ExplicitOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_array_parameter.metadata['url']  # type: ignore
@@ -893,6 +928,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
@@ -936,6 +972,7 @@ class ExplicitOperations:
 
         _body_parameter = models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_array_property.metadata['url']  # type: ignore
@@ -946,6 +983,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
@@ -985,6 +1023,7 @@ class ExplicitOperations:
 
         _body_parameter = models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_array_property.metadata['url']  # type: ignore
@@ -995,6 +1034,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
@@ -1035,6 +1075,7 @@ class ExplicitOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required_array_header.metadata['url']  # type: ignore
@@ -1045,6 +1086,7 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1078,6 +1120,7 @@ class ExplicitOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional_array_header.metadata['url']  # type: ignore
@@ -1089,6 +1132,7 @@ class ExplicitOperations:
         header_parameters = {}  # type: Dict[str, Any]
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

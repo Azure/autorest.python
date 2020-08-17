@@ -23,6 +23,7 @@ _LOGGER = logging.getLogger(__name__)
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
+_M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
 def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
     response_media_types: OrderedSet[str] = {}
@@ -44,50 +45,23 @@ def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
             response_media_types[xml_media_types[0]] = None
     return response_media_types
 
-def _remove_multiple_content_type_parameters(parameters: List[Parameter]) -> List[Parameter]:
-    content_type_params = [p for p in parameters if p.serialized_name == "content_type"]
-    remaining_params = [p for p in parameters if p.serialized_name != "content_type"]
-    json_content_type_param = [p for p in content_type_params if p.yaml_data["schema"]["type"] == "constant"]
-    if json_content_type_param:
-        remaining_params.append(json_content_type_param[0])
-    else:
-        remaining_params.append(content_type_params[0])
+def _remove_multiple_m4_header_parameters(parameters: List[Parameter]) -> List[Parameter]:
+    m4_header_params_in_schema = {
+        k: [p for p in parameters if p.serialized_name == k]
+        for k in _M4_HEADER_PARAMETERS
+    }
+    remaining_params = [p for p in parameters if p.serialized_name not in _M4_HEADER_PARAMETERS]
+    json_m4_header_params = {
+        k: [p for p in m4_header_params_in_schema[k] if p.yaml_data["schema"]["type"] == "constant"]
+        for k in m4_header_params_in_schema
+    }
+    for k, v in json_m4_header_params.items():
+        if v:
+            remaining_params.append(v[0])
+        else:
+            remaining_params.append(m4_header_params_in_schema[k][0])
+
     return remaining_params
-
-def _accept_content_type_helper(responses: List[SchemaResponse]) -> OrderedSet[str]:
-    media_types = {
-        media_type: None for response in responses for media_type in response.media_types
-    }
-
-    if not media_types:
-        return media_types
-
-    if len(media_types.keys()) == 1:
-        # if there's just one media type, we return it
-        return media_types
-    # if not, we want to return them as binary_media_types + non_binary_media types
-    binary_media_types = {
-        media_type: None for media_type in list(media_types.keys())
-        if not "json" in media_type and not "xml" in media_type
-    }
-    non_binary_schema_media_types = {
-        media_type: None for media_type in list(media_types.keys())
-        if "json" in media_type or "xml" in media_type
-    }
-    if all([response.binary for response in responses]):
-        response_media_types = binary_media_types
-    elif all([response.schema for response in responses]):
-        response_media_types = _non_binary_schema_media_types(
-            list(non_binary_schema_media_types.keys())
-        )
-    else:
-        non_binary_schema_media_types = _non_binary_schema_media_types(
-            list(non_binary_schema_media_types.keys())
-        )
-        response_media_types = binary_media_types
-        response_media_types.update(non_binary_schema_media_types)
-
-    return response_media_types
 
 class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
@@ -139,24 +113,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 for p in self.parameters.constant if p.serialized_name == "content_type"
             ]
         ))
-
-    @property
-    def accept_content_type(self) -> str:
-        if not self.has_response_body:
-            raise TypeError(
-                "There is an error in the code model we're being supplied. We're getting response media types " +
-                f"even though no response of {self.name} has a body"
-            )
-        response_content_types = _accept_content_type_helper(self.responses)
-        response_content_types.update(_accept_content_type_helper(self.exceptions))
-
-        if not response_content_types.keys():
-            raise TypeError(
-                f"Operation {self.name} has tried to get its accept_content_type even though it has no media types"
-            )
-
-        return ", ".join(list(response_content_types.keys()))
-
 
     @property
     def is_stream_request(self) -> bool:
@@ -339,7 +295,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for request in yaml_data["requests"]:
             for yaml in request.get("parameters", []):
                 parameter = Parameter.from_yaml(yaml)
-                if yaml["language"]["python"]["name"] == "content_type":
+                if yaml["language"]["python"]["name"] in _M4_HEADER_PARAMETERS:
                     parameter.is_kwarg = True
                     parameters.append(parameter)
                 elif multiple_requests:
@@ -348,7 +304,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                     parameters.append(parameter)
 
         if multiple_requests:
-            parameters = _remove_multiple_content_type_parameters(parameters)
+            parameters = _remove_multiple_m4_header_parameters(parameters)
             chosen_parameter = multiple_media_type_parameters[0]
 
             # binary body parameters are required, while object

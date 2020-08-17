@@ -60,6 +60,7 @@ class ReadonlypropertyOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ReadonlyObj"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_valid.metadata['url']  # type: ignore
@@ -69,7 +70,7 @@ class ReadonlypropertyOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -110,6 +111,7 @@ class ReadonlypropertyOperations(object):
 
         _complex_body = models.ReadonlyObj(size=size)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.put_valid.metadata['url']  # type: ignore
@@ -120,6 +122,7 @@ class ReadonlypropertyOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_complex_body, 'ReadonlyObj')
