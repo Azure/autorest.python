@@ -1,15 +1,14 @@
-{% set global_parameters_method = global_parameters["async_method"] if async_mode else global_parameters["sync_method"] %}
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for serialized_name, gp_dict in global_parameters_method.items() %}
-        {% if gp_dict["required"] %}
-    {{ gp_dict["method_signature"] }}
+    {% for parameter in global_parameters.parameters %}
+        {% if parameter.required %}
+    {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
-    {% for serialized_name, gp_dict in global_parameters_method.items() %}
-        {% if not gp_dict["required"] %}
-    {{ gp_dict["method_signature"] }}
+    {% for parameter in global_parameters.parameters %}
+        {% if not parameter.required %}
+    {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
     **kwargs  # type: Any
@@ -43,12 +42,12 @@ class {{ client_name }}Configuration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-{% if global_parameters_method %}
+{% if global_parameters.parameters %}
 
 {% endif %}
-{% for serialized_name, gp_dict in global_parameters_method.items() %}
-    :param {{ serialized_name }}: {{ gp_dict["description"] }}
-    :type {{ serialized_name }}: {{ gp_dict["docstring_type"] }}
+{% for parameter in global_parameters.parameters %}
+    :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
+    :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
 {% endfor %}
     """
 
@@ -56,20 +55,20 @@ class {{ client_name }}Configuration(Configuration):
         {% if not async_mode %}
         # type: (...) -> None
         {% endif %}
-{% for serialized_name, gp_dict in global_parameters_method.items() %}
-    {% if gp_dict["required"] %}
-        if {{ serialized_name }} is None:
-            raise ValueError("Parameter '{{ serialized_name }}' must not be None.")
+{% for parameter in global_parameters.parameters %}
+    {% if parameter.required %}
+        if {{ parameter.name }} is None:
+            raise ValueError("Parameter '{{ parameter.name }}' must not be None.")
     {% endif %}
 {% endfor %}
         super({{ client_name }}Configuration, self).__init__(**kwargs)
 
-{% for gp in global_parameters_method %}
-        self.{{ gp }} = {{ gp }}
+{% for parameter in global_parameters.parameters %}
+        self.{{ parameter.name }} = {{ parameter.name }}
 {% endfor %}
-{% if global_parameters["constant"] %}
-    {% for serialized_name, constant_value in global_parameters["constant"].items() %}
-        self.{{ serialized_name }} = {{ constant_value }}
+{% if global_parameters.constant_parameters %}
+    {% for constant_parameter in global_parameters.constant_parameters %}
+        self.{{ constant_parameter.name }} = {{ constant_parameter.value }}
     {% endfor %}
 {% endif %}
 {% if config.credential_scopes is not none %}

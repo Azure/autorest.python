@@ -182,7 +182,7 @@ class MultiAPI:
                 {self.default_api_version} | {versions for _, versions in code_model.last_rt_list.items()}
             ),
             "config": code_model.config,
-            "global_parameters": self.default_version_metadata["global_parameters"],
+            "global_parameters": code_model.global_parameters,
             "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
             "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
             "base_url": self.default_version_metadata["client"]["base_url"],

@@ -1,15 +1,14 @@
-{% set global_parameters_method = global_parameters["async_method"] if async_mode else global_parameters["sync_method"] %}
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for serialized_name, gp_dict in global_parameters_method.items() %}
-        {% if gp_dict["required"] %}
-    {{ gp_dict["method_signature"] }}
+    {% for parameter in global_parameters.parameters %}
+        {% if parameter.required %}
+    {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
-    {% for serialized_name, gp_dict in global_parameters_method.items() %}
-        {% if not gp_dict["required"] %}
-    {{ gp_dict["method_signature"] }}
+    {% for parameter in global_parameters.parameters %}
+        {% if not parameter.required %}
+    {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
     api_version=None,
@@ -64,12 +63,12 @@ class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}Operation
     The profile sets a mapping between an operation group and its API version.
     The api-version parameter sets the default API version if the operation
     group is not described in the profile.
-{% if global_parameters_method %}
+{% if global_parameters.parameters %}
 
 {% endif %}
-{% for serialized_name, gp_dict in global_parameters_method.items() %}
-    :param {{ serialized_name }}: {{ gp_dict["description"] }}
-    :type {{ serialized_name }}: {{ gp_dict["docstring_type"] }}
+{% for parameter in global_parameters.parameters %}
+    :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
+    :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
 {% endfor %}
     :param str api_version: API version to use if no profile is provided, or if
      missing in profile.
@@ -108,7 +107,7 @@ class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}Operation
         if not base_url:
             base_url = {{ base_url }}
         {% endif %}
-        self._config = {{ client_name }}Configuration({{ global_parameters["call"] }}{{ ", " if global_parameters["call"] }}**kwargs)
+        self._config = {{ client_name }}Configuration({{ global_parameters.call }}{{ ", " if global_parameters.call }}**kwargs)
         self._client = {{ async_prefix }}{{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
         super({{ client_name }}, self).__init__(
             api_version=api_version,

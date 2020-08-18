@@ -14,20 +14,20 @@
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }}
     },
     "global_parameters": {
-        "sync_method": {
+        "sync": {
             {% for gp in sync_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
-                "method_signature": {{ gp.sync_method_signature | tojson }},
+                "signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.schema.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "async_method": {
+        "async": {
             {% for gp in async_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
-                "method_signature": {{ gp.sync_method_signature | tojson }},
+                "signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.schema.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}

@@ -10,6 +10,7 @@ from .client import Client
 from .config import Config
 from .operation_group import OperationGroup
 from .operation_mixin_group import OperationMixinGroup
+from .global_parameters import GlobalParameters
 from ..utils import _extract_version, _get_default_api_version_from_list
 
 class CodeModel(object):
@@ -33,7 +34,7 @@ class CodeModel(object):
         self.service_client = Client(default_version_metadata, version_path_to_metadata)
         self.config = Config(default_version_metadata)
         self.mixin_operation_group = OperationMixinGroup(version_path_to_metadata, default_api_version)
-        self.global_parameters = None
+        self.global_parameters = GlobalParameters(default_version_metadata["global_parameters"])
         self.user_specified_default_api = user_specified_default_api
 
     @property
