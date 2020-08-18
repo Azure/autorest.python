@@ -64,6 +64,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_method_path_valid.metadata['url']  # type: ignore
@@ -77,6 +78,7 @@ class SkipUrlEncodingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -111,6 +113,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_path_valid.metadata['url']  # type: ignore
@@ -124,6 +127,7 @@ class SkipUrlEncodingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -156,6 +160,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         unencoded_path_param = "path1/path2/path3"
+        accept = "application/json"
 
         # Construct URL
         url = self.get_swagger_path_valid.metadata['url']  # type: ignore
@@ -169,6 +174,7 @@ class SkipUrlEncodingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -203,6 +209,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_method_query_valid.metadata['url']  # type: ignore
@@ -213,6 +220,7 @@ class SkipUrlEncodingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -247,6 +255,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_method_query_null.metadata['url']  # type: ignore
@@ -258,6 +267,7 @@ class SkipUrlEncodingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,6 +302,7 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_path_query_valid.metadata['url']  # type: ignore
@@ -302,6 +313,7 @@ class SkipUrlEncodingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -334,6 +346,7 @@ class SkipUrlEncodingOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         q1 = "value1&q2=value2&q3=value3"
+        accept = "application/json"
 
         # Construct URL
         url = self.get_swagger_query_valid.metadata['url']  # type: ignore
@@ -344,6 +357,7 @@ class SkipUrlEncodingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

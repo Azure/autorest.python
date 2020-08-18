@@ -73,8 +73,7 @@ class {{ client_name }}Configuration(Configuration):
     {% endfor %}
 {% endif %}
 {% if config.credential_scopes is not none %}
-        self.credential_scopes = {{ config.credential_scopes }}
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ config.credential_scopes }})
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ package_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)

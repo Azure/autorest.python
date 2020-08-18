@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials import AzureKeyCredential
 
 VERSION = "unknown"
 
@@ -27,12 +27,12 @@ class MultiapiServiceClientConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
+        credential,  # type: AzureKeyCredential
         **kwargs  # type: Any
     ):
         # type: (...) -> None

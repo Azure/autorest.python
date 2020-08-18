@@ -5,9 +5,10 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, List, Dict, Optional, Any, Set
+from typing import cast, List, Dict, Optional, Any, Set, Union
 
 from .base_schema import BaseSchema
+from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .enum_schema import EnumSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
@@ -17,57 +18,12 @@ from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
 from .parameter_list import ParameterList
-from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 from .property import Property
 from .primitive_schemas import IOSchema
 
 
 _LOGGER = logging.getLogger(__name__)
-
-
-class CredentialSchema(BaseSchema):
-    def __init__(self, async_mode) -> None:  # pylint: disable=super-init-not-called
-        self.async_mode = async_mode
-        self.async_type = "~azure.core.credentials_async.AsyncTokenCredential"
-        self.sync_type = "~azure.core.credentials.TokenCredential"
-        self.default_value = None
-
-    @property
-    def serialization_type(self) -> str:
-        if self.async_mode:
-            return self.async_type
-        return self.sync_type
-
-    @property
-    def docstring_type(self) -> str:
-        return self.serialization_type
-
-    @property
-    def type_annotation(self) -> str:
-        if self.async_mode:
-            return '"AsyncTokenCredential"'
-        return '"TokenCredential"'
-
-    @property
-    def docstring_text(self) -> str:
-        return "credential"
-
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        if self.async_mode:
-            file_import.add_from_import(
-                "azure.core.credentials_async", "AsyncTokenCredential",
-                ImportType.AZURECORE,
-                typing_section=TypingSection.TYPING
-            )
-        else:
-            file_import.add_from_import(
-                "azure.core.credentials", "TokenCredential",
-                ImportType.AZURECORE,
-                typing_section=TypingSection.TYPING
-            )
-        return file_import
 
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes
@@ -168,7 +124,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :return: None
         :rtype: None
         """
-        credential_schema = CredentialSchema(async_mode=False)
+        credential_schema: Union[AzureKeyCredentialSchema, TokenCredentialSchema]
+        if self.options["credential_default_policy_type"] == "BearerTokenCredentialPolicy":
+            credential_schema = TokenCredentialSchema(async_mode=False)
+        else:
+            credential_schema = AzureKeyCredentialSchema()
         credential_parameter = Parameter(
             yaml_data={},
             schema=credential_schema,
@@ -191,6 +151,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             description="",
             url=operation.url,
             method=operation.method,
+            multipart=operation.multipart,
             api_versions=operation.api_versions,
             parameters=operation.parameters.parameters,
             requests=operation.requests,

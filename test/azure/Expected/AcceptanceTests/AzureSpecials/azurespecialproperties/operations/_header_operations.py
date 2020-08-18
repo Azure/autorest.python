@@ -64,6 +64,7 @@ class HeaderOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.custom_named_request_id.metadata['url']  # type: ignore
@@ -74,6 +75,7 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -116,6 +118,7 @@ class HeaderOperations(object):
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
+        accept = "application/json"
 
         # Construct URL
         url = self.custom_named_request_id_param_grouping.metadata['url']  # type: ignore
@@ -126,6 +129,7 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", _foo_client_request_id, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -163,6 +167,7 @@ class HeaderOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.custom_named_request_id_head.metadata['url']  # type: ignore
@@ -173,6 +178,7 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -63,6 +63,7 @@ class OperationGroupOneOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.test_two.metadata['url']  # type: ignore
@@ -74,7 +75,7 @@ class OperationGroupOneOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if parameter_one is not None:
@@ -83,7 +84,6 @@ class OperationGroupOneOperations(object):
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

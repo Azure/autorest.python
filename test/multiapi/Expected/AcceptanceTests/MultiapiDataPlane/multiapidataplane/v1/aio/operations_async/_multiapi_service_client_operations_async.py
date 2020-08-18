@@ -43,6 +43,7 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "1.0.0"
+        accept = "application/json"
 
         # Construct URL
         url = self.test_one.metadata['url']  # type: ignore
@@ -56,6 +57,7 @@ class MultiapiServiceClientOperationsMixin:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -80,6 +82,7 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self._test_lro_initial.metadata['url']  # type: ignore
@@ -90,7 +93,7 @@ class MultiapiServiceClientOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
@@ -99,7 +102,6 @@ class MultiapiServiceClientOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -190,6 +192,7 @@ class MultiapiServiceClientOperationsMixin:
         if test_lro_and_paging_options is not None:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
+        accept = "application/json"
 
         # Construct URL
         url = self._test_lro_and_paging_initial.metadata['url']  # type: ignore
@@ -205,7 +208,7 @@ class MultiapiServiceClientOperationsMixin:
             header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
         if _timeout is not None:
             header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -254,6 +257,7 @@ class MultiapiServiceClientOperationsMixin:
         if test_lro_and_paging_options is not None:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
+        accept = "application/json"
 
         def prepare_request(next_link=None):
             # Construct headers
@@ -264,7 +268,7 @@ class MultiapiServiceClientOperationsMixin:
                 header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
             if _timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-            header_parameters['Accept'] = 'application/json'
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
             if not next_link:
                 # Construct URL

@@ -60,6 +60,7 @@ class OperationGroupTwoOperations:
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.test_four.metadata['url']  # type: ignore
@@ -71,6 +72,7 @@ class OperationGroupTwoOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
@@ -87,7 +89,6 @@ class OperationGroupTwoOperations:
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
             )
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -116,6 +117,7 @@ class OperationGroupTwoOperations:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         api_version = "3.0.0"
+        accept = "application/json"
 
         # Construct URL
         url = self.test_five.metadata['url']  # type: ignore
@@ -126,6 +128,7 @@ class OperationGroupTwoOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

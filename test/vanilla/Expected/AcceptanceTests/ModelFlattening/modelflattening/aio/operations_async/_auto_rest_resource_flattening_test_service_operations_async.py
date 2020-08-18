@@ -39,6 +39,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.put_array.metadata['url']  # type: ignore
@@ -49,6 +50,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_array is not None:
@@ -57,7 +59,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -86,6 +87,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop('cls', None)  # type: ClsType[List["models.FlattenedProduct"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_array.metadata['url']  # type: ignore
@@ -95,7 +97,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -134,6 +136,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.put_wrapped_array.metadata['url']  # type: ignore
@@ -144,6 +147,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_array is not None:
@@ -152,7 +156,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -182,6 +185,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop('cls', None)  # type: ClsType[List["models.ProductWrapper"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_wrapped_array.metadata['url']  # type: ignore
@@ -191,7 +195,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -229,6 +233,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.put_dictionary.metadata['url']  # type: ignore
@@ -239,6 +244,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_dictionary is not None:
@@ -247,7 +253,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -276,6 +281,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.FlattenedProduct"]]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_dictionary.metadata['url']  # type: ignore
@@ -285,7 +291,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -323,6 +329,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.put_resource_collection.metadata['url']  # type: ignore
@@ -333,6 +340,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_complex_object is not None:
@@ -341,7 +349,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -370,6 +377,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ResourceCollection"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
 
         # Construct URL
         url = self.get_resource_collection.metadata['url']  # type: ignore
@@ -379,7 +387,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -417,6 +425,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.put_simple_product.metadata['url']  # type: ignore
@@ -427,7 +436,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if simple_body_product is not None:
@@ -436,7 +445,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -488,6 +496,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         _simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']  # type: ignore
@@ -498,7 +507,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _simple_body_product is not None:
@@ -507,7 +516,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -561,6 +569,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         _simple_body_product = models.SimpleProduct(product_id=_product_id, description=_description, max_product_display_name=_max_product_display_name, generic_value=_generic_value, odata_value=_odata_value)
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']  # type: ignore
@@ -575,7 +584,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _simple_body_product is not None:
@@ -584,7 +593,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
