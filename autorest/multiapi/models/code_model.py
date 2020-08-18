@@ -45,4 +45,5 @@ class CodeModel(object):
                     operation_group = OperationGroup(operation_group_name, operation_group_class_name)
                     operation_groups.append(operation_group)
                 operation_group.append_available_api(version_path.name)
+        operation_groups.sort(key=lambda x: x.name)
         return operation_groups

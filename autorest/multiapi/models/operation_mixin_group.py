@@ -68,4 +68,6 @@ class OperationMixinGroup(object):
         # if the default api version has a definition for it.
         # will hopefully get this removed once we deal with mixin operations with different signatures
         # for different api versions
-        return self._use_metadata_of_default_api_version(mixin_operations)
+        mixin_operations = self._use_metadata_of_default_api_version(mixin_operations)
+        mixin_operations.sort(key=lambda x: x.name)
+        return mixin_operations
