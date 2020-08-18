@@ -90,26 +90,6 @@ class MultiAPI:
         return json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
 
     @property
-    def versioned_operations_dict(self) -> Tuple[Dict[str, List[Tuple[str, str]]], Dict[str, str]]:
-        """Introspect the client:
-
-        version_dict => {
-            'application_gateways': [
-                ('v2018_05_01', 'ApplicationGatewaysOperations')
-            ]
-        }
-        mod_to_api_version => {'v2018_05_01': '2018-05-01'}
-        """
-        versioned_operations_dict: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
-        for version_path in self.paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            operation_groups = metadata_json['operation_groups']
-            version = _extract_version(metadata_json, version_path)
-            for operation_group, operation_group_class_name in operation_groups.items():
-                versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
-        return versioned_operations_dict
-
-    @property
     def module_name(self) -> str:
         """From a syntax like package_name#submodule, build a package name
         and complete module name.
@@ -148,86 +128,6 @@ class MultiAPI:
             for version_path in self.paths_to_versions
         }
 
-    def _make_signature_of_mixin_based_on_default_api_version(
-        self,
-        mixin_operations: Dict[str, Dict[str, Dict[str, Any]]],
-        default_api_version_path: Path
-    ) -> Dict[str, Dict[str, Dict[str, Any]]]:
-        metadata_json = json.loads(self._autorestapi.read_file(default_api_version_path / "_metadata.json"))
-        if not metadata_json.get('operation_mixins'):
-            return mixin_operations
-        for func_name, func in metadata_json['operation_mixins'].items():
-            if func_name.startswith("_"):
-                continue
-
-            mixin_operations.setdefault(func_name, {}).setdefault('sync', {})
-            mixin_operations.setdefault(func_name, {}).setdefault('async', {})
-            mixin_operations[func_name]['sync'].update({
-                "signature": func['sync']['signature'],
-                "doc": func['sync']['doc'],
-                "call": func['call']
-            })
-            mixin_operations[func_name]['async'].update({
-                "signature": func['async']['signature'],
-                "coroutine": func['async']['coroutine'],
-                "doc": func['async']['doc'],
-                "call": func['call']
-            })
-        return mixin_operations
-
-    @property
-    def mixin_operations(self) -> Dict[str, Dict[str, Dict[str, Any]]]:
-        """Introspect the client:
-
-        version_dict => {
-            'check_dns_name_availability': {
-                'doc': 'docstring',
-                'signature': '(self, p1, p2, **operation_config),
-                'call': 'p1, p2',
-                'available_apis': [
-                    'v2018_05_01'
-                ]
-            }
-        }
-        """
-        mixin_operations: Dict[str, Dict[str, Dict[str, Any]]] = {}
-        for version_path in self.paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            if not metadata_json.get('operation_mixins'):
-                continue
-            for func_name, func in metadata_json['operation_mixins'].items():
-                if func_name.startswith("_"):
-                    continue
-
-                mixin_operations.setdefault(func_name, {}).setdefault('sync', {})
-                mixin_operations.setdefault(func_name, {}).setdefault('async', {})
-                mixin_operations[func_name]['sync'].update({
-                    "signature": func['sync']['signature'],
-                    "doc": func['sync']['doc'],
-                    "call": func['call']
-                })
-                mixin_operations[func_name]['async'].update({
-                    "signature": func['async']['signature'],
-                    "coroutine": func['async']['coroutine'],
-                    "doc": func['async']['doc'],
-                    "call": func['call']
-                })
-                mixin_operations[func_name]['sync'].setdefault(
-                    "available_apis", []
-                ).append(version_path.name)
-                mixin_operations[func_name]['async'].setdefault(
-                    "available_apis", []
-                ).append(version_path.name)
-
-        # make sure that the signature, doc, call, and coroutine is based off of the default api version,
-        # if the default api version has a definition for it.
-        # will hopefully get this removed once we deal with mixin operations with different signatures
-        # for different api versions
-        default_api_version_path = [
-            version_path for version_path in self.paths_to_versions if version_path.name == self.default_api_version
-        ][0]
-        return self._make_signature_of_mixin_based_on_default_api_version(mixin_operations, default_api_version_path)
-
     @property
     def mod_to_api_version(self) -> Dict[str, str]:
         mod_to_api_version: Dict[str, str] = defaultdict(str)
@@ -263,26 +163,6 @@ class MultiAPI:
         # In case we are transitioning from a single api generation, clean old folders
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
-
-        # versioned_operations_dict => {
-        #     'application_gateways': [
-        #         ('v2018-05-01', 'ApplicationGatewaysOperations')
-        #     ]
-        # }
-        # mod_to_api_version => {'v2018-05-01': '2018-05-01'}
-        # mixin_operations => {
-        #     'check_dns_name_availability': {
-        #         'doc': 'docstring',
-        #         'signature': '(self, p1, p2, **operation_config),
-        #         'call': 'p1, p2',
-        #         'available_apis': [
-        #             'v2018_05_01'
-        #         ]
-        #     }
-        # }
-        # last_rt_list = {
-        #    'check_dns_name_availability': '2018-05-01'
-        # }
 
         sync_imports = code_model.mixin_operation_group.imports(async_mode=False)
 
