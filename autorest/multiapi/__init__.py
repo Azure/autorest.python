@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast, Any
 from .serializers import MultiAPISerializer, FileImportSerializer
 from .models import CodeModel, FileImport
-from .utils import _extract_version, _sync_or_async
+from .utils import _extract_version, _sync_or_async, _get_default_api_version_from_list
 from ..jsonrpc import AutorestAPI
 
 from .. import Plugin
@@ -103,7 +103,12 @@ class MultiAPI:
             }
         )
         for operation, api_versions_list in versioned_dict.items():
-            local_default_api_version = self._get_default_api_version_from_list(api_versions_list)
+            local_default_api_version = _get_default_api_version_from_list(
+                self.mod_to_api_version,
+                api_versions_list,
+                self.preview_mode,
+                self.default_api
+            )
             if local_default_api_version == self.default_api_version:
                 continue
             # If some others RT contains "local_default_api_version", and
@@ -117,37 +122,6 @@ class MultiAPI:
                 continue
             last_rt_list[operation] = local_default_api_version
         return last_rt_list
-
-    def _get_default_api_version_from_list(self, api_versions_list: List[str]) -> str:
-        """Get the floating latest, from a random list of API versions.
-        """
-
-        # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
-        # and change it automatically so I can take both syntax as input
-        if self.default_api and not self.default_api.startswith("v"):
-            default_api_version = [
-                mod_api
-                for mod_api, real_api in self.mod_to_api_version.items()
-                if real_api == self.default_api
-            ][0]
-            _LOGGER.info("Default API version will be: %s", default_api_version)
-            return default_api_version
-
-        absolute_latest = sorted(api_versions_list)[-1]
-        not_preview_versions = [
-            version for version in api_versions_list if "preview" not in version
-        ]
-
-        # If there is no preview, easy: the absolute latest is the only latest
-        if not not_preview_versions:
-            return absolute_latest
-
-        # If preview mode, let's use the absolute latest, I don't care preview or stable
-        if self.preview_mode:
-            return absolute_latest
-
-        # If not preview mode, and there is preview, take the latest known stable
-        return sorted(not_preview_versions)[-1]
 
     def _merge_mixin_imports_across_versions(self, async_mode: bool) -> FileImport:
         imports = FileImport()
@@ -163,7 +137,12 @@ class MultiAPI:
 
     @property
     def default_api_version(self) -> str:
-        return self._get_default_api_version_from_list([p.name for p in self.paths_to_versions])
+        return _get_default_api_version_from_list(
+            self.mod_to_api_version,
+            [p.name for p in self.paths_to_versions],
+            self.preview_mode,
+            self.default_api
+        )
 
     @property
     def default_version_metadata(self) -> Dict[str, Any]:
