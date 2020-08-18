@@ -25,14 +25,14 @@ class MultiApiScriptPlugin(Plugin):
     def process(self) -> bool:
         input_package_name: str = self._autorestapi.get_value("package-name")
         output_folder: str = self._autorestapi.get_value("output-folder")
-        default_api: str = self._autorestapi.get_value("default-api")
+        user_specified_default_api: str = self._autorestapi.get_value("default-api")
         no_async = self._autorestapi.get_boolean_value("no-async")
         generator = MultiAPI(
             input_package_name,
             output_folder,
             self._autorestapi,
             no_async,
-            default_api
+            user_specified_default_api
         )
         return generator.process()
 
@@ -44,7 +44,7 @@ class MultiAPI:
         output_folder: str,
         autorestapi: AutorestAPI,
         no_async: Optional[bool] = False,
-        default_api: Optional[str] = None
+        user_specified_default_api: Optional[str] = None
     ) -> None:
         if input_package_name is None:
             raise ValueError("package-name is required, either provide it as args or check your readme configuration")
@@ -56,72 +56,7 @@ class MultiAPI:
         self.output_package_name: str = ""
         self.no_async = no_async
         self._autorestapi = autorestapi
-        self.default_api = default_api
-
-    def _build_last_rt_list(self, async_mode: bool) -> Dict[str, str]:
-        """Build the a mapping RT => API version if RT doesn't exist in latest detected API version.
-
-        Example:
-        last_rt_list = {
-        'check_dns_name_availability': '2018-05-01'
-        }
-
-        There is one subtle scenario if PREVIEW mode is disabled:
-        - RT1 available on 2019-05-01 and 2019-06-01-preview
-        - RT2 available on 2019-06-01-preview
-        - RT3 available on 2019-07-01-preview
-
-        Then, if I put "RT2: 2019-06-01-preview" in the list, this means I have to make
-        "2019-06-01-preview" the default for models loading (otherwise "RT2: 2019-06-01-preview" won't work).
-        But this likely breaks RT1 default operations at "2019-05-01", with default models at "2019-06-01-preview"
-        since "models" are shared for the entire set of operations groups (I wished models would be split by
-        operation groups, but meh, that's not the case)
-
-        So, until we have a smarter Autorest to deal with that, only preview RTs which do not share models with
-        a stable RT can be added to this map. In this case, RT2 is out, RT3 is in.
-        """
-
-        def there_is_a_rt_that_contains_api_version(rt_dict, api_version):
-            "Test in the given api_version is is one of those RT."
-            for rt_api_version in rt_dict.values():
-                if api_version in rt_api_version:
-                    return True
-            return False
-
-        last_rt_list = {}
-
-        # Operation groups
-        versioned_dict = {
-            operation_group_name: [meta[0] for meta in operation_metadata]
-            for operation_group_name, operation_metadata in self.versioned_operations_dict.items()
-        }
-        # Operations at client level
-        versioned_dict.update(
-            {
-                operation_name: operation_metadata[_sync_or_async(async_mode)]["available_apis"]
-                for operation_name, operation_metadata in self.mixin_operations.items()
-            }
-        )
-        for operation, api_versions_list in versioned_dict.items():
-            local_default_api_version = _get_default_api_version_from_list(
-                self.mod_to_api_version,
-                api_versions_list,
-                self.preview_mode,
-                self.default_api
-            )
-            if local_default_api_version == self.default_api_version:
-                continue
-            # If some others RT contains "local_default_api_version", and
-            # if it's greater than the future default, danger, don't profile it
-            if (
-                there_is_a_rt_that_contains_api_version(
-                    versioned_dict, local_default_api_version
-                )
-                and local_default_api_version > self.default_api_version
-            ):
-                continue
-            last_rt_list[operation] = local_default_api_version
-        return last_rt_list
+        self.user_specified_default_api = user_specified_default_api
 
     def _merge_mixin_imports_across_versions(self, async_mode: bool) -> FileImport:
         imports = FileImport()
@@ -141,7 +76,7 @@ class MultiAPI:
             self.mod_to_api_version,
             [p.name for p in self.paths_to_versions],
             self.preview_mode,
-            self.default_api
+            self.user_specified_default_api
         )
 
     @property
@@ -193,7 +128,7 @@ class MultiAPI:
     def preview_mode(self) -> bool:
         # If True, means the auto-profile will consider preview versions.
         # If not, if it exists a stable API version for a global or RT, will always be used
-        return cast(bool, self.default_api and "preview" in self.default_api)
+        return cast(bool, self.user_specified_default_api and "preview" in self.user_specified_default_api)
 
     @property
     def paths_to_versions(self) -> List[Path]:
@@ -318,9 +253,11 @@ class MultiAPI:
         code_model = CodeModel(
             module_name=self.module_name,
             default_api_version=self.default_api_version,
+            preview_mode=self.preview_mode,
             default_version_metadata=self.default_version_metadata,
             mod_to_api_version=self.mod_to_api_version,
-            version_path_to_metadata=self.version_path_to_metadata
+            version_path_to_metadata=self.version_path_to_metadata,
+            user_specified_default_api=self.user_specified_default_api
         )
 
         # In case we are transitioning from a single api generation, clean old folders
@@ -347,14 +284,9 @@ class MultiAPI:
         #    'check_dns_name_availability': '2018-05-01'
         # }
 
-        last_rt_list_sync = self._build_last_rt_list(async_mode=False)
-        last_rt_list_async = self._build_last_rt_list(async_mode=True)
-
         sync_imports = code_model.mixin_operation_group.imports(async_mode=False)
 
         async_imports = code_model.mixin_operation_group.imports(async_mode=True)
-
-        code_model.mixin_operation_group.mixin_operations
 
         conf = {
             "client_name": code_model.service_client.name,
@@ -365,10 +297,9 @@ class MultiAPI:
             "mod_to_api_version": self.mod_to_api_version,
             "default_api_version": self.mod_to_api_version[self.default_api_version],
             "client_description": code_model.service_client.description,
-            "last_rt_list_sync": last_rt_list_sync,
-            "last_rt_list_async": last_rt_list_async,
+            "last_rt_list": code_model.last_rt_list,
             "default_models": sorted(
-                {self.default_api_version} | {versions for _, versions in last_rt_list_sync.items()}
+                {self.default_api_version} | {versions for _, versions in code_model.last_rt_list.items()}
             ),
             "config": code_model.config,
             "global_parameters": self.default_version_metadata["global_parameters"],

@@ -31,18 +31,18 @@ def _get_default_api_version_from_list(
     mod_to_api_version: Dict[str, str],
     api_versions_list: List[str],
     preview_mode: bool,
-    default_api: Optional[str]
+    user_specified_default_api: Optional[str]
 ) -> str:
     """Get the floating latest, from a random list of API versions.
     """
 
-    # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
+    # I need user_specified_default_api to be v2019_06_07_preview shaped if it exists, let's be smart
     # and change it automatically so I can take both syntax as input
-    if default_api and not default_api.startswith("v"):
+    if user_specified_default_api and not user_specified_default_api.startswith("v"):
         default_api_version = [
             mod_api
             for mod_api, real_api in mod_to_api_version.items()
-            if real_api == default_api
+            if real_api == user_specified_default_api
         ][0]
         _LOGGER.info("Default API version will be: %s", default_api_version)
         return default_api_version

@@ -88,7 +88,6 @@ class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}Operation
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
-{% set last_rt_list = last_rt_list_async if async_mode else last_rt_list_sync %}
 {% for rt_name, api_version in last_rt_list|dictsort %}
             '{{ rt_name }}': '{{ mod_to_api_version[api_version] }}',
 {% endfor %}
