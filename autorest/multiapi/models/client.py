@@ -11,10 +11,12 @@ from ..utils import _extract_version
 class Client():
     def __init__(
         self,
+        azure_arm: bool,
         default_version_metadata: Dict[str, Any],
         version_path_to_metadata: Dict[Path, Dict[str, Any]]
     ):
         self.name = default_version_metadata["client"]["name"]
+        self.pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient"
         self.filename = default_version_metadata["client"]["filename"]
         self.base_url = default_version_metadata["client"]["base_url"]
         self.description = default_version_metadata["client"]["description"]

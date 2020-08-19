@@ -17,6 +17,7 @@ class CodeModel(object):
     def __init__(
         self,
         module_name: str,
+        package_name: str,
         default_api_version: str,
         preview_mode: bool,
         default_version_metadata: Dict[str, Any],
@@ -25,15 +26,16 @@ class CodeModel(object):
         user_specified_default_api: Optional[str] = None
     ):
         self.module_name = module_name
+        self.package_name = package_name
         self.mod_to_api_version = mod_to_api_version
         self.default_api_version = default_api_version
         self.preview_mode = preview_mode
         self.azure_arm = default_version_metadata["client"]["azure_arm"]
         self.default_version_metadata = default_version_metadata
         self.version_path_to_metadata = version_path_to_metadata
-        self.service_client = Client(default_version_metadata, version_path_to_metadata)
+        self.service_client = Client(self.azure_arm, default_version_metadata, version_path_to_metadata)
         self.config = Config(default_version_metadata)
-        self.mixin_operation_group = OperationMixinGroup(version_path_to_metadata, default_api_version)
+        self.operation_mixin_group = OperationMixinGroup(version_path_to_metadata, default_api_version)
         self.global_parameters = GlobalParameters(default_version_metadata["global_parameters"])
         self.user_specified_default_api = user_specified_default_api
 
@@ -97,7 +99,7 @@ class CodeModel(object):
         versioned_dict.update(
             {
                 mixin_operation.name: mixin_operation.available_apis
-                for mixin_operation in self.mixin_operation_group.mixin_operations
+                for mixin_operation in self.operation_mixin_group.mixin_operations
             }
         )
         for operation, api_versions_list in versioned_dict.items():
@@ -120,3 +122,9 @@ class CodeModel(object):
                 continue
             last_rt_list[operation] = local_default_api_version
         return last_rt_list
+
+    @property
+    def default_models(self):
+        return sorted(
+            {self.default_api_version} | {versions for _, versions in self.last_rt_list.items()}
+        )
