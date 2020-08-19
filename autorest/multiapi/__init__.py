@@ -11,7 +11,7 @@ import shutil
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast, Any
-from .serializers import MultiAPISerializer, FileImportSerializer
+from .serializers import MultiAPISerializer
 from .models import CodeModel, FileImport
 from .utils import _extract_version, _sync_or_async, _get_default_api_version_from_list
 from ..jsonrpc import AutorestAPI
@@ -57,18 +57,6 @@ class MultiAPI:
         self.no_async = no_async
         self._autorestapi = autorestapi
         self.user_specified_default_api = user_specified_default_api
-
-    def _merge_mixin_imports_across_versions(self, async_mode: bool) -> FileImport:
-        imports = FileImport()
-        imports_to_load = "async_imports" if async_mode else "sync_imports"
-        for version_path in self.paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            if not metadata_json.get('operation_mixins'):
-                continue
-            current_version_imports = FileImport(json.loads(metadata_json[imports_to_load]))
-            imports.merge(current_version_imports)
-
-        return imports
 
     @property
     def default_api_version(self) -> str:
@@ -152,69 +140,21 @@ class MultiAPI:
 
         code_model = CodeModel(
             module_name=self.module_name,
+            package_name=self.output_package_name,
             default_api_version=self.default_api_version,
             preview_mode=self.preview_mode,
             default_version_metadata=self.default_version_metadata,
             mod_to_api_version=self.mod_to_api_version,
             version_path_to_metadata=self.version_path_to_metadata,
-            user_specified_default_api=self.user_specified_default_api
+            user_specified_default_api=self.user_specified_default_api,
         )
 
         # In case we are transitioning from a single api generation, clean old folders
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
-        sync_imports = code_model.mixin_operation_group.imports(async_mode=False)
-
-        async_imports = code_model.mixin_operation_group.imports(async_mode=True)
-
-        conf = {
-            "client_name": code_model.service_client.name,
-            "package_name": self.output_package_name,
-            "module_name": code_model.module_name,
-            "operation_groups": code_model.operation_groups,
-            "operation_mixin_group": code_model.mixin_operation_group,
-            "mod_to_api_version": self.mod_to_api_version,
-            "default_api_version": self.mod_to_api_version[self.default_api_version],
-            "client_description": code_model.service_client.description,
-            "last_rt_list": code_model.last_rt_list,
-            "default_models": sorted(
-                {self.default_api_version} | {versions for _, versions in code_model.last_rt_list.items()}
-            ),
-            "config": code_model.config,
-            "global_parameters": code_model.global_parameters,
-            "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
-            "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
-            "base_url": self.default_version_metadata["client"]["base_url"],
-            "custom_base_url_to_api_version": code_model.service_client.custom_base_url_to_api_version,
-            "azure_arm": code_model.azure_arm,
-            "has_lro_operations": code_model.service_client.has_lro_operations
-        }
-
-        multiapi_serializer = MultiAPISerializer(
-            conf=conf,
-            async_mode=False,
-            autorestapi=self._autorestapi,
-            service_client_filename=self.default_version_metadata["client"]["filename"]
-        )
-        multiapi_serializer.serialize()
-
-        if not self.no_async:
-            async_multiapi_serializer = MultiAPISerializer(
-                conf=conf,
-                async_mode=True,
-                autorestapi=self._autorestapi,
-                service_client_filename=self.default_version_metadata["client"]["filename"]
-            )
-            async_multiapi_serializer.serialize()
-
-
-        # don't erase patch file
-        if self._autorestapi.read_file("_patch.py"):
-            self._autorestapi.write_file(
-                "_patch.py",
-                self._autorestapi.read_file("_patch.py")
-            )
+        multiapi_serializer = MultiAPISerializer(self._autorestapi)
+        multiapi_serializer.serialize(code_model, self.no_async)
 
         _LOGGER.info("Done!")
         return True
