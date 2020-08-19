@@ -11,9 +11,9 @@ from .config import Config
 from .operation_group import OperationGroup
 from .operation_mixin_group import OperationMixinGroup
 from .global_parameters import GlobalParameters
-from ..utils import _extract_version, _get_default_api_version_from_list
+from ..utils import _get_default_api_version_from_list
 
-class CodeModel(object):
+class CodeModel(object):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         module_name: str,
@@ -41,7 +41,7 @@ class CodeModel(object):
 
     @property
     def operation_groups(self) -> List[OperationGroup]:
-        operation_groups = []
+        operation_groups: List[OperationGroup] = []
         for version_path, metadata_json in self.version_path_to_metadata.items():
             if not metadata_json.get('operation_groups'):
                 continue

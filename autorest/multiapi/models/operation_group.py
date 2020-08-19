@@ -3,8 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar
-from ..utils import _extract_version
+from typing import Dict, List, TypeVar
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]

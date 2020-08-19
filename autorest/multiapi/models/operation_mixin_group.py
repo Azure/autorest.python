@@ -18,7 +18,7 @@ class OperationMixinGroup(object):
         self.default_api_version = default_api_version
         self.version_path_to_metadata = version_path_to_metadata
 
-    def imports(self, async_mode: bool) -> str:
+    def imports(self, async_mode: bool) -> FileImport:
         imports = FileImport()
         imports_to_load = "async_imports" if async_mode else "sync_imports"
         for metadata_json in self.version_path_to_metadata.values():
@@ -32,7 +32,8 @@ class OperationMixinGroup(object):
         self, mixin_operations: List[MixinOperation]
     ) -> List[MixinOperation]:
         default_api_version_path = [
-            version_path for version_path in self.version_path_to_metadata.keys() if version_path.name == self.default_api_version
+            version_path for version_path in self.version_path_to_metadata.keys()
+            if version_path.name == self.default_api_version
         ][0]
         default_version_metadata = self.version_path_to_metadata[default_api_version_path]
         if not default_version_metadata.get("operation_mixins"):
@@ -47,7 +48,7 @@ class OperationMixinGroup(object):
 
     @property
     def mixin_operations(self) -> List[MixinOperation]:
-        mixin_operations = []
+        mixin_operations: List[MixinOperation] = []
         for version_path, metadata_json in self.version_path_to_metadata.items():
             if not metadata_json.get("operation_mixins"):
                 continue

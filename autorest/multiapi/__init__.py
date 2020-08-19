@@ -10,10 +10,10 @@ import shutil
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional, cast, Any
+from typing import Dict, List, Optional, cast, Any
 from .serializers import MultiAPISerializer
-from .models import CodeModel, FileImport
-from .utils import _extract_version, _sync_or_async, _get_default_api_version_from_list
+from .models import CodeModel
+from .utils import _get_default_api_version_from_list
 from ..jsonrpc import AutorestAPI
 
 from .. import Plugin

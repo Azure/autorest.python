@@ -3,9 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from jinja2 import PackageLoader, Environment
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
+from jinja2 import PackageLoader, Environment
 
 from .import_serializer import FileImportSerializer
 
@@ -21,7 +21,6 @@ _FILE_TO_TEMPLATE = {
     "service_client": "multiapi_service_client.py.jinja2",
     "config": "multiapi_config.py.jinja2",
     "models": "multiapi_models.py.jinja2",
-    "version": "multiapi_version.py.jinja2",
     "operations_mixin": "multiapi_operations_mixin.py.jinja2"
 }
 
@@ -93,13 +92,14 @@ class MultiAPISerializer(object):
                 self._autorestapi.read_file("version.py")
             )
         else:
+            template = self.env.get_template("multiapi_version.py.jinja2")
             self._autorestapi.write_file(
                 Path("_version.py"),
-                self.serialize_multiapi_version()
+                template.render()
             )
 
 
-    def serialize(self, code_model: CodeModel, no_async: bool) -> None:
+    def serialize(self, code_model: CodeModel, no_async: Optional[bool]) -> None:
         self._serialize_helper(code_model, async_mode=False)
         if not no_async:
             self._serialize_helper(code_model, async_mode=True)
