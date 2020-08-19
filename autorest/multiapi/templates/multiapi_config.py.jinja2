@@ -1,12 +1,12 @@
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for parameter in global_parameters.parameters %}
+    {% for parameter in code_model.global_parameters.parameters %}
         {% if parameter.required %}
     {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
-    {% for parameter in global_parameters.parameters %}
+    {% for parameter in code_model.global_parameters.parameters %}
         {% if not parameter.required %}
     {{ parameter.signature(async_mode) }}
         {% endif %}
@@ -30,22 +30,22 @@ from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
-{% if azure_arm %}
+{% if code_model.azure_arm %}
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 {% endif %}
 
 from {{ version_import }} import VERSION
 
 
-class {{ client_name }}Configuration(Configuration):
-    """Configuration for {{ client_name }}.
+class {{ code_model.service_client.name }}Configuration(Configuration):
+    """Configuration for {{ code_model.service_client.name }}.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-{% if global_parameters.parameters %}
+{% if code_model.global_parameters.parameters %}
 
 {% endif %}
-{% for parameter in global_parameters.parameters %}
+{% for parameter in code_model.global_parameters.parameters %}
     :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
     :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
 {% endfor %}
@@ -55,26 +55,26 @@ class {{ client_name }}Configuration(Configuration):
         {% if not async_mode %}
         # type: (...) -> None
         {% endif %}
-{% for parameter in global_parameters.parameters %}
+{% for parameter in code_model.global_parameters.parameters %}
     {% if parameter.required %}
         if {{ parameter.name }} is None:
             raise ValueError("Parameter '{{ parameter.name }}' must not be None.")
     {% endif %}
 {% endfor %}
-        super({{ client_name }}Configuration, self).__init__(**kwargs)
+        super({{ code_model.service_client.name }}Configuration, self).__init__(**kwargs)
 
-{% for parameter in global_parameters.parameters %}
+{% for parameter in code_model.global_parameters.parameters %}
         self.{{ parameter.name }} = {{ parameter.name }}
 {% endfor %}
-{% if global_parameters.constant_parameters %}
-    {% for constant_parameter in global_parameters.constant_parameters %}
+{% if code_model.global_parameters.constant_parameters %}
+    {% for constant_parameter in code_model.global_parameters.constant_parameters %}
         self.{{ constant_parameter.name }} = {{ constant_parameter.value }}
     {% endfor %}
 {% endif %}
-{% if config.credential_scopes is not none %}
-        self.credential_scopes = kwargs.pop('credential_scopes', {{ config.credential_scopes }})
+{% if code_model.config.credential_scopes is not none %}
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.config.credential_scopes }})
 {% endif %}
-        kwargs.setdefault('sdk_moniker', '{{ package_name|lower }}/{}'.format(VERSION))
+        kwargs.setdefault('sdk_moniker', '{{ code_model.package_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(
@@ -88,19 +88,19 @@ class {{ client_name }}Configuration(Configuration):
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.http_logging_policy = kwargs.get('http_logging_policy') or {{ "ARM" if azure_arm else "policies." }}HttpLoggingPolicy(**kwargs)
+        self.http_logging_policy = kwargs.get('http_logging_policy') or {{ "ARM" if code_model.azure_arm else "policies." }}HttpLoggingPolicy(**kwargs)
         self.retry_policy = kwargs.get('retry_policy') or policies.{{ async_prefix }}RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ async_prefix }}RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
-        {% if config.credential %}
+        {% if code_model.config.credential %}
         {# only adding this if credential_scopes is not passed during code generation #}
-        {% if config.credential_scopes is not none and config.credential_scopes|length == 0 %}
+        {% if code_model.config.credential_scopes is not none and code_model.config.credential_scopes|length == 0 %}
         if not self.credential_scopes and not self.authentication_policy:
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         {% endif %}
         if self.credential and not self.authentication_policy:
-            {% set credential_default_policy_type = ("Async" if (async_mode and config.credential_default_policy_type_has_async_version) else "") + config.credential_default_policy_type %}
-            {% set credential_param_type = ("'" + config.credential_key_header_name + "', ") if config.credential_key_header_name else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
+            {% set credential_default_policy_type = ("Async" if (async_mode and code_model.config.credential_default_policy_type_has_async_version) else "") + code_model.config.credential_default_policy_type %}
+            {% set credential_param_type = ("'" + code_model.config.credential_key_header_name + "', ") if code_model.config.credential_key_header_name else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
             self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ credential_param_type if credential_param_type }}**kwargs)
         {% endif %}

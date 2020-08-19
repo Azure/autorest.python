@@ -1,18 +1,18 @@
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for parameter in global_parameters.parameters %}
+    {% for parameter in code_model.global_parameters.parameters %}
         {% if parameter.required %}
     {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
-    {% for parameter in global_parameters.parameters %}
+    {% for parameter in code_model.global_parameters.parameters %}
         {% if not parameter.required %}
     {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
     api_version=None,
-    {% if base_url %}
+    {% if code_model.service_client.base_url %}
     base_url=None,
     {% endif %}
     profile=KnownProfiles.default,
@@ -21,7 +21,6 @@ def __init__(
 {# actual template starts here #}
 {% set config_import = "._configuration_async" if async_mode else "._configuration" %}
 {% set operations_mixin_import = "._operations_mixin_async" if async_mode else "._operations_mixin" %}
-{% set pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient" %}
 {% set relative_path = ".." if async_mode else "." %}
 {% set def = "async def" if async_mode else "def" %}
 {% set async_prefix = "Async" if async_mode else "" %}
@@ -38,13 +37,13 @@ def __init__(
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.{{ "mgmt." if azure_arm }}core import {{ async_prefix }}{{ pipeline_client }}
+from azure.{{ "mgmt." if code_model.azure_arm }}core import {{ async_prefix }}{{ code_model.service_client.pipeline_client }}
 from msrest import Serializer, Deserializer
 
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
-from {{ config_import }} import {{ client_name }}Configuration
-{% if operation_mixin_group %}from {{ operations_mixin_import }} import {{ client_name }}OperationsMixin{% endif %}
+from {{ config_import }} import {{ code_model.service_client.name }}Configuration
+{% if code_model.operation_mixin_group.mixin_operations %}from {{ operations_mixin_import }} import {{ code_model.service_client.name }}OperationsMixin{% endif %}
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
@@ -53,8 +52,8 @@ class _SDKClient(object):
         """
         pass
 
-class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
-    """{{ client_description }}
+class {{ code_model.service_client.name }}({% if code_model.operation_mixin_group.mixin_operations %}{{ code_model.service_client.name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
+    """{{ code_model.service_client.description }}
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
     (Azure Stack, Azure Government, Azure China, etc.).
@@ -63,40 +62,40 @@ class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}Operation
     The profile sets a mapping between an operation group and its API version.
     The api-version parameter sets the default API version if the operation
     group is not described in the profile.
-{% if global_parameters.parameters %}
+{% if code_model.global_parameters.parameters %}
 
 {% endif %}
-{% for parameter in global_parameters.parameters %}
+{% for parameter in code_model.global_parameters.parameters %}
     :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
     :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
 {% endfor %}
     :param str api_version: API version to use if no profile is provided, or if
      missing in profile.
-    {% if base_url %}
+    {% if code_model.service_client.base_url %}
     :param str base_url: Service URL
     {% endif %}
     :param profile: A profile definition, from KnownProfiles to dict.
     :type profile: azure.profiles.KnownProfiles
-    {% if has_lro_operations %}
+    {% if code_model.service_client.has_lro_operations %}
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     {% endif %}
     """
 
-    DEFAULT_API_VERSION = '{{ default_api_version }}'
-    _PROFILE_TAG = "{{ module_name }}.{{ client_name }}"
+    DEFAULT_API_VERSION = '{{ code_model.mod_to_api_version[code_model.default_api_version] }}'
+    _PROFILE_TAG = "{{ code_model.module_name }}.{{ code_model.service_client.name }}"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
-{% for rt_name, api_version in last_rt_list|dictsort %}
-            '{{ rt_name }}': '{{ mod_to_api_version[api_version] }}',
+{% for rt_name, api_version in code_model.last_rt_list|dictsort %}
+            '{{ rt_name }}': '{{ code_model.mod_to_api_version[api_version] }}',
 {% endfor %}
         }},
         _PROFILE_TAG + " latest"
     )
 
     {{ method_signature()|indent }}
-        {% if not base_url %}
-        {% for custom_base_url, api_versions in custom_base_url_to_api_version|dictsort %}
+        {% if not code_model.service_client.base_url %}
+        {% for custom_base_url, api_versions in code_model.service_client.custom_base_url_to_api_version|dictsort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement ~ " api_version == '" ~ api_versions|join("' or api_version == '") ~ "'" }}:
             base_url = {{ custom_base_url }}
@@ -105,11 +104,11 @@ class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}Operation
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         {% else %}
         if not base_url:
-            base_url = {{ base_url }}
+            base_url = {{ code_model.service_client.base_url }}
         {% endif %}
-        self._config = {{ client_name }}Configuration({{ global_parameters.call }}{{ ", " if global_parameters.call }}**kwargs)
-        self._client = {{ async_prefix }}{{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
-        super({{ client_name }}, self).__init__(
+        self._config = {{ code_model.service_client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}**kwargs)
+        self._client = {{ async_prefix }}{{ code_model.service_client.pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
+        super({{ code_model.service_client.name }}, self).__init__(
             api_version=api_version,
             profile=profile
         )
@@ -122,31 +121,31 @@ class {{ client_name }}({% if operation_mixin_group %}{{ client_name }}Operation
     def models(cls, api_version=DEFAULT_API_VERSION):
         """Module depends on the API version:
 
-        {% for mod_api_version, api_version in mod_to_api_version|dictsort %}
-           * {{ api_version }}: :mod:`{{ mod_api_version }}.models<{{ module_name }}.{{ mod_api_version }}.models>`
+        {% for mod_api_version, api_version in code_model.mod_to_api_version|dictsort %}
+           * {{ api_version }}: :mod:`{{ mod_api_version }}.models<{{ code_model.module_name }}.{{ mod_api_version }}.models>`
         {% endfor %}
         """
-        {% for mod_api_version, api_version in mod_to_api_version|dictsort %}
+        {% for mod_api_version, api_version in code_model.mod_to_api_version|dictsort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{if_statement }} api_version == '{{ api_version }}':
             from {{ relative_path }}{{ mod_api_version }} import models
             return models
         {% endfor %}
         raise NotImplementedError("APIVersion {} is not available".format(api_version))
-    {% for operation_group in operation_groups %}
+    {% for operation_group in code_model.operation_groups %}
 
     @property
     def {{ operation_group.name }}(self):
         """Instance depends on the API version:
 
         {% for api in operation_group.available_apis | sort %}
-           * {{ mod_to_api_version[api] }}: :class:`{{ operation_group.class_name }}<{{ module_name }}.{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }}.{{ operation_group.class_name }}>`
+           * {{ code_model.mod_to_api_version[api] }}: :class:`{{ operation_group.class_name }}<{{ code_model.module_name }}.{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }}.{{ operation_group.class_name }}>`
         {% endfor %}
         """
         api_version = self._get_api_version('{{ operation_group.name }}')
         {% for api in operation_group.available_apis | sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
-        {{ if_statement }} api_version == '{{ mod_to_api_version[api] }}':
+        {{ if_statement }} api_version == '{{ code_model.mod_to_api_version[api] }}':
             from {{ relative_path }}{{ api }}.{{ "aio." if async_mode else "" }}operations{{ "_async" if async_mode else "" }} import {{ operation_group.class_name }} as OperationClass
         {% endfor %}
         else:

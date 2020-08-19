@@ -9,21 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-{% set imports = async_imports if async_mode else sync_imports %}
 {% if imports %}
 {{ imports }}
 {% endif %}
 
 
-class {{ client_name }}OperationsMixin(object):
-{% for mixin_operation in operation_mixin_group.mixin_operations %}
+class {{ code_model.service_client.name }}OperationsMixin(object):
+{% for mixin_operation in code_model.operation_mixin_group.mixin_operations %}
 
     {{ mixin_operation.signature(async_mode) | indent }}        {{ mixin_operation.description(async_mode) | indent(8) }}
         api_version = self._get_api_version('{{ mixin_operation.name }}')
         {% for api in mixin_operation.available_apis|sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
-        {{ if_statement }} api_version == '{{ mod_to_api_version[api] }}':
-            from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }} import {{ client_name }}OperationsMixin as OperationClass
+        {{ if_statement }} api_version == '{{ code_model.mod_to_api_version[api] }}':
+            from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }} import {{ code_model.service_client.name }}OperationsMixin as OperationClass
         {% endfor %}
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
