@@ -45,7 +45,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     """
 
     DEFAULT_API_VERSION = '2.0.0'
-    _PROFILE_TAG = "multiapicustombaseurl.MultiapiCustomBaseUrlServiceClient"
+    _PROFILE_TAG = "multiapicustombaseurl.aio.MultiapiCustomBaseUrlServiceClient"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,

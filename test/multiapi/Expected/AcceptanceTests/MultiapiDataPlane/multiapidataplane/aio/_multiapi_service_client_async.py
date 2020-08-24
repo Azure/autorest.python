@@ -45,7 +45,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     """
 
     DEFAULT_API_VERSION = '3.0.0'
-    _PROFILE_TAG = "multiapidataplane.MultiapiServiceClient"
+    _PROFILE_TAG = "multiapidataplane.aio.MultiapiServiceClient"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
