@@ -10,7 +10,7 @@ from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
-from .imports import ImportType, FileImport, TypingSection
+from .imports import ImportType, FileImport
 from .object_schema import ObjectSchema
 
 _LOGGER = logging.getLogger(__name__)
