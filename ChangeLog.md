@@ -13,6 +13,7 @@ Modelerfour version: 4.15.400
 **Bug fixes**
 
 - Fix "multi" in Swagger (will generate correctly multiple query param now)
+- Fix profile tag for async multiapi client. Now including 'aio.' in the path to the service client  #757
 
 ### 2020-08-07 - 5.1.0-preview.7
 Autorest Core version: 3.0.6302
