@@ -13,6 +13,7 @@ Modelerfour version: 4.15.400
 **Bug fixes**
 
 - Fix "multi" in Swagger (will generate correctly multiple query param now)
+- Fix typing for paging operations (will have typing `ItemPaged` instead of `Iterable`)  #756
 
 ### 2020-08-07 - 5.1.0-preview.7
 Autorest Core version: 3.0.6302
