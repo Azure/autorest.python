@@ -21,7 +21,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -53,7 +53,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResultValue"]
+        # type: (...) -> ItemPaged["models.ProductResultValue"]
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -113,7 +113,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -173,7 +173,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -235,7 +235,7 @@ class PagingOperations(object):
         paging_get_multiple_pages_options=None,  # type: Optional["models.PagingGetMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -312,7 +312,7 @@ class PagingOperations(object):
         required_query_parameter,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -384,7 +384,7 @@ class PagingOperations(object):
         paging_get_odata_multiple_pages_options=None,  # type: Optional["models.PagingGetOdataMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.OdataProductResult"]
+        # type: (...) -> ItemPaged["models.OdataProductResult"]
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :param client_request_id:
@@ -462,7 +462,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
@@ -544,7 +544,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -605,7 +605,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -666,7 +666,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -726,7 +726,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -786,7 +786,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> ItemPaged["models.ProductResult"]
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -848,7 +848,7 @@ class PagingOperations(object):
         tenant,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.OdataProductResult"]
+        # type: (...) -> ItemPaged["models.OdataProductResult"]
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
@@ -926,7 +926,7 @@ class PagingOperations(object):
         custom_parameter_group,  # type: "models.CustomParameterGroup"
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.OdataProductResult"]
+        # type: (...) -> ItemPaged["models.OdataProductResult"]
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param custom_parameter_group: Parameter group.
@@ -1176,7 +1176,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResultValueWithXMSClientName"]
+        # type: (...) -> ItemPaged["models.ProductResultValueWithXMSClientName"]
         """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
         name 'indexes'.
 

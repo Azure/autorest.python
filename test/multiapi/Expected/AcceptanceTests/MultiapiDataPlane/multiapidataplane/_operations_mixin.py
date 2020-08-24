@@ -21,7 +21,7 @@ from azure.core.polling.base_polling import LROBasePolling
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 
 
 class MultiapiServiceClientOperationsMixin(object):

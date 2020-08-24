@@ -121,10 +121,8 @@ class PagingOperation(Operation):
         if async_mode:
             file_import.add_from_import("azure.core.async_paging", "AsyncItemPaged", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
-            file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         else:
             file_import.add_from_import("azure.core.paging", "ItemPaged", ImportType.AZURECORE)
-            file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if code_model.options["tracing"]:
             file_import.add_from_import(
