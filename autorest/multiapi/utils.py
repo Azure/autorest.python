@@ -4,12 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-import sys
-from typing import Any, Dict, List, Optional
-from pathlib import Path
+from typing import Dict, List, Optional
 
 _LOGGER = logging.getLogger(__name__)
-
 
 
 def _sync_or_async(async_mode: bool) -> str:

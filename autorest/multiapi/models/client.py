@@ -3,10 +3,23 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-
+import sys
 from typing import Any, Dict, List
 from pathlib import Path
-from ..utils import _extract_version
+
+def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
+    version = metadata_json['chosen_version']
+    total_api_version_list = metadata_json['total_api_version_list']
+    if not version:
+        if total_api_version_list:
+            sys.exit(
+                f"Unable to match {total_api_version_list} to label {version_path.stem}"
+            )
+        else:
+            sys.exit(
+                f"Unable to extract api version of {version_path.stem}"
+            )
+    return version
 
 class Client():
     def __init__(
