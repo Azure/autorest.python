@@ -148,8 +148,8 @@ class CodeGenerator(Plugin):
                     # If add-credential is specified, we still want to add a credential_scopes variable.
                     # Will make it an empty list so we can differentiate between this case and None
                     _LOGGER.warning(
-                        "You have used the --add-credential flag but not the --credential-scopes flag "
-                        "while generating non-management plane code. "
+                        "You have default credential policy BearerTokenCredentialPolicy"
+                        "but not the --credential-scopes flag set while generating non-management plane code. "
                         "This is not recommend because it forces the customer to pass credential scopes "
                         "through kwargs if they want to authenticate."
                     )
