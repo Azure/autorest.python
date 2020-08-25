@@ -63,7 +63,7 @@ def namespace_models():
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):
-    assert client.profile.label == "multiapiwithsubmodule.MultiapiServiceClient 2.0.0"
+    assert client.profile.label == "multiapiwithsubmodule.aio.MultiapiServiceClient 2.0.0"
 
 def test_configuration_kwargs(default_client):
     # making sure that the package name is correct in the sdk moniker
