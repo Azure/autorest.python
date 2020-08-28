@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_resource_flattening_test_service_async import AutoRestResourceFlatteningTestService
+from ._auto_rest_resource_flattening_test_service import AutoRestResourceFlatteningTestService
 __all__ = ['AutoRestResourceFlatteningTestService']

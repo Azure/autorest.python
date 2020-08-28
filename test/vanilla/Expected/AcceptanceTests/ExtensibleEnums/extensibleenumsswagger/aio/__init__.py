@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._pet_store_inc_async import PetStoreInc
+from ._pet_store_inc import PetStoreInc
 __all__ = ['PetStoreInc']

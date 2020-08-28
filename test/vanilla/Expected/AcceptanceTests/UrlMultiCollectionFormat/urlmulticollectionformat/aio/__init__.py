@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_url_mutli_collection_format_test_service_async import AutoRestUrlMutliCollectionFormatTestService
+from ._auto_rest_url_mutli_collection_format_test_service import AutoRestUrlMutliCollectionFormatTestService
 __all__ = ['AutoRestUrlMutliCollectionFormatTestService']

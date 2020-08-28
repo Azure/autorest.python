@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._class_name_async import ClassName
+from ._class_name import ClassName
 __all__ = ['ClassName']

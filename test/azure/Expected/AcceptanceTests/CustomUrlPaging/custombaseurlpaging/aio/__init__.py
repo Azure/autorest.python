@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_parameterized_host_test_paging_client_async import AutoRestParameterizedHostTestPagingClient
+from ._auto_rest_parameterized_host_test_paging_client import AutoRestParameterizedHostTestPagingClient
 __all__ = ['AutoRestParameterizedHostTestPagingClient']

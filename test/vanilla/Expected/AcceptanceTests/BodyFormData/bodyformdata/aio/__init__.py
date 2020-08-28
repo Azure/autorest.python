@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_bat_form_data_service_async import AutoRestSwaggerBATFormDataService
+from ._auto_rest_swagger_bat_form_data_service import AutoRestSwaggerBATFormDataService
 __all__ = ['AutoRestSwaggerBATFormDataService']

@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiapi_service_client_async import MultiapiServiceClient
+from ._multiapi_service_client import MultiapiServiceClient
 __all__ = ['MultiapiServiceClient']

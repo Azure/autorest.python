@@ -20,8 +20,6 @@ def __init__(
     **kwargs  # type: Any
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
-{% set config_import = "._configuration_async" if async_mode else "._configuration" %}
-{% set operations_mixin_import = "._operations_mixin_async" if async_mode else "._operations_mixin" %}
 {% set pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient" %}
 {% set relative_path = ".." if async_mode else "." %}
 {% set def = "async def" if async_mode else "def" %}
@@ -44,8 +42,8 @@ from msrest import Serializer, Deserializer
 
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
-from {{ config_import }} import {{ client_name }}Configuration
-{% if mixin_operations %}from {{ operations_mixin_import }} import {{ client_name }}OperationsMixin{% endif %}
+from ._configuration import {{ client_name }}Configuration
+{% if mixin_operations %}from ._operations_mixin import {{ client_name }}OperationsMixin{% endif %}
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
@@ -142,14 +140,14 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
         """Instance depends on the API version:
 
         {% for api in available_apis | sort %}
-           * {{ mod_to_api_version[api[0]] }}: :class:`{{ api[1] }}<{{ module_name }}.{{ api[0] }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }}.{{ api[1] }}>`
+           * {{ mod_to_api_version[api[0]] }}: :class:`{{ api[1] }}<{{ module_name }}.{{ api[0] }}{{ ".aio" if async_mode else "" }}.operations.{{ api[1] }}>`
         {% endfor %}
         """
         api_version = self._get_api_version('{{ operation_group }}')
         {% for api in available_apis | sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api[0]] }}':
-            from {{ relative_path }}{{ api[0] }}.{{ "aio." if async_mode else "" }}operations{{ "_async" if async_mode else "" }} import {{ api[1] }} as OperationClass
+            from {{ relative_path }}{{ api[0] }}.{{ "aio." if async_mode else "" }}operations import {{ api[1] }} as OperationClass
         {% endfor %}
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
