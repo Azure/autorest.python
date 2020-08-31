@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_bat_byte_service_async import AutoRestSwaggerBATByteService
+from ._auto_rest_swagger_bat_byte_service import AutoRestSwaggerBATByteService
 __all__ = ['AutoRestSwaggerBATByteService']

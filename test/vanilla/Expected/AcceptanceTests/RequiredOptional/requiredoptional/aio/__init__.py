@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_required_optional_test_service_async import AutoRestRequiredOptionalTestService
+from ._auto_rest_required_optional_test_service import AutoRestRequiredOptionalTestService
 __all__ = ['AutoRestRequiredOptionalTestService']

@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_ba_tdictionary_service_async import AutoRestSwaggerBATDictionaryService
+from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATDictionaryService
 __all__ = ['AutoRestSwaggerBATDictionaryService']

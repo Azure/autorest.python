@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_head_exception_test_service_async import AutoRestHeadExceptionTestService
+from ._auto_rest_head_exception_test_service import AutoRestHeadExceptionTestService
 __all__ = ['AutoRestHeadExceptionTestService']

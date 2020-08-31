@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_validation_test_async import AutoRestValidationTest
+from ._auto_rest_validation_test import AutoRestValidationTest
 __all__ = ['AutoRestValidationTest']

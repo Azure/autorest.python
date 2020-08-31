@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._additional_properties_client_async import AdditionalPropertiesClient
+from ._additional_properties_client import AdditionalPropertiesClient
 __all__ = ['AdditionalPropertiesClient']

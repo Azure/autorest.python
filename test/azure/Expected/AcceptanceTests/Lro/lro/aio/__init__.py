@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_long_running_operation_test_service_async import AutoRestLongRunningOperationTestService
+from ._auto_rest_long_running_operation_test_service import AutoRestLongRunningOperationTestService
 __all__ = ['AutoRestLongRunningOperationTestService']

@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_parameter_flattening_async import AutoRestParameterFlattening
+from ._auto_rest_parameter_flattening import AutoRestParameterFlattening
 __all__ = ['AutoRestParameterFlattening']

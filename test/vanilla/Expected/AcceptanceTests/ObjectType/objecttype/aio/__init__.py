@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._object_type_client_async import ObjectTypeClient
+from ._object_type_client import ObjectTypeClient
 __all__ = ['ObjectTypeClient']

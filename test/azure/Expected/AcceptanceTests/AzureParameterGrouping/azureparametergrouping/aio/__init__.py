@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_parameter_grouping_test_service_async import AutoRestParameterGroupingTestService
+from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService
 __all__ = ['AutoRestParameterGroupingTestService']
