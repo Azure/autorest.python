@@ -8,7 +8,7 @@
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -62,6 +62,7 @@ class PetOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Pet"]]
         error_map = {
+            401: ClientAuthenticationError,
             409: ResourceExistsError,
             400: HttpResponseError,
             404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
@@ -120,6 +121,7 @@ class PetOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction"]
         error_map = {
+            401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),

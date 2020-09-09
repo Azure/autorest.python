@@ -20,6 +20,7 @@ Modelerfour version: 4.15.410
 
 **New Features**
 
+- Add mapping of 401 to `ClientAuthenticationError` for default error map  #763
 - Updated minimum `azure-core` version to 1.8.0  #747
 - Updated minimum `msrest` version to 0.6.18  #747
 - Support for `multipart/form-data`  #746

@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from itertools import chain
 import logging
 from typing import cast, Dict, List, Any, Optional, Union, Set, TypeVar
 
@@ -238,6 +239,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     @property
     def status_code_exceptions(self) -> List[SchemaResponse]:
         return [excp for excp in self.exceptions if list(excp.status_codes) != ["default"]]
+
+    @property
+    def status_code_exceptions_status_codes(self) -> List[Union[str, int]]:
+        """Actually returns all of the status codes from exceptions (besides default)"""
+        return list(chain.from_iterable([
+            excp.status_codes for excp in self.status_code_exceptions
+        ]))
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = FileImport()
