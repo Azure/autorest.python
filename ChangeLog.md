@@ -14,6 +14,8 @@ Modelerfour version: 4.15.416
 - Updated minimum `azure-core` version to 1.8.0  #747
 - Updated minimum `msrest` version to 0.6.18  #747
 - Support for `multipart/form-data`  #746
+- Better `NotImplementedError` thrown in multiapi case. Includes the name of the operation and operation group
+in error that is thrown when an API version does not have that operation / operation group  #752
 
 **Bug fixes**
 

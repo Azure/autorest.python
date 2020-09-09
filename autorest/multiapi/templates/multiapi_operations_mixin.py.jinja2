@@ -27,7 +27,7 @@ class {{ client_name }}OperationsMixin(object):
             from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations import {{ client_name }}OperationsMixin as OperationClass
         {% endfor %}
         else:
-            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+            raise NotImplementedError("API version {} does not have operation '{{ operation_name }}'".format(api_version))
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config
