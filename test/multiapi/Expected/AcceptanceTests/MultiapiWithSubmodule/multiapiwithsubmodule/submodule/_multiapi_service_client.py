@@ -94,7 +94,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         elif api_version == '3.0.0':
             from .v3 import models
             return models
-        raise NotImplementedError("API version {} is not available".format(api_version))
+        raise ValueError("API version {} is not available".format(api_version))
 
     @property
     def operation_group_one(self):
@@ -112,7 +112,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         elif api_version == '3.0.0':
             from .v3.operations import OperationGroupOneOperations as OperationClass
         else:
-            raise NotImplementedError("API version {} does not have operation group 'operation_group_one'".format(api_version))
+            raise ValueError("API version {} does not have operation group 'operation_group_one'".format(api_version))
         return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
 
     @property
@@ -128,7 +128,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         elif api_version == '3.0.0':
             from .v3.operations import OperationGroupTwoOperations as OperationClass
         else:
-            raise NotImplementedError("API version {} does not have operation group 'operation_group_two'".format(api_version))
+            raise ValueError("API version {} does not have operation group 'operation_group_two'".format(api_version))
         return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
 
     def close(self):

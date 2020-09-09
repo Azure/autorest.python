@@ -102,7 +102,7 @@ class NotTested(object):
 
         @pytest.mark.parametrize('api_version', ["3.0.0"])
         def test_specify_api_version_with_no_mixin(self, client):
-            with pytest.raises(NotImplementedError):
+            with pytest.raises(ValueError):
                 client.test_one(id=1, message="This should throw")
 
         # OPERATION GROUP ONE
