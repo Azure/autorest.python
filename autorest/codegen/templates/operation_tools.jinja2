@@ -36,10 +36,10 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% macro error_map(operation, code_model) %}
 {%if operation.status_code_exceptions %}
 error_map = {
-    {% if not [404] in operation.status_code_exceptions | map(attribute='status_codes') %}
+    {% if not 404 in operation.status_code_exceptions_status_codes %}
     404: ResourceNotFoundError,
     {% endif %}
-    {% if not [409] in operation.status_code_exceptions | map(attribute='status_codes') %}
+    {% if not 409 in operation.status_code_exceptions_status_codes %}
     409: ResourceExistsError,
     {% endif %}
 {% for excep in operation.status_code_exceptions %}
