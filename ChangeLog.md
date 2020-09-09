@@ -5,6 +5,10 @@ Autorest Core version: 3.0.6306
 
 Modelerfour version: 4.15.416
 
+**Breaking Changes**
+
+- Raise `ValueError` instead of `NotImplementedError` if API version code doesn't exist  #764
+
 ### 2020-08-31 - 5.2.0-preview.1
 Autorest Core version: 3.0.6306
 

@@ -45,7 +45,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if api_version == '1.0.0':
             from ..v1.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
-            raise NotImplementedError("API version {} does not have operation 'begin_test_lro'".format(api_version))
+            raise ValueError("API version {} does not have operation 'begin_test_lro'".format(api_version))
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config
@@ -79,7 +79,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if api_version == '1.0.0':
             from ..v1.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
-            raise NotImplementedError("API version {} does not have operation 'begin_test_lro_and_paging'".format(api_version))
+            raise ValueError("API version {} does not have operation 'begin_test_lro_and_paging'".format(api_version))
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config
@@ -110,7 +110,7 @@ class MultiapiServiceClientOperationsMixin(object):
         elif api_version == '2.0.0':
             from ..v2.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
-            raise NotImplementedError("API version {} does not have operation 'test_one'".format(api_version))
+            raise ValueError("API version {} does not have operation 'test_one'".format(api_version))
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config
@@ -133,7 +133,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if api_version == '3.0.0':
             from ..v3.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
-            raise NotImplementedError("API version {} does not have operation 'test_paging'".format(api_version))
+            raise ValueError("API version {} does not have operation 'test_paging'".format(api_version))
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config

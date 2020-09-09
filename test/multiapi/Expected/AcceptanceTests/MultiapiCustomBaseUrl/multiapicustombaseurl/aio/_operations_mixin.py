@@ -40,7 +40,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         elif api_version == '2.0.0':
             from ..v2.aio.operations import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
         else:
-            raise NotImplementedError("API version {} does not have operation 'test'".format(api_version))
+            raise ValueError("API version {} does not have operation 'test'".format(api_version))
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config
