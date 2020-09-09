@@ -1,9 +1,14 @@
 # Change Log
 
-### 2020-08-31 - 5.2.0-preview.1
+### 2020-xx-xx - 5.2.0-preview.2
 Autorest Core version: 3.0.6306
 
 Modelerfour version: 4.15.416
+
+### 2020-08-31 - 5.2.0-preview.1
+Autorest Core version: 3.0.6306
+
+Modelerfour version: 4.15.410
 
 **Breaking Changes**
 
@@ -14,8 +19,6 @@ Modelerfour version: 4.15.416
 - Updated minimum `azure-core` version to 1.8.0  #747
 - Updated minimum `msrest` version to 0.6.18  #747
 - Support for `multipart/form-data`  #746
-- Better `NotImplementedError` thrown in multiapi case. Includes the name of the operation and operation group
-in error that is thrown when an API version does not have that operation / operation group  #752
 
 **Bug fixes**
 
