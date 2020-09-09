@@ -1,8 +1,13 @@
 # Change Log
 
-### 2020-xx-xx - 5.1.0-preview.8
-Autorest Core version: 3.0.6302
-Modelerfour version: 4.15.400
+### 2020-08-31 - 5.2.0-preview.1
+Autorest Core version: 3.0.6306
+
+Modelerfour version: 4.15.416
+
+**Breaking Changes**
+
+- Removed the `_async` suffix from async files  #759
 
 **New Features**
 

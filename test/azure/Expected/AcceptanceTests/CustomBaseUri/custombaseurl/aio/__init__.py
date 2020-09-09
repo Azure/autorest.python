@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_parameterized_host_test_client_async import AutoRestParameterizedHostTestClient
+from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
 __all__ = ['AutoRestParameterizedHostTestClient']

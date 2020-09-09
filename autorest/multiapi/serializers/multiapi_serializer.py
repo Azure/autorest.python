@@ -17,7 +17,7 @@ class MultiAPISerializer:
         self.conf = conf
         self.async_mode = async_mode
         self._autorestapi = autorestapi
-        self.service_client_filename = service_client_filename + "_async" if async_mode else service_client_filename
+        self.service_client_filename = service_client_filename
         self.env = Environment(
             loader=PackageLoader("autorest.multiapi", "templates"),
             keep_trailing_newline=True,
@@ -41,13 +41,13 @@ class MultiAPISerializer:
             self.serialize_multiapi_client()
         )
 
-        configuration_filename = "_configuration_async.py" if self.async_mode else "_configuration.py"
+        configuration_filename = "_configuration.py"
         self._autorestapi.write_file(
             self._get_file_path(configuration_filename),
             self.serialize_multiapi_config()
         )
 
-        operation_mixins_filename = "_operations_mixin_async.py" if self.async_mode else "_operations_mixin.py"
+        operation_mixins_filename = "_operations_mixin.py"
         if self.conf["mixin_operations"]:
             self._autorestapi.write_file(
                 self._get_file_path(operation_mixins_filename),

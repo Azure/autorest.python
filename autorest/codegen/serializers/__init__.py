@@ -98,7 +98,7 @@ class JinjaSerializer:
         if not code_model.options["no_async"]:
             operations_async_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=True)
             self._autorestapi.write_file(
-                namespace_path / Path("aio") / Path(f"operations_async") / Path("__init__.py"),
+                namespace_path / Path("aio") / Path(f"operations") / Path("__init__.py"),
                 operations_async_init_serializer.serialize(),
             )
 
@@ -108,7 +108,7 @@ class JinjaSerializer:
                 code_model=code_model, env=env, operation_group=operation_group, async_mode=False
             )
             self._autorestapi.write_file(
-                namespace_path / Path(f"operations") / Path(f"{operation_group.get_filename(async_mode=False)}.py"),
+                namespace_path / Path(f"operations") / Path(f"{operation_group.filename}.py"),
                 operation_group_serializer.serialize(),
             )
 
@@ -121,8 +121,8 @@ class JinjaSerializer:
                     (
                         namespace_path
                         / Path("aio")
-                        / Path(f"operations_async")
-                        / Path(f"{operation_group.get_filename(async_mode=True)}.py")
+                        / Path(f"operations")
+                        / Path(f"{operation_group.filename}.py")
                     ),
                     operation_group_async_serializer.serialize(),
                 )
@@ -193,13 +193,13 @@ class JinjaSerializer:
 
         # Write the service client
         self._autorestapi.write_file(
-            aio_path / Path(f"_{code_model.module_name}_async.py"),
+            aio_path / Path(f"_{code_model.module_name}.py"),
             aio_general_serializer.serialize_service_client_file(),
         )
 
         # Write the config file
         self._autorestapi.write_file(
-            aio_path / Path("_configuration_async.py"), aio_general_serializer.serialize_config_file()
+            aio_path / Path("_configuration.py"), aio_general_serializer.serialize_config_file()
         )
 
     def _serialize_and_write_metadata(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:

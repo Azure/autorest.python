@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._media_types_client_async import MediaTypesClient
+from ._media_types_client import MediaTypesClient
 __all__ = ['MediaTypesClient']

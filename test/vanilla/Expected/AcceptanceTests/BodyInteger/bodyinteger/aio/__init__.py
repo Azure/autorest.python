@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_integer_test_service_async import AutoRestIntegerTestService
+from ._auto_rest_integer_test_service import AutoRestIntegerTestService
 __all__ = ['AutoRestIntegerTestService']

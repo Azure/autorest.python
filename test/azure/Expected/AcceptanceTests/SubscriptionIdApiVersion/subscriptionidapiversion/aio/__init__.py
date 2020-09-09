@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._microsoft_azure_test_url_async import MicrosoftAzureTestUrl
+from ._microsoft_azure_test_url import MicrosoftAzureTestUrl
 __all__ = ['MicrosoftAzureTestUrl']

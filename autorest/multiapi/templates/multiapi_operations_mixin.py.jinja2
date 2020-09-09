@@ -24,7 +24,7 @@ class {{ client_name }}OperationsMixin(object):
         {% for api in metadata['available_apis']|sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api] }}':
-            from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }} import {{ client_name }}OperationsMixin as OperationClass
+            from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations import {{ client_name }}OperationsMixin as OperationClass
         {% endfor %}
         else:
             raise NotImplementedError("API version {} does not have operation '{{ operation_name }}'".format(api_version))
