@@ -45,7 +45,7 @@ class DurationOperations:
     async def get_null(
         self,
         **kwargs
-    ) -> datetime.timedelta:
+    ) -> Optional[datetime.timedelta]:
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +53,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[datetime.timedelta]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
