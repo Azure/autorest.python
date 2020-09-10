@@ -6,21 +6,43 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from enum import Enum, EnumMeta
+from six import with_metaclass
 
-class CMYKColors(str, Enum):
+class _CaseInsensitiveEnumMeta(EnumMeta):
+    def __getitem__(self, name):
+        return super().__getitem__(name.upper())
 
-    cyan = "cyan"
-    magenta = "Magenta"
-    yellow = "YELLOW"
-    blac_k = "blacK"
+    def __getattr__(cls, name):
+        """Return the enum member matching `name`
+        We use __getattr__ instead of descriptors or inserting into the enum
+        class' __dict__ in order to support `name` and `value` being both
+        properties for enum members (which live in the class' __dict__) and
+        enum members themselves.
+        """
+        try:
+            return cls._member_map_[name.upper()]
+        except KeyError:
+            raise AttributeError(name)
 
-class GoblinSharkColor(str, Enum):
+
+class CMYKColors(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    CYAN = "cyan"
+    MAGENTA = "Magenta"
+    YELLOW = "YELLOW"
+    BLAC_K = "blacK"
+
+class GoblinSharkColor(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """Colors possible
     """
 
-    pink = "pink"
-    gray = "gray"
-    brown = "brown"
-    upper_red = "RED"  #: Uppercase RED.
-    lower_red = "red"  #: Lowercase RED.
+    PINK = "pink"
+    GRAY = "gray"
+    BROWN = "brown"
+    UPPER_RED = "RED"  #: Uppercase RED.
+    LOWER_RED = "red"  #: Lowercase RED.
+
+class MyKind(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    KIND1 = "Kind1"

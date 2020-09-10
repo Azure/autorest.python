@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-    from azure.core.credentials import TokenCredential
+    from azure.core.credentials import AzureKeyCredential
 
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin
@@ -29,14 +29,14 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapicredentialdefaultpolicy.v1.operations.OperationGroupOneOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     :param str base_url: Service URL
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
+        credential,  # type: AzureKeyCredential
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):

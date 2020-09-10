@@ -28,9 +28,9 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 pass-thru:
   - model-deduplicator
   - subset-reducer
-# version: 3.0.6258
+version: ~3.0.6306
 use-extension:
-  "@autorest/modelerfour": "4.14.371"
+  "@autorest/modelerfour": 4.15.416
 
 modelerfour:
   group-parameters: true
@@ -45,7 +45,7 @@ modelerfour:
     operation: snakecase
     operationGroup:  pascalcase
     choice:  pascalcase
-    choiceValue:  snakecase
+    choiceValue:  uppercase
     constant:  snakecase
     constantParameter:  snakecase
     type:  pascalcase

@@ -56,11 +56,11 @@ class ParameterList(MutableSequence):
         return self.has_any_location(ParameterLocation.Body)
 
     @property
-    def body(self) -> Parameter:
+    def body(self) -> List[Parameter]:
         if not self.has_body:
             raise ValueError(f"Can't get body parameter")
         # Should we check if there is two body? Modeler role right?
-        return self.get_from_location(ParameterLocation.Body)[0]
+        return self.get_from_location(ParameterLocation.Body)
 
     @property
     def path(self) -> List[Parameter]:
@@ -140,5 +140,5 @@ class ParameterList(MutableSequence):
             for param in parameters if param.target_property_name
             ]
         )
-        object_schema = cast(ObjectSchema, self.body.schema)
-        return f"{self.body.serialized_name} = models.{object_schema.name}({parameter_string})"
+        object_schema = cast(ObjectSchema, self.body[0].schema)
+        return f"{self.body[0].serialized_name} = models.{object_schema.name}({parameter_string})"

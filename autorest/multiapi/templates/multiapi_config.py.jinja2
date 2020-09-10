@@ -31,6 +31,9 @@ from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+{% if azure_arm %}
+from azure.mgmt.core.policies import ARMHttpLoggingPolicy
+{% endif %}
 
 from {{ version_import }} import VERSION
 
@@ -50,7 +53,9 @@ class {{ client_name }}Configuration(Configuration):
     """
 
     {{ method_signature()|indent }}
+        {% if not async_mode %}
         # type: (...) -> None
+        {% endif %}
 {% for serialized_name, gp_dict in global_parameters_method.items() %}
     {% if gp_dict["required"] %}
         if {{ serialized_name }} is None:
@@ -68,8 +73,7 @@ class {{ client_name }}Configuration(Configuration):
     {% endfor %}
 {% endif %}
 {% if config["credential_scopes"] is not none %}
-        self.credential_scopes = {{ config['credential_scopes'] }}
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ config['credential_scopes'] }})
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ package_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)
@@ -85,6 +89,7 @@ class {{ client_name }}Configuration(Configuration):
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.http_logging_policy = kwargs.get('http_logging_policy') or {{ "ARM" if azure_arm else "policies." }}HttpLoggingPolicy(**kwargs)
         self.retry_policy = kwargs.get('retry_policy') or policies.{{ async_prefix }}RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ async_prefix }}RedirectPolicy(**kwargs)
@@ -97,6 +102,6 @@ class {{ client_name }}Configuration(Configuration):
         {% endif %}
         if self.credential and not self.authentication_policy:
             {% set credential_default_policy_type = ("Async" if (async_mode and config['credential_default_policy_type_has_async_version']) else "") + config['credential_default_policy_type'] %}
-            {% set bearer_token_specific_params = "*self.credential_scopes, " %}
-            self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ bearer_token_specific_params if "BearerTokenCredentialPolicy" in credential_default_policy_type }}**kwargs)
+            {% set credential_param_type = ("'" + config['credential_key_header_name'] + "', ") if config['credential_key_header_name'] else ("*self.credential_scopes, " if "BearerTokenCredentialPolicy" in credential_default_policy_type else "") %}
+            self.authentication_policy = policies.{{ credential_default_policy_type }}(self.credential, {{ credential_param_type if credential_param_type }}**kwargs)
         {% endif %}

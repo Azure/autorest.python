@@ -1,7 +1,84 @@
 # Change Log
 
-### Unreleased
-Modelerfour version: 4.14.371
+### 2020-xx-xx - 5.2.0-preview.2
+Autorest Core version: 3.0.6306
+
+Modelerfour version: 4.15.416
+
+**Breaking Changes**
+
+- Raise `ValueError` instead of `NotImplementedError` if API version code doesn't exist  #764
+
+**New Features**
+
+- Add whether a schema is nullable to the validation map  #587
+
+### 2020-08-31 - 5.2.0-preview.1
+Autorest Core version: 3.0.6306
+
+Modelerfour version: 4.15.410
+
+**Breaking Changes**
+
+- Removed the `_async` suffix from async files  #759
+
+**New Features**
+
+- Add mapping of 401 to `ClientAuthenticationError` for default error map  #763
+- Updated minimum `azure-core` version to 1.8.0  #747
+- Updated minimum `msrest` version to 0.6.18  #747
+- Support for `multipart/form-data`  #746
+
+**Bug fixes**
+
+- Fix "multi" in Swagger (will generate correctly multiple query param now)
+
+### 2020-08-07 - 5.1.0-preview.7
+Autorest Core version: 3.0.6302
+Modelerfour version: 4.15.400
+
+**New Features**
+
+- Add `azure-mgmt-core` as a dependency in the generated setup.py file  #738
+- Correct typing for `credential` when default credential policy type is `AzureKeyCredentialPolicy`  #744
+- Replace instead of extending `credential_scopes` if user has inputted their own  #745
+
+### 2020-08-04 - 5.1.0-preview.6
+Autorest Core version: 3.0.6287
+Modelerfour version: 4.15.378
+
+**New Features**
+
+- Add support for `x-ms-text` XML extension  #722
+- Allow users to pass the name of the key header for `AzureKeyCredentialPolicy` during generation. To use, pass in
+`AzureKeyCredentialPolicy` with the `--credential-default-policy-type` flag, and pass in the key header name using
+the `--credential-key-header-name` flag  #736
+
+**Bug Fixes**
+
+- Fix duplicate type signatures in multiapi async config file  #727
+- Allowing single quote in regexp  #726
+
+### 2020-06-23 - 5.1.0-preview.5
+Autorest Core version: 3.0.6287
+Modelerfour version: 4.15.378
+
+**Bug Fixes**
+
+- Correctly have default behavior of csv for array query parameters when collection format is not specified in the swagger
+(taken from m4 update - perks PR #118)
+- Fix bug when generating parameters with client default value and constant schema  #707
+- Make operation mixin signatures for multiapi default to default api version  #715
+- Fix name in setup.py to default to `package-name` if set  #721
+- Allow different custom base url host templates across API versions  #719
+
+### 2020-07-07 - 5.1.0-preview.4
+Modelerfour version: 4.15.378
+
+**New Features**
+
+- Enum values are uppercase (with an alias from the lowercase version)  #692
+- Add `http_logging_policy` setting for config, and users can override the default by passing in the kwarg `http_logging_policy`  #698
 
 ### 2020-06-24 - 5.1.0-preview.3
 Modelerfour version: 4.13.351
@@ -17,6 +94,11 @@ generated library will use that auth policy unless they pass in a separate one t
 **Bug Fixes**
 
 - Fix typing for discriminator values in models, so Python 3.5 can import py3 file for models  #691
+
+**Bug Fixes**
+
+- Make enum names all upper case. This fixes issues that arise if the name of an enum is also a method that can be applied to, say, a string.
+For example, if an enum's name is count. Made sure this fix will not break users currently accessing with lower case enum names  #692
 
 ### 2020-06-08 - 5.1.0-preview.2
 Modelerfour version: 4.13.351

@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_report_service_for_azure_async import AutoRestReportServiceForAzure
+from ._auto_rest_report_service_for_azure import AutoRestReportServiceForAzure
 __all__ = ['AutoRestReportServiceForAzure']

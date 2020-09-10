@@ -30,12 +30,11 @@ class ConstantSchema(BaseSchema):
         self.schema = schema
 
     def get_declaration(self, value: Any):
-        raise TypeError("Should not call get_declaration on a ConstantSchema. Use the constant_value property instead")
-
-    @property
-    def constant_value(self) -> str:
-        """This string is used directly in template, as-is
-        """
+        if value != self.value:
+            _LOGGER.warning(
+                "Passed in value of %s differs from constant value of %s. Choosing constant value",
+                str(value), str(self.value)
+            )
         if self.value is None:
             return "None"
         return self.schema.get_declaration(self.value)

@@ -41,20 +41,20 @@ class TestNonStringEnums(object):
 
     @pytest.mark.asyncio
     async def test_put_int_enum(self, client):
-        result = await client.int.put(IntEnum.two_hundred)
+        result = await client.int.put(IntEnum.TWO_HUNDRED)
         assert result == "Nice job posting an int enum"
 
     @pytest.mark.asyncio
     async def test_get_int_enum(self, client):
         result = await client.int.get()
-        assert result == IntEnum.four_hundred_twenty_nine.value
+        assert result == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
 
     @pytest.mark.asyncio
     async def test_put_float_enum(self, client):
-        result = await client.float.put(FloatEnum.two_hundred4)
+        result = await client.float.put(FloatEnum.TWO_HUNDRED4)
         assert result == "Nice job posting a float enum"
 
     @pytest.mark.asyncio
     async def test_get_float_enum(self, client):
         result = await client.float.get()
-        assert result == FloatEnum.four_hundred_twenty_nine1.value
+        assert result == FloatEnum.FOUR_HUNDRED_TWENTY_NINE1.value

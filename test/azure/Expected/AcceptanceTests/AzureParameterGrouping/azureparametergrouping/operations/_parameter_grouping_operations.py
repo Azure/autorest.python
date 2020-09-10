@@ -8,7 +8,7 @@
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -61,7 +61,9 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
         error_map.update(kwargs.pop('error_map', {}))
         
         _custom_header = None
@@ -74,6 +76,7 @@ class ParameterGroupingOperations(object):
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
         content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
 
         # Construct URL
         url = self.post_required.metadata['url']  # type: ignore
@@ -92,12 +95,12 @@ class ParameterGroupingOperations(object):
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body, 'int')
         body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -128,7 +131,9 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
         error_map.update(kwargs.pop('error_map', {}))
         
         _custom_header = None
@@ -136,6 +141,7 @@ class ParameterGroupingOperations(object):
         if parameter_grouping_post_optional_parameters is not None:
             _custom_header = parameter_grouping_post_optional_parameters.custom_header
             _query = parameter_grouping_post_optional_parameters.query
+        accept = "application/json"
 
         # Construct URL
         url = self.post_optional.metadata['url']  # type: ignore
@@ -149,6 +155,7 @@ class ParameterGroupingOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -184,7 +191,9 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
         error_map.update(kwargs.pop('error_map', {}))
         
         _header_one = None
@@ -197,6 +206,7 @@ class ParameterGroupingOperations(object):
         if parameter_grouping_post_multi_param_groups_second_param_group is not None:
             _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
+        accept = "application/json"
 
         # Construct URL
         url = self.post_multi_param_groups.metadata['url']  # type: ignore
@@ -214,6 +224,7 @@ class ParameterGroupingOperations(object):
             header_parameters['header-one'] = self._serialize.header("header_one", _header_one, 'str')
         if _header_two is not None:
             header_parameters['header-two'] = self._serialize.header("header_two", _header_two, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -246,7 +257,9 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
         error_map.update(kwargs.pop('error_map', {}))
         
         _header_one = None
@@ -254,6 +267,7 @@ class ParameterGroupingOperations(object):
         if first_parameter_group is not None:
             _header_one = first_parameter_group.header_one
             _query_one = first_parameter_group.query_one
+        accept = "application/json"
 
         # Construct URL
         url = self.post_shared_parameter_group_object.metadata['url']  # type: ignore
@@ -267,6 +281,7 @@ class ParameterGroupingOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         if _header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", _header_one, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

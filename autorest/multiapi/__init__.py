@@ -124,6 +124,20 @@ def _build_last_rt_list(
         last_rt_list[operation] = local_last_api_version
     return last_rt_list
 
+def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
+    version = metadata_json['chosen_version']
+    total_api_version_list = metadata_json['total_api_version_list']
+    if not version:
+        if total_api_version_list:
+            sys.exit(
+                f"Unable to match {total_api_version_list} to label {version_path.stem}"
+            )
+        else:
+            sys.exit(
+                f"Unable to extract api version of {version_path.stem}"
+            )
+    return version
+
 class MultiAPI:
     def __init__(
         self,
@@ -155,7 +169,36 @@ class MultiAPI:
                 paths_to_versions.append(Path(child.stem))
         return paths_to_versions
 
-    def _build_operation_mixin_meta(self, paths_to_versions: List[Path]) -> Dict[str, Dict[str, Dict[str, Any]]]:
+    def _make_signature_of_mixin_based_on_default_api_version(
+        self,
+        mixin_operations: Dict[str, Dict[str, Dict[str, Any]]],
+        last_api_version_path: Path
+    ) -> Dict[str, Dict[str, Dict[str, Any]]]:
+        metadata_json = json.loads(self._autorestapi.read_file(last_api_version_path / "_metadata.json"))
+        if not metadata_json.get('operation_mixins'):
+            return mixin_operations
+        for func_name, func in metadata_json['operation_mixins'].items():
+            if func_name.startswith("_"):
+                continue
+
+            mixin_operations.setdefault(func_name, {}).setdefault('sync', {})
+            mixin_operations.setdefault(func_name, {}).setdefault('async', {})
+            mixin_operations[func_name]['sync'].update({
+                "signature": func['sync']['signature'],
+                "doc": func['sync']['doc'],
+                "call": func['call']
+            })
+            mixin_operations[func_name]['async'].update({
+                "signature": func['async']['signature'],
+                "coroutine": func['async']['coroutine'],
+                "doc": func['async']['doc'],
+                "call": func['call']
+            })
+        return mixin_operations
+
+    def _build_operation_mixin_meta(
+        self, paths_to_versions: List[Path], last_api_version: str
+    ) -> Dict[str, Dict[str, Dict[str, Any]]]:
         """Introspect the client:
 
         version_dict => {
@@ -198,8 +241,25 @@ class MultiAPI:
                     "available_apis", []
                 ).append(version_path.name)
 
+        # make sure that the signature, doc, call, and coroutine is based off of the default api version,
+        # if the default api version has a definition for it.
+        # will hopefully get this removed once we deal with mixin operations with different signatures
+        # for different api versions
+        last_api_version_path = [
+            version_path for version_path in paths_to_versions if version_path.name == last_api_version
+        ][0]
+        return self._make_signature_of_mixin_based_on_default_api_version(mixin_operations, last_api_version_path)
 
-        return mixin_operations
+    def _build_custom_base_url_to_api_version(
+        self, paths_to_versions: List[Path]
+    ) -> Dict[str, List[str]]:
+        custom_base_url_to_api_version: Dict[str, List[str]] = {}
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            custom_base_url = metadata_json["client"]["custom_base_url"]
+            version = _extract_version(metadata_json, version_path)
+            custom_base_url_to_api_version.setdefault(custom_base_url, []).append(version)
+        return custom_base_url_to_api_version
 
     def _build_operation_meta(
         self, paths_to_versions: List[Path]
@@ -218,17 +278,7 @@ class MultiAPI:
         for version_path in paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
             operation_groups = metadata_json['operation_groups']
-            version = metadata_json['chosen_version']
-            total_api_version_list = metadata_json['total_api_version_list']
-            if not version:
-                if total_api_version_list:
-                    sys.exit(
-                        f"Unable to match {total_api_version_list} to label {version_path.stem}"
-                    )
-                else:
-                    sys.exit(
-                        f"Unable to extract api version of {version_path.stem}"
-                    )
+            version = _extract_version(metadata_json, version_path)
             mod_to_api_version[version_path.name] = version
             for operation_group, operation_group_class_name in operation_groups.items():
                 versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
@@ -261,6 +311,17 @@ class MultiAPI:
             imports.merge(current_version_imports)
 
         return imports
+
+    def _has_lro_operations(
+        self, paths_to_versions: List[Path]
+    ) -> bool:
+        has_lro_operations = False
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            current_client_has_lro_operations = metadata_json["client"]["has_lro_operations"]
+            if current_client_has_lro_operations:
+                has_lro_operations = True
+        return has_lro_operations
 
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
@@ -302,7 +363,7 @@ class MultiAPI:
 
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
-        mixin_operations = self._build_operation_mixin_meta(paths_to_versions)
+        mixin_operations = self._build_operation_mixin_meta(paths_to_versions, last_api_version)
 
         # get client name from default api version
         path_to_default_version = Path()
@@ -366,8 +427,9 @@ class MultiAPI:
             "sync_imports": str(FileImportSerializer(sync_imports, is_python_3_file=False)),
             "async_imports": str(FileImportSerializer(async_imports, is_python_3_file=True)),
             "base_url": metadata_json["client"]["base_url"],
-            "custom_base_url": metadata_json["client"]["custom_base_url"],
-            "azure_arm": metadata_json["client"]["azure_arm"]
+            "custom_base_url_to_api_version": self._build_custom_base_url_to_api_version(paths_to_versions),
+            "azure_arm": metadata_json["client"]["azure_arm"],
+            "has_lro_operations": self._has_lro_operations(paths_to_versions)
         }
 
         multiapi_serializer = MultiAPISerializer(

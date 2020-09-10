@@ -37,6 +37,7 @@ class ParameterStyle(Enum):
     json = "json"
     binary = "binary"
     xml = "xml"
+    multipart = "multipart"
 
 
 class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
@@ -54,6 +55,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         constraints: List[Any],
         target_property_name: Optional[Union[int, str]] = None,  # first uses id as placeholder
         style: Optional[ParameterStyle] = None,
+        explode: Optional[bool] = False,
         *,
         flattened: bool = False,
         grouped_by: Optional["Parameter"] = None,
@@ -72,6 +74,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.constraints = constraints
         self.target_property_name = target_property_name
         self.style = style
+        self.explode = explode
         self.flattened = flattened
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
@@ -131,7 +134,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             default_value_declaration = "None"
         else:
             if isinstance(self.schema, ConstantSchema):
-                default_value = self.schema.constant_value
+                default_value = self.schema.get_declaration(self.schema.value)
                 default_value_declaration = default_value
             else:
                 default_value = self.schema.default_value
@@ -194,6 +197,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             constraints=[],  # FIXME constraints
             target_property_name=id(yaml_data["targetProperty"]) if yaml_data.get("targetProperty") else None,
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
+            explode=http_protocol.get("explode", False),
             grouped_by=yaml_data.get("groupedBy", None),
             original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False),

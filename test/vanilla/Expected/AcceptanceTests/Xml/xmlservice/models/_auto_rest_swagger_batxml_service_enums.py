@@ -6,58 +6,76 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
+from enum import Enum, EnumMeta
+from six import with_metaclass
 
-class AccessTier(str, Enum):
+class _CaseInsensitiveEnumMeta(EnumMeta):
+    def __getitem__(self, name):
+        return super().__getitem__(name.upper())
 
-    p4 = "P4"
-    p6 = "P6"
-    p10 = "P10"
-    p20 = "P20"
-    p30 = "P30"
-    p40 = "P40"
-    p50 = "P50"
-    hot = "Hot"
-    cool = "Cool"
-    archive = "Archive"
+    def __getattr__(cls, name):
+        """Return the enum member matching `name`
+        We use __getattr__ instead of descriptors or inserting into the enum
+        class' __dict__ in order to support `name` and `value` being both
+        properties for enum members (which live in the class' __dict__) and
+        enum members themselves.
+        """
+        try:
+            return cls._member_map_[name.upper()]
+        except KeyError:
+            raise AttributeError(name)
 
-class ArchiveStatus(str, Enum):
 
-    rehydrate_pending_to_hot = "rehydrate-pending-to-hot"
-    rehydrate_pending_to_cool = "rehydrate-pending-to-cool"
+class AccessTier(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-class BlobType(str, Enum):
+    P4 = "P4"
+    P6 = "P6"
+    P10 = "P10"
+    P20 = "P20"
+    P30 = "P30"
+    P40 = "P40"
+    P50 = "P50"
+    HOT = "Hot"
+    COOL = "Cool"
+    ARCHIVE = "Archive"
 
-    block_blob = "BlockBlob"
-    page_blob = "PageBlob"
-    append_blob = "AppendBlob"
+class ArchiveStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-class CopyStatusType(str, Enum):
+    REHYDRATE_PENDING_TO_HOT = "rehydrate-pending-to-hot"
+    REHYDRATE_PENDING_TO_COOL = "rehydrate-pending-to-cool"
 
-    pending = "pending"
-    success = "success"
-    aborted = "aborted"
-    failed = "failed"
+class BlobType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-class LeaseDurationType(str, Enum):
+    BLOCK_BLOB = "BlockBlob"
+    PAGE_BLOB = "PageBlob"
+    APPEND_BLOB = "AppendBlob"
 
-    infinite = "infinite"
-    fixed = "fixed"
+class CopyStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-class LeaseStateType(str, Enum):
+    PENDING = "pending"
+    SUCCESS = "success"
+    ABORTED = "aborted"
+    FAILED = "failed"
 
-    available = "available"
-    leased = "leased"
-    expired = "expired"
-    breaking = "breaking"
-    broken = "broken"
+class LeaseDurationType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-class LeaseStatusType(str, Enum):
+    INFINITE = "infinite"
+    FIXED = "fixed"
 
-    locked = "locked"
-    unlocked = "unlocked"
+class LeaseStateType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-class PublicAccessType(str, Enum):
+    AVAILABLE = "available"
+    LEASED = "leased"
+    EXPIRED = "expired"
+    BREAKING = "breaking"
+    BROKEN = "broken"
 
-    container = "container"
-    blob = "blob"
+class LeaseStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    LOCKED = "locked"
+    UNLOCKED = "unlocked"
+
+class PublicAccessType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    CONTAINER = "container"
+    BLOB = "blob"

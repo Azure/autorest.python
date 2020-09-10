@@ -10,7 +10,8 @@
         {% set base_url =  code_model.base_url if code_model.base_url else ('https://management.azure.com' if code_model.options["azure_arm"] else None )%}
         "base_url": {{ (keywords.escape_str(base_url) if base_url else None) | tojson }},
         "custom_base_url": {{ (keywords.escape_str(code_model.custom_base_url) if code_model.custom_base_url else None) | tojson }},
-        "azure_arm": {{ code_model.options["azure_arm"]  | tojson }}
+        "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
+        "has_lro_operations": {{ code_model.has_lro_operations | tojson }}
     },
     "global_parameters": {
         "sync_method": {
@@ -36,7 +37,7 @@
         "constant": {
             {% for gp in code_model.global_parameters.constant %}
             {% if gp.serialized_name != "api_version" %}
-            {{ gp.serialized_name | tojson }}: {{ gp.schema.constant_value | tojson }}{{ "," if not loop.last else "" }}
+            {{ gp.serialized_name | tojson }}: {{ gp.schema.get_declaration(gp.schema.value) | tojson }}{{ "," if not loop.last else "" }}
             {% endif %}
             {% endfor %}
         },
@@ -46,7 +47,8 @@
         "credential": {{ code_model.options['credential'] | tojson }},
         "credential_scopes": {{ code_model.options['credential_scopes'] | tojson }},
         "credential_default_policy_type": {{ code_model.options['credential_default_policy_type'] | tojson }},
-        "credential_default_policy_type_has_async_version": {{ code_model.options['credential_default_policy_type_has_async_version'] | tojson }}
+        "credential_default_policy_type_has_async_version": {{ code_model.options['credential_default_policy_type_has_async_version'] | tojson }},
+        "credential_key_header_name": {{ code_model.options['credential_key_header_name'] | tojson }}
     },
     "operation_groups": {
         {% for operation_group in code_model.operation_groups %}

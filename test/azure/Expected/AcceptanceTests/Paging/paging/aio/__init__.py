@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_paging_test_service_async import AutoRestPagingTestService
+from ._auto_rest_paging_test_service import AutoRestPagingTestService
 __all__ = ['AutoRestPagingTestService']

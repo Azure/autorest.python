@@ -82,7 +82,7 @@ class NameConverter:
     def _convert_enum_schema(schema: Dict[str, Any]) -> None:
         NameConverter._convert_language_default_pascal_case(schema)
         for choice in schema["choices"]:
-            NameConverter._convert_language_default_python_case(choice, pad_string=PadType.Enum)
+            NameConverter._convert_language_default_python_case(choice, pad_string=PadType.Enum, all_upper=True)
 
     @staticmethod
     def _convert_object_schema(schema: Dict[str, Any]) -> None:
@@ -98,8 +98,20 @@ class NameConverter:
             NameConverter._convert_language_default_python_case(schema=prop, pad_string=PadType.Property)
 
     @staticmethod
+    def _is_schema_an_m4_header_parameter(schema_name: str, schema: Dict[str, Any]) -> bool:
+        m4_header_parameters = ["content_type", "accept"]
+        return (
+            schema_name in m4_header_parameters and
+            schema.get('protocol', {}).get('http', {}).get('in', {}) == 'header'
+        )
+
+    @staticmethod
     def _convert_language_default_python_case(
-        schema: Dict[str, Any], *, pad_string: Optional[PadType] = None, convert_name: bool = False
+        schema: Dict[str, Any],
+        *,
+        pad_string: Optional[PadType] = None,
+        convert_name: bool = False,
+        all_upper: bool = False
     ) -> None:
         if not schema.get("language") or schema["language"].get("python"):
             return
@@ -107,17 +119,19 @@ class NameConverter:
         schema_name = schema['language']['default']['name']
         schema_python_name = schema['language']['python']['name']
 
-        if not(
-            schema_name == 'content_type' and
-            schema.get('protocol') and
-            schema['protocol'].get('http') and
-            schema['protocol']['http']['in'] == "header"
+        if not NameConverter._is_schema_an_m4_header_parameter(
+            schema_name, schema
         ):
             # only escaping name if it's not a content_type header parameter
             schema_python_name = NameConverter._to_valid_python_name(
                 name=schema_name, pad_string=pad_string, convert_name=convert_name
             )
-        schema['language']['python']['name'] = schema_python_name.lower()
+        # need to add the lower in case certain words, like LRO, are overriden to
+        # always return LRO. Without .lower(), for example, begin_lro would be
+        # begin_LRO
+        schema['language']['python']['name'] = (
+            schema_python_name.upper() if all_upper else schema_python_name.lower()
+        )
 
         schema_description = schema["language"]["default"]["description"].strip()
         if pad_string == PadType.Method and not schema_description and not schema["language"]["default"].get("summary"):
