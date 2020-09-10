@@ -46,9 +46,6 @@ class Property(BaseModel):
             validation_map["readonly"] = True
         if self.constant:
             validation_map["constant"] = True
-        if self.yaml_data.get("nullable", False):
-            validation_map["nullable"] = True
-
         if self.schema.validation_map:
             validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.validation_map)
             validation_map.update(validation_map_from_schema)
