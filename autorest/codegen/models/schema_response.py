@@ -31,6 +31,15 @@ class SchemaResponse(BaseModel):
         self.status_codes = status_codes
         self.headers = headers
         self.binary = binary
+        self.nullable = self.yaml_data.get("nullable", False)
+
+    @property
+    def operation_type_annotation(self) -> str:
+        if not self.schema:
+            return "None"
+        if self.nullable:
+            return f"Optional[{self.schema.operation_type_annotation}]"
+        return self.schema.operation_type_annotation
 
     @property
     def has_body(self) -> bool:

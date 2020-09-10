@@ -243,7 +243,7 @@ class BoolOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> bool
+        # type: (...) -> Optional[bool]
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -251,7 +251,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[bool]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

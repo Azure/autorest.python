@@ -50,7 +50,7 @@ class DateOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.date
+        # type: (...) -> Optional[datetime.date]
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +58,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[datetime.date]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

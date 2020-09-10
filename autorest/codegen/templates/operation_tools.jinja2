@@ -2,9 +2,9 @@
 {%- if return_type -%}
 {{ return_type }}
 {%- else -%}
-{{ ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ ("Optional[" if operation.has_optional_return_type else "" ) ~ ("Union[" if operation.responses | selectattr('has_body') | map(attribute='schema') | map(attribute='operation_type_annotation') | unique | list  | length > 1 else "") ~
-(operation.responses | selectattr('has_body') | map(attribute='schema') | map(attribute='operation_type_annotation') | unique | join(', ')) ~
-("]" if operation.responses | selectattr('has_body') | map(attribute='schema') | map(attribute='operation_type_annotation')| unique | list | length > 1 else "") ~ ("]" if operation.has_optional_return_type else "") ~ ( ("]" * return_type_wrapper | count ) if return_type_wrapper else "")
+{{ ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ ("Optional[" if operation.has_optional_return_type else "" ) ~ ("Union[" if operation.responses | selectattr('has_body') | map(attribute='operation_type_annotation') | unique | list  | length > 1 else "") ~
+(operation.responses | selectattr('has_body') |map(attribute='operation_type_annotation') | unique | join(', ')) ~
+("]" if operation.responses | selectattr('has_body') | map(attribute='operation_type_annotation')| unique | list | length > 1 else "") ~ ("]" if operation.has_optional_return_type else "") ~ ( ("]" * return_type_wrapper | count ) if return_type_wrapper else "")
 if operation.responses | selectattr('has_body') | first
 else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ ("Optional[" if operation.has_optional_return_type else "" ) ~ "None" ~ ("]" if operation.has_optional_return_type else "") ~ ( ("]" * return_type_wrapper | count ) if return_type_wrapper else "") }}{%- endif -%}{% endmacro %}
 {# get async mypy typing #}
