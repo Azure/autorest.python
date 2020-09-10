@@ -3,7 +3,7 @@
 ### 2020-xx-xx - 5.2.0-preview.2
 Autorest Core version: 3.0.6306
 
-Modelerfour version: 4.15.416
+Modelerfour version: 4.15.419
 
 **Breaking Changes**
 
