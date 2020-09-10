@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
@@ -25,6 +25,7 @@ class DictionarySchema(BaseSchema):
     ) -> None:
         super(DictionarySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
+        self.nullable_items = self.yaml_data.get("nullableItems", False)
 
     @property
     def serialization_type(self) -> str:
@@ -59,6 +60,13 @@ class DictionarySchema(BaseSchema):
         :param str namespace: Optional. The namespace for the models.
         """
         return f"dict[str, {self.element_type.docstring_type}]"
+
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation_map: Dict[str, Union[bool, int, str]] = {}
+        if self.nullable_items:
+            validation_map["nullable_items"] = True
+        return validation_map or None
 
     def xml_serialization_ctxt(self) -> Optional[str]:
         raise NotImplementedError("Dictionary schema does not support XML serialization.")

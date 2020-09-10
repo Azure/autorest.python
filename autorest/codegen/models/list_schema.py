@@ -14,16 +14,14 @@ class ListSchema(BaseSchema):
         namespace: str,
         yaml_data: Dict[str, Any],
         element_type: BaseSchema,
-        *,
-        max_items: Optional[int] = None,
-        min_items: Optional[int] = None,
-        unique_items: Optional[int] = None,
     ) -> None:
         super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
-        self.max_items = max_items
-        self.min_items = min_items
-        self.unique_items = unique_items
+
+        self.max_items = self.yaml_data.get("maxItems", False)
+        self.min_items = self.yaml_data.get("minItems", False)
+        self.unique_items = self.yaml_data.get("uniqueItems", False)
+        self.nullable_items = self.yaml_data.get("nullableItems", False)
 
     @property
     def serialization_type(self) -> str:
@@ -55,6 +53,8 @@ class ListSchema(BaseSchema):
             validation_map["min_items"] = self.min_items
         if self.unique_items:
             validation_map["unique"] = True
+        if self.nullable_items:
+            validation_map["nullable_items"] = True
         return validation_map or None
 
     @property
@@ -94,10 +94,7 @@ class ListSchema(BaseSchema):
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
-            element_type=element_type,
-            max_items=yaml_data.get("maxItems"),
-            min_items=yaml_data.get("minItems"),
-            unique_items=yaml_data.get("uniqueItems"),
+            element_type=element_type
         )
 
     def imports(self) -> FileImport:
