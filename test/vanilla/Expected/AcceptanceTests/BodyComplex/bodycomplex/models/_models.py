@@ -41,6 +41,10 @@ class Basic(msrest.serialization.Model):
     :type color: str or ~bodycomplex.models.CMYKColors
     """
 
+    _validation = {
+        'id': {'nullable': True},
+    }
+
     _attribute_map = {
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
@@ -364,6 +368,10 @@ class DictionaryWrapper(msrest.serialization.Model):
     :param default_program: Dictionary of :code:`<string>`.
     :type default_program: dict[str, str]
     """
+
+    _validation = {
+        'default_program': {'nullable': True},
+    }
 
     _attribute_map = {
         'default_program': {'key': 'defaultProgram', 'type': '{str}'},
