@@ -49,7 +49,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[str]
+        # type: (...) -> str
         """Get null string value value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +57,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -639,7 +639,7 @@ class StringOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[bytes]
+        # type: (...) -> bytes
         """Get null value that is expected to be base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -647,7 +647,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
