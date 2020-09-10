@@ -30,7 +30,6 @@ class Property(BaseModel):
 
         self.required: bool = yaml_data.get("required", False)
         self.readonly: bool = yaml_data.get("readOnly", False)
-        self.nullable: bool = yaml_data.get("nullable", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
         # this bool doesn't consider you to be constant if you are a discriminator
         self.constant: bool = isinstance(self.schema, ConstantSchema) and not self.is_discriminator
@@ -47,9 +46,6 @@ class Property(BaseModel):
             validation_map["readonly"] = True
         if self.constant:
             validation_map["constant"] = True
-        if self.nullable:
-            validation_map["nullable"] = True
-
         if self.schema.validation_map:
             validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.validation_map)
             validation_map.update(validation_map_from_schema)
