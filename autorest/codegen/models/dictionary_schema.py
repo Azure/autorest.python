@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
@@ -62,8 +62,8 @@ class DictionarySchema(BaseSchema):
         return f"dict[str, {self.element_type.docstring_type}]"
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+    def validation_map(self) -> Optional[Dict[str, bool]]:
+        validation_map: Dict[str, bool] = {}
         if self.nullable_items:
             validation_map["nullable_items"] = True
         return validation_map or None

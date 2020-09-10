@@ -35,8 +35,6 @@ class SchemaResponse(BaseModel):
 
     @property
     def operation_type_annotation(self) -> str:
-        if not self.schema:
-            return "None"
         if self.nullable:
             return f"Optional[{self.schema.operation_type_annotation}]"
         return self.schema.operation_type_annotation
