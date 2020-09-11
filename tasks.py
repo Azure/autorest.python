@@ -288,6 +288,23 @@ def regenerate_package_name_setup_py(c, debug=False):
 
 
 @task
+def regenerate_client_side_validation(c, debug=False):
+    default_mapping = {'AcceptanceTests/BodyByteWithClientSideValidation': 'body-byte.json'}
+    opts = {
+        'output_base_dir': 'test/vanilla',
+        'input_base_dir': swagger_dir,
+        'mappings': default_mapping,
+        'output_dir': 'Expected',
+        'flattening_threshold': '1',
+        'vanilla': True,
+        'keep_version': True,
+        'ns_prefix': True,
+        'package-name': 'bodybyteclientsidevalidation',
+        'client-side-validation': True
+    }
+    regen_expected(c, opts, debug)
+
+@task
 def regenerate(c, swagger_name=None, debug=False):
     # regenerate expected code for tests
     regenerate_python(c, swagger_name, debug)
@@ -298,6 +315,7 @@ def regenerate(c, swagger_name=None, debug=False):
         regenerate_multiapi(c, debug)
         regenerate_credential_default_policy(c, debug)
         regenerate_package_name_setup_py(c, debug)
+        regenerate_client_side_validation(c, debug)
 
 
 @task

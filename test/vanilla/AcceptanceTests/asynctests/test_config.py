@@ -26,6 +26,7 @@
 import pytest
 from azure.core.pipeline.policies import HttpLoggingPolicy
 from bodystring.aio import AutoRestSwaggerBATService
+from bodybytewithclientsidevalidation.aio import AutoRestSwaggerBATByteService
 
 class TestConfig(object):
     @pytest.mark.asyncio
@@ -44,3 +45,8 @@ class TestConfig(object):
         async with AutoRestSwaggerBATService(base_url="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
             assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
             assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+
+    @pytest.mark.asyncio
+    async def test_client_side_validation(self):
+        async with AutoRestSwaggerBATByteService(base_url="http://localhost:3000") as client:
+            assert client._serialize.client_side_validation == True

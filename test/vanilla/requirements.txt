@@ -10,6 +10,7 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/BodyArray
 -e ./Expected/AcceptanceTests/BodyBoolean
 -e ./Expected/AcceptanceTests/BodyByte
+-e ./Expected/AcceptanceTests/BodyByteWithClientSideValidation
 -e ./Expected/AcceptanceTests/BodyComplex
 -e ./Expected/AcceptanceTests/BodyDate
 -e ./Expected/AcceptanceTests/BodyDateTime

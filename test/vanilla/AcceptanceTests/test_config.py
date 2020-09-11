@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 from azure.core.pipeline.policies import HttpLoggingPolicy
 from bodystring import AutoRestSwaggerBATService
+from bodybytewithclientsidevalidation import AutoRestSwaggerBATByteService
 
 class TestConfig(object):
     def test_http_logging_policy_default(self):
@@ -41,3 +42,7 @@ class TestConfig(object):
         with AutoRestSwaggerBATService(base_url="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
             assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
             assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+
+    def test_client_side_validation(self):
+        with AutoRestSwaggerBATByteService(base_url="http://localhost:3000") as client:
+            assert client._serialize.client_side_validation == True
