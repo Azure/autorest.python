@@ -44,15 +44,15 @@ class StringOperations:
     async def get_null(
         self,
         **kwargs
-    ) -> str:
+    ) -> Optional[str]:
         """Get null string value value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
-        :rtype: str
+        :return: str or None, or the result of cls(response)
+        :rtype: str or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[str]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -622,15 +622,15 @@ class StringOperations:
     async def get_null_base64_url_encoded(
         self,
         **kwargs
-    ) -> bytes:
+    ) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytes, or the result of cls(response)
-        :rtype: bytes
+        :return: bytes or None, or the result of cls(response)
+        :rtype: bytes or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[bytes]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

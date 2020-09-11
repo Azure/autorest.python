@@ -13,7 +13,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
 {% endif %}
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_declaration(constant_parameter.schema.value) }}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endfor %}
 {% endif %}
 
@@ -62,7 +62,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
 
     {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.schema.serialization_type }}', pipeline_response)
+        deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
         list_of_elem = deserialized.{{ operation.item_name }}
         if cls:
             list_of_elem = cls(list_of_elem)

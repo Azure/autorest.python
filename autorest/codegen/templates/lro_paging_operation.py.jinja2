@@ -5,8 +5,8 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring(async_mode) %}
-:return: An instance of {{ "Async" if async_mode }}LROPoller that returns an iterator like instance of either {{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}} or the result of cls(response)
-:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[~azure.core.{{ "async_" if async_mode else "" }}paging.{{ "Async" if async_mode }}ItemPaged[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]]{% endmacro %}
+:return: An instance of {{ "Async" if async_mode }}LROPoller that returns an iterator like instance of either {{ operation.responses[0].docstring_text }} or the result of cls(response)
+:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[~azure.core.{{ "async_" if async_mode else "" }}paging.{{ "Async" if async_mode }}ItemPaged[{{ operation.responses[0].docstring_type }}]]{% endmacro %}
 {% macro operation_docstring(async_mode) %}
 {{ lro_helper.operation_docstring_helper(operation, async_mode) }}
 {{ return_docstring(async_mode) }}

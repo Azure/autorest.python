@@ -19,7 +19,7 @@
             {{ gp.serialized_name | tojson }}: {
                 "method_signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},
-                "docstring_type": {{ gp.schema.docstring_type | tojson }},
+                "docstring_type": {{ gp.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
@@ -29,7 +29,7 @@
             {{ gp.serialized_name | tojson }}: {
                 "method_signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},
-                "docstring_type": {{ gp.schema.docstring_type | tojson }},
+                "docstring_type": {{ gp.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
@@ -37,7 +37,7 @@
         "constant": {
             {% for gp in code_model.global_parameters.constant %}
             {% if gp.serialized_name != "api_version" %}
-            {{ gp.serialized_name | tojson }}: {{ gp.schema.get_declaration(gp.schema.value) | tojson }}{{ "," if not loop.last else "" }}
+            {{ gp.serialized_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endif %}
             {% endfor %}
         },

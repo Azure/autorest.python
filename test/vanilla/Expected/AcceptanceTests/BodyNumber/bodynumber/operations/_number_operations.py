@@ -49,15 +49,15 @@ class NumberOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> float
+        # type: (...) -> Optional[float]
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
-        :rtype: float
+        :return: float or None, or the result of cls(response)
+        :rtype: float or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[float]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

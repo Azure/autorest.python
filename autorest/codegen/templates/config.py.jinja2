@@ -35,7 +35,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% endif %}
 {% for parameter in code_model.global_parameters.method %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
-    :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+    :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
     """
 
@@ -54,7 +54,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% endfor %}
 {% if code_model.global_parameters.constant %}
     {% for constant_parameter in code_model.global_parameters.constant %}
-        self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_declaration(constant_parameter.schema.value) }}
+        self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endfor %}
 {% endif %}
 {% if code_model.options['credential_scopes'] is not none %}

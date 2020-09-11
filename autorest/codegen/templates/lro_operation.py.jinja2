@@ -3,12 +3,12 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring(async_mode) %}
-:return: An instance of {{ "Async" if async_mode }}LROPoller that returns either {{ operation.responses[0].schema.docstring_text if operation.responses[0].has_body else "None"}} or the result of cls(response)
-:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]{% endmacro %}
+:return: An instance of {{ "Async" if async_mode }}LROPoller that returns either {{ operation.responses[0].docstring_text }} or the result of cls(response)
+:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[{{ operation.responses[0].docstring_type }}]{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
-    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.serialization_type }}', response.headers.get('{{ response_header.name }}')),
+    '{{ response_header.name }}': self._deserialize('{{ response_header.serialization_type }}', response.headers.get('{{ response_header.name }}')),
     {% endfor %}
 }
 {% endmacro %}

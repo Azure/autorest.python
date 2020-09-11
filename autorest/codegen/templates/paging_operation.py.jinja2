@@ -5,9 +5,9 @@
 {% set item_paged = "AsyncItemPaged" if async_mode else "ItemPaged" %}
 {% macro return_docstring(async_mode) %}
 {% if operation.responses | selectattr('has_body') | first %}
-:return: An iterator like instance of either {{ operation.responses|selectattr('has_body')|map(attribute='schema')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
+:return: An iterator like instance of either {{ operation.responses|selectattr('has_body')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
 {# can't use item_paged variable, otherwise the call to get docstring from the metadata template will always return ItemPaged #}
-:rtype: ~azure.core.{{ "async_" if async_mode else "" }}paging.{{ "Async" if async_mode }}ItemPaged[{% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
+:rtype: ~azure.core.{{ "async_" if async_mode else "" }}paging.{{ "Async" if async_mode }}ItemPaged[{% for response in operation.responses %}{{response.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
 {%- else -%}
 :return: None
 :rtype: None{%- endif -%}{%- endmacro -%}
@@ -27,7 +27,7 @@
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
-:type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(async_mode) }}
