@@ -42,6 +42,7 @@ class NonStringEnumsClient(object):
 
         client_models = {}  # type: Dict[str, Any]
         self._serialize = Serializer(client_models)
+        self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
         self.int = IntOperations(
