@@ -95,6 +95,20 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.required
 
     @property
+    def constant_declaration(self) -> str:
+        if self.schema:
+            if isinstance(self.schema, ConstantSchema):
+                return self.schema.get_declaration(self.schema.value)
+            raise ValueError(
+                "Trying to get constant declaration for a schema that is not ConstantSchema"
+                )
+        raise ValueError("Trying to get a declaration for a schema that doesn't exist")
+
+    @property
+    def xml_serialization_ctxt(self) -> str:
+        return self.schema.xml_serialization_ctxt() or ""
+
+    @property
     def in_method_signature(self) -> bool:
         return not(
             # If I only have one value, I can't be set, so no point being in signature
@@ -152,6 +166,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         # exposing default_value because client_default_value doesn't get updated with
         # default values we bubble up from the schema
         return self._default_value()[0]
+
+    @property
+    def serialization_type(self) -> str:
+        return self.schema.serialization_type
 
     @property
     def docstring_type(self) -> str:

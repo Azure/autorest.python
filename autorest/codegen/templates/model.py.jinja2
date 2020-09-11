@@ -43,8 +43,7 @@ class {{ model.name }}(msrest.serialization.Model):
     _attribute_map = {
         {% if model.properties != None %}
             {% for p in model.properties %}
-        {% set xml_metadata = (", 'xml': {" + p.schema.xml_serialization_ctxt() + "}") if p.schema.has_xml_serialization_ctxt else "" %}
-        '{{ p.name }}': {'key': '{{ p.escaped_swagger_name }}', 'type': '{{ p.schema.serialization_type}}'{{ xml_metadata }}},
+        '{{ p.name }}': {'key': '{{ p.escaped_swagger_name }}', 'type': '{{ p.serialization_type}}'{{ p.xml_metadata }}},
             {% endfor %}
         {% else%}
         {% endif %}
@@ -63,7 +62,7 @@ class {{ model.name }}(msrest.serialization.Model):
     {% if (model.properties | selectattr('constant') | first) is defined %}
 
         {% for p in model.properties | selectattr('constant')%}
-    {{ p.name }} = {{ p.schema.get_declaration(p.schema.value) }}
+    {{ p.name }} = {{ p.constant_declaration }}
         {% endfor %}
     {% endif %}
 

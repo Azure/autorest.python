@@ -18,7 +18,7 @@
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
-:type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 :keyword str continuation_token: A continuation token to restart a poller from a saved state.

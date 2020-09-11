@@ -14,6 +14,10 @@ class HeaderResponse:
         self.name = name
         self.schema = schema
 
+    @property
+    def serialization_type(self) -> str:
+        return self.schema.serialization_type
+
 
 class SchemaResponse(BaseModel):
     def __init__(
@@ -45,9 +49,39 @@ class SchemaResponse(BaseModel):
         return bool(self.headers)
 
     @property
+    def serialization_type(self) -> str:
+        if self.schema:
+            return self.schema.serialization_type
+        return "None"
+
+    @property
+    def operation_type_annotation(self) -> str:
+        if self.schema:
+            return self.schema.operation_type_annotation
+        return "None"
+
+    @property
+    def docstring_text(self) -> str:
+        if self.schema:
+            return self.schema.docstring_text
+        return "None"
+
+    @property
+    def docstring_type(self) -> str:
+        if self.schema:
+            return self.schema.docstring_type
+        return "None"
+
+    @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
         return self.binary
+
+    @property
+    def is_exception(self) -> bool:
+        if self.schema:
+            return self.schema.is_exception
+        return False
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaResponse":
