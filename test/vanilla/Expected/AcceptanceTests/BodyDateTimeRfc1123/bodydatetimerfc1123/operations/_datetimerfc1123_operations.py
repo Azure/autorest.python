@@ -50,7 +50,7 @@ class Datetimerfc1123Operations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[datetime.datetime]
+        # type: (...) -> datetime.datetime
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +58,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

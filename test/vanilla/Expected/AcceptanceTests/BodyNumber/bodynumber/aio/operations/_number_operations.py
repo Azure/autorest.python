@@ -44,7 +44,7 @@ class NumberOperations:
     async def get_null(
         self,
         **kwargs
-    ) -> Optional[float]:
+    ) -> float:
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +52,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
