@@ -155,6 +155,8 @@ def regen_expected(c, opts, debug):
             args.append(f"--package-name={opts['package-name']}")
         if opts.get('override-client-name'):
             args.append(f"--override-client-name={opts['override-client-name']}")
+        if opts.get('client-side-validation'):
+            args.append(f"--client-side-validation={opts['client-side-validation']}")
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
