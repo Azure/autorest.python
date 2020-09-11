@@ -3,10 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, Optional, List, Union, Any
+from typing import Dict, Optional, List, Union, Any, cast
 
 from .base_model import BaseModel
 from .base_schema import BaseSchema
+from .object_schema import ObjectSchema
 
 
 class HeaderResponse:
@@ -87,7 +88,7 @@ class SchemaResponse(BaseModel):
     @property
     def is_exception(self) -> bool:
         if self.schema:
-            return self.schema.is_exception
+            return cast(ObjectSchema, self.schema).is_exception
         return False
 
     @classmethod
