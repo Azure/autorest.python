@@ -50,15 +50,15 @@ class IntOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> int
+        # type: (...) -> Optional[int]
         """Get null Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
-        :rtype: int
+        :return: int or None, or the result of cls(response)
+        :rtype: int or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[int]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[int]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -686,15 +686,15 @@ class IntOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> datetime.datetime
+        # type: (...) -> Optional[datetime.datetime]
         """Get null Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
-        :rtype: ~datetime.datetime
+        :return: datetime or None, or the result of cls(response)
+        :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[datetime.datetime]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

@@ -45,15 +45,15 @@ class DatetimeOperations:
     async def get_null(
         self,
         **kwargs
-    ) -> datetime.datetime:
+    ) -> Optional[datetime.datetime]:
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
-        :rtype: ~datetime.datetime
+        :return: datetime or None, or the result of cls(response)
+        :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[datetime.datetime]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

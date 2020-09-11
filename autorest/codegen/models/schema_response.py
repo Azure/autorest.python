@@ -35,6 +35,7 @@ class SchemaResponse(BaseModel):
         self.status_codes = status_codes
         self.headers = headers
         self.binary = binary
+        self.nullable = self.yaml_data.get("nullable", False)
 
     @property
     def has_body(self) -> bool:
@@ -56,21 +57,27 @@ class SchemaResponse(BaseModel):
 
     @property
     def operation_type_annotation(self) -> str:
-        if self.schema:
-            return self.schema.operation_type_annotation
-        return "None"
+        if not self.schema:
+            return "None"
+        if self.nullable:
+            return f"Optional[{self.schema.operation_type_annotation}]"
+        return self.schema.operation_type_annotation
 
     @property
     def docstring_text(self) -> str:
-        if self.schema:
-            return self.schema.docstring_text
-        return "None"
+        if not self.schema:
+            return "None"
+        if self.nullable:
+            return f"{self.schema.docstring_text} or None"
+        return self.schema.docstring_text
 
     @property
     def docstring_type(self) -> str:
-        if self.schema:
-            return self.schema.docstring_type
-        return "None"
+        if not self.schema:
+            return "None"
+        if self.nullable:
+            return f"{self.schema.docstring_type} or None"
+        return self.schema.docstring_type
 
     @property
     def is_stream_response(self) -> bool:
