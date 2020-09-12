@@ -88,7 +88,8 @@ packages_with_client_side_validation = [
     'AcceptanceTests/RequiredOptional',
     'AcceptanceTests/CustomBaseUri',
     'AcceptanceTests/BodyComplex',
-    'AcceptanceTests/AzureParameterGrouping'
+    'AcceptanceTests/AzureParameterGrouping',
+    'AcceptanceTests/AzureSpecials'
 ]
 
 base_dir = os.path.dirname(__file__)
