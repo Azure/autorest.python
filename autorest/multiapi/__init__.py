@@ -429,6 +429,7 @@ class MultiAPI:
             "base_url": metadata_json["client"]["base_url"],
             "custom_base_url_to_api_version": self._build_custom_base_url_to_api_version(paths_to_versions),
             "azure_arm": metadata_json["client"]["azure_arm"],
+            "client_side_validation": metadata_json["client"]["client_side_validation"],
             "has_lro_operations": self._has_lro_operations(paths_to_versions)
         }
 

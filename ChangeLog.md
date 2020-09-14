@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-09-14 - 5.3.2
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.419
+
+**Bug fixes**
+
+- Allow client side validation to be turned off for multiapi mixin operations  #775
+
 ### 2020-09-14 - 5.3.1
 Autorest core version: 3.0.6318
 
