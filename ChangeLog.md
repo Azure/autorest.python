@@ -7,7 +7,7 @@ Modelerfour version: 4.15.419
 
 **Bug fixes**
 
-- Ensure that user's autorest core version is at least 3.0.6318 to get the autorest core fix so now client-side-validation is off by default #772
+- Min autorest core is now 3.0.6318 to ensure client-side-validation is disabled by default (per track2 guidelines) #772
 
 ### 2020-09-11 - 5.3.0
 Autorest Core version: 3.0.6306
