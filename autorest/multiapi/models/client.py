@@ -33,6 +33,7 @@ class Client():
         self.filename = default_version_metadata["client"]["filename"]
         self.base_url = default_version_metadata["client"]["base_url"]
         self.description = default_version_metadata["client"]["description"]
+        self.client_side_validation = default_version_metadata["client"]["client_side_validation"]
         self.version_path_to_metadata = version_path_to_metadata
 
     @property

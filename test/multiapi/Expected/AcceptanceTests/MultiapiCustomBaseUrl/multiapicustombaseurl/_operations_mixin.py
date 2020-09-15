@@ -12,7 +12,7 @@ from msrest import Serializer, Deserializer
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
@@ -44,10 +44,11 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         elif api_version == '2.0.0':
             from .v2.operations import MultiapiCustomBaseUrlServiceClientOperationsMixin as OperationClass
         else:
-            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+            raise ValueError("API version {} does not have operation 'test'".format(api_version))
         mixin_instance = OperationClass()
         mixin_instance._client = self._client
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
+        mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return mixin_instance.test(id, **kwargs)

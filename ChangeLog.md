@@ -1,11 +1,46 @@
 # Change Log
 
-### 2020-xx-xx - 5.1.0-preview.8
-Autorest Core version: 3.0.6302
-Modelerfour version: 4.15.400
+### 2020-09-14 - 5.3.2
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.419
+
+**Bug fixes**
+
+- Allow client side validation to be turned off for multiapi mixin operations  #775
+
+### 2020-09-14 - 5.3.1
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.419
+
+**Bug fixes**
+
+- Min autorest core is now 3.0.6318 to ensure client-side-validation is disabled by default (per track2 guidelines) #772
+
+### 2020-09-11 - 5.3.0
+Autorest Core version: 3.0.6306
+
+Modelerfour version: 4.15.419
+
+GA of autorest V5!
+
+**Breaking Changes**
+
+- Raise `ValueError` instead of `NotImplementedError` if API version code doesn't exist  #764
+
+### 2020-08-31 - 5.2.0-preview.1
+Autorest Core version: 3.0.6306
+
+Modelerfour version: 4.15.410
+
+**Breaking Changes**
+
+- Removed the `_async` suffix from async files  #759
 
 **New Features**
 
+- Add mapping of 401 to `ClientAuthenticationError` for default error map  #763
 - Updated minimum `azure-core` version to 1.8.0  #747
 - Updated minimum `msrest` version to 0.6.18  #747
 - Support for `multipart/form-data`  #746

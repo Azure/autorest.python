@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_azure_special_parameters_test_client_async import AutoRestAzureSpecialParametersTestClient
+from ._auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecialParametersTestClient
 __all__ = ['AutoRestAzureSpecialParametersTestClient']

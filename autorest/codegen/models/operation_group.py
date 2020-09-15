@@ -39,6 +39,7 @@ class OperationGroup(BaseModel):
 
     def imports(self, async_mode: bool, has_schemas: bool) -> FileImport:
         file_import = FileImport()
+        file_import.add_from_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
         for operation in self.operations:
@@ -59,15 +60,15 @@ class OperationGroup(BaseModel):
                 file_import.add_from_import("..", "models", ImportType.LOCAL)
         return file_import
 
-    def get_filename(self, async_mode: bool) -> str:
+    @property
+    def filename(self) -> str:
         basename = self.name
         if self.is_empty_operation_group:
             basename = self.code_model.module_name
-        async_suffix = "_async" if async_mode else ""
 
         if basename == "operations":
-            return f"_operations{async_suffix}"
-        return f"_{basename}_operations{async_suffix}"
+            return f"_operations"
+        return f"_{basename}_operations"
 
     @property
     def is_empty_operation_group(self) -> bool:

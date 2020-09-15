@@ -77,6 +77,26 @@ class Property(BaseModel):
         )
 
     @property
+    def constant_declaration(self) -> str:
+        if self.schema:
+            if isinstance(self.schema, ConstantSchema):
+                return self.schema.get_declaration(self.schema.value)
+            raise ValueError(
+                "Trying to get constant declaration for a schema that is not ConstantSchema"
+                )
+        raise ValueError("Trying to get a declaration for a schema that doesn't exist")
+
+    @property
+    def serialization_type(self) -> str:
+        return self.schema.serialization_type
+
+    @property
+    def xml_metadata(self) -> str:
+        if self.schema.has_xml_serialization_ctxt:
+            return f", 'xml': {{{self.schema.xml_serialization_ctxt()}}}"
+        return ""
+
+    @property
     def type_annotation(self) -> str:
         if self.required:
             return self.schema.type_annotation

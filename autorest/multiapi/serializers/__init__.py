@@ -24,10 +24,8 @@ _FILE_TO_TEMPLATE = {
     "operations_mixin": "multiapi_operations_mixin.py.jinja2"
 }
 
-def _get_filename(filename: str, async_mode: bool) -> str:
-    return f"{filename}{'_async' if async_mode else ''}.py"
-
 def _get_file_path(filename: str, async_mode: bool) -> Path:
+    filename += ".py"
     if async_mode:
         return Path("aio") / filename
     return Path(filename)
@@ -52,17 +50,17 @@ class MultiAPISerializer(object):
             return template.render(code_model=code_model, async_mode=async_mode, **kwargs)
 
         # serialize init file
-        self._autorestapi.write_file(_get_file_path("__init__.py", async_mode), _render_template("init"))
+        self._autorestapi.write_file(_get_file_path("__init__", async_mode), _render_template("init"))
 
         # serialize service client file
         self._autorestapi.write_file(
-            _get_file_path(_get_filename(code_model.service_client.filename, async_mode), async_mode),
+            _get_file_path(code_model.service_client.filename, async_mode),
             _render_template("service_client")
         )
 
         # serialize config file
         self._autorestapi.write_file(
-            _get_file_path(_get_filename("_configuration", async_mode), async_mode),
+            _get_file_path("_configuration", async_mode),
             _render_template("config")
         )
 
@@ -73,7 +71,7 @@ class MultiAPISerializer(object):
                 is_python_3_file=async_mode
             )
             self._autorestapi.write_file(
-                _get_file_path(_get_filename("_operations_mixin", async_mode), async_mode),
+                _get_file_path("_operations_mixin", async_mode),
                 _render_template("operations_mixin", imports=imports)
             )
 

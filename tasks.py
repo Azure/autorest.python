@@ -82,6 +82,16 @@ default_arm_mappings = {
   'AcceptanceTests/AzureSpecials': ['azure-special-properties.json', 'azurespecialproperties'],
 }
 
+packages_with_client_side_validation = [
+    'AcceptanceTests/Validation',
+    'AcceptanceTests/Url',
+    'AcceptanceTests/RequiredOptional',
+    'AcceptanceTests/CustomBaseUri',
+    'AcceptanceTests/BodyComplex',
+    'AcceptanceTests/AzureParameterGrouping',
+    'AcceptanceTests/AzureSpecials'
+]
+
 base_dir = os.path.dirname(__file__)
 
 swagger_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
@@ -155,6 +165,8 @@ def regen_expected(c, opts, debug):
             args.append(f"--package-name={opts['package-name']}")
         if opts.get('override-client-name'):
             args.append(f"--override-client-name={opts['override-client-name']}")
+        if key in packages_with_client_side_validation:
+            args.append("--client-side-validation=true")
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')

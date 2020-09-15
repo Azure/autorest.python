@@ -1,6 +1,4 @@
 {% import 'keywords.jinja2' as keywords with context %}
-{% set config_import = "._configuration_async" if async_mode else "._configuration" %}
-{% set operations_import = ".operations_async" if async_mode else ".operations" %}
 {% set path_to_models = ".." if async_mode else "." %}
 {% macro method_signature() %}
 def __init__(
@@ -33,9 +31,9 @@ def __init__(
 
 {{ imports }}
 
-from {{ config_import }} import {{ code_model.class_name }}Configuration
+from ._configuration import {{ code_model.class_name }}Configuration
 {% for operation_group in code_model.operation_groups %}
-from {{ operations_import }} import {{ operation_group.class_name }}
+from .operations import {{ operation_group.class_name }}
 {% endfor %}
 {% if code_model.sorted_schemas %}
 from {{ path_to_models }} import models
@@ -48,14 +46,14 @@ class {{ code_model.class_name }}({{ base_class }}):
     {% for operation_group in code_model.operation_groups|rejectattr("is_empty_operation_group") %}
     :ivar {{ operation_group.name  }}: {{ operation_group.class_name }} operations
     {% if async_mode %}
-    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.aio.operations_async.{{ operation_group.class_name }}
+    :vartype {{ operation_group.name }}: {{ code_model.namespace }}.aio.operations.{{ operation_group.class_name }}
     {% else %}
     :vartype {{ operation_group.name }}: {{ code_model.namespace }}.operations.{{ operation_group.class_name }}
     {% endif %}
     {% endfor %}
 {% for parameter in code_model.global_parameters.method %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
-    :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+    :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
     {% if not code_model.custom_base_url %}
     :param str base_url: Service URL

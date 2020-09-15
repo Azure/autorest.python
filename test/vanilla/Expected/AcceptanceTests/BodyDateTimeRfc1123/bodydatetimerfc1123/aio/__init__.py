@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_rfc1123_date_time_test_service_async import AutoRestRFC1123DateTimeTestService
+from ._auto_rest_rfc1123_date_time_test_service import AutoRestRFC1123DateTimeTestService
 __all__ = ['AutoRestRFC1123DateTimeTestService']

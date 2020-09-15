@@ -3,16 +3,21 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, Optional, List, Union, Any
+from typing import Dict, Optional, List, Union, Any, cast
 
 from .base_model import BaseModel
 from .base_schema import BaseSchema
+from .object_schema import ObjectSchema
 
 
 class HeaderResponse:
     def __init__(self, name: str, schema) -> None:
         self.name = name
         self.schema = schema
+
+    @property
+    def serialization_type(self) -> str:
+        return self.schema.serialization_type
 
 
 class SchemaResponse(BaseModel):
@@ -31,6 +36,7 @@ class SchemaResponse(BaseModel):
         self.status_codes = status_codes
         self.headers = headers
         self.binary = binary
+        self.nullable = self.yaml_data.get("nullable", False)
 
     @property
     def has_body(self) -> bool:
@@ -45,9 +51,45 @@ class SchemaResponse(BaseModel):
         return bool(self.headers)
 
     @property
+    def serialization_type(self) -> str:
+        if self.schema:
+            return self.schema.serialization_type
+        return "None"
+
+    @property
+    def operation_type_annotation(self) -> str:
+        if not self.schema:
+            return "None"
+        if self.nullable:
+            return f"Optional[{self.schema.operation_type_annotation}]"
+        return self.schema.operation_type_annotation
+
+    @property
+    def docstring_text(self) -> str:
+        if not self.schema:
+            return "None"
+        if self.nullable:
+            return f"{self.schema.docstring_text} or None"
+        return self.schema.docstring_text
+
+    @property
+    def docstring_type(self) -> str:
+        if not self.schema:
+            return "None"
+        if self.nullable:
+            return f"{self.schema.docstring_type} or None"
+        return self.schema.docstring_type
+
+    @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
         return self.binary
+
+    @property
+    def is_exception(self) -> bool:
+        if self.schema:
+            return cast(ObjectSchema, self.schema).is_exception
+        return False
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaResponse":

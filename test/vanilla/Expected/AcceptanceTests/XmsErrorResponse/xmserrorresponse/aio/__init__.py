@@ -6,5 +6,5 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._xms_error_response_extensions_async import XMSErrorResponseExtensions
+from ._xms_error_response_extensions import XMSErrorResponseExtensions
 __all__ = ['XMSErrorResponseExtensions']
