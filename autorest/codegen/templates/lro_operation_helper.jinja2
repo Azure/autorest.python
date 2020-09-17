@@ -20,6 +20,9 @@
 {% endfor %}
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
+{% if (operation.requests | length) > 1 %}
+{{ op_tools.content_type_docstring(operation) }}
+{% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 :keyword str continuation_token: A continuation token to restart a poller from a saved state.
 :keyword polling: True for ARMPolling, False for no polling, or a

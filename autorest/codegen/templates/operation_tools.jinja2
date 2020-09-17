@@ -31,7 +31,13 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
     **kwargs  # type: Any
 ):
 {% endif %}{% endmacro %}
-{# handle response headers/deserialization #}
+
+{# content type docstring #}
+{% macro content_type_docstring(operation) %}
+{% set content_type_constant = operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
+:keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.constant_declaration }}.
+ Allowed values are: "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
+
 {# error map handling #}
 {% macro error_map(operation, code_model) %}
 {%if operation.status_code_exceptions %}
