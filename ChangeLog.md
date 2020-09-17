@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.3.3
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.419
+
+**Bug fixes**
+
+- Include `content_type` docstrings for LRO and paging operations in the case of multiple media types  #778
+
 ### 2020-09-14 - 5.3.2
 Autorest core version: 3.0.6318
 
