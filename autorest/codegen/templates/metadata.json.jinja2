@@ -36,10 +36,8 @@
             {% endfor %}
         },
         "constant": {
-            {% for gp in code_model.global_parameters.constant %}
-            {% if gp.serialized_name != "api_version" %}
+            {% for gp in code_model.global_parameters.constant | rejectattr("serialized_name", "equalto", "api_version") %}
             {{ gp.serialized_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
-            {% endif %}
             {% endfor %}
         },
         "call": {{ code_model.global_parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
@@ -52,10 +50,8 @@
         "credential_key_header_name": {{ code_model.options['credential_key_header_name'] | tojson }}
     },
     "operation_groups": {
-        {% for operation_group in code_model.operation_groups %}
-            {% if not operation_group.is_empty_operation_group %}
+        {% for operation_group in code_model.operation_groups | rejectattr('is_empty_operation_group') %}
         {{ operation_group.name | tojson }}: {{ operation_group.class_name | tojson }}{{ "," if not loop.last else "" }}
-            {% endif %}
         {% endfor %}
     },
     "operation_mixins": {
