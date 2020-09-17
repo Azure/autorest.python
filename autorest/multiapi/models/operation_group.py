@@ -9,10 +9,10 @@ T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
 class OperationGroup(object):
-    def __init__(self, name: str, class_name: str):
+    def __init__(self, name: str):
         self.name = name
-        self.class_name = class_name
         self._available_apis: OrderedSet[str] = {}
+        self._api_to_class_name: Dict[str, str] = {}
 
     @property
     def available_apis(self) -> List[str]:
@@ -20,3 +20,9 @@ class OperationGroup(object):
 
     def append_available_api(self, val: str) -> None:
         self._available_apis[val] = None
+
+    def append_api_class_name_pair(self, api_version: str, class_name: str):
+        self._api_to_class_name[api_version] = class_name
+
+    def class_name(self, api_version: str):
+        return self._api_to_class_name[api_version]

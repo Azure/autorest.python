@@ -50,9 +50,10 @@ class CodeModel(object):  # pylint: disable=too-many-instance-attributes
                 try:
                     operation_group = [og for og in operation_groups if og.name == operation_group_name][0]
                 except IndexError:
-                    operation_group = OperationGroup(operation_group_name, operation_group_class_name)
+                    operation_group = OperationGroup(operation_group_name)
                     operation_groups.append(operation_group)
                 operation_group.append_available_api(version_path.name)
+                operation_group.append_api_class_name_pair(version_path.name, operation_group_class_name)
         operation_groups.sort(key=lambda x: x.name)
         return operation_groups
 

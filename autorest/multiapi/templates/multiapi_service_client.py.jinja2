@@ -138,14 +138,14 @@ class {{ code_model.service_client.name }}({% if code_model.operation_mixin_grou
         """Instance depends on the API version:
 
         {% for api in operation_group.available_apis | sort %}
-           * {{ code_model.mod_to_api_version[api] }}: :class:`{{ operation_group.class_name }}<{{ code_model.module_name }}.{{ api }}{{ ".aio" if async_mode else "" }}.operations.{{ operation_group.class_name }}>`
+           * {{ code_model.mod_to_api_version[api] }}: :class:`{{ operation_group.class_name(api) }}<{{ code_model.module_name }}.{{ api }}{{ ".aio" if async_mode else "" }}.operations.{{ operation_group.class_name(api) }}>`
         {% endfor %}
         """
         api_version = self._get_api_version('{{ operation_group.name }}')
         {% for api in operation_group.available_apis | sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ code_model.mod_to_api_version[api] }}':
-            from {{ relative_path }}{{ api }}.{{ "aio." if async_mode else "" }}operations import {{ operation_group.class_name }} as OperationClass
+            from {{ relative_path }}{{ api }}.{{ "aio." if async_mode else "" }}operations import {{ operation_group.class_name(api) }} as OperationClass
         {% endfor %}
         else:
             raise ValueError("API version {} does not have operation group '{{ operation_group.name }}'".format(api_version))
