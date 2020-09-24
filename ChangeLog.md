@@ -1,13 +1,14 @@
 # Change Log
 
-### 2020-xx-xx - 5.3.4
+### 2020-09-24 - 5.3.4
 Autorest core version: 3.0.6318
 
-Modelerfour version: 4.15.419
+Modelerfour version: 4.15.421
 
 **Bug Fixes**
 
 - Include `content_type` docstrings for LRO and paging operations in the case of multiple media types  #778
+- Return response body if its content type is `text/plain` (taken from m4 update - m4 PR #353)
 
 ### 2020-09-17 - 5.3.3
 Autorest core version: 3.0.6318
