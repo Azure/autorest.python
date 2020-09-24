@@ -9,7 +9,7 @@ from ..utils import _sync_or_async
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
-class MixinOperation(object):
+class MixinOperation:
     def __init__(self, name: str, mixin_operation_metadata: Dict[str, Any]):
         self.name = name
         self.mixin_operation_metadata = mixin_operation_metadata

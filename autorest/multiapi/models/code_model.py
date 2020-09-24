@@ -13,7 +13,7 @@ from .operation_mixin_group import OperationMixinGroup
 from .global_parameters import GlobalParameters
 from ..utils import _get_default_api_version_from_list
 
-class CodeModel(object):  # pylint: disable=too-many-instance-attributes
+class CodeModel:  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         module_name: str,

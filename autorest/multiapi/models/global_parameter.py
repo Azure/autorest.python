@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 
-class GlobalParameter(object):
+class GlobalParameter:
     def __init__(
         self,
         name: str,

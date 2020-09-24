@@ -7,7 +7,7 @@ from typing import Any, Dict, List
 from .global_parameter import GlobalParameter
 from .constant_global_parameter import ConstantGlobalParameter
 
-class GlobalParameters(object):
+class GlobalParameters:
     def __init__(self, global_parameters_metadata: Dict[str, Any]):
         self.call = global_parameters_metadata["call"]
         self.global_parameters_metadata = global_parameters_metadata

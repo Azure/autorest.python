@@ -21,7 +21,7 @@ def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
             )
     return version
 
-class Client():
+class Client:
     def __init__(
         self,
         azure_arm: bool,

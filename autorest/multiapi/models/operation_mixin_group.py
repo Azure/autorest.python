@@ -9,7 +9,7 @@ from pathlib import Path
 from .imports import FileImport
 from .mixin_operation import MixinOperation
 
-class OperationMixinGroup(object):
+class OperationMixinGroup:
     def __init__(
         self,
         version_path_to_metadata: Dict[Path, Dict[str, Any]],

@@ -8,7 +8,7 @@ from typing import Dict, List, TypeVar
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
-class OperationGroup(object):
+class OperationGroup:
     def __init__(self, name: str):
         self.name = name
         self._available_apis: OrderedSet[str] = {}

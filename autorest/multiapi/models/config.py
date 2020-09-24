@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 
-class Config(object):
+class Config:
     def __init__(self, default_version_metadata: Dict[str, Any]):
         self.credential = default_version_metadata["config"]["credential"]
         self.credential_scopes = default_version_metadata["config"]["credential_scopes"]
