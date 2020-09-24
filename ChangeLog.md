@@ -1,13 +1,22 @@
 # Change Log
 
-### 2020-xx-xx - 5.3.3
+### 2020-xx-xx - 5.3.4
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.419
+
+**Bug Fixes**
+
+- Include `content_type` docstrings for LRO and paging operations in the case of multiple media types  #778
+
+### 2020-09-17 - 5.3.3
 Autorest core version: 3.0.6318
 
 Modelerfour version: 4.15.419
 
 **Bug fixes**
 
-- Include `content_type` docstrings for LRO and paging operations in the case of multiple media types  #778
+- Fix trailing comma issues in metadata.json (unblocks resource multiapi generation)  #777
 
 ### 2020-09-14 - 5.3.2
 Autorest core version: 3.0.6318
