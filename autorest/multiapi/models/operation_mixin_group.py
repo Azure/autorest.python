@@ -13,10 +13,12 @@ class OperationMixinGroup:
     def __init__(
         self,
         version_path_to_metadata: Dict[Path, Dict[str, Any]],
-        default_api_version: str
+        mod_to_api_version: Dict[str, str],
+        default_api_version: str,
     ):
         self.default_api_version = default_api_version
         self.version_path_to_metadata = version_path_to_metadata
+        self._mod_to_api_version = mod_to_api_version
 
     def imports(self, async_mode: bool) -> FileImport:
         imports = FileImport()
@@ -27,24 +29,6 @@ class OperationMixinGroup:
             current_version_imports = FileImport(json.loads(metadata_json[imports_to_load]))
             imports.merge(current_version_imports)
         return imports
-
-    def _use_metadata_of_default_api_version(
-        self, mixin_operations: List[MixinOperation]
-    ) -> List[MixinOperation]:
-        default_api_version_path = [
-            version_path for version_path in self.version_path_to_metadata.keys()
-            if version_path.name == self.default_api_version
-        ][0]
-        default_version_metadata = self.version_path_to_metadata[default_api_version_path]
-        if not default_version_metadata.get("operation_mixins"):
-            return mixin_operations
-        for mixin_operation_name, mixin_operation_metadata in default_version_metadata["operation_mixins"].items():
-            if mixin_operation_name.startswith("_"):
-                continue
-            mixin_operation = [mo for mo in mixin_operations if mo.name == mixin_operation_name][0]
-            mixin_operation.mixin_operation_metadata = mixin_operation_metadata
-        return mixin_operations
-
 
     @property
     def mixin_operations(self) -> List[MixinOperation]:
@@ -60,15 +44,17 @@ class OperationMixinGroup:
                     mixin_operation = [mo for mo in mixin_operations if mo.name == mixin_operation_name][0]
                 except IndexError:
                     mixin_operation = MixinOperation(
-                        name=mixin_operation_name, mixin_operation_metadata=mixin_operation_metadata
+                        name=mixin_operation_name, mod_to_api_version=self._mod_to_api_version
                     )
                     mixin_operations.append(mixin_operation)
-                mixin_operation.append_available_api(version_path.name)
+                mixin_operation.append_available_api(version_path.name, mixin_operation_metadata)
 
-        # make sure that the signature, doc, call, and coroutine is based off of the default api version,
-        # if the default api version has a definition for it.
-        # will hopefully get this removed once we deal with mixin operations with different signatures
-        # for different api versions
-        mixin_operations = self._use_metadata_of_default_api_version(mixin_operations)
         mixin_operations.sort(key=lambda x: x.name)
         return mixin_operations
+
+    @property
+    def has_different_calls_across_api_versions(self):
+        return any(
+            mixin_operation.has_different_calls_across_api_versions
+            for mixin_operation in self.mixin_operations
+        )

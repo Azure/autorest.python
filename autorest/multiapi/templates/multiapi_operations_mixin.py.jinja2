@@ -13,10 +13,41 @@ from msrest import Serializer, Deserializer
 {{ imports }}
 {% endif %}
 
+{% if code_model.operation_mixin_group.has_different_calls_across_api_versions %}
+def inspect_args_for_api_version(func):
+    # this maps (api_version, function_name) to a list of parameters that are not allowed
+    # for that function call with that api_version
+    mapping = {
+        {% for mixin_operation in code_model.operation_mixin_group.mixin_operations | selectattr('has_different_calls_across_api_versions') %}
+            {% for api_version, unallowed_params in mixin_operation.api_version_to_unallowed_params.items() %}
+                {% if unallowed_params %}
+            ('{{ api_version }}', '{{ mixin_operation.name }}'): {{ unallowed_params }},
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    }
+    def wrapper(self, *args, **kwargs):
+        func_name = func.__name__
+        api_version = self._get_api_version(func_name)
+        unallowed_parameters = [kwarg for kwarg in kwargs.keys() if kwarg in mapping.get((api_version, func_name), [])]
+        if unallowed_parameters:
+            raise ValueError(
+                "Passed in parameters '{}' are not valid for function '{}' with api version '{}'".format(
+                    ", ".join(unallowed_parameters),
+                    func_name,
+                    api_version
+                )
+            )
+        return func(self, *args, **kwargs)
+    return wrapper
+{% endif %}
 
 class {{ code_model.service_client.name }}OperationsMixin(object):
 {% for mixin_operation in code_model.operation_mixin_group.mixin_operations %}
 
+    {% if mixin_operation.has_different_calls_across_api_versions %}
+    @inspect_args_for_api_version
+    {% endif %}
     {{ mixin_operation.signature(async_mode) | indent }}        {{ mixin_operation.description(async_mode) | indent(8) }}
         api_version = self._get_api_version('{{ mixin_operation.name }}')
         {% for api in mixin_operation.available_apis|sort %}
@@ -34,5 +65,19 @@ class {{ code_model.service_client.name }}OperationsMixin(object):
         mixin_instance._serialize.client_side_validation = False
         {% endif %}
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return {{ "await " if mixin_operation.coroutine(async_mode) }}mixin_instance.{{ mixin_operation.name }}({{ mixin_operation.call }}{{ ", **kwargs" if  mixin_operation.call else "**kwargs" }})
+        {% macro function_call(call) %}return {{ "await " if mixin_operation.coroutine(async_mode) }}mixin_instance.{{ mixin_operation.name }}({{ call }}{{ ", **kwargs" if call else "**kwargs" }}){% endmacro %}
+        {% if mixin_operation.has_different_calls_across_api_versions %}
+
+            {% for call, api_versions in mixin_operation.call_to_api_versions.items() %}
+                {% if not loop.last %}
+            {% set if_statement = "if" if loop.first else "elif" %}
+        {{ if_statement }} api_version in {{ api_versions }}:
+            {{ function_call(call) }}
+                {% else %}
+        {{ function_call(call) }}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        {{ function_call(mixin_operation.call()) }}
+        {% endif %}
 {% endfor %}

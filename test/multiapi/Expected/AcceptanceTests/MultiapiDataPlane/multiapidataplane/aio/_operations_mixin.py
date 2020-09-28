@@ -94,16 +94,16 @@ class MultiapiServiceClientOperationsMixin(object):
         id: int,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
-        """TestOne should be in an FirstVersionOperationsMixin.
+    ) -> "models.ModelTwo":
+        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
         :type id: int
         :param message: An optional string parameter.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: ModelTwo, or the result of cls(response)
+        :rtype: ~multiapidataplane.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = self._get_api_version('test_one')

@@ -35,7 +35,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.version_path_to_metadata = version_path_to_metadata
         self.service_client = Client(self.azure_arm, default_version_metadata, version_path_to_metadata)
         self.config = Config(default_version_metadata)
-        self.operation_mixin_group = OperationMixinGroup(version_path_to_metadata, default_api_version)
+        self.operation_mixin_group = OperationMixinGroup(
+            version_path_to_metadata, mod_to_api_version, default_api_version
+        )
         self.global_parameters = GlobalParameters(default_version_metadata["global_parameters"])
         self.user_specified_default_api = user_specified_default_api
 
