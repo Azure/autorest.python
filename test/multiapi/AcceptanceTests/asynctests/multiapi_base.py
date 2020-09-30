@@ -208,3 +208,37 @@ class NotTested(object):
             assert len(items) == 1
             assert isinstance(items[0], namespace_models.Product)
             assert items[0].id == 100
+
+        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.asyncio
+        async def test_different_calls_pass_version_one(self, client):
+            await client.test_different_calls(greeting_in_english="hello")
+
+        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.asyncio
+        async def test_different_calls_pass_version_one_incorrect_parameters(self, client):
+            with pytest.raises(ValueError) as ex:
+                await client.test_different_calls(greeting_in_english="hello", greeting_in_chinese="nihao")
+
+            assert "Passed in parameters 'greeting_in_chinese' are not valid for function 'test_different_calls' with api version '1.0.0'" in str(ex.value)
+
+        @pytest.mark.parametrize('api_version', ["2.0.0"])
+        @pytest.mark.asyncio
+        async def test_different_calls_pass_version_two(self, client):
+            await client.test_different_calls(greeting_in_english="hello", greeting_in_chinese="nihao")
+
+        @pytest.mark.parametrize('api_version', ["2.0.0"])
+        @pytest.mark.asyncio
+        async def test_different_calls_pass_version_two_incorrect_parameters(self, client):
+            with pytest.raises(ValueError) as ex:
+                await client.test_different_calls(
+                    greeting_in_english="hello", greeting_in_chinese="nihao", greeting_in_french="bonjour"
+                )
+
+            assert "Passed in parameters 'greeting_in_french' are not valid for function 'test_different_calls' with api version '2.0.0'" in str(ex.value)
+
+        @pytest.mark.asyncio
+        async def test_different_calls_pass_version_three(self, default_client):
+            await default_client.test_different_calls(
+                greeting_in_english="hello", greeting_in_chinese="nihao", greeting_in_french='bonjour'
+            )

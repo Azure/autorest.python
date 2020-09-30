@@ -20,6 +20,27 @@ from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMetho
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
+def inspect_args_for_api_version(func):
+    # this maps (api_version, function_name) to a list of parameters that are not allowed
+    # for that function call with that api_version
+    mapping = {
+            ('1.0.0', 'test_different_calls'): ['greeting_in_chinese', 'greeting_in_french'],
+            ('2.0.0', 'test_different_calls'): ['greeting_in_french'],
+    }
+    def wrapper(self, *args, **kwargs):
+        func_name = func.__name__
+        api_version = self._get_api_version(func_name)
+        unallowed_parameters = [kwarg for kwarg in kwargs.keys() if kwarg in mapping.get((api_version, func_name), [])]
+        if unallowed_parameters:
+            raise ValueError(
+                "Passed in parameters '{}' are not valid for function '{}' with api version '{}'".format(
+                    ", ".join(unallowed_parameters),
+                    func_name,
+                    api_version
+                )
+            )
+        return func(self, *args, **kwargs)
+    return wrapper
 
 class MultiapiServiceClientOperationsMixin(object):
 
@@ -89,6 +110,49 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
+
+    @inspect_args_for_api_version
+    async def test_different_calls(
+        self,
+        greeting_in_english: str,
+        greeting_in_chinese: Optional[str] = None,
+        greeting_in_french: Optional[str] = None,
+        **kwargs
+    ) -> None:
+        """Has added parameters across the API versions.
+
+        :param greeting_in_english: pass in 'hello' to pass test.
+        :type greeting_in_english: str
+        :param greeting_in_chinese: pass in 'nihao' to pass test.
+        :type greeting_in_chinese: str
+        :param greeting_in_french: pass in 'bonjour' to pass test.
+        :type greeting_in_french: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        api_version = self._get_api_version('test_different_calls')
+        if api_version == '1.0.0':
+            from ..v1.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
+        elif api_version == '2.0.0':
+            from ..v2.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
+        elif api_version == '3.0.0':
+            from ..v3.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
+        else:
+            raise ValueError("API version {} does not have operation 'test_different_calls'".format(api_version))
+        mixin_instance = OperationClass()
+        mixin_instance._client = self._client
+        mixin_instance._config = self._config
+        mixin_instance._serialize = Serializer(self._models_dict(api_version))
+        mixin_instance._serialize.client_side_validation = False
+        mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
+
+        if api_version in ['1.0.0']:
+            return await mixin_instance.test_different_calls(greeting_in_english, **kwargs)
+        elif api_version in ['2.0.0']:
+            return await mixin_instance.test_different_calls(greeting_in_english, greeting_in_chinese, **kwargs)
+        return await mixin_instance.test_different_calls(greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs)
 
     async def test_one(
         self,
