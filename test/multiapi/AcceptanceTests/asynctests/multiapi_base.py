@@ -218,9 +218,13 @@ class NotTested(object):
         @pytest.mark.asyncio
         async def test_different_calls_pass_version_one_incorrect_parameters(self, client):
             with pytest.raises(ValueError) as ex:
-                await client.test_different_calls(greeting_in_english="hello", greeting_in_chinese="nihao")
+                await client.test_different_calls(greeting_in_english="hello", greeting_in_chinese="nihao", greeting_in_french="bonjour")
 
-            assert "Passed in parameters 'greeting_in_chinese' are not valid for function 'test_different_calls' with api version '1.0.0'" in str(ex.value)
+            expected_error_string = (
+                "Passed in parameter(s) 'greeting_in_chinese, greeting_in_french' not valid with api version '1.0.0': "
+                "'greeting_in_chinese' was added in api version 'v2', 'greeting_in_french' was added in api version 'v3'"
+            )
+            assert expected_error_string in str(ex.value)
 
         @pytest.mark.parametrize('api_version', ["2.0.0"])
         @pytest.mark.asyncio
@@ -235,7 +239,12 @@ class NotTested(object):
                     greeting_in_english="hello", greeting_in_chinese="nihao", greeting_in_french="bonjour"
                 )
 
-            assert "Passed in parameters 'greeting_in_french' are not valid for function 'test_different_calls' with api version '2.0.0'" in str(ex.value)
+            expected_error_string = (
+                "Passed in parameter(s) 'greeting_in_french' not valid with api version '2.0.0': "
+                "'greeting_in_french' was added in api version 'v3'"
+            )
+
+            assert expected_error_string in str(ex.value)
 
         @pytest.mark.asyncio
         async def test_different_calls_pass_version_three(self, default_client):
