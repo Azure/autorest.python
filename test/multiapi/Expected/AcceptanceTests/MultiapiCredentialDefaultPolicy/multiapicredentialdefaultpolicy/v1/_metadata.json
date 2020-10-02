@@ -12,17 +12,17 @@
         "client_side_validation": false
     },
     "global_parameters": {
-        "sync_method": {
+        "sync": {
             "credential": {
-                "method_signature": "credential,  # type: AzureKeyCredential",
+                "signature": "credential,  # type: AzureKeyCredential",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials.AzureKeyCredential",
                 "required": true
             }
         },
-        "async_method": {
+        "async": {
             "credential": {
-                "method_signature": "credential,  # type: AzureKeyCredential",
+                "signature": "credential,  # type: AzureKeyCredential",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials.AzureKeyCredential",
                 "required": true
