@@ -222,7 +222,7 @@ class NotTested(object):
 
             expected_error_string = (
                 "Passed in parameter(s) 'greeting_in_chinese, greeting_in_french' not valid with api version '1.0.0': "
-                "'greeting_in_chinese' was added in api version 'v2', 'greeting_in_french' was added in api version 'v3'"
+                "'greeting_in_chinese' was added in api version '2.0.0', 'greeting_in_french' was added in api version '3.0.0'"
             )
             assert expected_error_string in str(ex.value)
 
@@ -241,7 +241,7 @@ class NotTested(object):
 
             expected_error_string = (
                 "Passed in parameter(s) 'greeting_in_french' not valid with api version '2.0.0': "
-                "'greeting_in_french' was added in api version 'v3'"
+                "'greeting_in_french' was added in api version '3.0.0'"
             )
 
             assert expected_error_string in str(ex.value)

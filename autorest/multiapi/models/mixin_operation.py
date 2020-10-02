@@ -131,6 +131,6 @@ class MixinOperation:
                 self._union_of_all_params.append(param)
             self._api_version_to_params.setdefault(api_version, [])
             self._api_version_to_params[api_version].append(param)
-            param.append_available_api(api_version)
+            param.append_available_api(self._mod_to_api_version[api_version])
 
         self._api_version_to_mixin_operation_metadata[api_version] = mixin_operation_metadata

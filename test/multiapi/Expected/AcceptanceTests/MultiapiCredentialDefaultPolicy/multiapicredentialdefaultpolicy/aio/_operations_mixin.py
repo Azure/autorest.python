@@ -29,8 +29,8 @@ def inspect_args_for_api_version(func):
     }
 
     param_to_api_version_added = {
-        'greeting_in_chinese': 'v2',
-        'greeting_in_french': 'v3',
+        'greeting_in_chinese': '2.0.0',
+        'greeting_in_french': '3.0.0',
     }
     def wrapper(self, *args, **kwargs):
         func_name = func.__name__
@@ -144,9 +144,9 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
 
-        .. versionadded:: v2
+        .. versionadded:: 2.0.0
             The parameter *greeting_in_chinese*
-        .. versionadded:: v3
+        .. versionadded:: 3.0.0
             The parameter *greeting_in_french*
         """
         api_version = self._get_api_version('test_different_calls')
