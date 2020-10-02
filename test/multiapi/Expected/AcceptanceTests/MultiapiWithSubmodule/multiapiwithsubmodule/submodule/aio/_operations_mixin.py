@@ -144,9 +144,9 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
 
-        .. versionadded:: 2.0.0
+        **New in API version 2.0.0**
             The parameter *greeting_in_chinese*
-        .. versionadded:: 3.0.0
+        **New in API version 3.0.0**
             The parameter *greeting_in_french*
         """
         api_version = self._get_api_version('test_different_calls')

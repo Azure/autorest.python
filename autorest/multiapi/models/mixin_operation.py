@@ -39,7 +39,7 @@ class MixinOperation:
             parameter_string = "parameter" if len(params) == 1 else "parameters"
             param_names = [f"*{param.name}*" for param in params]
 
-            description += f".. versionadded:: {api}\n    The {parameter_string} "
+            description += f"**New in API version {api}**\n    The {parameter_string} "
 
             if len(params) == 1:
                 description += f"{param_names[0]}"
