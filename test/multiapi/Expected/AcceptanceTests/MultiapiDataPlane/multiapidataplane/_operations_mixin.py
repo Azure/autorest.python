@@ -49,7 +49,7 @@ def inspect_args_for_api_version(func):
             ]
             raise ValueError(
                 "Passed in parameter(s) '{}' not valid with api version '{}': {}".format(
-                    ", ".join(unallowed_parameters),
+                    "', '".join(unallowed_parameters),
                     api_version,
                     ", ".join(param_to_api_version_error_strings)
                 )

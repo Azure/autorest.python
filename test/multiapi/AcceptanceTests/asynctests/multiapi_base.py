@@ -221,7 +221,7 @@ class NotTested(object):
                 await client.test_different_calls(greeting_in_english="hello", greeting_in_chinese="nihao", greeting_in_french="bonjour")
 
             expected_error_string = (
-                "Passed in parameter(s) 'greeting_in_chinese, greeting_in_french' not valid with api version '1.0.0': "
+                "Passed in parameter(s) 'greeting_in_chinese', 'greeting_in_french' not valid with api version '1.0.0': "
                 "'greeting_in_chinese' was added in api version '2.0.0', 'greeting_in_french' was added in api version '3.0.0'"
             )
             assert expected_error_string in str(ex.value)
