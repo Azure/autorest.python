@@ -19,39 +19,45 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.polling.async_base_polling import AsyncLROBasePolling
 
-def inspect_args_for_api_version(func):
-    # this maps (api_version, function_name) to a list of parameters that are not allowed
-    # for that function call with that api_version
-    unallowed_params_mapping = {
-        ('1.0.0', 'test_different_calls'): ['greeting_in_chinese', 'greeting_in_french'],
-        ('2.0.0', 'test_different_calls'): ['greeting_in_french'],
-    }
+class _InspectArgsForApiVersion:
+    def __init__(self):
+        # this maps (api_version, function_name) to a list of parameters that are not allowed
+        # for that function call with that api_version
+        self._unallowed_params_mapping = {
+            ('1.0.0', 'test_different_calls'): ['greeting_in_chinese', 'greeting_in_french'],
+            ('2.0.0', 'test_different_calls'): ['greeting_in_french'],
+        }
 
-    param_to_api_version_added = {
-        'greeting_in_chinese': '2.0.0',
-        'greeting_in_french': '3.0.0',
-    }
-    def wrapper(self, *args, **kwargs):
-        func_name = func.__name__
-        api_version = self._get_api_version(func_name)
-        unallowed_parameters = [
-            kwarg for kwarg in kwargs.keys()
-            if kwarg in unallowed_params_mapping.get((api_version, func_name), [])
-        ]
-        if unallowed_parameters:
-            param_to_api_version_error_strings = [
-                "'{}' was added in api version '{}'".format(param, param_to_api_version_added[param])
-                for param in unallowed_parameters
+        self._param_to_api_version_added = {
+            'greeting_in_chinese': '2.0.0',
+            'greeting_in_french': '3.0.0',
+        }
+
+    def __call__(self, func):
+        unallowed_params_mapping = self._unallowed_params_mapping
+        param_to_api_version_added = self._param_to_api_version_added
+
+        def wrapper(self, *args, **kwargs):
+            func_name = func.__name__
+            api_version = self._get_api_version(func_name)
+            unallowed_parameters = [
+                kwarg for kwarg in kwargs.keys()
+                if kwarg in unallowed_params_mapping.get((api_version, func_name), [])
             ]
-            raise ValueError(
-                "Passed in parameter(s) '{}' not valid with api version '{}': {}".format(
-                    "', '".join(unallowed_parameters),
-                    api_version,
-                    ", ".join(param_to_api_version_error_strings)
+            if unallowed_parameters:
+                param_to_api_version_error_strings = [
+                    "'{}' was added in api version '{}'".format(param, param_to_api_version_added[param])
+                    for param in unallowed_parameters
+                ]
+                raise ValueError(
+                    "Passed in parameter(s) '{}' not valid with api version '{}': {}".format(
+                        "', '".join(unallowed_parameters),
+                        api_version,
+                        ", ".join(param_to_api_version_error_strings)
+                    )
                 )
-            )
-        return func(self, *args, **kwargs)
-    return wrapper
+            return func(self, *args, **kwargs)
+        return wrapper
 
 class MultiapiServiceClientOperationsMixin(object):
 
@@ -122,7 +128,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
 
-    @inspect_args_for_api_version
+    @_InspectArgsForApiVersion()
     async def test_different_calls(
         self,
         greeting_in_english: str,
