@@ -3,12 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from .code_model import CodeModel
-from .imports import ImportType, FileImport, TypingSection
 
-__all__ = [
-    "CodeModel",
-    "FileImport",
-    "ImportType",
-    "TypingSection",
-]
+class ConstantGlobalParameter:
+    def __init__(self, name: str, value: str):
+        self.name = name
+        self.value = value
