@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.3.5
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- Can now correctly poll in the case of parameterized endpoints with relative polling urls  #784
+
 ### 2020-09-24 - 5.3.4
 Autorest core version: 3.0.6318
 
