@@ -6,6 +6,7 @@
 import contextlib
 import os
 import logging
+import json
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
 
@@ -14,11 +15,22 @@ from .stdstream import read_message, write_message
 
 _LOGGER = logging.getLogger(__name__)
 
-
 @dispatcher.add_method
 def GetPluginNames():
     return ["codegen", "m2r", "namer", "multiapiscript"]
 
+def _set_debugger(stdstream_connection):
+    debug_flag_set = stdstream_connection.get_value("python.debugger") is not None
+    if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False) or debug_flag_set:
+        try:
+            import ptvsd  # pylint: disable=import-outside-toplevel
+        except ImportError:
+            raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
+
+        # 5678 is the default attach port in the VS Code debug configurations
+        ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)
+        ptvsd.wait_for_attach()
+        breakpoint()  # pylint: disable=undefined-variable
 
 @dispatcher.add_method
 def Process(plugin_name: str, session_id: str) -> bool:
@@ -32,6 +44,7 @@ def Process(plugin_name: str, session_id: str) -> bool:
         _LOGGER.debug("Autorest called process with plugin_name '%s' and session_id: '%s'", plugin_name, session_id)
         if plugin_name == "m2r":
             from ..m2r import M2R as PluginToLoad
+            _set_debugger(stdstream_connection)
         elif plugin_name == "namer":
             from ..namer import Namer as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
@@ -53,16 +66,6 @@ def Process(plugin_name: str, session_id: str) -> bool:
 
 
 def main() -> None:
-    if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
-        try:
-            import ptvsd  # pylint: disable=import-outside-toplevel
-        except ImportError:
-            raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
-
-        # 5678 is the default attach port in the VS Code debug configurations
-        ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)
-        ptvsd.wait_for_attach()
-        breakpoint()  # pylint: disable=undefined-variable
 
     _LOGGER.debug("Starting JSON RPC server")
 
