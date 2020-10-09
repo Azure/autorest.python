@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import contextlib
 import os
+import sys
 import logging
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
@@ -53,7 +54,8 @@ def Process(plugin_name: str, session_id: str) -> bool:
 
 
 def main() -> None:
-    if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
+    debugger_specified = len(sys.argv) > 1 and sys.argv[1] == 'debug'
+    if debugger_specified or os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
         try:
             import ptvsd  # pylint: disable=import-outside-toplevel
         except ImportError:
