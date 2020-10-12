@@ -80,6 +80,10 @@ pipeline:
     input: python/namer
     output-artifact: python-files
 
+  python/black-formatting:
+    input: python/codegen
+    output-artifact: python-files
+
   python/codegen/emitter:
     input: codegen
     scope: scope-codegen/emitter
@@ -98,6 +102,10 @@ output-artifact: python-files
 pipeline:
   python/multiapiscript:
     scope: multiapiscript
+    output-artifact: python-files
+
+  python/black-formatting:
+    input: python/multiapiscript
     output-artifact: python-files
 
   python/multiapiscript/emitter:
