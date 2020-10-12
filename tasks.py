@@ -167,6 +167,8 @@ def regen_expected(c, opts, debug):
             args.append(f"--override-client-name={opts['override-client-name']}")
         if key in packages_with_client_side_validation:
             args.append("--client-side-validation=true")
+        if opts.get('black-formatting'):
+            args.append("--black-formatting")
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
@@ -310,6 +312,7 @@ def regenerate(c, swagger_name=None, debug=False):
         regenerate_multiapi(c, debug)
         regenerate_credential_default_policy(c, debug)
         regenerate_package_name_setup_py(c, debug)
+        regenerate_black_formatting(c, debug)
 
 
 @task
@@ -357,6 +360,22 @@ def _multiapi_command_line(location):
         f'{_AUTOREST_CMD_LINE} {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
         f'--python-sdks-folder={cwd}/test/'
     )
+
+@task
+def regenerate_black_formatting(c, debug=False):
+    default_mapping = {'AcceptanceTests/BodyBooleanWithBlackFormatting': 'body-boolean.json'}
+    opts = {
+        'output_base_dir': 'test/vanilla',
+        'input_base_dir': swagger_dir,
+        'mappings': default_mapping,
+        'output_dir': 'Expected',
+        'flattening_threshold': '1',
+        'vanilla': True,
+        'keep_version': True,
+        'ns_prefix': True,
+        'black-formatting': True
+    }
+    regen_expected(c, opts, debug)
 
 @task
 def regenerate_multiapi(c, debug=False, swagger_name="test"):
