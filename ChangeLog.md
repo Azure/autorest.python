@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.4.0
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.421
+
+**New Features**
+
+- Added support for running `black` on generated code. To use, simply specify `--black-formatting` on the command line or in your config file  #792
+
 ### 2020-09-24 - 5.3.4
 Autorest core version: 3.0.6318
 
