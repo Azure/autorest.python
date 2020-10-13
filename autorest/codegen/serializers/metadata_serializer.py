@@ -9,7 +9,6 @@ from typing import List, Optional, Set, Tuple, Dict
 from jinja2 import Environment
 from ..models import (
     CodeModel,
-    Operation,
     OperationGroup,
     LROOperation,
     PagingOperation,
@@ -50,6 +49,14 @@ def _json_serialize_imports(
         json_serialize_imports[typing_section_key] = json_import_type_dictionary
     return json.dumps(json_serialize_imports)
 
+def _mixin_imports(mixin_operation_group: Optional[OperationGroup]) -> Tuple[Optional[str], Optional[str]]:
+    if not mixin_operation_group:
+        return None, None
+
+    sync_mixin_imports = mixin_operation_group.imports(async_mode=False, has_schemas=False)
+    async_mixin_imports = mixin_operation_group.imports(async_mode=True, has_schemas=False)
+
+    return _json_serialize_imports(sync_mixin_imports.imports), _json_serialize_imports(async_mixin_imports.imports)
 
 class MetadataSerializer:
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
@@ -94,13 +101,8 @@ class MetadataSerializer:
             for operation_group in self.code_model.operation_groups if operation_group.is_empty_operation_group),
             None
         )
-        mixin_operations: List[Operation] = []
-        sync_mixin_imports = None
-        async_mixin_imports = None
-        if mixin_operation_group:
-            mixin_operations = mixin_operation_group.operations
-            sync_mixin_imports = mixin_operation_group.imports(async_mode=False, has_schemas=False)
-            async_mixin_imports = mixin_operation_group.imports(async_mode=True, has_schemas=False)
+        mixin_operations = mixin_operation_group.operations if mixin_operation_group else []
+        sync_mixin_imports, async_mixin_imports = _mixin_imports(mixin_operation_group)
         chosen_version, total_api_version_list = self._choose_api_version()
 
         # we separate out async and sync for the case of credentials.
@@ -128,12 +130,6 @@ class MetadataSerializer:
             is_lro=_is_lro,
             is_paging=_is_paging,
             str=str,
-            sync_mixin_imports=(
-                _json_serialize_imports(sync_mixin_imports.imports)
-                if sync_mixin_imports else None
-            ),
-            async_mixin_imports=(
-                _json_serialize_imports(async_mixin_imports.imports)
-                if async_mixin_imports else None
-            )
+            sync_mixin_imports=sync_mixin_imports,
+            async_mixin_imports=async_mixin_imports
         )

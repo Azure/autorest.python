@@ -55,49 +55,51 @@
         {% endfor %}
     },
     "operation_mixins": {
-        {% for operation in mixin_operations %}
-        {% set operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
-        {{ operation_name | tojson }} : {
-            "sync": {
-                {% if is_lro(operation) and is_paging(operation) %}
-                    {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = ["LROPoller", "ItemPaged"] %}
-                {% elif is_lro(operation) %}
-                    {% from "lro_operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = ["LROPoller"] %}
-                {% elif is_paging(operation) %}
-                    {% from "paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = ["ItemPaged"] %}
-                {% else %}
-                    {% from "operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = "" %}
-                {% endif %}
-                "signature": {{ op_tools.method_signature(operation, operation_name, False, False, sync_return_type_wrapper) | tojson }},
-                "doc": {{ operation_docstring(async_mode=False) | tojson }}
-            },
-            "async": {
-                {% set coroutine = False if is_paging(operation) else True %}
-                "coroutine": {{ coroutine | tojson }},
-                {% if is_lro(operation) and is_paging(operation) %}
-                    {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = ["AsyncLROPoller", "AsyncItemPaged"] %}
-                {% elif is_lro(operation) %}
-                    {% from "lro_operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = ["AsyncLROPoller"] %}
-                {% elif is_paging(operation) %}
-                    {% from "paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = ["AsyncItemPaged"] %}
-                {% else %}
-                    {% from "operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = "" %}
-                {% endif %}
-                "signature": {{ op_tools.method_signature(operation, operation_name, True, coroutine, async_return_type_wrapper) | tojson }},
-                "doc": {{ operation_docstring(async_mode=True) | tojson }}
-            },
-            "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
-        }{{ "," if not loop.last else "" }}
-        {% endfor %}
-    },
-    "sync_imports": {{ str(sync_mixin_imports) | tojson }},
-    "async_imports": {{ str(async_mixin_imports) | tojson }}
+        "sync_imports": {{ str(sync_mixin_imports) | tojson }},
+        "async_imports": {{ str(async_mixin_imports) | tojson }},
+        "operations": {
+            {% for operation in mixin_operations %}
+            {% set operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
+            {{ operation_name | tojson }} : {
+                "sync": {
+                    {% if is_lro(operation) and is_paging(operation) %}
+                        {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
+                        {% set sync_return_type_wrapper = ["LROPoller", "ItemPaged"] %}
+                    {% elif is_lro(operation) %}
+                        {% from "lro_operation.py.jinja2" import operation_docstring with context %}
+                        {% set sync_return_type_wrapper = ["LROPoller"] %}
+                    {% elif is_paging(operation) %}
+                        {% from "paging_operation.py.jinja2" import operation_docstring with context %}
+                        {% set sync_return_type_wrapper = ["ItemPaged"] %}
+                    {% else %}
+                        {% from "operation.py.jinja2" import operation_docstring with context %}
+                        {% set sync_return_type_wrapper = "" %}
+                    {% endif %}
+                    "signature": {{ op_tools.method_signature(operation, operation_name, False, False, sync_return_type_wrapper) | tojson }},
+                    "doc": {{ operation_docstring(async_mode=False) | tojson }}
+                },
+                "async": {
+                    {% set coroutine = False if is_paging(operation) else True %}
+                    "coroutine": {{ coroutine | tojson }},
+                    {% if is_lro(operation) and is_paging(operation) %}
+                        {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
+                        {% set async_return_type_wrapper = ["AsyncLROPoller", "AsyncItemPaged"] %}
+                    {% elif is_lro(operation) %}
+                        {% from "lro_operation.py.jinja2" import operation_docstring with context %}
+                        {% set async_return_type_wrapper = ["AsyncLROPoller"] %}
+                    {% elif is_paging(operation) %}
+                        {% from "paging_operation.py.jinja2" import operation_docstring with context %}
+                        {% set async_return_type_wrapper = ["AsyncItemPaged"] %}
+                    {% else %}
+                        {% from "operation.py.jinja2" import operation_docstring with context %}
+                        {% set async_return_type_wrapper = "" %}
+                    {% endif %}
+                    "signature": {{ op_tools.method_signature(operation, operation_name, True, coroutine, async_return_type_wrapper) | tojson }},
+                    "doc": {{ operation_docstring(async_mode=True) | tojson }}
+                },
+                "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
+            }{{ "," if not loop.last else "" }}
+            {% endfor %}
+        }
+    }
 }
