@@ -67,6 +67,7 @@ default_azure_mappings = {
   'AcceptanceTests/AzureReport': 'azure-report.json',
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
   'AcceptanceTests/CustomBaseUri': ['custom-baseUrl.json', 'custombaseurl'],
+  'AcceptanceTests/LroWithParameterizedEndpoints': 'lro-parameterized-endpoints.json',
 }
 
 # The list is mostly built on Swaggers that uses CloudError feature
