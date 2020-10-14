@@ -53,9 +53,13 @@ class MultiAPISerializer(object):
         self._autorestapi.write_file(_get_file_path("__init__", async_mode), _render_template("init"))
 
         # serialize service client file
+        imports = FileImportSerializer(
+            code_model.service_client.imports(async_mode),
+            is_python_3_file=async_mode
+        )
         self._autorestapi.write_file(
             _get_file_path(code_model.service_client.filename, async_mode),
-            _render_template("service_client")
+            _render_template("service_client", imports=imports)
         )
 
         # serialize config file

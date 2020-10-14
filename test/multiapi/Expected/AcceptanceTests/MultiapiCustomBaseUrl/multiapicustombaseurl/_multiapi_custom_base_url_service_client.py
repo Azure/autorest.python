@@ -9,13 +9,22 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import PipelineClient
-from msrest import Serializer, Deserializer
+from typing import TYPE_CHECKING
 
+from azure.core import PipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
+from msrest import Deserializer, Serializer
+
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 from ._operations_mixin import MultiapiCustomBaseUrlServiceClientOperationsMixin
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
+
+    from azure.core.credentials import TokenCredential
+
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."

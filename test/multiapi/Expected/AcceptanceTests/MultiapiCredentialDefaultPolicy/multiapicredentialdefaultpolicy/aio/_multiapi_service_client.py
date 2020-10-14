@@ -9,13 +9,17 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.mgmt.core import AsyncARMPipelineClient
-from msrest import Serializer, Deserializer
+from typing import Any, Optional
 
+from azure.core.credentials import AzureKeyCredential
+from azure.mgmt.core import AsyncARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
+from msrest import Deserializer, Serializer
+
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
+
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."

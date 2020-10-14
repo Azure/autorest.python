@@ -36,13 +36,7 @@ def __init__(
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.{{ "mgmt." if code_model.azure_arm }}core import {{ async_prefix }}{{ code_model.service_client.pipeline_client }}
-from msrest import Serializer, Deserializer
-
-from azure.profiles import KnownProfiles, ProfileDefinition
-from azure.profiles.multiapiclient import MultiApiClientMixin
-from ._configuration import {{ code_model.service_client.name }}Configuration
-{% if code_model.operation_mixin_group.mixin_operations %}from ._operations_mixin import {{ code_model.service_client.name }}OperationsMixin{% endif %}
+{{ imports }}
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):

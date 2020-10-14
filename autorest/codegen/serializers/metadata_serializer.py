@@ -9,6 +9,7 @@ from typing import List, Optional, Set, Tuple, Dict
 from jinja2 import Environment
 from ..models import (
     CodeModel,
+    FileImport,
     OperationGroup,
     LROOperation,
     PagingOperation,
@@ -89,6 +90,23 @@ class MetadataSerializer:
         _correct_credential_parameter(global_parameters, True)
         return global_parameters
 
+    def _service_client_imports(
+        self, mixin_operation_group: Optional[OperationGroup], global_parameters: Optional[ParameterList],  async_mode: bool
+    ) -> str:
+        file_import = FileImport()
+        for gp in global_parameters:
+            file_import.merge(gp.imports())
+        file_import.add_from_import("azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE)
+        file_import.add_from_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
+        file_import.add_from_import("azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE)
+        file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
+        if mixin_operation_group:
+            file_import.add_from_import("._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL)
+
+        file_import.merge(self.code_model.service_client.imports(self.code_model, async_mode=async_mode))
+        return _json_serialize_imports(file_import.imports)
+
+
     def serialize(self) -> str:
         def _is_lro(operation):
             return isinstance(operation, LROOperation)
@@ -103,6 +121,7 @@ class MetadataSerializer:
         )
         mixin_operations = mixin_operation_group.operations if mixin_operation_group else []
         sync_mixin_imports, async_mixin_imports = _mixin_imports(mixin_operation_group)
+
         chosen_version, total_api_version_list = self._choose_api_version()
 
         # we separate out async and sync for the case of credentials.
@@ -118,6 +137,9 @@ class MetadataSerializer:
             _correct_credential_parameter(self.code_model.global_parameters, False)
             async_global_parameters = self._make_async_copy_of_global_parameters()
 
+        sync_client_imports = self._service_client_imports(mixin_operation_group, self.code_model.global_parameters, async_mode=False)
+        async_client_imports = self._service_client_imports(mixin_operation_group, async_global_parameters, async_mode=True)
+
         template = self.env.get_template("metadata.json.jinja2")
         return template.render(
             chosen_version=chosen_version,
@@ -131,5 +153,7 @@ class MetadataSerializer:
             is_paging=_is_paging,
             str=str,
             sync_mixin_imports=sync_mixin_imports,
-            async_mixin_imports=async_mixin_imports
+            async_mixin_imports=async_mixin_imports,
+            sync_client_imports=sync_client_imports,
+            async_client_imports=async_client_imports,
         )

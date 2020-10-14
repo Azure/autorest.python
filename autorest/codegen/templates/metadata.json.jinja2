@@ -12,7 +12,9 @@
         "custom_base_url": {{ (keywords.escape_str(code_model.custom_base_url) if code_model.custom_base_url else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
-        "client_side_validation": {{ code_model.options["client_side_validation"] | tojson }}
+        "client_side_validation": {{ code_model.options["client_side_validation"] | tojson }},
+        "sync_imports": {{ sync_client_imports | tojson }},
+        "async_imports": {{ async_client_imports | tojson }}
     },
     "global_parameters": {
         "sync": {

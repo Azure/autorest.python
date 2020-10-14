@@ -9,7 +9,9 @@
         "custom_base_url": "\u0027{Endpoint}/multiapiCustomBaseUrl/v2\u0027",
         "azure_arm": false,
         "has_lro_operations": false,
-        "client_side_validation": false
+        "client_side_validation": false,
+        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.core\": [\"PipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}}",
+        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.core\": [\"AsyncPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}}"
     },
     "global_parameters": {
         "sync": {
