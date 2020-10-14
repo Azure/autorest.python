@@ -7,6 +7,7 @@ import copy
 import json
 from typing import List, Optional, Set, Tuple, Dict
 from jinja2 import Environment
+from .general_serializer import config_imports
 from ..models import (
     CodeModel,
     FileImport,
@@ -141,6 +142,9 @@ class MetadataSerializer:
         async_client_imports = self._service_client_imports(mixin_operation_group, async_global_parameters, async_mode=True)
 
         template = self.env.get_template("metadata.json.jinja2")
+
+        # setting to true, because for multiapi we always generate with a version file with version 0.1.0
+        self.code_model.options['package_version'] = '0.1.0'
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,
@@ -156,4 +160,10 @@ class MetadataSerializer:
             async_mixin_imports=async_mixin_imports,
             sync_client_imports=sync_client_imports,
             async_client_imports=async_client_imports,
+            sync_config_imports=_json_serialize_imports(
+                config_imports(self.code_model, self.code_model.global_parameters, async_mode=False).imports
+            ),
+            async_config_imports=_json_serialize_imports(
+                config_imports(self.code_model, async_global_parameters, async_mode=True).imports
+            )
         )

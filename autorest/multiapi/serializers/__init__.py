@@ -63,9 +63,13 @@ class MultiAPISerializer(object):
         )
 
         # serialize config file
+        imports = FileImportSerializer(
+            code_model.config.imports(async_mode),
+            is_python_3_file=async_mode
+        )
         self._autorestapi.write_file(
             _get_file_path("_configuration", async_mode),
-            _render_template("config")
+            _render_template("config", imports=imports)
         )
 
         # serialize mixins

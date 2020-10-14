@@ -11,11 +11,11 @@
 from typing import Any
 
 from azure.core.configuration import Configuration
+from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 
 from .._version import VERSION
-
 
 class MultiapiServiceClientConfiguration(Configuration):
     """Configuration for MultiapiServiceClient.

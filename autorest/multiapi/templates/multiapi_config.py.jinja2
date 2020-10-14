@@ -26,16 +26,7 @@ def __init__(
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from typing import Any
-
-from azure.core.configuration import Configuration
-from azure.core.pipeline import policies
-{% if code_model.azure_arm %}
-from azure.mgmt.core.policies import ARMHttpLoggingPolicy
-{% endif %}
-
-from {{ version_import }} import VERSION
-
+{{ imports }}
 
 class {{ code_model.service_client.name }}Configuration(Configuration):
     """Configuration for {{ code_model.service_client.name }}.

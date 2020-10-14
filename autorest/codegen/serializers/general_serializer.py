@@ -5,7 +5,21 @@
 # --------------------------------------------------------------------------
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
-from ..models import FileImport, ImportType, CodeModel, TokenCredentialSchema
+from ..models import FileImport, ImportType, CodeModel, TokenCredentialSchema, ParameterList
+
+
+def config_imports(code_model, global_parameters: ParameterList, async_mode: bool) -> FileImport:
+    file_import = FileImport()
+    file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
+    file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
+    file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+    if code_model.options["package_version"]:
+        file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
+    for gp in global_parameters:
+        file_import.merge(gp.imports())
+    if code_model.options["azure_arm"]:
+        file_import.add_from_import("azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE)
+    return file_import
 
 
 class GeneralSerializer:
@@ -53,18 +67,6 @@ class GeneralSerializer:
         )
 
     def serialize_config_file(self) -> str:
-        def _config_imports(async_mode: bool) -> FileImport:
-            file_import = FileImport()
-            file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
-            file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
-            file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
-            if self.code_model.options["package_version"]:
-                file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
-            for gp in self.code_model.global_parameters:
-                file_import.merge(gp.imports())
-            if self.code_model.options["azure_arm"]:
-                file_import.add_from_import("azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE)
-            return file_import
 
         package_name = self.code_model.options['package_name']
         if package_name and package_name.startswith("azure-"):
@@ -81,7 +83,9 @@ class GeneralSerializer:
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
-            imports=FileImportSerializer(_config_imports(self.async_mode), is_python_3_file=self.async_mode),
+            imports=FileImportSerializer(
+                config_imports(self.code_model, self.code_model.global_parameters, self.async_mode), is_python_3_file=self.async_mode
+            ),
             sdk_moniker=sdk_moniker
         )
 
