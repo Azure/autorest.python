@@ -47,8 +47,8 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000.
     :type endpoint: str
-    :param str api_version: API version to use if no profile is provided, or if
-     missing in profile.
+    :param api_version: API version to use if no profile is provided, or if missing in profile.
+    :type api_version: str
     :param profile: A profile definition, from KnownProfiles to dict.
     :type profile: azure.profiles.KnownProfiles
     """
@@ -66,8 +66,8 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         self,
         credential,  # type: "TokenCredential"
         endpoint,  # type: str
-        api_version=None,
-        profile=KnownProfiles.default,
+        api_version=None, # type: Optional[str]
+        profile=KnownProfiles.default, # type: KnownProfiles
         **kwargs  # type: Any
     ):
         if api_version == '1.0.0':
