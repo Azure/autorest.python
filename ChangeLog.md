@@ -7,7 +7,7 @@ Modelerfour version: 4.15.421
 
 **New Features**
 
-- Add support for `--python.debugging`. With this flag, you can start debugging using VS Code. Make sure to still set up your [debugging configuration](https://github.com/Azure/autorest.python/wiki/Autorest-v3-based-generator-cheatsheet#vscode-debug)  #790
+- Add support for `--python.debugger`. With this flag, you can start debugging using VS Code. Make sure to still set up your [debugging configuration](https://github.com/Azure/autorest.python/wiki/Autorest-v3-based-generator-cheatsheet#vscode-debug)  #790
 
 ### 2020-10-06 - 5.3.5
 Autorest core version: 3.0.6318
