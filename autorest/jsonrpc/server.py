@@ -54,8 +54,9 @@ def Process(plugin_name: str, session_id: str) -> bool:
 
 
 def main() -> None:
-    debugger_specified = len(sys.argv) > 1 and sys.argv[1] == 'debug'
-    if debugger_specified or os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
+    # If --python.debugger is specified on the command line, we call the server.py file internally
+    # with flag --debug.
+    if '--debug' in sys.argv or os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
         try:
             import ptvsd  # pylint: disable=import-outside-toplevel
         except ImportError:
