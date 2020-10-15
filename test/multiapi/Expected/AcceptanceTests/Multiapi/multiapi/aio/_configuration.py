@@ -32,7 +32,7 @@ class MultiapiServiceClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential,  # type: "AsyncTokenCredential"
+        credential: "AsyncTokenCredential",
         **kwargs  # type: Any
     ) -> None:
         if credential is None:

@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
@@ -62,8 +62,8 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
 
     def __init__(
         self,
-        credential,  # type: "AsyncTokenCredential"
-        endpoint,  # type: str
+        credential: "AsyncTokenCredential",
+        endpoint: str,
         api_version: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
         **kwargs  # type: Any

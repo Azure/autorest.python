@@ -10,8 +10,8 @@
         "azure_arm": false,
         "has_lro_operations": false,
         "client_side_validation": false,
-        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.core\": [\"PipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}}",
-        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.core\": [\"AsyncPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}}"
+        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.core\": [\"PipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}}",
+        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.core\": [\"AsyncPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}}"
     },
     "global_parameters": {
         "sync": {
@@ -30,13 +30,13 @@
         },
         "async": {
             "credential": {
-                "signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "signature": "credential: \"AsyncTokenCredential\",",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
                 "required": true
             },
             "endpoint": {
-                "signature": "endpoint,  # type: str",
+                "signature": "endpoint: str,",
                 "description": "Pass in https://localhost:3000.",
                 "docstring_type": "str",
                 "required": true

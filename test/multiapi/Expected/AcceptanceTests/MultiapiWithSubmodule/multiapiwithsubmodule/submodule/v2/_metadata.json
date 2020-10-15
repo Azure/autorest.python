@@ -24,7 +24,7 @@
         },
         "async": {
             "credential": {
-                "signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "signature": "credential: \"AsyncTokenCredential\",",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
                 "required": true

@@ -101,6 +101,8 @@ class MetadataSerializer:
         file_import.add_from_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
         file_import.add_from_import("azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE)
         file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
+        # api_version and potentially base_url require Optional typing
+        file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if mixin_operation_group:
             file_import.add_from_import("._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL)
 

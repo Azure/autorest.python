@@ -66,7 +66,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     def __init__(
         self,
-        credential,  # type: "AsyncTokenCredential"
+        credential: "AsyncTokenCredential",
         api_version: Optional[str] = None,
         base_url: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
