@@ -84,7 +84,9 @@ class GeneralSerializer:
             code_model=self.code_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(
-                config_imports(self.code_model, self.code_model.global_parameters, self.async_mode), is_python_3_file=self.async_mode
+                config_imports(
+                    self.code_model, self.code_model.global_parameters, self.async_mode
+                ), is_python_3_file=self.async_mode
             ),
             sdk_moniker=sdk_moniker
         )

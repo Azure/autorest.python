@@ -66,7 +66,7 @@ class GlobalParameters:
             },
         )
         # return non-None members
-        return list(filter(None.__ne__, [api_version_param, base_url_param, profile_param]))
+        return [p for p in [api_version_param, base_url_param, profile_param] if p]
 
     @property
     def parameters(self) -> List[GlobalParameter]:

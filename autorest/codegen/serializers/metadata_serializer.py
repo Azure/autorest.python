@@ -92,19 +92,26 @@ class MetadataSerializer:
         return global_parameters
 
     def _service_client_imports(
-        self, mixin_operation_group: Optional[OperationGroup], global_parameters: Optional[ParameterList],  async_mode: bool
+        self,
+        global_parameters: ParameterList,
+        mixin_operation_group: Optional[OperationGroup],
+        async_mode: bool
     ) -> str:
         file_import = FileImport()
         for gp in global_parameters:
             file_import.merge(gp.imports())
         file_import.add_from_import("azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE)
         file_import.add_from_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
-        file_import.add_from_import("azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE)
+        file_import.add_from_import(
+            "azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE
+        )
         file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
         # api_version and potentially base_url require Optional typing
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if mixin_operation_group:
-            file_import.add_from_import("._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL)
+            file_import.add_from_import(
+                "._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL
+            )
 
         file_import.merge(self.code_model.service_client.imports(self.code_model, async_mode=async_mode))
         return _json_serialize_imports(file_import.imports)
@@ -140,8 +147,12 @@ class MetadataSerializer:
             _correct_credential_parameter(self.code_model.global_parameters, False)
             async_global_parameters = self._make_async_copy_of_global_parameters()
 
-        sync_client_imports = self._service_client_imports(mixin_operation_group, self.code_model.global_parameters, async_mode=False)
-        async_client_imports = self._service_client_imports(mixin_operation_group, async_global_parameters, async_mode=True)
+        sync_client_imports = self._service_client_imports(
+            self.code_model.global_parameters, mixin_operation_group, async_mode=False
+        )
+        async_client_imports = self._service_client_imports(
+            async_global_parameters, mixin_operation_group, async_mode=True
+        )
 
         template = self.env.get_template("metadata.json.jinja2")
 
