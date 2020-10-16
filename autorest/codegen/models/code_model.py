@@ -210,7 +210,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         if schema.base_models:
             for base_model in schema.base_models:
                 parent = cast(ObjectSchema, base_model)
-                schema_property_names = [p.name for p in properties]
+                # need to make sure that the properties we choose from our parent also don't contain
+                # any of our own properties
+                schema_property_names = set([p.name for p in properties] + [p.name for p in schema.properties])
                 chosen_parent_properties = [
                     p for p in parent.properties
                     if p.name not in schema_property_names
