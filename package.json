@@ -5,7 +5,8 @@
   "scripts": {
     "prepare": "node run-python3.js prepare.py",
     "start": "node run-python3.js start.py",
-    "install": "node run-python3.js install.py"
+    "install": "node run-python3.js install.py",
+    "debug": "node run-python3.js start.py --debug"
   },
   "repository": {
     "type": "git",
