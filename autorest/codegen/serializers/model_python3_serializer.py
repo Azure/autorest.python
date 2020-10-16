@@ -44,7 +44,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
                 base_model = cast(ObjectSchema, uncast_base_model)
                 for prop in model.properties:
                     if (
-                        prop.name in [p.name for p in base_model.properties]
+                        prop in base_model.properties
                         and not prop.is_discriminator
                         and not prop.constant
                         and not prop.readonly
