@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.3.6
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- Correctly handling inheritance of class properties for inheritance chains > 3 levels  #795
+
 ### 2020-10-06 - 5.3.5
 Autorest core version: 3.0.6318
 
