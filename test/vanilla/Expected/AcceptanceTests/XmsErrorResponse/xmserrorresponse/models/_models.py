@@ -204,7 +204,7 @@ class PetAction(msrest.serialization.Model):
         self.action_response = kwargs.get('action_response', None)
 
 
-class PetActionError(msrest.serialization.Model):
+class PetActionError(PetAction):
     """PetActionError.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -212,6 +212,8 @@ class PetActionError(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param action_response: action feedback.
+    :type action_response: str
     :param error_type: Required. Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
@@ -223,6 +225,7 @@ class PetActionError(msrest.serialization.Model):
     }
 
     _attribute_map = {
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
         'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
     }
@@ -236,7 +239,7 @@ class PetActionError(msrest.serialization.Model):
         **kwargs
     ):
         super(PetActionError, self).__init__(**kwargs)
-        self.error_type = None  # type: Optional[str]
+        self.error_type = 'PetActionError'  # type: str
         self.error_message = kwargs.get('error_message', None)
 
 
@@ -248,6 +251,8 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param action_response: action feedback.
+    :type action_response: str
     :param error_type: Required. Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
@@ -261,6 +266,7 @@ class PetSadError(PetActionError):
     }
 
     _attribute_map = {
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
         'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
         'reason': {'key': 'reason', 'type': 'str'},
@@ -284,6 +290,8 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param action_response: action feedback.
+    :type action_response: str
     :param error_type: Required. Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
@@ -299,6 +307,7 @@ class PetHungryOrThirstyError(PetSadError):
     }
 
     _attribute_map = {
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
         'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
         'reason': {'key': 'reason', 'type': 'str'},
