@@ -15,37 +15,18 @@ from msrest import Serializer, Deserializer
 
 {% if code_model.operation_mixin_group.has_different_calls_across_api_versions %}
 class _InspectArgsForApiVersion:
-    def __init__(self):
-        # this maps (api_version, function_name) to a list of parameters that are not allowed
-        # for that function call with that api_version
-        self._unallowed_params_mapping = {
-            {% for mixin_operation in code_model.operation_mixin_group.mixin_operations | selectattr('has_different_calls_across_api_versions') %}
-                {% for api_version, unallowed_params in mixin_operation.api_version_to_unallowed_params.items() %}
-                    {% if unallowed_params %}
-            ('{{ api_version }}', '{{ mixin_operation.name }}'): {{ unallowed_params | map(attribute='name') | list }},
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        }
-
-        self._param_to_api_version_added = {
-            {% for mixin_operation in code_model.operation_mixin_group.mixin_operations | selectattr('has_different_calls_across_api_versions') %}
-                {% for param_name, api_version_added in mixin_operation.param_name_to_api_version_added.items() %}
-            '{{ param_name }}': '{{ api_version_added }}',
-                {% endfor %}
-            {% endfor %}
-        }
+    def __init__(self, param_to_api_version_added):
+        self._param_to_api_version_added = param_to_api_version_added
 
     def __call__(self, func):
-        unallowed_params_mapping = self._unallowed_params_mapping
         param_to_api_version_added = self._param_to_api_version_added
 
         def wrapper(self, *args, **kwargs):
             func_name = func.__name__
             api_version = self._get_api_version(func_name)
             unallowed_parameters = [
-                kwarg for kwarg in kwargs.keys()
-                if kwarg in unallowed_params_mapping.get((api_version, func_name), [])
+                param for param in kwargs.keys()
+                if param_to_api_version_added.get(param) and param_to_api_version_added[param] > api_version
             ]
             if unallowed_parameters:
                 param_to_api_version_error_strings = [
@@ -67,7 +48,13 @@ class {{ code_model.service_client.name }}OperationsMixin(object):
 {% for mixin_operation in code_model.operation_mixin_group.mixin_operations %}
 
     {% if mixin_operation.has_different_calls_across_api_versions %}
-    @_InspectArgsForApiVersion()
+    @_InspectArgsForApiVersion(
+        param_to_api_version_added={
+        {% for param_name, api_version_added in mixin_operation.param_name_to_api_version_added.items() %}
+        '{{ param_name }}': '{{ api_version_added }}',
+        {% endfor %}
+        }
+    )
     {% endif %}
     {{ mixin_operation.signature(async_mode) | indent }}        {{ mixin_operation.description(async_mode) | indent(8) }}
         api_version = self._get_api_version('{{ mixin_operation.name }}')
