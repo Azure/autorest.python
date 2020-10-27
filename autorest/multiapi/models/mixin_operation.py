@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, TypeVar
-from .mixin_operation_parameter import MixinOperationParameter
 from ..utils import _sync_or_async
 
 T = TypeVar('T')
@@ -15,10 +14,9 @@ class MixinOperation:
         self.name = name
         self._mod_to_api_version = mod_to_api_version
         self._api_version_to_mixin_operation_metadata: Dict[str, Dict[str, Any]] = {}
-        self._api_version_to_params: Dict[str, List[MixinOperationParameter]] = {}
+        self.param_to_api_versions: Dict[str, List[str]] = {}
         self._available_apis: OrderedSet[str] = {}
         self.call_to_api_versions: Dict[str, List[str]] = {}
-        self._union_of_all_params: List[MixinOperationParameter] = []
 
     def signature(self, async_mode: bool) -> str:
         return self.mixin_operation_metadata()[_sync_or_async(async_mode)]["signature"]
@@ -28,16 +26,17 @@ class MixinOperation:
         # will add back after adding version added information
         description = description.rsplit('"""', 1)[0] + "\n"
 
-        version_added_to_params: Dict[str, List[MixinOperationParameter]] = {}
+        version_added_to_params: Dict[str, List[str]] = {}
 
-        for param in self._union_of_all_params:
-            if param in self._unallowed_params:
-                version_added_to_params.setdefault(param.api_version_added, [])
-                version_added_to_params[param.api_version_added].append(param)
+        for param in self.param_to_api_versions:
+            if param in self.params_added_later:
+                api_version_added = self.param_to_api_versions[param][0]
+                version_added_to_params.setdefault(api_version_added, [])
+                version_added_to_params[api_version_added].append(param)
 
         for api, params in version_added_to_params.items():
             parameter_string = "parameter" if len(params) == 1 else "parameters"
-            param_names = [f"*{param.name}*" for param in params]
+            param_names = [f"*{param}*" for param in params]
 
             description += f"**New in API version {api}**\n    The {parameter_string} "
 
@@ -71,14 +70,6 @@ class MixinOperation:
         return self._api_version_to_mixin_operation_metadata[api_version]
 
     @property
-    def _unallowed_params(self) -> List[MixinOperationParameter]:
-        return [
-            unallowed_param
-            for unallowed_param_list_per_api_version in self.api_version_to_unallowed_params.values()
-            for unallowed_param in unallowed_param_list_per_api_version
-        ]
-
-    @property
     def call(self) -> str:
         if self.has_different_calls_across_api_versions:
             raise ValueError(
@@ -96,25 +87,11 @@ class MixinOperation:
         return len(self.call_to_api_versions) != 1
 
     @property
-    def param_name_to_api_version_added(self) -> Dict[str, str]:
-        return {param.name: param.api_version_added for param in self._unallowed_params}
-
-    @property
-    def api_version_to_unallowed_params(self) -> Dict[str, List[MixinOperationParameter]]:
-        _api_version_to_unallowed_params: Dict[str, List[MixinOperationParameter]] = {}
-        if not self.has_different_calls_across_api_versions:
-            raise ValueError(
-                "Should only call this property if this mixin operation has different signatures per api version"
-            )
-        for api in self.available_apis:
-            api_params = self._api_version_to_params[api]
-            api_unallowed_params = [
-                p for p in self._union_of_all_params if p not in api_params
-            ]
-            _api_version_to_unallowed_params.setdefault(self._mod_to_api_version[api], [])
-            _api_version_to_unallowed_params[self._mod_to_api_version[api]].extend(api_unallowed_params)
-        return _api_version_to_unallowed_params
-
+    def params_added_later(self) -> List[str]:
+        return [
+            param for param in self.param_to_api_versions
+            if len(self.param_to_api_versions[param]) < len(self.available_apis)
+        ]
 
     def append_available_api(self, api_version: str, mixin_operation_metadata: Dict[str, Any]) -> None:
         self._available_apis[api_version] = None
@@ -123,14 +100,8 @@ class MixinOperation:
         self.call_to_api_versions.setdefault(call, [])
         self.call_to_api_versions[call].append(self._mod_to_api_version[api_version])
 
-        for param_name in call.split(", "):
-            try:
-                param = [p for p in self._union_of_all_params if p.name == param_name][0]
-            except IndexError:
-                param = MixinOperationParameter(name=param_name)
-                self._union_of_all_params.append(param)
-            self._api_version_to_params.setdefault(api_version, [])
-            self._api_version_to_params[api_version].append(param)
-            param.append_available_api(self._mod_to_api_version[api_version])
+        for param in call.split(", "):
+            self.param_to_api_versions.setdefault(param, [])
+            self.param_to_api_versions[param].append(self._mod_to_api_version[api_version])
 
         self._api_version_to_mixin_operation_metadata[api_version] = mixin_operation_metadata

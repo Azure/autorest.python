@@ -25,22 +25,25 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
 class _InspectArgsForApiVersion:
-    def __init__(self, param_to_api_version_added):
-        self._param_to_api_version_added = param_to_api_version_added
+    def __init__(self, later_added_param_to_api_versions):
+        self._later_added_param_to_api_versions = later_added_param_to_api_versions
 
     def __call__(self, func):
-        param_to_api_version_added = self._param_to_api_version_added
+        later_added_param_to_api_versions = self._later_added_param_to_api_versions
 
         def wrapper(self, *args, **kwargs):
             func_name = func.__name__
             api_version = self._get_api_version(func_name)
             unallowed_parameters = [
                 param for param in kwargs.keys()
-                if param_to_api_version_added.get(param) and param_to_api_version_added[param] > api_version
+                if api_version not in later_added_param_to_api_versions.get(param, [api_version])
             ]
             if unallowed_parameters:
                 param_to_api_version_error_strings = [
-                    "'{}' was added in api version '{}'".format(param, param_to_api_version_added[param])
+                    "'{}' was added in api version '{}'".format(
+                        param,
+                        later_added_param_to_api_versions[param][0]
+                    )
                     for param in unallowed_parameters
                 ]
                 raise ValueError(
@@ -123,9 +126,9 @@ class MultiapiServiceClientOperationsMixin(object):
         return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
 
     @_InspectArgsForApiVersion(
-        param_to_api_version_added={
-        'greeting_in_chinese': '2.0.0',
-        'greeting_in_french': '3.0.0',
+        later_added_param_to_api_versions={
+        'greeting_in_chinese': ['2.0.0', '3.0.0'],
+        'greeting_in_french': ['3.0.0'],
         }
     )
     def test_different_calls(

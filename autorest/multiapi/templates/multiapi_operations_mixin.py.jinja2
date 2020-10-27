@@ -15,22 +15,25 @@ from msrest import Serializer, Deserializer
 
 {% if code_model.operation_mixin_group.has_different_calls_across_api_versions %}
 class _InspectArgsForApiVersion:
-    def __init__(self, param_to_api_version_added):
-        self._param_to_api_version_added = param_to_api_version_added
+    def __init__(self, later_added_param_to_api_versions):
+        self._later_added_param_to_api_versions = later_added_param_to_api_versions
 
     def __call__(self, func):
-        param_to_api_version_added = self._param_to_api_version_added
+        later_added_param_to_api_versions = self._later_added_param_to_api_versions
 
         def wrapper(self, *args, **kwargs):
             func_name = func.__name__
             api_version = self._get_api_version(func_name)
             unallowed_parameters = [
                 param for param in kwargs.keys()
-                if param_to_api_version_added.get(param) and param_to_api_version_added[param] > api_version
+                if api_version not in later_added_param_to_api_versions.get(param, [api_version])
             ]
             if unallowed_parameters:
                 param_to_api_version_error_strings = [
-                    "'{}' was added in api version '{}'".format(param, param_to_api_version_added[param])
+                    "'{}' was added in api version '{}'".format(
+                        param,
+                        later_added_param_to_api_versions[param][0]
+                    )
                     for param in unallowed_parameters
                 ]
                 raise ValueError(
@@ -49,9 +52,11 @@ class {{ code_model.service_client.name }}OperationsMixin(object):
 
     {% if mixin_operation.has_different_calls_across_api_versions %}
     @_InspectArgsForApiVersion(
-        param_to_api_version_added={
-        {% for param_name, api_version_added in mixin_operation.param_name_to_api_version_added.items() %}
-        '{{ param_name }}': '{{ api_version_added }}',
+        later_added_param_to_api_versions={
+        {% for param, api_versions in mixin_operation.param_to_api_versions.items() %}
+            {% if param in mixin_operation.params_added_later %}
+        '{{ param }}': {{ api_versions | list }},
+            {% endif %}
         {% endfor %}
         }
     )
