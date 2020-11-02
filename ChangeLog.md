@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.4.1
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- Honor default value for properties if `x-ms-client-default` value is passed  #798
+
 ### 2020-10-19 - 5.4.0
 Autorest core version: 3.0.6318
 

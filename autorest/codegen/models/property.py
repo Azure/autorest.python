@@ -11,7 +11,7 @@ from .imports import FileImport, ImportType, TypingSection
 from .base_schema import BaseSchema
 
 
-class Property(BaseModel):
+class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -21,6 +21,7 @@ class Property(BaseModel):
         *,
         flattened_names: Optional[List[str]] = None,
         description: Optional[str] = None,
+        client_default_value: Optional[Any] = None
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
@@ -50,6 +51,7 @@ class Property(BaseModel):
             validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.validation_map)
             validation_map.update(validation_map_from_schema)
         self.validation_map = validation_map or None
+        self.client_default_value = client_default_value
 
     @property
     def escaped_swagger_name(self) -> str:
@@ -74,6 +76,7 @@ class Property(BaseModel):
             schema=schema,
             original_swagger_name=yaml_data["serializedName"],
             flattened_names=yaml_data.get("flattenedNames", []),
+            client_default_value=yaml_data.get("clientDefaultValue"),
         )
 
     @property
@@ -95,6 +98,16 @@ class Property(BaseModel):
         if self.schema.has_xml_serialization_ctxt:
             return f", 'xml': {{{self.schema.xml_serialization_ctxt()}}}"
         return ""
+
+    @property
+    def default_value(self) -> Any:
+        return self.client_default_value or self.schema.default_value
+
+    @property
+    def default_value_declaration(self) -> Any:
+        if self.client_default_value:
+            return self.schema.get_declaration(self.client_default_value)
+        return self.schema.default_value_declaration
 
     @property
     def type_annotation(self) -> str:

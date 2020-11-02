@@ -36,9 +36,9 @@ class ModelGenericSerializer(ModelBaseSerializer):
                     typing = "str"
                 init_args.append(f"self.{prop.name} = {discriminator_value}  # type: {typing}")
             elif not prop.constant:
-                if prop.required and not prop.schema.default_value:
+                if prop.required and not prop.default_value:
                     init_args.append(f"self.{prop.name} = kwargs['{prop.name}']")
                 else:
-                    default = prop.schema.default_value_declaration
+                    default = prop.default_value_declaration
                     init_args.append(f"self.{prop.name} = kwargs.get('{prop.name}', {default})")
         return init_args
