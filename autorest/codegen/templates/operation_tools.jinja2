@@ -119,11 +119,15 @@ if {{ query_parameter.full_serialized_name }} is not None:
     {% endfor %}
 {% endif %}{% endmacro %}
 {# write request headers #}
-{% macro header_parameters(code_model, operation, async_mode) %}
+{% macro header_parameters(code_model, operation, async_mode, initialize=True) %}
+{% if initialize %}
 # Construct headers
 header_parameters = {}  # type: Dict[str, Any]
+{% endif %}
 {% if operation.parameters.headers %}
-    {% for header_parameter in operation.parameters.headers %}
+    {# If we're initializing headers, we want the Accept header, but if we're only appending headers, we don't need to add the Accept header since that will not change #}
+    {% set headers = operation.parameters.headers if initialize else (operation.parameters.headers | rejectattr("rest_api_name", "equalto", "Accept")) %}
+    {% for header_parameter in headers %}
         {%if header_parameter.required %}
 header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% else %}

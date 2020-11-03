@@ -170,6 +170,7 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
 

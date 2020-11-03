@@ -43,6 +43,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
             }
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
+            {{ op_tools.header_parameters(code_model, operation.next_operation, async_mode, initialize=False)|indent(12) }}
             {{ op_tools.query_parameters(operation.next_operation, async_mode)|indent(12) }}
             {{ op_tools.body_parameters(operation.next_operation)|indent(12) }}
 {% else %}

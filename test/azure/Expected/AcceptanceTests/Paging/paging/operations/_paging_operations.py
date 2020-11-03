@@ -356,6 +356,7 @@ class PagingOperations(object):
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
                 url = '/paging/multiple/nextOperationWithQueryParams'
+                
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
@@ -915,6 +916,7 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
@@ -999,6 +1001,7 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
