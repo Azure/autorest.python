@@ -62,10 +62,10 @@ class JinjaSerializer:
                     code_model=code_model, env=env, namespace_path=namespace_path,
                 )
 
-        if code_model.options["multiapi"]:
-            self._serialize_and_write_metadata(
-                code_model, env=env, namespace_path=namespace_path
-            )
+            if code_model.options["multiapi"]:
+                self._serialize_and_write_metadata(
+                    code_model, env=env, namespace_path=namespace_path
+                )
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
