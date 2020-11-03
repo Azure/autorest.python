@@ -59,7 +59,8 @@ default_mappings = {
   'AcceptanceTests/MediaTypes': 'media_types.json',
   'AcceptanceTests/ObjectType': 'object-type.json',
   'AcceptanceTests/NonStringEnums': 'non-string-enum.json',
-  'AcceptanceTests/MultipleInheritance': 'multiple-inheritance.json'
+  'AcceptanceTests/MultipleInheritance': 'multiple-inheritance.json',
+  'AcceptanceTests/NoOperations': 'no-operations.json',
 }
 
 default_azure_mappings = {
