@@ -52,14 +52,15 @@ class JinjaSerializer:
         if code_model.schemas or code_model.enums:
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
-        self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+        if code_model.operation_groups:
+            self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
-        self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+            self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
-        if not code_model.options["no_async"]:
-            self._serialize_and_write_aio_folder(
-                code_model=code_model, env=env, namespace_path=namespace_path,
-            )
+            if not code_model.options["no_async"]:
+                self._serialize_and_write_aio_folder(
+                    code_model=code_model, env=env, namespace_path=namespace_path,
+                )
 
         if code_model.options["multiapi"]:
             self._serialize_and_write_metadata(
