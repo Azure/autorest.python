@@ -8,6 +8,7 @@ Modelerfour version: 4.15.421
 **Bug Fixes**
 
 - Honor default value for properties if `x-ms-client-default` value is passed  #798
+- Can now generate services with no operations  #801
 
 ### 2020-10-19 - 5.4.0
 Autorest core version: 3.0.6318
