@@ -80,17 +80,19 @@ class CodeGenerator(Plugin):
             # We don't want to support multi-api customurl YET (will see if that goes well....)
             # So far now, let's get the first one in the first operation
             # UGLY as hell.....
-            first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-            code_model.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+            if yaml_data.get("operationGroups"):
+                first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
+                code_model.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)
             code_model.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
 
         # Create operations
-        code_model.operation_groups = [
-            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
-        ]
+        if yaml_data.get("operationGroups"):
+            code_model.operation_groups = [
+                OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
+            ]
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
