@@ -157,9 +157,13 @@ class JinjaSerializer:
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
 
         if code_model.operation_groups:
-            self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.serialize_init_file())
+            self._autorestapi.write_file(
+                namespace_path / Path("__init__.py"), general_serializer.serialize_init_file()
+            )
         else:
-            self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file())
+            self._autorestapi.write_file(
+                namespace_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file()
+            )
         p = namespace_path.parent
         while p != Path("."):
             # write pkgutil init file
@@ -171,7 +175,8 @@ class JinjaSerializer:
         # Write the service client
         if code_model.operation_groups:
             self._autorestapi.write_file(
-                namespace_path / Path(f"_{code_model.module_name}.py"), general_serializer.serialize_service_client_file()
+                namespace_path / Path(f"_{code_model.module_name}.py"),
+                general_serializer.serialize_service_client_file()
             )
 
         self._serialize_and_write_version_file(code_model, namespace_path, general_serializer)
