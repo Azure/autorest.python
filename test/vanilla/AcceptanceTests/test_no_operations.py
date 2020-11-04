@@ -24,15 +24,16 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import sys
 
 class TestNoOperations:
     def test_models(self):
-        from nooperationsserviceclient.models import Error
+        from nooperations.models import Error
 
         if sys.version_info >= (3,5):
-            from nooperationsserviceclient.models._models_py3 import Error as ErrorPy3
+            from nooperations.models._models_py3 import Error as ErrorPy3
             assert Error == ErrorPy3
         else:
-            from nooperationsserviceclient.models._models import Error as ErrorPy2
+            from nooperations.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
 
