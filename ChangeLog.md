@@ -1,6 +1,6 @@
 # Change Log
 
-### 2020-xx-xx - 5.4.2
+### 2020-11-09 - 5.4.2
 Autorest core version: 3.0.6320
 
 Modelerfour version: 4.15.421
