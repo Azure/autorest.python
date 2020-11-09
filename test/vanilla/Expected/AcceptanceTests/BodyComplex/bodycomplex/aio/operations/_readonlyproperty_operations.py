@@ -138,3 +138,49 @@ class ReadonlypropertyOperations:
             return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}  # type: ignore
+
+    @distributed_trace_async
+    async def get_valid_readonly_discriminator(
+        self,
+        **kwargs
+    ) -> "models.MyBaseTypeWithReadOnlyDiscriminator":
+        """Get a MyDerivedTypeWithReadOnlyDiscriminator object based off of the readonly discriminator.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: MyBaseTypeWithReadOnlyDiscriminator, or the result of cls(response)
+        :rtype: ~bodycomplex.models.MyBaseTypeWithReadOnlyDiscriminator
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyBaseTypeWithReadOnlyDiscriminator"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get_valid_readonly_discriminator.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize('MyBaseTypeWithReadOnlyDiscriminator', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    get_valid_readonly_discriminator.metadata = {'url': '/complex/readonlyproperty/discriminator'}  # type: ignore

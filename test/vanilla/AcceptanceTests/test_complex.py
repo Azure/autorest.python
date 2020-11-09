@@ -461,6 +461,10 @@ class TestComplex(object):
         assert dot_salmon.fish_type == "DotSalmon"
         assert dot_salmon.location == "sweden"
 
+    def test_get_valid_readonly_discriminator(self, client):
+        response = client.readonlyproperty.get_valid_readonly_discriminator()
+        assert isinstance(response, MyDerivedTypeWithReadOnlyDiscriminator)
+
     def test_models(self):
         from bodycomplex.models import Error
 

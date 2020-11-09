@@ -249,6 +249,11 @@ class TestComplex(object):
         readonly_result = await client.readonlyproperty.put_valid(2)
         assert readonly_result is None
 
+    @pytest.mark.asyncio
+    async def test_get_valid_readonly_discriminator(self, client):
+        response = await client.readonlyproperty.get_valid_readonly_discriminator()
+        assert isinstance(response, MyDerivedTypeWithReadOnlyDiscriminator)
+
     # COMPLEX TYPE WITH ARRAY PROPERTIES
 
     @pytest.mark.asyncio
