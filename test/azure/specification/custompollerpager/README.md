@@ -23,6 +23,16 @@ directive:
     from: swagger-document
     where: '$.paths["/paging/single"].get'
     transform: >
-        $["x-python-custom-pager-sync"] = "azure.search.documents.SearchItemPaged";
-        $["x-python-custom-pager-async"] = "azure.search.documents.aio.AsyncSearchItemPaged"
+        $["x-python-custom-pager-sync"] = "my.custom.CustomPager";
+        $["x-python-custom-pager-async"] = "my.custom.aio.AsyncCustomPager"
+```
+
+### Override LROPoller to custom Poller
+``` yaml
+directive:
+    from: swagger-document
+    where: '$.paths["/paging/multiple/lro"].post'
+    transform: >
+        $["x-python-custom-poller-sync"] = "my.custom.CustomPoller";
+        $["x-python-custom-poller-async"] = "my.custom.aio.AsyncCustomPoller"
 ```

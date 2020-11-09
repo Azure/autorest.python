@@ -83,15 +83,27 @@ class LROOperation(Operation):
 
     @property
     def has_optional_return_type(self) -> bool:
-        """An LROOperation will never have an optional return type, we will always return LROPoller[return type]"""
+        """An LROOperation will never have an optional return type, we will always return a poller"""
         return False
+
+    def get_poller_path(self, async_mode: bool) -> str:
+        custom_poller_extension = "x-python-custom-poller-{}sync".format("a" if async_mode else "")
+        default_poller = "azure.core.polling.{}LROPoller".format("Async" if async_mode else "")
+        return self.yaml_data["extensions"].get(custom_poller_extension, default_poller)
+
+    def get_poller(self, async_mode: bool) -> str:
+        return self.get_poller_path(async_mode).split(".")[-1]
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
         file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
+        poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
+        poller = self.get_poller(async_mode)
+
+        file_import.add_from_import(poller_import_path, poller, ImportType.AZURECORE)
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-            file_import.add_from_import("azure.core.polling", "AsyncLROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)
             if code_model.options['azure_arm']:
@@ -103,7 +115,6 @@ class LROOperation(Operation):
                     "azure.core.polling.async_base_polling", "AsyncLROBasePolling", ImportType.AZURECORE
                 )
         else:
-            file_import.add_from_import("azure.core.polling", "LROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "NoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "PollingMethod", ImportType.AZURECORE)
             if code_model.options['azure_arm']:

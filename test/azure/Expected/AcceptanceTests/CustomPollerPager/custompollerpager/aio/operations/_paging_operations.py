@@ -12,10 +12,10 @@ from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
+from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
-from azure.search.documents.aio import AsyncSearchItemPaged
+from my.custom.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ... import models
 
@@ -172,7 +172,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.search.documents.aio.AsyncSearchItemPaged[~custompollerpager.models.ProductResult]
+        :rtype: ~my.custom.aio.AsyncCustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -219,7 +219,7 @@ class PagingOperations:
 
             return pipeline_response
 
-        return AsyncSearchItemPaged(
+        return AsyncCustomPager(
             get_next, extract_data
         )
     get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
@@ -1054,7 +1054,7 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
-    ) -> AsyncLROPoller[AsyncItemPaged["models.ProductResult"]]:
+    ) -> AsyncCustomPoller[AsyncItemPaged["models.ProductResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -1067,8 +1067,8 @@ class PagingOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]]
+        :return: An instance of AsyncCustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
+        :rtype: ~my.custom.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -1158,14 +1158,14 @@ class PagingOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncCustomPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+            return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
     def get_paging_model_with_item_name_with_xms_client_name(

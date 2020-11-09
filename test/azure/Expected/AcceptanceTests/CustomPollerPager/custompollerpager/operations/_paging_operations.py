@@ -12,10 +12,10 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
-from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.polling import NoPolling, PollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from azure.search.documents import SearchItemPaged
+from my.custom import CustomPager, CustomPoller
 
 from .. import models
 
@@ -179,7 +179,7 @@ class PagingOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.search.documents.SearchItemPaged[~custompollerpager.models.ProductResult]
+        :rtype: ~my.custom.CustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -226,7 +226,7 @@ class PagingOperations(object):
 
             return pipeline_response
 
-        return SearchItemPaged(
+        return CustomPager(
             get_next, extract_data
         )
     get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
@@ -1074,7 +1074,7 @@ class PagingOperations(object):
         paging_get_multiple_pages_lro_options=None,  # type: Optional["models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[ItemPaged["models.ProductResult"]]
+        # type: (...) -> CustomPoller[ItemPaged["models.ProductResult"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -1087,8 +1087,8 @@ class PagingOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]]
+        :return: An instance of CustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
+        :rtype: ~my.custom.CustomPoller[~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -1178,14 +1178,14 @@ class PagingOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return CustomPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+            return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
     def get_paging_model_with_item_name_with_xms_client_name(

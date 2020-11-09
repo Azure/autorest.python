@@ -61,10 +61,10 @@
             "sync": {
                 {% if is_lro(operation) and is_paging(operation) %}
                     {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = ["LROPoller", operation.get_pager(async_mode=False)] %}
+                    {% set sync_return_type_wrapper = [operation.get_poller(async_mode=False), operation.get_pager(async_mode=False)] %}
                 {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = ["LROPoller"] %}
+                    {% set sync_return_type_wrapper = [operation.get_poller(async_mode=False)] %}
                 {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
                     {% set sync_return_type_wrapper = [operation.get_pager(async_mode=False)] %}
@@ -80,10 +80,10 @@
                 "coroutine": {{ coroutine | tojson }},
                 {% if is_lro(operation) and is_paging(operation) %}
                     {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = ["AsyncLROPoller", operation.get_pager(async_mode=True)] %}
+                    {% set async_return_type_wrapper = [operation.get_poller(async_mode=True), operation.get_pager(async_mode=True)] %}
                 {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = ["AsyncLROPoller"] %}
+                    {% set async_return_type_wrapper = [operation.get_poller(async_mode=True)] %}
                 {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
                     {% set async_return_type_wrapper = [operation.get_pager(async_mode=True)] %}
