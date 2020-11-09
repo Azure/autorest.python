@@ -538,7 +538,7 @@ class StorageAccountsOperations:
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
-            list_of_elem = deserialized.value
+            list_of_elem = deserialized.value or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return None, AsyncList(list_of_elem)
@@ -610,7 +610,7 @@ class StorageAccountsOperations:
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
-            list_of_elem = deserialized.value
+            list_of_elem = deserialized.value or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return None, AsyncList(list_of_elem)
