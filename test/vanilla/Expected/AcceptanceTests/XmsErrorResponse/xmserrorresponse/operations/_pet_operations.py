@@ -65,7 +65,7 @@ class PetOperations(object):
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
+            404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(self.models.NotFoundErrorBase, response)),
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop('error_map', {}))
@@ -124,7 +124,7 @@ class PetOperations(object):
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
-            500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),
+            500: lambda response: HttpResponseError(response=response, model=self._deserialize(self.models.PetActionError, response)),
         }
         error_map.update(kwargs.pop('error_map', {}))
         accept = "application/json"
@@ -149,7 +149,7 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.PetActionError, response)
+            error = self._deserialize(self.models.PetActionError, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAction', pipeline_response)

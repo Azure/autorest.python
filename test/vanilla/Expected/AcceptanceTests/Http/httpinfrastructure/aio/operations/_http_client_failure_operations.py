@@ -75,7 +75,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -118,7 +118,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -161,7 +161,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -215,7 +215,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -269,7 +269,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -323,7 +323,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -377,7 +377,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -420,7 +420,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -463,7 +463,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -506,7 +506,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -549,7 +549,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -603,7 +603,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -657,7 +657,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -711,7 +711,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -765,7 +765,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -819,7 +819,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -862,7 +862,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -905,7 +905,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -948,7 +948,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -991,7 +991,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1045,7 +1045,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1099,7 +1099,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1153,7 +1153,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1196,7 +1196,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1250,7 +1250,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1293,7 +1293,7 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(self.models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
