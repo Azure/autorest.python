@@ -88,7 +88,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResultValue', pipeline_response)
-            list_of_elem = deserialized.value
+            list_of_elem = deserialized.value or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -150,7 +150,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return None, iter(list_of_elem)
@@ -212,7 +212,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -233,6 +233,69 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
+
+    @distributed_trace
+    def first_response_empty(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Iterable["models.ProductResultValue"]
+        """A paging operation whose first response's items list is empty, but still returns a next link.
+        Second (and final) call, will give you an items list of 1.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValue]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.first_response_empty.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResultValue', pipeline_response)
+            list_of_elem = deserialized.value or []
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return ItemPaged(
+            get_next, extract_data
+        )
+    first_response_empty.metadata = {'url': '/paging/firstResponseEmpty/1'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -292,7 +355,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -365,7 +428,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -445,7 +508,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('OdataProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.odata_next_link or None, iter(list_of_elem)
@@ -531,7 +594,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -594,7 +657,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -657,7 +720,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -719,7 +782,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -781,7 +844,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -843,7 +906,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -924,7 +987,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('OdataProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.odata_next_link or None, iter(list_of_elem)
@@ -1008,7 +1071,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('OdataProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.odata_next_link or None, iter(list_of_elem)
@@ -1145,7 +1208,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)
@@ -1244,7 +1307,7 @@ class PagingOperations(object):
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
-            list_of_elem = deserialized.indexes
+            list_of_elem = deserialized.indexes or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, iter(list_of_elem)

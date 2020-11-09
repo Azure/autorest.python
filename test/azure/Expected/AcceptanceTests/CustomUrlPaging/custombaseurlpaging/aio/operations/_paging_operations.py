@@ -96,7 +96,7 @@ class PagingOperations:
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, AsyncList(list_of_elem)
@@ -173,7 +173,7 @@ class PagingOperations:
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
-            list_of_elem = deserialized.values
+            list_of_elem = deserialized.values or []
             if cls:
                 list_of_elem = cls(list_of_elem)
             return deserialized.next_link or None, AsyncList(list_of_elem)

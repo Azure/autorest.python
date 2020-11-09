@@ -231,3 +231,11 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 1
+
+    @pytest.mark.asyncio
+    async def test_initial_response_no_items(self, client):
+        pages = client.paging.first_response_empty()
+        items = []
+        async for item in pages:
+            items.append(item)
+        assert len(items) == 1

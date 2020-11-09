@@ -174,6 +174,11 @@ class TestPaging(object):
         items = [i for i in pages]
         assert len(items) == 1
 
+    def test_initial_response_no_items(self, client):
+        pages = client.paging.first_response_empty()
+        items = [i for i in pages]
+        assert len(items) == 1
+
     def test_models(self):
         from paging.models import OperationResult
         if sys.version_info >= (3,5):
