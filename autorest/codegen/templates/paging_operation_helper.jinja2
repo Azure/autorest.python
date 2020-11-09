@@ -63,7 +63,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
     {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
         deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
-        list_of_elem = deserialized.{{ operation.item_name }}
+        list_of_elem = deserialized.{{ operation.item_name }} or []
         if cls:
             list_of_elem = cls(list_of_elem)
         {% if async_mode %}
