@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.4.3
+Autorest core version: 3.0.6320
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- Fix conflict for model deserialization when operation has input param with name `models`  #819
+
 ### 2020-11-09 - 5.4.2
 Autorest core version: 3.0.6320
 
