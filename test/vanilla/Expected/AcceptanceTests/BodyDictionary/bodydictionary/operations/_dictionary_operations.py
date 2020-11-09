@@ -2327,15 +2327,15 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "models.Widget"]
+        # type: (...) -> Optional[Dict[str, "models.Widget"]]
         """Get dictionary of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to Widget, or the result of cls(response)
-        :rtype: dict[str, ~bodydictionary.models.Widget]
+        :return: dict mapping str to Widget or None, or the result of cls(response)
+        :rtype: dict[str, ~bodydictionary.models.Widget] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "models.Widget"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[Dict[str, "models.Widget"]]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -2618,15 +2618,15 @@ class DictionaryOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, List[str]]
+        # type: (...) -> Optional[Dict[str, List[str]]]
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to list of str, or the result of cls(response)
-        :rtype: dict[str, list[str]]
+        :return: dict mapping str to list of str or None, or the result of cls(response)
+        :rtype: dict[str, list[str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[Dict[str, List[str]]]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
