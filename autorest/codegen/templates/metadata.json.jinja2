@@ -61,13 +61,13 @@
             "sync": {
                 {% if is_lro(operation) and is_paging(operation) %}
                     {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = ["LROPoller", "ItemPaged"] %}
+                    {% set sync_return_type_wrapper = ["LROPoller", operation.get_pager(async_mode=False)] %}
                 {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
                     {% set sync_return_type_wrapper = ["LROPoller"] %}
                 {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set sync_return_type_wrapper = ["ItemPaged"] %}
+                    {% set sync_return_type_wrapper = [operation.get_pager(async_mode=False)] %}
                 {% else %}
                     {% from "operation.py.jinja2" import operation_docstring with context %}
                     {% set sync_return_type_wrapper = "" %}
@@ -80,13 +80,13 @@
                 "coroutine": {{ coroutine | tojson }},
                 {% if is_lro(operation) and is_paging(operation) %}
                     {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = ["AsyncLROPoller", "AsyncItemPaged"] %}
+                    {% set async_return_type_wrapper = ["AsyncLROPoller", operation.get_pager(async_mode=True)] %}
                 {% elif is_lro(operation) %}
                     {% from "lro_operation.py.jinja2" import operation_docstring with context %}
                     {% set async_return_type_wrapper = ["AsyncLROPoller"] %}
                 {% elif is_paging(operation) %}
                     {% from "paging_operation.py.jinja2" import operation_docstring with context %}
-                    {% set async_return_type_wrapper = ["AsyncItemPaged"] %}
+                    {% set async_return_type_wrapper = [operation.get_pager(async_mode=True)] %}
                 {% else %}
                     {% from "operation.py.jinja2" import operation_docstring with context %}
                     {% set async_return_type_wrapper = "" %}
