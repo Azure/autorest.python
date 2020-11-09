@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.4.2
+Autorest core version: 3.0.6320
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- Set discriminator value in cases where discriminator is readonly  #815
+
 ### 2020-11-03 - 5.4.1
 Autorest core version: 3.0.6318
 
