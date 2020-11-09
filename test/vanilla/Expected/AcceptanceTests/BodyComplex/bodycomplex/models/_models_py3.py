@@ -827,6 +827,40 @@ class MyBaseType(msrest.serialization.Model):
         self.prop_bh1 = prop_bh1
 
 
+class MyBaseTypeWithReadOnlyDiscriminator(msrest.serialization.Model):
+    """MyBaseTypeWithReadOnlyDiscriminator.
+
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: MyDerivedTypeWithReadOnlyDiscriminator.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar read_only_kind: Required. Constant filled by server.
+    :vartype read_only_kind: str
+    """
+
+    _validation = {
+        'read_only_kind': {'required': True, 'readonly': True},
+    }
+
+    _attribute_map = {
+        'read_only_kind': {'key': 'readOnlyKind', 'type': 'str'},
+    }
+
+    _subtype_map = {
+        'read_only_kind': {'Kind1': 'MyDerivedTypeWithReadOnlyDiscriminator'}
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(MyBaseTypeWithReadOnlyDiscriminator, self).__init__(**kwargs)
+        self.read_only_kind = None  # type: Optional[str]
+
+
 class MyDerivedType(MyBaseType):
     """MyDerivedType.
 
@@ -864,6 +898,33 @@ class MyDerivedType(MyBaseType):
         super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
         self.kind = 'Kind1'  # type: str
         self.prop_d1 = prop_d1
+
+
+class MyDerivedTypeWithReadOnlyDiscriminator(MyBaseTypeWithReadOnlyDiscriminator):
+    """MyDerivedTypeWithReadOnlyDiscriminator.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar read_only_kind: Required. Constant filled by server.
+    :vartype read_only_kind: str
+    """
+
+    _validation = {
+        'read_only_kind': {'required': True, 'readonly': True},
+    }
+
+    _attribute_map = {
+        'read_only_kind': {'key': 'readOnlyKind', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(MyDerivedTypeWithReadOnlyDiscriminator, self).__init__(**kwargs)
+        self.read_only_kind = 'Kind1'  # type: str
 
 
 class ReadonlyObj(msrest.serialization.Model):

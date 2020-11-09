@@ -30,7 +30,9 @@ try:
     from ._models_py3 import IntWrapper
     from ._models_py3 import LongWrapper
     from ._models_py3 import MyBaseType
+    from ._models_py3 import MyBaseTypeWithReadOnlyDiscriminator
     from ._models_py3 import MyDerivedType
+    from ._models_py3 import MyDerivedTypeWithReadOnlyDiscriminator
     from ._models_py3 import Pet
     from ._models_py3 import ReadonlyObj
     from ._models_py3 import Salmon
@@ -63,7 +65,9 @@ except (SyntaxError, ImportError):
     from ._models import IntWrapper  # type: ignore
     from ._models import LongWrapper  # type: ignore
     from ._models import MyBaseType  # type: ignore
+    from ._models import MyBaseTypeWithReadOnlyDiscriminator  # type: ignore
     from ._models import MyDerivedType  # type: ignore
+    from ._models import MyDerivedTypeWithReadOnlyDiscriminator  # type: ignore
     from ._models import Pet  # type: ignore
     from ._models import ReadonlyObj  # type: ignore
     from ._models import Salmon  # type: ignore
@@ -103,7 +107,9 @@ __all__ = [
     'IntWrapper',
     'LongWrapper',
     'MyBaseType',
+    'MyBaseTypeWithReadOnlyDiscriminator',
     'MyDerivedType',
+    'MyDerivedTypeWithReadOnlyDiscriminator',
     'Pet',
     'ReadonlyObj',
     'Salmon',
