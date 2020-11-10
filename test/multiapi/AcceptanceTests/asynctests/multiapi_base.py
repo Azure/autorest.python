@@ -26,6 +26,7 @@
 import pytest
 import inspect
 import json
+import asyncio
 from azure.profiles import KnownProfiles
 
 
@@ -181,12 +182,14 @@ class NotTested(object):
         @pytest.mark.parametrize('api_version', ["1.0.0"])
         @pytest.mark.asyncio
         async def test_lro(self, client, namespace_models):
+            assert asyncio.iscoroutinefunction(client.begin_test_lro)
             poller = await client.begin_test_lro(namespace_models.Product())
             product = await poller.result()
             assert product.id == 100
 
         @pytest.mark.asyncio
         async def test_paging(self, default_client, namespace_models):
+            assert not asyncio.iscoroutinefunction(default_client.test_paging)
             pages = default_client.test_paging()
             items = []
             async for item in pages:
@@ -198,6 +201,7 @@ class NotTested(object):
         @pytest.mark.parametrize('api_version', ["1.0.0"])
         @pytest.mark.asyncio
         async def test_lro_and_paging(self, client, namespace_models):
+            assert asyncio.iscoroutinefunction(client.begin_test_lro_and_paging)
             poller = await client.begin_test_lro_and_paging()
             pager = await poller.result()
 
