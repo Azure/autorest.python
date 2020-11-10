@@ -1359,7 +1359,7 @@ class HeaderOperations:
     async def param_enum(
         self,
         scenario: str,
-        value: Optional[Union[str, "models.GreyscaleColors"]] = None,
+        value: Optional[Union[str, "_models.GreyscaleColors"]] = None,
         **kwargs
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":

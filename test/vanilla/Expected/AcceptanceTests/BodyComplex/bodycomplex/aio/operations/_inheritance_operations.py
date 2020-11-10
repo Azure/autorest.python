@@ -44,7 +44,7 @@ class InheritanceOperations:
     async def get_valid(
         self,
         **kwargs
-    ) -> "models.Siamese":
+    ) -> "_models.Siamese":
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +52,7 @@ class InheritanceOperations:
         :rtype: ~bodycomplex.models.Siamese
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Siamese"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Siamese"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -89,7 +89,7 @@ class InheritanceOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "models.Siamese",
+        complex_body: "_models.Siamese",
         **kwargs
     ) -> None:
         """Put complex types that extend others.

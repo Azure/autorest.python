@@ -46,10 +46,10 @@ class OperationGroupOneOperations(object):
 
     def test_two(
         self,
-        parameter_one=None,  # type: Optional["models.ModelThree"]
+        parameter_one=None,  # type: Optional["_models.ModelThree"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ModelThree"
+        # type: (...) -> "_models.ModelThree"
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param parameter_one: A ModelThree parameter.
@@ -59,7 +59,7 @@ class OperationGroupOneOperations(object):
         :rtype: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelThree"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelThree"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

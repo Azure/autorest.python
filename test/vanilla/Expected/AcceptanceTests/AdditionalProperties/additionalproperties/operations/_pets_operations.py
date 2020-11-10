@@ -47,10 +47,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_true(
         self,
-        create_parameters,  # type: "models.PetAPTrue"
+        create_parameters,  # type: "_models.PetAPTrue"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPTrue"
+        # type: (...) -> "_models.PetAPTrue"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -60,7 +60,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPTrue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -102,10 +102,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_cat_ap_true(
         self,
-        create_parameters,  # type: "models.CatAPTrue"
+        create_parameters,  # type: "_models.CatAPTrue"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.CatAPTrue"
+        # type: (...) -> "_models.CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -115,7 +115,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.CatAPTrue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -157,10 +157,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_object(
         self,
-        create_parameters,  # type: "models.PetAPObject"
+        create_parameters,  # type: "_models.PetAPObject"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPObject"
+        # type: (...) -> "_models.PetAPObject"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -170,7 +170,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPObject"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -212,10 +212,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_string(
         self,
-        create_parameters,  # type: "models.PetAPString"
+        create_parameters,  # type: "_models.PetAPString"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPString"
+        # type: (...) -> "_models.PetAPString"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -225,7 +225,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPString"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -267,10 +267,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties(
         self,
-        create_parameters,  # type: "models.PetAPInProperties"
+        create_parameters,  # type: "_models.PetAPInProperties"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPInProperties"
+        # type: (...) -> "_models.PetAPInProperties"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -280,7 +280,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPInProperties"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -322,10 +322,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters,  # type: "models.PetAPInPropertiesWithAPString"
+        create_parameters,  # type: "_models.PetAPInPropertiesWithAPString"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPInPropertiesWithAPString"
+        # type: (...) -> "_models.PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -335,7 +335,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

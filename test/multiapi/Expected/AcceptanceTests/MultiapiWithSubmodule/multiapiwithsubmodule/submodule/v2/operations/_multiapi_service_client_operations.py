@@ -30,7 +30,7 @@ class MultiapiServiceClientOperationsMixin(object):
         message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ModelTwo"
+        # type: (...) -> "_models.ModelTwo"
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
@@ -42,7 +42,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

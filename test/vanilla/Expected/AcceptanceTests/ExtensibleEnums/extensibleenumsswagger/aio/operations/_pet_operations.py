@@ -45,7 +45,7 @@ class PetOperations:
         self,
         pet_id: str,
         **kwargs
-    ) -> "models.Pet":
+    ) -> "_models.Pet":
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -55,7 +55,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Pet"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -95,9 +95,9 @@ class PetOperations:
     @distributed_trace_async
     async def add_pet(
         self,
-        pet_param: Optional["models.Pet"] = None,
+        pet_param: Optional["_models.Pet"] = None,
         **kwargs
-    ) -> "models.Pet":
+    ) -> "_models.Pet":
         """add pet.
 
         :param pet_param: pet param.
@@ -107,7 +107,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Pet"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

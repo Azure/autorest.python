@@ -787,7 +787,7 @@ class PathsOperations(object):
     @distributed_trace
     def enum_valid(
         self,
-        enum_path,  # type: Union[str, "models.UriColor"]
+        enum_path,  # type: Union[str, "_models.UriColor"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -838,7 +838,7 @@ class PathsOperations(object):
     @distributed_trace
     def enum_null(
         self,
-        enum_path,  # type: Union[str, "models.UriColor"]
+        enum_path,  # type: Union[str, "_models.UriColor"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

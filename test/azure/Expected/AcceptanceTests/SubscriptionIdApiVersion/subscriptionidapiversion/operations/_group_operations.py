@@ -51,7 +51,7 @@ class GroupOperations(object):
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SampleResourceGroup"
+        # type: (...) -> "_models.SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
@@ -61,7 +61,7 @@ class GroupOperations(object):
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.SampleResourceGroup"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

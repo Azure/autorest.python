@@ -39,7 +39,7 @@ class FloatOperations:
     @distributed_trace_async
     async def put(
         self,
-        input: Optional[Union[float, "models.FloatEnum"]] = None,
+        input: Optional[Union[float, "_models.FloatEnum"]] = None,
         **kwargs
     ) -> str:
         """Put a float enum.
@@ -96,7 +96,7 @@ class FloatOperations:
     async def get(
         self,
         **kwargs
-    ) -> Union[float, "models.FloatEnum"]:
+    ) -> Union[float, "_models.FloatEnum"]:
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -104,7 +104,7 @@ class FloatOperations:
         :rtype: str or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "models.FloatEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

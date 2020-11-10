@@ -917,7 +917,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def enum_valid(
         self,
-        enum_query: Optional[Union[str, "models.UriColor"]] = None,
+        enum_query: Optional[Union[str, "_models.UriColor"]] = None,
         **kwargs
     ) -> None:
         """Get using uri with query parameter 'green color'.
@@ -965,7 +965,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def enum_null(
         self,
-        enum_query: Optional[Union[str, "models.UriColor"]] = None,
+        enum_query: Optional[Union[str, "_models.UriColor"]] = None,
         **kwargs
     ) -> None:
         """Get null (no query parameter in url).

@@ -39,7 +39,7 @@ class IntOperations:
     @distributed_trace_async
     async def put(
         self,
-        input: Optional[Union[int, "models.IntEnum"]] = None,
+        input: Optional[Union[int, "_models.IntEnum"]] = None,
         **kwargs
     ) -> str:
         """Put an int enum.
@@ -96,7 +96,7 @@ class IntOperations:
     async def get(
         self,
         **kwargs
-    ) -> Union[int, "models.IntEnum"]:
+    ) -> Union[int, "_models.IntEnum"]:
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -104,7 +104,7 @@ class IntOperations:
         :rtype: str or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "models.IntEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "_models.IntEnum"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

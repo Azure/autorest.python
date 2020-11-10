@@ -44,7 +44,7 @@ class XmlOperations:
     async def get_complex_type_ref_no_meta(
         self,
         **kwargs
-    ) -> "models.RootWithRefAndNoMeta":
+    ) -> "_models.RootWithRefAndNoMeta":
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +52,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.RootWithRefAndNoMeta"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.RootWithRefAndNoMeta"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -88,7 +88,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(
         self,
-        model: "models.RootWithRefAndNoMeta",
+        model: "_models.RootWithRefAndNoMeta",
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
@@ -137,7 +137,7 @@ class XmlOperations:
     async def get_complex_type_ref_with_meta(
         self,
         **kwargs
-    ) -> "models.RootWithRefAndMeta":
+    ) -> "_models.RootWithRefAndMeta":
         """Get a complex type that has a ref to a complex type with XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -145,7 +145,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.RootWithRefAndMeta"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.RootWithRefAndMeta"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -181,7 +181,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(
         self,
-        model: "models.RootWithRefAndMeta",
+        model: "_models.RootWithRefAndMeta",
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
@@ -230,7 +230,7 @@ class XmlOperations:
     async def get_simple(
         self,
         **kwargs
-    ) -> "models.Slideshow":
+    ) -> "_models.Slideshow":
         """Get a simple XML document.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -238,7 +238,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Slideshow"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Slideshow"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -275,7 +275,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_simple(
         self,
-        slideshow: "models.Slideshow",
+        slideshow: "_models.Slideshow",
         **kwargs
     ) -> None:
         """Put a simple XML document.
@@ -327,7 +327,7 @@ class XmlOperations:
     async def get_wrapped_lists(
         self,
         **kwargs
-    ) -> "models.AppleBarrel":
+    ) -> "_models.AppleBarrel":
         """Get an XML document with multiple wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -335,7 +335,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.AppleBarrel"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.AppleBarrel"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -371,7 +371,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_wrapped_lists(
         self,
-        wrapped_lists: "models.AppleBarrel",
+        wrapped_lists: "_models.AppleBarrel",
         **kwargs
     ) -> None:
         """Put an XML document with multiple wrapped lists.
@@ -466,7 +466,7 @@ class XmlOperations:
     async def get_empty_list(
         self,
         **kwargs
-    ) -> "models.Slideshow":
+    ) -> "_models.Slideshow":
         """Get an empty list.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -474,7 +474,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Slideshow"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Slideshow"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -510,7 +510,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_list(
         self,
-        slideshow: "models.Slideshow",
+        slideshow: "_models.Slideshow",
         **kwargs
     ) -> None:
         """Puts an empty list.
@@ -559,7 +559,7 @@ class XmlOperations:
     async def get_empty_wrapped_lists(
         self,
         **kwargs
-    ) -> "models.AppleBarrel":
+    ) -> "_models.AppleBarrel":
         """Gets some empty wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -567,7 +567,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.AppleBarrel"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.AppleBarrel"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -603,7 +603,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_wrapped_lists(
         self,
-        apple_barrel: "models.AppleBarrel",
+        apple_barrel: "_models.AppleBarrel",
         **kwargs
     ) -> None:
         """Puts some empty wrapped lists.
@@ -652,7 +652,7 @@ class XmlOperations:
     async def get_root_list(
         self,
         **kwargs
-    ) -> List["models.Banana"]:
+    ) -> List["_models.Banana"]:
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -660,7 +660,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Banana"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Banana"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -696,7 +696,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_root_list(
         self,
-        bananas: List["models.Banana"],
+        bananas: List["_models.Banana"],
         **kwargs
     ) -> None:
         """Puts a list as the root element.
@@ -746,7 +746,7 @@ class XmlOperations:
     async def get_root_list_single_item(
         self,
         **kwargs
-    ) -> List["models.Banana"]:
+    ) -> List["_models.Banana"]:
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -754,7 +754,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Banana"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Banana"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -790,7 +790,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_root_list_single_item(
         self,
-        bananas: List["models.Banana"],
+        bananas: List["_models.Banana"],
         **kwargs
     ) -> None:
         """Puts a list with a single item.
@@ -840,7 +840,7 @@ class XmlOperations:
     async def get_empty_root_list(
         self,
         **kwargs
-    ) -> List["models.Banana"]:
+    ) -> List["_models.Banana"]:
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -848,7 +848,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Banana"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Banana"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -884,7 +884,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_root_list(
         self,
-        bananas: List["models.Banana"],
+        bananas: List["_models.Banana"],
         **kwargs
     ) -> None:
         """Puts an empty list as the root element.
@@ -934,7 +934,7 @@ class XmlOperations:
     async def get_empty_child_element(
         self,
         **kwargs
-    ) -> "models.Banana":
+    ) -> "_models.Banana":
         """Gets an XML document with an empty child element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -942,7 +942,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Banana"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Banana"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -978,7 +978,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_child_element(
         self,
-        banana: "models.Banana",
+        banana: "_models.Banana",
         **kwargs
     ) -> None:
         """Puts a value with an empty child element.
@@ -1027,7 +1027,7 @@ class XmlOperations:
     async def list_containers(
         self,
         **kwargs
-    ) -> "models.ListContainersResponse":
+    ) -> "_models.ListContainersResponse":
         """Lists containers in a storage account.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1035,7 +1035,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListContainersResponse"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ListContainersResponse"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1074,7 +1074,7 @@ class XmlOperations:
     async def get_service_properties(
         self,
         **kwargs
-    ) -> "models.StorageServiceProperties":
+    ) -> "_models.StorageServiceProperties":
         """Gets storage service properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1082,7 +1082,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageServiceProperties"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.StorageServiceProperties"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1122,7 +1122,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_service_properties(
         self,
-        properties: "models.StorageServiceProperties",
+        properties: "_models.StorageServiceProperties",
         **kwargs
     ) -> None:
         """Puts storage service properties.
@@ -1175,7 +1175,7 @@ class XmlOperations:
     async def get_acls(
         self,
         **kwargs
-    ) -> List["models.SignedIdentifier"]:
+    ) -> List["_models.SignedIdentifier"]:
         """Gets storage ACLs for a container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1183,7 +1183,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.SignedIdentifier"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.SignedIdentifier"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1223,7 +1223,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_acls(
         self,
-        properties: List["models.SignedIdentifier"],
+        properties: List["_models.SignedIdentifier"],
         **kwargs
     ) -> None:
         """Puts storage ACLs for a container.
@@ -1277,7 +1277,7 @@ class XmlOperations:
     async def list_blobs(
         self,
         **kwargs
-    ) -> "models.ListBlobsResponse":
+    ) -> "_models.ListBlobsResponse":
         """Lists blobs in a storage container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1285,7 +1285,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListBlobsResponse"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ListBlobsResponse"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1344,7 +1344,7 @@ class XmlOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _properties = models.JSONInput(id=id)
+        _properties = _models.JSONInput(id=id)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -1377,7 +1377,7 @@ class XmlOperations:
     async def json_output(
         self,
         **kwargs
-    ) -> "models.JSONOutput":
+    ) -> "_models.JSONOutput":
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1385,7 +1385,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.JSONOutput"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.JSONOutput"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1422,7 +1422,7 @@ class XmlOperations:
     async def get_xms_text(
         self,
         **kwargs
-    ) -> "models.ObjectWithXMsTextProperty":
+    ) -> "_models.ObjectWithXMsTextProperty":
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
@@ -1431,7 +1431,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ObjectWithXMsTextProperty
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ObjectWithXMsTextProperty"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ObjectWithXMsTextProperty"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

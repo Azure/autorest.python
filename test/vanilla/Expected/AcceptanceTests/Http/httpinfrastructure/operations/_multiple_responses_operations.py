@@ -49,7 +49,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.MyException"]
+        # type: (...) -> Optional["_models.MyException"]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +57,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.MyException"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -98,7 +98,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.MyException"]
+        # type: (...) -> Optional["_models.MyException"]
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -106,7 +106,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.MyException"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -147,7 +147,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.MyException"]
+        # type: (...) -> Optional["_models.MyException"]
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -155,7 +155,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.MyException"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -196,7 +196,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.MyException"]
+        # type: (...) -> Optional["_models.MyException"]
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -204,7 +204,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.MyException"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -245,7 +245,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.MyException"]
+        # type: (...) -> Optional["_models.MyException"]
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -253,7 +253,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.MyException"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.MyException"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -294,7 +294,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union["models.MyException", "models.B"]
+        # type: (...) -> Union["_models.MyException", "_models.B"]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -302,7 +302,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["_models.MyException", "_models.B"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -345,7 +345,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union["models.MyException", "models.B"]
+        # type: (...) -> Union["_models.MyException", "_models.B"]
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -353,7 +353,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["_models.MyException", "_models.B"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -396,7 +396,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union["models.MyException", "models.B"]
+        # type: (...) -> Union["_models.MyException", "_models.B"]
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -404,7 +404,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["_models.MyException", "_models.B"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -447,7 +447,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union["models.MyException", "models.C", "models.D"]
+        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -455,7 +455,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -501,7 +501,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union["models.MyException", "models.C", "models.D"]
+        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -509,7 +509,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -555,7 +555,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union["models.MyException", "models.C", "models.D"]
+        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -563,7 +563,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -609,7 +609,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union["models.MyException", "models.C", "models.D"]
+        # type: (...) -> Union["_models.MyException", "_models.C", "_models.D"]
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -617,7 +617,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["_models.MyException", "_models.C", "_models.D"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -959,7 +959,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -967,7 +967,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1005,7 +1005,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1013,7 +1013,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1303,7 +1303,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
@@ -1312,7 +1312,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1350,7 +1350,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1358,7 +1358,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1396,7 +1396,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1404,7 +1404,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1442,7 +1442,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1450,7 +1450,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1488,7 +1488,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1496,7 +1496,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1534,7 +1534,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1542,7 +1542,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1580,7 +1580,7 @@ class MultipleResponsesOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.MyException"
+        # type: (...) -> "_models.MyException"
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1588,7 +1588,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.MyException"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

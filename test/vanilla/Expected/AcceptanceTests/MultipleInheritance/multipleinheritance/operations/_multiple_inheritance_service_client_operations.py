@@ -29,7 +29,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Horse"
+        # type: (...) -> "_models.Horse"
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -37,7 +37,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: ~multipleinheritance.models.Horse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Horse"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Horse"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -74,7 +74,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_horse(
         self,
-        horse,  # type: "models.Horse"
+        horse,  # type: "_models.Horse"
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -130,7 +130,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Pet"
+        # type: (...) -> "_models.Pet"
         """Get a pet with name 'Peanut'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -138,7 +138,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: ~multipleinheritance.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Pet"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -194,7 +194,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _pet = models.Pet(name=name)
+        _pet = _models.Pet(name=name)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -233,7 +233,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Feline"
+        # type: (...) -> "_models.Feline"
         """Get a feline where meows and hisses are true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -241,7 +241,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: ~multipleinheritance.models.Feline
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Feline"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Feline"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -278,7 +278,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_feline(
         self,
-        feline,  # type: "models.Feline"
+        feline,  # type: "_models.Feline"
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -334,7 +334,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Cat"
+        # type: (...) -> "_models.Cat"
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -342,7 +342,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: ~multipleinheritance.models.Cat
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Cat"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Cat"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -379,7 +379,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_cat(
         self,
-        cat,  # type: "models.Cat"
+        cat,  # type: "_models.Cat"
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -435,7 +435,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Kitten"
+        # type: (...) -> "_models.Kitten"
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
@@ -444,7 +444,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         :rtype: ~multipleinheritance.models.Kitten
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Kitten"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Kitten"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -481,7 +481,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_kitten(
         self,
-        kitten,  # type: "models.Kitten"
+        kitten,  # type: "_models.Kitten"
         **kwargs  # type: Any
     ):
         # type: (...) -> str

@@ -49,7 +49,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> "_models.Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +57,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -94,7 +94,7 @@ class BasicOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "models.Basic"
+        complex_body,  # type: "_models.Basic"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -150,7 +150,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> "_models.Basic"
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -158,7 +158,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -197,7 +197,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> "_models.Basic"
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -205,7 +205,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -244,7 +244,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> "_models.Basic"
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -252,7 +252,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -291,7 +291,7 @@ class BasicOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Basic"
+        # type: (...) -> "_models.Basic"
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -299,7 +299,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

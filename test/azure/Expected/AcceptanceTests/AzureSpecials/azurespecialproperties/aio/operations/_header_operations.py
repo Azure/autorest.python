@@ -94,7 +94,7 @@ class HeaderOperations:
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(
         self,
-        header_custom_named_request_id_param_grouping_parameters: "models.HeaderCustomNamedRequestIdParamGroupingParameters",
+        header_custom_named_request_id_param_grouping_parameters: "_models.HeaderCustomNamedRequestIdParamGroupingParameters",
         **kwargs
     ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,

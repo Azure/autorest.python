@@ -99,7 +99,7 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id_param_grouping(
         self,
-        header_custom_named_request_id_param_grouping_parameters,  # type: "models.HeaderCustomNamedRequestIdParamGroupingParameters"
+        header_custom_named_request_id_param_grouping_parameters,  # type: "_models.HeaderCustomNamedRequestIdParamGroupingParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -42,9 +42,9 @@ class OperationGroupOneOperations:
 
     async def test_two(
         self,
-        parameter_one: Optional["models.ModelTwo"] = None,
+        parameter_one: Optional["_models.ModelTwo"] = None,
         **kwargs
-    ) -> "models.ModelTwo":
+    ) -> "_models.ModelTwo":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter.
@@ -54,7 +54,7 @@ class OperationGroupOneOperations:
         :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

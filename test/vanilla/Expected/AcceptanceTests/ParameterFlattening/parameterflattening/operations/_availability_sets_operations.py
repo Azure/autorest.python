@@ -72,7 +72,7 @@ class AvailabilitySetsOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _tags = models.AvailabilitySetUpdateParameters(tags=tags)
+        _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL

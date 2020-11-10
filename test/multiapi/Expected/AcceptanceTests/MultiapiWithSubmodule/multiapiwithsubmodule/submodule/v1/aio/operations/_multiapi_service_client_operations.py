@@ -78,10 +78,10 @@ class MultiapiServiceClientOperationsMixin:
 
     async def _test_lro_initial(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
-    ) -> Optional["models.Product"]:
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+    ) -> Optional["_models.Product"]:
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -127,9 +127,9 @@ class MultiapiServiceClientOperationsMixin:
 
     async def begin_test_lro(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
-    ) -> AsyncLROPoller["models.Product"]:
+    ) -> AsyncLROPoller["_models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -145,7 +145,7 @@ class MultiapiServiceClientOperationsMixin:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -185,10 +185,10 @@ class MultiapiServiceClientOperationsMixin:
     async def _test_lro_and_paging_initial(
         self,
         client_request_id: Optional[str] = None,
-        test_lro_and_paging_options: Optional["models.TestLroAndPagingOptions"] = None,
+        test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
         **kwargs
-    ) -> "models.PagingResult":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
+    ) -> "_models.PagingResult":
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -236,9 +236,9 @@ class MultiapiServiceClientOperationsMixin:
     async def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
-        test_lro_and_paging_options: Optional["models.TestLroAndPagingOptions"] = None,
+        test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
         **kwargs
-    ) -> AsyncLROPoller[AsyncItemPaged["models.PagingResult"]]:
+    ) -> AsyncLROPoller[AsyncItemPaged["_models.PagingResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -255,7 +255,7 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapiwithsubmodule.submodule.v1.models.PagingResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -312,7 +312,7 @@ class MultiapiServiceClientOperationsMixin:
             return pipeline_response
 
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

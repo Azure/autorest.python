@@ -47,7 +47,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_no_default(
         self,
-        input=None,  # type: Optional[Union[str, "models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+        input=None,  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -95,7 +95,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(
         self,
-        input="value1",  # type: Optional[Union[str, "models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+        input="value1",  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -239,7 +239,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_no_model_as_string_required_two_value_no_default(
         self,
-        input,  # type: Union[str, "models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+        input,  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -286,7 +286,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_no_model_as_string_required_two_value_default(
         self,
-        input="value1",  # type: Union[str, "models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
+        input="value1",  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -423,7 +423,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_no_required_two_value_no_default(
         self,
-        input=None,  # type: Optional[Union[str, "models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+        input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -471,7 +471,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(
         self,
-        input="value1",  # type: Optional[Union[str, "models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -519,7 +519,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_no_required_one_value_no_default(
         self,
-        input=None,  # type: Optional[Union[str, "models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
+        input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -567,7 +567,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(
         self,
-        input="value1",  # type: Optional[Union[str, "models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
+        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -615,7 +615,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_required_two_value_no_default(
         self,
-        input,  # type: Union[str, "models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+        input,  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -662,7 +662,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_required_two_value_default(
         self,
-        input="value1",  # type: Union[str, "models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
+        input="value1",  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -709,7 +709,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_required_one_value_no_default(
         self,
-        input,  # type: Union[str, "models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
+        input,  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -756,7 +756,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_required_one_value_default(
         self,
-        input="value1",  # type: Union[str, "models.ModelAsStringRequiredOneValueDefaultOpEnum"]
+        input="value1",  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

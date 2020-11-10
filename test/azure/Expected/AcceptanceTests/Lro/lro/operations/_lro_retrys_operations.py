@@ -49,11 +49,11 @@ class LRORetrysOperations(object):
 
     def _put201_creating_succeeded200_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> "_models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -101,10 +101,10 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_put201_creating_succeeded200(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller["_models.Product"]
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -122,7 +122,7 @@ class LRORetrysOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -161,11 +161,11 @@ class LRORetrysOperations(object):
 
     def _put_async_relative_retry_succeeded_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> "_models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -213,10 +213,10 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller["_models.Product"]
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
         AsyncOperation header for operation status.
@@ -234,7 +234,7 @@ class LRORetrysOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -280,8 +280,8 @@ class LRORetrysOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> "_models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -326,7 +326,7 @@ class LRORetrysOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller["_models.Product"]
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
         entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -342,7 +342,7 @@ class LRORetrysOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -569,7 +569,7 @@ class LRORetrysOperations(object):
 
     def _post202_retry200_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -618,7 +618,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_post202_retry200(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -674,7 +674,7 @@ class LRORetrysOperations(object):
 
     def _post_async_relative_retry_succeeded_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -724,7 +724,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]

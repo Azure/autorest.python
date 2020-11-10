@@ -1389,7 +1389,7 @@ class HeaderOperations(object):
     def param_enum(
         self,
         scenario,  # type: str
-        value=None,  # type: Optional[Union[str, "models.GreyscaleColors"]]
+        value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

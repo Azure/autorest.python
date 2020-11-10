@@ -53,7 +53,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResultValue"]
+        # type: (...) -> Iterable["_models.ProductResultValue"]
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -61,7 +61,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -115,7 +115,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -123,7 +123,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -177,7 +177,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -185,7 +185,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -238,10 +238,10 @@ class PagingOperations(object):
     def get_multiple_pages(
         self,
         client_request_id=None,  # type: Optional[str]
-        paging_get_multiple_pages_options=None,  # type: Optional["models.PagingGetMultiplePagesOptions"]
+        paging_get_multiple_pages_options=None,  # type: Optional["_models.PagingGetMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -253,7 +253,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -320,7 +320,7 @@ class PagingOperations(object):
         required_query_parameter,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -332,7 +332,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -391,10 +391,10 @@ class PagingOperations(object):
     def get_odata_multiple_pages(
         self,
         client_request_id=None,  # type: Optional[str]
-        paging_get_odata_multiple_pages_options=None,  # type: Optional["models.PagingGetOdataMultiplePagesOptions"]
+        paging_get_odata_multiple_pages_options=None,  # type: Optional["_models.PagingGetOdataMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.OdataProductResult"]
+        # type: (...) -> Iterable["_models.OdataProductResult"]
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :param client_request_id:
@@ -406,7 +406,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -470,11 +470,11 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_with_offset(
         self,
-        paging_get_multiple_pages_with_offset_options,  # type: "models.PagingGetMultiplePagesWithOffsetOptions"
+        paging_get_multiple_pages_with_offset_options,  # type: "_models.PagingGetMultiplePagesWithOffsetOptions"
         client_request_id=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
@@ -486,7 +486,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -558,7 +558,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -567,7 +567,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -621,7 +621,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -630,7 +630,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -684,7 +684,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -692,7 +692,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -746,7 +746,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -754,7 +754,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -808,7 +808,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -816,7 +816,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -872,7 +872,7 @@ class PagingOperations(object):
         tenant,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.OdataProductResult"]
+        # type: (...) -> Iterable["_models.OdataProductResult"]
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
@@ -884,7 +884,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -949,10 +949,10 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
-        custom_parameter_group,  # type: "models.CustomParameterGroup"
+        custom_parameter_group,  # type: "_models.CustomParameterGroup"
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.OdataProductResult"]
+        # type: (...) -> Iterable["_models.OdataProductResult"]
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param custom_parameter_group: Parameter group.
@@ -962,7 +962,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1033,11 +1033,11 @@ class PagingOperations(object):
     def _get_multiple_pages_lro_initial(
         self,
         client_request_id=None,  # type: Optional[str]
-        paging_get_multiple_pages_lro_options=None,  # type: Optional["models.PagingGetMultiplePagesLroOptions"]
+        paging_get_multiple_pages_lro_options=None,  # type: Optional["_models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        # type: (...) -> "_models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1086,10 +1086,10 @@ class PagingOperations(object):
     def begin_get_multiple_pages_lro(
         self,
         client_request_id=None,  # type: Optional[str]
-        paging_get_multiple_pages_lro_options=None,  # type: Optional["models.PagingGetMultiplePagesLroOptions"]
+        paging_get_multiple_pages_lro_options=None,  # type: Optional["_models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[ItemPaged["models.ProductResult"]]
+        # type: (...) -> LROPoller[ItemPaged["_models.ProductResult"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -1106,7 +1106,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~paging.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1163,7 +1163,7 @@ class PagingOperations(object):
             return pipeline_response
 
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1208,7 +1208,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResultValueWithXMSClientName"]
+        # type: (...) -> Iterable["_models.ProductResultValueWithXMSClientName"]
         """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
         name 'indexes'.
 
@@ -1217,7 +1217,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValueWithXMSClientName"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValueWithXMSClientName"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

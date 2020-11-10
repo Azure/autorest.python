@@ -45,7 +45,7 @@ class UsageOperations:
     async def list(
         self,
         **kwargs
-    ) -> "models.UsageListResult":
+    ) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +53,7 @@ class UsageOperations:
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.UsageListResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

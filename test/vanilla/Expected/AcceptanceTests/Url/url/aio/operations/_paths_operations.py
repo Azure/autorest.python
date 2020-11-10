@@ -768,7 +768,7 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_valid(
         self,
-        enum_path: Union[str, "models.UriColor"],
+        enum_path: Union[str, "_models.UriColor"],
         **kwargs
     ) -> None:
         """Get using uri with 'green color' in path parameter.
@@ -818,7 +818,7 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_null(
         self,
-        enum_path: Union[str, "models.UriColor"],
+        enum_path: Union[str, "_models.UriColor"],
         **kwargs
     ) -> None:
         """Get null (should throw on the client before the request is sent on wire).

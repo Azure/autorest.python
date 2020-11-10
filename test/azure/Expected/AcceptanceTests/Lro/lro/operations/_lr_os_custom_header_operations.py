@@ -49,11 +49,11 @@ class LROsCustomHeaderOperations(object):
 
     def _put_async_retry_succeeded_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> "_models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -101,10 +101,10 @@ class LROsCustomHeaderOperations(object):
     @distributed_trace
     def begin_put_async_retry_succeeded(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller["_models.Product"]
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
@@ -123,7 +123,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -167,11 +167,11 @@ class LROsCustomHeaderOperations(object):
 
     def _put201_creating_succeeded200_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        # type: (...) -> "_models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -219,10 +219,10 @@ class LROsCustomHeaderOperations(object):
     @distributed_trace
     def begin_put201_creating_succeeded200(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller["_models.Product"]
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -241,7 +241,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -280,7 +280,7 @@ class LROsCustomHeaderOperations(object):
 
     def _post202_retry200_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -329,7 +329,7 @@ class LROsCustomHeaderOperations(object):
     @distributed_trace
     def begin_post202_retry200(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -386,7 +386,7 @@ class LROsCustomHeaderOperations(object):
 
     def _post_async_retry_succeeded_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -436,7 +436,7 @@ class LROsCustomHeaderOperations(object):
     @distributed_trace
     def begin_post_async_retry_succeeded(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]

@@ -168,7 +168,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.IntWrapper(value=value)
+        _body_parameter = _models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -221,7 +221,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.IntOptionalWrapper(value=value)
+        _body_parameter = _models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -480,7 +480,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.StringWrapper(value=value)
+        _body_parameter = _models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -533,7 +533,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.StringOptionalWrapper(value=value)
+        _body_parameter = _models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -667,7 +667,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_class_parameter(
         self,
-        body_parameter: "models.Product",
+        body_parameter: "_models.Product",
         **kwargs
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
@@ -719,7 +719,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_class_parameter(
         self,
-        body_parameter: Optional["models.Product"] = None,
+        body_parameter: Optional["_models.Product"] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -773,7 +773,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_class_property(
         self,
-        value: "models.Product",
+        value: "_models.Product",
         **kwargs
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
@@ -792,7 +792,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ClassWrapper(value=value)
+        _body_parameter = _models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -827,7 +827,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_class_property(
         self,
-        value: Optional["models.Product"] = None,
+        value: Optional["_models.Product"] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -845,7 +845,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ClassOptionalWrapper(value=value)
+        _body_parameter = _models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1008,7 +1008,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ArrayWrapper(value=value)
+        _body_parameter = _models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1061,7 +1061,7 @@ class ExplicitOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ArrayOptionalWrapper(value=value)
+        _body_parameter = _models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

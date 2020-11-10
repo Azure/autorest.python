@@ -1307,7 +1307,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Union[str, "models.FooEnum"]]
+        # type: (...) -> List[Union[str, "_models.FooEnum"]]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1315,7 +1315,7 @@ class ArrayOperations(object):
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.FooEnum"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "_models.FooEnum"]]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1352,7 +1352,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_enum_valid(
         self,
-        array_body,  # type: List[Union[str, "models.FooEnum"]]
+        array_body,  # type: List[Union[str, "_models.FooEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1406,7 +1406,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List[Union[str, "models.Enum0"]]
+        # type: (...) -> List[Union[str, "_models.Enum0"]]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1414,7 +1414,7 @@ class ArrayOperations(object):
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "models.Enum0"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "_models.Enum0"]]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1451,7 +1451,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_string_enum_valid(
         self,
-        array_body,  # type: List[Union[str, "models.Enum1"]]
+        array_body,  # type: List[Union[str, "_models.Enum1"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2531,7 +2531,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> List["_models.Product"]
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2539,7 +2539,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Product"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -2578,7 +2578,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> List["_models.Product"]
         """Get empty array of complex type [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2586,7 +2586,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Product"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -2625,7 +2625,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> List["_models.Product"]
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
@@ -2634,7 +2634,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Product"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -2673,7 +2673,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> List["_models.Product"]
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
@@ -2682,7 +2682,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Product"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -2721,7 +2721,7 @@ class ArrayOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> List["models.Product"]
+        # type: (...) -> List["_models.Product"]
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
@@ -2730,7 +2730,7 @@ class ArrayOperations(object):
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["_models.Product"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -2767,7 +2767,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_complex_valid(
         self,
-        array_body,  # type: List["models.Product"]
+        array_body,  # type: List["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

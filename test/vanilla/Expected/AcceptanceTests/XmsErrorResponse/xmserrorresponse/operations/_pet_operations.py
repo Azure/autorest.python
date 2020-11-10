@@ -50,7 +50,7 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Pet"]
+        # type: (...) -> Optional["_models.Pet"]
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -60,7 +60,7 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Pet"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Pet"]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
@@ -109,7 +109,7 @@ class PetOperations(object):
         what_action,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAction"
+        # type: (...) -> "_models.PetAction"
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -119,7 +119,7 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAction"]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,

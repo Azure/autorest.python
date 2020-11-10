@@ -31,7 +31,7 @@ class AutoRestValidationTestOperationsMixin(object):
         id,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> "_models.Product"
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -43,7 +43,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -90,10 +90,10 @@ class AutoRestValidationTestOperationsMixin(object):
         self,
         resource_group_name,  # type: str
         id,  # type: int
-        body=None,  # type: Optional["models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> "_models.Product"
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -107,7 +107,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -206,10 +206,10 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def post_with_constant_in_body(
         self,
-        body=None,  # type: Optional["models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> "_models.Product"
         """post_with_constant_in_body.
 
         :param body:
@@ -219,7 +219,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

@@ -44,7 +44,7 @@ class PolymorphicrecursiveOperations:
     async def get_valid(
         self,
         **kwargs
-    ) -> "models.Fish":
+    ) -> "_models.Fish":
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +52,7 @@ class PolymorphicrecursiveOperations:
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Fish"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -89,7 +89,7 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "models.Fish",
+        complex_body: "_models.Fish",
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.

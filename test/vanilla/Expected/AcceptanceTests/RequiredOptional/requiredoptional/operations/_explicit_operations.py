@@ -175,7 +175,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.IntWrapper(value=value)
+        _body_parameter = _models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -229,7 +229,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.IntOptionalWrapper(value=value)
+        _body_parameter = _models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -493,7 +493,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.StringWrapper(value=value)
+        _body_parameter = _models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -547,7 +547,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.StringOptionalWrapper(value=value)
+        _body_parameter = _models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -683,7 +683,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
-        body_parameter,  # type: "models.Product"
+        body_parameter,  # type: "_models.Product"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -736,7 +736,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
-        body_parameter=None,  # type: Optional["models.Product"]
+        body_parameter=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -791,7 +791,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
-        value,  # type: "models.Product"
+        value,  # type: "_models.Product"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -811,7 +811,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ClassWrapper(value=value)
+        _body_parameter = _models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -846,7 +846,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
-        value=None,  # type: Optional["models.Product"]
+        value=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -865,7 +865,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ClassOptionalWrapper(value=value)
+        _body_parameter = _models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1031,7 +1031,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ArrayWrapper(value=value)
+        _body_parameter = _models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1085,7 +1085,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ArrayOptionalWrapper(value=value)
+        _body_parameter = _models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

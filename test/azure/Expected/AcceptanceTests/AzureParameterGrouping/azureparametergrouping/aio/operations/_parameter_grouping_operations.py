@@ -43,7 +43,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_required(
         self,
-        parameter_grouping_post_required_parameters: "models.ParameterGroupingPostRequiredParameters",
+        parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
         **kwargs
     ) -> None:
         """Post a bunch of required parameters grouped.
@@ -112,7 +112,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_optional(
         self,
-        parameter_grouping_post_optional_parameters: Optional["models.ParameterGroupingPostOptionalParameters"] = None,
+        parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
         **kwargs
     ) -> None:
         """Post a bunch of optional parameters grouped.
@@ -168,8 +168,8 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_multi_param_groups(
         self,
-        first_parameter_group: Optional["models.FirstParameterGroup"] = None,
-        parameter_grouping_post_multi_param_groups_second_param_group: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"] = None,
+        first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
+        parameter_grouping_post_multi_param_groups_second_param_group: Optional["_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"] = None,
         **kwargs
     ) -> None:
         """Post parameters from multiple different parameter groups.
@@ -236,7 +236,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_shared_parameter_group_object(
         self,
-        first_parameter_group: Optional["models.FirstParameterGroup"] = None,
+        first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
         **kwargs
     ) -> None:
         """Post parameters with a shared parameter group object.

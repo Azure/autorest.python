@@ -45,10 +45,10 @@ class LROsCustomHeaderOperations:
 
     async def _put_async_retry_succeeded_initial(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> "_models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -96,9 +96,9 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
-    ) -> AsyncLROPoller["models.Product"]:
+    ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
@@ -117,7 +117,7 @@ class LROsCustomHeaderOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -161,10 +161,10 @@ class LROsCustomHeaderOperations:
 
     async def _put201_creating_succeeded200_initial(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+    ) -> "_models.Product":
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -212,9 +212,9 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
-    ) -> AsyncLROPoller["models.Product"]:
+    ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -233,7 +233,7 @@ class LROsCustomHeaderOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -272,7 +272,7 @@ class LROsCustomHeaderOperations:
 
     async def _post202_retry200_initial(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -320,7 +320,7 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def begin_post202_retry200(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
@@ -376,7 +376,7 @@ class LROsCustomHeaderOperations:
 
     async def _post_async_retry_succeeded_initial(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -425,7 +425,7 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
         self,
-        product: Optional["models.Product"] = None,
+        product: Optional["_models.Product"] = None,
         **kwargs
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
