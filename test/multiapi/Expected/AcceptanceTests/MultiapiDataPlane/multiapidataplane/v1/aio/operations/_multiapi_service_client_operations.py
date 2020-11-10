@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.polling.async_base_polling import AsyncLROBasePolling
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -67,7 +67,7 @@ class MultiapiServiceClientOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(self.models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -111,7 +111,7 @@ class MultiapiServiceClientOperationsMixin:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(self.models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None

@@ -25,7 +25,7 @@ class {{ operation_group.class_name }}{{ object_base_class }}:
     """
 
 {% if code_model.schemas %}
-    models = models
+    models = _models
 
 {% endif %}
     def __init__(self, client, config, serializer, deserializer){{ return_none_type_annotation }}:

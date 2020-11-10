@@ -50,11 +50,14 @@ class FileImport:
         from_section: str,
         name_import: str,
         import_type: ImportType,
-        typing_section: TypingSection = TypingSection.REGULAR
+        typing_section: TypingSection = TypingSection.REGULAR,
+        alias: Optional[str] = None,
     ) -> None:
         """Add an import to this import block.
         """
-        self._add_import(from_section, import_type, name_import, typing_section)
+        self._add_import(
+            from_section, import_type, name_import + f" as {alias}" if alias else name_import, typing_section
+        )
 
     def add_import(
         self,
