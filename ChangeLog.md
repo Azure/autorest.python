@@ -1,6 +1,6 @@
 # Change Log
 
-### 2020-xx-xx - 5.4.2
+### 2020-xx-xx - 5.4.3
 Autorest core version: 3.0.6320
 
 Modelerfour version: 4.15.421
@@ -9,6 +9,14 @@ Modelerfour version: 4.15.421
 
 - Correctly choose schema from response with 200 status code in the case of LRO operations with multiple responses  #814
 
+### 2020-11-09 - 5.4.2
+Autorest core version: 3.0.6320
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- Set discriminator value in cases where discriminator is readonly  #815
 
 ### 2020-11-03 - 5.4.1
 Autorest core version: 3.0.6318

@@ -26,15 +26,15 @@ class ModelGenericSerializer(ModelBaseSerializer):
         init_args.append(f"super({model.name}, self).__init__(**kwargs)")
 
         for prop in ModelGenericSerializer.get_properties_to_initialize(model):
-            if prop.readonly:
-                init_args.append(f"self.{prop.name} = None")
-            elif prop.is_discriminator:
+            if prop.is_discriminator:
                 discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
                 if not discriminator_value:
                     typing = "Optional[str]"
                 else:
                     typing = "str"
                 init_args.append(f"self.{prop.name} = {discriminator_value}  # type: {typing}")
+            elif prop.readonly:
+                init_args.append(f"self.{prop.name} = None")
             elif not prop.constant:
                 if prop.required and not prop.default_value:
                     init_args.append(f"self.{prop.name} = kwargs['{prop.name}']")
