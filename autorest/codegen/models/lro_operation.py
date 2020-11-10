@@ -59,8 +59,9 @@ class LROOperation(Operation):
         if not self.responses:
             return
         responses_with_bodies = [r for r in self.responses if r.has_body]
+        num_respose_schemas = {r.schema for r in self.responses if r.schema}
         response = None
-        if len(responses_with_bodies) > 1:
+        if len(num_respose_schemas) > 1:
             # choose the response that has a status code of 200
             responses_with_200_status_codes = [
                 r for r in responses_with_bodies if 200 in r.status_codes
@@ -78,7 +79,7 @@ class LROOperation(Operation):
                     f" method {self.python_name} and none of them have a 200 status code."
                 )
 
-        elif responses_with_bodies:
+        elif num_respose_schemas:
             response = responses_with_bodies[0]
         self.lro_response = response
 
