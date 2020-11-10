@@ -44,15 +44,27 @@
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
+        "_test_paging_initial" : {
+            "sync": {
+                "signature": "def _test_paging_initial(\n    self,\n    **kwargs  # type: Any\n):\n",
+                "doc": "\"\"\"\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~multiapinoasync.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "async": {
+                "coroutine": true,
+                "signature": "async def _test_paging_initial(\n    self,\n    **kwargs\n) -\u003e \"models.PagingResult\":\n",
+                "doc": "\"\"\"\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~multiapinoasync.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+            },
+            "call": ""
+        },
         "test_paging" : {
             "sync": {
                 "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
-                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapinoasync.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.\n Default is BasicPagingMethod.\n:paramtype paging_method: ~azure.core.paging_method.PagingMethod\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapinoasync.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
             "async": {
                 "coroutine": false,
                 "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.PagingResult\"]:\n",
-                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapinoasync.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.\n Default is AsyncBasicPagingMethod.\n:paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapinoasync.v3.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
             "call": ""
         }

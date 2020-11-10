@@ -50,6 +50,44 @@ class PagingOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _get_no_item_name_pages_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResultValue"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_no_item_name_pages_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResultValue', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_no_item_name_pages_initial.metadata = {'url': '/paging/noitemname'}  # type: ignore
+
     @distributed_trace
     def get_no_item_name_pages(
         self,
@@ -76,6 +114,44 @@ class PagingOperations(object):
             initial_request=_get_no_item_name_pages_initial(),  # TODO: add params
             **kwargs,
         )
+
+    def _get_null_next_link_name_pages_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_null_next_link_name_pages_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_null_next_link_name_pages_initial.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
 
     @distributed_trace
     def get_null_next_link_name_pages(
@@ -106,6 +182,44 @@ class PagingOperations(object):
             **kwargs,
         )
 
+    def _get_single_pages_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_single_pages_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_single_pages_initial.metadata = {'url': '/paging/single'}  # type: ignore
+
     @distributed_trace
     def get_single_pages(
         self,
@@ -133,6 +247,58 @@ class PagingOperations(object):
             item_name='values',
             **kwargs,
         )
+
+    def _get_multiple_pages_initial(
+        self,
+        client_request_id=None,  # type: Optional[str]
+        paging_get_multiple_pages_options=None,  # type: Optional["models.PagingGetMultiplePagesOptions"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _maxresults = None
+        _timeout = None
+        if paging_get_multiple_pages_options is not None:
+            _maxresults = paging_get_multiple_pages_options.maxresults
+            _timeout = paging_get_multiple_pages_options.timeout
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if client_request_id is not None:
+            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+        if _maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+        if _timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_initial.metadata = {'url': '/paging/multiple'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -168,6 +334,88 @@ class PagingOperations(object):
             **kwargs,
         )
 
+    def _get_with_query_params_next(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        query_constant = True
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_with_query_params_next.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_with_query_params_next.metadata = {'url': '/paging/multiple/nextOperationWithQueryParams'}  # type: ignore
+
+    def _get_with_query_params_initial(
+        self,
+        required_query_parameter,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        query_constant = True
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_with_query_params_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
+        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_with_query_params_initial.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
+
     @distributed_trace
     def get_with_query_params(
         self,
@@ -201,6 +449,58 @@ class PagingOperations(object):
             item_name='values',
             **kwargs,
         )
+
+    def _get_odata_multiple_pages_initial(
+        self,
+        client_request_id=None,  # type: Optional[str]
+        paging_get_odata_multiple_pages_options=None,  # type: Optional["models.PagingGetOdataMultiplePagesOptions"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.OdataProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _maxresults = None
+        _timeout = None
+        if paging_get_odata_multiple_pages_options is not None:
+            _maxresults = paging_get_odata_multiple_pages_options.maxresults
+            _timeout = paging_get_odata_multiple_pages_options.timeout
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_odata_multiple_pages_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if client_request_id is not None:
+            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+        if _maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+        if _timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('OdataProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_odata_multiple_pages_initial.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -236,6 +536,64 @@ class PagingOperations(object):
             continuation_token_name='odata_next_link',
             **kwargs,
         )
+
+    def _get_multiple_pages_with_offset_initial(
+        self,
+        paging_get_multiple_pages_with_offset_options,  # type: "models.PagingGetMultiplePagesWithOffsetOptions"
+        client_request_id=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _maxresults = None
+        _offset = None
+        _timeout = None
+        if paging_get_multiple_pages_with_offset_options is not None:
+            _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+            _offset = paging_get_multiple_pages_with_offset_options.offset
+            _timeout = paging_get_multiple_pages_with_offset_options.timeout
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_with_offset_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'offset': self._serialize.url("offset", _offset, 'int'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if client_request_id is not None:
+            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+        if _maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+        if _timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_with_offset_initial.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -276,6 +634,44 @@ class PagingOperations(object):
             **kwargs,
         )
 
+    def _get_multiple_pages_retry_first_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_retry_first_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_retry_first_initial.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
+
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
@@ -304,6 +700,44 @@ class PagingOperations(object):
             item_name='values',
             **kwargs,
         )
+
+    def _get_multiple_pages_retry_second_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_retry_second_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_retry_second_initial.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_second(
@@ -334,6 +768,44 @@ class PagingOperations(object):
             **kwargs,
         )
 
+    def _get_single_pages_failure_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_single_pages_failure_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_single_pages_failure_initial.metadata = {'url': '/paging/single/failure'}  # type: ignore
+
     @distributed_trace
     def get_single_pages_failure(
         self,
@@ -361,6 +833,44 @@ class PagingOperations(object):
             item_name='values',
             **kwargs,
         )
+
+    def _get_multiple_pages_failure_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_failure_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_failure_initial.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure(
@@ -390,6 +900,44 @@ class PagingOperations(object):
             **kwargs,
         )
 
+    def _get_multiple_pages_failure_uri_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_failure_uri_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_failure_uri_initial.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
+
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
@@ -417,6 +965,98 @@ class PagingOperations(object):
             item_name='values',
             **kwargs,
         )
+
+    def _get_multiple_pages_fragment_next_link_next(
+        self,
+        api_version,  # type: str
+        tenant,  # type: str
+        next_link,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.OdataProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_next_link_next.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", tenant, 'str'),
+            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('OdataProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_fragment_next_link_next.metadata = {'url': '/paging/multiple/fragment/{tenant}/{nextLink}'}  # type: ignore
+
+    def _get_multiple_pages_fragment_next_link_initial(
+        self,
+        api_version,  # type: str
+        tenant,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.OdataProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_next_link_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", tenant, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('OdataProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_fragment_next_link_initial.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -458,6 +1098,108 @@ class PagingOperations(object):
             continuation_token_name='odata_next_link',
             **kwargs,
         )
+
+    def _get_multiple_pages_fragment_with_grouping_next_link_next(
+        self,
+        next_link,  # type: str
+        custom_parameter_group,  # type: "models.CustomParameterGroup"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.OdataProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _api_version = None
+        _tenant = None
+        if custom_parameter_group is not None:
+            _api_version = custom_parameter_group.api_version
+            _tenant = custom_parameter_group.tenant
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_next.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", _tenant, 'str'),
+            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('OdataProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_fragment_with_grouping_next_link_next.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'}  # type: ignore
+
+    def _get_multiple_pages_fragment_with_grouping_next_link_initial(
+        self,
+        custom_parameter_group,  # type: "models.CustomParameterGroup"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.OdataProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _api_version = None
+        _tenant = None
+        if custom_parameter_group is not None:
+            _api_version = custom_parameter_group.api_version
+            _tenant = custom_parameter_group.tenant
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", _tenant, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('OdataProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_multiple_pages_fragment_with_grouping_next_link_initial.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(

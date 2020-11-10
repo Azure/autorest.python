@@ -117,7 +117,10 @@ class CodeGenerator(Plugin):
 
         # LRO operation
         code_model.format_lro_operations()
-        code_model.remove_next_operation()
+
+        # paging operation
+        code_model.link_next_operation()
+        code_model.format_paging_operations()
 
         if options["credential"]:
             code_model.add_credential_global_parameter()

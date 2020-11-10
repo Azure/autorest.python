@@ -15,6 +15,7 @@ from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
+from .lro_paging_operation import LROPagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
 from .parameter_list import ParameterList
@@ -177,7 +178,63 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     i += 1
                 i += 1
 
-    def remove_next_operation(self) -> None:
+    @staticmethod
+    def _paging_initial_function(operation: PagingOperation) -> Operation:
+        return Operation(
+            yaml_data={},
+            name="_" + operation.name + "_initial",
+            description="",
+            url=operation.url,
+            method=operation.method,
+            multipart=operation.multipart,
+            api_versions=operation.api_versions,
+            parameters=operation.parameters.parameters,
+            requests=operation.requests,
+            responses=operation.responses,
+            exceptions=operation.exceptions,
+            want_description_docstring=False,
+            want_tracing=False,
+        )
+
+    @staticmethod
+    def _paging_next_function(operation: PagingOperation) -> Operation:
+        next_operation = cast(Operation, operation.next_operation)
+        return Operation(
+            yaml_data={},
+            name="_" + operation.name + "_next",
+            description="",
+            url=next_operation.url,
+            method=next_operation.method,
+            multipart=next_operation.multipart,
+            api_versions=next_operation.api_versions,
+            parameters=next_operation.parameters.parameters,
+            requests=next_operation.requests,
+            responses=next_operation.responses,
+            exceptions=next_operation.exceptions,
+            want_description_docstring=False,
+            want_tracing=False,
+        )
+
+    def format_paging_operations(self) -> None:
+        """Adds initial and next operations needed for paging operations.
+
+        If there are paging operations, we will add the initial request. If the paging operation
+        has a next operation, we will also add a request for that.
+        """
+        for operation_group in self.operation_groups:
+            i = 0
+            while i < len(operation_group.operations):
+                operation = operation_group.operations[i]
+                if isinstance(operation, PagingOperation):
+                    if not isinstance(operation, LROPagingOperation):
+                        operation_group.operations.insert(i, CodeModel._paging_initial_function(operation))
+                    if operation.next_operation:
+                        operation_group.operations.insert(i, CodeModel._paging_next_function(operation))
+                        i += 1
+                    i += 1
+                i += 1
+
+    def link_next_operation(self) -> None:
         """Linking paging operations together.
         """
         def _lookup_operation(yaml_id: int) -> Operation:

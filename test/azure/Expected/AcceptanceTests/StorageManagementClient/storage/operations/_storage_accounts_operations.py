@@ -503,6 +503,50 @@ class StorageAccountsOperations(object):
         return deserialized
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}  # type: ignore
 
+    def _list_initial(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.StorageAccountListResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        api_version = "2015-05-01-preview"
+        accept = "application/json, text/json"
+
+        # Construct URL
+        url = self._list_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _list_initial.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}  # type: ignore
+
     @distributed_trace
     def list(
         self,
@@ -513,10 +557,36 @@ class StorageAccountsOperations(object):
         returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+         Default is BasicPagingMethod.
+        :paramtype paging_method: ~azure.core.paging_method.PagingMethod
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        def deserialize_output(pipeline_response):
+            return self._deserialize('StorageAccountListResult', pipeline_response)
+
+        path_format_arguments = {
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
+        }
+
+        return ItemPaged(
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod),
+            client=self._client,
+            deserialize_output=deserialize_output,
+            initial_request=_list_initial(),  # TODO: add params
+            path_format_arguments=path_format_arguments,
+            continuation_token_name=None,
+            **kwargs,
+        )
+
+    def _list_by_resource_group_initial(
+        self,
+        resource_group_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.StorageAccountListResult"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -525,52 +595,37 @@ class StorageAccountsOperations(object):
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
-        def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        # Construct URL
+        url = self._list_by_resource_group_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
-            if not next_link:
-                # Construct URL
-                url = self.list.metadata['url']  # type: ignore
-                path_format_arguments = {
-                    'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
-                }
-                url = self._client.format_url(url, **path_format_arguments)
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
-                request = self._client.get(url, query_parameters, header_parameters)
-            else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
-            return request
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
-        def extract_data(pipeline_response):
-            deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
-            list_of_elem = deserialized.value
-            if cls:
-                list_of_elem = cls(list_of_elem)
-            return None, iter(list_of_elem)
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
 
-        def get_next(next_link=None):
-            request = prepare_request(next_link)
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
+        deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
 
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+        if cls:
+            return cls(pipeline_response, deserialized, {})
 
-            return pipeline_response
-
-        return ItemPaged(
-            get_next, extract_data
-        )
-    list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}  # type: ignore
+        return deserialized
+    _list_by_resource_group_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}  # type: ignore
 
     @distributed_trace
     def list_by_resource_group(
@@ -585,65 +640,30 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+         Default is BasicPagingMethod.
+        :paramtype paging_method: ~azure.core.paging_method.PagingMethod
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        def deserialize_output(pipeline_response):
+            return self._deserialize('StorageAccountListResult', pipeline_response)
+
+        path_format_arguments = {
+            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
+            'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
-        error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2015-05-01-preview"
-        accept = "application/json, text/json"
-
-        def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-            if not next_link:
-                # Construct URL
-                url = self.list_by_resource_group.metadata['url']  # type: ignore
-                path_format_arguments = {
-                    'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-                    'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
-                }
-                url = self._client.format_url(url, **path_format_arguments)
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-                request = self._client.get(url, query_parameters, header_parameters)
-            else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
-            return request
-
-        def extract_data(pipeline_response):
-            deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
-            list_of_elem = deserialized.value
-            if cls:
-                list_of_elem = cls(list_of_elem)
-            return None, iter(list_of_elem)
-
-        def get_next(next_link=None):
-            request = prepare_request(next_link)
-
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-            return pipeline_response
 
         return ItemPaged(
-            get_next, extract_data
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod),
+            client=self._client,
+            deserialize_output=deserialize_output,
+            initial_request=_list_by_resource_group_initial(),  # TODO: add params
+            path_format_arguments=path_format_arguments,
+            continuation_token_name=None,
+            **kwargs,
         )
-    list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}  # type: ignore
 
     @distributed_trace
     def regenerate_key(

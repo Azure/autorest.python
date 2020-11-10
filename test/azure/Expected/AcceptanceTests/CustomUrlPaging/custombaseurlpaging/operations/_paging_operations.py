@@ -48,6 +48,50 @@ class PagingOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _get_pages_partial_url_initial(
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_pages_partial_url_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
+            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_pages_partial_url_initial.metadata = {'url': '/paging/customurl/partialnextlink'}  # type: ignore
+
     @distributed_trace
     def get_pages_partial_url(
         self,
@@ -85,6 +129,96 @@ class PagingOperations(object):
             item_name='values',
             **kwargs,
         )
+
+    def _get_pages_partial_url_operation_next(
+        self,
+        account_name,  # type: str
+        next_link,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_pages_partial_url_operation_next.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
+            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_pages_partial_url_operation_next.metadata = {'url': '/paging/customurl/{nextLink}'}  # type: ignore
+
+    def _get_pages_partial_url_operation_initial(
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_pages_partial_url_operation_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
+            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = self._deserialize('ProductResult', pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+    _get_pages_partial_url_operation_initial.metadata = {'url': '/paging/customurl/partialnextlinkop'}  # type: ignore
 
     @distributed_trace
     def get_pages_partial_url_operation(

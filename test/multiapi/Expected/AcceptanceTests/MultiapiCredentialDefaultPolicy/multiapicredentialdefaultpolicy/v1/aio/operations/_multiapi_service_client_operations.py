@@ -252,65 +252,27 @@ class MultiapiServiceClientOperationsMixin:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+         Default is AsyncBasicPagingMethod.
+        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An instance of AsyncLROPoller that returns an iterator like instance of either PagingResult or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v1.models.PagingResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
-        
-        _maxresults = None
-        _timeout = None
-        if test_lro_and_paging_options is not None:
-            _maxresults = test_lro_and_paging_options.maxresults
-            _timeout = test_lro_and_paging_options.timeout
-        accept = "application/json"
 
-        def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            if client_request_id is not None:
-                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if _maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
-            if _timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        def deserialize_output(pipeline_response):
+            return self._deserialize('PagingResult', pipeline_response)
 
-            if not next_link:
-                # Construct URL
-                url = self.test_lro_and_paging.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-
-                request = self._client.post(url, query_parameters, header_parameters)
-            else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
-            return request
-
-        async def extract_data(pipeline_response):
-            deserialized = self._deserialize('PagingResult', pipeline_response)
-            list_of_elem = deserialized.values
-            if cls:
-                list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, AsyncList(list_of_elem)
-
-        async def get_next(next_link=None):
-            request = prepare_request(next_link)
-
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-            return pipeline_response
+        def get_long_running_output(pipeline_response):
+            # TODO: check that cls and error_map kwargs persist here
+            return AsyncItemPaged(
+                paging_method = kwargs.pop("paging_method", BasicPagingMethod),
+                client=self._client,
+                deserialize_output=deserialize_output,
+                initial_response=pipeline_response,
+                item_name='values',
+                **kwargs,
+            )
 
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
@@ -329,16 +291,7 @@ class MultiapiServiceClientOperationsMixin:
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
-        def get_long_running_output(pipeline_response):
-            async def internal_get_next(next_link=None):
-                if next_link is None:
-                    return pipeline_response
-                else:
-                    return await get_next(next_link)
 
-            return AsyncItemPaged(
-                internal_get_next, extract_data
-            )
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
