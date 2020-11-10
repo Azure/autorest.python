@@ -85,7 +85,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
-        deserialize_response: bool = True,
+        makes_network_call: bool = True,
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
@@ -102,7 +102,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
-        self.deserialize_response = deserialize_response
+        self.makes_network_call = makes_network_call
 
     @property
     def python_name(self) -> str:

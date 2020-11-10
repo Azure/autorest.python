@@ -6,7 +6,7 @@
 {% set return_type = None %}
 {% if operation.method == "head" and code_model.options['head_as_boolean'] %}
     {% set return_type = "bool" %}
-{% elif not operation.deserialize_response %}
+{% elif not operation.makes_network_call %}
     {% set return_type = "HttpRequest" %}
 {% endif %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
@@ -63,7 +63,7 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-{% if operation.deserialize_response %}
+{% if operation.makes_network_call %}
     cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, ["ClsType"]) }}
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% endif %}
@@ -98,7 +98,7 @@
     {{ op_tools.query_parameters(operation, async_mode)|indent }}
     {{ op_tools.header_parameters(code_model, operation, async_mode)|indent }}
     {{ op_tools.body_parameters(operation)|indent }}
-{% if operation.deserialize_response %}
+{% if operation.makes_network_call %}
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     response = pipeline_response.http_response
 

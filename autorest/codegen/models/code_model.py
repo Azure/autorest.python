@@ -194,7 +194,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             exceptions=operation.exceptions,
             want_description_docstring=False,
             want_tracing=False,
-            deserialize_response=False,
+            makes_network_call=False,
         )
 
     @staticmethod
@@ -214,7 +214,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             exceptions=next_operation.exceptions,
             want_description_docstring=False,
             want_tracing=False,
-            deserialize_response=False,
+            makes_network_call=False,
         )
 
     def format_paging_operations(self) -> None:
