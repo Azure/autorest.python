@@ -130,6 +130,7 @@ class PagingOperation(Operation):
                 f"{async_prefix}DifferentNextOperationPagingMethod",
                 ImportType.AZURECORE
             )
+            file_import.add_import("functools", ImportType.STDLIB)
         else:
             file_import.add_from_import(
                 f"azure.core.{paging_file}_methohd", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE

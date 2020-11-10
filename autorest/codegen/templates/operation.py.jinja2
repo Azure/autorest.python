@@ -3,7 +3,12 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {# return_type is a variable that holds the return type if we already know what it is #}
-{% set return_type = "bool" if operation.method == 'head' and code_model.options['head_as_boolean'] else None %}
+{% set return_type = None %}
+{% if operation.method == "head" and code_model.options['head_as_boolean'] %}
+    {% set return_type = "bool" %}
+{% elif not operation.deserialize_response %}
+    {% set return_type = "HttpRequest" %}
+{% endif %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro return_docstring(async_mode, return_type=None) %}
 {%- if return_type -%}
@@ -55,11 +60,13 @@
 {% if operation.want_description_docstring %}
     {{ operation_docstring(async_mode, return_type=return_type)|indent }}
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, ["ClsType"]) }}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
+{% if operation.deserialize_response %}
+    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, ["ClsType"]) }}
     {{ op_tools.error_map(operation, code_model)|indent }}
+{% endif %}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
 {%- endif -%}
@@ -91,6 +98,7 @@
     {{ op_tools.query_parameters(operation, async_mode)|indent }}
     {{ op_tools.header_parameters(code_model, operation, async_mode)|indent }}
     {{ op_tools.body_parameters(operation)|indent }}
+{% if operation.deserialize_response %}
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     response = pipeline_response.http_response
 
@@ -101,35 +109,38 @@
         {% endif %}
         raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
 
-{% if operation.any_response_has_headers %}
+    {% if operation.any_response_has_headers %}
     response_headers = {}
-{% endif %}
+    {% endif %}
 {# now we only initialize deserialized to None if we know there is both > 1 response with body and > 1 response of None #}
 {# otherwise, we know that deserialized will be set to a value then returned #}
-{% if operation.has_optional_return_type %}
+    {% if operation.has_optional_return_type %}
     deserialized = None
-{% endif %}
-{% if operation.has_response_body or operation.any_response_has_headers %}
-  {% if operation.responses|count > 1 %}
-    {% for status_code in operation.success_status_code %}
-      {% set response =  operation.get_response_from_status(status_code) %}
-      {% if response.headers or response.has_body %}
+    {% endif %}
+    {% if operation.has_response_body or operation.any_response_has_headers %}
+        {% if operation.responses|count > 1 %}
+            {% for status_code in operation.success_status_code %}
+                {% set response =  operation.get_response_from_status(status_code) %}
+                {% if response.headers or response.has_body %}
     if response.status_code == {{ status_code }}:
         {{ op_tools.response_handling(response)|indent(8) }}
-      {% endif %}
-    {% endfor %}
-  {% else %}
-    {% set response = operation.responses[0] %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% set response = operation.responses[0] %}
     {{ op_tools.response_handling(response)|indent }}
-  {% endif %}
-{% endif %}
+        {% endif %}
+    {% endif %}
     if cls:
         return cls(pipeline_response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
-{% if operation.has_response_body %}
+    {% if operation.has_response_body %}
     return deserialized
-{% endif %}
-{% if operation.method == 'head' and code_model.options['head_as_boolean'] %}
+    {% endif %}
+    {% if operation.method == 'head' and code_model.options['head_as_boolean'] %}
     return 200 <= response.status_code <= 299
+    {% endif %}
+{% else %}
+    return request
 {% endif %}
 {{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(operation.url) }}}  # type: ignore
