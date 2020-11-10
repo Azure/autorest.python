@@ -14,8 +14,8 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
 {{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
 {# get method signature #}
-{% macro method_signature(operation, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
-{{ "async " if coroutine else "" }}def {{ operation_name }}(
+{% macro method_signature(operation, operation_name, async_mode, return_type_wrapper, return_type=None) %}
+{{ "async " if async_mode and operation.coroutine_when_async else "" }}def {{ operation_name }}(
 {% if async_mode %}
     self,
     {% for param_signature in operation.parameters.async_method_signature %}

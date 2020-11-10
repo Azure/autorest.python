@@ -48,7 +48,7 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
-    async def _get_no_item_name_pages_initial(
+    def _get_no_item_name_pages_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -94,7 +94,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_null_next_link_name_pages_initial(
+    def _get_null_next_link_name_pages_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -142,7 +142,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_single_pages_initial(
+    def _get_single_pages_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -189,7 +189,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_initial(
+    def _get_multiple_pages_initial(
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_options: Optional["models.PagingGetMultiplePagesOptions"] = None,
@@ -256,7 +256,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_with_query_params_next(
+    def _get_with_query_params_next(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -278,7 +278,7 @@ class PagingOperations:
         return request
     _get_with_query_params_next.metadata = {'url': '/paging/multiple/nextOperationWithQueryParams'}  # type: ignore
 
-    async def _get_with_query_params_initial(
+    def _get_with_query_params_initial(
         self,
         required_query_parameter: int,
         **kwargs
@@ -335,7 +335,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_odata_multiple_pages_initial(
+    def _get_odata_multiple_pages_initial(
         self,
         client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional["models.PagingGetOdataMultiplePagesOptions"] = None,
@@ -403,7 +403,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_with_offset_initial(
+    def _get_multiple_pages_with_offset_initial(
         self,
         paging_get_multiple_pages_with_offset_options: "models.PagingGetMultiplePagesWithOffsetOptions",
         client_request_id: Optional[str] = None,
@@ -481,7 +481,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_retry_first_initial(
+    def _get_multiple_pages_retry_first_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -529,7 +529,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_retry_second_initial(
+    def _get_multiple_pages_retry_second_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -577,7 +577,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_single_pages_failure_initial(
+    def _get_single_pages_failure_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -624,7 +624,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_failure_initial(
+    def _get_multiple_pages_failure_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -671,7 +671,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_failure_uri_initial(
+    def _get_multiple_pages_failure_uri_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -718,7 +718,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_fragment_next_link_next(
+    def _get_multiple_pages_fragment_next_link_next(
         self,
         api_version: str,
         tenant: str,
@@ -747,7 +747,7 @@ class PagingOperations:
         return request
     _get_multiple_pages_fragment_next_link_next.metadata = {'url': '/paging/multiple/fragment/{tenant}/{nextLink}'}  # type: ignore
 
-    async def _get_multiple_pages_fragment_next_link_initial(
+    def _get_multiple_pages_fragment_next_link_initial(
         self,
         api_version: str,
         tenant: str,
@@ -814,7 +814,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_multiple_pages_fragment_with_grouping_next_link_next(
+    def _get_multiple_pages_fragment_with_grouping_next_link_next(
         self,
         next_link: str,
         custom_parameter_group: "models.CustomParameterGroup",
@@ -848,7 +848,7 @@ class PagingOperations:
         return request
     _get_multiple_pages_fragment_with_grouping_next_link_next.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'}  # type: ignore
 
-    async def _get_multiple_pages_fragment_with_grouping_next_link_initial(
+    def _get_multiple_pages_fragment_with_grouping_next_link_initial(
         self,
         custom_parameter_group: "models.CustomParameterGroup",
         **kwargs

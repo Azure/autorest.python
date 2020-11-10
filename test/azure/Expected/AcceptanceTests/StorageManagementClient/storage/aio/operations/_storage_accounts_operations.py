@@ -493,7 +493,7 @@ class StorageAccountsOperations:
         return deserialized
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}  # type: ignore
 
-    async def _list_initial(
+    def _list_initial(
         self,
         **kwargs
     ) -> HttpRequest:
@@ -552,7 +552,7 @@ class StorageAccountsOperations:
             **kwargs,
         )
 
-    async def _list_by_resource_group_initial(
+    def _list_by_resource_group_initial(
         self,
         resource_group_name: str,
         **kwargs

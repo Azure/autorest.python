@@ -103,6 +103,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
         self.makes_network_call = makes_network_call
+        # if we don't actually make an async call, we don't await
+        self.coroutine_when_async = makes_network_call
 
     @property
     def python_name(self) -> str:

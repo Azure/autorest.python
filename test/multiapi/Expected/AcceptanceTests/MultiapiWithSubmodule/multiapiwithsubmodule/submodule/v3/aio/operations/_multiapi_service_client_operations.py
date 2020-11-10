@@ -22,7 +22,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultiapiServiceClientOperationsMixin:
 
-    async def _test_paging_initial(
+    def _test_paging_initial(
         self,
         **kwargs
     ) -> HttpRequest:

@@ -59,6 +59,7 @@ class PagingOperation(Operation):
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
+        self.coroutine_when_async = False
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]

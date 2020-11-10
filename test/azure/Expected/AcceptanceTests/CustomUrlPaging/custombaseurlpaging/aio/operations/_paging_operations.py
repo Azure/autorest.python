@@ -46,7 +46,7 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
-    async def _get_pages_partial_url_initial(
+    def _get_pages_partial_url_initial(
         self,
         account_name: str,
         **kwargs
@@ -109,7 +109,7 @@ class PagingOperations:
             **kwargs,
         )
 
-    async def _get_pages_partial_url_operation_next(
+    def _get_pages_partial_url_operation_next(
         self,
         account_name: str,
         next_link: str,
@@ -137,7 +137,7 @@ class PagingOperations:
         return request
     _get_pages_partial_url_operation_next.metadata = {'url': '/paging/customurl/{nextLink}'}  # type: ignore
 
-    async def _get_pages_partial_url_operation_initial(
+    def _get_pages_partial_url_operation_initial(
         self,
         account_name: str,
         **kwargs

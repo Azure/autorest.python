@@ -49,6 +49,7 @@ class LROPagingOperation(PagingOperation, LROOperation):
             want_tracing,
             override_success_response_to_200=True
         )
+        self.coroutine_when_async = True
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         lro_imports = LROOperation.imports(self, code_model, async_mode)

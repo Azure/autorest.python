@@ -42,7 +42,7 @@
 @distributed_trace
 {% endif %}
 {% set return_type_wrapper = ["AsyncIterable" if async_mode else "Iterable"] %}
-{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=False, return_type_wrapper=return_type_wrapper) }}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}

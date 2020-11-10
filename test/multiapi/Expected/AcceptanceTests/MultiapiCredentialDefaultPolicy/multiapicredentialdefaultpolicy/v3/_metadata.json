@@ -50,8 +50,8 @@
                 "doc": "\"\"\"\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~multiapicredentialdefaultpolicy.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
             "async": {
-                "coroutine": true,
-                "signature": "async def _test_paging_initial(\n    self,\n    **kwargs\n) -\u003e \"models.PagingResult\":\n",
+                "coroutine": false,
+                "signature": "def _test_paging_initial(\n    self,\n    **kwargs\n) -\u003e \"models.PagingResult\":\n",
                 "doc": "\"\"\"\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~multiapicredentialdefaultpolicy.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
             },
             "call": ""
