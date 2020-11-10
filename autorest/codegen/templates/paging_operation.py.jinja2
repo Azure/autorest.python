@@ -2,7 +2,6 @@
 {% import 'paging_operation_helper.jinja2' as helper %}
 {% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type  %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
-{% set item_paged = "AsyncItemPaged" if async_mode else "ItemPaged" %}
 {% macro return_docstring(async_mode) %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: An iterator like instance of either {{ operation.responses|selectattr('has_body')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
@@ -33,6 +32,7 @@
 {{ op_tools.content_type_docstring(operation) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
+{{ helper.paging_method_docstring(operation, async_mode) }}
 {{ return_docstring(async_mode) }}
 :raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}
@@ -52,9 +52,14 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    {{ helper.paging_operation(code_model, operation, async_mode) }}
+    {{ helper.deserialize_output(operation) | indent }}
+    {% if operation.parameters.path %}
 
-    return {{ item_paged }}(
-        get_next, extract_data
-    )
-{{ operation.python_name }}.metadata = {'url': '{{ operation.url|replace("'", "\\'") }}'}  # type: ignore
+    path_format_arguments = {
+    {% for path_parameter in operation.parameters.path %}
+        '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
+    {% endfor %}
+    }
+    {% endif %}
+
+    {{ helper.item_paged_retval(operation, async_mode) | indent }}

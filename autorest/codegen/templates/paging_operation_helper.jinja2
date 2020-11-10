@@ -1,89 +1,45 @@
 {% import 'operation_tools.jinja2' as op_tools %}
-{% macro paging_operation(code_model, operation, async_mode) %}
+{% macro paging_method_docstring(operation, async_mode) %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
-{% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
-    {{ op_tools.error_map(operation, code_model)|indent }}
-{% if operation.parameters.grouped %}
-    {{ op_tools.grouped_parameters(operation)|indent }}
-{%- endif -%}
-{% if operation.parameters.is_flattened %}
-    {{ operation.parameters.build_flattened_object() }}
-{% endif %}
-{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
-    {% endfor %}
-{% endif %}
+:keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+ Default is {{ keywords.async_class }}{{ "DifferentNextOperation" if operation.next_operation else "Basic" }}PagingMethod.
+:paramtype paging_method: ~azure.core.{{ "async_" if async_mode else "" }}paging_method.{{ keywords.async_class }}PagingMethod{% endmacro %}
 
-    def prepare_request(next_link=None):
-        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
-        if not next_link:
-            # Construct URL
-            url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
-        {% if operation.parameters.path %}
-            path_format_arguments = {
-        {% for path_parameter in operation.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.query_parameters(operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation)|indent(12) }}
-        else:
+
+{% macro item_paged_retval(operation, async_mode, initial_response=None) %}
+{% set item_paged = "AsyncItemPaged" if async_mode else "ItemPaged" %}
 {% if operation.next_operation %}
-            url = '{{ operation.next_operation.url }}'
-        {% if operation.next_operation.parameters.path %}
-            path_format_arguments = {
-        {% for path_parameter in operation.next_operation.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.next_operation.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.query_parameters(operation.next_operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation.next_operation)|indent(12) }}
+    {% set paging_method = "DifferentNextOperationPagingMethod" %}
 {% else %}
-            url = next_link
-            query_parameters = {}  # type: Dict[str, Any]
-        {% if operation.parameters.path and not code_model.base_url%}
-            path_format_arguments = {
-        {% for path_parameter in operation.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.body_parameters(operation, http_verb="get")|indent(12) }}
+    {% set paging_method = "BasicPagingMethod" %}
 {% endif %}
-        return request
+return {{ item_paged }}(
+    paging_method = kwargs.pop("paging_method", {{ paging_method }}),
+    client=self._client,
+    deserialize_output=deserialize_output,
+    {% if operation.next_operation %}
+    prepare_next_request=functools.partial(_{{ operation.python_name }}_next),  # TODO: add params
+    {% endif %}
+    {% if initial_response %}
+    initial_response={{ initial_response }},
+    {% else %}
+    initial_request=_{{ operation.python_name }}_initial(),  # TODO: add params
+    {% endif %}
+    {% if operation.parameters.path %}
+    path_format_arguments=path_format_arguments,
+    {% endif %}
+    {% if operation.item_name != 'value' %}
+    item_name='{{ operation.item_name }}',
+    {% endif %}
+    {% if operation.next_link_name != 'next_link' %}
+    continuation_token_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},
+    {% endif %}
+    **kwargs,
+){% endmacro %}
 
-    {{ keywords.def }} extract_data(pipeline_response):
-        {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
-        list_of_elem = deserialized.{{ operation.item_name }}
-        if cls:
-            list_of_elem = cls(list_of_elem)
-        {% if async_mode %}
-        return {{ next_link_str }}, AsyncList(list_of_elem)
-        {% else %}
-        return {{ next_link_str }}, iter(list_of_elem)
-        {% endif %}
 
-    {{ keywords.def }} get_next(next_link=None):
-        request = prepare_request(next_link)
-
-        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in {{ operation.success_status_code|string() }}:
-            {% if operation.default_exception %}
-            error = self._deserialize({{ operation.default_exception }}, response)
-            {% endif %}
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
-
-        return pipeline_response
-{%- endmacro -%}
+{% macro deserialize_output(operation) %}
+{% import 'keywords.jinja2' as keywords with context %}
+{{ keywords.def }} deserialize_output(pipeline_response):
+    {% set response = operation.responses[0] %}
+    return self._deserialize('{{ response.serialization_type }}', pipeline_response){%- endmacro -%}
