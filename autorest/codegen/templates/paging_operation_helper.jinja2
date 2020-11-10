@@ -14,7 +14,7 @@
     {% set paging_method = "BasicPagingMethod" %}
 {% endif %}
 return {{ item_paged }}(
-    paging_method = kwargs.pop("paging_method", {{ paging_method }}),
+    paging_method = kwargs.pop("paging_method", {{ paging_method }}()),
     client=self._client,
     deserialize_output=deserialize_output,
     {% if operation.next_operation %}

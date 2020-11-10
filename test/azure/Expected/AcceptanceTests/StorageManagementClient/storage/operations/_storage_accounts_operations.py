@@ -555,7 +555,7 @@ class StorageAccountsOperations(object):
         }
 
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_list_initial(),  # TODO: add params
@@ -622,7 +622,7 @@ class StorageAccountsOperations(object):
         }
 
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_list_by_resource_group_initial(),  # TODO: add params

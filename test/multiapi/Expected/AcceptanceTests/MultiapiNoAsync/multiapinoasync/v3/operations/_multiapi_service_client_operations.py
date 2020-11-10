@@ -66,7 +66,7 @@ class MultiapiServiceClientOperationsMixin(object):
             return self._deserialize('PagingResult', pipeline_response)
 
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_test_paging_initial(),  # TODO: add params

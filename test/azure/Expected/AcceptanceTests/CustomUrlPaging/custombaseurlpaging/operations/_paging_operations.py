@@ -105,7 +105,7 @@ class PagingOperations(object):
         }
 
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_get_pages_partial_url_initial(),  # TODO: add params
@@ -198,7 +198,7 @@ class PagingOperations(object):
         }
 
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod),
+            paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             prepare_next_request=functools.partial(_get_pages_partial_url_operation_next),  # TODO: add params
