@@ -4,22 +4,26 @@
 # license information.
 # --------------------------------------------------------------------------
 from copy import deepcopy
-from typing import Dict, Set, Optional, List
+from typing import Dict, Set, Optional, List, Tuple, Union
 from ..models.imports import ImportType, FileImport, TypingSection
 
-def _serialize_package(package_name: str, module_list: Set[Optional[str]], delimiter: str) -> str:
+def _serialize_package(
+    package_name: str, module_list: Set[Optional[Union[str, Tuple[str, str]]]], delimiter: str
+) -> str:
     buffer = []
     if None in module_list:
         buffer.append(f"import {package_name}")
     if module_list != {None}:
         buffer.append(
             "from {} import {}".format(
-                package_name, ", ".join(sorted([mod for mod in module_list if mod is not None]))
+                package_name, ", ".join(sorted([
+                    mod if isinstance(mod, str) else f"{mod[0]} as {mod[1]}" for mod in module_list if mod is not None
+                ]))
             )
         )
     return delimiter.join(buffer)
 
-def _serialize_type(import_type_dict: Dict[str, Set[Optional[str]]], delimiter: str) -> str:
+def _serialize_type(import_type_dict: Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]], delimiter: str) -> str:
     """Serialize a given import type."""
     import_list = []
     for package_name in sorted(list(import_type_dict.keys())):
@@ -27,7 +31,9 @@ def _serialize_type(import_type_dict: Dict[str, Set[Optional[str]]], delimiter: 
         import_list.append(_serialize_package(package_name, module_list, delimiter))
     return delimiter.join(import_list)
 
-def _get_import_clauses(imports: Dict[ImportType, Dict[str, Set[Optional[str]]]], delimiter: str) -> List[str]:
+def _get_import_clauses(
+    imports: Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]], delimiter: str
+) -> List[str]:
     import_clause = []
     for import_type in ImportType:
         if import_type in imports:

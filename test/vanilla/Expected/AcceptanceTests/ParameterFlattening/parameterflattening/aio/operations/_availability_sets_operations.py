@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -32,7 +32,7 @@ class AvailabilitySetsOperations:
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -67,7 +67,7 @@ class AvailabilitySetsOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _tags = models.AvailabilitySetUpdateParameters(tags=tags)
+        _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL

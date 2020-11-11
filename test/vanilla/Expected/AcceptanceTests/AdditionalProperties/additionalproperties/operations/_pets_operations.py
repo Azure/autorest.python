@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -36,7 +36,7 @@ class PetsOperations(object):
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -47,10 +47,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_true(
         self,
-        create_parameters,  # type: "models.PetAPTrue"
+        create_parameters,  # type: "_models.PetAPTrue"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPTrue"
+        # type: (...) -> "_models.PetAPTrue"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -60,7 +60,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPTrue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -88,7 +88,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPTrue', pipeline_response)
@@ -102,10 +102,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_cat_ap_true(
         self,
-        create_parameters,  # type: "models.CatAPTrue"
+        create_parameters,  # type: "_models.CatAPTrue"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.CatAPTrue"
+        # type: (...) -> "_models.CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -115,7 +115,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.CatAPTrue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -143,7 +143,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('CatAPTrue', pipeline_response)
@@ -157,10 +157,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_object(
         self,
-        create_parameters,  # type: "models.PetAPObject"
+        create_parameters,  # type: "_models.PetAPObject"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPObject"
+        # type: (...) -> "_models.PetAPObject"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -170,7 +170,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPObject"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -198,7 +198,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPObject', pipeline_response)
@@ -212,10 +212,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_string(
         self,
-        create_parameters,  # type: "models.PetAPString"
+        create_parameters,  # type: "_models.PetAPString"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPString"
+        # type: (...) -> "_models.PetAPString"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -225,7 +225,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPString"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -253,7 +253,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPString', pipeline_response)
@@ -267,10 +267,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties(
         self,
-        create_parameters,  # type: "models.PetAPInProperties"
+        create_parameters,  # type: "_models.PetAPInProperties"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPInProperties"
+        # type: (...) -> "_models.PetAPInProperties"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -280,7 +280,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPInProperties"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -308,7 +308,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPInProperties', pipeline_response)
@@ -322,10 +322,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters,  # type: "models.PetAPInPropertiesWithAPString"
+        create_parameters,  # type: "_models.PetAPInPropertiesWithAPString"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAPInPropertiesWithAPString"
+        # type: (...) -> "_models.PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -335,7 +335,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -363,7 +363,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)

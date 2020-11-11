@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -36,7 +36,7 @@ class PetOperations(object):
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -50,7 +50,7 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Pet"]
+        # type: (...) -> Optional["_models.Pet"]
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -60,12 +60,12 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Pet"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Pet"]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
+            404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(_models.NotFoundErrorBase, response)),
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop('error_map', {}))
@@ -109,7 +109,7 @@ class PetOperations(object):
         what_action,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PetAction"
+        # type: (...) -> "_models.PetAction"
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -119,12 +119,12 @@ class PetOperations(object):
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAction"]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
-            500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),
+            500: lambda response: HttpResponseError(response=response, model=self._deserialize(_models.PetActionError, response)),
         }
         error_map.update(kwargs.pop('error_map', {}))
         accept = "application/json"
@@ -149,7 +149,7 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.PetActionError, response)
+            error = self._deserialize(_models.PetActionError, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAction', pipeline_response)
