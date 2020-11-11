@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -36,7 +36,7 @@ class EnumOperations(object):
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -49,7 +49,7 @@ class EnumOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "models.Colors"]
+        # type: (...) -> Union[str, "_models.Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,7 +57,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "_models.Colors"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -80,7 +80,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('str', pipeline_response)
@@ -94,7 +94,7 @@ class EnumOperations(object):
     @distributed_trace
     def put_not_expandable(
         self,
-        string_body,  # type: Union[str, "models.Colors"]
+        string_body,  # type: Union[str, "_models.Colors"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -135,7 +135,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -148,7 +148,7 @@ class EnumOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "models.Colors"]
+        # type: (...) -> Union[str, "_models.Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -156,7 +156,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "_models.Colors"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -179,7 +179,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('str', pipeline_response)
@@ -193,7 +193,7 @@ class EnumOperations(object):
     @distributed_trace
     def put_referenced(
         self,
-        enum_string_body,  # type: Union[str, "models.Colors"]
+        enum_string_body,  # type: Union[str, "_models.Colors"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -234,7 +234,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -247,7 +247,7 @@ class EnumOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.RefColorConstant"
+        # type: (...) -> "_models.RefColorConstant"
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -255,7 +255,7 @@ class EnumOperations(object):
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.RefColorConstant"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.RefColorConstant"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -278,7 +278,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('RefColorConstant', pipeline_response)
@@ -311,7 +311,7 @@ class EnumOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _enum_string_body = models.RefColorConstant(field1=field1)
+        _enum_string_body = _models.RefColorConstant(field1=field1)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -335,7 +335,7 @@ class EnumOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
