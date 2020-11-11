@@ -7,6 +7,7 @@ Modelerfour version: 4.15.421
 
 **Bug Fixes**
 
+- Correctly choose schema from response with 200 status code in the case of LRO operations with multiple responses  #814
 - Fix conflict for model deserialization when operation has input param with name `models`  #819
 
 ### 2020-11-09 - 5.4.2

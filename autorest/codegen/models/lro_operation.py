@@ -58,28 +58,30 @@ class LROOperation(Operation):
     def set_lro_response_type(self) -> None:
         if not self.responses:
             return
-        responses = {response.schema: response for response in self.responses if response.has_body}
-        response_types = list(responses.values())
-        response_type = None
-        if len(response_types) > 1:
+        responses_with_bodies = [r for r in self.responses if r.has_body]
+        num_response_schemas = {r.schema for r in responses_with_bodies}
+        response = None
+        if len(num_response_schemas) > 1:
             # choose the response that has a status code of 200
-            response_types_with_200_status_code = [
-                rt for rt in response_types if 200 in rt.status_codes
+            responses_with_200_status_codes = [
+                r for r in responses_with_bodies if 200 in r.status_codes
             ]
-            if not response_types_with_200_status_code:
+            try:
+                response = responses_with_200_status_codes[0]
+                schema_types = {r.schema for r in responses_with_bodies}
+                response_schema = cast(BaseSchema, response.schema).serialization_type
+                _LOGGER.warning(
+                    "Multiple schema types in responses: %s. Choosing: %s", schema_types, response_schema
+                )
+            except IndexError:
                 raise ValueError(
                     f"Your swagger is invalid because you have multiple response schemas for LRO" +
                     f" method {self.python_name} and none of them have a 200 status code."
                 )
-            response_type = response_types_with_200_status_code[0]
 
-            response_type_schema_name = cast(BaseSchema, response_type.schema).serialization_type
-            _LOGGER.warning(
-                "Multiple schema types in responses: %s. Choosing: %s", response_types, response_type_schema_name
-            )
-        elif response_types:
-            response_type = response_types[0]
-        self.lro_response = response_type
+        elif num_response_schemas:
+            response = responses_with_bodies[0]
+        self.lro_response = response
 
     @property
     def has_optional_return_type(self) -> bool:
