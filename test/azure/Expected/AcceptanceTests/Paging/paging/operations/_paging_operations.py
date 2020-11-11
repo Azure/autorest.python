@@ -239,7 +239,7 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResultValue"]
+        # type: (...) -> Iterable["_models.ProductResultValue"]
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -248,7 +248,7 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
