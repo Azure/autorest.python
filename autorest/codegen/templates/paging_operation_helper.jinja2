@@ -13,17 +13,34 @@
 {% else %}
     {% set paging_method = "BasicPagingMethod" %}
 {% endif %}
+{% if not initial_response %}
+_initial_request = self._{{ operation.python_name }}_initial({{ ")" if not operation.parameters.method }}
+    {% if operation.parameters.method %}
+        {% for parameter in operation.parameters.method %}
+    {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+        {% endfor %}
+)
+    {% endif %}
+{% endif %}
+{% if operation.next_operation %}
+_next_request_partial = functools.partial(
+    self._{{ operation.python_name }}_next,
+    {% for parameter in operation.parameters.method %}
+    {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+    {% endfor %}
+)
+{% endif %}
 return {{ item_paged }}(
     paging_method = kwargs.pop("paging_method", {{ paging_method }}()),
     client=self._client,
     deserialize_output=deserialize_output,
     {% if operation.next_operation %}
-    prepare_next_request=functools.partial(_{{ operation.python_name }}_next),  # TODO: add params
+    prepare_next_request=_next_request_partial,
     {% endif %}
     {% if initial_response %}
     initial_response={{ initial_response }},
     {% else %}
-    initial_request=_{{ operation.python_name }}_initial(),  # TODO: add params
+    initial_request=_initial_request,
     {% endif %}
     {% if operation.parameters.path %}
     path_format_arguments=path_format_arguments,

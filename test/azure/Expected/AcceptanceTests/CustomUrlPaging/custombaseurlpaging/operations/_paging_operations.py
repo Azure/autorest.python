@@ -104,11 +104,14 @@ class PagingOperations(object):
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
         }
 
+        _initial_request = self._get_pages_partial_url_initial(
+            account_name=account_name,
+        )
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_pages_partial_url_initial(),  # TODO: add params
+            initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
             **kwargs,
@@ -197,12 +200,19 @@ class PagingOperations(object):
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
         }
 
+        _initial_request = self._get_pages_partial_url_operation_initial(
+            account_name=account_name,
+        )
+        _next_request_partial = functools.partial(
+            self._get_pages_partial_url_operation_next,
+            account_name=account_name,
+        )
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            prepare_next_request=functools.partial(_get_pages_partial_url_operation_next),  # TODO: add params
-            initial_request=_get_pages_partial_url_operation_initial(),  # TODO: add params
+            prepare_next_request=_next_request_partial,
+            initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
             **kwargs,

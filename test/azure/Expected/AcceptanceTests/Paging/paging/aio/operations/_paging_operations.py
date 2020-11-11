@@ -86,11 +86,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResultValue', pipeline_response)
 
+        _initial_request = self._get_no_item_name_pages_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_no_item_name_pages_initial(),  # TODO: add params
+            initial_request=_initial_request,
             **kwargs,
         )
 
@@ -132,11 +133,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_null_next_link_name_pages_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_null_next_link_name_pages_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             continuation_token_name=None,
             **kwargs,
@@ -180,12 +182,61 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_single_pages_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_single_pages_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
+            **kwargs,
+        )
+
+    def _first_response_empty_initial(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._first_response_empty_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _first_response_empty_initial.metadata = {'url': '/paging/firstResponseEmpty/1'}  # type: ignore
+
+    @distributed_trace
+    def first_response_empty(
+        self,
+        **kwargs
+    ) -> AsyncIterable["models.ProductResultValue"]:
+        """A paging operation whose first response's items list is empty, but still returns a next link.
+        Second (and final) call, will give you an items list of 1.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+         Default is AsyncBasicPagingMethod.
+        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
+        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResultValue]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        def deserialize_output(pipeline_response):
+            return self._deserialize('ProductResultValue', pipeline_response)
+
+        _initial_request = self._first_response_empty_initial()
+        return AsyncItemPaged(
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            client=self._client,
+            deserialize_output=deserialize_output,
+            initial_request=_initial_request,
             **kwargs,
         )
 
@@ -247,11 +298,15 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_multiple_pages_initial(
+            client_request_id=client_request_id,
+            paging_get_multiple_pages_options=paging_get_multiple_pages_options,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_multiple_pages_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             **kwargs,
         )
@@ -325,12 +380,19 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_with_query_params_initial(
+            required_query_parameter=required_query_parameter,
+        )
+        _next_request_partial = functools.partial(
+            self._get_with_query_params_next,
+            required_query_parameter=required_query_parameter,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            prepare_next_request=functools.partial(_get_with_query_params_next),  # TODO: add params
-            initial_request=_get_with_query_params_initial(),  # TODO: add params
+            prepare_next_request=_next_request_partial,
+            initial_request=_initial_request,
             item_name='values',
             **kwargs,
         )
@@ -393,11 +455,15 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('OdataProductResult', pipeline_response)
 
+        _initial_request = self._get_odata_multiple_pages_initial(
+            client_request_id=client_request_id,
+            paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_odata_multiple_pages_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             continuation_token_name='odata_next_link',
             **kwargs,
@@ -471,11 +537,15 @@ class PagingOperations:
             'offset': self._serialize.url("offset", _offset, 'int'),
         }
 
+        _initial_request = self._get_multiple_pages_with_offset_initial(
+            paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
+            client_request_id=client_request_id,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_multiple_pages_with_offset_initial(),  # TODO: add params
+            initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
             **kwargs,
@@ -520,11 +590,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_multiple_pages_retry_first_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_multiple_pages_retry_first_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             **kwargs,
         )
@@ -568,11 +639,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_multiple_pages_retry_second_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_multiple_pages_retry_second_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             **kwargs,
         )
@@ -615,11 +687,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_single_pages_failure_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_single_pages_failure_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             **kwargs,
         )
@@ -662,11 +735,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_multiple_pages_failure_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_multiple_pages_failure_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             **kwargs,
         )
@@ -709,11 +783,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
+        _initial_request = self._get_multiple_pages_failure_uri_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_multiple_pages_failure_uri_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
             **kwargs,
         )
@@ -802,12 +877,21 @@ class PagingOperations:
             'tenant': self._serialize.url("tenant", tenant, 'str'),
         }
 
+        _initial_request = self._get_multiple_pages_fragment_next_link_initial(
+            api_version=api_version,
+            tenant=tenant,
+        )
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_fragment_next_link_next,
+            api_version=api_version,
+            tenant=tenant,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            prepare_next_request=functools.partial(_get_multiple_pages_fragment_next_link_next),  # TODO: add params
-            initial_request=_get_multiple_pages_fragment_next_link_initial(),  # TODO: add params
+            prepare_next_request=_next_request_partial,
+            initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
             continuation_token_name='odata_next_link',
@@ -905,12 +989,19 @@ class PagingOperations:
             'tenant': self._serialize.url("tenant", _tenant, 'str'),
         }
 
+        _initial_request = self._get_multiple_pages_fragment_with_grouping_next_link_initial(
+            custom_parameter_group=custom_parameter_group,
+        )
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_fragment_with_grouping_next_link_next,
+            custom_parameter_group=custom_parameter_group,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            prepare_next_request=functools.partial(_get_multiple_pages_fragment_with_grouping_next_link_next),  # TODO: add params
-            initial_request=_get_multiple_pages_fragment_with_grouping_next_link_initial(),  # TODO: add params
+            prepare_next_request=_next_request_partial,
+            initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
             continuation_token_name='odata_next_link',
@@ -1060,11 +1151,12 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
 
+        _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_get_paging_model_with_item_name_with_xms_client_name_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='indexes',
             **kwargs,
         )
