@@ -92,6 +92,12 @@ class TestXmsErrorResponse(object):
         with pytest.raises(ResourceNotFoundError) as excinfo:
             client.pet.do_something("fetch")
 
+    def test_error_deserialization_with_param_name_models(self, client):
+        with pytest.raises(HttpResponseError) as excinfo:
+            client.pet.has_models_param()
+        assert isinstance(excinfo.value.model, PetSadError)
+        assert excinfo.value.status_code == 500
+
     def test_models(self):
         from xmserrorresponse.models import Animal
 

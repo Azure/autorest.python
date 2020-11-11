@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -23,7 +23,7 @@ class MediaTypesClientOperationsMixin:
     @distributed_trace_async
     async def analyze_body(
         self,
-        input: Optional[Union[IO, "models.SourcePath"]] = None,
+        input: Optional[Union[IO, "_models.SourcePath"]] = None,
         **kwargs
     ) -> str:
         """Analyze body, that could be different media types.

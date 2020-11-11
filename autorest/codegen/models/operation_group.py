@@ -55,9 +55,9 @@ class OperationGroup(BaseModel):
                 )
         if has_schemas:
             if async_mode:
-                file_import.add_from_import("...", "models", ImportType.LOCAL)
+                file_import.add_from_import("...", "models", ImportType.LOCAL, alias="_models")
             else:
-                file_import.add_from_import("..", "models", ImportType.LOCAL)
+                file_import.add_from_import("..", "models", ImportType.LOCAL, alias="_models")
         return file_import
 
     @property

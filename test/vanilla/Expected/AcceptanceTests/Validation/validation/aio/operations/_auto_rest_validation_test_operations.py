@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -26,7 +26,7 @@ class AutoRestValidationTestOperationsMixin:
         resource_group_name: str,
         id: int,
         **kwargs
-    ) -> "models.Product":
+    ) -> "_models.Product":
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -38,7 +38,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -69,7 +69,7 @@ class AutoRestValidationTestOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Product', pipeline_response)
@@ -85,9 +85,9 @@ class AutoRestValidationTestOperationsMixin:
         self,
         resource_group_name: str,
         id: int,
-        body: Optional["models.Product"] = None,
+        body: Optional["_models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> "_models.Product":
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -101,7 +101,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -140,7 +140,7 @@ class AutoRestValidationTestOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Product', pipeline_response)
@@ -199,9 +199,9 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def post_with_constant_in_body(
         self,
-        body: Optional["models.Product"] = None,
+        body: Optional["_models.Product"] = None,
         **kwargs
-    ) -> "models.Product":
+    ) -> "_models.Product":
         """post_with_constant_in_body.
 
         :param body:
@@ -211,7 +211,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
