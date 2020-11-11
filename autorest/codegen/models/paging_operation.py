@@ -108,11 +108,8 @@ class PagingOperation(Operation):
         return False
 
     def get_pager_path(self, async_mode: bool) -> str:
-        custom_pager_extension = "x-python-custom-pager-{}sync".format("a" if async_mode else "")
-        default_pager = "azure.core.{}paging.{}ItemPaged".format(
-            "async_" if async_mode else "", "Async" if async_mode else ""
-        )
-        return self.yaml_data["extensions"].get(custom_pager_extension, default_pager)
+        extension_name = "pager-async" if async_mode else "pager-sync"
+        return self.yaml_data["extensions"][extension_name]
 
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]

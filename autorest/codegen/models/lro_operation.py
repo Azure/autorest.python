@@ -89,9 +89,8 @@ class LROOperation(Operation):
         return False
 
     def get_poller_path(self, async_mode: bool) -> str:
-        custom_poller_extension = "x-python-custom-poller-{}sync".format("a" if async_mode else "")
-        default_poller = "azure.core.polling.{}LROPoller".format("Async" if async_mode else "")
-        return self.yaml_data["extensions"].get(custom_poller_extension, default_poller)
+        extension_name = "poller-async" if async_mode else "poller-sync"
+        return self.yaml_data["extensions"][extension_name]
 
     def get_poller(self, async_mode: bool) -> str:
         return self.get_poller_path(async_mode).split(".")[-1]
