@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -32,7 +32,7 @@ class ArrayOperations:
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -44,7 +44,7 @@ class ArrayOperations:
     async def get_valid(
         self,
         **kwargs
-    ) -> "models.ArrayWrapper":
+    ) -> "_models.ArrayWrapper":
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +52,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ArrayWrapper"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -75,7 +75,7 @@ class ArrayOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
@@ -107,7 +107,7 @@ class ArrayOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _complex_body = models.ArrayWrapper(array=array)
+        _complex_body = _models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -131,7 +131,7 @@ class ArrayOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -143,7 +143,7 @@ class ArrayOperations:
     async def get_empty(
         self,
         **kwargs
-    ) -> "models.ArrayWrapper":
+    ) -> "_models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -151,7 +151,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ArrayWrapper"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -174,7 +174,7 @@ class ArrayOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)
@@ -206,7 +206,7 @@ class ArrayOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _complex_body = models.ArrayWrapper(array=array)
+        _complex_body = _models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -230,7 +230,7 @@ class ArrayOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -242,7 +242,7 @@ class ArrayOperations:
     async def get_not_provided(
         self,
         **kwargs
-    ) -> "models.ArrayWrapper":
+    ) -> "_models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -250,7 +250,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ArrayWrapper"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -273,7 +273,7 @@ class ArrayOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('ArrayWrapper', pipeline_response)

@@ -14,7 +14,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -33,7 +33,7 @@ class UsageOperations:
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -45,7 +45,7 @@ class UsageOperations:
     async def list(
         self,
         **kwargs
-    ) -> "models.UsageListResult":
+    ) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +53,7 @@ class UsageOperations:
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.UsageListResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

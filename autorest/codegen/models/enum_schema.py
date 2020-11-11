@@ -96,7 +96,7 @@ class EnumSchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[{self.enum_type.type_annotation}, "models.{self.name}"]'
+        return f'Union[{self.enum_type.type_annotation}, "_models.{self.name}"]'
 
     def get_declaration(self, value: Any) -> str:
         return f'"{value}"'

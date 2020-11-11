@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -32,7 +32,7 @@ class ContantsOperations:
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -43,7 +43,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(
         self,
-        input: Optional[Union[str, "models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
+        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -90,7 +90,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(
         self,
-        input: Optional[Union[str, "models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
+        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -231,7 +231,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_no_default(
         self,
-        input: Union[str, "models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"],
+        input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"],
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -277,7 +277,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(
         self,
-        input: Union[str, "models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1",
+        input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1",
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -411,7 +411,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(
         self,
-        input: Optional[Union[str, "models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
+        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -458,7 +458,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(
         self,
-        input: Optional[Union[str, "models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
+        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -505,7 +505,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(
         self,
-        input: Optional[Union[str, "models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None,
+        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None,
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -552,7 +552,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(
         self,
-        input: Optional[Union[str, "models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
+        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -599,7 +599,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_required_two_value_no_default(
         self,
-        input: Union[str, "models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"],
+        input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"],
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -645,7 +645,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(
         self,
-        input: Union[str, "models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1",
+        input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1",
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -691,7 +691,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_required_one_value_no_default(
         self,
-        input: Union[str, "models.ModelAsStringRequiredOneValueNoDefaultOpEnum"],
+        input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"],
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
@@ -737,7 +737,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(
         self,
-        input: Union[str, "models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1",
+        input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1",
         **kwargs
     ) -> None:
         """Puts constants to the testserver.
