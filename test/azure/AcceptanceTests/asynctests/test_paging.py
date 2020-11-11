@@ -225,6 +225,14 @@ class TestPaging(object):
         assert items[1].properties.id == 2
 
     @pytest.mark.asyncio
+    async def test_initial_response_no_items(self, client):
+        pages = client.paging.first_response_empty()
+        items = []
+        async for item in pages:
+            items.append(item)
+        assert len(items) == 1
+
+    @pytest.mark.asyncio
     async def test_item_name_with_xms_client_name(self, client):
         pages = client.paging.get_paging_model_with_item_name_with_xms_client_name()
         items = []
