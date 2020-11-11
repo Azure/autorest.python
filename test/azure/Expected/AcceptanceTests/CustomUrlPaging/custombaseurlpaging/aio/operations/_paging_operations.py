@@ -10,8 +10,7 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_method import AsyncDifferentNextOperationPagingMethod
-from azure.core.async_paging_methohd import AsyncBasicPagingMethod
+from azure.core.async_paging_method import AsyncBasicPagingMethod, AsyncDifferentNextOperationPagingMethod
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
@@ -114,8 +113,8 @@ class PagingOperations:
 
     def _get_pages_partial_url_operation_next(
         self,
-        account_name: str,
         next_link: str,
+        account_name: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -123,9 +122,9 @@ class PagingOperations:
         # Construct URL
         url = self._get_pages_partial_url_operation_next.metadata['url']  # type: ignore
         path_format_arguments = {
+            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
-            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
         }
         url = self._client.format_url(url, **path_format_arguments)
 

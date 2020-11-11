@@ -11,8 +11,7 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
-from azure.core.paging_method import DifferentNextOperationPagingMethod
-from azure.core.paging_methohd import BasicPagingMethod
+from azure.core.paging_method import BasicPagingMethod, DifferentNextOperationPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -401,7 +400,6 @@ class PagingOperations(object):
         )
         _next_request_partial = functools.partial(
             self._get_with_query_params_next,
-            required_query_parameter=required_query_parameter,
         )
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
@@ -825,9 +823,9 @@ class PagingOperations(object):
 
     def _get_multiple_pages_fragment_next_link_next(
         self,
+        next_link,  # type: str
         api_version,  # type: str
         tenant,  # type: str
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -836,8 +834,8 @@ class PagingOperations(object):
         # Construct URL
         url = self._get_multiple_pages_fragment_next_link_next.metadata['url']  # type: ignore
         path_format_arguments = {
-            'tenant': self._serialize.url("tenant", tenant, 'str'),
             'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+            'tenant': self._serialize.url("tenant", tenant, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -949,8 +947,8 @@ class PagingOperations(object):
         # Construct URL
         url = self._get_multiple_pages_fragment_with_grouping_next_link_next.metadata['url']  # type: ignore
         path_format_arguments = {
-            'tenant': self._serialize.url("tenant", _tenant, 'str'),
             'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+            'tenant': self._serialize.url("tenant", _tenant, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 

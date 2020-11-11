@@ -200,6 +200,20 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     @staticmethod
     def _paging_next_function(operation: PagingOperation) -> Operation:
         next_operation = cast(Operation, operation.next_operation)
+
+        # Currently only supported param name is nextLink, will be updated
+        # to allow more with tokenParamName support in swagger
+        params = next_operation.parameters.parameters
+        token_param = [
+            param for param in params
+            if param.serialized_name == "next_link"
+        ]
+        if token_param:
+            # make sure the token param name is first in line, and that it's required.
+            # (If the token is empty, we will be exiting before passing it into the next operation)
+            token_param[0].required = True
+            token_param_index = params.index(token_param[0])
+            params.insert(0, params.pop(token_param_index))
         return Operation(
             yaml_data={},
             name="_" + operation.name + "_next",
@@ -208,7 +222,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             method=next_operation.method,
             multipart=next_operation.multipart,
             api_versions=next_operation.api_versions,
-            parameters=next_operation.parameters.parameters,
+            parameters=params,
             requests=next_operation.requests,
             responses=next_operation.responses,
             exceptions=next_operation.exceptions,

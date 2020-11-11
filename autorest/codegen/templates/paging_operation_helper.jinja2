@@ -25,8 +25,10 @@ _initial_request = self._{{ operation.python_name }}_initial({{ ")" if not opera
 {% if operation.next_operation %}
 _next_request_partial = functools.partial(
     self._{{ operation.python_name }}_next,
-    {% for parameter in operation.parameters.method %}
+    {% for parameter in operation.next_operation.parameters.method %}
+        {% if parameter.serialized_name != "next_link" %}
     {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+        {% endif %}
     {% endfor %}
 )
 {% endif %}
