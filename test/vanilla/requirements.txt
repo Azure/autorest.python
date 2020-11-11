@@ -30,6 +30,7 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/MediaTypes
 -e ./Expected/AcceptanceTests/ModelFlattening
 -e ./Expected/AcceptanceTests/MultipleInheritance
+-e ./Expected/AcceptanceTests/NoOperations
 -e ./Expected/AcceptanceTests/NonStringEnums
 -e ./Expected/AcceptanceTests/ObjectType
 -e ./Expected/AcceptanceTests/ParameterFlattening

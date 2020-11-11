@@ -9,6 +9,16 @@ Modelerfour version: 4.15.421
 
 - Can now take in custom pollers and pagers through directives. This will override the defaults (`LROPoller` and `ItemPaged`, respectively). See [this readme](https://github.com/Azure/autorest.python/tree/autorestv3/test/azure/specification/custompollerpager) for the directive to use to override.  #821
 
+### 2020-11-11 - 5.4.3
+Autorest core version: 3.0.6320
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- Correctly choose schema from response with 200 status code in the case of LRO operations with multiple responses  #814
+- Fix conflict for model deserialization when operation has input param with name `models`  #819
+
 ### 2020-11-09 - 5.4.2
 Autorest core version: 3.0.6320
 

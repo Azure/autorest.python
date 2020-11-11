@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, Optional, Set
+from typing import Dict, Optional, Set, Tuple, Union
 
 
 class ImportType(str, Enum):
@@ -21,20 +21,27 @@ class TypingSection(str, Enum):
 
 class FileImport:
     def __init__(
-        self, imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]] = None
+        self,
+        imports: Dict[
+            TypingSection,
+            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+        ] = None
     ) -> None:
         # Basic implementation
         # First level dict: TypingSection
         # Second level dict: ImportType
         # Third level dict: the package name.
         # Fourth level set: None if this import is a "import", the name to import if it's a "from"
-        self._imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]] = imports or dict()
+        self._imports: Dict[
+            TypingSection,
+            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+        ] = imports or dict()
 
     def _add_import(
         self,
         from_section: str,
         import_type: ImportType,
-        name_import: Optional[str] = None,
+        name_import: Optional[Union[str, Tuple[str, str]]] = None,
         typing_section: TypingSection = TypingSection.REGULAR
     ) -> None:
         self._imports.setdefault(
@@ -50,11 +57,14 @@ class FileImport:
         from_section: str,
         name_import: str,
         import_type: ImportType,
-        typing_section: TypingSection = TypingSection.REGULAR
+        typing_section: TypingSection = TypingSection.REGULAR,
+        alias: Optional[str] = None,
     ) -> None:
         """Add an import to this import block.
         """
-        self._add_import(from_section, import_type, name_import, typing_section)
+        self._add_import(
+            from_section, import_type, (name_import, alias) if alias else name_import, typing_section
+        )
 
     def add_import(
         self,
@@ -66,7 +76,10 @@ class FileImport:
         self._add_import(name_import, import_type, None, typing_section)
 
     @property
-    def imports(self) -> Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]]:
+    def imports(self) -> Dict[
+            TypingSection,
+            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+        ]:
         return self._imports
 
     def merge(self, file_import: "FileImport") -> None:

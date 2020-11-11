@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -43,7 +43,7 @@ class IntOperations(object):
     @distributed_trace
     def put(
         self,
-        input=None,  # type: Optional[Union[int, "models.IntEnum"]]
+        input=None,  # type: Optional[Union[int, "_models.IntEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -102,7 +102,7 @@ class IntOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[int, "models.IntEnum"]
+        # type: (...) -> Union[int, "_models.IntEnum"]
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -110,7 +110,7 @@ class IntOperations(object):
         :rtype: str or ~nonstringenums.models.IntEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "models.IntEnum"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[int, "_models.IntEnum"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

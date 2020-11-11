@@ -97,3 +97,10 @@ class TestXmsErrorResponse(object):
 
         with pytest.raises(ResourceNotFoundError) as excinfo:
             await client.pet.do_something("fetch")
+
+    @pytest.mark.asyncio
+    async def test_error_deserialization_with_param_name_models(self, client):
+        with pytest.raises(HttpResponseError) as excinfo:
+            await client.pet.has_models_param()
+        assert isinstance(excinfo.value.model, PetSadError)
+        assert excinfo.value.status_code == 500
