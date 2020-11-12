@@ -244,10 +244,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 if isinstance(operation, PagingOperation):
                     if not isinstance(operation, LROPagingOperation):
                         operation_group.operations.insert(i, CodeModel._paging_initial_function(operation))
+                        i += 1
                     if operation.next_operation:
                         operation_group.operations.insert(i, CodeModel._paging_next_function(operation))
                         i += 1
-                    i += 1
                 i += 1
 
     def link_next_operation(self) -> None:

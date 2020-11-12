@@ -113,8 +113,36 @@ class PagingOperations(object):
             initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+
+    def _get_pages_partial_url_operation_initial(
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_pages_partial_url_operation_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
+            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _get_pages_partial_url_operation_initial.metadata = {'url': '/paging/customurl/partialnextlinkop'}  # type: ignore
 
     def _get_pages_partial_url_operation_next(
         self,
@@ -144,33 +172,6 @@ class PagingOperations(object):
         request = self._client.get(url, query_parameters, header_parameters)
         return request
     _get_pages_partial_url_operation_next.metadata = {'url': '/paging/customurl/{nextLink}'}  # type: ignore
-
-    def _get_pages_partial_url_operation_initial(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = self._get_pages_partial_url_operation_initial.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.get(url, query_parameters, header_parameters)
-        return request
-    _get_pages_partial_url_operation_initial.metadata = {'url': '/paging/customurl/partialnextlinkop'}  # type: ignore
 
     @distributed_trace
     def get_pages_partial_url_operation(
@@ -214,5 +215,6 @@ class PagingOperations(object):
             initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )

@@ -91,6 +91,7 @@ class PagingOperations:
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -140,6 +141,7 @@ class PagingOperations:
             initial_request=_initial_request,
             item_name='values',
             continuation_token_name=None,
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -188,6 +190,7 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -236,6 +239,7 @@ class PagingOperations:
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -307,30 +311,9 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
-
-    def _get_with_query_params_next(
-        self,
-        **kwargs
-    ) -> HttpRequest:
-        query_constant = True
-        accept = "application/json"
-
-        # Construct URL
-        url = self._get_with_query_params_next.metadata['url']  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.get(url, query_parameters, header_parameters)
-        return request
-    _get_with_query_params_next.metadata = {'url': '/paging/multiple/nextOperationWithQueryParams'}  # type: ignore
 
     def _get_with_query_params_initial(
         self,
@@ -355,6 +338,28 @@ class PagingOperations:
         request = self._client.get(url, query_parameters, header_parameters)
         return request
     _get_with_query_params_initial.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
+
+    def _get_with_query_params_next(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        query_constant = True
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_with_query_params_next.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _get_with_query_params_next.metadata = {'url': '/paging/multiple/nextOperationWithQueryParams'}  # type: ignore
 
     @distributed_trace
     def get_with_query_params(
@@ -392,6 +397,7 @@ class PagingOperations:
             prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -464,6 +470,7 @@ class PagingOperations:
             initial_request=_initial_request,
             item_name='values',
             continuation_token_name='odata_next_link',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -546,6 +553,7 @@ class PagingOperations:
             initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -595,6 +603,7 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -644,6 +653,7 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -692,6 +702,7 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -740,6 +751,7 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -788,8 +800,36 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+
+    def _get_multiple_pages_fragment_next_link_initial(
+        self,
+        api_version: str,
+        tenant: str,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_next_link_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", tenant, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _get_multiple_pages_fragment_next_link_initial.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
 
     def _get_multiple_pages_fragment_next_link_next(
         self,
@@ -819,33 +859,6 @@ class PagingOperations:
         request = self._client.get(url, query_parameters, header_parameters)
         return request
     _get_multiple_pages_fragment_next_link_next.metadata = {'url': '/paging/multiple/fragment/{tenant}/{nextLink}'}  # type: ignore
-
-    def _get_multiple_pages_fragment_next_link_initial(
-        self,
-        api_version: str,
-        tenant: str,
-        **kwargs
-    ) -> HttpRequest:
-        accept = "application/json"
-
-        # Construct URL
-        url = self._get_multiple_pages_fragment_next_link_initial.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'tenant': self._serialize.url("tenant", tenant, 'str'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.get(url, query_parameters, header_parameters)
-        return request
-    _get_multiple_pages_fragment_next_link_initial.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -893,8 +906,41 @@ class PagingOperations:
             path_format_arguments=path_format_arguments,
             item_name='values',
             continuation_token_name='odata_next_link',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+
+    def _get_multiple_pages_fragment_with_grouping_next_link_initial(
+        self,
+        custom_parameter_group: "models.CustomParameterGroup",
+        **kwargs
+    ) -> HttpRequest:
+        
+        _api_version = None
+        _tenant = None
+        if custom_parameter_group is not None:
+            _api_version = custom_parameter_group.api_version
+            _tenant = custom_parameter_group.tenant
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", _tenant, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _get_multiple_pages_fragment_with_grouping_next_link_initial.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
 
     def _get_multiple_pages_fragment_with_grouping_next_link_next(
         self,
@@ -929,38 +975,6 @@ class PagingOperations:
         request = self._client.get(url, query_parameters, header_parameters)
         return request
     _get_multiple_pages_fragment_with_grouping_next_link_next.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'}  # type: ignore
-
-    def _get_multiple_pages_fragment_with_grouping_next_link_initial(
-        self,
-        custom_parameter_group: "models.CustomParameterGroup",
-        **kwargs
-    ) -> HttpRequest:
-        
-        _api_version = None
-        _tenant = None
-        if custom_parameter_group is not None:
-            _api_version = custom_parameter_group.api_version
-            _tenant = custom_parameter_group.tenant
-        accept = "application/json"
-
-        # Construct URL
-        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url']  # type: ignore
-        path_format_arguments = {
-            'tenant': self._serialize.url("tenant", _tenant, 'str'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.get(url, query_parameters, header_parameters)
-        return request
-    _get_multiple_pages_fragment_with_grouping_next_link_initial.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
@@ -1003,6 +1017,7 @@ class PagingOperations:
             path_format_arguments=path_format_arguments,
             item_name='values',
             continuation_token_name='odata_next_link',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -1095,6 +1110,7 @@ class PagingOperations:
                 deserialize_output=deserialize_output,
                 initial_response=pipeline_response,
                 item_name='values',
+                _cls=kwargs.pop("cls", None),
                 **kwargs,
             )
 
@@ -1130,6 +1146,26 @@ class PagingOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
+    def _get_paging_model_with_item_name_with_xms_client_name_initial(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_paging_model_with_item_name_with_xms_client_name_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _get_paging_model_with_item_name_with_xms_client_name_initial.metadata = {'url': '/paging/itemNameWithXMSClientName'}  # type: ignore
+
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(
         self,
@@ -1156,5 +1192,6 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='indexes',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
