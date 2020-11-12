@@ -195,11 +195,6 @@ class PagingOperations(object):
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
 
-        path_format_arguments = {
-            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
-        }
-
         _initial_request = self._get_pages_partial_url_operation_initial(
             account_name=account_name,
         )
@@ -213,7 +208,6 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
-            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,

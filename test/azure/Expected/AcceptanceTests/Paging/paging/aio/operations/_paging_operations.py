@@ -249,7 +249,7 @@ class PagingOperations:
         paging_get_multiple_pages_options: Optional["models.PagingGetMultiplePagesOptions"] = None,
         **kwargs
     ) -> HttpRequest:
-        
+
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_options is not None:
@@ -407,7 +407,7 @@ class PagingOperations:
         paging_get_odata_multiple_pages_options: Optional["models.PagingGetOdataMultiplePagesOptions"] = None,
         **kwargs
     ) -> HttpRequest:
-        
+
         _maxresults = None
         _timeout = None
         if paging_get_odata_multiple_pages_options is not None:
@@ -480,7 +480,7 @@ class PagingOperations:
         client_request_id: Optional[str] = None,
         **kwargs
     ) -> HttpRequest:
-        
+
         _maxresults = None
         _offset = None
         _timeout = None
@@ -537,6 +537,10 @@ class PagingOperations:
         """
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
+
+        _offset = None
+        if paging_get_multiple_pages_with_offset_options is not None:
+            _offset = paging_get_multiple_pages_with_offset_options.offset
 
         path_format_arguments = {
             'offset': self._serialize.url("offset", _offset, 'int'),
@@ -884,10 +888,6 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('OdataProductResult', pipeline_response)
 
-        path_format_arguments = {
-            'tenant': self._serialize.url("tenant", tenant, 'str'),
-        }
-
         _initial_request = self._get_multiple_pages_fragment_next_link_initial(
             api_version=api_version,
             tenant=tenant,
@@ -903,7 +903,6 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
-            path_format_arguments=path_format_arguments,
             item_name='values',
             next_link_name='odata_next_link',
             _cls=kwargs.pop("cls", None),
@@ -915,7 +914,7 @@ class PagingOperations:
         custom_parameter_group: "models.CustomParameterGroup",
         **kwargs
     ) -> HttpRequest:
-        
+
         _api_version = None
         _tenant = None
         if custom_parameter_group is not None:
@@ -948,7 +947,7 @@ class PagingOperations:
         custom_parameter_group: "models.CustomParameterGroup",
         **kwargs
     ) -> HttpRequest:
-        
+
         _api_version = None
         _tenant = None
         if custom_parameter_group is not None:
@@ -997,10 +996,6 @@ class PagingOperations:
         def deserialize_output(pipeline_response):
             return self._deserialize('OdataProductResult', pipeline_response)
 
-        path_format_arguments = {
-            'tenant': self._serialize.url("tenant", _tenant, 'str'),
-        }
-
         _initial_request = self._get_multiple_pages_fragment_with_grouping_next_link_initial(
             custom_parameter_group=custom_parameter_group,
         )
@@ -1014,7 +1009,6 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
-            path_format_arguments=path_format_arguments,
             item_name='values',
             next_link_name='odata_next_link',
             _cls=kwargs.pop("cls", None),
@@ -1032,7 +1026,7 @@ class PagingOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_lro_options is not None:

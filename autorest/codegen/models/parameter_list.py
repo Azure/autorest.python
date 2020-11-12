@@ -117,6 +117,12 @@ class ParameterList(MutableSequence):
         return signature_parameters
 
     @property
+    def grouped_path_parameters(self) -> List[Parameter]:
+        """The parameters that were grouped in the signature, but are also path parameters
+        """
+        return [p for p in self.grouped if p in self.path]
+
+    @property
     def sync_method_signature(self) -> List[str]:
         return [parameter.sync_method_signature for parameter in self.method]
 

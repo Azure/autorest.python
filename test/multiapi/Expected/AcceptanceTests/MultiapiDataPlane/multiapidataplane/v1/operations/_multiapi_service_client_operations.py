@@ -201,7 +201,7 @@ class MultiapiServiceClientOperationsMixin(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _maxresults = None
         _timeout = None
         if test_lro_and_paging_options is not None:

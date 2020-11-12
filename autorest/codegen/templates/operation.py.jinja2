@@ -68,7 +68,8 @@
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% endif %}
 {% if operation.parameters.grouped %}
-    {{ op_tools.grouped_parameters(operation)|indent }}
+
+    {{ op_tools.grouped_parameters(operation.parameters.grouped)|indent }}
 {%- endif -%}
 {% if operation.parameters.is_flattened %}
 

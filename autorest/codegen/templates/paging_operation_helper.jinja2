@@ -44,7 +44,7 @@ return {{ item_paged }}(
     {% else %}
     initial_request=_initial_request,
     {% endif %}
-    {% if operation.parameters.path %}
+    {% if operation.parameters.path and not operation.next_operation %}
     path_format_arguments=path_format_arguments,
     {% endif %}
     {% if operation.item_name != 'value' %}

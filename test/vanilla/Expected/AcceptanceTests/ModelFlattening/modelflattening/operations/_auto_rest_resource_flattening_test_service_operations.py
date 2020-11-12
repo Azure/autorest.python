@@ -587,7 +587,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _name = None
         _simple_body_product = None
         _product_id = None

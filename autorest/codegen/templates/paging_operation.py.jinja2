@@ -53,8 +53,11 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ helper.deserialize_output(operation) | indent }}
-    {% if operation.parameters.path %}
+    {% if operation.parameters.path and not operation.next_operation %}
 
+        {% if operation.parameters.grouped_path_parameters %}
+    {{ op_tools.grouped_parameters(operation.parameters.grouped_path_parameters)|indent }}
+        {% endif %}
     path_format_arguments = {
     {% for path_parameter in operation.parameters.path %}
         '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},

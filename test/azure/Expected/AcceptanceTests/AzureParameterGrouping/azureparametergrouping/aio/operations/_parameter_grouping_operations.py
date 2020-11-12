@@ -60,7 +60,7 @@ class ParameterGroupingOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _custom_header = None
         _query = None
         _path = None
@@ -129,7 +129,7 @@ class ParameterGroupingOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _custom_header = None
         _query = None
         if parameter_grouping_post_optional_parameters is not None:
@@ -188,7 +188,7 @@ class ParameterGroupingOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _header_one = None
         _query_one = None
         _header_two = None
@@ -253,7 +253,7 @@ class ParameterGroupingOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
+
         _header_one = None
         _query_one = None
         if first_parameter_group is not None:
