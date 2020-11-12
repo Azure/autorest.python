@@ -15,7 +15,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from my.custom import CustomPager, CustomPoller
+from custompollerpagerdefinitions import CustomPager, CustomPoller
 
 from .. import models as _models
 
@@ -179,7 +179,7 @@ class PagingOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~my.custom.CustomPager[~custompollerpager.models.ProductResult]
+        :rtype: ~custompollerpagerdefinitions.CustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
@@ -1150,7 +1150,7 @@ class PagingOperations(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of CustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~my.custom.CustomPoller[~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]]
+        :rtype: ~custompollerpagerdefinitions.CustomPoller[~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]

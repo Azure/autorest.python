@@ -21,3 +21,4 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/StorageManagementClient
 -e ./Expected/AcceptanceTests/SubscriptionIdApiVersion
 -e ./Expected/AcceptanceTests/CustomPollerPager
+-e ./Expected/AcceptanceTests/CustomPollerPagerDefinitions
