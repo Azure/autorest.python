@@ -268,21 +268,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-        def deserialize_output(pipeline_response):
-            return self._deserialize('PagingResult', pipeline_response)
-
-        def get_long_running_output(pipeline_response):
-            # TODO: check that cls and error_map kwargs persist here
-            return ItemPaged(
-                paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
-                client=self._client,
-                deserialize_output=deserialize_output,
-                initial_response=pipeline_response,
-                item_name='values',
-                _cls=kwargs.pop("cls", None),
-                **kwargs,
-            )
-
         polling = kwargs.pop('polling', False)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
         lro_delay = kwargs.pop(
@@ -300,6 +285,21 @@ class MultiapiServiceClientOperationsMixin(object):
 
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
+
+        def deserialize_output(pipeline_response):
+            return self._deserialize('PagingResult', pipeline_response)
+
+        def get_long_running_output(pipeline_response):
+            # TODO: check that cls and error_map kwargs persist here
+            return ItemPaged(
+                paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+                client=self._client,
+                deserialize_output=deserialize_output,
+                initial_response=pipeline_response,
+                item_name='values',
+                _cls=kwargs.pop("cls", None),
+                **kwargs,
+            )
 
         if polling is True: polling_method = LROBasePolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()

@@ -102,7 +102,7 @@ class PagingOperations:
             account_name=account_name,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
@@ -195,7 +195,7 @@ class PagingOperations:
             account_name=account_name,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
+            paging_method = kwargs.pop("paging_method", AsyncDifferentNextOperationPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             prepare_next_request=_next_request_partial,

@@ -544,7 +544,7 @@ class StorageAccountsOperations:
 
         _initial_request = self._list_initial()
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
@@ -613,7 +613,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             initial_request=_initial_request,

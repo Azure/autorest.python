@@ -7,7 +7,7 @@
 
 
 {% macro item_paged_retval(operation, async_mode, initial_response=None) %}
-{% set item_paged = "AsyncItemPaged" if async_mode else "ItemPaged" %}
+{% import 'keywords.jinja2' as keywords with context %}
 {% if operation.next_operation %}
     {% set paging_method = "DifferentNextOperationPagingMethod" %}
 {% else %}
@@ -32,8 +32,8 @@ _next_request_partial = functools.partial(
     {% endfor %}
 )
 {% endif %}
-return {{ item_paged }}(
-    paging_method = kwargs.pop("paging_method", {{ paging_method }}()),
+return {{ keywords.async_class }}ItemPaged(
+    paging_method = kwargs.pop("paging_method", {{ keywords.async_class }}{{ paging_method }}()),
     client=self._client,
     deserialize_output=deserialize_output,
     {% if operation.next_operation %}

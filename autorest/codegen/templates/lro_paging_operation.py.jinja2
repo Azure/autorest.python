@@ -24,12 +24,12 @@
 {% endif %}
     {{ operation_docstring(async_mode) | indent }}
 
+{{ lro_helper.lro_operation(code_model, operation, async_mode) }}
+
     {{ paging_helper.deserialize_output(operation) | indent }}
 
     def get_long_running_output(pipeline_response):
         # TODO: check that cls and error_map kwargs persist here
         {{ paging_helper.item_paged_retval(operation, async_mode, initial_response='pipeline_response') | indent(8) }}
-
-{{ lro_helper.lro_operation(code_model, operation, async_mode) }}
 
 {{ lro_helper.lro_operation_return(code_model, operation, async_mode) }}
