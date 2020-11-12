@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -32,7 +32,7 @@ class ParameterGroupingOperations:
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -43,7 +43,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_required(
         self,
-        parameter_grouping_post_required_parameters: "models.ParameterGroupingPostRequiredParameters",
+        parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
         **kwargs
     ) -> None:
         """Post a bunch of required parameters grouped.
@@ -101,7 +101,7 @@ class ParameterGroupingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -112,7 +112,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_optional(
         self,
-        parameter_grouping_post_optional_parameters: Optional["models.ParameterGroupingPostOptionalParameters"] = None,
+        parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
         **kwargs
     ) -> None:
         """Post a bunch of optional parameters grouped.
@@ -157,7 +157,7 @@ class ParameterGroupingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -168,8 +168,8 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_multi_param_groups(
         self,
-        first_parameter_group: Optional["models.FirstParameterGroup"] = None,
-        parameter_grouping_post_multi_param_groups_second_param_group: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"] = None,
+        first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
+        parameter_grouping_post_multi_param_groups_second_param_group: Optional["_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"] = None,
         **kwargs
     ) -> None:
         """Post parameters from multiple different parameter groups.
@@ -225,7 +225,7 @@ class ParameterGroupingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -236,7 +236,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_shared_parameter_group_object(
         self,
-        first_parameter_group: Optional["models.FirstParameterGroup"] = None,
+        first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
         **kwargs
     ) -> None:
         """Post parameters with a shared parameter group object.
@@ -281,7 +281,7 @@ class ParameterGroupingOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:

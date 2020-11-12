@@ -16,7 +16,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -53,7 +53,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResultValue"]
+        # type: (...) -> Iterable["_models.ProductResultValue"]
         """A paging operation where the next link is found in the response headers, not in the response
         body.
 
@@ -78,6 +78,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+
 
     def _continuation_token_in_response_headers_initial(
         self,
@@ -109,7 +110,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         continuation_token_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResultValue"]
+        # type: (...) -> Iterable["_models.ProductResultValue"]
         """A paging operation where the continuation is found in the response headers, and needs to be
         passed into subsequent calls.
 
@@ -138,3 +139,4 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+

@@ -17,7 +17,7 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -74,7 +74,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
@@ -84,11 +84,11 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def _test_lro_initial(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["models.Product"]]
+        # type: (...) -> Optional["_models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -119,7 +119,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = None
@@ -134,10 +134,10 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["models.Product"]
+        # type: (...) -> LROPoller["_models.Product"]
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -153,7 +153,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -193,11 +193,11 @@ class MultiapiServiceClientOperationsMixin(object):
     def _test_lro_and_paging_initial(
         self,
         client_request_id=None,  # type: Optional[str]
-        test_lro_and_paging_options=None,  # type: Optional["models.TestLroAndPagingOptions"]
+        test_lro_and_paging_options=None,  # type: Optional["_models.TestLroAndPagingOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PagingResult"
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
+        # type: (...) -> "_models.PagingResult"
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -245,10 +245,10 @@ class MultiapiServiceClientOperationsMixin(object):
     def begin_test_lro_and_paging(
         self,
         client_request_id=None,  # type: Optional[str]
-        test_lro_and_paging_options=None,  # type: Optional["models.TestLroAndPagingOptions"]
+        test_lro_and_paging_options=None,  # type: Optional["_models.TestLroAndPagingOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[ItemPaged["models.PagingResult"]]
+        # type: (...) -> LROPoller[ItemPaged["_models.PagingResult"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -270,7 +270,7 @@ class MultiapiServiceClientOperationsMixin(object):
         """
 
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval

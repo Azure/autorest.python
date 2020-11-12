@@ -17,7 +17,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -40,7 +40,7 @@ class PagingOperations(object):
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -81,7 +81,7 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -116,6 +116,7 @@ class PagingOperations(object):
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+
 
     def _get_pages_partial_url_operation_initial(
         self,
@@ -179,7 +180,7 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["models.ProductResult"]
+        # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
@@ -212,3 +213,4 @@ class PagingOperations(object):
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+

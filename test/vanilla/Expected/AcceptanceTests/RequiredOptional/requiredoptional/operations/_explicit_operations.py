@@ -13,7 +13,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .. import models
+from .. import models as _models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -36,7 +36,7 @@ class ExplicitOperations(object):
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer):
         self._client = client
@@ -89,7 +89,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -144,7 +144,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -175,7 +175,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.IntWrapper(value=value)
+        _body_parameter = _models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -199,7 +199,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -229,7 +229,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.IntOptionalWrapper(value=value)
+        _body_parameter = _models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -256,7 +256,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -305,7 +305,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -354,7 +354,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -407,7 +407,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -462,7 +462,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -493,7 +493,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.StringWrapper(value=value)
+        _body_parameter = _models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -517,7 +517,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -547,7 +547,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.StringOptionalWrapper(value=value)
+        _body_parameter = _models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -574,7 +574,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -623,7 +623,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -672,7 +672,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -683,7 +683,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
-        body_parameter,  # type: "models.Product"
+        body_parameter,  # type: "_models.Product"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -725,7 +725,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -736,7 +736,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
-        body_parameter=None,  # type: Optional["models.Product"]
+        body_parameter=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -780,7 +780,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -791,7 +791,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
-        value,  # type: "models.Product"
+        value,  # type: "_models.Product"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -811,7 +811,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ClassWrapper(value=value)
+        _body_parameter = _models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -835,7 +835,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -846,7 +846,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
-        value=None,  # type: Optional["models.Product"]
+        value=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -865,7 +865,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ClassOptionalWrapper(value=value)
+        _body_parameter = _models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -892,7 +892,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -945,7 +945,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1000,7 +1000,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1031,7 +1031,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ArrayWrapper(value=value)
+        _body_parameter = _models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1055,7 +1055,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1085,7 +1085,7 @@ class ExplicitOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body_parameter = models.ArrayOptionalWrapper(value=value)
+        _body_parameter = _models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1112,7 +1112,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1161,7 +1161,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -1210,7 +1210,7 @@ class ExplicitOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
+            error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:

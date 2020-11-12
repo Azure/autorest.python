@@ -32,7 +32,7 @@ _next_request_partial = functools.partial(
     {% endfor %}
 )
 {% endif %}
-return {{ keywords.async_class }}ItemPaged(
+return {{ operation.get_pager(async_mode) }}(
     paging_method = kwargs.pop("paging_method", {{ keywords.async_class }}{{ paging_method }}()),
     client=self._client,
     deserialize_output=deserialize_output,

@@ -147,4 +147,4 @@ class ParameterList(MutableSequence):
             ]
         )
         object_schema = cast(ObjectSchema, self.body[0].schema)
-        return f"{self.body[0].serialized_name} = models.{object_schema.name}({parameter_string})"
+        return f"{self.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"

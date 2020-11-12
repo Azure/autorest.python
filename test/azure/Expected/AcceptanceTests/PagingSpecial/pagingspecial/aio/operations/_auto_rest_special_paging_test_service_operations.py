@@ -17,7 +17,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -48,7 +48,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
     def next_link_in_response_headers(
         self,
         **kwargs
-    ) -> AsyncIterable["models.ProductResultValue"]:
+    ) -> AsyncIterable["_models.ProductResultValue"]:
         """A paging operation where the next link is found in the response headers, not in the response
         body.
 
@@ -73,6 +73,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+
 
     def _continuation_token_in_response_headers_initial(
         self,
@@ -102,7 +103,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         self,
         continuation_token_parameter: Optional[str] = None,
         **kwargs
-    ) -> AsyncIterable["models.ProductResultValue"]:
+    ) -> AsyncIterable["_models.ProductResultValue"]:
         """A paging operation where the continuation is found in the response headers, and needs to be
         passed into subsequent calls.
 
@@ -131,3 +132,4 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+

@@ -18,7 +18,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models
+from ... import models as _models
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -37,7 +37,7 @@ class PagingOperations:
     :param deserializer: An object model deserializer.
     """
 
-    models = models
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client
@@ -76,7 +76,7 @@ class PagingOperations:
         self,
         account_name: str,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -111,6 +111,7 @@ class PagingOperations:
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+
 
     def _get_pages_partial_url_operation_initial(
         self,
@@ -171,7 +172,7 @@ class PagingOperations:
         self,
         account_name: str,
         **kwargs
-    ) -> AsyncIterable["models.ProductResult"]:
+    ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
@@ -204,3 +205,4 @@ class PagingOperations:
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
+

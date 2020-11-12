@@ -29,7 +29,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro(
         self,
-        product=None,  # type: Optional["models.Product"]
+        product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
@@ -62,7 +62,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def begin_test_lro_and_paging(
         self,
         client_request_id=None,  # type: Optional[str]
-        test_lro_and_paging_options=None,  # type: Optional["models.TestLroAndPagingOptions"]
+        test_lro_and_paging_options=None,  # type: Optional["_models.TestLroAndPagingOptions"]
         **kwargs  # type: Any
     ):
         """A long-running paging operation that includes a nextLink that has 10 pages.

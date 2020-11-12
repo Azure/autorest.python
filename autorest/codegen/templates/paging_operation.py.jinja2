@@ -5,8 +5,7 @@
 {% macro return_docstring(async_mode) %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: An iterator like instance of either {{ operation.responses|selectattr('has_body')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
-{# can't use item_paged variable, otherwise the call to get docstring from the metadata template will always return ItemPaged #}
-:rtype: ~azure.core.{{ "async_" if async_mode else "" }}paging.{{ "Async" if async_mode }}ItemPaged[{% for response in operation.responses %}{{response.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
+:rtype: ~{{ operation.get_pager_path(async_mode) }}[{% for response in operation.responses %}{{response.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
 {%- else -%}
 :return: None
 :rtype: None{%- endif -%}{%- endmacro -%}

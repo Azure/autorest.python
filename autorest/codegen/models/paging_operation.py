@@ -105,8 +105,15 @@ class PagingOperation(Operation):
 
     @property
     def has_optional_return_type(self) -> bool:
-        """A paging will never have an optional return type, we will always return ItemPaged[return type]"""
+        """A paging will never have an optional return type, we will always return a pager"""
         return False
+
+    def get_pager_path(self, async_mode: bool) -> str:
+        extension_name = "pager-async" if async_mode else "pager-sync"
+        return self.yaml_data["extensions"][extension_name]
+
+    def get_pager(self, async_mode: bool) -> str:
+        return self.get_pager_path(async_mode).split(".")[-1]
 
     @property
     def success_status_code(self) -> List[Union[str, int]]:
@@ -122,9 +129,6 @@ class PagingOperation(Operation):
         paging_file = "async_paging" if async_mode else "paging"
         async_prefix = "Async" if async_mode else ""
 
-        file_import.add_from_import(f"azure.core.{paging_file}", f"{async_prefix}ItemPaged", ImportType.AZURECORE)
-        file_import.add_from_import(f"typing", f"{async_prefix}Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
-
         if self.next_operation:
             file_import.add_from_import(
                 f"azure.core.{paging_file}_method",
@@ -136,9 +140,15 @@ class PagingOperation(Operation):
             file_import.add_from_import(
                 f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
             )
+        file_import.add_from_import("typing", f"{async_prefix}Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if async_mode:
             file_import.add_from_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
+
+        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
+        pager = self.get_pager(async_mode)
+
+        file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE)
 
         if code_model.options["tracing"]:
             file_import.add_from_import(

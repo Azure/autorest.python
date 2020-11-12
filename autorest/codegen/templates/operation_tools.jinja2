@@ -53,7 +53,7 @@ error_map = {
     {% endif %}
 {% for excep in operation.status_code_exceptions %}
     {% for status_code in excep.status_codes %}
-    {% set error_model = ", model=self._deserialize(models." + excep.serialization_type + ", response)" if excep.is_exception else "" %}
+    {% set error_model = ", model=self._deserialize(_models." + excep.serialization_type + ", response)" if excep.is_exception else "" %}
     {% set error_format = ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" %}
     {% if status_code == 401 %}
     401: lambda response: ClientAuthenticationError(response=response{{ error_model }}{{ error_format }}),
