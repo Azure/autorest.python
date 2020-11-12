@@ -10,7 +10,7 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
-from azure.core.paging_methohd import BasicPagingMethod
+from azure.core.paging_method import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -280,6 +280,7 @@ class MultiapiServiceClientOperationsMixin(object):
                 deserialize_output=deserialize_output,
                 initial_response=pipeline_response,
                 item_name='values',
+                _cls=kwargs.pop("cls", None),
                 **kwargs,
             )
 

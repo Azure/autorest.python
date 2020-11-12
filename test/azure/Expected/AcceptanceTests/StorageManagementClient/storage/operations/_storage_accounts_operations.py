@@ -10,7 +10,7 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
-from azure.core.paging_methohd import BasicPagingMethod
+from azure.core.paging_method import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -554,13 +554,15 @@ class StorageAccountsOperations(object):
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
 
+        _initial_request = self._list_initial()
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_list_initial(),  # TODO: add params
+            initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
-            continuation_token_name=None,
+            next_link_name=None,
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
@@ -621,13 +623,17 @@ class StorageAccountsOperations(object):
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
 
+        _initial_request = self._list_by_resource_group_initial(
+            resource_group_name=resource_group_name,
+        )
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_list_by_resource_group_initial(),  # TODO: add params
+            initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
-            continuation_token_name=None,
+            next_link_name=None,
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 

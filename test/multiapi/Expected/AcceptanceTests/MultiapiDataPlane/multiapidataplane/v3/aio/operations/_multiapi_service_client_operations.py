@@ -9,7 +9,7 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_methohd import AsyncBasicPagingMethod
+from azure.core.async_paging_method import AsyncBasicPagingMethod
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
@@ -58,11 +58,13 @@ class MultiapiServiceClientOperationsMixin:
         def deserialize_output(pipeline_response):
             return self._deserialize('PagingResult', pipeline_response)
 
+        _initial_request = self._test_paging_initial()
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_test_paging_initial(),  # TODO: add params
+            initial_request=_initial_request,
             item_name='values',
+            _cls=kwargs.pop("cls", None),
             **kwargs,
         )

@@ -51,7 +51,7 @@ return {{ item_paged }}(
     item_name='{{ operation.item_name }}',
     {% endif %}
     {% if operation.next_link_name != 'next_link' %}
-    continuation_token_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},
+    next_link_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},
     {% endif %}
     _cls=kwargs.pop("cls", None),
     **kwargs,

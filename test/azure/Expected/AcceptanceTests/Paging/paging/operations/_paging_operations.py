@@ -147,7 +147,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
-            continuation_token_name=None,
+            next_link_name=None,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -487,7 +487,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             item_name='values',
-            continuation_token_name='odata_next_link',
+            next_link_name='odata_next_link',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -938,7 +938,7 @@ class PagingOperations(object):
             initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
-            continuation_token_name='odata_next_link',
+            next_link_name='odata_next_link',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -1052,7 +1052,7 @@ class PagingOperations(object):
             initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
             item_name='values',
-            continuation_token_name='odata_next_link',
+            next_link_name='odata_next_link',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
