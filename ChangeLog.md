@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-xx-xx - 5.5.0
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.421
+
+**New Features**
+
+- Can now take in custom pollers and pagers through directives. This will override the defaults (`LROPoller` and `ItemPaged`, respectively). See [this readme](https://github.com/Azure/autorest.python/tree/autorestv3/test/azure/specification/custompollerpager) for the directive to use to override.  #821
+
 ### 2020-11-11 - 5.4.3
 Autorest core version: 3.0.6320
 

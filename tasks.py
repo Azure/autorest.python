@@ -312,6 +312,7 @@ def regenerate(c, swagger_name=None, debug=False):
         regenerate_multiapi(c, debug)
         regenerate_credential_default_policy(c, debug)
         regenerate_package_name_setup_py(c, debug)
+        regenerate_custom_poller_pager(c, debug)
 
 
 @task
@@ -387,3 +388,11 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         with Pool() as pool:
             result = pool.map(run_autorest, cmds)
         success = all(result)
+
+@task
+def regenerate_custom_poller_pager(c, debug=False):
+    cwd = os.getcwd()
+    cmd = (
+        f'{_AUTOREST_CMD_LINE} test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+    )
+    success = run_autorest(cmd, debug=debug)
