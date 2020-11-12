@@ -18,5 +18,6 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/Lro
 -e ./Expected/AcceptanceTests/LroWithParameterizedEndpoints
 -e ./Expected/AcceptanceTests/Paging
+-e ./Expected/AcceptanceTests/PagingSpecial
 -e ./Expected/AcceptanceTests/StorageManagementClient
 -e ./Expected/AcceptanceTests/SubscriptionIdApiVersion

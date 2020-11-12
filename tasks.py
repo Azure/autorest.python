@@ -79,6 +79,7 @@ default_arm_mappings = {
   'AcceptanceTests/Lro': 'lro.json',
   'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
   'AcceptanceTests/Paging': 'paging.json',
+  'AcceptanceTests/PagingSpecial': 'paging-special.json',
   'AcceptanceTests/CustomUrlPaging': ['custom-baseUrl-paging.json', 'custombaseurlpaging'],
   'AcceptanceTests/AzureSpecials': ['azure-special-properties.json', 'azurespecialproperties'],
 }
