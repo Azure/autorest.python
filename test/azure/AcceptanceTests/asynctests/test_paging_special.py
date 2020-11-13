@@ -52,6 +52,20 @@ class TestPaging(object):
         assert len(items) == 10
 
     @pytest.mark.asyncio
+    async def test_continuation_token(self, client):
+        class MyPagingMethod(AsyncBasicPagingMethod):
+            def get_next_request(self, continuation_token):
+                request = self._initial_request
+                request.headers["x-ms-token"] = continuation_token
+                return request
+
+        pages = client.continuation_token(paging_method=MyPagingMethod())
+        items = []
+        async for item in pages:
+            items.append(item)
+        assert len(items) == 10
+
+    @pytest.mark.asyncio
     async def test_continuation_token_in_response_headers(self, client):
         class MyPagingMethod(AsyncBasicPagingMethod):
             def get_continuation_token(self, pipeline_response, deserialized):
@@ -70,3 +84,30 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 10
+
+    @pytest.mark.asyncio
+    async def test_token_with_metadata(self, client):
+        class MyPagingMethod(AsyncBasicPagingMethod):
+            def __init__(self):
+                super(MyPagingMethod, self).__init__()
+                self.count = None
+
+            def get_continuation_token(self, pipeline_response, deserialized):
+                token = deserialized.token
+                if not token:
+                    return None
+                split_token = token.split(";")
+                self.count = split_token[1]
+                return split_token[0]
+
+            def get_next_request(self, continuation_token):
+                request = self._initial_request
+                request.headers["x-ms-token"] = continuation_token
+                return request
+
+        pages = client.token_with_metadata(paging_method=MyPagingMethod())
+        items = []
+        async for item in pages:
+            items.append(item)
+        assert len(items) == 10
+        await pages.get_count()
