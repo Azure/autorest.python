@@ -36,6 +36,7 @@ return {{ operation.get_pager(async_mode) }}(
     paging_method = kwargs.pop("paging_method", {{ keywords.async_class }}{{ paging_method }}()),
     client=self._client,
     deserialize_output=deserialize_output,
+    next_link_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},
     {% if operation.next_operation %}
     prepare_next_request=_next_request_partial,
     {% endif %}
@@ -49,9 +50,6 @@ return {{ operation.get_pager(async_mode) }}(
     {% endif %}
     {% if operation.item_name != 'value' %}
     item_name='{{ operation.item_name }}',
-    {% endif %}
-    {% if operation.next_link_name != 'next_link' %}
-    next_link_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},
     {% endif %}
     _cls=kwargs.pop("cls", None),
     **kwargs,

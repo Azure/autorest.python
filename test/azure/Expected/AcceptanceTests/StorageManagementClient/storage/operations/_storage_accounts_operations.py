@@ -559,9 +559,9 @@ class StorageAccountsOperations(object):
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
+            next_link_name=None,
             initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
-            next_link_name=None,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -631,9 +631,9 @@ class StorageAccountsOperations(object):
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
+            next_link_name=None,
             initial_request=_initial_request,
             path_format_arguments=path_format_arguments,
-            next_link_name=None,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

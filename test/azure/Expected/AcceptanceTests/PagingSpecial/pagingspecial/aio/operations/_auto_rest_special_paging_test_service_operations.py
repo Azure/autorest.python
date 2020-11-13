@@ -69,8 +69,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_initial_request,
             next_link_name=None,
+            initial_request=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -120,8 +120,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_initial_request,
             next_link_name='token',
+            initial_request=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -179,8 +179,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_initial_request,
             next_link_name=None,
+            initial_request=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -230,8 +230,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
-            initial_request=_initial_request,
             next_link_name='token',
+            initial_request=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

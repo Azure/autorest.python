@@ -313,6 +313,7 @@ def regenerate(c, swagger_name=None, debug=False):
         regenerate_credential_default_policy(c, debug)
         regenerate_package_name_setup_py(c, debug)
         regenerate_custom_poller_pager(c, debug)
+        regenerate_special_paging(c, debug)
 
 
 @task

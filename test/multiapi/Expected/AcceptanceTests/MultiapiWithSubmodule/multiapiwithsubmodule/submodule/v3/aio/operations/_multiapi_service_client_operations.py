@@ -64,6 +64,7 @@ class MultiapiServiceClientOperationsMixin:
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
+            next_link_name='next_link',
             initial_request=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
