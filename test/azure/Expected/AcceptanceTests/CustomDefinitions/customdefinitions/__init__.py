@@ -14,8 +14,8 @@ class PageIteratorWithMetadata(PageIterator):
     def _ensure_response(f):
         # pylint:disable=protected-access
         def wrapper(self, *args, **kw):
-            if self._paging_method._did_a_call_already:
-                self._response = self._paging_method.get_page(self.continuation_token)
+            if not self._paging_method.did_a_call_already:
+                self._response = self._paging_method.get_page(self.continuation_token, self._initial_request)
                 self.continuation_token, self._current_page = self._paging_method.extract_data(
                     self._response
                 )
