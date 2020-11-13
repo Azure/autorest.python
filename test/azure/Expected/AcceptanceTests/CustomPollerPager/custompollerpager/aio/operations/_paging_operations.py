@@ -17,7 +17,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
-from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
+from customdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
 
@@ -175,7 +175,7 @@ class PagingOperations:
          Default is AsyncBasicPagingMethod.
         :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~custompollerpagerdefinitions.aio.AsyncCustomPager[~custompollerpager.models.ProductResult]
+        :rtype: ~customdefinitions.aio.AsyncCustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         def deserialize_output(pipeline_response):
@@ -1087,7 +1087,7 @@ class PagingOperations:
          Default is AsyncBasicPagingMethod.
         :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An instance of AsyncCustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~custompollerpagerdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]]
+        :rtype: ~customdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 

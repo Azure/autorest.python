@@ -31,14 +31,11 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
     }
 
@@ -47,7 +44,6 @@ class ProductProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
 
@@ -72,3 +68,26 @@ class ProductResultValue(msrest.serialization.Model):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
+
+
+class ProductResultValueWithToken(msrest.serialization.Model):
+    """ProductResultValueWithToken.
+
+    :param value:
+    :type value: list[~pagingspecial.models.Product]
+    :param token:
+    :type token: str
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[Product]'},
+        'token': {'key': 'token', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(ProductResultValueWithToken, self).__init__(**kwargs)
+        self.value = kwargs.get('value', None)
+        self.token = kwargs.get('token', None)

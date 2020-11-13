@@ -10,13 +10,16 @@ try:
     from ._models_py3 import Product
     from ._models_py3 import ProductProperties
     from ._models_py3 import ProductResultValue
+    from ._models_py3 import ProductResultValueWithToken
 except (SyntaxError, ImportError):
     from ._models import Product  # type: ignore
     from ._models import ProductProperties  # type: ignore
     from ._models import ProductResultValue  # type: ignore
+    from ._models import ProductResultValueWithToken  # type: ignore
 
 __all__ = [
     'Product',
     'ProductProperties',
     'ProductResultValue',
+    'ProductResultValueWithToken',
 ]

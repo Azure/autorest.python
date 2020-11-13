@@ -35,26 +35,21 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :param id:
-    :type id: int
     :param name:
     :type name: str
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
         name: Optional[str] = None,
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
-        self.id = id
         self.name = name
 
 
@@ -82,3 +77,29 @@ class ProductResultValue(msrest.serialization.Model):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link
+
+
+class ProductResultValueWithToken(msrest.serialization.Model):
+    """ProductResultValueWithToken.
+
+    :param value:
+    :type value: list[~pagingspecial.models.Product]
+    :param token:
+    :type token: str
+    """
+
+    _attribute_map = {
+        'value': {'key': 'value', 'type': '[Product]'},
+        'token': {'key': 'token', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        value: Optional[List["Product"]] = None,
+        token: Optional[str] = None,
+        **kwargs
+    ):
+        super(ProductResultValueWithToken, self).__init__(**kwargs)
+        self.value = value
+        self.token = token

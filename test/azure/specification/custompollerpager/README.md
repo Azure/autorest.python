@@ -23,8 +23,8 @@ directive:
     from: swagger-document
     where: '$.paths["/paging/single"].get'
     transform: >
-        $["x-python-custom-pager-sync"] = "custompollerpagerdefinitions.CustomPager";
-        $["x-python-custom-pager-async"] = "custompollerpagerdefinitions.aio.AsyncCustomPager"
+        $["x-python-custom-pager-sync"] = "customdefinitions.CustomPager";
+        $["x-python-custom-pager-async"] = "customdefinitions.aio.AsyncCustomPager"
 ```
 
 ### Override LROPoller to custom Poller
@@ -33,6 +33,6 @@ directive:
     from: swagger-document
     where: '$.paths["/paging/multiple/lro"].post'
     transform: >
-        $["x-python-custom-poller-sync"] = "custompollerpagerdefinitions.CustomPoller";
-        $["x-python-custom-poller-async"] = "custompollerpagerdefinitions.aio.AsyncCustomPoller"
+        $["x-python-custom-poller-sync"] = "customdefinitions.CustomPoller";
+        $["x-python-custom-poller-async"] = "customdefinitions.aio.AsyncCustomPoller"
 ```

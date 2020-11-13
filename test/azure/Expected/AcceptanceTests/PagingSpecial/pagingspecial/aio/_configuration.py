@@ -40,7 +40,7 @@ class AutoRestSpecialPagingTestServiceConfiguration(Configuration):
 
         self.credential = credential
         self.credential_scopes = kwargs.pop('credential_scopes', ['https://management.azure.com/.default'])
-        kwargs.setdefault('sdk_moniker', 'autorestspecialpagingtestservice/{}'.format(VERSION))
+        kwargs.setdefault('sdk_moniker', 'pagingspecial/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

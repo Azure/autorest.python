@@ -17,7 +17,7 @@ from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from custompollerpagerdefinitions import CustomPager, CustomPoller
+from customdefinitions import CustomPager, CustomPoller
 
 from .. import models as _models
 
@@ -185,7 +185,7 @@ class PagingOperations(object):
          Default is BasicPagingMethod.
         :paramtype paging_method: ~azure.core.paging_method.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~custompollerpagerdefinitions.CustomPager[~custompollerpager.models.ProductResult]
+        :rtype: ~customdefinitions.CustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         def deserialize_output(pipeline_response):
@@ -1126,7 +1126,7 @@ class PagingOperations(object):
          Default is BasicPagingMethod.
         :paramtype paging_method: ~azure.core.paging_method.PagingMethod
         :return: An instance of CustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~custompollerpagerdefinitions.CustomPoller[~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]]
+        :rtype: ~customdefinitions.CustomPoller[~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 

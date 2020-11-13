@@ -80,7 +80,6 @@ default_arm_mappings = {
   'AcceptanceTests/Lro': 'lro.json',
   'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
   'AcceptanceTests/Paging': 'paging.json',
-  'AcceptanceTests/PagingSpecial': 'paging-special.json',
   'AcceptanceTests/CustomUrlPaging': ['custom-baseUrl-paging.json', 'custombaseurlpaging'],
   'AcceptanceTests/AzureSpecials': ['azure-special-properties.json', 'azurespecialproperties'],
 }
@@ -395,5 +394,13 @@ def regenerate_custom_poller_pager(c, debug=False):
     cwd = os.getcwd()
     cmd = (
         f'{_AUTOREST_CMD_LINE} test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+    )
+    success = run_autorest(cmd, debug=debug)
+
+@task
+def regenerate_special_paging(c, debug=False):
+    cwd = os.getcwd()
+    cmd = (
+        f'{_AUTOREST_CMD_LINE} test/azure/specification/pagingspecial/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     success = run_autorest(cmd, debug=debug)

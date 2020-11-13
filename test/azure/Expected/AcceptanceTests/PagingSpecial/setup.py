@@ -9,7 +9,7 @@
 
 from setuptools import setup, find_packages
 
-NAME = "autorestspecialpagingtestservice"
+NAME = "pagingspecial"
 VERSION = "0.1.0"
 
 # To install the library, run the following
@@ -24,7 +24,7 @@ REQUIRES = ["msrest>=0.6.18", "azure-core<2.0.0,>=1.8.2", "azure-mgmt-core<2.0.0
 setup(
     name=NAME,
     version=VERSION,
-    description="AutoRestSpecialPagingTestService",
+    description="pagingspecial",
     author_email="",
     url="",
     keywords=["Swagger", "AutoRestSpecialPagingTestService"],

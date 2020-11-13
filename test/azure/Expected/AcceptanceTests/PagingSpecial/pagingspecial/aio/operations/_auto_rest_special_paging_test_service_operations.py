@@ -16,6 +16,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
+from customdefinitions.aio import AsyncPagerWithMetadata
 
 from ... import models as _models
 
@@ -75,6 +76,57 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         )
 
 
+    def _continuation_token_initial(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._continuation_token_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _continuation_token_initial.metadata = {'url': '/pagingSpecial/continuationToken'}  # type: ignore
+
+    @distributed_trace
+    def continuation_token(
+        self,
+        **kwargs
+    ) -> AsyncIterable["_models.ProductResultValueWithToken"]:
+        """A paging operation where the token in the response body needs to be passed into subsequent
+        calls.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+         Default is AsyncBasicPagingMethod.
+        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
+        :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        def deserialize_output(pipeline_response):
+            return self._deserialize('ProductResultValueWithToken', pipeline_response)
+
+        _initial_request = self._continuation_token_initial()
+        return AsyncItemPaged(
+            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            client=self._client,
+            deserialize_output=deserialize_output,
+            initial_request=_initial_request,
+            next_link_name='token',
+            _cls=kwargs.pop("cls", None),
+            **kwargs,
+        )
+
+
     def _continuation_token_in_response_headers_initial(
         self,
         continuation_token_parameter: Optional[str] = None,
@@ -103,7 +155,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         self,
         continuation_token_parameter: Optional[str] = None,
         **kwargs
-    ) -> AsyncIterable["_models.ProductResultValue"]:
+    ) -> AsyncIterable["_models.ProductResultValueWithToken"]:
         """A paging operation where the continuation is found in the response headers, and needs to be
         passed into subsequent calls.
 
@@ -113,12 +165,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
          Default is AsyncBasicPagingMethod.
         :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
-        :return: An iterator like instance of either ProductResultValue or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValue]
+        :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResultValue', pipeline_response)
+            return self._deserialize('ProductResultValueWithToken', pipeline_response)
 
         _initial_request = self._continuation_token_in_response_headers_initial(
             continuation_token_parameter=continuation_token_parameter,
@@ -129,6 +181,57 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             deserialize_output=deserialize_output,
             initial_request=_initial_request,
             next_link_name=None,
+            _cls=kwargs.pop("cls", None),
+            **kwargs,
+        )
+
+
+    def _token_with_metadata_initial(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._token_with_metadata_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _token_with_metadata_initial.metadata = {'url': '/pagingSpecial/tokenWithMetadata'}  # type: ignore
+
+    @distributed_trace
+    def token_with_metadata(
+        self,
+        **kwargs
+    ) -> AsyncIterable["_models.ProductResultValueWithToken"]:
+        """A paging operation that returns a continuation token, and metadata about the number of total
+        results. Should be able to access metadata from pager.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+         Default is AsyncBasicPagingMethod.
+        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
+        :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
+        :rtype: ~customdefinitions.aio.AsyncPagerWithMetadata[~pagingspecial.models.ProductResultValueWithToken]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        def deserialize_output(pipeline_response):
+            return self._deserialize('ProductResultValueWithToken', pipeline_response)
+
+        _initial_request = self._token_with_metadata_initial()
+        return AsyncPagerWithMetadata(
+            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            client=self._client,
+            deserialize_output=deserialize_output,
+            initial_request=_initial_request,
+            next_link_name='token',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
