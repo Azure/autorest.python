@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from custompollerpager import AutoRestPagingTestService
-from custompollerpagerdefinitions import CustomPager, CustomPoller
+from customdefinitions import CustomPager, CustomPoller
 
 import pytest
 

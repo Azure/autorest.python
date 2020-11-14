@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from custompollerpager.aio import AutoRestPagingTestService
-from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
+from customdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 import pytest
 
