@@ -12,7 +12,7 @@ from invoke import task, run
 init()
 _AUTOREST_CMD_LINE = "autorest"
 
-service_to_readme_path = {
+_SERVICE_TO_README_PATH = {
     'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
     'azure-ai-formrecognizer': 'test/services/azure-ai-formrecognizer/README.md',
     'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
@@ -24,7 +24,7 @@ service_to_readme_path = {
     'azure-keyvault': 'test/services/azure-keyvault/README.md',
 }
 
-default_mappings = {
+_VANILLA_SWAGGER_MAPPINGS = {
   'AcceptanceTests/AdditionalProperties': 'additionalProperties.json',
   'AcceptanceTests/ParameterFlattening': 'parameter-flattening.json',
   'AcceptanceTests/BodyArray': 'body-array.json',
@@ -38,22 +38,22 @@ default_mappings = {
   'AcceptanceTests/BodyDictionary': 'body-dictionary.json',
   'AcceptanceTests/BodyFile': 'body-file.json',
   'AcceptanceTests/Constants': 'constants.json',
- 'AcceptanceTests/BodyFormData': 'body-formdata.json',
+  'AcceptanceTests/BodyFormData': 'body-formdata.json',
   'AcceptanceTests/BodyInteger': 'body-integer.json',
   'AcceptanceTests/BodyNumber': 'body-number.json',
   'AcceptanceTests/BodyString': 'body-string.json',
   'AcceptanceTests/BodyTime': 'body-time.json',
-  'AcceptanceTests/ExtensibleEnums': ['extensible-enums-swagger.json', 'extensibleenumsswagger'],
+  'AcceptanceTests/ExtensibleEnums': 'extensible-enums-swagger.json',
   'AcceptanceTests/Header': 'header.json',
-  'AcceptanceTests/Http': ['httpInfrastructure.json', 'httpinfrastructure'],
+  'AcceptanceTests/Http': 'httpInfrastructure.json',
   'AcceptanceTests/Report': 'report.json',
   'AcceptanceTests/RequiredOptional': 'required-optional.json',
   'AcceptanceTests/Url': 'url.json',
   'AcceptanceTests/Validation': 'validation.json',
-  'AcceptanceTests/CustomBaseUri': ['custom-baseUrl.json', 'custombaseurl'],
-  'AcceptanceTests/CustomBaseUriMoreOptions': ['custom-baseUrl-more-options.json', 'custombaseurlmoreoptions'],
+  'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json',
+  'AcceptanceTests/CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
   'AcceptanceTests/ModelFlattening': 'model-flattening.json',
-  'AcceptanceTests/Xml': ['xml-service.json', 'xmlservice'],
+  'AcceptanceTests/Xml': 'xml-service.json',
   'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',
   'AcceptanceTests/XmsErrorResponse': 'xms-error-responses.json',
   'AcceptanceTests/MediaTypes': 'media_types.json',
@@ -63,28 +63,43 @@ default_mappings = {
   'AcceptanceTests/NoOperations': 'no-operations.json',
 }
 
-default_azure_mappings = {
-  'AcceptanceTests/AzureBodyDuration': ['body-duration.json', 'bodyduration'],
+_AZURE_SWAGGER_MAPPINGS = {
+  'AcceptanceTests/AzureBodyDuration': 'body-duration.json',
   'AcceptanceTests/AzureReport': 'azure-report.json',
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
-  'AcceptanceTests/CustomBaseUri': ['custom-baseUrl.json', 'custombaseurl'],
+  'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json',
   'AcceptanceTests/LroWithParameterizedEndpoints': 'lro-parameterized-endpoints.json',
 }
 
 # The list is mostly built on Swaggers that uses CloudError feature
 # These Swagger should be modified to test their features, and not the CloudError one
-default_arm_mappings = {
+_AZURE_ARM_SWAGGER_MAPPINGS = {
   'AcceptanceTests/Head': 'head.json',
   'AcceptanceTests/HeadExceptions': 'head-exceptions.json',
-  'AcceptanceTests/StorageManagementClient': ['storage.json', 'storage'],
+  'AcceptanceTests/StorageManagementClient': 'storage.json',
   'AcceptanceTests/Lro': 'lro.json',
   'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
   'AcceptanceTests/Paging': 'paging.json',
-  'AcceptanceTests/CustomUrlPaging': ['custom-baseUrl-paging.json', 'custombaseurlpaging'],
-  'AcceptanceTests/AzureSpecials': ['azure-special-properties.json', 'azurespecialproperties'],
+  'AcceptanceTests/CustomUrlPaging': 'custom-baseUrl-paging.json',
+  'AcceptanceTests/AzureSpecials': 'azure-special-properties.json',
 }
 
-packages_with_client_side_validation = [
+"""Overwrite default behavior we have assigned to test flags
+"""
+
+_OVERWRITE_DEFAULT_NAMESPACE = {
+    'AcceptanceTests/ExtensibleEnums': 'extensibleenumsswagger',
+    'AcceptanceTests/Http': 'httpinfrastructure',
+    'AcceptanceTests/CustomBaseUri': 'custombaseurl',
+    'AcceptanceTests/CustomBaseUriMoreOptions': 'custombaseurlmoreoptions',
+    'AcceptanceTests/Xml': 'xmlservice',
+    'AcceptanceTests/AzureBodyDuration': 'bodyduration',
+    'AcceptanceTests/CustomUrlPaging': 'custombaseurlpaging',
+    'AcceptanceTests/AzureSpecials': 'azurespecialproperties',
+    'AcceptanceTests/StorageManagementClient': 'storage',
+}
+
+_PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
     'AcceptanceTests/Validation',
     'AcceptanceTests/Url',
     'AcceptanceTests/RequiredOptional',
@@ -167,7 +182,7 @@ def regen_expected(c, opts, debug):
             args.append(f"--package-name={opts['package-name']}")
         if opts.get('override-client-name'):
             args.append(f"--override-client-name={opts['override-client-name']}")
-        if key in packages_with_client_side_validation:
+        if key in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION:
             args.append("--client-side-validation=true")
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
@@ -200,9 +215,9 @@ def run_autorest(cmd_line, debug=False):
 @task
 def regenerate_python(c, swagger_name=None, debug=False):
     if swagger_name:
-        default_mapping = {k: v for k, v in default_mappings.items() if swagger_name.lower() in k.lower()}
+        default_mapping = {k: v for k, v in _VANILLA_SWAGGER_MAPPINGS.items() if swagger_name.lower() in k.lower()}
     else:
-        default_mapping = default_mappings
+        default_mapping = _VANILLA_SWAGGER_MAPPINGS
     opts = {
         'output_base_dir': 'test/vanilla',
         'input_base_dir': swagger_dir,
@@ -219,9 +234,9 @@ def regenerate_python(c, swagger_name=None, debug=False):
 @task
 def regenerate_python_azure(c, swagger_name=None, debug=False):
     if swagger_name:
-        default_mapping = {k: v for k, v in default_azure_mappings.items() if swagger_name.lower() in k.lower()}
+        default_mapping = {k: v for k, v in _AZURE_SWAGGER_MAPPINGS.items() if swagger_name.lower() in k.lower()}
     else:
-        default_mapping = default_azure_mappings
+        default_mapping = _AZURE_SWAGGER_MAPPINGS
     opts = {
         'output_base_dir': 'test/azure',
         'input_base_dir': swagger_dir,
@@ -236,9 +251,9 @@ def regenerate_python_azure(c, swagger_name=None, debug=False):
 @task
 def regenerate_python_arm(c, swagger_name=None, debug=False):
     if swagger_name:
-        default_mapping = {k: v for k, v in default_arm_mappings.items() if swagger_name.lower() in k.lower()}
+        default_mapping = {k: v for k, v in _AZURE_ARM_SWAGGER_MAPPINGS.items() if swagger_name.lower() in k.lower()}
     else:
-        default_mapping = default_arm_mappings
+        default_mapping = _AZURE_ARM_SWAGGER_MAPPINGS
     opts = {
         'output_base_dir': 'test/azure',
         'input_base_dir': swagger_dir,
@@ -329,13 +344,13 @@ def test(c, env=None):
 def regenerate_services(c, swagger_name=None, debug=False):
     # regenerate service from swagger
     if swagger_name:
-        service_mapping = {k: v for k, v in service_to_readme_path.items() if swagger_name.lower() in k.lower()}
+        service_mapping = {k: v for k, v in _SERVICE_TO_README_PATH.items() if swagger_name.lower() in k.lower()}
     else:
-        service_mapping = service_to_readme_path
+        service_mapping = _SERVICE_TO_README_PATH
 
     cmds = []
     for service in service_mapping:
-        readme_path = service_to_readme_path[service]
+        readme_path = _SERVICE_TO_README_PATH[service]
         service = service.strip()
         cmd_line = f'{_AUTOREST_CMD_LINE} {readme_path} --use=. --output-artifact=code-model-v4-no-tags'
         if debug:
