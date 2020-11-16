@@ -188,13 +188,16 @@ def regen_expected(c, opts, debug):
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
+    run_autorest(cmds, debug=debug)
 
+
+def run_autorest(cmds, debug):
     if len(cmds) == 1:
-        success = run_autorest(cmds[0], debug=debug)
+        success = _run_single_autorest(cmds[0], debug=debug)
     else:
         # Execute actual taks in parallel
         with Pool() as pool:
-            result = pool.map(run_autorest, cmds)
+            result = pool.map(_run_single_autorest, cmds)
         success = all(result)
 
     if not success:
@@ -202,7 +205,7 @@ def regen_expected(c, opts, debug):
         shutil.rmtree(output_folder, ignore_errors=True)
         raise SystemExit("Autorest generation fails")
 
-def run_autorest(cmd_line, debug=False):
+def _run_single_autorest(cmd_line, debug=False):
     result = run(cmd_line, warn=True, hide=not debug)
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
@@ -358,16 +361,8 @@ def regenerate_services(c, swagger_name=None, debug=False):
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
 
-    if len(cmds) == 1:
-        success = run_autorest(cmds[0], debug=debug)
-    else:
-        # Execute actual taks in parallel
-        with Pool() as pool:
-            result = pool.map(run_autorest, cmds)
-        success = all(result)
+    run_autorest(cmds[0], debug)
 
-    if not success:
-        raise SystemExit("Autorest generation fails")
 
 def _multiapi_command_line(location):
     cwd = os.getcwd()
@@ -396,13 +391,7 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
 
     cmds = [_multiapi_command_line(spec) for spec in available_specifications if swagger_name.lower() in spec]
 
-    if len(cmds) == 1:
-        success = run_autorest(cmds[0], debug=debug)
-    else:
-        # Execute actual taks in parallel
-        with Pool() as pool:
-            result = pool.map(run_autorest, cmds)
-        success = all(result)
+    run_autorest(cmds, debug)
 
 @task
 def regenerate_custom_poller_pager(c, debug=False):
@@ -410,4 +399,4 @@ def regenerate_custom_poller_pager(c, debug=False):
     cmd = (
         f'{_AUTOREST_CMD_LINE} test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
-    success = run_autorest(cmd, debug=debug)
+    success = run_autorest([cmd], debug=debug)
