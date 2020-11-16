@@ -5,10 +5,10 @@
 # --------------------------------------------------------------------------
 from multiprocessing import Pool
 import os
-from colorama import init, Fore
-from invoke import task, run
 from typing import Any, Dict, Optional
 from enum import Enum, auto
+from colorama import init, Fore
+from invoke import task, run
 
 init()
 class _SwaggerGroup(str, Enum):
@@ -118,7 +118,7 @@ def _build_flags(
     swagger_name: str,
     debug: bool,
     swagger_group: _SwaggerGroup,
-    override_flags: Optional[Dict[str, Any]] = {},
+    override_flags: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     autorest_dir = os.path.dirname(__file__)
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
@@ -148,7 +148,8 @@ def _build_flags(
         "namespace": _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()),
         "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
     }
-    flags.update(override_flags)
+    if override_flags:
+        flags.update(override_flags)
     return flags
 
 def _build_command_line(
@@ -156,7 +157,7 @@ def _build_command_line(
     swagger_name: str,
     debug: bool,
     swagger_group: _SwaggerGroup,
-    override_flags: Optional[Dict[str, Any]] = {},
+    override_flags: Optional[Dict[str, Any]] = None,
 ) -> str:
     flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags)
     flag_strings = [
@@ -181,15 +182,14 @@ def _run_single_autorest(cmd_line, debug=False):
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
         return True
-    else:
-        print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
-        return False
+    print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
+    return False
 
 def _regenerate(
     mapping: Dict[str, str],
     debug: bool,
     swagger_group: _SwaggerGroup,
-    override_flags: Optional[Dict[str, Any]] = {},
+    override_flags: Optional[Dict[str, Any]] = None,
 ) -> None:
     cmds = []
     for package_name, swagger_name in mapping.items():
@@ -267,6 +267,7 @@ def regenerate(c, swagger_name=None, debug=False):
 @task
 def test(c, env=None):
     # run language-specific tests
+    base_dir = os.path.dirname(__file__)
     cmd = f'tox -e {env}' if env else 'tox'
     os.chdir(f"{base_dir}/test/vanilla/")
     c.run(cmd)
@@ -330,4 +331,4 @@ def regenerate_custom_poller_pager(c, debug=False):
     cmd = (
         f'autorest test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
-    success = _run_autorest([cmd], debug=debug)
+    _run_autorest([cmd], debug=debug)
