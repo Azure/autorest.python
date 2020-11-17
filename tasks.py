@@ -69,6 +69,8 @@ default_azure_mappings = {
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
   'AcceptanceTests/CustomBaseUri': ['custom-baseUrl.json', 'custombaseurl'],
   'AcceptanceTests/LroWithParameterizedEndpoints': 'lro-parameterized-endpoints.json',
+  'AcceptanceTests/Paging': 'paging.json',
+  'AcceptanceTests/CustomUrlPaging': ['custom-baseUrl-paging.json', 'custombaseurlpaging'],
 }
 
 # The list is mostly built on Swaggers that uses CloudError feature
@@ -79,8 +81,6 @@ default_arm_mappings = {
   'AcceptanceTests/StorageManagementClient': ['storage.json', 'storage'],
   'AcceptanceTests/Lro': 'lro.json',
   'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
-  'AcceptanceTests/Paging': 'paging.json',
-  'AcceptanceTests/CustomUrlPaging': ['custom-baseUrl-paging.json', 'custombaseurlpaging'],
   'AcceptanceTests/AzureSpecials': ['azure-special-properties.json', 'azurespecialproperties'],
 }
 

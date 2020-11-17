@@ -6,14 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import Any
 
-from azure.mgmt.core import AsyncARMPipelineClient
+from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from azure.core.credentials_async import AsyncTokenCredential
 
 from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
 from .operations import PagingOperations
@@ -25,21 +21,18 @@ class AutoRestParameterizedHostTestPagingClient(object):
 
     :ivar paging: PagingOperations operations
     :vartype paging: custombaseurlpaging.aio.operations.PagingOperations
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
         host: str = "host",
         **kwargs: Any
     ) -> None:
         base_url = 'http://{accountName}{host}'
-        self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)
-        self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._config = AutoRestParameterizedHostTestPagingClientConfiguration(host, **kwargs)
+        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

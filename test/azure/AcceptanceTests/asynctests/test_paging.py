@@ -214,7 +214,8 @@ class TestPaging(object):
     async def test_get_multiple_pages_lro(self, client):
         """LRO + Paging at the same time.
         """
-        poller = await client.paging.begin_get_multiple_pages_lro()
+        from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+        poller = await client.paging.begin_get_multiple_pages_lro(AsyncARMPolling(timeout=0))
         pager = await poller.result()
         items = []
         async for item in pager:
