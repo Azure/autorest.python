@@ -44,13 +44,13 @@ from azure.core.exceptions import HttpResponseError
 import pytest
 
 @pytest.fixture
-def client(credential, authentication_policy):
+def client():
     with AutoRestPagingTestService(base_url="http://localhost:3000") as client:
         yield client
 
 
 @pytest.fixture
-def custom_url_client(credential, authentication_policy):
+def custom_url_client():
     with AutoRestParameterizedHostTestPagingClient(host="host:3000") as client:
         yield client
 

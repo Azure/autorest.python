@@ -46,7 +46,7 @@ import pytest
 
 @pytest.fixture
 @async_generator
-async def client(cookie_policy, credential):
+async def client(cookie_policy):
     policies = [
         RequestIdPolicy(),
         HeadersPolicy(),
@@ -54,13 +54,13 @@ async def client(cookie_policy, credential):
         AsyncRetryPolicy(),
         cookie_policy
     ]
-    async with AutoRestPagingTestService(credential, base_url="http://localhost:3000", policies=policies) as client:
+    async with AutoRestPagingTestService(base_url="http://localhost:3000", policies=policies) as client:
         await yield_(client)
 
 @pytest.fixture
 @async_generator
-async def custom_url_client(credential, authentication_policy):
-    async with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
+async def custom_url_client():
+    async with AutoRestParameterizedHostTestPagingClient(host="host:3000") as client:
         await yield_(client)
 
 class TestPaging(object):
@@ -215,7 +215,7 @@ class TestPaging(object):
         """LRO + Paging at the same time.
         """
         from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
-        poller = await client.paging.begin_get_multiple_pages_lro(AsyncARMPolling(timeout=0))
+        poller = await client.paging.begin_get_multiple_pages_lro(polling=AsyncARMPolling(timeout=0))
         pager = await poller.result()
         items = []
         async for item in pager:
