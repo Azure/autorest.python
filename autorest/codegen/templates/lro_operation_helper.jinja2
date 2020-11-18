@@ -2,7 +2,8 @@
 
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 
-{% macro operation_docstring_helper(operation, async_mode) %}
+{% macro operation_docstring_helper(code_model, operation, async_mode) %}
+{% import 'keywords.jinja2' as keywords with context %}
 """{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
 {% if operation.summary and operation.description %}
 
@@ -25,16 +26,17 @@
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-:keyword polling: True for ARMPolling, False for no polling, or a
- polling object for personal polling strategy
-:paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
+{% set default_polling_method = "ARMPolling"if code_model.options['azure_arm'] else "LROBasePolling" %}
+:keyword polling: Pass in True if you'd like the {{ keywords.async_class }}{{ default_polling_method }} polling method,
+ False for no polling, or your own initialized polling object for a personal polling strategy.
+:paramtype polling: bool or ~azure.core.polling.{{ keywords.async_class }}PollingMethod
 :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
 {%- endmacro -%}
 
 
 {% macro lro_operation(code_model, operation, async_mode) %}
 {% import 'keywords.jinja2' as keywords with context %}
-    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
+    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ keywords.async_class }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     lro_delay = kwargs.pop(
         'polling_interval',
@@ -55,7 +57,7 @@
     {%- endmacro -%}
 
     {% macro lro_operation_return(code_model, operation, async_mode) %}
-    {% set async_prefix = "Async" if async_mode else "" %}
+    {% import 'keywords.jinja2' as keywords with context %}
     {% set path_format_arguments = "" %}
     {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
     {% set operation_name = "begin_"+operation.python_name %}
@@ -69,11 +71,11 @@
 
     {% endif %}
     {% if code_model.options['azure_arm'] %}
-    if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }}{{ path_format_arguments }},  **kwargs)
+    if polling is True: polling_method = {{ keywords.async_class }}ARMPolling(lro_delay{{ lro_options }}{{ path_format_arguments }},  **kwargs)
     {% else %}
-    if polling is True: polling_method = {{ async_prefix }}LROBasePolling(lro_delay{{ lro_options }}{{ path_format_arguments }},  **kwargs)
+    if polling is True: polling_method = {{ keywords.async_class }}LROBasePolling(lro_delay{{ lro_options }}{{ path_format_arguments }},  **kwargs)
     {% endif %}
-    elif polling is False: polling_method = {{ async_prefix }}NoPolling()
+    elif polling is False: polling_method = {{ keywords.async_class }}NoPolling()
     else: polling_method = polling
     if cont_token:
         return {{ operation.get_poller(async_mode) }}.from_continuation_token(
