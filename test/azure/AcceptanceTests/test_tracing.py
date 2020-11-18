@@ -40,7 +40,7 @@ def has_tracing_decorator(function):
 
 
 def test_paging():
-    with AutoRestPagingTestService("cred", base_url="dummy url") as client:
+    with AutoRestPagingTestService(base_url="dummy url") as client:
         assert has_tracing_decorator(client.paging.get_single_pages)
 
 
