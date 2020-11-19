@@ -99,3 +99,25 @@ class TestPaging(object):
         assert len(items) == 10
         assert pages.get_count() == "10"
 
+    def test_next_link_and_continuation_token(self, client):
+        class MyPagingMethod(BasicPagingMethod):
+            def __init__(self):
+                super(MyPagingMethod, self).__init__()
+                self.token_to_pass_to_headers = None
+
+            def get_continuation_token(self, pipeline_response, deserialized):
+                token = deserialized.token
+                if not token:
+                    return None
+                split_token = token.split(",")
+                self.token_to_pass_to_headers = split_token[0]
+                return split_token[1]
+
+            def get_next_request(self, continuation_token, initial_request):
+                request = super(MyPagingMethod, self).get_next_request(continuation_token, initial_request)
+                request.headers["x-ms-token"] = self.token_to_pass_to_headers
+                return request
+
+        pages = client.next_link_and_continuation_token(paging_method=MyPagingMethod())
+        items = [i for i in pages]
+        assert len(items) == 10

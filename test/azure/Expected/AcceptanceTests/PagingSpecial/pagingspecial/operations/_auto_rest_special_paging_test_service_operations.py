@@ -247,3 +247,65 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
             **kwargs,
         )
 
+
+    def _next_link_and_continuation_token_initial(
+        self,
+        continuation_token_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self._next_link_and_continuation_token_initial.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if continuation_token_parameter is not None:
+            header_parameters['continuationToken'] = self._serialize.header("continuation_token_parameter", continuation_token_parameter, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        return request
+    _next_link_and_continuation_token_initial.metadata = {'url': '/pagingSpecial/nextLinkAndContinuationToken'}  # type: ignore
+
+    @distributed_trace
+    def next_link_and_continuation_token(
+        self,
+        continuation_token_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Iterable["_models.ProductResultValueWithToken"]
+        """A paging operation that returns a continuation token. The token is part continuation token that
+        needs to be passed as a header to subsequent calls, and part next link, the url for subsequent
+        calls.
+
+        :param continuation_token_parameter: Continuation token for subsequent paging.
+        :type continuation_token_parameter: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
+         Default is BasicPagingMethod.
+        :paramtype paging_method: ~azure.core.paging_method.PagingMethod
+        :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~pagingspecial.models.ProductResultValueWithToken]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        def deserialize_output(pipeline_response):
+            return self._deserialize('ProductResultValueWithToken', pipeline_response)
+
+        _initial_request = self._next_link_and_continuation_token_initial(
+            continuation_token_parameter=continuation_token_parameter,
+        )
+        return ItemPaged(
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            client=self._client,
+            deserialize_output=deserialize_output,
+            next_link_name='token',
+            initial_request=_initial_request,
+            _cls=kwargs.pop("cls", None),
+            **kwargs,
+        )
+
