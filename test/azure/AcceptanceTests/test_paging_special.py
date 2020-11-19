@@ -121,3 +121,14 @@ class TestPaging(object):
         pages = client.next_link_and_continuation_token(paging_method=MyPagingMethod())
         items = [i for i in pages]
         assert len(items) == 10
+
+    def test_continuation_token_with_separate_next_operation(self, client):
+        class MyPagingMethod(DifferentNextOperationPagingMethod):
+            def get_next_request(self, continuation_token, initial_request):
+                request = self._prepare_next_request()
+                request.headers["x-ms-token"] = continuation_token
+                return request
+
+        pages = client.continuation_token_initial_operation(paging_method=MyPagingMethod())
+        items = [i for i in pages]
+        assert len(items) == 10

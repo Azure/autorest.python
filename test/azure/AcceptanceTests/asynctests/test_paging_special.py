@@ -137,3 +137,17 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 10
+
+    @pytest.mark.asyncio
+    async def test_continuation_token_with_separate_next_operation(self, client):
+        class MyPagingMethod(AsyncDifferentNextOperationPagingMethod):
+            def get_next_request(self, continuation_token, initial_request):
+                request = self._prepare_next_request()
+                request.headers["x-ms-token"] = continuation_token
+                return request
+
+        pages = client.continuation_token_initial_operation(paging_method=MyPagingMethod())
+        items = []
+        async for item in pages:
+            items.append(item)
+        assert len(items) == 10
