@@ -214,7 +214,7 @@ class TestPaging(object):
     async def test_get_multiple_pages_lro(self, client):
         """LRO + Paging at the same time.
         """
-        poller = await client.paging.begin_get_multiple_pages_lro()
+        poller = await client.paging.begin_get_multiple_pages_lro(polling_interval=0)
         pager = await poller.result()
         items = []
         async for item in pager:

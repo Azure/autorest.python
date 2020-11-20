@@ -21,7 +21,7 @@ from .client import Client
 from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .property import Property
-from .primitive_schemas import IOSchema, StringSchema
+from .primitive_schemas import IOSchema
 
 
 _LOGGER = logging.getLogger(__name__)

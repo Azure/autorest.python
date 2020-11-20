@@ -58,7 +58,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_initial.metadata['url']  # type: ignore
+        url = next_link
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
@@ -102,6 +102,7 @@ class PagingOperations(object):
         }
 
         _initial_request = self._get_pages_partial_url_initial(
+            next_link=self._get_pages_partial_url_initial.metadata['url'],
             account_name=account_name,
         )
         _next_request_partial = functools.partial(
@@ -114,13 +115,12 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
-            prepare_next_request=_next_request_partial,
+            next_request_partial=_next_request_partial,
             path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
-
 
     def _get_pages_partial_url_operation_initial(
         self,
@@ -198,6 +198,7 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_pages_partial_url_operation_initial(
+            next_link=self._get_pages_partial_url_operation_initial.metadata['url'],
             account_name=account_name,
         )
         _next_request_partial = functools.partial(
@@ -205,14 +206,13 @@ class PagingOperations(object):
             account_name=account_name,
         )
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
-            prepare_next_request=_next_request_partial,
+            next_request_partial=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
-

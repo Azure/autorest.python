@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
+import functools
 from typing import TYPE_CHECKING
 import warnings
 

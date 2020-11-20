@@ -86,7 +86,7 @@
 {% endif %}
 
     # Construct URL
-    url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
+    {{ operation.url_initialization }}
 {% if operation.parameters.path %}
     path_format_arguments = {
 {% for path_parameter in operation.parameters.path %}

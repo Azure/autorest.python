@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
-from azure.core.paging_method import BasicPagingMethod, DifferentNextOperationPagingMethod
+from azure.core.paging_method import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -31,13 +31,14 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
     def _next_link_in_response_headers_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = self._next_link_in_response_headers_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -67,27 +68,33 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResultValue', pipeline_response)
 
-        _initial_request = self._next_link_in_response_headers_initial()
+        _initial_request = self._next_link_in_response_headers_initial(
+            next_link=self._next_link_in_response_headers_initial.metadata['url'],
+        )
+        _next_request_partial = functools.partial(
+            self._next_link_in_response_headers_initial,
+        )
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name=None,
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-
     def _continuation_token_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = self._continuation_token_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -117,20 +124,26 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResultValueWithToken', pipeline_response)
 
-        _initial_request = self._continuation_token_initial()
+        _initial_request = self._continuation_token_initial(
+            next_link=self._continuation_token_initial.metadata['url'],
+        )
+        _next_request_partial = functools.partial(
+            self._continuation_token_initial,
+        )
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='token',
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-
     def _continuation_token_in_response_headers_initial(
         self,
+        next_link,  # type: str
         continuation_token_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
@@ -138,7 +151,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._continuation_token_in_response_headers_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -174,6 +187,11 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
             return self._deserialize('ProductResultValueWithToken', pipeline_response)
 
         _initial_request = self._continuation_token_in_response_headers_initial(
+            next_link=self._continuation_token_in_response_headers_initial.metadata['url'],
+            continuation_token_parameter=continuation_token_parameter,
+        )
+        _next_request_partial = functools.partial(
+            self._continuation_token_in_response_headers_initial,
             continuation_token_parameter=continuation_token_parameter,
         )
         return ItemPaged(
@@ -182,20 +200,21 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
             deserialize_output=deserialize_output,
             next_link_name=None,
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-
     def _token_with_metadata_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = self._token_with_metadata_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -225,20 +244,26 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResultValueWithToken', pipeline_response)
 
-        _initial_request = self._token_with_metadata_initial()
+        _initial_request = self._token_with_metadata_initial(
+            next_link=self._token_with_metadata_initial.metadata['url'],
+        )
+        _next_request_partial = functools.partial(
+            self._token_with_metadata_initial,
+        )
         return PagerWithMetadata(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='token',
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-
     def _next_link_and_continuation_token_initial(
         self,
+        next_link,  # type: str
         continuation_token_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
@@ -246,7 +271,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._next_link_and_continuation_token_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -283,6 +308,11 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
             return self._deserialize('ProductResultValueWithToken', pipeline_response)
 
         _initial_request = self._next_link_and_continuation_token_initial(
+            next_link=self._next_link_and_continuation_token_initial.metadata['url'],
+            continuation_token_parameter=continuation_token_parameter,
+        )
+        _next_request_partial = functools.partial(
+            self._next_link_and_continuation_token_initial,
             continuation_token_parameter=continuation_token_parameter,
         )
         return ItemPaged(
@@ -291,10 +321,10 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
             deserialize_output=deserialize_output,
             next_link_name='token',
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
-
 
     def _continuation_token_initial_operation_initial(
         self,
@@ -355,18 +385,19 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResultValueWithToken', pipeline_response)
 
-        _initial_request = self._continuation_token_initial_operation_initial()
+        _initial_request = self._continuation_token_initial_operation_initial(
+            next_link=self._continuation_token_initial_operation_initial.metadata['url'],
+        )
         _next_request_partial = functools.partial(
             self._continuation_token_initial_operation_next,
         )
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", DifferentNextOperationPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='token',
-            prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
-

@@ -17,6 +17,15 @@ from .parameter import ParameterLocation
 
 _LOGGER = logging.getLogger(__name__)
 
+def _get_paging_method_import(async_mode):
+    file_import = FileImport()
+    paging_file = "async_paging" if async_mode else "paging"
+    async_prefix = "Async" if async_mode else ""
+    file_import.add_from_import(
+        f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
+    )
+    return file_import
+
 
 class PagingOperation(Operation):
     def __init__(
@@ -128,22 +137,33 @@ class PagingOperation(Operation):
 
     @property
     def initial_request(self) -> Operation:
+        """
+        Initial requests will have the URL to make their calls against as the first parameter.
+        They will have this parameter if there's no separate next operation, since if there's
+        a next operation, the subsequent requests go to that separate next operation.
+
+        Once we add support for token param name not being "next_link", we will still
+        insert a next_link parameter for initial requests, but we will add an additional
+        parameter before it for the token input param (provided there's no separate next operation)
+        """
         parameters = self.parameters.parameters.copy()
+        url_initialization = None
         if not self.next_operation:
             schema = StringSchema("", {"type": "str"})
-            token_param = Parameter(
+            next_link_param = Parameter(
                 schema=schema,
                 yaml_data={},
-                rest_api_name=self.token_param_name,
-                serialized_name=self.token_param_name,
-                description="Parameter that takes in the continuation token",
+                rest_api_name="next_link",
+                serialized_name="next_link",
+                description="Parameter to take in url for next call",
                 implementation="Method",
                 required=True,
                 location=ParameterLocation.Other,
                 skip_url_encoding=True,
                 constraints=[],
             )
-            parameters.insert(0, token_param)
+            parameters.insert(0, next_link_param)
+            url_initialization = "url = next_link"
         return Operation(
             yaml_data={},
             name="_" + self.name + "_initial",
@@ -159,6 +179,7 @@ class PagingOperation(Operation):
             want_description_docstring=False,
             want_tracing=False,
             makes_network_call=False,
+            url_initialization=url_initialization,
         )
 
     @property
@@ -195,22 +216,13 @@ class PagingOperation(Operation):
             makes_network_call=False,
         )
 
-    def _get_paging_method_import(self, async_mode):
-        file_import = FileImport()
-        paging_file = "async_paging" if async_mode else "paging"
-        async_prefix = "Async" if async_mode else ""
-        file_import.add_from_import(
-            f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
-        )
-        return file_import
-
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)
 
 
         async_prefix = "Async" if async_mode else ""
 
-        file_import.merge(self._get_paging_method_import(async_mode))
+        file_import.merge(_get_paging_method_import(async_mode))
         file_import.add_import("functools", ImportType.STDLIB)
 
         file_import.add_from_import("typing", f"{async_prefix}Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
