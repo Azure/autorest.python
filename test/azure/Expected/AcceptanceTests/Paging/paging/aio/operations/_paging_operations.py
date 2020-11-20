@@ -10,7 +10,7 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_method import AsyncBasicPagingMethod, AsyncDifferentNextOperationPagingMethod
+from azure.core.async_paging_method import AsyncBasicPagingMethod, AsyncPagingMethodWithInitialResponse
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
@@ -83,12 +83,16 @@ class PagingOperations:
             return self._deserialize('ProductResultValue', pipeline_response)
 
         _initial_request = self._get_no_item_name_pages_initial()
+        _next_request_partial = functools.partial(
+            self._get_no_item_name_pages_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -130,12 +134,16 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_null_next_link_name_pages_initial()
+        _next_request_partial = functools.partial(
+            self._get_null_next_link_name_pages_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name=None,
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -178,12 +186,16 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_single_pages_initial()
+        _next_request_partial = functools.partial(
+            self._get_single_pages_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -227,12 +239,16 @@ class PagingOperations:
             return self._deserialize('ProductResultValue', pipeline_response)
 
         _initial_request = self._first_response_empty_initial()
+        _next_request_partial = functools.partial(
+            self._first_response_empty_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -297,12 +313,18 @@ class PagingOperations:
             client_request_id=client_request_id,
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_initial,
+            client_request_id=client_request_id,
+            paging_get_multiple_pages_options=paging_get_multiple_pages_options,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -386,8 +408,8 @@ class PagingOperations:
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
-            prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -453,12 +475,18 @@ class PagingOperations:
             client_request_id=client_request_id,
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
+        _next_request_partial = functools.partial(
+            self._get_odata_multiple_pages_initial,
+            client_request_id=client_request_id,
+            paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='odata_next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -538,12 +566,18 @@ class PagingOperations:
             paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
             client_request_id=client_request_id,
         )
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_with_offset_initial,
+            paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
+            client_request_id=client_request_id,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
@@ -588,12 +622,16 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_retry_first_initial()
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_retry_first_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -637,12 +675,16 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_retry_second_initial()
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_retry_second_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -685,12 +727,16 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_single_pages_failure_initial()
+        _next_request_partial = functools.partial(
+            self._get_single_pages_failure_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -733,12 +779,16 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_failure_initial()
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_failure_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -781,12 +831,16 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_failure_uri_initial()
+        _next_request_partial = functools.partial(
+            self._get_multiple_pages_failure_uri_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -884,8 +938,8 @@ class PagingOperations:
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='odata_next_link',
-            prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -988,8 +1042,8 @@ class PagingOperations:
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='odata_next_link',
-            prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -1156,12 +1210,16 @@ class PagingOperations:
             return self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
 
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial()
+        _next_request_partial = functools.partial(
+            self._get_paging_model_with_item_name_with_xms_client_name_initial,
+        )
         return AsyncItemPaged(
             paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='indexes',
             _cls=kwargs.pop("cls", None),
             **kwargs,

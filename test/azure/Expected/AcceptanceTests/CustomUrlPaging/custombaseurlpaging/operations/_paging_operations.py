@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
-from azure.core.paging_method import BasicPagingMethod, DifferentNextOperationPagingMethod
+from azure.core.paging_method import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -103,12 +103,17 @@ class PagingOperations(object):
         _initial_request = self._get_pages_partial_url_initial(
             account_name=account_name,
         )
+        _next_request_partial = functools.partial(
+            self._get_pages_partial_url_initial,
+            account_name=account_name,
+        )
         return ItemPaged(
             paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
@@ -203,8 +208,8 @@ class PagingOperations(object):
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
-            prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
+            prepare_next_request=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,

@@ -123,23 +123,24 @@ class PagingOperation(Operation):
             return [200]
         return super(PagingOperation, self).success_status_code
 
+    def _get_paging_method_import(self, async_mode):
+        file_import = FileImport()
+        paging_file = "async_paging" if async_mode else "paging"
+        async_prefix = "Async" if async_mode else ""
+        file_import.add_from_import(
+            f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
+        )
+        return file_import
+
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)
 
-        paging_file = "async_paging" if async_mode else "paging"
+
         async_prefix = "Async" if async_mode else ""
 
-        if self.next_operation:
-            file_import.add_from_import(
-                f"azure.core.{paging_file}_method",
-                f"{async_prefix}DifferentNextOperationPagingMethod",
-                ImportType.AZURECORE
-            )
-            file_import.add_import("functools", ImportType.STDLIB)
-        else:
-            file_import.add_from_import(
-                f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
-            )
+        file_import.merge(self._get_paging_method_import(async_mode))
+        file_import.add_import("functools", ImportType.STDLIB)
+
         file_import.add_from_import("typing", f"{async_prefix}Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if async_mode:
