@@ -49,6 +49,7 @@ class PagingOperations:
 
     def _get_no_item_name_pages_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -100,6 +101,7 @@ class PagingOperations:
 
     def _get_null_next_link_name_pages_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -152,6 +154,7 @@ class PagingOperations:
 
     def _get_single_pages_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -204,6 +207,7 @@ class PagingOperations:
 
     def _first_response_empty_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -256,6 +260,7 @@ class PagingOperations:
 
     def _get_multiple_pages_initial(
         self,
+        next_link: str,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_options: Optional["_models.PagingGetMultiplePagesOptions"] = None,
         **kwargs
@@ -418,6 +423,7 @@ class PagingOperations:
 
     def _get_odata_multiple_pages_initial(
         self,
+        next_link: str,
         client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional["_models.PagingGetOdataMultiplePagesOptions"] = None,
         **kwargs
@@ -495,6 +501,7 @@ class PagingOperations:
 
     def _get_multiple_pages_with_offset_initial(
         self,
+        next_link: str,
         paging_get_multiple_pages_with_offset_options: "_models.PagingGetMultiplePagesWithOffsetOptions",
         client_request_id: Optional[str] = None,
         **kwargs
@@ -587,6 +594,7 @@ class PagingOperations:
 
     def _get_multiple_pages_retry_first_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -640,6 +648,7 @@ class PagingOperations:
 
     def _get_multiple_pages_retry_second_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -693,6 +702,7 @@ class PagingOperations:
 
     def _get_single_pages_failure_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -745,6 +755,7 @@ class PagingOperations:
 
     def _get_multiple_pages_failure_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -797,6 +808,7 @@ class PagingOperations:
 
     def _get_multiple_pages_failure_uri_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
@@ -1175,6 +1187,7 @@ class PagingOperations:
 
     def _get_paging_model_with_item_name_with_xms_client_name_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"

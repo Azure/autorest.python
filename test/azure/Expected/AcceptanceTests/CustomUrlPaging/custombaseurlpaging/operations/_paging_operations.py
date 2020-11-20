@@ -50,6 +50,7 @@ class PagingOperations(object):
 
     def _get_pages_partial_url_initial(
         self,
+        next_link,  # type: str
         account_name,  # type: str
         **kwargs  # type: Any
     ):

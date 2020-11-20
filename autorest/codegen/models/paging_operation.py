@@ -12,6 +12,8 @@ from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
+from .primitive_schemas import StringSchema
+from .parameter import ParameterLocation
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -60,6 +62,7 @@ class PagingOperation(Operation):
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
         self.coroutine_when_async = False
+        self.token_param_name = "next_link"
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
@@ -122,6 +125,75 @@ class PagingOperation(Operation):
         if self.override_success_response_to_200:
             return [200]
         return super(PagingOperation, self).success_status_code
+
+    @property
+    def initial_request(self) -> Operation:
+        parameters = self.parameters.parameters.copy()
+        if not self.next_operation:
+            schema = StringSchema("", {"type": "str"})
+            token_param = Parameter(
+                schema=schema,
+                yaml_data={},
+                rest_api_name=self.token_param_name,
+                serialized_name=self.token_param_name,
+                description="Parameter that takes in the continuation token",
+                implementation="Method",
+                required=True,
+                location=ParameterLocation.Other,
+                skip_url_encoding=True,
+                constraints=[],
+            )
+            parameters.insert(0, token_param)
+        return Operation(
+            yaml_data={},
+            name="_" + self.name + "_initial",
+            description="",
+            url=self.url,
+            method=self.method,
+            multipart=self.multipart,
+            api_versions=self.api_versions,
+            parameters=parameters,
+            requests=self.requests,
+            responses=self.responses,
+            exceptions=self.exceptions,
+            want_description_docstring=False,
+            want_tracing=False,
+            makes_network_call=False,
+        )
+
+    @property
+    def next_request(self) -> Operation:
+        next_operation = cast(Operation, self.next_operation)
+
+        # Currently only supported param name is nextLink, will be updated
+        # to allow more with tokenParamName support in swagger
+        params = next_operation.parameters.parameters
+        token_param = [
+            param for param in params
+            if param.serialized_name == self.token_param_name
+        ]
+        if token_param:
+            # make sure the token param name is first in line, and that it's required.
+            # (If the token is empty, we will be exiting before passing it into the next operation)
+            token_param[0].required = True
+            token_param_index = params.index(token_param[0])
+            params.insert(0, params.pop(token_param_index))
+        return Operation(
+            yaml_data={},
+            name="_" + self.name + "_next",
+            description="",
+            url=next_operation.url,
+            method=next_operation.method,
+            multipart=next_operation.multipart,
+            api_versions=next_operation.api_versions,
+            parameters=params,
+            requests=next_operation.requests,
+            responses=next_operation.responses,
+            exceptions=next_operation.exceptions,
+            want_description_docstring=False,
+            want_tracing=False,
+            makes_network_call=False,
+        )
 
     def _get_paging_method_import(self, async_mode):
         file_import = FileImport()

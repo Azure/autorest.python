@@ -47,6 +47,7 @@ class PagingOperations:
 
     def _get_pages_partial_url_initial(
         self,
+        next_link: str,
         account_name: str,
         **kwargs
     ) -> HttpRequest:

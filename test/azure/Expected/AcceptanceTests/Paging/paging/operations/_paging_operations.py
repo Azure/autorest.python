@@ -52,6 +52,7 @@ class PagingOperations(object):
 
     def _get_no_item_name_pages_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -105,6 +106,7 @@ class PagingOperations(object):
 
     def _get_null_next_link_name_pages_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -159,6 +161,7 @@ class PagingOperations(object):
 
     def _get_single_pages_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -213,6 +216,7 @@ class PagingOperations(object):
 
     def _first_response_empty_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -267,6 +271,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_initial(
         self,
+        next_link,  # type: str
         client_request_id=None,  # type: Optional[str]
         paging_get_multiple_pages_options=None,  # type: Optional["_models.PagingGetMultiplePagesOptions"]
         **kwargs  # type: Any
@@ -434,6 +439,7 @@ class PagingOperations(object):
 
     def _get_odata_multiple_pages_initial(
         self,
+        next_link,  # type: str
         client_request_id=None,  # type: Optional[str]
         paging_get_odata_multiple_pages_options=None,  # type: Optional["_models.PagingGetOdataMultiplePagesOptions"]
         **kwargs  # type: Any
@@ -513,6 +519,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_with_offset_initial(
         self,
+        next_link,  # type: str
         paging_get_multiple_pages_with_offset_options,  # type: "_models.PagingGetMultiplePagesWithOffsetOptions"
         client_request_id=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -607,6 +614,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_retry_first_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -662,6 +670,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_retry_second_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -717,6 +726,7 @@ class PagingOperations(object):
 
     def _get_single_pages_failure_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -771,6 +781,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_failure_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -825,6 +836,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_failure_uri_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1213,6 +1225,7 @@ class PagingOperations(object):
 
     def _get_paging_model_with_item_name_with_xms_client_name_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
