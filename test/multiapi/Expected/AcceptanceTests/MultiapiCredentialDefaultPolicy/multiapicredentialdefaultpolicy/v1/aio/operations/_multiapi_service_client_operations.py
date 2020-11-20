@@ -252,9 +252,6 @@ class MultiapiServiceClientOperationsMixin:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An instance of AsyncLROPoller that returns an iterator like instance of either PagingResult or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v1.models.PagingResult]]
         :raises ~azure.core.exceptions.HttpResponseError:

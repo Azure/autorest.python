@@ -55,9 +55,6 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         body.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either ProductResultValue or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -106,9 +103,6 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         calls.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -163,9 +157,6 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         :param continuation_token_parameter: Continuation token for subsequent paging.
         :type continuation_token_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -216,9 +207,6 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         results. Should be able to access metadata from pager.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~customdefinitions.aio.AsyncPagerWithMetadata[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -274,9 +262,6 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         :param continuation_token_parameter: Continuation token for subsequent paging.
         :type continuation_token_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -347,9 +332,6 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         operation. The separate next operation is not defined with the token input parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncDifferentNextOperationPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError

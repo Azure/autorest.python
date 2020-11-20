@@ -528,9 +528,6 @@ class StorageAccountsOperations:
         returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -595,9 +592,6 @@ class StorageAccountsOperations:
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError

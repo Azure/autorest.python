@@ -31,7 +31,6 @@
 {{ op_tools.content_type_docstring(operation) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
-{{ helper.paging_method_docstring(operation, async_mode) }}
 {{ return_docstring(async_mode) }}
 :raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}

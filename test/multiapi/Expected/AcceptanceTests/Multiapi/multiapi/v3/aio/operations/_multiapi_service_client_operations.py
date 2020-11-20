@@ -49,9 +49,6 @@ class MultiapiServiceClientOperationsMixin:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword paging_method: The paging strategy to adopt for making requests and exposing metadata.
-         Default is AsyncBasicPagingMethod.
-        :paramtype paging_method: ~azure.core.async_paging_method.AsyncPagingMethod
         :return: An iterator like instance of either PagingResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapi.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
