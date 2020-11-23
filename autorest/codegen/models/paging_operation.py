@@ -12,8 +12,19 @@ from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
+from .primitive_schemas import StringSchema
+from .parameter import ParameterLocation
 
 _LOGGER = logging.getLogger(__name__)
+
+def _get_paging_method_import(async_mode):
+    file_import = FileImport()
+    paging_file = "async_paging" if async_mode else "paging"
+    async_prefix = "Async" if async_mode else ""
+    file_import.add_from_import(
+        f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
+    )
+    return file_import
 
 
 class PagingOperation(Operation):
@@ -60,6 +71,7 @@ class PagingOperation(Operation):
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
         self.coroutine_when_async = False
+        self.token_param_name = "next_link"
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
@@ -123,23 +135,96 @@ class PagingOperation(Operation):
             return [200]
         return super(PagingOperation, self).success_status_code
 
+    @property
+    def initial_request(self) -> Operation:
+        """
+        Initial requests will have the URL to make their calls against as the first parameter.
+        They will have this parameter if there's no separate next operation, since if there's
+        a next operation, the subsequent requests go to that separate next operation.
+
+        Once we add support for token param name not being "next_link", we will still
+        insert a next_link parameter for initial requests, but we will add an additional
+        parameter before it for the token input param (provided there's no separate next operation)
+        """
+        parameters = self.parameters.parameters.copy()
+        url_initialization = None
+        if not self.next_operation:
+            schema = StringSchema("", {"type": "str"})
+            next_link_param = Parameter(
+                schema=schema,
+                yaml_data={},
+                rest_api_name="next_link",
+                serialized_name="next_link",
+                description="Parameter to take in url for next call",
+                implementation="Method",
+                required=True,
+                location=ParameterLocation.Other,
+                skip_url_encoding=True,
+                constraints=[],
+            )
+            parameters.insert(0, next_link_param)
+            url_initialization = "url = next_link"
+        return Operation(
+            yaml_data={},
+            name="_" + self.name + "_initial",
+            description="",
+            url=self.url,
+            method=self.method,
+            multipart=self.multipart,
+            api_versions=self.api_versions,
+            parameters=parameters,
+            requests=self.requests,
+            responses=self.responses,
+            exceptions=self.exceptions,
+            want_description_docstring=False,
+            want_tracing=False,
+            makes_network_call=False,
+            url_initialization=url_initialization,
+        )
+
+    @property
+    def next_request(self) -> Operation:
+        next_operation = cast(Operation, self.next_operation)
+
+        # Currently only supported param name is nextLink, will be updated
+        # to allow more with tokenParamName support in swagger
+        params = next_operation.parameters.parameters
+        token_param = [
+            param for param in params
+            if param.serialized_name == self.token_param_name
+        ]
+        if token_param:
+            # make sure the token param name is first in line, and that it's required.
+            # (If the token is empty, we will be exiting before passing it into the next operation)
+            token_param[0].required = True
+            token_param_index = params.index(token_param[0])
+            params.insert(0, params.pop(token_param_index))
+        return Operation(
+            yaml_data={},
+            name="_" + self.name + "_next",
+            description="",
+            url=next_operation.url,
+            method=next_operation.method,
+            multipart=next_operation.multipart,
+            api_versions=next_operation.api_versions,
+            parameters=params,
+            requests=next_operation.requests,
+            responses=next_operation.responses,
+            exceptions=next_operation.exceptions,
+            want_description_docstring=False,
+            want_tracing=False,
+            makes_network_call=False,
+        )
+
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)
 
-        paging_file = "async_paging" if async_mode else "paging"
+
         async_prefix = "Async" if async_mode else ""
 
-        if self.next_operation:
-            file_import.add_from_import(
-                f"azure.core.{paging_file}_method",
-                f"{async_prefix}DifferentNextOperationPagingMethod",
-                ImportType.AZURECORE
-            )
-            file_import.add_import("functools", ImportType.STDLIB)
-        else:
-            file_import.add_from_import(
-                f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
-            )
+        file_import.merge(_get_paging_method_import(async_mode))
+        file_import.add_import("functools", ImportType.STDLIB)
+
         file_import.add_from_import("typing", f"{async_prefix}Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if async_mode:

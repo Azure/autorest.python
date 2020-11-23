@@ -2,24 +2,30 @@
 
 {% macro item_paged_retval(operation, async_mode, initial_response=None) %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% if operation.next_operation %}
-    {% set paging_method = "DifferentNextOperationPagingMethod" %}
+{% if initial_response %}
+    {% set paging_method = "PagingMethodWithInitialResponse" %}
 {% else %}
     {% set paging_method = "BasicPagingMethod" %}
 {% endif %}
 {% if not initial_response %}
-_initial_request = self._{{ operation.python_name }}_initial({{ ")" if not operation.parameters.method }}
-    {% if operation.parameters.method %}
-        {% for parameter in operation.parameters.method %}
+_initial_request = self._{{ operation.python_name }}_initial(
+    next_link=self._{{ operation.python_name }}_initial.metadata['url'],
+    {% for parameter in operation.parameters.method %}
     {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-        {% endfor %}
+    {% endfor %}
 )
-    {% endif %}
 {% endif %}
-{% if operation.next_operation %}
+{% if not initial_response %}
+    {% if operation.next_operation %}
+        {% set next_operation_suffix = "_next" %}
+        {% set method_parameters = operation.next_operation.parameters.method %}
+    {% else %}
+        {% set next_operation_suffix = "_initial" %}
+        {% set method_parameters = operation.parameters.method %}
+    {% endif %}
 _next_request_partial = functools.partial(
-    self._{{ operation.python_name }}_next,
-    {% for parameter in operation.next_operation.parameters.method %}
+    self._{{ operation.python_name }}{{ next_operation_suffix }},
+    {% for parameter in method_parameters %}
         {% if parameter.serialized_name != "next_link" %}
     {{ parameter.serialized_name }}={{ parameter.serialized_name }},
         {% endif %}
@@ -31,13 +37,11 @@ return {{ operation.get_pager(async_mode) }}(
     client=self._client,
     deserialize_output=deserialize_output,
     next_link_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},
-    {% if operation.next_operation %}
-    prepare_next_request=_next_request_partial,
-    {% endif %}
     {% if initial_response %}
     initial_response={{ initial_response }},
     {% else %}
     initial_request=_initial_request,
+    next_request_partial=_next_request_partial,
     {% endif %}
     {% if operation.parameters.path and not operation.next_operation %}
     path_format_arguments=path_format_arguments,

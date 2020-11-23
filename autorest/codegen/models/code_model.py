@@ -178,59 +178,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     i += 1
                 i += 1
 
-    @staticmethod
-    def _paging_initial_function(operation: PagingOperation) -> Operation:
-        return Operation(
-            yaml_data={},
-            name="_" + operation.name + "_initial",
-            description="",
-            url=operation.url,
-            method=operation.method,
-            multipart=operation.multipart,
-            api_versions=operation.api_versions,
-            parameters=operation.parameters.parameters,
-            requests=operation.requests,
-            responses=operation.responses,
-            exceptions=operation.exceptions,
-            want_description_docstring=False,
-            want_tracing=False,
-            makes_network_call=False,
-        )
-
-    @staticmethod
-    def _paging_next_function(operation: PagingOperation) -> Operation:
-        next_operation = cast(Operation, operation.next_operation)
-
-        # Currently only supported param name is nextLink, will be updated
-        # to allow more with tokenParamName support in swagger
-        params = next_operation.parameters.parameters
-        token_param = [
-            param for param in params
-            if param.serialized_name == "next_link"
-        ]
-        if token_param:
-            # make sure the token param name is first in line, and that it's required.
-            # (If the token is empty, we will be exiting before passing it into the next operation)
-            token_param[0].required = True
-            token_param_index = params.index(token_param[0])
-            params.insert(0, params.pop(token_param_index))
-        return Operation(
-            yaml_data={},
-            name="_" + operation.name + "_next",
-            description="",
-            url=next_operation.url,
-            method=next_operation.method,
-            multipart=next_operation.multipart,
-            api_versions=next_operation.api_versions,
-            parameters=params,
-            requests=next_operation.requests,
-            responses=next_operation.responses,
-            exceptions=next_operation.exceptions,
-            want_description_docstring=False,
-            want_tracing=False,
-            makes_network_call=False,
-        )
-
     def format_paging_operations(self) -> None:
         """Adds initial and next operations needed for paging operations.
 
@@ -243,10 +190,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 operation = operation_group.operations[i]
                 if isinstance(operation, PagingOperation):
                     if not isinstance(operation, LROPagingOperation):
-                        operation_group.operations.insert(i, CodeModel._paging_initial_function(operation))
+                        operation_group.operations.insert(i, operation.initial_request)
                         i += 1
                     if operation.next_operation:
-                        operation_group.operations.insert(i, CodeModel._paging_next_function(operation))
+                        operation_group.operations.insert(i, operation.next_request)
                         i += 1
                 i += 1
 

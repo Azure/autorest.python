@@ -160,7 +160,7 @@ class TestPaging(object):
         """LRO + Paging at the same time.
         """
 
-        poller = client.paging.begin_get_multiple_pages_lro()
+        poller = client.paging.begin_get_multiple_pages_lro(polling_interval=0)
         pager = poller.result()
 
         items = list(pager)

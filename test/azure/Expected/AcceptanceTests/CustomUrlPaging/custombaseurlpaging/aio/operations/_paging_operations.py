@@ -10,7 +10,7 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_method import AsyncBasicPagingMethod, AsyncDifferentNextOperationPagingMethod
+from azure.core.async_paging_method import AsyncBasicPagingMethod
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
@@ -47,13 +47,14 @@ class PagingOperations:
 
     def _get_pages_partial_url_initial(
         self,
+        next_link: str,
         account_name: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_initial.metadata['url']  # type: ignore
+        url = next_link
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
@@ -96,6 +97,11 @@ class PagingOperations:
         }
 
         _initial_request = self._get_pages_partial_url_initial(
+            next_link=self._get_pages_partial_url_initial.metadata['url'],
+            account_name=account_name,
+        )
+        _next_request_partial = functools.partial(
+            self._get_pages_partial_url_initial,
             account_name=account_name,
         )
         return AsyncItemPaged(
@@ -104,12 +110,12 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             next_link_name='next_link',
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
-
 
     def _get_pages_partial_url_operation_initial(
         self,
@@ -184,6 +190,7 @@ class PagingOperations:
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_pages_partial_url_operation_initial(
+            next_link=self._get_pages_partial_url_operation_initial.metadata['url'],
             account_name=account_name,
         )
         _next_request_partial = functools.partial(
@@ -191,14 +198,13 @@ class PagingOperations:
             account_name=account_name,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncDifferentNextOperationPagingMethod()),
+            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
-            prepare_next_request=_next_request_partial,
             initial_request=_initial_request,
+            next_request_partial=_next_request_partial,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
-

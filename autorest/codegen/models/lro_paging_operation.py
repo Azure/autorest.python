@@ -7,10 +7,19 @@
 from typing import Any, Dict, List, Set, Optional
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .imports import FileImport
+from .imports import FileImport, ImportType
 from .schema_request import SchemaRequest
 from .parameter import Parameter
 from .schema_response import SchemaResponse
+
+def _get_paging_method_import(async_mode):
+    file_import = FileImport()
+    paging_file = "async_paging" if async_mode else "paging"
+    async_prefix = "Async" if async_mode else ""
+    file_import.add_from_import(
+        f"azure.core.{paging_file}_method", f"{async_prefix}PagingMethodWithInitialResponse", ImportType.AZURECORE
+    )
+    return file_import
 
 class LROPagingOperation(PagingOperation, LROOperation):
     def __init__(
