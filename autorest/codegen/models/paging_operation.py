@@ -104,8 +104,15 @@ class PagingOperation(Operation):
 
     @property
     def has_optional_return_type(self) -> bool:
-        """A paging will never have an optional return type, we will always return ItemPaged[return type]"""
+        """A paging will never have an optional return type, we will always return a pager"""
         return False
+
+    def get_pager_path(self, async_mode: bool) -> str:
+        extension_name = "pager-async" if async_mode else "pager-sync"
+        return self.yaml_data["extensions"][extension_name]
+
+    def get_pager(self, async_mode: bool) -> str:
+        return self.get_pager_path(async_mode).split(".")[-1]
 
     @property
     def success_status_code(self) -> List[Union[str, int]]:
@@ -118,12 +125,15 @@ class PagingOperation(Operation):
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)
 
+        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
+        pager = self.get_pager(async_mode)
+
+        file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE)
+
         if async_mode:
-            file_import.add_from_import("azure.core.async_paging", "AsyncItemPaged", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
             file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         else:
-            file_import.add_from_import("azure.core.paging", "ItemPaged", ImportType.AZURECORE)
             file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if code_model.options["tracing"]:

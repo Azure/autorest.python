@@ -25,7 +25,7 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
         **kwargs
     ):
         super(ModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', None)
+        self.parameter = kwargs.get('parameter', "value1")
 
 
 class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
@@ -63,7 +63,7 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
         **kwargs
     ):
         super(ModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', None)
+        self.parameter = kwargs.get('parameter', "value1")
 
 
 class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
@@ -107,7 +107,7 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
         **kwargs
     ):
         super(ModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs['parameter']
+        self.parameter = kwargs.get('parameter', "value1")
 
 
 class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
@@ -157,7 +157,7 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         **kwargs
     ):
         super(ModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs['parameter']
+        self.parameter = kwargs.get('parameter', "value1")
 
 
 class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
@@ -253,7 +253,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
         **kwargs
     ):
         super(NoModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs.get('parameter', None)
+        self.parameter = kwargs.get('parameter', "value1")
 
 
 class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
@@ -353,7 +353,7 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         **kwargs
     ):
         super(NoModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
-        self.parameter = kwargs['parameter']
+        self.parameter = kwargs.get('parameter', "value1")
 
 
 class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):

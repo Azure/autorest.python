@@ -225,7 +225,7 @@ class PetAction(msrest.serialization.Model):
         self.action_response = action_response
 
 
-class PetActionError(msrest.serialization.Model):
+class PetActionError(PetAction):
     """PetActionError.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -233,6 +233,8 @@ class PetActionError(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param action_response: action feedback.
+    :type action_response: str
     :param error_type: Required. Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
@@ -244,6 +246,7 @@ class PetActionError(msrest.serialization.Model):
     }
 
     _attribute_map = {
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
         'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
     }
@@ -255,11 +258,12 @@ class PetActionError(msrest.serialization.Model):
     def __init__(
         self,
         *,
+        action_response: Optional[str] = None,
         error_message: Optional[str] = None,
         **kwargs
     ):
-        super(PetActionError, self).__init__(**kwargs)
-        self.error_type = None  # type: Optional[str]
+        super(PetActionError, self).__init__(action_response=action_response, **kwargs)
+        self.error_type = 'PetActionError'  # type: str
         self.error_message = error_message
 
 
@@ -271,6 +275,8 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param action_response: action feedback.
+    :type action_response: str
     :param error_type: Required. Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
@@ -284,6 +290,7 @@ class PetSadError(PetActionError):
     }
 
     _attribute_map = {
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
         'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
         'reason': {'key': 'reason', 'type': 'str'},
@@ -296,11 +303,12 @@ class PetSadError(PetActionError):
     def __init__(
         self,
         *,
+        action_response: Optional[str] = None,
         error_message: Optional[str] = None,
         reason: Optional[str] = None,
         **kwargs
     ):
-        super(PetSadError, self).__init__(error_message=error_message, **kwargs)
+        super(PetSadError, self).__init__(action_response=action_response, error_message=error_message, **kwargs)
         self.error_type = 'PetSadError'  # type: str
         self.reason = reason
 
@@ -310,6 +318,8 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to Azure.
 
+    :param action_response: action feedback.
+    :type action_response: str
     :param error_type: Required. Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
@@ -325,6 +335,7 @@ class PetHungryOrThirstyError(PetSadError):
     }
 
     _attribute_map = {
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
         'error_type': {'key': 'errorType', 'type': 'str'},
         'error_message': {'key': 'errorMessage', 'type': 'str'},
         'reason': {'key': 'reason', 'type': 'str'},
@@ -334,11 +345,12 @@ class PetHungryOrThirstyError(PetSadError):
     def __init__(
         self,
         *,
+        action_response: Optional[str] = None,
         error_message: Optional[str] = None,
         reason: Optional[str] = None,
         hungry_or_thirsty: Optional[str] = None,
         **kwargs
     ):
-        super(PetHungryOrThirstyError, self).__init__(error_message=error_message, reason=reason, **kwargs)
+        super(PetHungryOrThirstyError, self).__init__(action_response=action_response, error_message=error_message, reason=reason, **kwargs)
         self.error_type = 'PetHungryOrThirstyError'  # type: str
         self.hungry_or_thirsty = hungry_or_thirsty

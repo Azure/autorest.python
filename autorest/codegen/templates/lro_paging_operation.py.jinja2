@@ -5,8 +5,8 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring(async_mode) %}
-:return: An instance of {{ "Async" if async_mode }}LROPoller that returns an iterator like instance of either {{ operation.responses[0].docstring_text }} or the result of cls(response)
-:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[~azure.core.{{ "async_" if async_mode else "" }}paging.{{ "Async" if async_mode }}ItemPaged[{{ operation.responses[0].docstring_type }}]]{% endmacro %}
+:return: An instance of {{ operation.get_poller(async_mode) }} that returns an iterator like instance of either {{ operation.responses[0].docstring_text }} or the result of cls(response)
+:rtype: ~{{ operation.get_poller_path(async_mode) }}[~{{ operation.get_pager_path(async_mode) }}[{{ operation.responses[0].docstring_type }}]]{% endmacro %}
 {% macro operation_docstring(async_mode) %}
 {{ lro_helper.operation_docstring_helper(operation, async_mode) }}
 {{ return_docstring(async_mode) }}
@@ -16,7 +16,7 @@
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{% set return_type_wrapper = [("Async" if async_mode else "") ~ "LROPoller", ("Async" if async_mode else "") ~ "ItemPaged"] %}
+{% set return_type_wrapper = [operation.get_poller(async_mode), operation.get_pager(async_mode)] %}
 {{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
@@ -32,7 +32,7 @@
             else:
                 return {{ keywords.await }}get_next(next_link)
 
-        return {{ "Async" if async_mode }}ItemPaged(
+        return {{ operation.get_pager(async_mode) }}(
             internal_get_next, extract_data
         )
 {{ lro_helper.lro_operation_return(code_model, operation, async_mode) }}
