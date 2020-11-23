@@ -52,19 +52,20 @@ class JinjaSerializer:
         if code_model.schemas or code_model.enums:
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
-        self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-
         self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
-        if not code_model.options["no_async"]:
-            self._serialize_and_write_aio_folder(
-                code_model=code_model, env=env, namespace_path=namespace_path,
-            )
+        if code_model.operation_groups:
+            self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
-        if code_model.options["multiapi"]:
-            self._serialize_and_write_metadata(
-                code_model, env=env, namespace_path=namespace_path
-            )
+            if not code_model.options["no_async"]:
+                self._serialize_and_write_aio_folder(
+                    code_model=code_model, env=env, namespace_path=namespace_path,
+                )
+
+            if code_model.options["multiapi"]:
+                self._serialize_and_write_metadata(
+                    code_model, env=env, namespace_path=namespace_path
+                )
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
@@ -155,7 +156,14 @@ class JinjaSerializer:
     ) -> None:
         general_serializer = GeneralSerializer(code_model=code_model, env=env, async_mode=False)
 
-        self._autorestapi.write_file(namespace_path / Path("__init__.py"), general_serializer.serialize_init_file())
+        if code_model.operation_groups:
+            self._autorestapi.write_file(
+                namespace_path / Path("__init__.py"), general_serializer.serialize_init_file()
+            )
+        else:
+            self._autorestapi.write_file(
+                namespace_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file()
+            )
         p = namespace_path.parent
         while p != Path("."):
             # write pkgutil init file
@@ -165,9 +173,11 @@ class JinjaSerializer:
             p = p.parent
 
         # Write the service client
-        self._autorestapi.write_file(
-            namespace_path / Path(f"_{code_model.module_name}.py"), general_serializer.serialize_service_client_file()
-        )
+        if code_model.operation_groups:
+            self._autorestapi.write_file(
+                namespace_path / Path(f"_{code_model.module_name}.py"),
+                general_serializer.serialize_service_client_file()
+            )
 
         self._serialize_and_write_version_file(code_model, namespace_path, general_serializer)
 
@@ -175,9 +185,10 @@ class JinjaSerializer:
         self._autorestapi.write_file(namespace_path / Path("py.typed"), "# Marker file for PEP 561.")
 
         # Write the config file
-        self._autorestapi.write_file(
-            namespace_path / Path("_configuration.py"), general_serializer.serialize_config_file()
-        )
+        if code_model.operation_groups:
+            self._autorestapi.write_file(
+                namespace_path / Path("_configuration.py"), general_serializer.serialize_config_file()
+            )
 
         # Write the setup file
         if code_model.options["basic_setup_py"]:

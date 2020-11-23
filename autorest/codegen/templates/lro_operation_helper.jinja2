@@ -58,7 +58,6 @@
     {% set async_prefix = "Async" if async_mode else "" %}
     {% set path_format_arguments = "" %}
     {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
-    {% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
     {% set operation_name = "begin_"+operation.python_name %}
     {% if operation.parameters.path %}
     {% set path_format_arguments = ", path_format_arguments=path_format_arguments" %}
@@ -77,13 +76,13 @@
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
     if cont_token:
-        return {{ poller }}.from_continuation_token(
+        return {{ operation.get_poller(async_mode) }}.from_continuation_token(
             polling_method=polling_method,
             continuation_token=cont_token,
             client=self._client,
             deserialization_callback=get_long_running_output
         )
     else:
-        return {{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
+        return {{ operation.get_poller(async_mode) }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore
 {%- endmacro -%}

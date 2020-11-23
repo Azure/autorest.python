@@ -3,8 +3,8 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring(async_mode) %}
-:return: An instance of {{ "Async" if async_mode }}LROPoller that returns either {{ operation.responses[0].docstring_text }} or the result of cls(response)
-:rtype: ~azure.core.polling.{{ "Async" if async_mode }}LROPoller[{{ operation.responses[0].docstring_type }}]{% endmacro %}
+:return: An instance of {{ operation.get_poller(async_mode) }} that returns either {{ operation.responses[0].docstring_text }} or the result of cls(response)
+:rtype: ~{{ operation.get_poller_path(async_mode)}}[{{ operation.responses[0].docstring_type }}]{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
@@ -21,7 +21,7 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{% set return_type_wrapper = ["AsyncLROPoller" if async_mode else "LROPoller"] %}
+{% set return_type_wrapper = [operation.get_poller(async_mode)] %}
 {{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}

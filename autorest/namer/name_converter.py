@@ -57,6 +57,26 @@ class NameConverter:
                         NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
                 for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
+                if operation.get("extensions"):
+                    NameConverter._convert_extensions(operation)
+
+    @staticmethod
+    def _convert_extensions(operation: Dict[str, Any]) -> None:
+        operation_extensions = operation["extensions"]
+        if operation_extensions.get('x-ms-pageable'):
+            operation["extensions"]["pager-sync"] = operation_extensions.get(
+                "x-python-custom-pager-sync", "azure.core.paging.ItemPaged"
+            )
+            operation["extensions"]["pager-async"] = operation_extensions.get(
+                "x-python-custom-pager-async", "azure.core.async_paging.AsyncItemPaged"
+            )
+        if operation_extensions.get("x-ms-long-running-operation"):
+            operation["extensions"]["poller-sync"] = operation_extensions.get(
+                "x-python-custom-poller-sync", "azure.core.polling.LROPoller"
+            )
+            operation["extensions"]["poller-async"] = operation_extensions.get(
+                "x-python-custom-poller-async", "azure.core.polling.AsyncLROPoller"
+            )
 
     @staticmethod
     def _convert_schemas(schemas: Dict[str, Any]) -> None:

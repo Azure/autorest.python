@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import copy
 import json
-from typing import List, Optional, Set, Tuple, Dict
+from typing import List, Optional, Set, Tuple, Dict, Union
 from jinja2 import Environment
 from .general_serializer import config_imports
 from ..models import (
@@ -27,7 +27,10 @@ def _correct_credential_parameter(global_parameters: ParameterList, async_mode: 
     credential_param.schema = TokenCredentialSchema(async_mode=async_mode)
 
 def _json_serialize_imports(
-    imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]]
+    imports: Dict[
+        TypingSection,
+        Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+    ]
 ):
     if not imports:
         return None
