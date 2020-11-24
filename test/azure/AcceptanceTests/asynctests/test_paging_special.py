@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from pagingspecial.aio import AutoRestSpecialPagingTestService
-from azure.core.async_paging_method import AsyncBasicPagingMethod
+from azure.core.paging_method import BasicPagingMethod
 import pytest
 
 @pytest.fixture
@@ -38,7 +38,7 @@ async def client(credential, authentication_policy):
 class TestPaging(object):
     @pytest.mark.asyncio
     async def test_next_link_in_response_headers(self, client):
-        class MyPagingMethod(AsyncBasicPagingMethod):
+        class MyPagingMethod(BasicPagingMethod):
             def get_continuation_token(self, pipeline_response, deserialized):
                 return pipeline_response.http_response.headers.get('x-ms-nextLink', None)
 
@@ -50,9 +50,9 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_continuation_token(self, client):
-        class MyPagingMethod(AsyncBasicPagingMethod):
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial(self._initial_request.url)
+        class MyPagingMethod(BasicPagingMethod):
+            def get_next_request(self, continuation_token, next_request_partial):
+                request = next_request_partial(self._initial_request.url)
                 request.headers["x-ms-token"] = continuation_token
                 return request
 
@@ -64,12 +64,12 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_continuation_token_in_response_headers(self, client):
-        class MyPagingMethod(AsyncBasicPagingMethod):
+        class MyPagingMethod(BasicPagingMethod):
             def get_continuation_token(self, pipeline_response, deserialized):
                 return pipeline_response.http_response.headers.get('x-ms-token', None)
 
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial(self._initial_request.url)
+            def get_next_request(self, continuation_token, next_request_partial):
+                request = next_request_partial(self._initial_request.url)
                 request.headers["x-ms-token"] = continuation_token
                 return request
 
@@ -81,21 +81,21 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_token_with_metadata(self, client):
-        class MyPagingMethod(AsyncBasicPagingMethod):
+        class MyPagingMethod(BasicPagingMethod):
             def __init__(self):
                 super(MyPagingMethod, self).__init__()
-                self.count = None
+                self._count = None
 
             def get_continuation_token(self, pipeline_response, deserialized):
                 token = deserialized.token
                 if not token:
                     return None
                 split_token = token.split(";")
-                self.count = split_token[1]
+                self._count = int(split_token[1])
                 return split_token[0]
 
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial(self._initial_request.url)
+            def get_next_request(self, continuation_token, next_request_partial):
+                request = next_request_partial(self._initial_request.url)
                 request.headers["x-ms-token"] = continuation_token
                 return request
 
@@ -104,11 +104,11 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 10
-        await pages.get_count()
+        assert pages.get_count() == 10
 
     @pytest.mark.asyncio
     async def test_next_link_and_continuation_token(self, client):
-        class MyPagingMethod(AsyncBasicPagingMethod):
+        class MyPagingMethod(BasicPagingMethod):
             def __init__(self):
                 super(MyPagingMethod, self).__init__()
                 self.token_to_pass_to_headers = None
@@ -121,8 +121,8 @@ class TestPaging(object):
                 self.token_to_pass_to_headers = split_token[0]
                 return split_token[1]
 
-            def get_next_request(self, continuation_token):
-                request = super(MyPagingMethod, self).get_next_request(continuation_token)
+            def get_next_request(self, continuation_token, next_request_partial):
+                request = next_request_partial(continuation_token)
                 request.headers["x-ms-token"] = self.token_to_pass_to_headers
                 return request
 
@@ -134,9 +134,9 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_continuation_token_with_separate_next_operation(self, client):
-        class MyPagingMethod(AsyncBasicPagingMethod):
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial()
+        class MyPagingMethod(BasicPagingMethod):
+            def get_next_request(self, continuation_token, next_request_partial):
+                request = next_request_partial()
                 request.headers["x-ms-token"] = continuation_token
                 return request
 

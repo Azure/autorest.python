@@ -46,8 +46,8 @@ class TestPaging(object):
 
     def test_continuation_token(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial(next_link=self._initial_request.url)
+            def get_next_request(self, continuation_token, next_request_partial=None):
+                request = next_request_partial(next_link=self._initial_request.url)
                 request.headers["x-ms-token"] = continuation_token
                 return request
 
@@ -60,8 +60,8 @@ class TestPaging(object):
             def get_continuation_token(self, pipeline_response, deserialized):
                 return pipeline_response.http_response.headers.get('x-ms-token', None)
 
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial(next_link=self._initial_request.url)
+            def get_next_request(self, continuation_token, next_request_partial=None):
+                request = next_request_partial(next_link=self._initial_request.url)
                 request.headers["x-ms-token"] = continuation_token
                 return request
 
@@ -73,25 +73,25 @@ class TestPaging(object):
         class MyPagingMethod(BasicPagingMethod):
             def __init__(self):
                 super(MyPagingMethod, self).__init__()
-                self.count = None
+                self._count = None
 
             def get_continuation_token(self, pipeline_response, deserialized):
                 token = deserialized.token
                 if not token:
                     return None
                 split_token = token.split(";")
-                self.count = split_token[1]
+                self._count = int(split_token[1])
                 return split_token[0]
 
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial(next_link=self._initial_request.url)
+            def get_next_request(self, continuation_token, next_request_partial=None):
+                request = next_request_partial(next_link=self._initial_request.url)
                 request.headers["x-ms-token"] = continuation_token
                 return request
 
         pages = client.token_with_metadata(paging_method=MyPagingMethod())
         items = [i for i in pages]
         assert len(items) == 10
-        assert pages.get_count() == "10"
+        assert pages.get_count() == 10
 
     def test_next_link_and_continuation_token(self, client):
         class MyPagingMethod(BasicPagingMethod):
@@ -107,8 +107,8 @@ class TestPaging(object):
                 self.token_to_pass_to_headers = split_token[0]
                 return split_token[1]
 
-            def get_next_request(self, continuation_token):
-                request = super(MyPagingMethod, self).get_next_request(continuation_token)
+            def get_next_request(self, continuation_token, next_request_partial=None):
+                request = next_request_partial(continuation_token)
                 request.headers["x-ms-token"] = self.token_to_pass_to_headers
                 return request
 
@@ -118,8 +118,8 @@ class TestPaging(object):
 
     def test_continuation_token_with_separate_next_operation(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def get_next_request(self, continuation_token):
-                request = self._next_request_partial()
+            def get_next_request(self, continuation_token, next_request_partial=None):
+                request = next_request_partial()
                 request.headers["x-ms-token"] = continuation_token
                 return request
 
