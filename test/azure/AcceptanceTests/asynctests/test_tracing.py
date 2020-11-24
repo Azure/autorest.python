@@ -45,7 +45,7 @@ def has_tracing_decorator(function):
 
 @pytest.mark.asyncio
 async def test_paging():
-    async with AutoRestPagingTestService("cred", base_url="dummy url") as client:
+    async with AutoRestPagingTestService(base_url="dummy url") as client:
         assert has_tracing_decorator(client.paging.get_single_pages)
 
 
