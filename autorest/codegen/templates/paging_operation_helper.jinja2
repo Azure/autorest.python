@@ -2,11 +2,6 @@
 
 {% macro item_paged_retval(operation, async_mode, initial_response=None) %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% if initial_response %}
-    {% set paging_method = "PagingMethodWithInitialResponse" %}
-{% else %}
-    {% set paging_method = "BasicPagingMethod" %}
-{% endif %}
 {% if not initial_response %}
 _initial_request = self._{{ operation.python_name }}_initial(
     next_link=self._{{ operation.python_name }}_initial.metadata['url'],
@@ -33,7 +28,7 @@ _next_request_partial = functools.partial(
 )
 {% endif %}
 return {{ operation.get_pager(async_mode) }}(
-    paging_method = kwargs.pop("paging_method", {{ keywords.async_class }}{{ paging_method }}()),
+    paging_method = kwargs.pop("paging_method", {{ operation.get_default_paging_method() }}()),
     client=self._client,
     deserialize_output=deserialize_output,
     next_link_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},

@@ -10,8 +10,8 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_method import AsyncBasicPagingMethod
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.paging_method import BasicPagingMethod, PagingMethodWithInitialResponse
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
@@ -88,7 +88,7 @@ class PagingOperations:
             self._get_no_item_name_pages_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -140,7 +140,7 @@ class PagingOperations:
             self._get_null_next_link_name_pages_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name=None,
@@ -193,7 +193,7 @@ class PagingOperations:
             self._get_single_pages_initial,
         )
         return AsyncCustomPager(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -247,7 +247,7 @@ class PagingOperations:
             self._first_response_empty_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -323,7 +323,7 @@ class PagingOperations:
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -407,7 +407,7 @@ class PagingOperations:
             self._get_with_query_params_next,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -484,7 +484,7 @@ class PagingOperations:
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='odata_next_link',
@@ -575,7 +575,7 @@ class PagingOperations:
             client_request_id=client_request_id,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -630,7 +630,7 @@ class PagingOperations:
             self._get_multiple_pages_retry_first_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -684,7 +684,7 @@ class PagingOperations:
             self._get_multiple_pages_retry_second_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -737,7 +737,7 @@ class PagingOperations:
             self._get_single_pages_failure_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -790,7 +790,7 @@ class PagingOperations:
             self._get_multiple_pages_failure_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -843,7 +843,7 @@ class PagingOperations:
             self._get_multiple_pages_failure_uri_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',
@@ -941,7 +941,7 @@ class PagingOperations:
             tenant=tenant,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='odata_next_link',
@@ -1044,7 +1044,7 @@ class PagingOperations:
             custom_parameter_group=custom_parameter_group,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='odata_next_link',
@@ -1153,7 +1153,7 @@ class PagingOperations:
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
             return AsyncItemPaged(
-                paging_method = kwargs.pop("paging_method", AsyncPagingMethodWithInitialResponse()),
+                paging_method = kwargs.pop("paging_method", PagingMethodWithInitialResponse()),
                 client=self._client,
                 deserialize_output=deserialize_output,
                 next_link_name='next_link',
@@ -1220,7 +1220,7 @@ class PagingOperations:
             self._get_paging_model_with_item_name_with_xms_client_name_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='next_link',

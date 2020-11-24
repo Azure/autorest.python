@@ -10,8 +10,8 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_method import AsyncBasicPagingMethod
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.paging_method import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -70,7 +70,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             self._next_link_in_response_headers_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name=None,
@@ -124,7 +124,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             self._continuation_token_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='token',
@@ -186,7 +186,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             continuation_token_parameter=continuation_token_parameter,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name=None,
@@ -240,7 +240,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             self._token_with_metadata_initial,
         )
         return AsyncPagerWithMetadata(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='token',
@@ -303,7 +303,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             continuation_token_parameter=continuation_token_parameter,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='token',
@@ -376,7 +376,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             self._continuation_token_initial_operation_next,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name='token',

@@ -10,8 +10,8 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_method import AsyncBasicPagingMethod
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.paging_method import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
@@ -548,7 +548,7 @@ class StorageAccountsOperations:
             self._list_initial,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name=None,
@@ -621,7 +621,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
         )
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", AsyncBasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             next_link_name=None,

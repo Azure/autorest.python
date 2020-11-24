@@ -10,8 +10,8 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.async_paging_method import AsyncBasicPagingMethod
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.paging_method import PagingMethodWithInitialResponse
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
@@ -282,7 +282,7 @@ class MultiapiServiceClientOperationsMixin:
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
             return AsyncItemPaged(
-                paging_method = kwargs.pop("paging_method", AsyncPagingMethodWithInitialResponse()),
+                paging_method = kwargs.pop("paging_method", PagingMethodWithInitialResponse()),
                 client=self._client,
                 deserialize_output=deserialize_output,
                 next_link_name='next_link',

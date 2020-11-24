@@ -17,15 +17,6 @@ from .parameter import ParameterLocation
 
 _LOGGER = logging.getLogger(__name__)
 
-def _get_paging_method_import(async_mode):
-    file_import = FileImport()
-    paging_file = "async_paging" if async_mode else "paging"
-    async_prefix = "Async" if async_mode else ""
-    file_import.add_from_import(
-        f"azure.core.{paging_file}_method", f"{async_prefix}BasicPagingMethod", ImportType.AZURECORE
-    )
-    return file_import
-
 
 class PagingOperation(Operation):
     def __init__(
@@ -127,6 +118,13 @@ class PagingOperation(Operation):
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]
 
+
+    def get_default_paging_method_path(self) -> str:
+        return "azure.core.paging_method.BasicPagingMethod"
+
+    def get_default_paging_method(self) -> str:
+        return "BasicPagingMethod"
+
     @property
     def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code.
@@ -221,8 +219,6 @@ class PagingOperation(Operation):
 
 
         async_prefix = "Async" if async_mode else ""
-
-        file_import.merge(_get_paging_method_import(async_mode))
         file_import.add_import("functools", ImportType.STDLIB)
 
         file_import.add_from_import("typing", f"{async_prefix}Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
@@ -234,6 +230,11 @@ class PagingOperation(Operation):
         pager = self.get_pager(async_mode)
 
         file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE)
+
+        default_paging_method_import_path = ".".join(self.get_default_paging_method_path().split(".")[:-1])
+        default_paging_method = self.get_default_paging_method()
+        file_import.add_from_import(default_paging_method_import_path, default_paging_method, ImportType.AZURECORE)
+
 
         if code_model.options["tracing"]:
             file_import.add_from_import(
