@@ -14,7 +14,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.polling.base_polling import LROBasePolling
-
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
@@ -321,7 +320,7 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
+        
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_options is not None:
@@ -474,7 +473,7 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
+        
         _maxresults = None
         _timeout = None
         if paging_get_odata_multiple_pages_options is not None:
@@ -554,7 +553,7 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
+        
         _maxresults = None
         _offset = None
         _timeout = None
@@ -1030,7 +1029,7 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
+        
         _api_version = None
         _tenant = None
         if custom_parameter_group is not None:
@@ -1105,7 +1104,7 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
+        
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_lro_options is not None:
@@ -1174,7 +1173,7 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-
+        
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_lro_options is not None:
