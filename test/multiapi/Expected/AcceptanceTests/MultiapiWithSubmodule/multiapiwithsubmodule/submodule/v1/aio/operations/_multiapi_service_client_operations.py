@@ -285,7 +285,7 @@ class MultiapiServiceClientOperationsMixin:
                 paging_method = kwargs.pop("paging_method", PagingMethodWithInitialResponse()),
                 client=self._client,
                 deserialize_output=deserialize_output,
-                next_link_name='next_link',
+                continuation_token_location='next_link',
                 initial_response=pipeline_response,
                 item_name='values',
                 _cls=kwargs.pop("cls", None),

@@ -31,7 +31,7 @@ return {{ operation.get_pager(async_mode) }}(
     paging_method = kwargs.pop("paging_method", {{ operation.get_default_paging_method() }}()),
     client=self._client,
     deserialize_output=deserialize_output,
-    next_link_name={{ ("'" ~ operation.next_link_name ~ "'") if operation.next_link_name else "None" }},
+    continuation_token_location={{ ("'" ~ operation.continuation_token_location ~ "'") if operation.continuation_token_location else "None" }},
     {% if initial_response %}
     initial_response={{ initial_response }},
     {% else %}

@@ -57,7 +57,7 @@ class PagingOperation(Operation):
             want_tracing
         )
         self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
-        self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
+        self._continuation_token_location: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
@@ -100,11 +100,11 @@ class PagingOperation(Operation):
         return self._find_python_name(self._item_name, "itemName")
 
     @property
-    def next_link_name(self) -> Optional[str]:
-        if not self._next_link_name:
+    def continuation_token_location(self) -> Optional[str]:
+        if not self._continuation_token_location:
             # That's an ok scenario, it just means no next page possible
             return None
-        return self._find_python_name(self._next_link_name, "nextLinkName")
+        return self._find_python_name(self._continuation_token_location, "nextLinkName")
 
     @property
     def has_optional_return_type(self) -> bool:
