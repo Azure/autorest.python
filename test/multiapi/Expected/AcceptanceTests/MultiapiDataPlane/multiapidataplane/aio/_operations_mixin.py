@@ -178,7 +178,7 @@ class MultiapiServiceClientOperationsMixin(object):
         id: int,
         message: Optional[str] = None,
         **kwargs
-    ) -> "models.ModelTwo":
+    ) -> "_models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.

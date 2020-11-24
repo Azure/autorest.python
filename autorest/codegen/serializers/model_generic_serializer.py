@@ -6,7 +6,7 @@
 from typing import List
 from jinja2 import Environment
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema, CodeModel
+from ..models import ObjectSchema, CodeModel, Property
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
@@ -16,29 +16,18 @@ class ModelGenericSerializer(ModelBaseSerializer):
             code_model=code_model, env=env, is_python_3_file=False
         )
 
-    @staticmethod
-    def init_line(model: ObjectSchema) -> List[str]:
+    def init_line(self, model: ObjectSchema) -> List[str]:
         return []
 
-    @staticmethod
-    def init_args(model: ObjectSchema) -> List[str]:
-        init_args = []
-        init_args.append(f"super({model.name}, self).__init__(**kwargs)")
+    def properties_to_pass_to_super(self, model: ObjectSchema) -> str:
+        return "**kwargs"
 
-        for prop in ModelGenericSerializer.get_properties_to_initialize(model):
-            if prop.is_discriminator:
-                discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
-                if not discriminator_value:
-                    typing = "Optional[str]"
-                else:
-                    typing = "str"
-                init_args.append(f"self.{prop.name} = {discriminator_value}  # type: {typing}")
-            elif prop.readonly:
-                init_args.append(f"self.{prop.name} = None")
-            elif not prop.constant:
-                if prop.required and not prop.default_value:
-                    init_args.append(f"self.{prop.name} = kwargs['{prop.name}']")
-                else:
-                    default = prop.default_value_declaration
-                    init_args.append(f"self.{prop.name} = kwargs.get('{prop.name}', {default})")
-        return init_args
+    def required_property_no_default_init(self, prop: Property) -> str:
+        return f"self.{prop.name} = kwargs['{prop.name}']"
+
+    def optional_property_init(self, prop: Property) -> str:
+        default = prop.default_value_declaration
+        return f"self.{prop.name} = kwargs.get('{prop.name}', {default})"
+
+    def initialize_standard_arg(self, prop: Property) -> str:
+        return self.initialize_standard_property(prop)
