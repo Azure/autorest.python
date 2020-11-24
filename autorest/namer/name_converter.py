@@ -63,14 +63,24 @@ class NameConverter:
     @staticmethod
     def _convert_extensions(operation: Dict[str, Any]) -> None:
         operation_extensions = operation["extensions"]
-        if operation_extensions.get('x-ms-pageable'):
+        pageable = operation_extensions.get('x-ms-pageable')
+        lro = operation_extensions.get('x-ms-long-running-operation')
+        if pageable:
             operation["extensions"]["pager-sync"] = operation_extensions.get(
                 "x-python-custom-pager-sync", "azure.core.paging.ItemPaged"
             )
             operation["extensions"]["pager-async"] = operation_extensions.get(
                 "x-python-custom-pager-async", "azure.core.async_paging.AsyncItemPaged"
             )
-        if operation_extensions.get("x-ms-long-running-operation"):
+            if lro:
+                operation["extensions"]["default-paging-method"] = operation_extensions.get(
+                    "x-python-custom-default-paging-method", "azure.core.paging_method.PagingMethodWithInitialResponse"
+                )
+            else:
+                operation["extensions"]["default-paging-method"] = operation_extensions.get(
+                    "x-python-custom-default-paging-method", "azure.core.paging_method.BasicPagingMethod"
+                )
+        if lro:
             operation["extensions"]["poller-sync"] = operation_extensions.get(
                 "x-python-custom-poller-sync", "azure.core.polling.LROPoller"
             )

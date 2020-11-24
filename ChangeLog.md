@@ -8,7 +8,7 @@ Modelerfour version: 4.15.421
 **New Features**
 
 - Allow customization for paging methods. To customize the default behavior of paging, you can pass your custom paging method through the `paging_method` kwarg for all paging operations. See [azure core's paging
-package](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/azure/core/paging.py) for more information  #826s
+package](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/azure/core/paging.py) for more information. You can also override the default paging method using a directive, see [this readme](https://github.com/Azure/autorest.python/tree/autorestv3/test/azure/specification/custompollerpager) for directions  #826s
 
 ### 2020-11-12 - 5.5.0
 Autorest core version: 3.0.6318

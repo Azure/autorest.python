@@ -17,6 +17,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+from customdefinitions import MyPagingMethod
 from customdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
@@ -193,7 +194,7 @@ class PagingOperations:
             self._get_single_pages_initial,
         )
         return AsyncCustomPager(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method = kwargs.pop("paging_method", MyPagingMethod()),
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',

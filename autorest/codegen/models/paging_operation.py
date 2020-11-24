@@ -120,10 +120,10 @@ class PagingOperation(Operation):
 
 
     def get_default_paging_method_path(self) -> str:
-        return "azure.core.paging_method.BasicPagingMethod"
+        return self.yaml_data["extensions"]["default-paging-method"]
 
     def get_default_paging_method(self) -> str:
-        return "BasicPagingMethod"
+        return self.get_default_paging_method_path().split('.')[-1]
 
     @property
     def success_status_code(self) -> List[Union[str, int]]:

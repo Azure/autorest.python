@@ -36,3 +36,12 @@ directive:
         $["x-python-custom-poller-sync"] = "customdefinitions.CustomPoller";
         $["x-python-custom-poller-async"] = "customdefinitions.aio.AsyncCustomPoller"
 ```
+
+### Override the generate default paging method
+``` yaml
+directive:
+    from: swagger-document
+    where: '$.paths["/paging/single"].get'
+    transform: >
+        $["x-python-custom-default-paging-method"] = "customdefinitions.MyPagingMethod";
+```

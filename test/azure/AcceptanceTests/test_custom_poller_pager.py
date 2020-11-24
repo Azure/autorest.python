@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from custompollerpager import AutoRestPagingTestService
-from customdefinitions import CustomPager, CustomPoller
+from customdefinitions import CustomPager, CustomPoller, MyPagingMethod
 
 import pytest
 
@@ -47,3 +47,7 @@ class TestPaging(object):
     def test_custom_poller(self, client):
         poller = client.paging.begin_get_multiple_pages_lro()
         assert isinstance(poller, CustomPoller)
+
+    def test_custom_default_paging_method(self, client):
+        pager = client.paging.get_single_pages()
+        assert isinstance(pager.by_page()._paging_method, MyPagingMethod)

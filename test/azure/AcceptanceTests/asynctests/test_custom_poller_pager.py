@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from custompollerpager.aio import AutoRestPagingTestService
+from customdefinitions import MyPagingMethod
 from customdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 import pytest
@@ -50,3 +51,7 @@ class TestPaging(object):
     async def test_custom_poller(self, client):
         poller = await client.paging.begin_get_multiple_pages_lro()
         assert isinstance(poller, AsyncCustomPoller)
+
+    def test_custom_default_paging_method(self, client):
+        pager = client.paging.get_single_pages()
+        assert isinstance(pager.by_page()._paging_method, MyPagingMethod)

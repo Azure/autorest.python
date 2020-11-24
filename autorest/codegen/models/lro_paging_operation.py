@@ -51,12 +51,6 @@ class LROPagingOperation(PagingOperation, LROOperation):
         )
         self.coroutine_when_async = True
 
-    def get_default_paging_method_path(self) -> str:
-        return "azure.core.paging_method.PagingMethodWithInitialResponse"
-
-    def get_default_paging_method(self) -> str:
-        return "PagingMethodWithInitialResponse"
-
     def imports(self, code_model, async_mode: bool) -> FileImport:
         lro_imports = LROOperation.imports(self, code_model, async_mode)
         paging_imports = PagingOperation.imports(self, code_model, async_mode)

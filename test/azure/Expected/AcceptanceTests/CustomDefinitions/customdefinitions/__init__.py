@@ -1,4 +1,5 @@
 from azure.core.paging import ItemPaged, ReturnType, PageIterator
+from azure.core.paging_method import BasicPagingMethod
 from azure.core.polling import LROPoller
 from azure.core.polling._poller import PollingReturnType
 
@@ -18,8 +19,12 @@ class PagerWithMetadata(ItemPaged[ReturnType]):
         # type: () -> float
         return self._paging_method._count
 
+class MyPagingMethod(BasicPagingMethod):
+    pass
+
 __all__ = [
     'CustomPager',
     'CustomPoller',
     'PagerWithMetadata',
+    'MyPagingMethod',
 ]
