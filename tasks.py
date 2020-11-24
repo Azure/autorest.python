@@ -11,7 +11,7 @@ from colorama import init, Fore
 from invoke import task, run
 
 init()
-class _SwaggerGroup(str, Enum):
+class _SwaggerGroup(Enum):
     VANILLA = auto()
     AZURE = auto()
     AZURE_ARM = auto()
