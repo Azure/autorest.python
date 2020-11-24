@@ -73,6 +73,8 @@ _AZURE_SWAGGER_MAPPINGS = {
     'AzureParameterGrouping': 'azure-parameter-grouping.json',
     'CustomBaseUri': 'custom-baseUrl.json',
     'LroWithParameterizedEndpoints': 'lro-parameterized-endpoints.json',
+    'Paging': 'paging.json',
+    'CustomUrlPaging': 'custom-baseUrl-paging.json',
 }
 
 # The list is mostly built on Swaggers that uses CloudError feature
@@ -83,8 +85,6 @@ _AZURE_ARM_SWAGGER_MAPPINGS = {
     'StorageManagementClient': 'storage.json',
     'Lro': 'lro.json',
     'SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
-    'Paging': 'paging.json',
-    'CustomUrlPaging': 'custom-baseUrl-paging.json',
     'AzureSpecials': 'azure-special-properties.json',
 }
 
@@ -101,6 +101,7 @@ _OVERWRITE_DEFAULT_NAMESPACE = {
     'CustomUrlPaging': 'custombaseurlpaging',
     'AzureSpecials': 'azurespecialproperties',
     'StorageManagementClient': 'storage',
+    'CustomUrlPaging': 'custombaseurlpaging',
 }
 
 _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
