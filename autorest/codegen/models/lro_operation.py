@@ -88,7 +88,7 @@ class LROOperation(Operation):
         """An LROOperation will never have an optional return type, we will always return a poller"""
         return False
 
-    def _get_extension(self, extension_template, async_mode, azure_arm=None):
+    def _get_lro_extension(self, extension_template, async_mode, *, azure_arm=None):
         extension_name = extension_template.format("a" if async_mode else "")
         extension = self.yaml_data["extensions"][extension_name]
         arm_extension = None
@@ -97,25 +97,25 @@ class LROOperation(Operation):
         return extension[arm_extension] if arm_extension else extension
 
     def get_poller_path(self, async_mode: bool) -> str:
-        return self._get_extension("poller-{}sync", async_mode)
+        return self._get_lro_extension("poller-{}sync", async_mode)
 
     def get_poller(self, async_mode: bool) -> str:
         return self.get_poller_path(async_mode).split(".")[-1]
 
     def get_default_polling_method_path(self, async_mode: bool, azure_arm: bool) -> str:
-        return self._get_extension("default-polling-method-{}sync", async_mode, azure_arm)
+        return self._get_lro_extension("default-polling-method-{}sync", async_mode, azure_arm=azure_arm)
 
     def get_default_polling_method(self, async_mode: bool, azure_arm: bool) -> str:
         return self.get_default_polling_method_path(async_mode, azure_arm).split(".")[-1]
 
     def get_default_no_polling_method_path(self, async_mode: bool) -> str:
-        return self._get_extension("default-no-polling-method-{}sync", async_mode)
+        return self._get_lro_extension("default-no-polling-method-{}sync", async_mode)
 
     def get_default_no_polling_method(self, async_mode: bool) -> str:
         return self.get_default_no_polling_method_path(async_mode).split(".")[-1]
 
     def get_base_polling_method_path(self, async_mode: bool) -> str:
-        return self._get_extension("base-polling-method-{}sync", async_mode)
+        return self._get_lro_extension("base-polling-method-{}sync", async_mode)
 
     def get_base_polling_method(self, async_mode: bool) -> str:
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
