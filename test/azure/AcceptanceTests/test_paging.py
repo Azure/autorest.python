@@ -40,17 +40,18 @@ from custombaseurlpaging import AutoRestParameterizedHostTestPagingClient
 
 from azure.core.exceptions import HttpResponseError
 
+
 import pytest
 
 @pytest.fixture
-def client(credential, authentication_policy):
-    with AutoRestPagingTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+def client():
+    with AutoRestPagingTestService(base_url="http://localhost:3000") as client:
         yield client
 
 
 @pytest.fixture
-def custom_url_client(credential, authentication_policy):
-    with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
+def custom_url_client():
+    with AutoRestParameterizedHostTestPagingClient(host="host:3000") as client:
         yield client
 
 class TestPaging(object):
@@ -159,8 +160,8 @@ class TestPaging(object):
     def test_get_multiple_pages_lro(self, client):
         """LRO + Paging at the same time.
         """
-
-        poller = client.paging.begin_get_multiple_pages_lro()
+        from azure.mgmt.core.polling.arm_polling import ARMPolling
+        poller = client.paging.begin_get_multiple_pages_lro(polling=ARMPolling(timeout=0))
         pager = poller.result()
 
         items = list(pager)
