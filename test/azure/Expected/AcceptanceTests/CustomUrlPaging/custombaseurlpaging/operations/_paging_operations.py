@@ -15,7 +15,6 @@ from azure.core.paging_method import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
 
