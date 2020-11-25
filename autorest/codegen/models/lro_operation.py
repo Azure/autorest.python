@@ -88,34 +88,37 @@ class LROOperation(Operation):
         """An LROOperation will never have an optional return type, we will always return a poller"""
         return False
 
+    def _get_extension(self, extension_template, async_mode, azure_arm=None):
+        extension_name = extension_template.format("a" if async_mode else "")
+        extension = self.yaml_data["extensions"][extension_name]
+        arm_extension = None
+        if azure_arm is not None:
+            arm_extension = "azure-arm" if azure_arm else "data-plane"
+        return extension[arm_extension] if arm_extension else extension
+
     def get_poller_path(self, async_mode: bool) -> str:
-        extension_name = "poller-{}sync".format("a" if async_mode else "")
-        return self.yaml_data["extensions"][extension_name]
+        return self._get_extension("poller-{}sync", async_mode)
 
     def get_poller(self, async_mode: bool) -> str:
         return self.get_poller_path(async_mode).split(".")[-1]
 
     def get_default_polling_method_path(self, async_mode: bool, azure_arm: bool) -> str:
-        extension_name = "default-polling-method-{}sync".format("a" if async_mode else "")
-        arm_mode = "azure-arm" if azure_arm else "data-plane"
-        return self.yaml_data["extensions"][extension_name][arm_mode]
+        return self._get_extension("default-polling-method-{}sync", async_mode, azure_arm)
 
     def get_default_polling_method(self, async_mode: bool, azure_arm: bool) -> str:
         return self.get_default_polling_method_path(async_mode, azure_arm).split(".")[-1]
 
     def get_default_no_polling_method_path(self, async_mode: bool) -> str:
-        extension_name = "default-no-polling-method-{}sync".format("a" if async_mode else "")
-        return self.yaml_data["extensions"][extension_name]
+        return self._get_extension("default-no-polling-method-{}sync", async_mode)
 
     def get_default_no_polling_method(self, async_mode: bool) -> str:
         return self.get_default_no_polling_method_path(async_mode).split(".")[-1]
 
     def get_base_polling_method_path(self, async_mode: bool) -> str:
-        extension_name = "base-polling-method-{}sync".format("a" if async_mode else "")
-        return self.yaml_data["extensions"][extension_name]
+        return self._get_extension("base-polling-method-{}sync", async_mode)
+
     def get_base_polling_method(self, async_mode: bool) -> str:
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
-
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
