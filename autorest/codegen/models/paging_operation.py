@@ -17,6 +17,21 @@ from .parameter import ParameterLocation
 
 _LOGGER = logging.getLogger(__name__)
 
+def _token_input_parameter(name) -> Parameter:
+    schema = StringSchema("", {"type": "str"})
+    return Parameter(
+        schema=schema,
+        yaml_data={},
+        rest_api_name=name,
+        serialized_name=name,
+        description="Parameter to take in the continuation t oken for next call",
+        implementation="Method",
+        required=True,
+        location=ParameterLocation.Other,
+        skip_url_encoding=True,
+        constraints=[],
+    )
+
 
 class PagingOperation(Operation):
     def __init__(
@@ -147,19 +162,7 @@ class PagingOperation(Operation):
         parameters = self.parameters.parameters.copy()
         url_initialization = None
         if not self.next_operation:
-            schema = StringSchema("", {"type": "str"})
-            next_link_param = Parameter(
-                schema=schema,
-                yaml_data={},
-                rest_api_name="next_link",
-                serialized_name="next_link",
-                description="Parameter to take in url for next call",
-                implementation="Method",
-                required=True,
-                location=ParameterLocation.Other,
-                skip_url_encoding=True,
-                constraints=[],
-            )
+            next_link_param = _token_input_parameter("next_link")
             parameters.insert(0, next_link_param)
             url_initialization = "url = next_link"
         return Operation(
@@ -186,17 +189,24 @@ class PagingOperation(Operation):
 
         # Currently only supported param name is nextLink, will be updated
         # to allow more with tokenParamName support in swagger
+
+        # make sure the token param name is first in line, and that it's required.
+        # (If the token is empty, we will be exiting before passing it into the next operation)
         params = next_operation.parameters.parameters
-        token_param = [
-            param for param in params
-            if param.serialized_name == self.token_param_name
-        ]
-        if token_param:
-            # make sure the token param name is first in line, and that it's required.
-            # (If the token is empty, we will be exiting before passing it into the next operation)
-            token_param[0].required = True
-            token_param_index = params.index(token_param[0])
-            params.insert(0, params.pop(token_param_index))
+        try:
+            token_param = next(
+                param for param in params
+                if param.serialized_name == self.token_param_name
+            )
+
+            token_param.required = True
+            token_param_index = params.index(token_param)
+            params.pop(token_param_index)
+        except StopIteration:
+            # we will always include a token param input in our requests
+            token_param = _token_input_parameter("next_link")
+
+        params.insert(0, token_param)
         return Operation(
             yaml_data={},
             name="_" + self.name + "_next",

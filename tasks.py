@@ -336,7 +336,7 @@ def regenerate_custom_poller_pager(c, debug=False):
     _run_autorest([cmd], debug=debug)
 
 @task
-def regenerate_special_paging(c, debug=False):
+def regenerate_paging_special(c, debug=False):
     cwd = os.getcwd()
     cmd = (
         f'autorest test/azure/specification/pagingspecial/README.md --use=. --python-sdks-folder={cwd}/test/'

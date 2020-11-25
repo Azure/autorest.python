@@ -365,6 +365,7 @@ class PagingOperations:
 
     def _get_with_query_params_next(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         query_constant = True

@@ -379,6 +379,7 @@ class PagingOperations(object):
 
     def _get_with_query_params_next(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
