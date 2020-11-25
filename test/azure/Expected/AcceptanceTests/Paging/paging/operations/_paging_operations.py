@@ -15,9 +15,8 @@ from azure.core.paging_method import BasicPagingMethod, PagingMethodWithInitialR
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
+from azure.core.polling.base_polling import LROBasePolling
 from azure.core.tracing.decorator import distributed_trace
-from azure.mgmt.core.exceptions import ARMErrorFormat
-from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 
@@ -116,8 +115,14 @@ class PagingOperations(object):
         # Construct URL
         url = next_link
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -172,8 +177,14 @@ class PagingOperations(object):
         # Construct URL
         url = next_link
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -231,9 +242,15 @@ class PagingOperations(object):
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
+<<<<<<< HEAD
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
@@ -292,8 +309,14 @@ class PagingOperations(object):
         # Construct URL
         url = next_link
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -328,8 +351,66 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+<<<<<<< HEAD
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResult', pipeline_response)
+=======
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _maxresults = None
+        _timeout = None
+        if paging_get_multiple_pages_options is not None:
+            _maxresults = paging_get_multiple_pages_options.maxresults
+            _timeout = paging_get_multiple_pages_options.timeout
+        accept = "application/json"
+
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            if client_request_id is not None:
+                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            if _maxresults is not None:
+                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            if _timeout is not None:
+                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.get_multiple_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         _initial_request = self._get_multiple_pages_initial(
             next_link=self._get_multiple_pages_initial.metadata['url'],
@@ -463,6 +544,7 @@ class PagingOperations(object):
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
+<<<<<<< HEAD
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if client_request_id is not None:
@@ -472,6 +554,11 @@ class PagingOperations(object):
         if _timeout is not None:
             header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
@@ -539,12 +626,57 @@ class PagingOperations(object):
             _timeout = paging_get_multiple_pages_with_offset_options.timeout
         accept = "application/json"
 
+<<<<<<< HEAD
         # Construct URL
         url = next_link
         path_format_arguments = {
             'offset': self._serialize.url("offset", _offset, 'int'),
         }
         url = self._client.format_url(url, **path_format_arguments)
+=======
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            if client_request_id is not None:
+                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            if _maxresults is not None:
+                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            if _timeout is not None:
+                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.get_odata_multiple_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('OdataProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.odata_next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -624,6 +756,7 @@ class PagingOperations(object):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
+<<<<<<< HEAD
         # Construct URL
         url = next_link
 
@@ -633,6 +766,54 @@ class PagingOperations(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+=======
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            if client_request_id is not None:
+                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            if _maxresults is not None:
+                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            if _timeout is not None:
+                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.get_multiple_pages_with_offset.metadata['url']  # type: ignore
+                path_format_arguments = {
+                    'offset': self._serialize.url("offset", _offset, 'int'),
+                }
+                url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
@@ -684,8 +865,14 @@ class PagingOperations(object):
         # Construct URL
         url = next_link
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -741,8 +928,14 @@ class PagingOperations(object):
         # Construct URL
         url = next_link
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -797,8 +990,14 @@ class PagingOperations(object):
         # Construct URL
         url = next_link
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -853,8 +1052,14 @@ class PagingOperations(object):
         # Construct URL
         url = next_link
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -944,9 +1149,15 @@ class PagingOperations(object):
         }
         url = self._client.format_url(url, **path_format_arguments)
 
+<<<<<<< HEAD
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+=======
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -1048,6 +1259,7 @@ class PagingOperations(object):
             _tenant = custom_parameter_group.tenant
         accept = "application/json"
 
+<<<<<<< HEAD
         # Construct URL
         url = self._get_multiple_pages_fragment_with_grouping_next_link_next.metadata['url']  # type: ignore
         path_format_arguments = {
@@ -1055,6 +1267,57 @@ class PagingOperations(object):
             'tenant': self._serialize.url("tenant", _tenant, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
+=======
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.get_multiple_pages_fragment_next_link.metadata['url']  # type: ignore
+                path_format_arguments = {
+                    'tenant': self._serialize.url("tenant", tenant, 'str'),
+                }
+                url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = '/paging/multiple/fragment/{tenant}/{nextLink}'
+                path_format_arguments = {
+                    'tenant': self._serialize.url("tenant", tenant, 'str'),
+                    'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+                }
+                url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('OdataProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.odata_next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1084,8 +1347,73 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+<<<<<<< HEAD
         def deserialize_output(pipeline_response):
             return self._deserialize('OdataProductResult', pipeline_response)
+=======
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _api_version = None
+        _tenant = None
+        if custom_parameter_group is not None:
+            _api_version = custom_parameter_group.api_version
+            _tenant = custom_parameter_group.tenant
+        accept = "application/json"
+
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']  # type: ignore
+                path_format_arguments = {
+                    'tenant': self._serialize.url("tenant", _tenant, 'str'),
+                }
+                url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
+                path_format_arguments = {
+                    'tenant': self._serialize.url("tenant", _tenant, 'str'),
+                    'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+                }
+                url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('OdataProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.odata_next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         _initial_request = self._get_multiple_pages_fragment_with_grouping_next_link_initial(
             next_link=self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url'],
@@ -1149,7 +1477,7 @@ class PagingOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('ProductResult', pipeline_response)
 
@@ -1183,8 +1511,66 @@ class PagingOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~paging.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
+<<<<<<< HEAD
+=======
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        
+        _maxresults = None
+        _timeout = None
+        if paging_get_multiple_pages_lro_options is not None:
+            _maxresults = paging_get_multiple_pages_lro_options.maxresults
+            _timeout = paging_get_multiple_pages_lro_options.timeout
+        accept = "application/json"
 
-        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            if client_request_id is not None:
+                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            if _maxresults is not None:
+                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            if _timeout is not None:
+                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.get_multiple_pages_lro.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.post(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
+
+        polling = kwargs.pop('polling', False)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -1217,8 +1603,12 @@ class PagingOperations(object):
                 _cls=kwargs.pop("cls", None),
                 **kwargs,
             )
+<<<<<<< HEAD
 
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+=======
+        if polling is True: polling_method = LROBasePolling(lro_delay,  **kwargs)
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         if cont_token:
@@ -1268,8 +1658,54 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+<<<<<<< HEAD
         def deserialize_output(pipeline_response):
             return self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
+=======
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValueWithXMSClientName"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        accept = "application/json"
+
+        def prepare_request(next_link=None):
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+            if not next_link:
+                # Construct URL
+                url = self.get_paging_model_with_item_name_with_xms_client_name.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
+                request = self._client.get(url, query_parameters, header_parameters)
+            else:
+                url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
+                request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
+            list_of_elem = deserialized.indexes
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+>>>>>>> 4e0ac438c6d8a14ac2ce0793adb7463ddf751d31
 
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial(
             next_link=self._get_paging_model_with_item_name_with_xms_client_name_initial.metadata['url'],

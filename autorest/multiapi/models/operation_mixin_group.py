@@ -24,7 +24,7 @@ class OperationMixinGroup:
         for metadata_json in self.version_path_to_metadata.values():
             if not metadata_json.get('operation_mixins'):
                 continue
-            current_version_imports = FileImport(json.loads(metadata_json[imports_to_load]))
+            current_version_imports = FileImport(json.loads(metadata_json['operation_mixins'][imports_to_load]))
             imports.merge(current_version_imports)
         return imports
 
@@ -38,11 +38,11 @@ class OperationMixinGroup:
         default_version_metadata = self.version_path_to_metadata[default_api_version_path]
         if not default_version_metadata.get("operation_mixins"):
             return mixin_operations
-        for mixin_operation_name, mixin_operation_metadata in default_version_metadata["operation_mixins"].items():
-            if mixin_operation_name.startswith("_"):
+        for name, metadata in default_version_metadata["operation_mixins"]["operations"].items():
+            if name.startswith("_"):
                 continue
-            mixin_operation = [mo for mo in mixin_operations if mo.name == mixin_operation_name][0]
-            mixin_operation.mixin_operation_metadata = mixin_operation_metadata
+            mixin_operation = [mo for mo in mixin_operations if mo.name == name][0]
+            mixin_operation.mixin_operation_metadata = metadata
         return mixin_operations
 
 
@@ -52,7 +52,7 @@ class OperationMixinGroup:
         for version_path, metadata_json in self.version_path_to_metadata.items():
             if not metadata_json.get("operation_mixins"):
                 continue
-            mixin_operations_metadata = metadata_json["operation_mixins"]
+            mixin_operations_metadata = metadata_json["operation_mixins"]["operations"]
             for mixin_operation_name, mixin_operation_metadata in mixin_operations_metadata.items():
                 if mixin_operation_name.startswith("_"):
                     continue
