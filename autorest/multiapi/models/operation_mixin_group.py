@@ -26,7 +26,7 @@ class OperationMixinGroup:
         for metadata_json in self.version_path_to_metadata.values():
             if not metadata_json.get('operation_mixins'):
                 continue
-            current_version_imports = FileImport(json.loads(metadata_json[imports_to_load]))
+            current_version_imports = FileImport(json.loads(metadata_json['operation_mixins'][imports_to_load]))
             imports.merge(current_version_imports)
         return imports
 
@@ -36,7 +36,7 @@ class OperationMixinGroup:
         for version_path, metadata_json in self.version_path_to_metadata.items():
             if not metadata_json.get("operation_mixins"):
                 continue
-            mixin_operations_metadata = metadata_json["operation_mixins"]
+            mixin_operations_metadata = metadata_json["operation_mixins"]["operations"]
             for mixin_operation_name, mixin_operation_metadata in mixin_operations_metadata.items():
                 if mixin_operation_name.startswith("_"):
                     continue

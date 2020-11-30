@@ -9,13 +9,20 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core import AsyncPipelineClient
-from msrest import Serializer, Deserializer
+from typing import Any, Optional, TYPE_CHECKING
 
+from azure.core import AsyncPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
+from msrest import Deserializer, Serializer
+
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 from ._operations_mixin import MultiapiCustomBaseUrlServiceClientOperationsMixin
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from azure.core.credentials_async import AsyncTokenCredential
+
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."
@@ -38,8 +45,8 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param endpoint: Pass in https://localhost:3000.
     :type endpoint: str
-    :param str api_version: API version to use if no profile is provided, or if
-     missing in profile.
+    :param api_version: API version to use if no profile is provided, or if missing in profile.
+    :type api_version: str
     :param profile: A profile definition, from KnownProfiles to dict.
     :type profile: azure.profiles.KnownProfiles
     """
@@ -55,10 +62,10 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
 
     def __init__(
         self,
-        credential,  # type: "AsyncTokenCredential"
-        endpoint,  # type: str
-        api_version=None,
-        profile=KnownProfiles.default,
+        credential: "AsyncTokenCredential",
+        endpoint: str,
+        api_version: Optional[str] = None,
+        profile: KnownProfiles = KnownProfiles.default,
         **kwargs  # type: Any
     ) -> None:
         if api_version == '1.0.0':

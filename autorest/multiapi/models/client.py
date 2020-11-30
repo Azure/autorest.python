@@ -4,8 +4,10 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
+import json
 from typing import Any, Dict, List
 from pathlib import Path
+from .imports import FileImport
 
 def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
     version = metadata_json['chosen_version']
@@ -34,7 +36,12 @@ class Client:
         self.base_url = default_version_metadata["client"]["base_url"]
         self.description = default_version_metadata["client"]["description"]
         self.client_side_validation = default_version_metadata["client"]["client_side_validation"]
+        self.default_version_metadata = default_version_metadata
         self.version_path_to_metadata = version_path_to_metadata
+
+    def imports(self, async_mode: bool) -> FileImport:
+        imports_to_load = "async_imports" if async_mode else "sync_imports"
+        return FileImport(json.loads(self.default_version_metadata['client'][imports_to_load]))
 
     @property
     def custom_base_url_to_api_version(self) -> Dict[str, List[str]]:
