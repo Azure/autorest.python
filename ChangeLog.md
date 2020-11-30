@@ -1,5 +1,15 @@
 # Change Log
 
+### 2020-xx-xx - 5.5.1
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.421
+
+**Bug Fixes**
+
+- No longer treat readonly properties as only equalling `None`. We set the readonly value to whatever the service sets  #834
+
+
 ### 2020-11-12 - 5.5.0
 Autorest core version: 3.0.6318
 
