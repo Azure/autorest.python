@@ -176,9 +176,9 @@ class Resource(msrest.serialization.Model):
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.name = None
-        self.type = None
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)
+        self.type = kwargs.get('type', None)
         self.location = kwargs['location']
         self.tags = kwargs.get('tags', None)
 

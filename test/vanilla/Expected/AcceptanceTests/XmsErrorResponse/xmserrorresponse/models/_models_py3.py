@@ -198,10 +198,11 @@ class Pet(Animal):
         self,
         *,
         ani_type: Optional[str] = None,
+        name: Optional[str] = None,
         **kwargs
     ):
         super(Pet, self).__init__(ani_type=ani_type, **kwargs)
-        self.name = None
+        self.name = name
 
 
 class PetAction(msrest.serialization.Model):

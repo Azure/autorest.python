@@ -20,7 +20,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def init_line(self, model: ObjectSchema) -> List[str]:
         init_properties_declaration = []
         init_line_parameters = [
-            p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
+            p for p in model.properties if not p.is_discriminator and not p.constant
         ]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         if init_line_parameters:
@@ -39,7 +39,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     prop in base_model.properties
                     and not prop.is_discriminator
                     and not prop.constant
-                    and not prop.readonly
                 ):
                     properties_to_pass_to_super.append(f"{prop.name}={prop.name}")
         properties_to_pass_to_super.append("**kwargs")
@@ -58,7 +57,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
         for model in self.code_model.sorted_schemas:
-            init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
+            init_line_parameters = [p for p in model.properties if not p.is_discriminator]
             for param in init_line_parameters:
                 file_import.merge(param.model_file_imports())
 

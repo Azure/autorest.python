@@ -182,7 +182,7 @@ class Pet(Animal):
         **kwargs
     ):
         super(Pet, self).__init__(**kwargs)
-        self.name = None
+        self.name = kwargs.get('name', None)
 
 
 class PetAction(msrest.serialization.Model):

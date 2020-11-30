@@ -197,13 +197,16 @@ class Resource(msrest.serialization.Model):
         self,
         *,
         location: str,
+        id: Optional[str] = None,
+        name: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.name = None
-        self.type = None
+        self.id = id
+        self.name = name
+        self.type = type
         self.location = location
         self.tags = tags
 
@@ -293,6 +296,9 @@ class StorageAccount(Resource):
         self,
         *,
         location: str,
+        id: Optional[str] = None,
+        name: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
@@ -307,7 +313,7 @@ class StorageAccount(Resource):
         secondary_endpoints: Optional["Endpoints"] = None,
         **kwargs
     ):
-        super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
+        super(StorageAccount, self).__init__(id=id, name=name, type=type, location=location, tags=tags, **kwargs)
         self.provisioning_state = provisioning_state
         self.account_type = account_type
         self.primary_endpoints = primary_endpoints
@@ -395,11 +401,14 @@ class StorageAccountCreateParameters(Resource):
         self,
         *,
         location: str,
+        id: Optional[str] = None,
+        name: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         **kwargs
     ):
-        super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
+        super(StorageAccountCreateParameters, self).__init__(id=id, name=name, type=type, location=location, tags=tags, **kwargs)
         self.account_type = account_type
 
 
@@ -526,12 +535,15 @@ class StorageAccountUpdateParameters(Resource):
         self,
         *,
         location: str,
+        id: Optional[str] = None,
+        name: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         custom_domain: Optional["CustomDomain"] = None,
         **kwargs
     ):
-        super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
+        super(StorageAccountUpdateParameters, self).__init__(id=id, name=name, type=type, location=location, tags=tags, **kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
 

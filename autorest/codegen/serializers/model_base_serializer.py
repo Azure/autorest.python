@@ -103,8 +103,6 @@ class ModelBaseSerializer:
                 else:
                     typing = "str"
                 init_args.append(f"self.{prop.name} = {discriminator_value}  # type: {typing}")
-            elif prop.readonly:
-                init_args.append(f"self.{prop.name} = None")
             elif not prop.constant:
                 init_args.append(self.initialize_standard_arg(prop))
         return init_args

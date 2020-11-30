@@ -6,10 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+from ._auto_rest_resource_flattening_test_service_enums import *
 
 
 class BaseProduct(msrest.serialization.Model):
@@ -111,16 +113,19 @@ class Resource(msrest.serialization.Model):
     def __init__(
         self,
         *,
+        id: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
+        name: Optional[str] = None,
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.type = None
+        self.id = id
+        self.type = type
         self.tags = tags
         self.location = location
-        self.name = None
+        self.name = name
 
 
 class FlattenedProduct(Resource):
@@ -172,17 +177,21 @@ class FlattenedProduct(Resource):
     def __init__(
         self,
         *,
+        id: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
+        name: Optional[str] = None,
         p_name: Optional[str] = None,
         type_properties_type: Optional[str] = None,
+        provisioning_state_values: Optional[Union[str, "FlattenedProductPropertiesProvisioningStateValues"]] = None,
         provisioning_state: Optional[str] = None,
         **kwargs
     ):
-        super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
+        super(FlattenedProduct, self).__init__(id=id, type=type, tags=tags, location=location, name=name, **kwargs)
         self.p_name = p_name
         self.type_properties_type = type_properties_type
-        self.provisioning_state_values = None
+        self.provisioning_state_values = provisioning_state_values
         self.provisioning_state = provisioning_state
 
 

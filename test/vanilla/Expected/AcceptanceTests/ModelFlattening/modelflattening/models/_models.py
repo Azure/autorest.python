@@ -104,11 +104,11 @@ class Resource(msrest.serialization.Model):
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.type = None
+        self.id = kwargs.get('id', None)
+        self.type = kwargs.get('type', None)
         self.tags = kwargs.get('tags', None)
         self.location = kwargs.get('location', None)
-        self.name = None
+        self.name = kwargs.get('name', None)
 
 
 class FlattenedProduct(Resource):
@@ -164,7 +164,7 @@ class FlattenedProduct(Resource):
         super(FlattenedProduct, self).__init__(**kwargs)
         self.p_name = kwargs.get('p_name', None)
         self.type_properties_type = kwargs.get('type_properties_type', None)
-        self.provisioning_state_values = None
+        self.provisioning_state_values = kwargs.get('provisioning_state_values', None)
         self.provisioning_state = kwargs.get('provisioning_state', None)
 
 

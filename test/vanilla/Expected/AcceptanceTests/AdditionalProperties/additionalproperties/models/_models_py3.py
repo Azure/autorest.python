@@ -48,13 +48,14 @@ class PetAPTrue(msrest.serialization.Model):
         id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
+        status: Optional[bool] = None,
         **kwargs
     ):
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status = status
 
 
 class CatAPTrue(PetAPTrue):
@@ -96,10 +97,11 @@ class CatAPTrue(PetAPTrue):
         id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
+        status: Optional[bool] = None,
         friendly: Optional[bool] = None,
         **kwargs
     ):
-        super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
+        super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, status=status, **kwargs)
         self.friendly = friendly
 
 
@@ -163,13 +165,14 @@ class PetAPInProperties(msrest.serialization.Model):
         *,
         id: int,
         name: Optional[str] = None,
+        status: Optional[bool] = None,
         additional_properties: Optional[Dict[str, float]] = None,
         **kwargs
     ):
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
-        self.status = None
+        self.status = status
         self.additional_properties = additional_properties
 
 
@@ -217,6 +220,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
         odata_location: str,
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
+        status: Optional[bool] = None,
         additional_properties1: Optional[Dict[str, float]] = None,
         **kwargs
     ):
@@ -224,7 +228,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status = status
         self.odata_location = odata_location
         self.additional_properties1 = additional_properties1
 
@@ -265,13 +269,14 @@ class PetAPObject(msrest.serialization.Model):
         id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
+        status: Optional[bool] = None,
         **kwargs
     ):
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status = status
 
 
 class PetAPString(msrest.serialization.Model):
@@ -310,10 +315,11 @@ class PetAPString(msrest.serialization.Model):
         id: int,
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
+        status: Optional[bool] = None,
         **kwargs
     ):
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status = status

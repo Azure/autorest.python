@@ -101,16 +101,19 @@ class Resource(msrest.serialization.Model):
     def __init__(
         self,
         *,
+        id: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
+        name: Optional[str] = None,
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
-        self.id = None
-        self.type = None
+        self.id = id
+        self.type = type
         self.tags = tags
         self.location = location
-        self.name = None
+        self.name = name
 
 
 class Product(Resource):
@@ -155,14 +158,18 @@ class Product(Resource):
     def __init__(
         self,
         *,
+        id: Optional[str] = None,
+        type: Optional[str] = None,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
+        name: Optional[str] = None,
         provisioning_state: Optional[str] = None,
+        provisioning_state_values: Optional[Union[str, "ProductPropertiesProvisioningStateValues"]] = None,
         **kwargs
     ):
-        super(Product, self).__init__(tags=tags, location=location, **kwargs)
+        super(Product, self).__init__(id=id, type=type, tags=tags, location=location, name=name, **kwargs)
         self.provisioning_state = provisioning_state
-        self.provisioning_state_values = None
+        self.provisioning_state_values = provisioning_state_values
 
 
 class Sku(msrest.serialization.Model):
@@ -210,10 +217,12 @@ class SubResource(msrest.serialization.Model):
 
     def __init__(
         self,
+        *,
+        id: Optional[str] = None,
         **kwargs
     ):
         super(SubResource, self).__init__(**kwargs)
-        self.id = None
+        self.id = id
 
 
 class SubProduct(SubResource):
@@ -245,9 +254,11 @@ class SubProduct(SubResource):
     def __init__(
         self,
         *,
+        id: Optional[str] = None,
         provisioning_state: Optional[str] = None,
+        provisioning_state_values: Optional[Union[str, "SubProductPropertiesProvisioningStateValues"]] = None,
         **kwargs
     ):
-        super(SubProduct, self).__init__(**kwargs)
+        super(SubProduct, self).__init__(id=id, **kwargs)
         self.provisioning_state = provisioning_state
-        self.provisioning_state_values = None
+        self.provisioning_state_values = provisioning_state_values

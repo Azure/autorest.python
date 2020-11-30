@@ -889,11 +889,12 @@ class ReadonlyObj(msrest.serialization.Model):
     def __init__(
         self,
         *,
+        id: Optional[str] = None,
         size: Optional[int] = None,
         **kwargs
     ):
         super(ReadonlyObj, self).__init__(**kwargs)
-        self.id = None
+        self.id = id
         self.size = size
 
 

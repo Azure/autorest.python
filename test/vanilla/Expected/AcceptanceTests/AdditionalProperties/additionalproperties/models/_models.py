@@ -48,7 +48,7 @@ class PetAPTrue(msrest.serialization.Model):
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs['id']
         self.name = kwargs.get('name', None)
-        self.status = None
+        self.status = kwargs.get('status', None)
 
 
 class CatAPTrue(PetAPTrue):
@@ -151,7 +151,7 @@ class PetAPInProperties(msrest.serialization.Model):
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = kwargs['id']
         self.name = kwargs.get('name', None)
-        self.status = None
+        self.status = kwargs.get('status', None)
         self.additional_properties = kwargs.get('additional_properties', None)
 
 
@@ -200,7 +200,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs['id']
         self.name = kwargs.get('name', None)
-        self.status = None
+        self.status = kwargs.get('status', None)
         self.odata_location = kwargs['odata_location']
         self.additional_properties1 = kwargs.get('additional_properties1', None)
 
@@ -243,7 +243,7 @@ class PetAPObject(msrest.serialization.Model):
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs['id']
         self.name = kwargs.get('name', None)
-        self.status = None
+        self.status = kwargs.get('status', None)
 
 
 class PetAPString(msrest.serialization.Model):
@@ -284,4 +284,4 @@ class PetAPString(msrest.serialization.Model):
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs['id']
         self.name = kwargs.get('name', None)
-        self.status = None
+        self.status = kwargs.get('status', None)

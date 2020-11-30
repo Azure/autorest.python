@@ -793,7 +793,7 @@ class ReadonlyObj(msrest.serialization.Model):
         **kwargs
     ):
         super(ReadonlyObj, self).__init__(**kwargs)
-        self.id = None
+        self.id = kwargs.get('id', None)
         self.size = kwargs.get('size', None)
 
 
