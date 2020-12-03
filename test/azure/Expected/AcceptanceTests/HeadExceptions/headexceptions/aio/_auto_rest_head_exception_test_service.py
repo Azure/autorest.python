@@ -31,14 +31,9 @@ class AutoRestHeadExceptionTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(
-        self,
-        credential: "AsyncTokenCredential",
-        base_url: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "AsyncTokenCredential", base_url: Optional[str] = None, **kwargs: Any) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -47,8 +42,7 @@ class AutoRestHeadExceptionTestService(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.head_exception = HeadExceptionOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.head_exception = HeadExceptionOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()

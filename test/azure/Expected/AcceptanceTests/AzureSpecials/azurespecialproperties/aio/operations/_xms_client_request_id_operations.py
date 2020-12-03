@@ -8,7 +8,13 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -16,8 +22,9 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class XMsClientRequestIdOperations:
     """XMsClientRequestIdOperations async operations.
@@ -42,10 +49,7 @@ class XMsClientRequestIdOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get(
-        self,
-        **kwargs
-    ) -> None:
+    async def get(self, **kwargs) -> None:
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -54,14 +58,12 @@ class XMsClientRequestIdOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.get.metadata['url']  # type: ignore
+        url = self.get.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -80,14 +82,10 @@ class XMsClientRequestIdOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}  # type: ignore
+    get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}  # type: ignore
 
     @distributed_trace_async
-    async def param_get(
-        self,
-        x_ms_client_request_id: str,
-        **kwargs
-    ) -> None:
+    async def param_get(self, x_ms_client_request_id: str, **kwargs) -> None:
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -99,23 +97,23 @@ class XMsClientRequestIdOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.param_get.metadata['url']  # type: ignore
+        url = self.param_get.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['x-ms-client-request-id'] = self._serialize.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["x-ms-client-request-id"] = self._serialize.header(
+            "x_ms_client_request_id", x_ms_client_request_id, "str"
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -129,4 +127,4 @@ class XMsClientRequestIdOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}  # type: ignore
+    param_get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"}  # type: ignore

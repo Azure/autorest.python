@@ -9,6 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
+
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
@@ -27,8 +28,7 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
 
 
 class DaysOfWeekExtensibleEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Type of Pet
-    """
+    """Type of Pet"""
 
     MONDAY = "Monday"
     TUESDAY = "Tuesday"
@@ -37,6 +37,7 @@ class DaysOfWeekExtensibleEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enu
     FRIDAY = "Friday"
     SATURDAY = "Saturday"
     SUNDAY = "Sunday"
+
 
 class IntEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 

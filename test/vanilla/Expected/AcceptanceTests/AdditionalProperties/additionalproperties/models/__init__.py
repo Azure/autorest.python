@@ -24,11 +24,11 @@ except (SyntaxError, ImportError):
     from ._models import PetAPTrue  # type: ignore
 
 __all__ = [
-    'CatAPTrue',
-    'Error',
-    'PetAPInProperties',
-    'PetAPInPropertiesWithAPString',
-    'PetAPObject',
-    'PetAPString',
-    'PetAPTrue',
+    "CatAPTrue",
+    "Error",
+    "PetAPInProperties",
+    "PetAPInPropertiesWithAPString",
+    "PetAPObject",
+    "PetAPString",
+    "PetAPTrue",
 ]

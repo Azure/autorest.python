@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_form_data_service import AutoRestSwaggerBATFormDataService
-__all__ = ['AutoRestSwaggerBATFormDataService']
+
+__all__ = ["AutoRestSwaggerBATFormDataService"]

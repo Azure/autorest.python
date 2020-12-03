@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Test Infrastructure for AutoRest. No server backend exists for these tests.
-    """
+    """,
 )

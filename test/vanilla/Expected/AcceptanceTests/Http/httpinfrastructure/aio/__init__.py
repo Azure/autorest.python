@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastructureTestService
-__all__ = ['AutoRestHttpInfrastructureTestService']
+
+__all__ = ["AutoRestHttpInfrastructureTestService"]

@@ -8,15 +8,22 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class ContantsOperations:
     """ContantsOperations async operations.
@@ -42,9 +49,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(
-        self,
-        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
-        **kwargs
+        self, input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -57,19 +62,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_two_value_no_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -85,13 +88,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_two_value_no_default.metadata = {'url': '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault'}  # type: ignore
+    put_no_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(
-        self,
-        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs
+        self, input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -104,19 +105,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_two_value_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_no_required_two_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -132,13 +131,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_two_value_default.metadata = {'url': '/constants/putNoModelAsStringNoRequiredTwoValueDefault'}  # type: ignore
+    put_no_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(
-        self,
-        input: Optional[str] = "value1",
-        **kwargs
+        self, input: Optional[str] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -151,19 +148,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_one_value_no_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -179,13 +174,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_one_value_no_default.metadata = {'url': '/constants/putNoModelAsStringNoRequiredOneValueNoDefault'}  # type: ignore
+    put_no_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(
-        self,
-        input: Optional[str] = "value1",
-        **kwargs
+        self, input: Optional[str] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -198,19 +191,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_one_value_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_no_required_one_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -226,13 +217,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_one_value_default.metadata = {'url': '/constants/putNoModelAsStringNoRequiredOneValueDefault'}  # type: ignore
+    put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_no_default(
-        self,
-        input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"],
-        **kwargs
+        self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -245,18 +234,16 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_no_model_as_string_required_two_value_no_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_required_two_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -272,13 +259,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_two_value_no_default.metadata = {'url': '/constants/putNoModelAsStringRequiredTwoValueNoDefault'}  # type: ignore
+    put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(
-        self,
-        input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1",
-        **kwargs
+        self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -291,18 +276,16 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_no_model_as_string_required_two_value_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_required_two_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -318,13 +301,10 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_two_value_default.metadata = {'url': '/constants/putNoModelAsStringRequiredTwoValueDefault'}  # type: ignore
+    put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_no_default(
-        self,
-        **kwargs
-    ) -> None:
+    async def put_no_model_as_string_required_one_value_no_default(self, **kwargs) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -334,19 +314,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         input = "value1"
 
         # Construct URL
-        url = self.put_no_model_as_string_required_one_value_no_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_required_one_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -362,13 +340,10 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_one_value_no_default.metadata = {'url': '/constants/putNoModelAsStringRequiredOneValueNoDefault'}  # type: ignore
+    put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_default(
-        self,
-        **kwargs
-    ) -> None:
+    async def put_no_model_as_string_required_one_value_default(self, **kwargs) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -378,19 +353,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         input = "value1"
 
         # Construct URL
-        url = self.put_no_model_as_string_required_one_value_default.metadata['url']  # type: ignore
+        url = self.put_no_model_as_string_required_one_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -406,13 +379,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_one_value_default.metadata = {'url': '/constants/putNoModelAsStringRequiredOneValueDefault'}  # type: ignore
+    put_no_model_as_string_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
-        **kwargs
+        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -425,19 +396,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_no_required_two_value_no_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_no_required_two_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -453,13 +422,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_two_value_no_default.metadata = {'url': '/constants/putModelAsStringNoRequiredTwoValueNoDefault'}  # type: ignore
+    put_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs
+        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -472,19 +439,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_no_required_two_value_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_no_required_two_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -500,13 +465,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_two_value_default.metadata = {'url': '/constants/putModelAsStringNoRequiredTwoValueDefault'}  # type: ignore
+    put_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None,
-        **kwargs
+        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None, **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -519,19 +482,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_no_required_one_value_no_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_no_required_one_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -547,13 +508,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_one_value_no_default.metadata = {'url': '/constants/putModelAsStringNoRequiredOneValueNoDefault'}  # type: ignore
+    put_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
-        **kwargs
+        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -566,19 +525,17 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_no_required_one_value_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_no_required_one_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if input is not None:
-            query_parameters['input'] = self._serialize.query("input", input, 'str')
+            query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -594,13 +551,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_one_value_default.metadata = {'url': '/constants/putModelAsStringNoRequiredOneValueDefault'}  # type: ignore
+    put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_no_default(
-        self,
-        input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"],
-        **kwargs
+        self, input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -613,18 +568,16 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_required_two_value_no_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_required_two_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -640,13 +593,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_two_value_no_default.metadata = {'url': '/constants/putModelAsStringRequiredTwoValueNoDefault'}  # type: ignore
+    put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(
-        self,
-        input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1",
-        **kwargs
+        self, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -659,18 +610,16 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_required_two_value_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_required_two_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -686,13 +635,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_two_value_default.metadata = {'url': '/constants/putModelAsStringRequiredTwoValueDefault'}  # type: ignore
+    put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_no_default(
-        self,
-        input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"],
-        **kwargs
+        self, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -705,18 +652,16 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_required_one_value_no_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_required_one_value_no_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -732,13 +677,11 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_one_value_no_default.metadata = {'url': '/constants/putModelAsStringRequiredOneValueNoDefault'}  # type: ignore
+    put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(
-        self,
-        input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1",
-        **kwargs
+        self, input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs
     ) -> None:
         """Puts constants to the testserver.
 
@@ -751,18 +694,16 @@ class ContantsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.put_model_as_string_required_one_value_default.metadata['url']  # type: ignore
+        url = self.put_model_as_string_required_one_value_default.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['input'] = self._serialize.query("input", input, 'str')
+        query_parameters["input"] = self._serialize.query("input", input, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -778,4 +719,4 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_one_value_default.metadata = {'url': '/constants/putModelAsStringRequiredOneValueDefault'}  # type: ignore
+    put_model_as_string_required_one_value_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore

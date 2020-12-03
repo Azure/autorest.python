@@ -26,22 +26,17 @@ class ChildProduct(msrest.serialization.Model):
     """
 
     _validation = {
-        'const_property': {'required': True, 'constant': True},
+        "const_property": {"required": True, "constant": True},
     }
 
     _attribute_map = {
-        'const_property': {'key': 'constProperty', 'type': 'str'},
-        'count': {'key': 'count', 'type': 'int'},
+        "const_property": {"key": "constProperty", "type": "str"},
+        "count": {"key": "count", "type": "int"},
     }
 
     const_property = "constant"
 
-    def __init__(
-        self,
-        *,
-        count: Optional[int] = None,
-        **kwargs
-    ):
+    def __init__(self, *, count: Optional[int] = None, **kwargs):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
 
@@ -60,22 +55,19 @@ class ConstantProduct(msrest.serialization.Model):
     """
 
     _validation = {
-        'const_property': {'required': True, 'constant': True},
-        'const_property2': {'required': True, 'constant': True},
+        "const_property": {"required": True, "constant": True},
+        "const_property2": {"required": True, "constant": True},
     }
 
     _attribute_map = {
-        'const_property': {'key': 'constProperty', 'type': 'str'},
-        'const_property2': {'key': 'constProperty2', 'type': 'str'},
+        "const_property": {"key": "constProperty", "type": "str"},
+        "const_property2": {"key": "constProperty2", "type": "str"},
     }
 
     const_property = "constant"
     const_property2 = "constant2"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ConstantProduct, self).__init__(**kwargs)
 
 
@@ -91,18 +83,13 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'code': {'key': 'code', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
-        'fields': {'key': 'fields', 'type': 'str'},
+        "code": {"key": "code", "type": "int"},
+        "message": {"key": "message", "type": "str"},
+        "fields": {"key": "fields", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        code: Optional[int] = None,
-        message: Optional[str] = None,
-        fields: Optional[str] = None,
-        **kwargs
+        self, *, code: Optional[int] = None, message: Optional[str] = None, fields: Optional[str] = None, **kwargs
     ):
         super(Error, self).__init__(**kwargs)
         self.code = code
@@ -136,25 +123,25 @@ class Product(msrest.serialization.Model):
     """
 
     _validation = {
-        'display_names': {'max_items': 6, 'min_items': 0, 'unique': True},
-        'capacity': {'maximum_ex': 100, 'minimum_ex': 0},
-        'image': {'pattern': r'http://\w+'},
-        'child': {'required': True},
-        'const_child': {'required': True},
-        'const_int': {'required': True, 'constant': True},
-        'const_string': {'required': True, 'constant': True},
-        'const_string_as_enum': {'constant': True},
+        "display_names": {"max_items": 6, "min_items": 0, "unique": True},
+        "capacity": {"maximum_ex": 100, "minimum_ex": 0},
+        "image": {"pattern": r"http://\w+"},
+        "child": {"required": True},
+        "const_child": {"required": True},
+        "const_int": {"required": True, "constant": True},
+        "const_string": {"required": True, "constant": True},
+        "const_string_as_enum": {"constant": True},
     }
 
     _attribute_map = {
-        'display_names': {'key': 'display_names', 'type': '[str]'},
-        'capacity': {'key': 'capacity', 'type': 'int'},
-        'image': {'key': 'image', 'type': 'str'},
-        'child': {'key': 'child', 'type': 'ChildProduct'},
-        'const_child': {'key': 'constChild', 'type': 'ConstantProduct'},
-        'const_int': {'key': 'constInt', 'type': 'int'},
-        'const_string': {'key': 'constString', 'type': 'str'},
-        'const_string_as_enum': {'key': 'constStringAsEnum', 'type': 'str'},
+        "display_names": {"key": "display_names", "type": "[str]"},
+        "capacity": {"key": "capacity", "type": "int"},
+        "image": {"key": "image", "type": "str"},
+        "child": {"key": "child", "type": "ChildProduct"},
+        "const_child": {"key": "constChild", "type": "ConstantProduct"},
+        "const_int": {"key": "constInt", "type": "int"},
+        "const_string": {"key": "constString", "type": "str"},
+        "const_string_as_enum": {"key": "constStringAsEnum", "type": "str"},
     }
 
     const_int = 0

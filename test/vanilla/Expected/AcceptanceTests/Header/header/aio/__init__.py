@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_header_service import AutoRestSwaggerBATHeaderService
-__all__ = ['AutoRestSwaggerBATHeaderService']
+
+__all__ = ["AutoRestSwaggerBATHeaderService"]

@@ -24,13 +24,9 @@ class AutoRestSwaggerBATFileService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(
-        self,
-        base_url: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestSwaggerBATFileServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -39,8 +35,7 @@ class AutoRestSwaggerBATFileService(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.files = FilesOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.files = FilesOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()

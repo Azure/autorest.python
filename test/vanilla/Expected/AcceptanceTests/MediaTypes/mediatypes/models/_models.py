@@ -17,16 +17,13 @@ class SourcePath(msrest.serialization.Model):
     """
 
     _validation = {
-        'source': {'max_length': 2048, 'min_length': 0},
+        "source": {"max_length": 2048, "min_length": 0},
     }
 
     _attribute_map = {
-        'source': {'key': 'source', 'type': 'str'},
+        "source": {"key": "source", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(SourcePath, self).__init__(**kwargs)
-        self.source = kwargs.get('source', None)
+        self.source = kwargs.get("source", None)

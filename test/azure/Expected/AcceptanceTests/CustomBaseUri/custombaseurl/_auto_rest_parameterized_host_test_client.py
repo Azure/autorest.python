@@ -35,7 +35,7 @@ class AutoRestParameterizedHostTestClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        base_url = 'http://{accountName}{host}'
+        base_url = "http://{accountName}{host}"
         self._config = AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -43,8 +43,7 @@ class AutoRestParameterizedHostTestClient(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.paths = PathsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None

@@ -24,21 +24,15 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     :param str base_url: Service URL
     """
 
-    def __init__(
-        self,
-        subscription_id: str,
-        base_url: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, subscription_id: str, base_url: Optional[str] = None, **kwargs: Any) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-
 
     async def close(self) -> None:
         await self._client.close()

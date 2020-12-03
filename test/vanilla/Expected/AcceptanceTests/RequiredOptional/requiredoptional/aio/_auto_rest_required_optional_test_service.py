@@ -42,18 +42,18 @@ class AutoRestRequiredOptionalTestService(object):
         **kwargs: Any
     ) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
-        self._config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, **kwargs)
+            base_url = "http://localhost:3000"
+        self._config = AutoRestRequiredOptionalTestServiceConfiguration(
+            required_global_path, required_global_query, optional_global_query, **kwargs
+        )
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.implicit = ImplicitOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.explicit = ExplicitOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()

@@ -20,9 +20,9 @@ except (SyntaxError, ImportError):
     from ._models import ParameterGroupingPostRequiredParameters  # type: ignore
 
 __all__ = [
-    'Error',
-    'FirstParameterGroup',
-    'ParameterGroupingPostMultiParamGroupsSecondParamGroup',
-    'ParameterGroupingPostOptionalParameters',
-    'ParameterGroupingPostRequiredParameters',
+    "Error",
+    "FirstParameterGroup",
+    "ParameterGroupingPostMultiParamGroupsSecondParamGroup",
+    "ParameterGroupingPostOptionalParameters",
+    "ParameterGroupingPostRequiredParameters",
 ]

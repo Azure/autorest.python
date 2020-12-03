@@ -110,3 +110,24 @@ scope-multiapiscript/emitter:
 
 output-artifact: python-files
 ```
+
+# Black script pipeline
+
+``` yaml $(black)
+
+pipeline:
+  python/black:
+    scope: black
+    input: python/codegen
+    output-artifact: python-files
+
+  python/black/emitter:
+    input: black
+    scope: scope-black/emitter
+
+scope-black/emitter:
+    input-artifact: python-files
+    output-uri-expr: $key
+
+output-artifact: python-files
+```

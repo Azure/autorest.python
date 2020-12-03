@@ -22,17 +22,11 @@ class Feline(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
-        'hisses': {'key': 'hisses', 'type': 'bool'},
+        "meows": {"key": "meows", "type": "bool"},
+        "hisses": {"key": "hisses", "type": "bool"},
     }
 
-    def __init__(
-        self,
-        *,
-        meows: Optional[bool] = None,
-        hisses: Optional[bool] = None,
-        **kwargs
-    ):
+    def __init__(self, *, meows: Optional[bool] = None, hisses: Optional[bool] = None, **kwargs):
         super(Feline, self).__init__(**kwargs)
         self.meows = meows
         self.hisses = hisses
@@ -48,19 +42,14 @@ class Pet(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        **kwargs
-    ):
+    def __init__(self, *, name: str, **kwargs):
         super(Pet, self).__init__(**kwargs)
         self.name = name
 
@@ -81,14 +70,14 @@ class Cat(Pet, Feline):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
-        'hisses': {'key': 'hisses', 'type': 'bool'},
-        'name': {'key': 'name', 'type': 'str'},
-        'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
+        "meows": {"key": "meows", "type": "bool"},
+        "hisses": {"key": "hisses", "type": "bool"},
+        "name": {"key": "name", "type": "str"},
+        "likes_milk": {"key": "likesMilk", "type": "bool"},
     }
 
     def __init__(
@@ -118,17 +107,11 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -146,21 +129,15 @@ class Horse(Pet):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'is_a_show_horse': {'key': 'isAShowHorse', 'type': 'bool'},
+        "name": {"key": "name", "type": "str"},
+        "is_a_show_horse": {"key": "isAShowHorse", "type": "bool"},
     }
 
-    def __init__(
-        self,
-        *,
-        name: str,
-        is_a_show_horse: Optional[bool] = None,
-        **kwargs
-    ):
+    def __init__(self, *, name: str, is_a_show_horse: Optional[bool] = None, **kwargs):
         super(Horse, self).__init__(name=name, **kwargs)
         self.is_a_show_horse = is_a_show_horse
 
@@ -183,15 +160,15 @@ class Kitten(Cat):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'meows': {'key': 'meows', 'type': 'bool'},
-        'hisses': {'key': 'hisses', 'type': 'bool'},
-        'name': {'key': 'name', 'type': 'str'},
-        'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
-        'eats_mice_yet': {'key': 'eatsMiceYet', 'type': 'bool'},
+        "meows": {"key": "meows", "type": "bool"},
+        "hisses": {"key": "hisses", "type": "bool"},
+        "name": {"key": "name", "type": "str"},
+        "likes_milk": {"key": "likesMilk", "type": "bool"},
+        "eats_mice_yet": {"key": "eatsMiceYet", "type": "bool"},
     }
 
     def __init__(

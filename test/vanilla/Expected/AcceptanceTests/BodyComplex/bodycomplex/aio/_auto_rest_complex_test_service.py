@@ -48,13 +48,9 @@ class AutoRestComplexTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(
-        self,
-        base_url: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -62,24 +58,19 @@ class AutoRestComplexTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.basic = BasicOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.primitive = PrimitiveOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.array = ArrayOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.dictionary = DictionaryOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.inheritance = InheritanceOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.polymorphism = PolymorphismOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.inheritance = InheritanceOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.polymorphism = PolymorphismOperations(self._client, self._config, self._serialize, self._deserialize)
         self.polymorphicrecursive = PolymorphicrecursiveOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.readonlyproperty = ReadonlypropertyOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.flattencomplex = FlattencomplexOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()

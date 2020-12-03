@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_report_service import AutoRestReportService
-__all__ = ['AutoRestReportService']
+
+__all__ = ["AutoRestReportService"]

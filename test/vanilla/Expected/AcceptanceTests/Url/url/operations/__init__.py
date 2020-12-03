@@ -11,7 +11,7 @@ from ._queries_operations import QueriesOperations
 from ._path_items_operations import PathItemsOperations
 
 __all__ = [
-    'PathsOperations',
-    'QueriesOperations',
-    'PathItemsOperations',
+    "PathsOperations",
+    "QueriesOperations",
+    "PathItemsOperations",
 ]

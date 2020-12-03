@@ -18,7 +18,7 @@ from ._auto_rest_swagger_bat_service_enums import (
 )
 
 __all__ = [
-    'Error',
-    'RefColorConstant',
-    'Colors',
+    "Error",
+    "RefColorConstant",
+    "Colors",
 ]

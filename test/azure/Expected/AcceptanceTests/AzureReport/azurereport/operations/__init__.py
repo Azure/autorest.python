@@ -9,5 +9,5 @@
 from ._auto_rest_report_service_for_azure_operations import AutoRestReportServiceForAzureOperationsMixin
 
 __all__ = [
-    'AutoRestReportServiceForAzureOperationsMixin',
+    "AutoRestReportServiceForAzureOperationsMixin",
 ]

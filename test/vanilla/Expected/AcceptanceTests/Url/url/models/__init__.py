@@ -16,6 +16,6 @@ from ._auto_rest_url_test_service_enums import (
 )
 
 __all__ = [
-    'Error',
-    'UriColor',
+    "Error",
+    "UriColor",
 ]

@@ -8,15 +8,22 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class QueriesOperations:
     """QueriesOperations async operations.
@@ -41,11 +48,7 @@ class QueriesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def array_string_multi_null(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_multi_null(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array format.
@@ -55,24 +58,24 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_multi_null.metadata['url']  # type: ignore
+        url = self.array_string_multi_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') if q is not None else '' for q in array_query]
+            query_parameters["arrayQuery"] = [
+                self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
+            ]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -86,14 +89,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}  # type: ignore
+    array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_multi_empty(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_multi_empty(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array format.
@@ -103,24 +102,24 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_multi_empty.metadata['url']  # type: ignore
+        url = self.array_string_multi_empty.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') if q is not None else '' for q in array_query]
+            query_parameters["arrayQuery"] = [
+                self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
+            ]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -134,14 +133,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}  # type: ignore
+    array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_multi_valid(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_multi_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.
 
@@ -153,24 +148,24 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_multi_valid.metadata['url']  # type: ignore
+        url = self.array_string_multi_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = [self._serialize.query("array_query", q, 'str') if q is not None else '' for q in array_query]
+            query_parameters["arrayQuery"] = [
+                self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
+            ]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -184,4 +179,4 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}  # type: ignore
+    array_string_multi_valid.metadata = {"url": "/queries/array/multi/string/valid"}  # type: ignore

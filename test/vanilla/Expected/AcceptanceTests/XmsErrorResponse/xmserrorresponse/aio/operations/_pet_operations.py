@@ -8,15 +8,22 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PetOperations:
     """PetOperations async operations.
@@ -41,11 +48,7 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_pet_by_id(
-        self,
-        pet_id: str,
-        **kwargs
-    ) -> Optional["_models.Pet"]:
+    async def get_pet_by_id(self, pet_id: str, **kwargs) -> Optional["_models.Pet"]:
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -55,21 +58,23 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Pet"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Pet"]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(_models.NotFoundErrorBase, response)),
+            404: lambda response: ResourceNotFoundError(
+                response=response, model=self._deserialize(_models.NotFoundErrorBase, response)
+            ),
             501: HttpResponseError,
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_pet_by_id.metadata['url']  # type: ignore
+        url = self.get_pet_by_id.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'petId': self._serialize.url("pet_id", pet_id, 'str'),
+            "petId": self._serialize.url("pet_id", pet_id, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -78,7 +83,7 @@ class PetOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -90,20 +95,17 @@ class PetOperations:
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Pet', pipeline_response)
+            deserialized = self._deserialize("Pet", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}  # type: ignore
+
+    get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace_async
-    async def do_something(
-        self,
-        what_action: str,
-        **kwargs
-    ) -> "_models.PetAction":
+    async def do_something(self, what_action: str, **kwargs) -> "_models.PetAction":
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -113,20 +115,22 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PetAction"]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAction"]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
-            500: lambda response: HttpResponseError(response=response, model=self._deserialize(_models.PetActionError, response)),
+            500: lambda response: HttpResponseError(
+                response=response, model=self._deserialize(_models.PetActionError, response)
+            ),
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.do_something.metadata['url']  # type: ignore
+        url = self.do_something.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'whatAction': self._serialize.url("what_action", what_action, 'str'),
+            "whatAction": self._serialize.url("what_action", what_action, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -135,7 +139,7 @@ class PetOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -146,20 +150,17 @@ class PetOperations:
             error = self._deserialize(_models.PetActionError, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('PetAction', pipeline_response)
+        deserialized = self._deserialize("PetAction", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}  # type: ignore
+
+    do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
     @distributed_trace_async
-    async def has_models_param(
-        self,
-        models: Optional[str] = "value1",
-        **kwargs
-    ) -> None:
+    async def has_models_param(self, models: Optional[str] = "value1", **kwargs) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.
 
@@ -171,27 +172,29 @@ class PetOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
-            500: lambda response: HttpResponseError(response=response, model=self._deserialize(_models.PetActionError, response)),
+            500: lambda response: HttpResponseError(
+                response=response, model=self._deserialize(_models.PetActionError, response)
+            ),
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.has_models_param.metadata['url']  # type: ignore
+        url = self.has_models_param.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if models is not None:
-            query_parameters['models'] = self._serialize.query("models", models, 'str')
+            query_parameters["models"] = self._serialize.query("models", models, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -205,4 +208,4 @@ class PetOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    has_models_param.metadata = {'url': '/errorStatusCodes/Pets/hasModelsParam'}  # type: ignore
+    has_models_param.metadata = {"url": "/errorStatusCodes/Pets/hasModelsParam"}  # type: ignore

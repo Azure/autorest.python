@@ -22,17 +22,11 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -51,23 +45,19 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
     """
 
     _validation = {
-        'file_content': {'required': True},
-        'file_name': {'required': True},
+        "file_content": {"required": True},
+        "file_name": {"required": True},
     }
 
     _attribute_map = {
-        'file_content': {'key': 'fileContent', 'type': 'IO'},
-        'file_name': {'key': 'fileName', 'type': 'str'},
+        "file_content": {"key": "fileContent", "type": "IO"},
+        "file_name": {"key": "fileName", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        file_content: IO,
-        file_name: str,
-        **kwargs
-    ):
-        super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
+    def __init__(self, *, file_content: IO, file_name: str, **kwargs):
+        super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(
+            **kwargs
+        )
         self.file_content = file_content
         self.file_name = file_name
 
@@ -82,18 +72,15 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
     """
 
     _validation = {
-        'file_content': {'required': True},
+        "file_content": {"required": True},
     }
 
     _attribute_map = {
-        'file_content': {'key': 'fileContent', 'type': '[IO]'},
+        "file_content": {"key": "fileContent", "type": "[IO]"},
     }
 
-    def __init__(
-        self,
-        *,
-        file_content: List[IO],
-        **kwargs
-    ):
-        super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
+    def __init__(self, *, file_content: List[IO], **kwargs):
+        super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(
+            **kwargs
+        )
         self.file_content = file_content

@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._models import OdataFilter  # type: ignore
 
 __all__ = [
-    'Error',
-    'HeaderCustomNamedRequestIdParamGroupingParameters',
-    'OdataFilter',
+    "Error",
+    "HeaderCustomNamedRequestIdParamGroupingParameters",
+    "OdataFilter",
 ]
