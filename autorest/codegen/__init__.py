@@ -174,7 +174,7 @@ class CodeGenerator(Plugin):
                 )
             if not credential_key_header_name:
                 credential_key_header_name = "api-key"
-                _LOGGER.warning(
+                _LOGGER.info(
                     "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
                 )
         return credential_scopes, credential_key_header_name
