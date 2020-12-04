@@ -39,7 +39,7 @@
         "credential_scopes": null,
         "credential_default_policy_type": "AzureKeyCredentialPolicy",
         "credential_default_policy_type_has_async_version": false,
-        "credential_key_header_name": "Authorization",
+        "credential_key_header_name": "api-key",
         "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
         "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"azurecore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
     },
