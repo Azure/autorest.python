@@ -18,7 +18,7 @@ _initial_request = self._{{ operation.python_name }}_initial(
         {% set next_operation_suffix = "_initial" %}
         {% set method_parameters = operation.parameters.method %}
     {% endif %}
-_next_request_partial = functools.partial(
+_next_request_callback = functools.partial(
     self._{{ operation.python_name }}{{ next_operation_suffix }},
     {% for parameter in method_parameters %}
         {% if parameter.serialized_name != "next_link" %}
@@ -37,7 +37,7 @@ return {{ operation.get_pager(async_mode) }}(
     initial_response={{ initial_response }},
     {% else %}
     initial_request=_initial_request,
-    next_request_partial=_next_request_partial,
+    next_request_callback=_next_request_callback,
     {% endif %}
     {% if operation.item_name != 'value' %}
     item_name='{{ operation.item_name }}',

@@ -66,7 +66,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._next_link_in_response_headers_initial(
             next_link=self._next_link_in_response_headers_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._next_link_in_response_headers_initial,
         )
         return AsyncItemPaged(
@@ -75,7 +75,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             deserialize_output=deserialize_output,
             continuation_token_location=None,
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -120,7 +120,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._continuation_token_initial(
             next_link=self._continuation_token_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._continuation_token_initial,
         )
         return AsyncItemPaged(
@@ -129,7 +129,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             deserialize_output=deserialize_output,
             continuation_token_location='token',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -181,7 +181,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             next_link=self._continuation_token_in_response_headers_initial.metadata['url'],
             continuation_token_parameter=continuation_token_parameter,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._continuation_token_in_response_headers_initial,
             continuation_token_parameter=continuation_token_parameter,
         )
@@ -191,7 +191,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             deserialize_output=deserialize_output,
             continuation_token_location=None,
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -236,7 +236,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._token_with_metadata_initial(
             next_link=self._token_with_metadata_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._token_with_metadata_initial,
         )
         return AsyncPagerWithMetadata(
@@ -245,7 +245,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             deserialize_output=deserialize_output,
             continuation_token_location='token',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -298,7 +298,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             next_link=self._next_link_and_continuation_token_initial.metadata['url'],
             continuation_token_parameter=continuation_token_parameter,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._next_link_and_continuation_token_initial,
             continuation_token_parameter=continuation_token_parameter,
         )
@@ -308,7 +308,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             deserialize_output=deserialize_output,
             continuation_token_location='token',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -374,7 +374,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._continuation_token_initial_operation_initial(
             next_link=self._continuation_token_initial_operation_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._continuation_token_initial_operation_next,
         )
         return AsyncItemPaged(
@@ -383,7 +383,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             deserialize_output=deserialize_output,
             continuation_token_location='token',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

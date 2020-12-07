@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging_method import BasicPagingMethod
+from azure.core.paging import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
@@ -544,7 +544,7 @@ class StorageAccountsOperations:
         _initial_request = self._list_initial(
             next_link=self._list_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._list_initial,
         )
         return AsyncItemPaged(
@@ -553,8 +553,7 @@ class StorageAccountsOperations:
             deserialize_output=deserialize_output,
             continuation_token_location=None,
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
-            path_format_arguments=path_format_arguments,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -616,7 +615,7 @@ class StorageAccountsOperations:
             next_link=self._list_by_resource_group_initial.metadata['url'],
             resource_group_name=resource_group_name,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._list_by_resource_group_initial,
             resource_group_name=resource_group_name,
         )
@@ -626,8 +625,7 @@ class StorageAccountsOperations:
             deserialize_output=deserialize_output,
             continuation_token_location=None,
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
-            path_format_arguments=path_format_arguments,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

@@ -99,7 +99,7 @@ class PagingOperations:
             next_link=self._get_pages_partial_url_initial.metadata['url'],
             account_name=account_name,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_pages_partial_url_initial,
             account_name=account_name,
         )
@@ -109,7 +109,7 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -192,7 +192,7 @@ class PagingOperations:
             next_link=self._get_pages_partial_url_operation_initial.metadata['url'],
             account_name=account_name,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_pages_partial_url_operation_next,
             account_name=account_name,
         )
@@ -202,7 +202,7 @@ class PagingOperations:
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,

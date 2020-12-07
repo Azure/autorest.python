@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import ItemPaged
-from azure.core.paging_method import BasicPagingMethod, PagingMethodWithInitialResponse
+from azure.core.paging import BasicPagingMethod, ItemPaged, PagingMethodWithInitialResponse
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
@@ -90,7 +89,7 @@ class PagingOperations(object):
         _initial_request = self._get_no_item_name_pages_initial(
             next_link=self._get_no_item_name_pages_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_no_item_name_pages_initial,
         )
         return ItemPaged(
@@ -99,7 +98,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -144,7 +143,7 @@ class PagingOperations(object):
         _initial_request = self._get_null_next_link_name_pages_initial(
             next_link=self._get_null_next_link_name_pages_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_null_next_link_name_pages_initial,
         )
         return ItemPaged(
@@ -153,7 +152,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location=None,
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -199,7 +198,7 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_initial(
             next_link=self._get_single_pages_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_single_pages_initial,
         )
         return CustomPager(
@@ -208,7 +207,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -255,7 +254,7 @@ class PagingOperations(object):
         _initial_request = self._first_response_empty_initial(
             next_link=self._first_response_empty_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._first_response_empty_initial,
         )
         return ItemPaged(
@@ -264,7 +263,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -331,7 +330,7 @@ class PagingOperations(object):
             client_request_id=client_request_id,
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_initial,
             client_request_id=client_request_id,
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
@@ -342,7 +341,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -350,6 +349,7 @@ class PagingOperations(object):
 
     def _get_with_query_params_initial(
         self,
+        next_link,  # type: str
         required_query_parameter,  # type: int
         **kwargs  # type: Any
     ):
@@ -358,7 +358,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_with_query_params_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -375,6 +375,7 @@ class PagingOperations(object):
 
     def _get_with_query_params_next(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -420,7 +421,7 @@ class PagingOperations(object):
             next_link=self._get_with_query_params_initial.metadata['url'],
             required_query_parameter=required_query_parameter,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_with_query_params_next,
         )
         return ItemPaged(
@@ -429,7 +430,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -497,7 +498,7 @@ class PagingOperations(object):
             client_request_id=client_request_id,
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_odata_multiple_pages_initial,
             client_request_id=client_request_id,
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
@@ -508,7 +509,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -590,7 +591,7 @@ class PagingOperations(object):
             paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
             client_request_id=client_request_id,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_with_offset_initial,
             paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
             client_request_id=client_request_id,
@@ -601,8 +602,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
-            path_format_arguments=path_format_arguments,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -649,7 +649,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_first_initial(
             next_link=self._get_multiple_pages_retry_first_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_retry_first_initial,
         )
         return ItemPaged(
@@ -658,7 +658,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -705,7 +705,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_second_initial(
             next_link=self._get_multiple_pages_retry_second_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_retry_second_initial,
         )
         return ItemPaged(
@@ -714,7 +714,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -760,7 +760,7 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_failure_initial(
             next_link=self._get_single_pages_failure_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_single_pages_failure_initial,
         )
         return ItemPaged(
@@ -769,7 +769,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -815,7 +815,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_initial(
             next_link=self._get_multiple_pages_failure_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_failure_initial,
         )
         return ItemPaged(
@@ -824,7 +824,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -870,7 +870,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_uri_initial(
             next_link=self._get_multiple_pages_failure_uri_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_failure_uri_initial,
         )
         return ItemPaged(
@@ -879,7 +879,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -887,6 +887,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_fragment_next_link_initial(
         self,
+        next_link,  # type: str
         api_version,  # type: str
         tenant,  # type: str
         **kwargs  # type: Any
@@ -895,7 +896,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_next_link_initial.metadata['url']  # type: ignore
+        url = next_link
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", tenant, 'str'),
         }
@@ -969,7 +970,7 @@ class PagingOperations(object):
             api_version=api_version,
             tenant=tenant,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_fragment_next_link_next,
             api_version=api_version,
             tenant=tenant,
@@ -980,7 +981,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -988,6 +989,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_fragment_with_grouping_next_link_initial(
         self,
+        next_link,  # type: str
         custom_parameter_group,  # type: "_models.CustomParameterGroup"
         **kwargs  # type: Any
     ):
@@ -1001,7 +1003,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url']  # type: ignore
+        url = next_link
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", _tenant, 'str'),
         }
@@ -1076,7 +1078,7 @@ class PagingOperations(object):
             next_link=self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url'],
             custom_parameter_group=custom_parameter_group,
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_multiple_pages_fragment_with_grouping_next_link_next,
             custom_parameter_group=custom_parameter_group,
         )
@@ -1086,7 +1088,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -1257,7 +1259,7 @@ class PagingOperations(object):
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial(
             next_link=self._get_paging_model_with_item_name_with_xms_client_name_initial.metadata['url'],
         )
-        _next_request_partial = functools.partial(
+        _next_request_callback = functools.partial(
             self._get_paging_model_with_item_name_with_xms_client_name_initial,
         )
         return ItemPaged(
@@ -1266,7 +1268,7 @@ class PagingOperations(object):
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_partial=_next_request_partial,
+            next_request_callback=_next_request_callback,
             item_name='indexes',
             _cls=kwargs.pop("cls", None),
             **kwargs,
