@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging_method import BasicPagingMethod
+from azure.core.paging import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -110,7 +110,6 @@ class PagingOperations:
             continuation_token_location='next_link',
             initial_request=_initial_request,
             next_request_partial=_next_request_partial,
-            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -118,13 +117,14 @@ class PagingOperations:
 
     def _get_pages_partial_url_operation_initial(
         self,
+        next_link: str,
         account_name: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_operation_initial.metadata['url']  # type: ignore
+        url = next_link
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),

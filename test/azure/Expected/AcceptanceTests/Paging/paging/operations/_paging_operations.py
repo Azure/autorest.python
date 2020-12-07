@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import ItemPaged
-from azure.core.paging_method import BasicPagingMethod, PagingMethodWithInitialResponse
+from azure.core.paging import BasicPagingMethod, ItemPaged, PagingMethodWithInitialResponse
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -354,6 +353,7 @@ class PagingOperations(object):
 
     def _get_with_query_params_initial(
         self,
+        next_link,  # type: str
         required_query_parameter,  # type: int
         **kwargs  # type: Any
     ):
@@ -362,7 +362,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_with_query_params_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -610,7 +610,6 @@ class PagingOperations(object):
             continuation_token_location='next_link',
             initial_request=_initial_request,
             next_request_partial=_next_request_partial,
-            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -900,6 +899,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_fragment_next_link_initial(
         self,
+        next_link,  # type: str
         api_version,  # type: str
         tenant,  # type: str
         **kwargs  # type: Any
@@ -908,7 +908,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_next_link_initial.metadata['url']  # type: ignore
+        url = next_link
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", tenant, 'str'),
         }
@@ -1002,6 +1002,7 @@ class PagingOperations(object):
 
     def _get_multiple_pages_fragment_with_grouping_next_link_initial(
         self,
+        next_link,  # type: str
         custom_parameter_group,  # type: "_models.CustomParameterGroup"
         **kwargs  # type: Any
     ):
@@ -1015,7 +1016,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url']  # type: ignore
+        url = next_link
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", _tenant, 'str'),
         }

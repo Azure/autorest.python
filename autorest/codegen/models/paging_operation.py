@@ -161,10 +161,9 @@ class PagingOperation(Operation):
         """
         parameters = self.parameters.parameters.copy()
         url_initialization = None
-        if not self.next_operation:
-            next_link_param = _token_input_parameter("next_link")
-            parameters.insert(0, next_link_param)
-            url_initialization = "url = next_link"
+        next_link_param = _token_input_parameter("next_link")
+        parameters.insert(0, next_link_param)
+        url_initialization = "url = next_link"
         return Operation(
             yaml_data={},
             name="_" + self.name + "_initial",

@@ -1,5 +1,5 @@
 from azure.core.paging import ItemPaged, ReturnType, PageIterator
-from azure.core.paging_method import BasicPagingMethod
+from azure.core.paging import BasicPagingMethod
 from azure.core.polling import LROPoller
 from azure.core.polling._poller import PollingReturnType
 

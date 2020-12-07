@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import ItemPaged
-from azure.core.paging_method import BasicPagingMethod
+from azure.core.paging import BasicPagingMethod, ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -328,13 +327,14 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
     def _continuation_token_initial_operation_initial(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = self._continuation_token_initial_operation_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -349,6 +349,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
     def _continuation_token_initial_operation_next(
         self,
+        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest

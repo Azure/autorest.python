@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from pagingspecial.aio import AutoRestSpecialPagingTestService
-from azure.core.paging_method import BasicPagingMethod
+from azure.core.paging import BasicPagingMethod
 import pytest
 
 @pytest.fixture
@@ -51,10 +51,10 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_continuation_token(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def get_next_request(self, continuation_token, next_request_partial):
-                request = next_request_partial(self._initial_request.url)
-                request.headers["x-ms-token"] = continuation_token
-                return request
+            def get_next_request(self, continuation_token, next_request):
+                next_request.url = self._initial_request.url
+                next_request.headers["x-ms-token"] = continuation_token
+                return next_request
 
         pages = client.continuation_token(paging_method=MyPagingMethod())
         items = []
@@ -68,10 +68,10 @@ class TestPaging(object):
             def get_continuation_token(self, pipeline_response, deserialized):
                 return pipeline_response.http_response.headers.get('x-ms-token', None)
 
-            def get_next_request(self, continuation_token, next_request_partial):
-                request = next_request_partial(self._initial_request.url)
-                request.headers["x-ms-token"] = continuation_token
-                return request
+            def get_next_request(self, continuation_token, next_request):
+                next_request.url = self._initial_request.url
+                next_request.headers["x-ms-token"] = continuation_token
+                return next_request
 
         pages = client.continuation_token_in_response_headers(paging_method=MyPagingMethod())
         items = []
@@ -94,10 +94,10 @@ class TestPaging(object):
                 self._count = int(split_token[1])
                 return split_token[0]
 
-            def get_next_request(self, continuation_token, next_request_partial):
-                request = next_request_partial(self._initial_request.url)
-                request.headers["x-ms-token"] = continuation_token
-                return request
+            def get_next_request(self, continuation_token, next_request):
+                next_request.url = self._initial_request.url
+                next_request.headers["x-ms-token"] = continuation_token
+                return next_request
 
         pages = client.token_with_metadata(paging_method=MyPagingMethod())
         items = []
@@ -121,10 +121,9 @@ class TestPaging(object):
                 self.token_to_pass_to_headers = split_token[0]
                 return split_token[1]
 
-            def get_next_request(self, continuation_token, next_request_partial):
-                request = next_request_partial(continuation_token)
-                request.headers["x-ms-token"] = self.token_to_pass_to_headers
-                return request
+            def get_next_request(self, continuation_token, next_request):
+                next_request.headers["x-ms-token"] = self.token_to_pass_to_headers
+                return next_request
 
         pages = client.next_link_and_continuation_token(paging_method=MyPagingMethod())
         items = []
@@ -135,10 +134,9 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_continuation_token_with_separate_next_operation(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def get_next_request(self, continuation_token, next_request_partial):
-                request = next_request_partial()
-                request.headers["x-ms-token"] = continuation_token
-                return request
+            def get_next_request(self, continuation_token, next_request):
+                next_request.headers["x-ms-token"] = continuation_token
+                return next_request
 
         pages = client.continuation_token_initial_operation(paging_method=MyPagingMethod())
         items = []

@@ -74,11 +74,11 @@ class NameConverter:
             )
             if lro:
                 operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method", "azure.core.paging_method.PagingMethodWithInitialResponse"
+                    "x-python-custom-default-paging-method", "azure.core.paging.PagingMethodWithInitialResponse"
                 )
             else:
                 operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method", "azure.core.paging_method.BasicPagingMethod"
+                    "x-python-custom-default-paging-method", "azure.core.paging.BasicPagingMethod"
                 )
         if lro:
             operation["extensions"]["poller-sync"] = operation_extensions.get(

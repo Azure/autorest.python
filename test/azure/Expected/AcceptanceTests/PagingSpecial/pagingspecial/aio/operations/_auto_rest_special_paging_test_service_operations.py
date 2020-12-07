@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging_method import BasicPagingMethod
+from azure.core.paging import BasicPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -315,12 +315,13 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
 
     def _continuation_token_initial_operation_initial(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._continuation_token_initial_operation_initial.metadata['url']  # type: ignore
+        url = next_link
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -335,6 +336,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
 
     def _continuation_token_initial_operation_next(
         self,
+        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
