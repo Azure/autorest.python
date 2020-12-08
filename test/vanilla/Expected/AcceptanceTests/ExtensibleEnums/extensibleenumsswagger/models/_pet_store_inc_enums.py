@@ -40,6 +40,9 @@ class DaysOfWeekExtensibleEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enu
 
 class IntEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-    ONE = "1"  #: one.
-    TWO = "2"  #: two.
-    THREE = "3"  #: three.
+    #: one.
+    ONE = "1"
+    #: two.
+    TWO = "2"
+    #: three.
+    THREE = "3"
