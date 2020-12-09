@@ -1,6 +1,6 @@
 # <img align="center" src="./images/logo.png">  Generating a Multi API Python Client with AutoRest
 
-If you want to generate one client that handles multiple API versions (a common use-case for this is supporitng multiple Azure clouds, since a service's API versions can differ between them), this is the section for you. Python is the only language that supports this, hence why these docs are in the Python-specific section.
+If you want to generate one client that handles multiple API versions (a common use-case for this is supporting multiple Azure clouds, since a service's API versions can differ between them), this is the section for you. Python is the only language that supports this, hence why these docs are in the Python-specific section.
 
 Before getting into the multiapi specific sections that need to be added to your readme, you need to make sure you have a tag set up for every single API version you want to generate. See the ["Adding Tags When Generating"](https://github.com/Azure/autorest/tree/master/docs/generate/readme.md#adding-tags-when-generating) docs to find out how to set this up. Following the [main example]((https://github.com/Azure/autorest/tree/master/docs/generate/examples/tags/readme.md), this example will suppose you're generating 2 different API versions: `v1` and `v2`.
 
