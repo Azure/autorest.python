@@ -40,4 +40,4 @@ async def default_client(credential, authentication_policy):
 def test_multiapi_credential_default_policy_type(default_client):
     # making sure that the authentication policy is AzureKeyCredentialPolicy
     assert isinstance(default_client._config.authentication_policy, AzureKeyCredentialPolicy)
-    assert default_client._config.authentication_policy._name == "Authorization"
+    assert default_client._config.authentication_policy._name == "api-key"

@@ -173,9 +173,9 @@ class CodeGenerator(Plugin):
                     "--credential-key-header-name."
                 )
             if not credential_key_header_name:
-                raise ValueError(
-                    "With default credential policy type AzureKeyCredentialPolicy, you must pass in the name "
-                    "of the key header with the flag --credential-key-header-name"
+                credential_key_header_name = "api-key"
+                _LOGGER.info(
+                    "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
                 )
         return credential_scopes, credential_key_header_name
 
