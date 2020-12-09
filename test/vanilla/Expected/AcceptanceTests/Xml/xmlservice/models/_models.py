@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class AccessPolicy(msrest.serialization.Model):
@@ -37,7 +43,7 @@ class AccessPolicy(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(AccessPolicy, self).__init__(**kwargs)
         self.start = kwargs['start']
@@ -61,7 +67,7 @@ class AppleBarrel(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = kwargs.get('good_apples', None)
@@ -90,7 +96,7 @@ class Banana(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Banana, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
@@ -135,7 +141,7 @@ class Blob(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Blob, self).__init__(**kwargs)
         self.name = kwargs['name']
@@ -164,7 +170,7 @@ class BlobPrefix(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = kwargs['name']
@@ -274,7 +280,7 @@ class BlobProperties(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(BlobProperties, self).__init__(**kwargs)
         self.last_modified = kwargs['last_modified']
@@ -323,7 +329,7 @@ class Blobs(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = kwargs.get('blob_prefix', None)
@@ -343,7 +349,7 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -365,7 +371,7 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -397,7 +403,7 @@ class Container(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Container, self).__init__(**kwargs)
         self.name = kwargs['name']
@@ -441,7 +447,7 @@ class ContainerProperties(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ContainerProperties, self).__init__(**kwargs)
         self.last_modified = kwargs['last_modified']
@@ -498,7 +504,7 @@ class CorsRule(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(CorsRule, self).__init__(**kwargs)
         self.allowed_origins = kwargs['allowed_origins']
@@ -524,7 +530,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -544,7 +550,7 @@ class JSONInput(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(JSONInput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -563,7 +569,7 @@ class JSONOutput(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(JSONOutput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -618,7 +624,7 @@ class ListBlobsResponse(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ListBlobsResponse, self).__init__(**kwargs)
         self.service_endpoint = kwargs.get('service_endpoint', None)
@@ -671,7 +677,7 @@ class ListContainersResponse(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ListContainersResponse, self).__init__(**kwargs)
         self.service_endpoint = kwargs['service_endpoint']
@@ -717,7 +723,7 @@ class Logging(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Logging, self).__init__(**kwargs)
         self.version = kwargs['version']
@@ -756,7 +762,7 @@ class Metrics(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Metrics, self).__init__(**kwargs)
         self.version = kwargs.get('version', None)
@@ -784,7 +790,7 @@ class ObjectWithXMsTextProperty(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ObjectWithXMsTextProperty, self).__init__(**kwargs)
         self.language = kwargs.get('language', None)
@@ -816,7 +822,7 @@ class RetentionPolicy(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = kwargs['enabled']
@@ -839,7 +845,7 @@ class RootWithRefAndMeta(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
         self.ref_to_model = kwargs.get('ref_to_model', None)
@@ -862,7 +868,7 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = kwargs.get('ref_to_model', None)
@@ -895,7 +901,7 @@ class SignedIdentifier(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = kwargs['id']
@@ -924,7 +930,7 @@ class Slide(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Slide, self).__init__(**kwargs)
         self.type = kwargs.get('type', None)
@@ -957,7 +963,7 @@ class Slideshow(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = kwargs.get('title', None)
@@ -998,7 +1004,7 @@ class StorageServiceProperties(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageServiceProperties, self).__init__(**kwargs)
         self.logging = kwargs.get('logging', None)

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict
+from typing import Any, Dict
 
 import msrest.serialization
 
@@ -32,7 +32,7 @@ class AvailabilitySetUpdateParameters(msrest.serialization.Model):
         self,
         *,
         tags: Dict[str, str],
-        **kwargs
+        **kwargs: Any
     ):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = tags

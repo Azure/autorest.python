@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -31,7 +31,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -63,7 +63,7 @@ class ModelTwo(msrest.serialization.Model):
         *,
         id: int,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelTwo, self).__init__(**kwargs)
         self.id = id

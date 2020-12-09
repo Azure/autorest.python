@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import msrest.serialization
 
@@ -29,7 +29,7 @@ class Bar(msrest.serialization.Model):
         self,
         *,
         recursive_point: Optional["Endpoints"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = recursive_point
@@ -62,7 +62,7 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
         name_available: Optional[bool] = None,
         reason: Optional[Union[str, "Reason"]] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
         self.name_available = name_available
@@ -90,7 +90,7 @@ class CustomDomain(msrest.serialization.Model):
         *,
         name: Optional[str] = None,
         use_sub_domain: Optional[bool] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = name
@@ -128,7 +128,7 @@ class Endpoints(msrest.serialization.Model):
         table: Optional[str] = None,
         dummy_end_point: Optional["Endpoints"] = None,
         foo_point: Optional["Foo"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Endpoints, self).__init__(**kwargs)
         self.blob = blob
@@ -153,7 +153,7 @@ class Foo(msrest.serialization.Model):
         self,
         *,
         bar_point: Optional["Bar"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = bar_point
@@ -198,7 +198,7 @@ class Resource(msrest.serialization.Model):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
@@ -305,7 +305,7 @@ class StorageAccount(Resource):
         creation_time: Optional[datetime.datetime] = None,
         custom_domain: Optional["CustomDomain"] = None,
         secondary_endpoints: Optional["Endpoints"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
         self.provisioning_state = provisioning_state
@@ -346,7 +346,7 @@ class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
         *,
         name: str,
         type: Optional[str] = "Microsoft.Storage/storageAccounts",
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = name
@@ -397,7 +397,7 @@ class StorageAccountCreateParameters(Resource):
         location: str,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
@@ -422,7 +422,7 @@ class StorageAccountKeys(msrest.serialization.Model):
         *,
         key1: Optional[str] = None,
         key2: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = key1
@@ -449,7 +449,7 @@ class StorageAccountListResult(msrest.serialization.Model):
         *,
         value: Optional[List["StorageAccount"]] = None,
         next_link: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = value
@@ -471,7 +471,7 @@ class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
         self,
         *,
         key_name: Optional[Union[str, "KeyName"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = key_name
@@ -529,7 +529,7 @@ class StorageAccountUpdateParameters(Resource):
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         custom_domain: Optional["CustomDomain"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
@@ -551,7 +551,7 @@ class SubResource(msrest.serialization.Model):
         self,
         *,
         id: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(SubResource, self).__init__(**kwargs)
         self.id = id
@@ -586,7 +586,7 @@ class Usage(msrest.serialization.Model):
         current_value: Optional[int] = None,
         limit: Optional[int] = None,
         name: Optional["UsageName"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Usage, self).__init__(**kwargs)
         self.unit = unit
@@ -610,7 +610,7 @@ class UsageListResult(msrest.serialization.Model):
         self,
         *,
         value: Optional[List["Usage"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = value
@@ -635,7 +635,7 @@ class UsageName(msrest.serialization.Model):
         *,
         value: Optional[str] = None,
         localized_value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(UsageName, self).__init__(**kwargs)
         self.value = value

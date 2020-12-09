@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, Optional, Union
+from typing import Any, Dict, Optional, Union
 
 import msrest.serialization
 
@@ -34,7 +34,7 @@ class OperationResult(msrest.serialization.Model):
         *,
         status: Optional[Union[str, "OperationResultStatus"]] = None,
         error: Optional["OperationResultError"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
@@ -60,7 +60,7 @@ class OperationResultError(msrest.serialization.Model):
         *,
         code: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = code
@@ -103,7 +103,7 @@ class Resource(msrest.serialization.Model):
         *,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
@@ -158,7 +158,7 @@ class Product(Resource):
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
         provisioning_state: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
@@ -184,7 +184,7 @@ class Sku(msrest.serialization.Model):
         *,
         name: Optional[str] = None,
         id: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Sku, self).__init__(**kwargs)
         self.name = name
@@ -210,7 +210,7 @@ class SubResource(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs: Any
     ):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
@@ -246,7 +246,7 @@ class SubProduct(SubResource):
         self,
         *,
         provisioning_state: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state

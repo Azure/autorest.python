@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -48,7 +48,7 @@ class PetAPTrue(msrest.serialization.Model):
         id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = additional_properties
@@ -97,7 +97,7 @@ class CatAPTrue(PetAPTrue):
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
         friendly: Optional[bool] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
         self.friendly = friendly
@@ -122,7 +122,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -164,7 +164,7 @@ class PetAPInProperties(msrest.serialization.Model):
         id: int,
         name: Optional[str] = None,
         additional_properties: Optional[Dict[str, float]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = id
@@ -218,7 +218,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
         additional_properties1: Optional[Dict[str, float]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties
@@ -265,7 +265,7 @@ class PetAPObject(msrest.serialization.Model):
         id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = additional_properties
@@ -310,7 +310,7 @@ class PetAPString(msrest.serialization.Model):
         id: int,
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties

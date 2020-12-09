@@ -17,7 +17,7 @@ class ModelGenericSerializer(ModelBaseSerializer):
         )
 
     def init_line(self, model: ObjectSchema) -> List[str]:
-        return []
+        return ["**kwargs  # type: Any"]
 
     def properties_to_pass_to_super(self, model: ObjectSchema) -> str:
         return "**kwargs"

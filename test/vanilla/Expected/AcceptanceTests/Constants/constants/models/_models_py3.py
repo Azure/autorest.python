@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional, Union
+from typing import Any, Optional, Union
 
 import msrest.serialization
 
@@ -28,7 +28,7 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueDefaultEnum"]] = "value1",
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -49,7 +49,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -70,7 +70,7 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -91,7 +91,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -118,7 +118,7 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Union[str, "ModelAsStringRequiredOneValueDefaultEnum"] = "value1",
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -145,7 +145,7 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Union[str, "ModelAsStringRequiredOneValueNoDefaultEnum"],
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -172,7 +172,7 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Union[str, "ModelAsStringRequiredTwoValueDefaultEnum"] = "value1",
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -199,7 +199,7 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Union[str, "ModelAsStringRequiredTwoValueNoDefaultEnum"],
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -226,7 +226,7 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
 
@@ -252,7 +252,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
 
@@ -272,7 +272,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -293,7 +293,7 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -322,7 +322,7 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
 
@@ -350,7 +350,7 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
 
@@ -376,7 +376,7 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Union[str, "NoModelAsStringRequiredTwoValueDefaultEnum"] = "value1",
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -403,7 +403,7 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
         self,
         *,
         parameter: Union[str, "NoModelAsStringRequiredTwoValueNoDefaultEnum"],
-        **kwargs
+        **kwargs: Any
     ):
         super(NoModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter

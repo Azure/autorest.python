@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -27,7 +27,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
         self,
         *,
         value: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = value
@@ -54,7 +54,7 @@ class ArrayWrapper(msrest.serialization.Model):
         self,
         *,
         value: List[str],
-        **kwargs
+        **kwargs: Any
     ):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = value
@@ -75,7 +75,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
         self,
         *,
         value: Optional["Product"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = value
@@ -102,7 +102,7 @@ class ClassWrapper(msrest.serialization.Model):
         self,
         *,
         value: "Product",
-        **kwargs
+        **kwargs: Any
     ):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = value
@@ -127,7 +127,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -149,7 +149,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
         self,
         *,
         value: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = value
@@ -176,7 +176,7 @@ class IntWrapper(msrest.serialization.Model):
         self,
         *,
         value: int,
-        **kwargs
+        **kwargs: Any
     ):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = value
@@ -207,7 +207,7 @@ class Product(msrest.serialization.Model):
         *,
         id: int,
         name: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.id = id
@@ -229,7 +229,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
         self,
         *,
         value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = value
@@ -256,7 +256,7 @@ class StringWrapper(msrest.serialization.Model):
         self,
         *,
         value: str,
-        **kwargs
+        **kwargs: Any
     ):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = value

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -31,7 +31,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -57,7 +57,7 @@ class PagingResult(msrest.serialization.Model):
         *,
         values: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PagingResult, self).__init__(**kwargs)
         self.values = values
@@ -79,7 +79,7 @@ class Product(msrest.serialization.Model):
         self,
         *,
         id: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.id = id
@@ -105,7 +105,7 @@ class TestLroAndPagingOptions(msrest.serialization.Model):
         *,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(TestLroAndPagingOptions, self).__init__(**kwargs)
         self.maxresults = maxresults

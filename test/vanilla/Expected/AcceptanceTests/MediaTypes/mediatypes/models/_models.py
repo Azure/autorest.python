@@ -6,7 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class SourcePath(msrest.serialization.Model):
@@ -26,7 +32,7 @@ class SourcePath(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SourcePath, self).__init__(**kwargs)
         self.source = kwargs.get('source', None)

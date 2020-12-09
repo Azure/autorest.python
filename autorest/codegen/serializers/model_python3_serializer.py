@@ -24,10 +24,10 @@ class ModelPython3Serializer(ModelBaseSerializer):
         ]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         if init_line_parameters:
-            init_properties_declaration.append("*")
+            init_properties_declaration.append("*,")
         for param in init_line_parameters:
-            init_properties_declaration.append(self.initialize_standard_property(param))
-
+            init_properties_declaration.append(self.initialize_standard_property(param) + ",")
+        init_properties_declaration.append("**kwargs: Any")
         return init_properties_declaration
 
     def properties_to_pass_to_super(self, model: ObjectSchema) -> str:

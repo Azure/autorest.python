@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 import msrest.serialization
 
@@ -39,7 +39,7 @@ class CustomParameterGroup(msrest.serialization.Model):
         *,
         api_version: str,
         tenant: str,
-        **kwargs
+        **kwargs: Any
     ):
         super(CustomParameterGroup, self).__init__(**kwargs)
         self.api_version = api_version
@@ -65,7 +65,7 @@ class OdataProductResult(msrest.serialization.Model):
         *,
         values: Optional[List["Product"]] = None,
         odata_next_link: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = values
@@ -89,7 +89,7 @@ class OperationResult(msrest.serialization.Model):
         self,
         *,
         status: Optional[Union[str, "OperationResultStatus"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
@@ -115,7 +115,7 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
         *,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
@@ -142,7 +142,7 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
         *,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
@@ -179,7 +179,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         offset: int,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
@@ -207,7 +207,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
         *,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
@@ -229,7 +229,7 @@ class Product(msrest.serialization.Model):
         self,
         *,
         properties: Optional["ProductProperties"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.properties = properties
@@ -254,7 +254,7 @@ class ProductProperties(msrest.serialization.Model):
         *,
         id: Optional[int] = None,
         name: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
@@ -280,7 +280,7 @@ class ProductResult(msrest.serialization.Model):
         *,
         values: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
@@ -306,7 +306,7 @@ class ProductResultValue(msrest.serialization.Model):
         *,
         value: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = value
@@ -332,7 +332,7 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
         *,
         indexes: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ProductResultValueWithXMSClientName, self).__init__(**kwargs)
         self.indexes = indexes

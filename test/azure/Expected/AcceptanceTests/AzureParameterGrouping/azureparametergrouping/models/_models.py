@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class Error(msrest.serialization.Model):
@@ -26,7 +32,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -49,7 +55,7 @@ class FirstParameterGroup(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = kwargs.get('header_one', None)
@@ -72,7 +78,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
         self.header_two = kwargs.get('header_two', None)
@@ -95,7 +101,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
         self.custom_header = kwargs.get('custom_header', None)
@@ -131,7 +137,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
         self.custom_header = kwargs.get('custom_header', None)

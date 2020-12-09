@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class MyException(msrest.serialization.Model):
@@ -23,7 +29,7 @@ class MyException(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(MyException, self).__init__(**kwargs)
         self.status_code = kwargs.get('status_code', None)
@@ -45,7 +51,7 @@ class B(MyException):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(B, self).__init__(**kwargs)
         self.text_status_code = kwargs.get('text_status_code', None)
@@ -64,7 +70,7 @@ class C(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(C, self).__init__(**kwargs)
         self.http_code = kwargs.get('http_code', None)
@@ -83,7 +89,7 @@ class D(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(D, self).__init__(**kwargs)
         self.http_status_code = kwargs.get('http_status_code', None)
@@ -105,7 +111,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)

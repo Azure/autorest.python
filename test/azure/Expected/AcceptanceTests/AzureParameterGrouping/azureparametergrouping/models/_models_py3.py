@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -31,7 +31,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -57,7 +57,7 @@ class FirstParameterGroup(msrest.serialization.Model):
         *,
         header_one: Optional[str] = None,
         query_one: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = header_one
@@ -83,7 +83,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
         *,
         header_two: Optional[str] = None,
         query_two: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
         self.header_two = header_two
@@ -109,7 +109,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
         *,
         custom_header: Optional[str] = None,
         query: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
         self.custom_header = custom_header
@@ -150,7 +150,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         body: int,
         custom_header: Optional[str] = None,
         query: Optional[int] = 30,
-        **kwargs
+        **kwargs: Any
     ):
         super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
         self.custom_header = custom_header

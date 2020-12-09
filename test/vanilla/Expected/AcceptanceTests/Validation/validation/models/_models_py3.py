@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -40,7 +40,7 @@ class ChildProduct(msrest.serialization.Model):
         self,
         *,
         count: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
@@ -74,7 +74,7 @@ class ConstantProduct(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs: Any
     ):
         super(ConstantProduct, self).__init__(**kwargs)
 
@@ -102,7 +102,7 @@ class Error(msrest.serialization.Model):
         code: Optional[int] = None,
         message: Optional[str] = None,
         fields: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.code = code
@@ -169,7 +169,7 @@ class Product(msrest.serialization.Model):
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.display_names = display_names

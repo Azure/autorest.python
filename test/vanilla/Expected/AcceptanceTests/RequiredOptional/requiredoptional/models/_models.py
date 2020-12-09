@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class ArrayOptionalWrapper(msrest.serialization.Model):
@@ -23,7 +29,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -48,7 +54,7 @@ class ArrayWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = kwargs['value']
@@ -67,7 +73,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -92,7 +98,7 @@ class ClassWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = kwargs['value']
@@ -114,7 +120,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -134,7 +140,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -159,7 +165,7 @@ class IntWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = kwargs['value']
@@ -187,7 +193,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.id = kwargs['id']
@@ -207,7 +213,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -232,7 +238,7 @@ class StringWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = kwargs['value']

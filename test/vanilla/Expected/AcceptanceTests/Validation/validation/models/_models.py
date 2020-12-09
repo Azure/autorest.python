@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class ChildProduct(msrest.serialization.Model):
@@ -36,7 +42,7 @@ class ChildProduct(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = kwargs.get('count', None)
@@ -70,7 +76,7 @@ class ConstantProduct(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ConstantProduct, self).__init__(**kwargs)
 
@@ -94,7 +100,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
@@ -155,7 +161,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.display_names = kwargs.get('display_names', None)

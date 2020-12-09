@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class Animal(msrest.serialization.Model):
@@ -23,7 +29,7 @@ class Animal(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Animal, self).__init__(**kwargs)
         self.ani_type = kwargs.get('ani_type', None)
@@ -42,7 +48,7 @@ class BaseError(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(BaseError, self).__init__(**kwargs)
         self.some_base_prop = kwargs.get('some_base_prop', None)
@@ -80,7 +86,7 @@ class NotFoundErrorBase(BaseError):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NotFoundErrorBase, self).__init__(**kwargs)
         self.reason = kwargs.get('reason', None)
@@ -115,7 +121,7 @@ class AnimalNotFound(NotFoundErrorBase):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(AnimalNotFound, self).__init__(**kwargs)
         self.what_not_found = 'AnimalNotFound'  # type: str
@@ -150,7 +156,7 @@ class LinkNotFound(NotFoundErrorBase):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(LinkNotFound, self).__init__(**kwargs)
         self.what_not_found = 'InvalidResourceLink'  # type: str
@@ -179,7 +185,7 @@ class Pet(Animal):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Pet, self).__init__(**kwargs)
         self.name = None
@@ -198,7 +204,7 @@ class PetAction(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetAction, self).__init__(**kwargs)
         self.action_response = kwargs.get('action_response', None)
@@ -236,7 +242,7 @@ class PetActionError(PetAction):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetActionError, self).__init__(**kwargs)
         self.error_type = 'PetActionError'  # type: str
@@ -278,7 +284,7 @@ class PetSadError(PetActionError):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetSadError, self).__init__(**kwargs)
         self.error_type = 'PetSadError'  # type: str
@@ -316,7 +322,7 @@ class PetHungryOrThirstyError(PetSadError):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetHungryOrThirstyError, self).__init__(**kwargs)
         self.error_type = 'PetHungryOrThirstyError'  # type: str

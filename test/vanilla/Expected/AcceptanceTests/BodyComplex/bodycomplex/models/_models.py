@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class ArrayWrapper(msrest.serialization.Model):
@@ -23,7 +29,7 @@ class ArrayWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.array = kwargs.get('array', None)
@@ -49,7 +55,7 @@ class Basic(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Basic, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -73,7 +79,7 @@ class BooleanWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(BooleanWrapper, self).__init__(**kwargs)
         self.field_true = kwargs.get('field_true', None)
@@ -93,7 +99,7 @@ class ByteWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ByteWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
@@ -115,7 +121,7 @@ class Pet(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Pet, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -144,7 +150,7 @@ class Cat(Pet):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Cat, self).__init__(**kwargs)
         self.color = kwargs.get('color', None)
@@ -187,7 +193,7 @@ class Fish(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Fish, self).__init__(**kwargs)
         self.fishtype = None  # type: Optional[str]
@@ -239,7 +245,7 @@ class Shark(Fish):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Shark, self).__init__(**kwargs)
         self.fishtype = 'shark'  # type: str
@@ -283,7 +289,7 @@ class Cookiecuttershark(Shark):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Cookiecuttershark, self).__init__(**kwargs)
         self.fishtype = 'cookiecuttershark'  # type: str
@@ -305,7 +311,7 @@ class Datetimerfc1123Wrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Datetimerfc1123Wrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
@@ -328,7 +334,7 @@ class DatetimeWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DatetimeWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
@@ -351,7 +357,7 @@ class DateWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DateWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
@@ -371,7 +377,7 @@ class DictionaryWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DictionaryWrapper, self).__init__(**kwargs)
         self.default_program = kwargs.get('default_program', None)
@@ -396,7 +402,7 @@ class Dog(Pet):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Dog, self).__init__(**kwargs)
         self.food = kwargs.get('food', None)
@@ -431,7 +437,7 @@ class DotFish(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DotFish, self).__init__(**kwargs)
         self.fish_type = None  # type: Optional[str]
@@ -460,7 +466,7 @@ class DotFishMarket(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DotFishMarket, self).__init__(**kwargs)
         self.sample_salmon = kwargs.get('sample_salmon', None)
@@ -497,7 +503,7 @@ class DotSalmon(DotFish):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DotSalmon, self).__init__(**kwargs)
         self.fish_type = 'DotSalmon'  # type: str
@@ -524,7 +530,7 @@ class DoubleWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
@@ -544,7 +550,7 @@ class DurationWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(DurationWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
@@ -566,7 +572,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -589,7 +595,7 @@ class FloatWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(FloatWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
@@ -639,7 +645,7 @@ class Goblinshark(Shark):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Goblinshark, self).__init__(**kwargs)
         self.fishtype = 'goblin'  # type: str
@@ -663,7 +669,7 @@ class IntWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(IntWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
@@ -686,7 +692,7 @@ class LongWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(LongWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
@@ -725,7 +731,7 @@ class MyBaseType(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(MyBaseType, self).__init__(**kwargs)
         self.kind = None  # type: Optional[str]
@@ -761,7 +767,7 @@ class MyDerivedType(MyBaseType):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(MyDerivedType, self).__init__(**kwargs)
         self.kind = 'Kind1'  # type: str
@@ -790,7 +796,7 @@ class ReadonlyObj(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ReadonlyObj, self).__init__(**kwargs)
         self.id = None
@@ -839,7 +845,7 @@ class Salmon(Fish):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Salmon, self).__init__(**kwargs)
         self.fishtype = 'salmon'  # type: str
@@ -886,7 +892,7 @@ class Sawshark(Shark):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Sawshark, self).__init__(**kwargs)
         self.fishtype = 'sawshark'  # type: str
@@ -918,7 +924,7 @@ class Siamese(Cat):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Siamese, self).__init__(**kwargs)
         self.breed = kwargs.get('breed', None)
@@ -966,7 +972,7 @@ class SmartSalmon(Salmon):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SmartSalmon, self).__init__(**kwargs)
         self.fishtype = 'smart_salmon'  # type: str
@@ -993,7 +999,7 @@ class StringWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StringWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)

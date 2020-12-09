@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class Error(msrest.serialization.Model):
@@ -26,7 +32,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -46,7 +52,7 @@ class ModelThree(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelThree, self).__init__(**kwargs)
         self.optional_property = kwargs.get('optional_property', None)
@@ -68,7 +74,7 @@ class PagingResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PagingResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
@@ -92,7 +98,7 @@ class SourcePath(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SourcePath, self).__init__(**kwargs)
         self.source = kwargs.get('source', None)

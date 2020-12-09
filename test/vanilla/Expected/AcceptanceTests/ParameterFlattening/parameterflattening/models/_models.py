@@ -6,7 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class AvailabilitySetUpdateParameters(msrest.serialization.Model):
@@ -28,7 +34,7 @@ class AvailabilitySetUpdateParameters(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = kwargs['tags']

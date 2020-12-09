@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class BaseProduct(msrest.serialization.Model):
@@ -34,7 +40,7 @@ class BaseProduct(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = kwargs['product_id']
@@ -60,7 +66,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -101,7 +107,7 @@ class Resource(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
@@ -159,7 +165,7 @@ class FlattenedProduct(Resource):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(FlattenedProduct, self).__init__(**kwargs)
         self.p_name = kwargs.get('p_name', None)
@@ -208,7 +214,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(FlattenParameterGroup, self).__init__(**kwargs)
         self.name = kwargs['name']
@@ -233,7 +239,7 @@ class GenericUrl(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
@@ -255,7 +261,7 @@ class ProductUrl(GenericUrl):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ProductUrl, self).__init__(**kwargs)
         self.odata_value = kwargs.get('odata_value', None)
@@ -274,7 +280,7 @@ class ProductWrapper(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -299,7 +305,7 @@ class ResourceCollection(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = kwargs.get('productresource', None)
@@ -348,7 +354,7 @@ class SimpleProduct(BaseProduct):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SimpleProduct, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
@@ -369,7 +375,7 @@ class WrappedProduct(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)

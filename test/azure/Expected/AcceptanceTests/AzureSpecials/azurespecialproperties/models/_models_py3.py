@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -44,7 +44,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -72,7 +72,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
         self,
         *,
         foo_client_request_id: str,
-        **kwargs
+        **kwargs: Any
     ):
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
         self.foo_client_request_id = foo_client_request_id
@@ -97,7 +97,7 @@ class OdataFilter(msrest.serialization.Model):
         *,
         id: Optional[int] = None,
         name: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = id

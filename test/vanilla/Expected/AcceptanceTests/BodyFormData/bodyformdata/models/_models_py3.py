@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import IO, List, Optional
+from typing import Any, IO, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -31,7 +31,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -65,7 +65,7 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         *,
         file_content: IO,
         file_name: str,
-        **kwargs
+        **kwargs: Any
     ):
         super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = file_content
@@ -93,7 +93,7 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
         self,
         *,
         file_content: List[IO],
-        **kwargs
+        **kwargs: Any
     ):
         super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = file_content

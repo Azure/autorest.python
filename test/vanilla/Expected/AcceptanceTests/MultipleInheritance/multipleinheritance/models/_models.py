@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class Feline(msrest.serialization.Model):
@@ -26,7 +32,7 @@ class Feline(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Feline, self).__init__(**kwargs)
         self.meows = kwargs.get('meows', None)
@@ -52,7 +58,7 @@ class Pet(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Pet, self).__init__(**kwargs)
         self.name = kwargs['name']
@@ -86,7 +92,7 @@ class Cat(Pet, Feline):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Cat, self).__init__(**kwargs)
         self.meows = kwargs.get('meows', None)
@@ -112,7 +118,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -141,7 +147,7 @@ class Horse(Pet):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Horse, self).__init__(**kwargs)
         self.is_a_show_horse = kwargs.get('is_a_show_horse', None)
@@ -178,7 +184,7 @@ class Kitten(Cat):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Kitten, self).__init__(**kwargs)
         self.eats_mice_yet = kwargs.get('eats_mice_yet', None)

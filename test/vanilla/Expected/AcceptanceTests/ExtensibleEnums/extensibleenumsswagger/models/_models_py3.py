@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional, Union
+from typing import Any, Optional, Union
 
 import msrest.serialization
 
@@ -43,7 +43,7 @@ class Pet(msrest.serialization.Model):
         int_enum: Union[str, "IntEnum"],
         name: Optional[str] = None,
         days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday",
-        **kwargs
+        **kwargs: Any
     ):
         super(Pet, self).__init__(**kwargs)
         self.name = name

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -27,7 +27,7 @@ class Animal(msrest.serialization.Model):
         self,
         *,
         ani_type: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Animal, self).__init__(**kwargs)
         self.ani_type = ani_type
@@ -48,7 +48,7 @@ class BaseError(msrest.serialization.Model):
         self,
         *,
         some_base_prop: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(BaseError, self).__init__(**kwargs)
         self.some_base_prop = some_base_prop
@@ -89,7 +89,7 @@ class NotFoundErrorBase(BaseError):
         *,
         some_base_prop: Optional[str] = None,
         reason: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(NotFoundErrorBase, self).__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
@@ -128,7 +128,7 @@ class AnimalNotFound(NotFoundErrorBase):
         some_base_prop: Optional[str] = None,
         reason: Optional[str] = None,
         name: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = 'AnimalNotFound'  # type: str
@@ -167,7 +167,7 @@ class LinkNotFound(NotFoundErrorBase):
         some_base_prop: Optional[str] = None,
         reason: Optional[str] = None,
         what_sub_address: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = 'InvalidResourceLink'  # type: str
@@ -198,7 +198,7 @@ class Pet(Animal):
         self,
         *,
         ani_type: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Pet, self).__init__(ani_type=ani_type, **kwargs)
         self.name = None
@@ -219,7 +219,7 @@ class PetAction(msrest.serialization.Model):
         self,
         *,
         action_response: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetAction, self).__init__(**kwargs)
         self.action_response = action_response
@@ -260,7 +260,7 @@ class PetActionError(PetAction):
         *,
         action_response: Optional[str] = None,
         error_message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetActionError, self).__init__(action_response=action_response, **kwargs)
         self.error_type = 'PetActionError'  # type: str
@@ -306,7 +306,7 @@ class PetSadError(PetActionError):
         action_response: Optional[str] = None,
         error_message: Optional[str] = None,
         reason: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetSadError, self).__init__(action_response=action_response, error_message=error_message, **kwargs)
         self.error_type = 'PetSadError'  # type: str
@@ -349,7 +349,7 @@ class PetHungryOrThirstyError(PetSadError):
         error_message: Optional[str] = None,
         reason: Optional[str] = None,
         hungry_or_thirsty: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PetHungryOrThirstyError, self).__init__(action_response=action_response, error_message=error_message, reason=reason, **kwargs)
         self.error_type = 'PetHungryOrThirstyError'  # type: str

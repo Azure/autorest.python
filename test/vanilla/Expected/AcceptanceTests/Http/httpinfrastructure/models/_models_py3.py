@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -27,7 +27,7 @@ class MyException(msrest.serialization.Model):
         self,
         *,
         status_code: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(MyException, self).__init__(**kwargs)
         self.status_code = status_code
@@ -52,7 +52,7 @@ class B(MyException):
         *,
         status_code: Optional[str] = None,
         text_status_code: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(B, self).__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
@@ -73,7 +73,7 @@ class C(msrest.serialization.Model):
         self,
         *,
         http_code: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(C, self).__init__(**kwargs)
         self.http_code = http_code
@@ -94,7 +94,7 @@ class D(msrest.serialization.Model):
         self,
         *,
         http_status_code: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
@@ -119,7 +119,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status

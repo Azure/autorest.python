@@ -6,7 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
@@ -22,7 +28,7 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', "value1")
@@ -41,7 +47,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', None)
@@ -60,7 +66,7 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', "value1")
@@ -79,7 +85,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', None)
@@ -104,7 +110,7 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', "value1")
@@ -129,7 +135,7 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs['parameter']
@@ -154,7 +160,7 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', "value1")
@@ -179,7 +185,7 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs['parameter']
@@ -206,7 +212,7 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
 
@@ -232,7 +238,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
 
@@ -250,7 +256,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', "value1")
@@ -269,7 +275,7 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', None)
@@ -298,7 +304,7 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
 
@@ -326,7 +332,7 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
 
@@ -350,7 +356,7 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get('parameter', "value1")
@@ -375,7 +381,7 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(NoModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs['parameter']

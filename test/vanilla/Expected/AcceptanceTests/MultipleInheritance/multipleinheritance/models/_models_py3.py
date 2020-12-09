@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -31,7 +31,7 @@ class Feline(msrest.serialization.Model):
         *,
         meows: Optional[bool] = None,
         hisses: Optional[bool] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Feline, self).__init__(**kwargs)
         self.meows = meows
@@ -59,7 +59,7 @@ class Pet(msrest.serialization.Model):
         self,
         *,
         name: str,
-        **kwargs
+        **kwargs: Any
     ):
         super(Pet, self).__init__(**kwargs)
         self.name = name
@@ -98,7 +98,7 @@ class Cat(Pet, Feline):
         meows: Optional[bool] = None,
         hisses: Optional[bool] = None,
         likes_milk: Optional[bool] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Cat, self).__init__(name=name, meows=meows, hisses=hisses, **kwargs)
         self.meows = meows
@@ -127,7 +127,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -159,7 +159,7 @@ class Horse(Pet):
         *,
         name: str,
         is_a_show_horse: Optional[bool] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Horse, self).__init__(name=name, **kwargs)
         self.is_a_show_horse = is_a_show_horse
@@ -202,7 +202,7 @@ class Kitten(Cat):
         hisses: Optional[bool] = None,
         likes_milk: Optional[bool] = None,
         eats_mice_yet: Optional[bool] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Kitten, self).__init__(meows=meows, hisses=hisses, name=name, likes_milk=likes_milk, **kwargs)
         self.eats_mice_yet = eats_mice_yet

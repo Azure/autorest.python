@@ -6,7 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class CustomParameterGroup(msrest.serialization.Model):
@@ -32,7 +38,7 @@ class CustomParameterGroup(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(CustomParameterGroup, self).__init__(**kwargs)
         self.api_version = kwargs['api_version']
@@ -55,7 +61,7 @@ class OdataProductResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
@@ -77,7 +83,7 @@ class OperationResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -100,7 +106,7 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
@@ -124,7 +130,7 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
@@ -157,7 +163,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
@@ -182,7 +188,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
@@ -202,7 +208,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
@@ -224,7 +230,7 @@ class ProductProperties(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -247,7 +253,7 @@ class ProductResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
@@ -270,7 +276,7 @@ class ProductResultValue(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -293,7 +299,7 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(ProductResultValueWithXMSClientName, self).__init__(**kwargs)
         self.indexes = kwargs.get('indexes', None)

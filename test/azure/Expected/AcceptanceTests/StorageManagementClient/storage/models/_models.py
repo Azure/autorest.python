@@ -6,7 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class Bar(msrest.serialization.Model):
@@ -22,7 +28,7 @@ class Bar(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = kwargs.get('recursive_point', None)
@@ -51,7 +57,7 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
         self.name_available = kwargs.get('name_available', None)
@@ -76,7 +82,7 @@ class CustomDomain(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
@@ -108,7 +114,7 @@ class Endpoints(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Endpoints, self).__init__(**kwargs)
         self.blob = kwargs.get('blob', None)
@@ -131,7 +137,7 @@ class Foo(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = kwargs.get('bar_point', None)
@@ -173,7 +179,7 @@ class Resource(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
@@ -266,7 +272,7 @@ class StorageAccount(Resource):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageAccount, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
@@ -304,7 +310,7 @@ class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = kwargs['name']
@@ -351,7 +357,7 @@ class StorageAccountCreateParameters(Resource):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageAccountCreateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
@@ -373,7 +379,7 @@ class StorageAccountKeys(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = kwargs.get('key1', None)
@@ -397,7 +403,7 @@ class StorageAccountListResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -417,7 +423,7 @@ class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = kwargs.get('key_name', None)
@@ -470,7 +476,7 @@ class StorageAccountUpdateParameters(Resource):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(StorageAccountUpdateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
@@ -490,7 +496,7 @@ class SubResource(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SubResource, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
@@ -520,7 +526,7 @@ class Usage(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Usage, self).__init__(**kwargs)
         self.unit = kwargs.get('unit', None)
@@ -542,7 +548,7 @@ class UsageListResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
@@ -564,7 +570,7 @@ class UsageName(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(UsageName, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -31,7 +31,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -53,7 +53,7 @@ class ModelThree(msrest.serialization.Model):
         self,
         *,
         optional_property: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ModelThree, self).__init__(**kwargs)
         self.optional_property = optional_property
@@ -78,7 +78,7 @@ class PagingResult(msrest.serialization.Model):
         *,
         values: Optional[List["ModelThree"]] = None,
         next_link: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(PagingResult, self).__init__(**kwargs)
         self.values = values
@@ -104,7 +104,7 @@ class SourcePath(msrest.serialization.Model):
         self,
         *,
         source: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(SourcePath, self).__init__(**kwargs)
         self.source = source

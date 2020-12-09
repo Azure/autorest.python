@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 import msrest.serialization
 
@@ -30,7 +30,7 @@ class SourcePath(msrest.serialization.Model):
         self,
         *,
         source: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(SourcePath, self).__init__(**kwargs)
         self.source = source

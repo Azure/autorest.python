@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -31,7 +31,7 @@ class Error(msrest.serialization.Model):
         *,
         code: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.code = code
@@ -57,7 +57,7 @@ class SampleResourceGroup(msrest.serialization.Model):
         *,
         name: Optional[str] = None,
         location: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(SampleResourceGroup, self).__init__(**kwargs)
         self.name = name

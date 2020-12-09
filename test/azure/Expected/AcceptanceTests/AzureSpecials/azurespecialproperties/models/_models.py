@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class Error(msrest.serialization.Model):
@@ -39,7 +45,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -65,7 +71,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
         self.foo_client_request_id = kwargs['foo_client_request_id']
@@ -87,7 +93,7 @@ class OdataFilter(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -46,7 +46,7 @@ class AccessPolicy(msrest.serialization.Model):
         start: datetime.datetime,
         expiry: datetime.datetime,
         permission: str,
-        **kwargs
+        **kwargs: Any
     ):
         super(AccessPolicy, self).__init__(**kwargs)
         self.start = start
@@ -73,7 +73,7 @@ class AppleBarrel(msrest.serialization.Model):
         *,
         good_apples: Optional[List[str]] = None,
         bad_apples: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = good_apples
@@ -106,7 +106,7 @@ class Banana(msrest.serialization.Model):
         name: Optional[str] = None,
         flavor: Optional[str] = None,
         expiration: Optional[datetime.datetime] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Banana, self).__init__(**kwargs)
         self.name = name
@@ -157,7 +157,7 @@ class Blob(msrest.serialization.Model):
         snapshot: str,
         properties: "BlobProperties",
         metadata: Optional[Dict[str, str]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Blob, self).__init__(**kwargs)
         self.name = name
@@ -188,7 +188,7 @@ class BlobPrefix(msrest.serialization.Model):
         self,
         *,
         name: str,
-        **kwargs
+        **kwargs: Any
     ):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = name
@@ -327,7 +327,7 @@ class BlobProperties(msrest.serialization.Model):
         access_tier: Optional[Union[str, "AccessTier"]] = None,
         access_tier_inferred: Optional[bool] = None,
         archive_status: Optional[Union[str, "ArchiveStatus"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(BlobProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
@@ -379,7 +379,7 @@ class Blobs(msrest.serialization.Model):
         *,
         blob_prefix: Optional[List["BlobPrefix"]] = None,
         blob: Optional[List["Blob"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = blob_prefix
@@ -401,7 +401,7 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
         self,
         *,
         id: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = id
@@ -425,7 +425,7 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
         self,
         *,
         id: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = id
@@ -461,7 +461,7 @@ class Container(msrest.serialization.Model):
         name: str,
         properties: "ContainerProperties",
         metadata: Optional[Dict[str, str]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Container, self).__init__(**kwargs)
         self.name = name
@@ -512,7 +512,7 @@ class ContainerProperties(msrest.serialization.Model):
         lease_state: Optional[Union[str, "LeaseStateType"]] = None,
         lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
         public_access: Optional[Union[str, "PublicAccessType"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ContainerProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
@@ -575,7 +575,7 @@ class CorsRule(msrest.serialization.Model):
         allowed_headers: str,
         exposed_headers: str,
         max_age_in_seconds: int,
-        **kwargs
+        **kwargs: Any
     ):
         super(CorsRule, self).__init__(**kwargs)
         self.allowed_origins = allowed_origins
@@ -604,7 +604,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -626,7 +626,7 @@ class JSONInput(msrest.serialization.Model):
         self,
         *,
         id: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(JSONInput, self).__init__(**kwargs)
         self.id = id
@@ -647,7 +647,7 @@ class JSONOutput(msrest.serialization.Model):
         self,
         *,
         id: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(JSONOutput, self).__init__(**kwargs)
         self.id = id
@@ -711,7 +711,7 @@ class ListBlobsResponse(msrest.serialization.Model):
         blobs: "Blobs",
         next_marker: str,
         service_endpoint: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ListBlobsResponse, self).__init__(**kwargs)
         self.service_endpoint = service_endpoint
@@ -771,7 +771,7 @@ class ListContainersResponse(msrest.serialization.Model):
         next_marker: str,
         marker: Optional[str] = None,
         containers: Optional[List["Container"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ListContainersResponse, self).__init__(**kwargs)
         self.service_endpoint = service_endpoint
@@ -823,7 +823,7 @@ class Logging(msrest.serialization.Model):
         read: bool,
         write: bool,
         retention_policy: "RetentionPolicy",
-        **kwargs
+        **kwargs: Any
     ):
         super(Logging, self).__init__(**kwargs)
         self.version = version
@@ -867,7 +867,7 @@ class Metrics(msrest.serialization.Model):
         version: Optional[str] = None,
         include_apis: Optional[bool] = None,
         retention_policy: Optional["RetentionPolicy"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Metrics, self).__init__(**kwargs)
         self.version = version
@@ -898,7 +898,7 @@ class ObjectWithXMsTextProperty(msrest.serialization.Model):
         *,
         language: Optional[str] = None,
         content: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ObjectWithXMsTextProperty, self).__init__(**kwargs)
         self.language = language
@@ -933,7 +933,7 @@ class RetentionPolicy(msrest.serialization.Model):
         *,
         enabled: bool,
         days: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = enabled
@@ -959,7 +959,7 @@ class RootWithRefAndMeta(msrest.serialization.Model):
         *,
         ref_to_model: Optional["ComplexTypeWithMeta"] = None,
         something: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
@@ -985,7 +985,7 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
         *,
         ref_to_model: Optional["ComplexTypeNoMeta"] = None,
         something: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
@@ -1021,7 +1021,7 @@ class SignedIdentifier(msrest.serialization.Model):
         *,
         id: str,
         access_policy: "AccessPolicy",
-        **kwargs
+        **kwargs: Any
     ):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = id
@@ -1054,7 +1054,7 @@ class Slide(msrest.serialization.Model):
         type: Optional[str] = None,
         title: Optional[str] = None,
         items: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Slide, self).__init__(**kwargs)
         self.type = type
@@ -1092,7 +1092,7 @@ class Slideshow(msrest.serialization.Model):
         date: Optional[str] = None,
         author: Optional[str] = None,
         slides: Optional[List["Slide"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = title
@@ -1140,7 +1140,7 @@ class StorageServiceProperties(msrest.serialization.Model):
         cors: Optional[List["CorsRule"]] = None,
         default_service_version: Optional[str] = None,
         delete_retention_policy: Optional["RetentionPolicy"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(StorageServiceProperties, self).__init__(**kwargs)
         self.logging = logging

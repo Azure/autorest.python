@@ -6,7 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class OperationResult(msrest.serialization.Model):
@@ -27,7 +33,7 @@ class OperationResult(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -50,7 +56,7 @@ class OperationResultError(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
@@ -90,7 +96,7 @@ class Resource(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
@@ -141,7 +147,7 @@ class Product(Resource):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Product, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
@@ -164,7 +170,7 @@ class Sku(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Sku, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
@@ -190,7 +196,7 @@ class SubResource(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
@@ -224,7 +230,7 @@ class SubProduct(SubResource):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)

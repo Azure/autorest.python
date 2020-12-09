@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Union
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
@@ -168,4 +168,5 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         file_import = FileImport()
         if self.is_exception:
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import

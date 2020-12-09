@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class PetAPTrue(msrest.serialization.Model):
@@ -42,7 +48,7 @@ class PetAPTrue(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
@@ -86,7 +92,7 @@ class CatAPTrue(PetAPTrue):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(CatAPTrue, self).__init__(**kwargs)
         self.friendly = kwargs.get('friendly', None)
@@ -108,7 +114,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -146,7 +152,7 @@ class PetAPInProperties(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = kwargs['id']
@@ -194,7 +200,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
@@ -237,7 +243,7 @@ class PetAPObject(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
@@ -278,7 +284,7 @@ class PetAPString(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)

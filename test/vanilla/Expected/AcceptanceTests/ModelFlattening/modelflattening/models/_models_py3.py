@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -39,7 +39,7 @@ class BaseProduct(msrest.serialization.Model):
         *,
         product_id: str,
         description: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = product_id
@@ -69,7 +69,7 @@ class Error(msrest.serialization.Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         parent_error: Optional["Error"] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = status
@@ -113,7 +113,7 @@ class Resource(msrest.serialization.Model):
         *,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
@@ -177,7 +177,7 @@ class FlattenedProduct(Resource):
         p_name: Optional[str] = None,
         type_properties_type: Optional[str] = None,
         provisioning_state: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
         self.p_name = p_name
@@ -234,7 +234,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         max_product_display_name: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(FlattenParameterGroup, self).__init__(**kwargs)
         self.name = name
@@ -261,7 +261,7 @@ class GenericUrl(msrest.serialization.Model):
         self,
         *,
         generic_value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = generic_value
@@ -286,7 +286,7 @@ class ProductUrl(GenericUrl):
         *,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
         self.odata_value = odata_value
@@ -307,7 +307,7 @@ class ProductWrapper(msrest.serialization.Model):
         self,
         *,
         value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = value
@@ -336,7 +336,7 @@ class ResourceCollection(msrest.serialization.Model):
         productresource: Optional["FlattenedProduct"] = None,
         arrayofresources: Optional[List["FlattenedProduct"]] = None,
         dictionaryofresources: Optional[Dict[str, "FlattenedProduct"]] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = productresource
@@ -391,7 +391,7 @@ class SimpleProduct(BaseProduct):
         max_product_display_name: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.max_product_display_name = max_product_display_name
@@ -414,7 +414,7 @@ class WrappedProduct(msrest.serialization.Model):
         self,
         *,
         value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = value

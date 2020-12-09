@@ -6,8 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 
 class Error(msrest.serialization.Model):
@@ -26,7 +32,7 @@ class Error(msrest.serialization.Model):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
@@ -57,7 +63,7 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = kwargs['file_content']
@@ -83,7 +89,7 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     def __init__(
         self,
-        **kwargs
+        **kwargs  # type: Any
     ):
         super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = kwargs['file_content']
