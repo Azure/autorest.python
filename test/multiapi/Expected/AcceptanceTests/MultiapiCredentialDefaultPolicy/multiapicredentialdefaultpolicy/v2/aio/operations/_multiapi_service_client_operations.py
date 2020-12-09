@@ -24,7 +24,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 

@@ -43,7 +43,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bytearray:
         """Get null byte value.
 
@@ -89,7 +89,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bytearray:
         """Get empty byte value ''.
 
@@ -135,7 +135,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_non_ascii(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -182,7 +182,7 @@ class ByteOperations:
     async def put_non_ascii(
         self,
         byte_body: bytearray,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -232,7 +232,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
 

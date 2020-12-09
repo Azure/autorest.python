@@ -38,7 +38,7 @@ class HeadExceptionOperations:
     @distributed_trace_async
     async def head200(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Return 200 status code if successful.
 
@@ -79,7 +79,7 @@ class HeadExceptionOperations:
     @distributed_trace_async
     async def head204(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Return 204 status code if successful.
 
@@ -120,7 +120,7 @@ class HeadExceptionOperations:
     @distributed_trace_async
     async def head404(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Return 404 status code if successful.
 

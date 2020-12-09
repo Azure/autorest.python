@@ -24,7 +24,7 @@ class AutoRestReportServiceOperationsMixin:
     async def get_report(
         self,
         qualifier: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> Dict[str, int]:
         """Get test coverage report.
 
@@ -77,7 +77,7 @@ class AutoRestReportServiceOperationsMixin:
     async def get_optional_report(
         self,
         qualifier: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> Dict[str, int]:
         """Get optional test coverage report.
 

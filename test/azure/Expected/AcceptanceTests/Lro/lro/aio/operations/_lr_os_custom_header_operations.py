@@ -46,7 +46,7 @@ class LROsCustomHeaderOperations:
     async def _put_async_retry_succeeded_initial(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
@@ -97,7 +97,7 @@ class LROsCustomHeaderOperations:
     async def begin_put_async_retry_succeeded(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
@@ -162,7 +162,7 @@ class LROsCustomHeaderOperations:
     async def _put201_creating_succeeded200_initial(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Product":
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         error_map = {
@@ -213,7 +213,7 @@ class LROsCustomHeaderOperations:
     async def begin_put201_creating_succeeded200(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
@@ -273,7 +273,7 @@ class LROsCustomHeaderOperations:
     async def _post202_retry200_initial(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {
@@ -321,7 +321,7 @@ class LROsCustomHeaderOperations:
     async def begin_post202_retry200(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
@@ -377,7 +377,7 @@ class LROsCustomHeaderOperations:
     async def _post_async_retry_succeeded_initial(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {
@@ -426,7 +426,7 @@ class LROsCustomHeaderOperations:
     async def begin_post_async_retry_succeeded(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an

@@ -43,7 +43,7 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Fish":
         """Get complex types that are polymorphic and have recursive references.
 
@@ -90,7 +90,7 @@ class PolymorphicrecursiveOperations:
     async def put_valid(
         self,
         complex_body: "_models.Fish",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 

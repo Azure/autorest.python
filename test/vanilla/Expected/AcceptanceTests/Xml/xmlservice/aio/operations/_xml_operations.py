@@ -43,7 +43,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_no_meta(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.RootWithRefAndNoMeta":
         """Get a complex type that has a ref to a complex type with no XML node.
 
@@ -89,7 +89,7 @@ class XmlOperations:
     async def put_complex_type_ref_no_meta(
         self,
         model: "_models.RootWithRefAndNoMeta",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
@@ -136,7 +136,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.RootWithRefAndMeta":
         """Get a complex type that has a ref to a complex type with XML node.
 
@@ -182,7 +182,7 @@ class XmlOperations:
     async def put_complex_type_ref_with_meta(
         self,
         model: "_models.RootWithRefAndMeta",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
@@ -229,7 +229,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_simple(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Slideshow":
         """Get a simple XML document.
 
@@ -276,7 +276,7 @@ class XmlOperations:
     async def put_simple(
         self,
         slideshow: "_models.Slideshow",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put a simple XML document.
 
@@ -326,7 +326,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_wrapped_lists(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.AppleBarrel":
         """Get an XML document with multiple wrapped lists.
 
@@ -372,7 +372,7 @@ class XmlOperations:
     async def put_wrapped_lists(
         self,
         wrapped_lists: "_models.AppleBarrel",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
@@ -422,7 +422,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_headers(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get strongly-typed response headers.
 
@@ -465,7 +465,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_list(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Slideshow":
         """Get an empty list.
 
@@ -511,7 +511,7 @@ class XmlOperations:
     async def put_empty_list(
         self,
         slideshow: "_models.Slideshow",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts an empty list.
 
@@ -558,7 +558,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_wrapped_lists(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.AppleBarrel":
         """Gets some empty wrapped lists.
 
@@ -604,7 +604,7 @@ class XmlOperations:
     async def put_empty_wrapped_lists(
         self,
         apple_barrel: "_models.AppleBarrel",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts some empty wrapped lists.
 
@@ -651,7 +651,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> List["_models.Banana"]:
         """Gets a list as the root element.
 
@@ -697,7 +697,7 @@ class XmlOperations:
     async def put_root_list(
         self,
         bananas: List["_models.Banana"],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts a list as the root element.
 
@@ -745,7 +745,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list_single_item(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> List["_models.Banana"]:
         """Gets a list with a single item.
 
@@ -791,7 +791,7 @@ class XmlOperations:
     async def put_root_list_single_item(
         self,
         bananas: List["_models.Banana"],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts a list with a single item.
 
@@ -839,7 +839,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_root_list(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> List["_models.Banana"]:
         """Gets an empty list as the root element.
 
@@ -885,7 +885,7 @@ class XmlOperations:
     async def put_empty_root_list(
         self,
         bananas: List["_models.Banana"],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts an empty list as the root element.
 
@@ -933,7 +933,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_child_element(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Banana":
         """Gets an XML document with an empty child element.
 
@@ -979,7 +979,7 @@ class XmlOperations:
     async def put_empty_child_element(
         self,
         banana: "_models.Banana",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts a value with an empty child element.
 
@@ -1026,7 +1026,7 @@ class XmlOperations:
     @distributed_trace_async
     async def list_containers(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ListContainersResponse":
         """Lists containers in a storage account.
 
@@ -1073,7 +1073,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_service_properties(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.StorageServiceProperties":
         """Gets storage service properties.
 
@@ -1123,7 +1123,7 @@ class XmlOperations:
     async def put_service_properties(
         self,
         properties: "_models.StorageServiceProperties",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts storage service properties.
 
@@ -1174,7 +1174,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_acls(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> List["_models.SignedIdentifier"]:
         """Gets storage ACLs for a container.
 
@@ -1224,7 +1224,7 @@ class XmlOperations:
     async def put_acls(
         self,
         properties: List["_models.SignedIdentifier"],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Puts storage ACLs for a container.
 
@@ -1276,7 +1276,7 @@ class XmlOperations:
     @distributed_trace_async
     async def list_blobs(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ListBlobsResponse":
         """Lists blobs in a storage container.
 
@@ -1326,7 +1326,7 @@ class XmlOperations:
     async def json_input(
         self,
         id: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
@@ -1376,7 +1376,7 @@ class XmlOperations:
     @distributed_trace_async
     async def json_output(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.JSONOutput":
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
@@ -1421,7 +1421,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_xms_text(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ObjectWithXMsTextProperty":
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.

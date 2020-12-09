@@ -44,7 +44,7 @@ class PathsOperations:
     async def get_empty(
         self,
         account_name: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.
 

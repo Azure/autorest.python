@@ -21,7 +21,7 @@ class ObjectTypeClientOperationsMixin:
     @distributed_trace_async
     async def get(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> object:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
@@ -69,7 +69,7 @@ class ObjectTypeClientOperationsMixin:
     async def put(
         self,
         put_object: object,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.

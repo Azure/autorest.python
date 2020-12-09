@@ -70,7 +70,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         api_version: Optional[str] = None,
         base_url: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
-        **kwargs  # type: Any
+        **kwargs: Any
     ) -> None:
         if not base_url:
             base_url = 'http://localhost:3000'

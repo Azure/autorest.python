@@ -44,7 +44,7 @@ class PetOperations:
     async def get_pet_by_id(
         self,
         pet_id: str,
-        **kwargs
+        **kwargs: Any
     ) -> Optional["_models.Pet"]:
         """Gets pets by id.
 
@@ -102,7 +102,7 @@ class PetOperations:
     async def do_something(
         self,
         what_action: str,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.PetAction":
         """Asks pet to do something.
 
@@ -158,7 +158,7 @@ class PetOperations:
     async def has_models_param(
         self,
         models: Optional[str] = "value1",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.

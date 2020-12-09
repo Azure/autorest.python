@@ -43,7 +43,7 @@ class ReadonlypropertyOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ReadonlyObj":
         """Get complex types that have readonly properties.
 
@@ -90,7 +90,7 @@ class ReadonlypropertyOperations:
     async def put_valid(
         self,
         size: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 

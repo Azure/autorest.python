@@ -1,3 +1,4 @@
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set basename = model.base_models | join(', ', attribute='name') if model.base_models else "" %}
 {# actual template starts here #}
 

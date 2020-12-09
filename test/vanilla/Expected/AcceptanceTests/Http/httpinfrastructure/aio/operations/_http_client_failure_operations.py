@@ -43,7 +43,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def head400(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -86,7 +86,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def get400(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -129,7 +129,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def options400(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -173,7 +173,7 @@ class HttpClientFailureOperations:
     async def put400(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -227,7 +227,7 @@ class HttpClientFailureOperations:
     async def patch400(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -281,7 +281,7 @@ class HttpClientFailureOperations:
     async def post400(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -335,7 +335,7 @@ class HttpClientFailureOperations:
     async def delete400(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
@@ -388,7 +388,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def head401(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 401 status code - should be represented in the client as an error.
 
@@ -431,7 +431,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def get402(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 402 status code - should be represented in the client as an error.
 
@@ -474,7 +474,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def options403(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
@@ -517,7 +517,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def get403(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
@@ -561,7 +561,7 @@ class HttpClientFailureOperations:
     async def put404(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
@@ -615,7 +615,7 @@ class HttpClientFailureOperations:
     async def patch405(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
@@ -669,7 +669,7 @@ class HttpClientFailureOperations:
     async def post406(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
@@ -723,7 +723,7 @@ class HttpClientFailureOperations:
     async def delete407(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
@@ -777,7 +777,7 @@ class HttpClientFailureOperations:
     async def put409(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
@@ -830,7 +830,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def head410(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 410 status code - should be represented in the client as an error.
 
@@ -873,7 +873,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def get411(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 411 status code - should be represented in the client as an error.
 
@@ -916,7 +916,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def options412(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
@@ -959,7 +959,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def get412(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
@@ -1003,7 +1003,7 @@ class HttpClientFailureOperations:
     async def put413(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
@@ -1057,7 +1057,7 @@ class HttpClientFailureOperations:
     async def patch414(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
@@ -1111,7 +1111,7 @@ class HttpClientFailureOperations:
     async def post415(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
@@ -1164,7 +1164,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def get416(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 416 status code - should be represented in the client as an error.
 
@@ -1208,7 +1208,7 @@ class HttpClientFailureOperations:
     async def delete417(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
@@ -1261,7 +1261,7 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def head429(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 429 status code - should be represented in the client as an error.
 

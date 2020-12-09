@@ -44,7 +44,7 @@ class ImplicitOperations:
     async def get_required_path(
         self,
         path_parameter: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test implicitly required path parameter.
 
@@ -94,7 +94,7 @@ class ImplicitOperations:
     async def put_optional_query(
         self,
         query_parameter: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test implicitly optional query parameter.
 
@@ -142,7 +142,7 @@ class ImplicitOperations:
     async def put_optional_header(
         self,
         query_parameter: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test implicitly optional header parameter.
 
@@ -190,7 +190,7 @@ class ImplicitOperations:
     async def put_optional_body(
         self,
         body_parameter: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test implicitly optional body parameter.
 
@@ -243,7 +243,7 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_path(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test implicitly required path parameter.
 
@@ -290,7 +290,7 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_query(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test implicitly required query parameter.
 
@@ -334,7 +334,7 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_optional_global_query(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test implicitly optional query parameter.
 

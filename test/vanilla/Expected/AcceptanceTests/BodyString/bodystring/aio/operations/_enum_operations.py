@@ -43,7 +43,7 @@ class EnumOperations:
     @distributed_trace_async
     async def get_not_expandable(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -90,7 +90,7 @@ class EnumOperations:
     async def put_not_expandable(
         self,
         string_body: Union[str, "_models.Colors"],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -140,7 +140,7 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -187,7 +187,7 @@ class EnumOperations:
     async def put_referenced(
         self,
         enum_string_body: Union[str, "_models.Colors"],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -237,7 +237,7 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced_constant(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.RefColorConstant":
         """Get value 'green-color' from the constant.
 
@@ -284,7 +284,7 @@ class EnumOperations:
     async def put_referenced_constant(
         self,
         field1: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 

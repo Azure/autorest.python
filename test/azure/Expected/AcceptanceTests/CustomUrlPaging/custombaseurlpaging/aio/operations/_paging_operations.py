@@ -46,7 +46,7 @@ class PagingOperations:
     def get_pages_partial_url(
         self,
         account_name: str,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
@@ -121,7 +121,7 @@ class PagingOperations:
     def get_pages_partial_url_operation(
         self,
         account_name: str,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 

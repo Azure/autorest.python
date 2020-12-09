@@ -22,7 +22,7 @@ class MultiapiServiceClientOperationsMixin:
 
     def test_paging(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.PagingResult"]:
         """Returns ModelThree with optionalProperty 'paged'.
 

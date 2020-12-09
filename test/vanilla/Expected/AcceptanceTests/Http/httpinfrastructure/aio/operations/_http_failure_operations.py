@@ -43,7 +43,7 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_empty_error(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Get empty error form server.
 
@@ -89,7 +89,7 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_no_model_error(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Get empty error form server.
 
@@ -134,7 +134,7 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_no_model_empty(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Get empty response from server.
 

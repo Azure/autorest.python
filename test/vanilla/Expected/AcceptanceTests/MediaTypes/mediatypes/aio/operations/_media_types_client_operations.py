@@ -24,7 +24,7 @@ class MediaTypesClientOperationsMixin:
     async def analyze_body(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
 
@@ -90,7 +90,7 @@ class MediaTypesClientOperationsMixin:
     async def content_type_with_encoding(
         self,
         input: str,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 

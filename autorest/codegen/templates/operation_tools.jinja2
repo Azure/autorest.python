@@ -13,24 +13,20 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {# get sync mypy typing #}
 {% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
 {{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
+
+{# kwargs declaration #}
+{% macro kwargs_declaration(async_mode) %}**kwargs{{ ": Any" if async_mode else "  # type: Any" }}{% endmacro %}
+
 {# get method signature #}
 {% macro method_signature(operation, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
 {{ "async " if coroutine else "" }}def {{ operation_name }}(
-{% if async_mode %}
     self,
-    {% for param_signature in operation.parameters.async_method_signature %}
-    {{ param_signature }},
-    {% endfor %}
-    **kwargs
-){{ async_return_type_annotation(operation, return_type_wrapper, return_type) }}:
-{% else %}
-    self,
-    {% for param_signature in operation.parameters.sync_method_signature %}
+    {% for param_signature in operation.parameters.method_signature(async_mode) %}
     {{ param_signature }}
     {% endfor %}
-    **kwargs  # type: Any
-):
-{% endif %}{% endmacro %}
+    {{ kwargs_declaration(async_mode) }}
+){{ async_return_type_annotation(operation, return_type_wrapper, return_type) if async_mode else "" }}:
+{% endmacro %}
 
 {# content type docstring #}
 {% macro content_type_docstring(operation) %}

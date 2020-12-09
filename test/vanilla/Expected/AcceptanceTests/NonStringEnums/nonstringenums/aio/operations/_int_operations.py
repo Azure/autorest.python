@@ -40,7 +40,7 @@ class IntOperations:
     async def put(
         self,
         input: Optional[Union[int, "_models.IntEnum"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put an int enum.
 
@@ -95,7 +95,7 @@ class IntOperations:
     @distributed_trace_async
     async def get(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Union[int, "_models.IntEnum"]:
         """Get an int enum.
 

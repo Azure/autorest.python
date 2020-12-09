@@ -43,7 +43,7 @@ class FlattencomplexOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.MyBaseType":
         """get_valid.
 

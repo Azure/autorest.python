@@ -44,7 +44,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[int]:
         """Get null Int value.
 
@@ -90,7 +90,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> int:
         """Get invalid Int value.
 
@@ -136,7 +136,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int32(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> int:
         """Get overflow Int32 value.
 
@@ -182,7 +182,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int32(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> int:
         """Get underflow Int32 value.
 
@@ -228,7 +228,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int64(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> int:
         """Get overflow Int64 value.
 
@@ -274,7 +274,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int64(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> int:
         """Get underflow Int64 value.
 
@@ -321,7 +321,7 @@ class IntOperations:
     async def put_max32(
         self,
         int_body: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put max int32 value.
 
@@ -372,7 +372,7 @@ class IntOperations:
     async def put_max64(
         self,
         int_body: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put max int64 value.
 
@@ -423,7 +423,7 @@ class IntOperations:
     async def put_min32(
         self,
         int_body: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put min int32 value.
 
@@ -474,7 +474,7 @@ class IntOperations:
     async def put_min64(
         self,
         int_body: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put min int64 value.
 
@@ -524,7 +524,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_unix_time(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.datetime:
         """Get datetime encoded as Unix time value.
 
@@ -571,7 +571,7 @@ class IntOperations:
     async def put_unix_time_date(
         self,
         int_body: datetime.datetime,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put datetime encoded as Unix time.
 
@@ -621,7 +621,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid_unix_time(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.datetime:
         """Get invalid Unix time value.
 
@@ -667,7 +667,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_null_unix_time(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[datetime.datetime]:
         """Get null Unix time value.
 

@@ -44,7 +44,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[datetime.timedelta]:
         """Get null duration value.
 
@@ -91,7 +91,7 @@ class DurationOperations:
     async def put_positive_duration(
         self,
         duration_body: datetime.timedelta,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put a positive duration value.
 
@@ -141,7 +141,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_positive_duration(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.timedelta:
         """Get a positive duration value.
 
@@ -187,7 +187,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.timedelta:
         """Get an invalid duration value.
 

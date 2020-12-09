@@ -45,7 +45,7 @@ class FormdataOperations:
         self,
         file_content: IO,
         file_name: str,
-        **kwargs
+        **kwargs: Any
     ) -> IO:
         """Upload file.
 
@@ -103,7 +103,7 @@ class FormdataOperations:
     async def upload_file_via_body(
         self,
         file_content: IO,
-        **kwargs
+        **kwargs: Any
     ) -> IO:
         """Upload file.
 
@@ -156,7 +156,7 @@ class FormdataOperations:
     async def upload_files(
         self,
         file_content: List[IO],
-        **kwargs
+        **kwargs: Any
     ) -> IO:
         """Upload multiple files.
 

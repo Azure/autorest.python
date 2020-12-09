@@ -25,7 +25,7 @@ class AutoRestValidationTestOperationsMixin:
         self,
         resource_group_name: str,
         id: int,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Product":
         """Validates input parameters on the method. See swagger for details.
 
@@ -86,7 +86,7 @@ class AutoRestValidationTestOperationsMixin:
         resource_group_name: str,
         id: int,
         body: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Product":
         """Validates body parameters on the method. See swagger for details.
 
@@ -154,7 +154,7 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def get_with_constant_in_path(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """get_with_constant_in_path.
 
@@ -200,7 +200,7 @@ class AutoRestValidationTestOperationsMixin:
     async def post_with_constant_in_body(
         self,
         body: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Product":
         """post_with_constant_in_body.
 

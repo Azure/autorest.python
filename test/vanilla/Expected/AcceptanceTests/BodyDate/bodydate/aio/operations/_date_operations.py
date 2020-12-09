@@ -44,7 +44,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[datetime.date]:
         """Get null date value.
 
@@ -90,7 +90,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_invalid_date(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.date:
         """Get invalid date value.
 
@@ -136,7 +136,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_overflow_date(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.date:
         """Get overflow date value.
 
@@ -182,7 +182,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_underflow_date(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.date:
         """Get underflow date value.
 
@@ -229,7 +229,7 @@ class DateOperations:
     async def put_max_date(
         self,
         date_body: datetime.date,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put max date value 9999-12-31.
 
@@ -279,7 +279,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_max_date(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.date:
         """Get max date value 9999-12-31.
 
@@ -326,7 +326,7 @@ class DateOperations:
     async def put_min_date(
         self,
         date_body: datetime.date,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put min date value 0000-01-01.
 
@@ -376,7 +376,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_min_date(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.date:
         """Get min date value 0000-01-01.
 

@@ -45,7 +45,7 @@ class SubscriptionInMethodOperations:
     async def post_method_local_valid(
         self,
         subscription_id: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
@@ -97,7 +97,7 @@ class SubscriptionInMethodOperations:
     async def post_method_local_null(
         self,
         subscription_id: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-
         side validation should prevent you from making this call.
@@ -149,7 +149,7 @@ class SubscriptionInMethodOperations:
     async def post_path_local_valid(
         self,
         subscription_id: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
@@ -200,7 +200,7 @@ class SubscriptionInMethodOperations:
     async def post_swagger_local_valid(
         self,
         subscription_id: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.

@@ -43,7 +43,7 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def head501(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
@@ -86,7 +86,7 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def get501(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
@@ -130,7 +130,7 @@ class HttpServerFailureOperations:
     async def post505(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
@@ -184,7 +184,7 @@ class HttpServerFailureOperations:
     async def delete505(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 

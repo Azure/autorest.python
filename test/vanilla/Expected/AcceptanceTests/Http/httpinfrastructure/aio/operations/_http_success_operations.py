@@ -43,7 +43,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head200(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 200 status code if successful.
 
@@ -86,7 +86,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def get200(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Get 200 success.
 
@@ -132,7 +132,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def options200(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Options 200 success.
 
@@ -179,7 +179,7 @@ class HttpSuccessOperations:
     async def put200(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
@@ -233,7 +233,7 @@ class HttpSuccessOperations:
     async def patch200(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
@@ -287,7 +287,7 @@ class HttpSuccessOperations:
     async def post200(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
@@ -341,7 +341,7 @@ class HttpSuccessOperations:
     async def delete200(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
@@ -395,7 +395,7 @@ class HttpSuccessOperations:
     async def put201(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
@@ -449,7 +449,7 @@ class HttpSuccessOperations:
     async def post201(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
@@ -503,7 +503,7 @@ class HttpSuccessOperations:
     async def put202(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
@@ -557,7 +557,7 @@ class HttpSuccessOperations:
     async def patch202(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
@@ -611,7 +611,7 @@ class HttpSuccessOperations:
     async def post202(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
@@ -665,7 +665,7 @@ class HttpSuccessOperations:
     async def delete202(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
@@ -718,7 +718,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head204(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 204 status code if successful.
 
@@ -762,7 +762,7 @@ class HttpSuccessOperations:
     async def put204(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
@@ -816,7 +816,7 @@ class HttpSuccessOperations:
     async def patch204(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
@@ -870,7 +870,7 @@ class HttpSuccessOperations:
     async def post204(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
@@ -924,7 +924,7 @@ class HttpSuccessOperations:
     async def delete204(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
@@ -977,7 +977,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head404(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 404 status code.
 

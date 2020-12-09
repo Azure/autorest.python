@@ -44,7 +44,7 @@ class ExplicitOperations:
     async def post_required_integer_parameter(
         self,
         body_parameter: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before
         the request is sent.
@@ -96,7 +96,7 @@ class ExplicitOperations:
     async def post_optional_integer_parameter(
         self,
         body_parameter: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put null.
 
@@ -150,7 +150,7 @@ class ExplicitOperations:
     async def post_required_integer_property(
         self,
         value: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
@@ -204,7 +204,7 @@ class ExplicitOperations:
     async def post_optional_integer_property(
         self,
         value: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
@@ -260,7 +260,7 @@ class ExplicitOperations:
     async def post_required_integer_header(
         self,
         header_parameter: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
@@ -308,7 +308,7 @@ class ExplicitOperations:
     async def post_optional_integer_header(
         self,
         header_parameter: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
@@ -356,7 +356,7 @@ class ExplicitOperations:
     async def post_required_string_parameter(
         self,
         body_parameter: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the
         request is sent.
@@ -408,7 +408,7 @@ class ExplicitOperations:
     async def post_optional_string_parameter(
         self,
         body_parameter: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put null.
 
@@ -462,7 +462,7 @@ class ExplicitOperations:
     async def post_required_string_property(
         self,
         value: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
@@ -516,7 +516,7 @@ class ExplicitOperations:
     async def post_optional_string_property(
         self,
         value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
@@ -572,7 +572,7 @@ class ExplicitOperations:
     async def post_required_string_header(
         self,
         header_parameter: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
@@ -620,7 +620,7 @@ class ExplicitOperations:
     async def post_optional_string_header(
         self,
         body_parameter: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
@@ -668,7 +668,7 @@ class ExplicitOperations:
     async def post_required_class_parameter(
         self,
         body_parameter: "_models.Product",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
@@ -720,7 +720,7 @@ class ExplicitOperations:
     async def post_optional_class_parameter(
         self,
         body_parameter: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
@@ -774,7 +774,7 @@ class ExplicitOperations:
     async def post_required_class_property(
         self,
         value: "_models.Product",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
@@ -828,7 +828,7 @@ class ExplicitOperations:
     async def post_optional_class_property(
         self,
         value: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
@@ -884,7 +884,7 @@ class ExplicitOperations:
     async def post_required_array_parameter(
         self,
         body_parameter: List[str],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
@@ -936,7 +936,7 @@ class ExplicitOperations:
     async def post_optional_array_parameter(
         self,
         body_parameter: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
@@ -990,7 +990,7 @@ class ExplicitOperations:
     async def post_required_array_property(
         self,
         value: List[str],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
@@ -1044,7 +1044,7 @@ class ExplicitOperations:
     async def post_optional_array_property(
         self,
         value: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
@@ -1100,7 +1100,7 @@ class ExplicitOperations:
     async def post_required_array_header(
         self,
         header_parameter: List[str],
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
@@ -1148,7 +1148,7 @@ class ExplicitOperations:
     async def post_optional_array_header(
         self,
         header_parameter: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 

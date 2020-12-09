@@ -45,7 +45,7 @@ class GroupOperations:
     async def get_sample_resource_group(
         self,
         resource_group_name: str,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 

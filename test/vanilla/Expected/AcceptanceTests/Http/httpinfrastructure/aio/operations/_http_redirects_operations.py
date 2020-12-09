@@ -43,7 +43,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head300(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 300 status code and redirect to /http/success/200.
 
@@ -90,7 +90,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get300(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
@@ -140,7 +140,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head301(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 301 status code and redirect to /http/success/200.
 
@@ -187,7 +187,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get301(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 301 status code and redirect to /http/success/200.
 
@@ -235,7 +235,7 @@ class HttpRedirectsOperations:
     async def put301(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
@@ -292,7 +292,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head302(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 302 status code and redirect to /http/success/200.
 
@@ -339,7 +339,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get302(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 302 status code and redirect to /http/success/200.
 
@@ -387,7 +387,7 @@ class HttpRedirectsOperations:
     async def patch302(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
@@ -445,7 +445,7 @@ class HttpRedirectsOperations:
     async def post303(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
@@ -503,7 +503,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head307(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Redirect with 307, resulting in a 200 success.
 
@@ -550,7 +550,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get307(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Redirect get with 307, resulting in a 200 success.
 
@@ -597,7 +597,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def options307(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """options redirected with 307, resulting in a 200 after redirect.
 
@@ -645,7 +645,7 @@ class HttpRedirectsOperations:
     async def put307(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
@@ -703,7 +703,7 @@ class HttpRedirectsOperations:
     async def patch307(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
@@ -761,7 +761,7 @@ class HttpRedirectsOperations:
     async def post307(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
@@ -819,7 +819,7 @@ class HttpRedirectsOperations:
     async def delete307(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 

@@ -44,7 +44,7 @@ class TimeOperations:
     @distributed_trace_async
     async def get(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> datetime.time:
         """Get time value "11:34:56".
 
@@ -91,7 +91,7 @@ class TimeOperations:
     async def put(
         self,
         time_body: datetime.time,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put time value "08:07:56".
 

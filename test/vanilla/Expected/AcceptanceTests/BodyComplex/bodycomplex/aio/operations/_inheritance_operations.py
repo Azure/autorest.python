@@ -43,7 +43,7 @@ class InheritanceOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Siamese":
         """Get complex types that extend others.
 
@@ -90,7 +90,7 @@ class InheritanceOperations:
     async def put_valid(
         self,
         complex_body: "_models.Siamese",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 

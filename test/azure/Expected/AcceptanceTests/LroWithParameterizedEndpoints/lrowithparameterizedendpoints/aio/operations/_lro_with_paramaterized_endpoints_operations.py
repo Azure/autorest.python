@@ -25,7 +25,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
     async def _poll_with_parameterized_endpoints_initial(
         self,
         account_name: str,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[str]:
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional[str]]
         error_map = {
@@ -76,7 +76,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
     async def begin_poll_with_parameterized_endpoints(
         self,
         account_name: str,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 

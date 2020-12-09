@@ -43,7 +43,7 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> IO:
         """Get file.
 
@@ -89,7 +89,7 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file_large(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> IO:
         """Get a large file.
 
@@ -135,7 +135,7 @@ class FilesOperations:
     @distributed_trace_async
     async def get_empty_file(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> IO:
         """Get empty file.
 

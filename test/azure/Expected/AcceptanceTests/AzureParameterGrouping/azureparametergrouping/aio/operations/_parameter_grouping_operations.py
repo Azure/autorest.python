@@ -44,7 +44,7 @@ class ParameterGroupingOperations:
     async def post_required(
         self,
         parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
@@ -113,7 +113,7 @@ class ParameterGroupingOperations:
     async def post_optional(
         self,
         parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
@@ -170,7 +170,7 @@ class ParameterGroupingOperations:
         self,
         first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
         parameter_grouping_post_multi_param_groups_second_param_group: Optional["_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
@@ -237,7 +237,7 @@ class ParameterGroupingOperations:
     async def post_shared_parameter_group_object(
         self,
         first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 

@@ -40,7 +40,7 @@ class FloatOperations:
     async def put(
         self,
         input: Optional[Union[float, "_models.FloatEnum"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put a float enum.
 
@@ -95,7 +95,7 @@ class FloatOperations:
     @distributed_trace_async
     async def get(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Union[float, "_models.FloatEnum"]:
         """Get a float enum.
 

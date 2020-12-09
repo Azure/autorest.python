@@ -43,7 +43,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
@@ -90,7 +90,7 @@ class BasicOperations:
     async def put_valid(
         self,
         complex_body: "_models.Basic",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -142,7 +142,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Basic":
         """Get a basic complex type that is invalid for the local strong type.
 
@@ -188,7 +188,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Basic":
         """Get a basic complex type that is empty.
 
@@ -234,7 +234,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Basic":
         """Get a basic complex type whose properties are null.
 
@@ -280,7 +280,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Basic":
         """Get a basic complex type while the server doesn't provide a response payload.
 

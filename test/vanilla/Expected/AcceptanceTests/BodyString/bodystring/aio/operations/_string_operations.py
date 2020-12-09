@@ -43,7 +43,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[str]:
         """Get null string value value.
 
@@ -90,7 +90,7 @@ class StringOperations:
     async def put_null(
         self,
         string_body: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Set string value null.
 
@@ -143,7 +143,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Get empty string value value ''.
 
@@ -189,7 +189,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_empty(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Set string value empty ''.
 
@@ -238,7 +238,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_mbcs(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -284,7 +284,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_mbcs(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -333,7 +333,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_whitespace(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Get string value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
@@ -381,7 +381,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_whitespace(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
@@ -432,7 +432,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Get String value when no string value is sent in response payload.
 
@@ -478,7 +478,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_encoded(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bytearray:
         """Get value that is base64 encoded.
 
@@ -524,7 +524,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_url_encoded(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bytes:
         """Get value that is base64url encoded.
 
@@ -571,7 +571,7 @@ class StringOperations:
     async def put_base64_url_encoded(
         self,
         string_body: bytes,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put value that is base64url encoded.
 
@@ -621,7 +621,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_null_base64_url_encoded(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
 

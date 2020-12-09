@@ -43,7 +43,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def head408(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 408 status code, then 200 after retry.
 
@@ -87,7 +87,7 @@ class HttpRetryOperations:
     async def put500(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
@@ -141,7 +141,7 @@ class HttpRetryOperations:
     async def patch500(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
@@ -194,7 +194,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def get502(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 502 status code, then 200 after retry.
 
@@ -237,7 +237,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def options502(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Return 502 status code, then 200 after retry.
 
@@ -284,7 +284,7 @@ class HttpRetryOperations:
     async def post503(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
@@ -338,7 +338,7 @@ class HttpRetryOperations:
     async def delete503(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
@@ -392,7 +392,7 @@ class HttpRetryOperations:
     async def put504(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
@@ -446,7 +446,7 @@ class HttpRetryOperations:
     async def patch504(
         self,
         boolean_value: Optional[bool] = True,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 

@@ -11,7 +11,7 @@ def __init__(
     {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
-    **kwargs  # type: Any
+    **kwargs{{ ": Any" if async_mode else "  # type: Any" }}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}

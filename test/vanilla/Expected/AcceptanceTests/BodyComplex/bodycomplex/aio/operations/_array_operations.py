@@ -43,7 +43,7 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ArrayWrapper":
         """Get complex types with array property.
 
@@ -90,7 +90,7 @@ class ArrayOperations:
     async def put_valid(
         self,
         array: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
@@ -142,7 +142,7 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
@@ -189,7 +189,7 @@ class ArrayOperations:
     async def put_empty(
         self,
         array: Optional[List[str]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
@@ -241,7 +241,7 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 

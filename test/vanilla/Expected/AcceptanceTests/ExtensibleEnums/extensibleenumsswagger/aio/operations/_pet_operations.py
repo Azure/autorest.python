@@ -44,7 +44,7 @@ class PetOperations:
     async def get_by_pet_id(
         self,
         pet_id: str,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Pet":
         """get pet by id.
 
@@ -96,7 +96,7 @@ class PetOperations:
     async def add_pet(
         self,
         pet_param: Optional["_models.Pet"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Pet":
         """add pet.
 

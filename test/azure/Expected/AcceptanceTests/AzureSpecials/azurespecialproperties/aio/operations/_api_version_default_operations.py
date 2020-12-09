@@ -44,7 +44,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_method_global_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings.
 
@@ -89,7 +89,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_method_global_not_provided_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings.
 
@@ -134,7 +134,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_path_global_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings.
 
@@ -179,7 +179,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_swagger_global_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings.
 

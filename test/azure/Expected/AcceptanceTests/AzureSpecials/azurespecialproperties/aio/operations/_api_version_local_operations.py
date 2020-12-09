@@ -44,7 +44,7 @@ class ApiVersionLocalOperations:
     @distributed_trace_async
     async def get_method_local_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
@@ -90,7 +90,7 @@ class ApiVersionLocalOperations:
     async def get_method_local_null(
         self,
         api_version: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
@@ -138,7 +138,7 @@ class ApiVersionLocalOperations:
     @distributed_trace_async
     async def get_path_local_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
@@ -183,7 +183,7 @@ class ApiVersionLocalOperations:
     @distributed_trace_async
     async def get_swagger_local_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 

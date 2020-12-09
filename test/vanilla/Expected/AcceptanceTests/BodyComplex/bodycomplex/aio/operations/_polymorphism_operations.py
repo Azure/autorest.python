@@ -43,7 +43,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Fish":
         """Get complex types that are polymorphic.
 
@@ -90,7 +90,7 @@ class PolymorphismOperations:
     async def put_valid(
         self,
         complex_body: "_models.Fish",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -172,7 +172,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_dot_syntax(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
 
@@ -218,7 +218,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_with_discriminator(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, with discriminator specified. Deserialization must NOT fail and use the
@@ -266,7 +266,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_without_discriminator(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, without discriminator specified on wire. Deserialization must NOT fail and use
@@ -314,7 +314,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_complicated(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
@@ -362,7 +362,7 @@ class PolymorphismOperations:
     async def put_complicated(
         self,
         complex_body: "_models.Salmon",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
@@ -414,7 +414,7 @@ class PolymorphismOperations:
     async def put_missing_discriminator(
         self,
         complex_body: "_models.Salmon",
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -468,7 +468,7 @@ class PolymorphismOperations:
     async def put_valid_missing_required(
         self,
         complex_body: "_models.Fish",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.

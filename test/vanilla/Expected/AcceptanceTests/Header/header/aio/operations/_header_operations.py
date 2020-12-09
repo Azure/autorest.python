@@ -45,7 +45,7 @@ class HeaderOperations:
     async def param_existing_key(
         self,
         user_agent_parameter: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
@@ -91,7 +91,7 @@ class HeaderOperations:
     @distributed_trace_async
     async def response_existing_key(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "User-Agent": "overwrite".
 
@@ -138,7 +138,7 @@ class HeaderOperations:
     async def param_protected_key(
         self,
         content_type: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header value "Content-Type": "text/html".
 
@@ -184,7 +184,7 @@ class HeaderOperations:
     @distributed_trace_async
     async def response_protected_key(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "Content-Type": "text/html".
 
@@ -232,7 +232,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
         "negative", "value": -2.
@@ -283,7 +283,7 @@ class HeaderOperations:
     async def response_integer(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 1 or -2.
 
@@ -334,7 +334,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: int,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
         "negative", "value": -2.
@@ -385,7 +385,7 @@ class HeaderOperations:
     async def response_long(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 105 or -2.
 
@@ -436,7 +436,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: float,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
         "negative", "value": -3.0.
@@ -487,7 +487,7 @@ class HeaderOperations:
     async def response_float(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 0.07 or -3.0.
 
@@ -538,7 +538,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: float,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
         "negative", "value": -3.0.
@@ -589,7 +589,7 @@ class HeaderOperations:
     async def response_double(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
 
@@ -640,7 +640,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: bool,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
         "false", "value": false.
@@ -691,7 +691,7 @@ class HeaderOperations:
     async def response_bool(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": true or false.
 
@@ -742,7 +742,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
@@ -796,7 +796,7 @@ class HeaderOperations:
     async def response_string(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
@@ -848,7 +848,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: datetime.date,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
@@ -899,7 +899,7 @@ class HeaderOperations:
     async def response_date(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
@@ -950,7 +950,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: datetime.datetime,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
@@ -1002,7 +1002,7 @@ class HeaderOperations:
     async def response_datetime(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
@@ -1053,7 +1053,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: Optional[datetime.datetime] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
@@ -1106,7 +1106,7 @@ class HeaderOperations:
     async def response_datetime_rfc1123(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
@@ -1158,7 +1158,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: datetime.timedelta,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
@@ -1208,7 +1208,7 @@ class HeaderOperations:
     async def response_duration(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
@@ -1259,7 +1259,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: bytearray,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -1309,7 +1309,7 @@ class HeaderOperations:
     async def response_byte(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -1360,7 +1360,7 @@ class HeaderOperations:
         self,
         scenario: str,
         value: Optional[Union[str, "_models.GreyscaleColors"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.
@@ -1413,7 +1413,7 @@ class HeaderOperations:
     async def response_enum(
         self,
         scenario: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "GREY" or null.
 
@@ -1463,7 +1463,7 @@ class HeaderOperations:
     @distributed_trace_async
     async def custom_request_id(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
         request.

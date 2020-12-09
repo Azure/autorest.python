@@ -44,7 +44,7 @@ class UsageOperations:
     @distributed_trace_async
     async def list(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 

@@ -43,7 +43,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property.
 
@@ -90,7 +90,7 @@ class DictionaryOperations:
     async def put_valid(
         self,
         default_program: Optional[Dict[str, str]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
@@ -142,7 +142,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property which is empty.
 
@@ -189,7 +189,7 @@ class DictionaryOperations:
     async def put_empty(
         self,
         default_program: Optional[Dict[str, str]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
@@ -241,7 +241,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property which is null.
 
@@ -287,7 +287,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DictionaryWrapper":
         """Get complex types with dictionary property while server doesn't provide a response payload.
 

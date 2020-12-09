@@ -43,7 +43,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_true(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Get true Boolean value.
 
@@ -89,7 +89,7 @@ class BoolOperations:
     @distributed_trace_async
     async def put_true(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Set Boolean value true.
 
@@ -138,7 +138,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_false(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Get false Boolean value.
 
@@ -184,7 +184,7 @@ class BoolOperations:
     @distributed_trace_async
     async def put_false(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Set Boolean value false.
 
@@ -233,7 +233,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> Optional[bool]:
         """Get null Boolean value.
 
@@ -279,7 +279,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> bool:
         """Get invalid Boolean value.
 

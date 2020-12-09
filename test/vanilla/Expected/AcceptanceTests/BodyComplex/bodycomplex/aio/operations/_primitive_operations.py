@@ -44,7 +44,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_int(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.IntWrapper":
         """Get complex types with integer properties.
 
@@ -91,7 +91,7 @@ class PrimitiveOperations:
     async def put_int(
         self,
         complex_body: "_models.IntWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
@@ -141,7 +141,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_long(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.LongWrapper":
         """Get complex types with long properties.
 
@@ -188,7 +188,7 @@ class PrimitiveOperations:
     async def put_long(
         self,
         complex_body: "_models.LongWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
@@ -238,7 +238,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_float(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.FloatWrapper":
         """Get complex types with float properties.
 
@@ -285,7 +285,7 @@ class PrimitiveOperations:
     async def put_float(
         self,
         complex_body: "_models.FloatWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
@@ -335,7 +335,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_double(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DoubleWrapper":
         """Get complex types with double properties.
 
@@ -382,7 +382,7 @@ class PrimitiveOperations:
     async def put_double(
         self,
         complex_body: "_models.DoubleWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
@@ -433,7 +433,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_bool(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.BooleanWrapper":
         """Get complex types with bool properties.
 
@@ -480,7 +480,7 @@ class PrimitiveOperations:
     async def put_bool(
         self,
         complex_body: "_models.BooleanWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
@@ -530,7 +530,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_string(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.StringWrapper":
         """Get complex types with string properties.
 
@@ -577,7 +577,7 @@ class PrimitiveOperations:
     async def put_string(
         self,
         complex_body: "_models.StringWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
@@ -627,7 +627,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DateWrapper":
         """Get complex types with date properties.
 
@@ -674,7 +674,7 @@ class PrimitiveOperations:
     async def put_date(
         self,
         complex_body: "_models.DateWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
@@ -724,7 +724,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DatetimeWrapper":
         """Get complex types with datetime properties.
 
@@ -771,7 +771,7 @@ class PrimitiveOperations:
     async def put_date_time(
         self,
         complex_body: "_models.DatetimeWrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
@@ -821,7 +821,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time_rfc1123(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Datetimerfc1123Wrapper":
         """Get complex types with datetimeRfc1123 properties.
 
@@ -868,7 +868,7 @@ class PrimitiveOperations:
     async def put_date_time_rfc1123(
         self,
         complex_body: "_models.Datetimerfc1123Wrapper",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
@@ -919,7 +919,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_duration(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.DurationWrapper":
         """Get complex types with duration properties.
 
@@ -966,7 +966,7 @@ class PrimitiveOperations:
     async def put_duration(
         self,
         field: Optional[datetime.timedelta] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
@@ -1018,7 +1018,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_byte(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ByteWrapper":
         """Get complex types with byte properties.
 
@@ -1065,7 +1065,7 @@ class PrimitiveOperations:
     async def put_byte(
         self,
         field: Optional[bytearray] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 

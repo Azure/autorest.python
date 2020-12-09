@@ -23,7 +23,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
     async def get_horse(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Horse":
         """Get a horse with name 'Fred' and isAShowHorse true.
 
@@ -70,7 +70,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_horse(
         self,
         horse: "_models.Horse",
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
@@ -122,7 +122,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
     async def get_pet(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Pet":
         """Get a pet with name 'Peanut'.
 
@@ -169,7 +169,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_pet(
         self,
         name: str,
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put a pet with name 'Butter'.
 
@@ -223,7 +223,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
     async def get_feline(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Feline":
         """Get a feline where meows and hisses are true.
 
@@ -270,7 +270,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_feline(
         self,
         feline: "_models.Feline",
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put a feline who hisses and doesn't meow.
 
@@ -322,7 +322,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
     async def get_cat(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Cat":
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
@@ -369,7 +369,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_cat(
         self,
         cat: "_models.Cat",
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
@@ -421,7 +421,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
     async def get_kitten(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.Kitten":
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
@@ -469,7 +469,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_kitten(
         self,
         kitten: "_models.Kitten",
-        **kwargs
+        **kwargs: Any
     ) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.

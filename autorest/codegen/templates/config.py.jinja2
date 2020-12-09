@@ -1,19 +1,13 @@
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}
 {% macro method_signature() %}
 def __init__(
     self,
-    {% if async_mode %}
-    {% for param_signature in code_model.global_parameters.async_method_signature %}
-    {{ param_signature }},
-    {% endfor %}
-    **kwargs: Any
-    {% else %}
-    {% for param_signature in code_model.global_parameters.sync_method_signature %}
+    {% for param_signature in code_model.global_parameters.method_signature(async_mode) %}
     {{ param_signature }}
     {% endfor %}
-    **kwargs  # type: Any
-    {% endif %}
+    {{ op_tools.kwargs_declaration(async_mode) }}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
 # coding=utf-8
@@ -65,7 +59,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 
     def _configure(
         self,
-        **kwargs{{": Any" if async_mode else "  # type: Any"}}
+        {{ op_tools.kwargs_declaration(async_mode) }}
     ){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}
         # type: (...) -> None

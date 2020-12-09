@@ -24,7 +24,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
     async def get_report(
         self,
         qualifier: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> Dict[str, int]:
         """Get test coverage report.
 
