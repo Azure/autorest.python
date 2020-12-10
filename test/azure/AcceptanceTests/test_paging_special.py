@@ -46,10 +46,9 @@ class TestPaging(object):
 
     def test_continuation_token(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def mutate_next_request(self, continuation_token, next_request):
-                next_request.url = self._initial_request.url
-                next_request.headers["x-ms-token"] = continuation_token
-                return next_request
+            def mutate_next_request(self, continuation_token, next_request, initial_request):
+                initial_request.headers["x-ms-token"] = continuation_token
+                return initial_request
 
         pages = client.continuation_token(paging_method=MyPagingMethod())
         items = [i for i in pages]
@@ -60,10 +59,9 @@ class TestPaging(object):
             def get_continuation_token(self, pipeline_response, deserialized):
                 return pipeline_response.http_response.headers.get('x-ms-token', None)
 
-            def mutate_next_request(self, continuation_token, next_request):
-                next_request.url = self._initial_request.url
-                next_request.headers["x-ms-token"] = continuation_token
-                return next_request
+            def mutate_next_request(self, continuation_token, next_request, initial_request):
+                initial_request.headers["x-ms-token"] = continuation_token
+                return initial_request
 
         pages = client.continuation_token_in_response_headers(paging_method=MyPagingMethod())
         items = [i for i in pages]
@@ -83,10 +81,9 @@ class TestPaging(object):
                 self._count = int(split_token[1])
                 return split_token[0]
 
-            def mutate_next_request(self, continuation_token, next_request):
-                next_request.url = self._initial_request.url
-                next_request.headers["x-ms-token"] = continuation_token
-                return next_request
+            def mutate_next_request(self, continuation_token, next_request, initial_request):
+                initial_request.headers["x-ms-token"] = continuation_token
+                return initial_request
 
         pages = client.token_with_metadata(paging_method=MyPagingMethod())
         items = [i for i in pages]
@@ -107,7 +104,7 @@ class TestPaging(object):
                 self.token_to_pass_to_headers = split_token[0]
                 return split_token[1]
 
-            def mutate_next_request(self, continuation_token, next_request):
+            def mutate_next_request(self, continuation_token, next_request, initial_request):
                 next_request.headers["x-ms-token"] = self.token_to_pass_to_headers
                 return next_request
 
@@ -117,7 +114,7 @@ class TestPaging(object):
 
     def test_continuation_token_with_separate_next_operation(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def mutate_next_request(self, continuation_token, next_request):
+            def mutate_next_request(self, continuation_token, next_request, initial_request):
                 next_request.headers["x-ms-token"] = continuation_token
                 return next_request
 
