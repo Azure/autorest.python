@@ -42,6 +42,9 @@ clear-output-folder: false
 ```
 ````
 
+> Note: `perform-load` is an internal configuration field used by AutoRest to decide whether it should try to load an input file. Since we're not actively generating
+> from an inputted swagger field in the `multiapiscript` step, we include this in our yaml code block.
+
 Now, if you have `clear-output-folder` specified in your general settings, you would also have to include `clear-output-folder: false` inside
 your `multiapiscript` block. This is because `clear-output-folder` clears your output folder before each generation, which is not what we want
 if we want to batch generate multiple API versions, then generate a multiAPI client over that.
