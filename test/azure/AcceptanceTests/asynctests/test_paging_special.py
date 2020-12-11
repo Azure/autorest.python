@@ -51,7 +51,7 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_continuation_token(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def mutate_next_request(self, continuation_token, next_request, initial_request):
+            def get_next_request(self, continuation_token, initial_request):
                 initial_request.headers["x-ms-token"] = continuation_token
                 return initial_request
 
@@ -131,7 +131,7 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_continuation_token_with_separate_next_operation(self, client):
         class MyPagingMethod(BasicPagingMethod):
-            def mutate_next_request(self, continuation_token, next_request, initial_request):
+            def mutate_next_request(self, continuation_token, initial_request):
                 next_request.headers["x-ms-token"] = continuation_token
                 return next_request
 

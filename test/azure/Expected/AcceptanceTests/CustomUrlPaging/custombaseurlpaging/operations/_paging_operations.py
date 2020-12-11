@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import BasicPagingMethod, ItemPaged
+from azure.core.paging import BasicPagingMethod, ItemPaged, TokenToCallback, TokenToNextLink
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -48,7 +48,6 @@ class PagingOperations(object):
 
     def _get_pages_partial_url_initial(
         self,
-        next_link,  # type: str
         account_name,  # type: str
         **kwargs  # type: Any
     ):
@@ -56,7 +55,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_pages_partial_url_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
@@ -100,20 +99,20 @@ class PagingOperations(object):
         }
 
         _initial_request = self._get_pages_partial_url_initial(
-            next_link=self._get_pages_partial_url_initial.metadata['url'],
             account_name=account_name,
         )
-        _next_request_callback = functools.partial(
-            self._get_pages_partial_url_initial,
-            account_name=account_name,
+
+        paging_method = kwargs.pop(
+            "paging_method",
+            BasicPagingMethod(next_request_algorithm=TokenToNextLink(path_format_arguments=path_format_arguments))
         )
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -121,7 +120,6 @@ class PagingOperations(object):
 
     def _get_pages_partial_url_operation_initial(
         self,
-        next_link,  # type: str
         account_name,  # type: str
         **kwargs  # type: Any
     ):
@@ -129,7 +127,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_pages_partial_url_operation_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
@@ -196,20 +194,23 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_pages_partial_url_operation_initial(
-            next_link=self._get_pages_partial_url_operation_initial.metadata['url'],
             account_name=account_name,
         )
         _next_request_callback = functools.partial(
             self._get_pages_partial_url_operation_next,
-            account_name=account_name,
         )
+
+        paging_method = kwargs.pop(
+            "paging_method",
+            BasicPagingMethod(next_request_algorithm=TokenToCallback(next_request_callback=_next_request_callback))
+        )
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
             initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,

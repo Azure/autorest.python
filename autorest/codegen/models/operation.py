@@ -86,7 +86,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         want_description_docstring: bool = True,
         want_tracing: bool = True,
         makes_network_call: bool = True,
-        url_initialization: Optional[str] = None,
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
@@ -106,7 +105,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.makes_network_call = makes_network_call
         # if we don't actually make an async call, we don't await
         self.coroutine_when_async = makes_network_call
-        self.url_initialization = url_initialization or f"url = self.{self.python_name}.metadata['url']  # type: ignore"
 
     @property
     def python_name(self) -> str:

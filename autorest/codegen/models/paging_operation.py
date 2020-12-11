@@ -140,6 +140,25 @@ class PagingOperation(Operation):
     def get_default_paging_method(self) -> str:
         return self.get_default_paging_method_path().split('.')[-1]
 
+    def get_next_request_algorithm_path(self) -> str:
+        if self.next_operation:
+            return "azure.core.paging.TokenToCallback"
+        return "azure.core.paging.TokenToNextLink"
+
+    def get_next_request_algorithm(self) -> str:
+        return self.get_next_request_algorithm_path().split(".")[-1]
+
+    def get_initialized_next_request_algorithm(self) -> str:
+        next_request_algorithm =  self.get_next_request_algorithm()
+        if next_request_algorithm == "TokenToCallback":
+            initialization = "(next_request_callback=_next_request_callback)"
+        else:
+            self._client.format_url(continuation_token, **self._path_format_arguments)
+            if self.parameters.path:
+                "(path_format_callback=self._client.format_url)"
+            initialization = "(path_format_arguments=path_format_arguments)" if self.parameters.path else "()"
+        return f"next_request_algorithm={next_request_algorithm}{initialization}"
+
     @property
     def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code.
@@ -160,10 +179,6 @@ class PagingOperation(Operation):
         parameter before it for the token input param (provided there's no separate next operation)
         """
         parameters = self.parameters.parameters.copy()
-        url_initialization = None
-        next_link_param = _token_input_parameter("next_link")
-        parameters.insert(0, next_link_param)
-        url_initialization = "url = next_link"
         return Operation(
             yaml_data={},
             name="_" + self.name + "_initial",
@@ -179,7 +194,6 @@ class PagingOperation(Operation):
             want_description_docstring=False,
             want_tracing=False,
             makes_network_call=False,
-            url_initialization=url_initialization,
         )
 
     @property
@@ -244,6 +258,9 @@ class PagingOperation(Operation):
         default_paging_method = self.get_default_paging_method()
         file_import.add_from_import(default_paging_method_import_path, default_paging_method, ImportType.AZURECORE)
 
+        next_request_algorithm_import_path = ".".join(self.get_default_paging_method_path().split(".")[:-1])
+        next_request_algorithm = self.get_next_request_algorithm()
+        file_import.add_from_import(next_request_algorithm_import_path, next_request_algorithm, ImportType.AZURECORE)
 
         if code_model.options["tracing"]:
             file_import.add_from_import(
