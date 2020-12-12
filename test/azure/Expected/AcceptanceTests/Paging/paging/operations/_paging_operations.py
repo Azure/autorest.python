@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import BasicPagingMethod, ItemPaged, PagingMethodWithInitialResponse, TokenToCallback, TokenToNextLink
+from azure.core.paging import CallbackPagingMethod, ItemPaged, NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -88,17 +88,14 @@ class PagingOperations(object):
         _initial_request = self._get_no_item_name_pages_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -143,17 +140,14 @@ class PagingOperations(object):
         _initial_request = self._get_null_next_link_name_pages_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location=None,
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -199,17 +193,14 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -256,17 +247,14 @@ class PagingOperations(object):
         _initial_request = self._first_response_empty_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -333,17 +321,14 @@ class PagingOperations(object):
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -426,17 +411,14 @@ class PagingOperations(object):
             self._get_with_query_params_next,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToCallback(next_request_callback=_next_request_callback))
-        )
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -504,17 +486,14 @@ class PagingOperations(object):
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -596,17 +575,15 @@ class PagingOperations(object):
             client_request_id=client_request_id,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink(path_format_arguments=path_format_arguments))
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
+            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -653,17 +630,14 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_first_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -710,17 +684,14 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_second_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -766,17 +737,14 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_failure_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -822,17 +790,14 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -878,17 +843,14 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_uri_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -980,19 +942,18 @@ class PagingOperations(object):
         )
         _next_request_callback = functools.partial(
             self._get_multiple_pages_fragment_next_link_next,
+            api_version=api_version,
+            tenant=tenant,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToCallback(next_request_callback=_next_request_callback))
-        )
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -1090,19 +1051,17 @@ class PagingOperations(object):
         )
         _next_request_callback = functools.partial(
             self._get_multiple_pages_fragment_with_grouping_next_link_next,
+            custom_parameter_group=custom_parameter_group,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToCallback(next_request_callback=_next_request_callback))
-        )
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -1209,17 +1168,14 @@ class PagingOperations(object):
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
             
-            paging_method = kwargs.pop(
-                "paging_method",
-                PagingMethodWithInitialResponse(next_request_algorithm=TokenToNextLink())
-            )
+            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
             return ItemPaged(
                 paging_method=paging_method,
                 client=self._client,
                 deserialize_output=deserialize_output,
                 continuation_token_location='next_link',
-                initial_response=pipeline_response,
+                initial_state=pipeline_response,
                 item_name='values',
                 _cls=kwargs.pop("cls", None),
                 **kwargs,
@@ -1280,17 +1236,14 @@ class PagingOperations(object):
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial(
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink())
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return ItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='indexes',
             _cls=kwargs.pop("cls", None),
             **kwargs,

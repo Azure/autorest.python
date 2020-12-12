@@ -140,24 +140,12 @@ class PagingOperation(Operation):
     def get_default_paging_method(self) -> str:
         return self.get_default_paging_method_path().split('.')[-1]
 
-    def get_next_request_algorithm_path(self) -> str:
-        if self.next_operation:
-            return "azure.core.paging.TokenToCallback"
-        return "azure.core.paging.TokenToNextLink"
-
-    def get_next_request_algorithm(self) -> str:
-        return self.get_next_request_algorithm_path().split(".")[-1]
-
-    def get_initialized_next_request_algorithm(self) -> str:
-        next_request_algorithm =  self.get_next_request_algorithm()
-        if next_request_algorithm == "TokenToCallback":
-            initialization = "(next_request_callback=_next_request_callback)"
-        else:
-            self._client.format_url(continuation_token, **self._path_format_arguments)
-            if self.parameters.path:
-                "(path_format_callback=self._client.format_url)"
-            initialization = "(path_format_arguments=path_format_arguments)" if self.parameters.path else "()"
-        return f"next_request_algorithm={next_request_algorithm}{initialization}"
+    def get_initialized_paging_method(self) -> str:
+        paging_method = self.get_default_paging_method()
+        initialization = ""
+        if paging_method == "CallbackPagingMethod":
+            initialization = "next_request_callback=_next_request_callback, "
+        return f"{paging_method}({initialization}**kwargs)"
 
     @property
     def success_status_code(self) -> List[Union[str, int]]:
@@ -257,10 +245,6 @@ class PagingOperation(Operation):
         default_paging_method_import_path = ".".join(self.get_default_paging_method_path().split(".")[:-1])
         default_paging_method = self.get_default_paging_method()
         file_import.add_from_import(default_paging_method_import_path, default_paging_method, ImportType.AZURECORE)
-
-        next_request_algorithm_import_path = ".".join(self.get_default_paging_method_path().split(".")[:-1])
-        next_request_algorithm = self.get_next_request_algorithm()
-        file_import.add_from_import(next_request_algorithm_import_path, next_request_algorithm, ImportType.AZURECORE)
 
         if code_model.options["tracing"]:
             file_import.add_from_import(

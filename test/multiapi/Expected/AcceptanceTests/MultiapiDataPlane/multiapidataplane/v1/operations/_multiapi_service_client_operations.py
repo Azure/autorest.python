@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import ItemPaged, PagingMethodWithInitialResponse
+from azure.core.paging import ItemPaged, NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -288,12 +288,15 @@ class MultiapiServiceClientOperationsMixin(object):
 
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
+            
+            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
             return ItemPaged(
-                paging_method = kwargs.pop("paging_method", PagingMethodWithInitialResponse()),
+                paging_method=paging_method,
                 client=self._client,
                 deserialize_output=deserialize_output,
                 continuation_token_location='next_link',
-                initial_response=pipeline_response,
+                initial_state=pipeline_response,
                 item_name='values',
                 _cls=kwargs.pop("cls", None),
                 **kwargs,

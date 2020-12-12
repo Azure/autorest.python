@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import BasicPagingMethod, ItemPaged
+from azure.core.paging import ItemPaged, NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -505,7 +505,6 @@ class StorageAccountsOperations(object):
 
     def _list_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -513,7 +512,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = next_link
+        url = self._list_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
@@ -553,25 +552,23 @@ class StorageAccountsOperations(object):
         }
 
         _initial_request = self._list_initial(
-            next_link=self._list_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._list_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location=None,
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
+            path_format_arguments=path_format_arguments,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
     def _list_by_resource_group_initial(
         self,
-        next_link,  # type: str
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
@@ -580,7 +577,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = next_link
+        url = self._list_by_resource_group_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
@@ -625,20 +622,18 @@ class StorageAccountsOperations(object):
         }
 
         _initial_request = self._list_by_resource_group_initial(
-            next_link=self._list_by_resource_group_initial.metadata['url'],
             resource_group_name=resource_group_name,
         )
-        _next_request_callback = functools.partial(
-            self._list_by_resource_group_initial,
-            resource_group_name=resource_group_name,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location=None,
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
+            path_format_arguments=path_format_arguments,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

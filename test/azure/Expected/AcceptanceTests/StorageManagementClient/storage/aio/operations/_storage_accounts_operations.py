@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import BasicPagingMethod
+from azure.core.paging import NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
@@ -496,14 +496,13 @@ class StorageAccountsOperations:
 
     def _list_initial(
         self,
-        next_link: str,
         **kwargs
     ) -> HttpRequest:
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
         # Construct URL
-        url = next_link
+        url = self._list_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
@@ -542,25 +541,23 @@ class StorageAccountsOperations:
         }
 
         _initial_request = self._list_initial(
-            next_link=self._list_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._list_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location=None,
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
+            path_format_arguments=path_format_arguments,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
     def _list_by_resource_group_initial(
         self,
-        next_link: str,
         resource_group_name: str,
         **kwargs
     ) -> HttpRequest:
@@ -568,7 +565,7 @@ class StorageAccountsOperations:
         accept = "application/json, text/json"
 
         # Construct URL
-        url = next_link
+        url = self._list_by_resource_group_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
@@ -612,20 +609,18 @@ class StorageAccountsOperations:
         }
 
         _initial_request = self._list_by_resource_group_initial(
-            next_link=self._list_by_resource_group_initial.metadata['url'],
             resource_group_name=resource_group_name,
         )
-        _next_request_callback = functools.partial(
-            self._list_by_resource_group_initial,
-            resource_group_name=resource_group_name,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location=None,
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
+            path_format_arguments=path_format_arguments,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

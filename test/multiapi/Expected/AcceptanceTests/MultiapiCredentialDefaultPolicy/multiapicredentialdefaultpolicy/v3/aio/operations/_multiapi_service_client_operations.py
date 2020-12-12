@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import BasicPagingMethod
+from azure.core.paging import NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
@@ -25,13 +25,12 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_paging_initial(
         self,
-        next_link: str,
         **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._test_paging_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -59,18 +58,16 @@ class MultiapiServiceClientOperationsMixin:
             return self._deserialize('PagingResult', pipeline_response)
 
         _initial_request = self._test_paging_initial(
-            next_link=self._test_paging_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._test_paging_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return AsyncItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,

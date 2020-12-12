@@ -12,7 +12,7 @@ _initial_request = self._{{ operation.python_name }}_initial(
 {% if operation.next_operation %}
 _next_request_callback = functools.partial(
     self._{{ operation.python_name }}_next,
-    {% for parameter in method_parameters %}
+    {% for parameter in operation.next_operation.parameters.method %}
         {% if parameter.serialized_name != "next_link" %}
     {{ parameter.serialized_name }}={{ parameter.serialized_name }},
         {% endif %}
@@ -20,20 +20,16 @@ _next_request_callback = functools.partial(
 )
 {% endif %}
 
-paging_method = kwargs.pop(
-    "paging_method",
-    {{ operation.get_default_paging_method() }}({{ operation.get_initialized_next_request_algorithm() }})
-)
+paging_method = kwargs.pop("paging_method", {{ operation.get_initialized_paging_method() }})
 
 return {{ operation.get_pager(async_mode) }}(
     paging_method=paging_method,
     client=self._client,
     deserialize_output=deserialize_output,
     continuation_token_location={{ ("'" ~ operation.continuation_token_location ~ "'") if operation.continuation_token_location else "None" }},
-    {% if initial_response %}
-    initial_response={{ initial_response }},
-    {% else %}
-    initial_request=_initial_request,
+    initial_state={{ initial_response if initial_response else "_initial_request" }},
+    {% if operation.parameters.path and not operation.next_operation %}
+    path_format_arguments=path_format_arguments,
     {% endif %}
     {% if operation.item_name != 'value' %}
     item_name='{{ operation.item_name }}',

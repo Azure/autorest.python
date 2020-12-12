@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import BasicPagingMethod, TokenToCallback, TokenToNextLink
+from azure.core.paging import CallbackPagingMethod, NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -98,17 +98,15 @@ class PagingOperations:
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToNextLink(path_format_arguments=path_format_arguments))
-        )
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
 
         return AsyncItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
+            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -191,19 +189,17 @@ class PagingOperations:
         )
         _next_request_callback = functools.partial(
             self._get_pages_partial_url_operation_next,
+            account_name=account_name,
         )
 
-        paging_method = kwargs.pop(
-            "paging_method",
-            BasicPagingMethod(next_request_algorithm=TokenToCallback(next_request_callback=_next_request_callback))
-        )
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
 
         return AsyncItemPaged(
             paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,

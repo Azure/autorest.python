@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import BasicPagingMethod, ItemPaged, PagingMethodWithInitialResponse
+from azure.core.paging import CallbackPagingMethod, ItemPaged, NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
@@ -51,14 +51,13 @@ class PagingOperations(object):
 
     def _get_no_item_name_pages_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_no_item_name_pages_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -87,32 +86,29 @@ class PagingOperations(object):
             return self._deserialize('ProductResultValue', pipeline_response)
 
         _initial_request = self._get_no_item_name_pages_initial(
-            next_link=self._get_no_item_name_pages_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_no_item_name_pages_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
     def _get_null_next_link_name_pages_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_null_next_link_name_pages_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -141,18 +137,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_null_next_link_name_pages_initial(
-            next_link=self._get_null_next_link_name_pages_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_null_next_link_name_pages_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location=None,
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -160,14 +154,13 @@ class PagingOperations(object):
 
     def _get_single_pages_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_single_pages_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -196,18 +189,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_single_pages_initial(
-            next_link=self._get_single_pages_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_single_pages_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", MyPagingMethod(**kwargs))
+
         return CustomPager(
-            paging_method = kwargs.pop("paging_method", MyPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -215,14 +206,13 @@ class PagingOperations(object):
 
     def _first_response_empty_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._first_response_empty_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -252,25 +242,22 @@ class PagingOperations(object):
             return self._deserialize('ProductResultValue', pipeline_response)
 
         _initial_request = self._first_response_empty_initial(
-            next_link=self._first_response_empty_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._first_response_empty_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
     def _get_multiple_pages_initial(
         self,
-        next_link,  # type: str
         client_request_id=None,  # type: Optional[str]
         paging_get_multiple_pages_options=None,  # type: Optional["_models.PagingGetMultiplePagesOptions"]
         **kwargs  # type: Any
@@ -285,7 +272,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -326,22 +313,18 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_initial(
-            next_link=self._get_multiple_pages_initial.metadata['url'],
             client_request_id=client_request_id,
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
-        _next_request_callback = functools.partial(
-            self._get_multiple_pages_initial,
-            client_request_id=client_request_id,
-            paging_get_multiple_pages_options=paging_get_multiple_pages_options,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -349,7 +332,6 @@ class PagingOperations(object):
 
     def _get_with_query_params_initial(
         self,
-        next_link,  # type: str
         required_query_parameter,  # type: int
         **kwargs  # type: Any
     ):
@@ -358,7 +340,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_with_query_params_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -418,19 +400,20 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_with_query_params_initial(
-            next_link=self._get_with_query_params_initial.metadata['url'],
             required_query_parameter=required_query_parameter,
         )
         _next_request_callback = functools.partial(
             self._get_with_query_params_next,
         )
+
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -438,7 +421,6 @@ class PagingOperations(object):
 
     def _get_odata_multiple_pages_initial(
         self,
-        next_link,  # type: str
         client_request_id=None,  # type: Optional[str]
         paging_get_odata_multiple_pages_options=None,  # type: Optional["_models.PagingGetOdataMultiplePagesOptions"]
         **kwargs  # type: Any
@@ -453,7 +435,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_odata_multiple_pages_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -494,22 +476,18 @@ class PagingOperations(object):
             return self._deserialize('OdataProductResult', pipeline_response)
 
         _initial_request = self._get_odata_multiple_pages_initial(
-            next_link=self._get_odata_multiple_pages_initial.metadata['url'],
             client_request_id=client_request_id,
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
-        _next_request_callback = functools.partial(
-            self._get_odata_multiple_pages_initial,
-            client_request_id=client_request_id,
-            paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -517,7 +495,6 @@ class PagingOperations(object):
 
     def _get_multiple_pages_with_offset_initial(
         self,
-        next_link,  # type: str
         paging_get_multiple_pages_with_offset_options,  # type: "_models.PagingGetMultiplePagesWithOffsetOptions"
         client_request_id=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -534,7 +511,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_with_offset_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'offset': self._serialize.url("offset", _offset, 'int'),
         }
@@ -587,22 +564,19 @@ class PagingOperations(object):
         }
 
         _initial_request = self._get_multiple_pages_with_offset_initial(
-            next_link=self._get_multiple_pages_with_offset_initial.metadata['url'],
             paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
             client_request_id=client_request_id,
         )
-        _next_request_callback = functools.partial(
-            self._get_multiple_pages_with_offset_initial,
-            paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
-            client_request_id=client_request_id,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
+            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -610,14 +584,13 @@ class PagingOperations(object):
 
     def _get_multiple_pages_retry_first_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_retry_first_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -647,18 +620,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_retry_first_initial(
-            next_link=self._get_multiple_pages_retry_first_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_multiple_pages_retry_first_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -666,14 +637,13 @@ class PagingOperations(object):
 
     def _get_multiple_pages_retry_second_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_retry_second_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -703,18 +673,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_retry_second_initial(
-            next_link=self._get_multiple_pages_retry_second_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_multiple_pages_retry_second_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -722,14 +690,13 @@ class PagingOperations(object):
 
     def _get_single_pages_failure_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_single_pages_failure_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -758,18 +725,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_single_pages_failure_initial(
-            next_link=self._get_single_pages_failure_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_single_pages_failure_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -777,14 +742,13 @@ class PagingOperations(object):
 
     def _get_multiple_pages_failure_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_failure_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -813,18 +777,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_failure_initial(
-            next_link=self._get_multiple_pages_failure_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_multiple_pages_failure_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -832,14 +794,13 @@ class PagingOperations(object):
 
     def _get_multiple_pages_failure_uri_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_failure_uri_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -868,18 +829,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_failure_uri_initial(
-            next_link=self._get_multiple_pages_failure_uri_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_multiple_pages_failure_uri_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -887,7 +846,6 @@ class PagingOperations(object):
 
     def _get_multiple_pages_fragment_next_link_initial(
         self,
-        next_link,  # type: str
         api_version,  # type: str
         tenant,  # type: str
         **kwargs  # type: Any
@@ -896,7 +854,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_fragment_next_link_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", tenant, 'str'),
         }
@@ -966,7 +924,6 @@ class PagingOperations(object):
             return self._deserialize('OdataProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_fragment_next_link_initial(
-            next_link=self._get_multiple_pages_fragment_next_link_initial.metadata['url'],
             api_version=api_version,
             tenant=tenant,
         )
@@ -975,13 +932,15 @@ class PagingOperations(object):
             api_version=api_version,
             tenant=tenant,
         )
+
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -989,7 +948,6 @@ class PagingOperations(object):
 
     def _get_multiple_pages_fragment_with_grouping_next_link_initial(
         self,
-        next_link,  # type: str
         custom_parameter_group,  # type: "_models.CustomParameterGroup"
         **kwargs  # type: Any
     ):
@@ -1003,7 +961,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url']  # type: ignore
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", _tenant, 'str'),
         }
@@ -1075,20 +1033,21 @@ class PagingOperations(object):
             return self._deserialize('OdataProductResult', pipeline_response)
 
         _initial_request = self._get_multiple_pages_fragment_with_grouping_next_link_initial(
-            next_link=self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url'],
             custom_parameter_group=custom_parameter_group,
         )
         _next_request_callback = functools.partial(
             self._get_multiple_pages_fragment_with_grouping_next_link_next,
             custom_parameter_group=custom_parameter_group,
         )
+
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='odata_next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -1193,12 +1152,15 @@ class PagingOperations(object):
 
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
+            
+            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
             return ItemPaged(
-                paging_method = kwargs.pop("paging_method", PagingMethodWithInitialResponse()),
+                paging_method=paging_method,
                 client=self._client,
                 deserialize_output=deserialize_output,
                 continuation_token_location='next_link',
-                initial_response=pipeline_response,
+                initial_state=pipeline_response,
                 item_name='values',
                 _cls=kwargs.pop("cls", None),
                 **kwargs,
@@ -1220,14 +1182,13 @@ class PagingOperations(object):
 
     def _get_paging_model_with_item_name_with_xms_client_name_initial(
         self,
-        next_link,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
-        url = next_link
+        url = self._get_paging_model_with_item_name_with_xms_client_name_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1257,18 +1218,16 @@ class PagingOperations(object):
             return self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
 
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial(
-            next_link=self._get_paging_model_with_item_name_with_xms_client_name_initial.metadata['url'],
         )
-        _next_request_callback = functools.partial(
-            self._get_paging_model_with_item_name_with_xms_client_name_initial,
-        )
+
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+
         return ItemPaged(
-            paging_method = kwargs.pop("paging_method", BasicPagingMethod()),
+            paging_method=paging_method,
             client=self._client,
             deserialize_output=deserialize_output,
             continuation_token_location='next_link',
-            initial_request=_initial_request,
-            next_request_callback=_next_request_callback,
+            initial_state=_initial_request,
             item_name='indexes',
             _cls=kwargs.pop("cls", None),
             **kwargs,

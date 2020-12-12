@@ -72,13 +72,13 @@ class NameConverter:
             operation["extensions"]["pager-async"] = operation_extensions.get(
                 "x-python-custom-pager-async", "azure.core.async_paging.AsyncItemPaged"
             )
-            if lro:
+            if pageable.get("operationName"):
                 operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method", "azure.core.paging.PagingMethodWithInitialResponse"
+                    "x-python-custom-default-paging-method", "azure.core.paging.CallbackPagingMethod"
                 )
             else:
                 operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method", "azure.core.paging.BasicPagingMethod"
+                    "x-python-custom-default-paging-method", "azure.core.paging.NextLinkPagingMethod"
                 )
         if lro:
             operation["extensions"]["poller-sync"] = operation_extensions.get(

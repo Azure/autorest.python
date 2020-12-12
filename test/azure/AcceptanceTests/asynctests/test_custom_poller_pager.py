@@ -44,7 +44,7 @@ def custom_url_client(credential, authentication_policy):
 
 class TestPaging(object):
     def test_custom_pager(self, client):
-        pager = client.paging.get_single_pages()
+        pager = client.paging.get_single_pages(header_name="blah")
         assert isinstance(pager, AsyncCustomPager)
 
     @pytest.mark.asyncio
@@ -53,5 +53,5 @@ class TestPaging(object):
         assert isinstance(poller, AsyncCustomPoller)
 
     def test_custom_default_paging_method(self, client):
-        pager = client.paging.get_single_pages()
+        pager = client.paging.get_single_pages(header_name="blah")
         assert isinstance(pager.by_page()._paging_method, MyPagingMethod)
