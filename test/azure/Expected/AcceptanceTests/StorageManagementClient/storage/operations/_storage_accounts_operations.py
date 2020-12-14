@@ -554,7 +554,7 @@ class StorageAccountsOperations(object):
         _initial_request = self._list_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -625,7 +625,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,

@@ -102,7 +102,7 @@ class PagingOperations(object):
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -199,7 +199,7 @@ class PagingOperations(object):
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
 
         return ItemPaged(
             paging_method=paging_method,

@@ -290,7 +290,7 @@ class MultiapiServiceClientOperationsMixin(object):
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
             
-            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
             return ItemPaged(
                 paging_method=paging_method,

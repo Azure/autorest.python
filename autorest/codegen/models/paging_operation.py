@@ -135,17 +135,23 @@ class PagingOperation(Operation):
 
 
     def get_default_paging_method_path(self) -> str:
-        return self.yaml_data["extensions"]["default-paging-method"]
+        return self.yaml_data["extensions"]["default-paging-method"].split("(")[0]
 
     def get_default_paging_method(self) -> str:
         return self.get_default_paging_method_path().split('.')[-1]
 
     def get_initialized_paging_method(self) -> str:
         paging_method = self.get_default_paging_method()
-        initialization = ""
-        if paging_method == "CallbackPagingMethod":
-            initialization = "next_request_callback=_next_request_callback, "
-        return f"{paging_method}({initialization}**kwargs)"
+        yaml_extension = self.yaml_data["extensions"]["default-paging-method"]
+        try:
+            initialization = yaml_extension[yaml_extension.index("("):]
+        except ValueError:
+            _LOGGER.warning(
+                "You didn't pass in a fully initialized paging method. We're going to assume "
+                "there are no initialization parameters for this paging method"
+            )
+            initialization = "()"
+        return f"{paging_method}{initialization}"
 
     @property
     def success_status_code(self) -> List[Union[str, int]]:

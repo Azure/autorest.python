@@ -43,5 +43,5 @@ directive:
     from: swagger-document
     where: '$.paths["/paging/single"].get'
     transform: >
-        $["x-python-custom-default-paging-method"] = "customdefinitions.MyPagingMethod";
+        $["x-python-custom-default-paging-method"] = "customdefinitions.MyPagingMethod(header_name='x-ms-token')";
 ```

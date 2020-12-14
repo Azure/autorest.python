@@ -64,7 +64,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _initial_request = self._test_paging_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,

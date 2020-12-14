@@ -74,11 +74,12 @@ class NameConverter:
             )
             if pageable.get("operationName"):
                 operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method", "azure.core.paging.CallbackPagingMethod"
+                    "x-python-custom-default-paging-method",
+                    "azure.core.paging.CallbackPagingMethod(next_request_callback=_next_request_callback)"
                 )
             else:
                 operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method", "azure.core.paging.NextLinkPagingMethod"
+                    "x-python-custom-default-paging-method", "azure.core.paging.NextLinkPagingMethod()"
                 )
         if lro:
             operation["extensions"]["poller-sync"] = operation_extensions.get(

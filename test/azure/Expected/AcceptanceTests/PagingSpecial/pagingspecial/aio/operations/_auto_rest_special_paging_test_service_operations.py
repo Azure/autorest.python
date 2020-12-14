@@ -65,7 +65,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._next_link_in_response_headers_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -116,7 +116,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._continuation_token_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -174,7 +174,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             continuation_token_parameter=continuation_token_parameter,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -225,7 +225,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._token_with_metadata_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return AsyncPagerWithMetadata(
             paging_method=paging_method,
@@ -284,7 +284,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             continuation_token_parameter=continuation_token_parameter,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -359,7 +359,7 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             self._continuation_token_initial_operation_next,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
 
         return AsyncItemPaged(
             paging_method=paging_method,

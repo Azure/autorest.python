@@ -88,7 +88,7 @@ class PagingOperations(object):
         _initial_request = self._get_no_item_name_pages_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -140,7 +140,7 @@ class PagingOperations(object):
         _initial_request = self._get_null_next_link_name_pages_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -193,7 +193,7 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -247,7 +247,7 @@ class PagingOperations(object):
         _initial_request = self._first_response_empty_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -321,7 +321,7 @@ class PagingOperations(object):
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -411,7 +411,7 @@ class PagingOperations(object):
             self._get_with_query_params_next,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
 
         return ItemPaged(
             paging_method=paging_method,
@@ -486,7 +486,7 @@ class PagingOperations(object):
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -575,7 +575,7 @@ class PagingOperations(object):
             client_request_id=client_request_id,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -630,7 +630,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_first_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -684,7 +684,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_second_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -737,7 +737,7 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_failure_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -790,7 +790,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -843,7 +843,7 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_uri_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
@@ -946,7 +946,7 @@ class PagingOperations(object):
             tenant=tenant,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
 
         return ItemPaged(
             paging_method=paging_method,
@@ -1054,7 +1054,7 @@ class PagingOperations(object):
             custom_parameter_group=custom_parameter_group,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback, **kwargs))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
 
         return ItemPaged(
             paging_method=paging_method,
@@ -1168,7 +1168,7 @@ class PagingOperations(object):
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
             
-            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
             return ItemPaged(
                 paging_method=paging_method,
@@ -1236,7 +1236,7 @@ class PagingOperations(object):
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(**kwargs))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
 
         return ItemPaged(
             paging_method=paging_method,
