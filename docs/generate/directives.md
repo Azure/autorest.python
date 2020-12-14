@@ -16,7 +16,7 @@ directive:
 Additionally, they all require you to specify which operation you would like to modify. You refer to operation using it's path in the swagger, and the HTTP verb it's listed under.
 So, if you were modifying the `put` operation under the path `/directives/polling`, your `where` part of the directive would look like `where: '$.paths["/directives/polling"].put'`
 
-Where they differ the conditions your custom objects need to fulfil, how you mark the directive, and how they change the generated code.
+Where they differ is in the conditions your custom objects need to fulfill, how you mark the directive, and how they change the generated code.
 
 The following scenarios all use the [directives.json][directives_swagger] example swagger.
 
@@ -51,10 +51,10 @@ directive:
 
 To illustrate the generated code difference, here is the before and after of typing and docstrings. Not including the full code for the sake of room.
 
-Without directive:
+**Without directive:**
 # <img align="center" src="../images/before_polling_directive.png">
 
-With directive:
+**With directive:**
 # <img align="center" src="../images/after_polling_directive.png">
 
 
@@ -81,10 +81,10 @@ directive:
 
 To illustrate the generated code difference, here is the before and after of typing and docstrings. Not including the full code for the sake of room.
 
-Without directive:
+**Without directive:**
 # <img align="center" src="../images/before_polling_method_directive.png">
 
-With directive:
+**With directive:**
 # <img align="center" src="../images/after_polling_method_directive.png">
 
 ## Generate with a Custom Pager
@@ -110,10 +110,10 @@ directive:
 
 To illustrate the generated code difference, here is the before and after of typing and docstrings. Not including the full code for the sake of room.
 
-Without directive:
+**Without directive:**
 # <img align="center" src="../images/before_paging_directive.png">
 
-With directive:
+**With directive:**
 # <img align="center" src="../images/after_paging_directive.png">
 
 ## Generate with a Custom Default Paging Method
@@ -138,10 +138,10 @@ directive:
 
 Here is the before and after of the generated code.
 
-Without directive:
+**Without directive:**
 # <img align="center" src="../images/before_paging_method_directive.png">
 
-With directive:
+**With directive:**
 # <img align="center" src="../images/after_paging_method_directive.png">
 
 
