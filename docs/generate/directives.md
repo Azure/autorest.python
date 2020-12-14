@@ -146,6 +146,7 @@ Here is the before and after of the generated code.
 
 
 We have put all of these Python-specific directives in a [config file][directive_readme] for you to refer to.
+
 <!-- LINKS -->
 
 [lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
