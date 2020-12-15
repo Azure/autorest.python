@@ -5,7 +5,7 @@ After [generating][generate] your client, this section tells you how to actually
 * [Initializing Your Python Client][initializing]
 * [Calling Operations with Your Python Client][operations]
 * [Error Handling][error_handling]
-* Tracing
+* [Tracing][tracing]
 * Dependencies Your Generated Code Has
 
 <!-- LINKS -->
@@ -13,3 +13,4 @@ After [generating][generate] your client, this section tells you how to actually
 [initializing]: ./initializing.md
 [operations]: ./operations.md
 [error_handling]: ./error_handling.md
+[tracing]: ./tracing.md
