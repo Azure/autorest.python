@@ -18,7 +18,7 @@ So, if you were modifying the `put` operation under the path `/directives/pollin
 
 Where they differ is in the conditions your custom objects need to fulfill, how you mark the directive, and how they change the generated code.
 
-The following scenarios all use the [directives.json][directives_swagger] example swagger.
+The following scenarios all use the [pollingPaging.json][polling_paging_swagger] example swagger.
 
 
 * [Generate with a Custom Poller](#generate-with-a-custom-poller "Generate with a Custom Poller")
@@ -146,12 +146,13 @@ Here is the before and after of the generated code.
 
 
 We have put all of these Python-specific directives in a [config file][directive_readme] for you to refer to.
+
 <!-- LINKS -->
 
 [lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [azure_core_pypi]: https://pypi.org/project/azure-core/
 [async_lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
-[directives_swagger]: ./examples/directives/directives.json
+[polling_paging_swagger]: ./examples/pollingPaging.json
 
 [lro_base_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.base_polling.lrobasepolling?view=azure-python
 [async_lro_base_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.async_base_polling.asynclrobasepolling?view=azure-python
@@ -162,5 +163,3 @@ We have put all of these Python-specific directives in a [config file][directive
 
 [item_paged_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
 [async_item_paged_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python
-
-[directive_readme]: ./examples/directives/readme.md
