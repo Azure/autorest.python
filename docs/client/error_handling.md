@@ -52,7 +52,6 @@ Network trace logging can also be enabled for any single operation:
 dog = client.get_dog(logging_enable=True)
 ```
 
-
 <!-- LINKS -->
 [azure_core_exceptions]: https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/core/azure-core#azure-core-library-exceptions
 [azure_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.azureerror?view=azure-python
