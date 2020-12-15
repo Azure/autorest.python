@@ -56,6 +56,12 @@ credential = "myCredential"
 client = PetsClient(credential=AzureKeyCredential(credential))
 ```
 
+Currently, we only support generating credentials of type `TokenCredential` and / or `AzureKeyCredential`. If you'd like to use your own custom credential,
+you can still pass it in to the client. However, you may have to use a custom authentication policy to handle the credential. That can also be passed in to the
+client. Say your custom credential is called `MyCredential`, and the policy that handles this credential is called `MyAuthenticationPolicy`. Initializing your
+client would look something like `client = PetsClient(credential=MyCredential(), authentication_policy=MyAuthenticationPolicy())`, though this of course varies
+based on inputs.
+
 ## Multi API Client
 
 Initializing your Multi API client is very similar to initializing a normal client. The only difference is there's an added optional
