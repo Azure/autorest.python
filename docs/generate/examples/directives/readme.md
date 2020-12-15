@@ -3,7 +3,7 @@
 ### Settings
 
 ``` yaml
-input-file: directives.json
+input-file: pollingPaging.json
 namespace: python.directives
 package-name: python-directives
 output-folder: $(python-sdks-folder)/directives/python-directives

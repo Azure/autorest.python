@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-      "title": "Directives Example",
-      "description": "Show how to use directives to get custom paging / polling generation",
+      "title": "Polling Paging Example",
+      "description": "Show polling and paging generation",
       "version": "1.0.0"
     },
     "host": "localhost:3000",
