@@ -22,6 +22,20 @@ except HttpResponseError as e:
     print("{}: {}".format(e.status_code, e.message))
 ```
 
+You can also catch errors with more granularity, i.e. just catching a `ResourceExistsError`.
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.pets import PetsClient
+
+client = PetsClient(credential=DefaultAzureCredential())
+try:
+    dog = client.get_dog()
+except ResourceExistsError as e:
+    print(e.message)
+```
+
+
 ## Logging
 
 Our generated libraries use the standard [`logging`][logging] library for logging. Basic information about HTTP sessions (URLs, headers, etc.) is logged at INFO level.
