@@ -69,8 +69,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location=None,
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
@@ -120,8 +120,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='token',
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
@@ -178,8 +178,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location=None,
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
@@ -229,8 +229,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
 
         return AsyncPagerWithMetadata(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='token',
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
@@ -288,8 +288,8 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='token',
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
@@ -359,12 +359,14 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             self._continuation_token_initial_operation_next,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
+            next_request_callback=_next_request_callback,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='token',
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),

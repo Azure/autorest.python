@@ -98,15 +98,16 @@ class PagingOperations:
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
+            path_format_arguments=path_format_arguments,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
-            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -192,12 +193,14 @@ class PagingOperations:
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
+            next_request_callback=_next_request_callback,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',

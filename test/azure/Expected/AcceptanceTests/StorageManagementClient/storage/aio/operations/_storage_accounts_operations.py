@@ -543,15 +543,16 @@ class StorageAccountsOperations:
         _initial_request = self._list_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
+            path_format_arguments=path_format_arguments,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location=None,
             initial_state=_initial_request,
-            path_format_arguments=path_format_arguments,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -612,15 +613,16 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
+            path_format_arguments=path_format_arguments,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location=None,
             initial_state=_initial_request,
-            path_format_arguments=path_format_arguments,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

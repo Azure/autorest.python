@@ -72,15 +72,21 @@ class NameConverter:
             operation["extensions"]["pager-async"] = operation_extensions.get(
                 "x-python-custom-pager-async", "azure.core.async_paging.AsyncItemPaged"
             )
+            initialization_parameters = ""
             if pageable.get("operationName"):
-                operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method",
-                    "azure.core.paging.CallbackPagingMethod(next_request_callback=_next_request_callback)"
-                )
+                initialization_parameters = "next_request_callback=_next_request_callback"
+                default_paging_method = "azure.core.paging.CallbackPagingMethod"
+
             else:
-                operation["extensions"]["default-paging-method"] = operation_extensions.get(
-                    "x-python-custom-default-paging-method", "azure.core.paging.NextLinkPagingMethod()"
-                )
+                # might have path_format_arguments going into initizalization
+                # parameters later on. This is handled later in the code,
+                # in the PagingOperation class, where we can better check
+                # if there are any path format arguments
+                default_paging_method = "azure.core.paging.NextLinkPagingMethod"
+            operation["extensions"]["default-paging-method"] = operation_extensions.get(
+                "x-python-custom-default-paging-method",
+                f"{default_paging_method}({initialization_parameters})"
+            )
         if lro:
             operation["extensions"]["poller-sync"] = operation_extensions.get(
                 "x-python-custom-poller-sync", "azure.core.polling.LROPoller"

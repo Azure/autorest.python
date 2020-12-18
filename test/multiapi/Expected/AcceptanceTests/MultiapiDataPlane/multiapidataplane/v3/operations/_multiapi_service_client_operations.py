@@ -68,8 +68,8 @@ class MultiapiServiceClientOperationsMixin(object):
 
         return ItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',

@@ -20,17 +20,20 @@ _next_request_callback = functools.partial(
 )
 {% endif %}
 
-paging_method = kwargs.pop("paging_method", {{ operation.get_initialized_paging_method() }})
+paging_method = kwargs.pop("paging_method", {{ operation.get_default_paging_method() }}({{ "))" if not operation.get_default_paging_method_parameters() }}
+{% if operation.get_default_paging_method_parameters() %}
+    {% for parameter in operation.get_default_paging_method_parameters() %}
+    {{ parameter }},
+    {% endfor %}
+))
+{% endif %}
 
 return {{ operation.get_pager(async_mode) }}(
     paging_method=paging_method,
-    client=self._client,
     deserialize_output=deserialize_output,
+    client=self._client,
     continuation_token_location={{ ("'" ~ operation.continuation_token_location ~ "'") if operation.continuation_token_location else "None" }},
     initial_state={{ initial_response if initial_response else "_initial_request" }},
-    {% if operation.parameters.path and not operation.next_operation %}
-    path_format_arguments=path_format_arguments,
-    {% endif %}
     {% if operation.item_name != 'value' %}
     item_name='{{ operation.item_name }}',
     {% endif %}

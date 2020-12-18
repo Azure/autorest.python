@@ -140,18 +140,21 @@ class PagingOperation(Operation):
     def get_default_paging_method(self) -> str:
         return self.get_default_paging_method_path().split('.')[-1]
 
-    def get_initialized_paging_method(self) -> str:
-        paging_method = self.get_default_paging_method()
+    def get_default_paging_method_parameters(self) -> List[str]:
         yaml_extension = self.yaml_data["extensions"]["default-paging-method"]
+        initialization = []
         try:
-            initialization = yaml_extension[yaml_extension.index("("):]
+            # get parameters between the brackets
+            initialization = yaml_extension[yaml_extension.index("(") + 1: len(yaml_extension) - 1].split(", ")
+            initialization = [i for i in initialization if i]
+            if self.parameters.path and not self.next_operation:
+                initialization.append("path_format_arguments=path_format_arguments")
         except ValueError:
             _LOGGER.warning(
                 "You didn't pass in a fully initialized paging method. We're going to assume "
-                "there are no initialization parameters for this paging method"
+                "the only initialization parameter is the required deserialize_output callback"
             )
-            initialization = "()"
-        return f"{paging_method}{initialization}"
+        return initialization
 
     @property
     def success_status_code(self) -> List[Union[str, int]]:

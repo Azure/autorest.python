@@ -39,7 +39,7 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_next_link_in_response_headers(self, client):
         class MyPagingMethod(NextLinkPagingMethod):
-            def get_continuation_token(self, pipeline_response, deserialized):
+            def get_continuation_token(self, pipeline_response, deserialized, continuation_token_location=None):
                 return pipeline_response.http_response.headers.get('x-ms-nextLink', None)
 
         pages = client.next_link_in_response_headers(paging_method=MyPagingMethod())
@@ -60,7 +60,7 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_continuation_token_in_response_headers(self, client):
         class MyPagingMethod(HeaderPagingMethod):
-            def get_continuation_token(self, pipeline_response, deserialized):
+            def get_continuation_token(self, pipeline_response, deserialized, client):
                 return pipeline_response.http_response.headers.get('x-ms-token', None)
 
         paging_method = MyPagingMethod(header_name="x-ms-token")
@@ -77,7 +77,7 @@ class TestPaging(object):
                 super(MyPagingMethod, self).__init__(header_name=header_name)
                 self._count = None
 
-            def get_continuation_token(self, pipeline_response, deserialized):
+            def get_continuation_token(self, pipeline_response, deserialized, continuation_token_location=None):
                 token = deserialized.token
                 if not token:
                     return None
@@ -99,13 +99,12 @@ class TestPaging(object):
                 super(HeaderPagingMethodAndNextLink, self).__init__()
                 self._header_name = header_name
 
-            def get_next_request(self, continuation_token, initial_request):
+            def get_next_request(self, continuation_token, initial_request, client):
                 split_token = continuation_token.split(",")
                 token_to_pass_to_headers = split_token[0]
-                request = super(HeaderPagingMethodAndNextLink, self).get_next_request(token_to_pass_to_headers, initial_request)
+                next_link = split_token[1]
+                request = super(HeaderPagingMethodAndNextLink, self).get_next_request(next_link, initial_request, client=client)
                 request.headers[self._header_name] = split_token[0]
-                next_link = self._client.format_url(split_token[1], **self._path_format_arguments)
-                request.url = next_link
                 return request
 
         paging_method = HeaderPagingMethodAndNextLink(header_name="x-ms-token")

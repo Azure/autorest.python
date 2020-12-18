@@ -88,8 +88,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
@@ -137,8 +137,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location=None,
             initial_state=_initial_request,
             item_name='values',
@@ -183,12 +183,14 @@ class PagingOperations:
         _initial_request = self._get_single_pages_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", MyPagingMethod(header_name='x-ms-token'))
+        paging_method = kwargs.pop("paging_method", MyPagingMethod(
+            header_name='x-ms-token',
+        ))
 
         return AsyncCustomPager(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -238,8 +240,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
@@ -309,8 +311,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -391,12 +393,14 @@ class PagingOperations:
             self._get_with_query_params_next,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
+            next_request_callback=_next_request_callback,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -467,8 +471,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='odata_next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -549,15 +553,16 @@ class PagingOperations:
             client_request_id=client_request_id,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
+            path_format_arguments=path_format_arguments,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
-            path_format_arguments=path_format_arguments,
             item_name='values',
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -605,8 +610,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -656,8 +661,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -706,8 +711,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -756,8 +761,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -806,8 +811,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -901,12 +906,14 @@ class PagingOperations:
             tenant=tenant,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
+            next_request_callback=_next_request_callback,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='odata_next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -1005,12 +1012,14 @@ class PagingOperations:
             custom_parameter_group=custom_parameter_group,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(next_request_callback=_next_request_callback))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
+            next_request_callback=_next_request_callback,
+        ))
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='odata_next_link',
             initial_state=_initial_request,
             item_name='values',
@@ -1120,8 +1129,8 @@ class PagingOperations:
 
             return AsyncItemPaged(
                 paging_method=paging_method,
-                client=self._client,
                 deserialize_output=deserialize_output,
+                client=self._client,
                 continuation_token_location='next_link',
                 initial_state=pipeline_response,
                 item_name='values',
@@ -1185,8 +1194,8 @@ class PagingOperations:
 
         return AsyncItemPaged(
             paging_method=paging_method,
-            client=self._client,
             deserialize_output=deserialize_output,
+            client=self._client,
             continuation_token_location='next_link',
             initial_state=_initial_request,
             item_name='indexes',
