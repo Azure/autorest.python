@@ -338,8 +338,21 @@ def regenerate_custom_poller_pager(c, debug=False):
 @task
 def regenerate_samples(c, debug=False):
     cwd = os.getcwd()
-    samples = [
-        "management",
-    ]
-    cmds = [f'autorest docs/samples/specification/{sample}/readme.md --use=.' for sample in samples]
+    sample_to_special_flags = {
+        "management": None,
+        "multiapi": {
+            "multiapi": True,
+            "python-sdks-folder": f'{cwd}/docs/samples/specification/multiapi'
+        },
+    }
+
+    cmds = []
+    for sample, special_flags in sample_to_special_flags.items():
+        cmd =  f'autorest docs/samples/specification/{sample}/readme.md --use=.  '
+        if special_flags:
+            flag_strings = [
+                f"--{flag}={value}" for flag, value in special_flags.items()
+            ]
+            cmd += " ".join(flag_strings)
+        cmds.append(cmd)
     _run_autorest(cmds, debug)
