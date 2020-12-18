@@ -345,6 +345,7 @@ def regenerate_samples(c, debug=False):
             "python-sdks-folder": f'{cwd}/docs/samples/specification/multiapi'
         },
         "azure_key_credential": None,
+        "directives": None,
     }
 
     cmds = []

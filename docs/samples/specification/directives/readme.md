@@ -1,16 +1,14 @@
-# Python-Specific Directives
+# Sample Directives Generation
 
 ### Settings
 
 ``` yaml
 input-file: pollingPaging.json
-namespace: python.directives
-package-name: python-directives
-output-folder: $(python-sdks-folder)/directives/python-directives
+namespace: azure.directives.sample
+package-name: azure-directives-sample
 license-header: MICROSOFT_MIT_NO_VERSION
 package-version: 0.1.0
 basic-setup-py: true
-output-artifact: code-model-v4-no-tags
 clear-output-folder: true
 ```
 
