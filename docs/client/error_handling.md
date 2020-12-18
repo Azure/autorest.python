@@ -2,7 +2,7 @@
 
 ## General
 
-Our generated clients raise exceptions defined in [`azure-core`][azure_core_exceptions]. While the base for all exceptions is [`AzureError`][azure_error],
+Our generated clients raise [exceptions defined in `azure-core`][azure_core_exceptions]. While the base for all exceptions is [`AzureError`][azure_error],
 [`HttpResponseError`][http_response_error] is also a common base catch-all for exceptions, as these errors are thrown in the case of a request being made, and a non-successful
 status code being received from the service.
 
@@ -21,6 +21,20 @@ try:
 except HttpResponseError as e:
     print("{}: {}".format(e.status_code, e.message))
 ```
+
+You can also catch errors with more granularity, i.e. just catching a `ResourceExistsError`.
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.pets import PetsClient
+
+client = PetsClient(credential=DefaultAzureCredential())
+try:
+    dog = client.get_dog()
+except ResourceExistsError as e:
+    print(e.message)
+```
+
 
 ## Logging
 

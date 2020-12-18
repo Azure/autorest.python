@@ -23,28 +23,14 @@ The following are core libraries your generated code depend on, and the minimum 
 | Library | Description | Min Version
 |------------------|-------------|-------------
 |[`azure-core`][azure_core_library]|The most important library to have installed. It provides shared exceptions and modules for all the Python SDK client libraries.|1.8.2
-|[`msrest`][msrest_library]|Library mainly used for serializing and deserializing objects now|0.6.18
+|[`msrest`][msrest_library]|Library mainly used for serializing and deserializing objects|0.6.18
 |[`azure-mgmt-core`][azure_mgmt_core_library]|Required if you're generating mgmt plane code (see `--azure-arm` flag in our [flag index][flag_index]. Provides mgmt plane specific shared exceptions and modules.|1.2.1
 
 > Note: We highly recommend tying your library to a major version, for instance, adding `azure-core<2.0.0` to tie the `azure-core` library to `1.x.x`
 
-## Initializing Your Client
+## Initializing and Authenticating Your Client
 
-Next, on to initialization. Your constructor can take any number of parameters. If your client has no parameters (no client parameters detailed
-in the swagger (TODO: link to swagger docs) and you choose to generate without credentials), initializing your client would just look like
-
-```python
-from azure.pets import PetsClient
-
-client = PetsClient()
-```
-
-However, by default we generate clients with credentials, so continue on to [Authenticating Your Client](#authenticating-your-client "Authenticating Your Client")
-to find out how to input a credential.
-
-## Authenticating Your Client
-
-By default we generate our clients with an [Azure Active Directory (AAD) token credential][aad_authentication]. We always recommend
+Next, on to initialization. Your constructor can take any number of parameters. By default we generate our clients with an [Azure Active Directory (AAD) token credential][aad_authentication]. We always recommend
 using a [credential type][identity_credentials] obtained from the [`azure-identity`][azure_identity_library] library for AAD authentication. For this example,
 we use the most common [`DefaultAzureCredential`][default_azure_credential].
 
@@ -70,7 +56,7 @@ client = PetsClient(credential=AzureKeyCredential(credential))
 ```
 
 Currently, we only support generating credentials of type `TokenCredential` and / or `AzureKeyCredential`. If you'd like to use your own custom credential,
-you can still pass it in to the client. However, you may have to use a custom authentication policy to handle the credential. That can also be passed in to the
+you can pass the custom type into the client. However, you may have to use a custom authentication policy to handle the credential. That can also be passed in to the
 client. Say your custom credential is called `MyCredential`, and the policy that handles this credential is called `MyAuthenticationPolicy`. Initializing your
 client would look something like `client = PetsClient(credential=MyCredential(), authentication_policy=MyAuthenticationPolicy())`, though this of course varies
 based on inputs.
