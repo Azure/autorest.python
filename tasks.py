@@ -263,6 +263,7 @@ def regenerate(c, swagger_name=None, debug=False):
         regenerate_credential_default_policy(c, debug)
         regenerate_package_name_setup_py(c, debug)
         regenerate_custom_poller_pager(c, debug)
+        regenerate_samples(c, debug)
 
 
 @task
@@ -333,3 +334,12 @@ def regenerate_custom_poller_pager(c, debug=False):
         f'autorest test/azure/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
+
+@task
+def regenerate_samples(c, debug=False):
+    cwd = os.getcwd()
+    samples = [
+        "management",
+    ]
+    cmds = [f'autorest docs/samples/specification/{sample}/readme.md --use=.' for sample in samples]
+    _run_autorest(cmds, debug)
