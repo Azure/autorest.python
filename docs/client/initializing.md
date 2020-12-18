@@ -15,7 +15,7 @@ Putting this together, we import our client like so:
 from azure.pets import PetsClient
 ```
 
-### Dependencies of Your Client
+## Minimum Dependencies of Your Client
 
 The only scenario the generated code can force dependencies is if you generate with a `setup.py` file using the `--basic-setup-py` flag.
 The following are core libraries your generated code depend on, and the minimum version we highly recommend:
@@ -76,7 +76,6 @@ from azure.pets import PetsClient
 
 client = PetsClient(credential=DefaultAzureCredential(), api_version="v1")
 ```
-
 
 <!-- LINKS -->
 [multiapi_generation]: ../generate/multiapi.md

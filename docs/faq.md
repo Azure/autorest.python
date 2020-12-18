@@ -3,6 +3,7 @@
 1. What are the minimum dependencies?
 
     The minimum dependencies are listed [here][min_dependencies]. This list will be continuously updated.
+
 2. What version of AutoRest Python should I use?
 
     We highly recommend you use the latest AutoRest Python version published to [npm][autorest_npm]. The latest version
