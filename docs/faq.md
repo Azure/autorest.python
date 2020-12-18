@@ -1,4 +1,4 @@
-# <img align="center" src="../images/logo.png">  FAQ
+# <img align="center" src="./images/logo.png">  FAQ
 
 1. What are the minimum dependencies?
 

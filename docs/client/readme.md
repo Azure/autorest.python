@@ -1,4 +1,4 @@
-# <img align="center" src="./images/logo.png">  Using the Python Client
+# <img align="center" src="../images/logo.png">  Using the Python Client
 
 After [generating][generate] your client, this section tells you how to actually use your generated client.
 

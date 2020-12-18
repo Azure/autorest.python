@@ -1,4 +1,4 @@
-# <img align="center" src="./images/logo.png">  Generating Python Clients with AutoRest
+# <img align="center" src="../images/logo.png">  Generating Python Clients with AutoRest
 
 Most of the information you'll need to generate a Python client can be found in the general docs [here][general]. In these docs, we go over a couple Python-specific scenarios.
 

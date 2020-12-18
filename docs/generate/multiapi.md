@@ -1,4 +1,4 @@
-# <img align="center" src="./images/logo.png">  Generating a Multi API Python Client with AutoRest
+# <img align="center" src="../images/logo.png">  Generating a Multi API Python Client with AutoRest
 
 If you want to generate one client that handles multiple API versions (a common use-case for this is supporting multiple Azure clouds, since a service's API versions can differ between them), this is the section for you. Python is the only language that supports this, hence why these docs are in the Python-specific section.
 
