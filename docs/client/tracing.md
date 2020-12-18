@@ -13,7 +13,7 @@ pip install azure-core-tracing-opencensus
 Our generated SDKs handle retrieving context for you, so there's no need to pass in any context. Additionally, the
 OpenCensus threading plugin is included when installing this package.
 
-Since there is no explicit context you need to pass, you just create your usual OpenCensus tracer and call the generated SDKs.
+Since there is no explicit context you need to pass, you can create your usual OpenCensus tracer and call the generated SDKs.
 The following example uses [`Azure Monitor`'s][azure_monitor] exporter, but you can use any exporter ([Zipkin][zipkin], etc.).
 
 ```python
@@ -42,7 +42,7 @@ pip install azure-core-tracing-opentelemetry
 ```
 
 Our generated SDKs handle retrieving context for you, so there's no need to pass in any context.
-Since there is no explicit context you need to pass, you just create your usual OpenTelemetry tracer and call the generated SDKs.
+Since there is no explicit context you need to pass, you can create your usual OpenTelemetry tracer and call the generated SDKs.
 The following example uses [`Azure Monitor`'s][azure_monitor] exporter, but you can use any exporter ([Zipkin][zipkin], etc.).
 
 ```python

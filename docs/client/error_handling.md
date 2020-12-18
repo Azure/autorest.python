@@ -2,7 +2,7 @@
 
 ## General
 
-Our generated clients raise exceptions defined in [`azure-core`][azure_core_exceptions]. While the base for all exceptions is [`AzureError`][azure_error],
+Our generated clients raise [exceptions defined in `azure-core`][azure_core_exceptions]. While the base for all exceptions is [`AzureError`][azure_error],
 [`HttpResponseError`][http_response_error] is also a common base catch-all for exceptions, as these errors are thrown in the case of a request being made, and a non-successful
 status code being received from the service.
 
