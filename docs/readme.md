@@ -1,6 +1,6 @@
 # AutoRest Python Documentation
 
-These documents are Python-specific, see [our main docs](https://github.com/Azure/autorest/tree/master/docs) for more general information
+These documents are Python-specific, see [our main docs][main_docs] for more general information
 
 
 1. Generating Python Clients with AutoRest
@@ -13,14 +13,17 @@ These documents are Python-specific, see [our main docs](https://github.com/Azur
     - I have old generated code using the previous version of AutoRest. How do I upgrade my code? Main docs [here][main_migrate], Python-specific docs [here][python_migrate]
 
 4. Developing with AutoRest
-    - How do I generate or contribute to AutoRest in [dev mode](./developer/readme.md)? Main docs [here][main_dev]
+    - How do I generate or contribute to AutoRest in [dev mode][python_dev] Main docs [here][main_dev]
 
 5. Samples
-    - [Sample](./samples/readme.md) readmes and generated code for common scenarios.
+    - [Sample][sample] readmes and generated code for common scenarios.
 
-6. [FAQ](./faq.md)
+6. [FAQ][faq]
+
+7. [Troubleshooting][troubleshooting]
 
 <!-- LINKS -->
+[main_docs]: https://github.com/Azure/autorest/tree/master/docs
 [main_generate]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md
 [python_generate]: ./generate/readme.md
 [python_client]: ./client/readme.md
@@ -29,3 +32,6 @@ These documents are Python-specific, see [our main docs](https://github.com/Azur
 [python_migrate]: ./migrate/readme.md
 [python_dev]: ./developer/readme.md
 [main_dev]: https://github.com/Azure/autorest/tree/master/docs/dev/readme.md
+[sample]: ./samples/readme.md
+[faq]: ./faq.md
+[trobleshooting]: ./troubleshooting.md

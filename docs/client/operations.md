@@ -149,7 +149,7 @@ a pager that pages through the final lists of data.
 [initializing]: ./initializing.md
 [lro_poller]:  https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [custom_poller]: ../generate/directives.md#generate-with-a-custom-poller
-[example_swagger]: ../generate/examples/pollingPaging.json
+[example_swagger]: ../samples/specification/directives/pollingPaging.json
 [poller_guidelines]: https://azure.github.io/azure-sdk/python_design.html#service-operations
 [async_lro_poller]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
 [item_paged]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.paging.itempaged?view=azure-python

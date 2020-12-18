@@ -1,6 +1,6 @@
 # <img align="center" src="../images/logo.png">  Python-Specific Directives
 
-If you want to see how to generally use a directive to change AutoRest behavior, check out the [main docs](https://github.com/Azure/autorest/tree/master/docs/generate/directives.md). This section will go into the Python-specific directives.
+If you want to see how to generally use a directive to change AutoRest behavior, check out the [main docs][main_docs]. This section will go into the Python-specific directives.
 
 These directives all start out with this general skeleton of a directive:
 
@@ -145,14 +145,14 @@ Here is the before and after of the generated code.
 # <img align="center" src="../images/after_paging_method_directive.png">
 
 
-We have put all of these Python-specific directives in a [config file][directive_readme] for you to refer to.
+For a full multiapi config example, see our [sample][sample_directives]
 
 <!-- LINKS -->
-
+[main_docs]: https://github.com/Azure/autorest/tree/master/docs/generate/directives.md
 [lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [azure_core_pypi]: https://pypi.org/project/azure-core/
 [async_lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
-[polling_paging_swagger]: ./examples/pollingPaging.json
+[polling_paging_swagger]: ../samples/specification/directives/pollingPaging.json
 
 [lro_base_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.base_polling.lrobasepolling?view=azure-python
 [async_lro_base_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.async_base_polling.asynclrobasepolling?view=azure-python
@@ -163,3 +163,4 @@ We have put all of these Python-specific directives in a [config file][directive
 
 [item_paged_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
 [async_item_paged_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python
+[sample_directives]: ../samples/specification/directives/readme.md

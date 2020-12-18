@@ -1,10 +1,8 @@
 # <img align="center" src="../images/logo.png">  Migrating to Latest AutoRest
 
-## Generating Changes
+See the [main docs][main_docs] for changes in versioning and flags, this section focuses on how the generated code differs.
 
-## Generated Code
-
-### Breaking Changes
+## Breaking Changes
 
 * The credential system has been completely revamped:
     - Previously we had used `azure.common.credentials` or `msrestazure.azure_active_directory` instances, which
@@ -21,7 +19,7 @@ tell AutoRest during generation time to keep the current version file in the dir
     - `raw` has been removed. We now use `cls`, which is a callback that gives access to the internal HTTP response for advanced users.
     - For a complete set of supported options, see the [acceptable parameters to operations in azure-core][azure_core_operation_parameters].
 
-### New Features
+## New Features
 
 * Type annotations using the standard `typing` library. SDKs are [`mypy`][mypy] ready!
 * This client has stable and official support for async. Look in the `aio` namespace of your generated package to find the async client.
@@ -30,11 +28,12 @@ code for this, and you can see our [tracing docs][tracing_docs] for more informa
 
 
 <!-- LINKS -->
+[main_docs]: https://github.com/Azure/autorest/blob/master/docs/migrate/readme.md
 [azure_identity_credentials]: https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/identity/azure-identity#credentials
 [azure_key_credential]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
 [azure_core_library]: https://pypi.org/project/azure-core/
 [azure_core_init_parameters]: https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/CLIENT_LIBRARY_DEVELOPER.md#available-policies
-[flag_index]: https://github.com/Azure/autorest/blob/new_docs/docs/generate/flags.md
+[flag_index]: https://github.com/Azure/autorest/blob/master/docs/generate/flags.md
 [lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [http_response_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.httpresponseerror?view=azure-python
 [azure_core_operation_parameters]: https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/CLIENT_LIBRARY_DEVELOPER.md#available-policies
