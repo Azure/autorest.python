@@ -2,7 +2,7 @@
 
 If you want to generate one client that handles multiple API versions (a common use-case for this is supporting multiple Azure clouds, since a service's API versions can differ between them), this is the section for you. Python is the only language that supports this, hence why these docs are in the Python-specific section.
 
-Before getting into the multiapi specific sections that need to be added to your readme, you need to make sure you have a tag set up for every single API version you want to generate. See the ["Adding Tags When Generating"](https://github.com/Azure/autorest/tree/master/docs/generate/readme.md#adding-tags-when-generating) docs to find out how to set this up. Following the [main example]((https://github.com/Azure/autorest/tree/master/docs/generate/examples/tags/readme.md), this example will suppose you're generating 2 different API versions: `v1` and `v2`.
+Before getting into the multiapi specific sections that need to be added to your readme, you need to make sure you have a tag set up for every single API version you want to generate. See the ["Adding Tags When Generating"][tags] docs to find out how to set this up. Following the [main example][main_example], this example will suppose you're generating 2 different API versions: `v1` and `v2`.
 
 The flag you use on the command line to specify you want multiapi code generation is `--multiapi`. Thus, we need to add a `multiapi` specific section to our readme.
 Let's add it underneath `General Settings` to keep it to the top of our readme
@@ -66,4 +66,9 @@ batch:
 ```
 ````
 
-And that's it! We've included the final config file in our [examples folder](./examples/multiapi/readme.md), please feel free to refer to this.
+And that's it! We've included the final config file in our [examples folder][examples], please feel free to refer to this.
+
+<!-- LINKS -->
+[tags]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md#adding-tags-when-generating
+[main_example]: https://github.com/Azure/autorest/tree/master/docs/generate/examples/tags/readme.md
+[examples]: ./examples/multiapi/readme.md
