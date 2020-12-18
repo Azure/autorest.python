@@ -5,11 +5,9 @@ Here are our samples for common generation scenarios
 
 | Scenario | README | Generated Code
 |------------------|-------------|-------------
-|Generating [management plane][mgmt] | [readme][mgmt_readme] | [generated][mgmt_generated]
-|Generating multi API code | [readme][multiapi_readme] | [generated][multiapi_generated]
-
-* [Generating Multi API code][multiapi]
-* [Generating with Directives][directives]
+|Generating [management plane][mgmt] | [readme.md][mgmt_readme] | [generated][mgmt_generated]
+|Generating multi API code | [readme.md][multiapi_readme] | [generated][multiapi_generated]
+|Generating with [`AzureKeyCredential`][azure_key_credential] | [readme.md][azure_key_credential_readme] | [generated][azure_key_credential_generated]
 
 <!-- LINKS -->
 [mgmt]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane#control-plane
@@ -17,3 +15,6 @@ Here are our samples for common generation scenarios
 [mgmt_generated]: ./specification/management/generated
 [multiapi_readme]: ./specification/multiapi/readme.md
 [multiapi_generated]: ./specification/multiapi/generated
+[azure_key_credential]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
+[azure_key_credential_readme]: ./specification/azure_key_credential/readme.md
+[azure_key_credential_generated]: ./specification/azure_key_credential/generated
