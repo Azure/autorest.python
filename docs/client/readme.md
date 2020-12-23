@@ -5,7 +5,7 @@ After [generating][generate] your client, this section tells you how to actually
 * [Initializing Your Python Client][initializing]
 * [Calling Operations with Your Python Client][operations]
 * [Accessing Models and Enums][models]
-* [Error Handling][error_handling]
+* [Troubleshooting][troubleshooting]
 * [Tracing][tracing]
 
 <!-- LINKS -->
@@ -13,5 +13,5 @@ After [generating][generate] your client, this section tells you how to actually
 [initializing]: ./initializing.md
 [operations]: ./operations.md
 [models]: ./models.md
-[error_handling]: ./error_handling.md
+[troubleshooting]: ./troubleshooting.md
 [tracing]: ./tracing.md

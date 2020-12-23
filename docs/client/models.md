@@ -26,4 +26,4 @@ It accepts optional parameter `api_version`. If specified, it will retrieve the 
 default API version the code was generated with.
 
 <!-- LINKS -->
-[models_ex]: https://github.com/Azure/autorest.python/blob/autorestv3/test/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/_multiapi_service_client.py#L91
+[models_ex]: ../samples/specification/multiapi/generated/azure/multiapi/sample/_multiapi_service_client.py#L91

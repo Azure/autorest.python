@@ -1,6 +1,6 @@
-# <img align="center" src="../images/logo.png">  Error Handling
+# <img align="center" src="../images/logo.png">  Troubleshooting
 
-## General
+## Error Handling
 
 Our generated clients raise [exceptions defined in `azure-core`][azure_core_exceptions]. While the base for all exceptions is [`AzureError`][azure_error],
 [`HttpResponseError`][http_response_error] is also a common base catch-all for exceptions, as these errors are thrown in the case of a request being made, and a non-successful
