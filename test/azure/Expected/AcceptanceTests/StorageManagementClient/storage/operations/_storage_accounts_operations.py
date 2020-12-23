@@ -540,6 +540,12 @@ class StorageAccountsOperations(object):
         returned; use the ListKeys operation for this.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -554,9 +560,14 @@ class StorageAccountsOperations(object):
         _initial_request = self._list_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
-            path_format_arguments=path_format_arguments,
-        ))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                path_format_arguments=path_format_arguments,
+                **kwargs
+            )
 
         return ItemPaged(
             paging_method=paging_method,
@@ -610,6 +621,12 @@ class StorageAccountsOperations(object):
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -626,9 +643,14 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
-            path_format_arguments=path_format_arguments,
-        ))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                path_format_arguments=path_format_arguments,
+                **kwargs
+            )
 
         return ItemPaged(
             paging_method=paging_method,

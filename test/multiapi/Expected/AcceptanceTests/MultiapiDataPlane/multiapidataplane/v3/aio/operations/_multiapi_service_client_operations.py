@@ -49,6 +49,12 @@ class MultiapiServiceClientOperationsMixin:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either PagingResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapidataplane.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -59,7 +65,11 @@ class MultiapiServiceClientOperationsMixin:
         _initial_request = self._test_paging_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,

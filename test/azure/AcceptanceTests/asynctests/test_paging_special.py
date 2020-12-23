@@ -118,13 +118,13 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_continuation_token_with_separate_next_operation(self, client):
 
-        def _my_callback(continuation_token):
-            generated_request = client._continuation_token_initial_operation_next(continuation_token)
-            generated_request.headers['x-ms-token'] = continuation_token
-            return generated_request
+        class MyPagingMethod(CallbackPagingMethod):
+            def get_next_request(self, continuation_token, initial_request, client):
+                request = super(MyPagingMethod, self).get_next_request(continuation_token, initial_request, client)
+                request.headers['x-ms-token'] = continuation_token
+                return request
 
-        paging_method = CallbackPagingMethod(next_request_callback=_my_callback)
-        pages = client.continuation_token_initial_operation(paging_method=paging_method)
+        pages = client.continuation_token_initial_operation(paging_method=MyPagingMethod)
         items = []
         async for item in pages:
             items.append(item)

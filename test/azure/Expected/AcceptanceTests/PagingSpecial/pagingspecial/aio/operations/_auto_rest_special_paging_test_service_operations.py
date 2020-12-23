@@ -55,6 +55,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         body.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValue or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -65,7 +71,11 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._next_link_in_response_headers_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -106,6 +116,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         calls.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -116,7 +132,11 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._continuation_token_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -163,6 +183,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         :param continuation_token_parameter: Continuation token for subsequent paging.
         :type continuation_token_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -174,7 +200,11 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             continuation_token_parameter=continuation_token_parameter,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -215,6 +245,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         results. Should be able to access metadata from pager.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~customdefinitions.aio.AsyncPagerWithMetadata[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -225,7 +261,11 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         _initial_request = self._token_with_metadata_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return AsyncPagerWithMetadata(
             paging_method=paging_method,
@@ -273,6 +313,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         :param continuation_token_parameter: Continuation token for subsequent paging.
         :type continuation_token_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -284,7 +330,11 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             continuation_token_parameter=continuation_token_parameter,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -346,6 +396,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
         operation. The separate next operation is not defined with the token input parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is CallbackPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValueWithToken or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~pagingspecial.models.ProductResultValueWithToken]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -359,9 +415,14 @@ class AutoRestSpecialPagingTestServiceOperationsMixin:
             self._continuation_token_initial_operation_next,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
-            next_request_callback=_next_request_callback,
-        ))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                next_request_callback=_next_request_callback,
+                **kwargs
+            )
 
         return AsyncItemPaged(
             paging_method=paging_method,

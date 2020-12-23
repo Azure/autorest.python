@@ -9,6 +9,7 @@
 :rtype: ~{{ operation.get_poller_path(async_mode) }}[~{{ operation.get_pager_path(async_mode) }}[{{ operation.responses[0].docstring_type }}]]{% endmacro %}
 {% macro operation_docstring(async_mode) %}
 {{ lro_helper.operation_docstring_helper(operation, async_mode) }}
+{{ paging_helper.operation_docstring_helper(operation) }}
 {{ return_docstring(async_mode) }}
 :raises ~azure.core.exceptions.HttpResponseError:
 """{% endmacro %}

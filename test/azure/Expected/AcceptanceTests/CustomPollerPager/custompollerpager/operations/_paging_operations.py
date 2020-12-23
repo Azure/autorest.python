@@ -78,6 +78,12 @@ class PagingOperations(object):
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValue or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -88,7 +94,11 @@ class PagingOperations(object):
         _initial_request = self._get_no_item_name_pages_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -129,6 +139,12 @@ class PagingOperations(object):
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -139,7 +155,11 @@ class PagingOperations(object):
         _initial_request = self._get_null_next_link_name_pages_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -181,6 +201,12 @@ class PagingOperations(object):
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is MyPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~customdefinitions.CustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -191,9 +217,14 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", MyPagingMethod(
-            header_name='x-ms-token',
-        ))
+        paging_method = kwargs.pop("paging_method", MyPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                header_name='x-ms-token',
+                **kwargs
+            )
 
         return CustomPager(
             paging_method=paging_method,
@@ -236,6 +267,12 @@ class PagingOperations(object):
         Second (and final) call, will give you an items list of 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValue or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -246,7 +283,11 @@ class PagingOperations(object):
         _initial_request = self._first_response_empty_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -307,6 +348,12 @@ class PagingOperations(object):
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~custompollerpager.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -319,7 +366,11 @@ class PagingOperations(object):
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -394,6 +445,12 @@ class PagingOperations(object):
          test.
         :type required_query_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is CallbackPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -408,9 +465,14 @@ class PagingOperations(object):
             self._get_with_query_params_next,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
-            next_request_callback=_next_request_callback,
-        ))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                next_request_callback=_next_request_callback,
+                **kwargs
+            )
 
         return ItemPaged(
             paging_method=paging_method,
@@ -472,6 +534,12 @@ class PagingOperations(object):
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~custompollerpager.models.PagingGetOdataMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -484,7 +552,11 @@ class PagingOperations(object):
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -552,6 +624,12 @@ class PagingOperations(object):
         :param client_request_id:
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -572,9 +650,14 @@ class PagingOperations(object):
             client_request_id=client_request_id,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
-            path_format_arguments=path_format_arguments,
-        ))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                path_format_arguments=path_format_arguments,
+                **kwargs
+            )
 
         return ItemPaged(
             paging_method=paging_method,
@@ -617,6 +700,12 @@ class PagingOperations(object):
         response including a nextLink that has 10 pages.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -627,7 +716,11 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_first_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -670,6 +763,12 @@ class PagingOperations(object):
         first with 500. The client should retry and finish all 10 pages eventually.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -680,7 +779,11 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_retry_second_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -722,6 +825,12 @@ class PagingOperations(object):
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -732,7 +841,11 @@ class PagingOperations(object):
         _initial_request = self._get_single_pages_failure_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -774,6 +887,12 @@ class PagingOperations(object):
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -784,7 +903,11 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -826,6 +949,12 @@ class PagingOperations(object):
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -836,7 +965,11 @@ class PagingOperations(object):
         _initial_request = self._get_multiple_pages_failure_uri_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
@@ -921,6 +1054,12 @@ class PagingOperations(object):
         :param tenant: Sets the tenant to use.
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is CallbackPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -938,9 +1077,14 @@ class PagingOperations(object):
             tenant=tenant,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
-            next_request_callback=_next_request_callback,
-        ))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                next_request_callback=_next_request_callback,
+                **kwargs
+            )
 
         return ItemPaged(
             paging_method=paging_method,
@@ -1032,6 +1176,12 @@ class PagingOperations(object):
         :param custom_parameter_group: Parameter group.
         :type custom_parameter_group: ~custompollerpager.models.CustomParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is CallbackPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1047,9 +1197,14 @@ class PagingOperations(object):
             custom_parameter_group=custom_parameter_group,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
-            next_request_callback=_next_request_callback,
-        ))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                next_request_callback=_next_request_callback,
+                **kwargs
+            )
 
         return ItemPaged(
             paging_method=paging_method,
@@ -1133,6 +1288,12 @@ class PagingOperations(object):
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An instance of CustomPoller that returns an iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~customdefinitions.CustomPoller[~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResult]]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1162,7 +1323,11 @@ class PagingOperations(object):
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
             
-            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+            if isinstance(paging_method, type):
+                # in here if paging method is not initialized yet.
+                paging_method = paging_method(**kwargs)
 
             return ItemPaged(
                 paging_method=paging_method,
@@ -1219,6 +1384,12 @@ class PagingOperations(object):
         name 'indexes'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResultValueWithXMSClientName or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~custompollerpager.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1229,7 +1400,11 @@ class PagingOperations(object):
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod())
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(**kwargs)
 
         return ItemPaged(
             paging_method=paging_method,

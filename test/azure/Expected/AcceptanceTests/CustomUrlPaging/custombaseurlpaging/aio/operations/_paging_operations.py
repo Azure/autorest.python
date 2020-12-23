@@ -82,6 +82,12 @@ class PagingOperations:
         :param account_name: Account Name.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is NextLinkPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -98,9 +104,14 @@ class PagingOperations:
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod(
-            path_format_arguments=path_format_arguments,
-        ))
+        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                path_format_arguments=path_format_arguments,
+                **kwargs
+            )
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -178,6 +189,12 @@ class PagingOperations:
         :param account_name: Account Name.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword paging_method: The paging strategy to adopt for making requests and processing the
+         response. Default is CallbackPagingMethod. You can pass in
+         either an initialized or uninitialized custom paging method. If you pass in an uninitialized
+         paging method, make sure your paging method class can input kwargs, as we will initialize your
+         paging method with the parameters we would pass into the default paging method + extra kwargs.
+        :paramtype paging_method: ~azure.core.paging.PagingMethod
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -193,9 +210,14 @@ class PagingOperations:
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod(
-            next_request_callback=_next_request_callback,
-        ))
+        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+
+        if isinstance(paging_method, type):
+            # in here if paging method is not initialized yet.
+            paging_method = paging_method(
+                next_request_callback=_next_request_callback,
+                **kwargs
+            )
 
         return AsyncItemPaged(
             paging_method=paging_method,
