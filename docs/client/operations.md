@@ -6,7 +6,7 @@ or directly on the client.
 
 ## Operation Group vs No Operation Group
 
-If your swagger defines an operation group for your operation (for example, in this swagger, the operation `list`
+If your swagger defines an operation group for your operation (for example, in [this][operation_group_example] swagger, the operation `list`
 is part of operation group `application`), you would access the operation through `client.application.list()`.
 
 If there's no operation group, as in [this][mixin_example] case, you would access the operation directly from the client

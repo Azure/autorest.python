@@ -346,6 +346,7 @@ def regenerate_samples(c, debug=False):
         },
         "azure_key_credential": None,
         "directives": None,
+        "basic": None,
     }
 
     cmds = []
