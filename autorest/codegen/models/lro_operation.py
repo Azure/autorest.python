@@ -88,12 +88,37 @@ class LROOperation(Operation):
         """An LROOperation will never have an optional return type, we will always return a poller"""
         return False
 
+    def _get_lro_extension(self, extension_base, async_mode, *, azure_arm=None):
+        extension_name = extension_base + ("-async" if async_mode else "-sync")
+        extension = self.yaml_data["extensions"][extension_name]
+        arm_extension = None
+        if azure_arm is not None:
+            arm_extension = "azure-arm" if azure_arm else "data-plane"
+        return extension[arm_extension] if arm_extension else extension
+
     def get_poller_path(self, async_mode: bool) -> str:
-        extension_name = "poller-async" if async_mode else "poller-sync"
-        return self.yaml_data["extensions"][extension_name]
+        return self._get_lro_extension("poller", async_mode)
 
     def get_poller(self, async_mode: bool) -> str:
         return self.get_poller_path(async_mode).split(".")[-1]
+
+    def get_default_polling_method_path(self, async_mode: bool, azure_arm: bool) -> str:
+        return self._get_lro_extension("default-polling-method", async_mode, azure_arm=azure_arm)
+
+    def get_default_polling_method(self, async_mode: bool, azure_arm: bool) -> str:
+        return self.get_default_polling_method_path(async_mode, azure_arm).split(".")[-1]
+
+    def get_default_no_polling_method_path(self, async_mode: bool) -> str:
+        return self._get_lro_extension("default-no-polling-method", async_mode)
+
+    def get_default_no_polling_method(self, async_mode: bool) -> str:
+        return self.get_default_no_polling_method_path(async_mode).split(".")[-1]
+
+    def get_base_polling_method_path(self, async_mode: bool) -> str:
+        return self._get_lro_extension("base-polling-method", async_mode)
+
+    def get_base_polling_method(self, async_mode: bool) -> str:
+        return self.get_base_polling_method_path(async_mode).split(".")[-1]
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
@@ -101,25 +126,28 @@ class LROOperation(Operation):
 
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
-
         file_import.add_from_import(poller_import_path, poller, ImportType.AZURECORE)
+
+        default_polling_method_import_path = ".".join(
+            self.get_default_polling_method_path(async_mode, code_model.options['azure_arm']).split(".")[:-1]
+        )
+        default_polling_method = self.get_default_polling_method(async_mode, code_model.options['azure_arm'])
+        file_import.add_from_import(default_polling_method_import_path, default_polling_method, ImportType.AZURECORE)
+
+        default_no_polling_method_import_path = ".".join(
+            self.get_default_no_polling_method_path(async_mode).split(".")[:-1]
+        )
+        default_no_polling_method = self.get_default_no_polling_method(async_mode)
+        file_import.add_from_import(
+            default_no_polling_method_import_path, default_no_polling_method, ImportType.AZURECORE
+        )
+
+        base_polling_method_import_path = ".".join(
+            self.get_base_polling_method_path(async_mode).split(".")[:-1]
+        )
+        base_polling_method = self.get_base_polling_method(async_mode)
+        file_import.add_from_import(base_polling_method_import_path, base_polling_method, ImportType.AZURECORE)
+
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-            file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
-            file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)
-            if code_model.options['azure_arm']:
-                file_import.add_from_import(
-                    "azure.mgmt.core.polling.async_arm_polling", "AsyncARMPolling", ImportType.AZURECORE
-                )
-            else:
-                file_import.add_from_import(
-                    "azure.core.polling.async_base_polling", "AsyncLROBasePolling", ImportType.AZURECORE
-                )
-        else:
-            file_import.add_from_import("azure.core.polling", "NoPolling", ImportType.AZURECORE)
-            file_import.add_from_import("azure.core.polling", "PollingMethod", ImportType.AZURECORE)
-            if code_model.options['azure_arm']:
-                file_import.add_from_import("azure.mgmt.core.polling.arm_polling", "ARMPolling", ImportType.AZURECORE)
-            else:
-                file_import.add_from_import("azure.core.polling.base_polling", "LROBasePolling", ImportType.AZURECORE)
         return file_import
