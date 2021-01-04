@@ -82,10 +82,10 @@ dog = client.get_dog(logging_enable=True)
 
 <!-- LINKS -->
 [azure_core_exceptions]: https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/core/azure-core#azure-core-library-exceptions
-[azure_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.azureerror?view=azure-python
-[http_response_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.httpresponseerror?view=azure-python
-[client_authentication_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.clientauthenticationerror?view=azure-python
-[resource_not_found_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.resourcenotfounderror?view=azure-python
-[resource_exists_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.resourceexistserror?view=azure-python
+[azure_error]: https://docs.microsoft.com/python/api/azure-core/azure.core.exceptions.azureerror?view=azure-python
+[http_response_error]: https://docs.microsoft.com/python/api/azure-core/azure.core.exceptions.httpresponseerror?view=azure-python
+[client_authentication_error]: https://docs.microsoft.com/python/api/azure-core/azure.core.exceptions.clientauthenticationerror?view=azure-python
+[resource_not_found_error]: https://docs.microsoft.com/python/api/azure-core/azure.core.exceptions.resourcenotfounderror?view=azure-python
+[resource_exists_error]: https://docs.microsoft.com/python/api/azure-core/azure.core.exceptions.resourceexistserror?view=azure-python
 [error_model]: https://github.com/Azure/autorest.testserver/blob/master/swagger/xms-error-responses.json#L220
 [logging]: https://docs.python.org/3.5/library/logging.html

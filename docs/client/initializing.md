@@ -91,9 +91,9 @@ client = PetsClient(credential=DefaultAzureCredential(), api_version="v1")
 [azure_mgmt_core_library]: https://pypi.org/project/azure-mgmt-core/
 [azure_identity_library]: https://pypi.org/project/azure-identity/
 [flag_index]: https://github.com/Azure/autorest/tree/master/docs/generate/flags.md
-[aad_authentication]: https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-an-authentication-token
+[aad_authentication]: https://docs.microsoft.com/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-an-authentication-token
 [identity_credentials]: https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/identity/azure-identity#credentials
-[default_azure_credential]: https://docs.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python
-[azure_key_credential]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
-[bearer_token_credential_policy]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.pipeline.policies.bearertokencredentialpolicy?view=azure-python
-[azure_key_credential_policy]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.pipeline.policies.azurekeycredentialpolicy?view=azure-python
+[default_azure_credential]: https://docs.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python
+[azure_key_credential]: https://docs.microsoft.com/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
+[bearer_token_credential_policy]: https://docs.microsoft.com/python/api/azure-core/azure.core.pipeline.policies.bearertokencredentialpolicy?view=azure-python
+[azure_key_credential_policy]: https://docs.microsoft.com/python/api/azure-core/azure.core.pipeline.policies.azurekeycredentialpolicy?view=azure-python

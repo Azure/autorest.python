@@ -30,12 +30,12 @@ code for this, and you can see our [tracing docs][tracing_docs] for more informa
 <!-- LINKS -->
 [main_docs]: https://github.com/Azure/autorest/blob/master/docs/migrate/readme.md
 [azure_identity_credentials]: https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/identity/azure-identity#credentials
-[azure_key_credential]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
+[azure_key_credential]: https://docs.microsoft.com/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
 [azure_core_library]: https://pypi.org/project/azure-core/
 [azure_core_init_parameters]: https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/CLIENT_LIBRARY_DEVELOPER.md#available-policies
 [flag_index]: https://github.com/Azure/autorest/blob/master/docs/generate/flags.md
-[lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
-[http_response_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.httpresponseerror?view=azure-python
+[lro_poller_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
+[http_response_error]: https://docs.microsoft.com/python/api/azure-core/azure.core.exceptions.httpresponseerror?view=azure-python
 [azure_core_operation_parameters]: https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azure-core/CLIENT_LIBRARY_DEVELOPER.md#available-policies
 [mypy]: https://mypy.readthedocs.io/en/stable/introduction.html
 [open_census]: https://opencensus.io/

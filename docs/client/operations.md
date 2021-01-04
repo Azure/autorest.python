@@ -147,11 +147,11 @@ a pager that pages through the final lists of data.
 [mixin_example]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json#L20
 [pets_swagger]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json
 [initializing]: ./initializing.md
-[lro_poller]:  https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
+[lro_poller]:  https://docs.microsoft.com/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [custom_poller]: ../generate/directives.md#generate-with-a-custom-poller
 [example_swagger]: ../samples/specification/directives/pollingPaging.json
 [poller_guidelines]: https://azure.github.io/azure-sdk/python_design.html#service-operations
-[async_lro_poller]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
-[item_paged]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
+[async_lro_poller]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
+[item_paged]: https://docs.microsoft.com/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
 [custom_pager]: ../generate/directives.md#generate-with-a-custom-pager
-[async_item_paged]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python
+[async_item_paged]: https://docs.microsoft.com/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python

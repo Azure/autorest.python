@@ -149,18 +149,18 @@ For a full multiapi config example, see our [sample][sample_directives]
 
 <!-- LINKS -->
 [main_docs]: https://github.com/Azure/autorest/tree/master/docs/generate/directives.md
-[lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
+[lro_poller_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [azure_core_pypi]: https://pypi.org/project/azure-core/
-[async_lro_poller_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
+[async_lro_poller_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
 [polling_paging_swagger]: ../samples/specification/directives/pollingPaging.json
 
-[lro_base_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.base_polling.lrobasepolling?view=azure-python
-[async_lro_base_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.async_base_polling.asynclrobasepolling?view=azure-python
-[arm_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-mgmt-core/azure.mgmt.core.polling.arm_polling.armpolling?view=azure-python
-[async_arm_polling_docs]: https://docs.microsoft.com/en-us/python/api/azure-mgmt-core/azure.mgmt.core.polling.async_arm_polling.asyncarmpolling?view=azure-python
-[polling_method_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.pollingmethod?view=azure-python
-[async_polling_method_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.asyncpollingmethod?view=azure-python
+[lro_base_polling_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.base_polling.lrobasepolling?view=azure-python
+[async_lro_base_polling_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.async_base_polling.asynclrobasepolling?view=azure-python
+[arm_polling_docs]: https://docs.microsoft.com/python/api/azure-mgmt-core/azure.mgmt.core.polling.arm_polling.armpolling?view=azure-python
+[async_arm_polling_docs]: https://docs.microsoft.com/python/api/azure-mgmt-core/azure.mgmt.core.polling.async_arm_polling.asyncarmpolling?view=azure-python
+[polling_method_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.pollingmethod?view=azure-python
+[async_polling_method_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.asyncpollingmethod?view=azure-python
 
-[item_paged_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
-[async_item_paged_docs]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python
+[item_paged_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
+[async_item_paged_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python
 [sample_directives]: ../samples/specification/directives/readme.md
