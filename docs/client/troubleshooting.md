@@ -9,7 +9,7 @@ status code being received from the service.
 Our generated code also offers some default mapping of status codes to exceptions. These are `401` to [`ClientAuthenticationError`][client_authentication_error], `404` to
 [`ResourceNotFoundError`][resource_not_found_error], and `409` to [`ResourceExistsError`][resource_exists_error].
 
-A very basic form of error handling looks like this
+A very basic form of error handling looks like this:
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -35,6 +35,20 @@ except ResourceExistsError as e:
     print(e.message)
 ```
 
+A final note regarding error models: If you define your own special error model (like [this][error_model]), we still expose these to the users. Though the error thrown to
+the user will be one defined in [`azure-core`][azure_core_exceptions] (most likely [`HttpResponseError`][http_response_error]), we expose your specially-defined swagger
+models through the `model` property on the returned error. I.e.:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.pets import PetsClient
+
+client = PetsClient(credential=DefaultAzureCredential())
+try:
+    dog = client.get_dog()
+except HttpResponseError as e:
+    pet_action_error = e.model
+```
 
 ## Logging
 
@@ -73,4 +87,5 @@ dog = client.get_dog(logging_enable=True)
 [client_authentication_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.clientauthenticationerror?view=azure-python
 [resource_not_found_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.resourcenotfounderror?view=azure-python
 [resource_exists_error]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.exceptions.resourceexistserror?view=azure-python
+[error_model]: https://github.com/Azure/autorest.testserver/blob/master/swagger/xms-error-responses.json#L220
 [logging]: https://docs.python.org/3.5/library/logging.html
