@@ -2,7 +2,7 @@
 
 If you want to generate one client that handles multiple API versions (a common use-case for this is supporting multiple Azure clouds, since a service's API versions can differ between them), this is the section for you. Python is the only language that supports this, hence why these docs are in the Python-specific section.
 
-Before getting into the multiapi specific sections that need to be added to your readme, you need to make sure you have a tag set up for every single API version you want to generate. See the ["Adding Tags When Generating"][tags] docs to find out how to set this up. In this example we will s generate 3 different API versions: `v1`, `v2`, and `v3`.
+Before getting into the multiapi specific sections that need to be added to your readme, you need to make sure you have a tag set up for every single API version you want to generate. See the ["Adding Tags When Generating"][tags] docs to find out how to set this up. In this example we will generate 3 different API versions: `v1`, `v2`, and `v3`.
 
 The flag you use on the command line to specify you want multiapi code generation is `--multiapi`. Thus, we need to add a `multiapi` specific section to our readme.
 Let's add it underneath `General Settings` to keep it to the top of our readme

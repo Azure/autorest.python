@@ -9,7 +9,7 @@ See the [main docs][main_docs] for changes in versioning and flags, this section
     are no longer supported. We now use credentials from [`azure_identity`][azure_identity_credentials] and the [`AzureKeyCredential`][azure_key_credential] from
     [`azure-core`][azure_core_library].
     - The `credentials` parameter to the service client has been renamed to `credential`
-* The `config` attribute is no longer exposed on the client, and custom configurations should be passed as a kwarg. For example, we know have `Client(credential, subscription_id, enable_logging=True`).
+* The `config` attribute is no longer exposed on the client, and custom configurations should be passed as a kwarg. For example, we now have `Client(credential, subscription_id, enable_logging=True`).
 For a complete set of supported inputs to your client, see our list of [acceptable initialization parameters in azure-core][azure_core_init_parameters].
 * You can't import a `version` module anymore, use `__version__` instead. Additionally, we only generate a version file if you specify a package version on the command line (`--package-version`), or you
 tell AutoRest during generation time to keep the current version file in the directory (`--keep-version-file`). See our [flag index][flag_index] for more information on these 2 flags.

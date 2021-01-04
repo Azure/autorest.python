@@ -35,7 +35,7 @@ using a [credential type][identity_credentials] obtained from the [`azure-identi
 we use the most common [`DefaultAzureCredential`][default_azure_credential].
 
 As an installation note, the [`azure-identity`][azure_identity_library] library is not a requirement in the basic `setup.py` file we generate
-(see `--basic-setup-py` in our [flag index][flag_index] for more information), so you would need to install this library separately.
+(see `--basic-setup-py` in our [flag index][flag_index] for more information), so you would need to explicitly include this library.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -55,7 +55,14 @@ credential = "myCredential"
 client = PetsClient(credential=AzureKeyCredential(credential))
 ```
 
-Currently, we only support generating credentials of type `TokenCredential` and / or `AzureKeyCredential`. If you'd like to use your own custom credential,
+Each of these credential types also correspond to their own authentication policies that handle the credential. AutoRest automatically generates with the following default authentication policies based on the credential types:
+
+| Credential Type | Authentication Policy
+|------------------|-------------
+|[`TokenCredential`][aad_authentication] | [`BearerTokenCredentialPolicy`][bearer_token_credential_policy]
+|[`AzureKeyCredential`][azure_key_credential] | [`AzureKeyCredentialPolicy`][azure_key_credential_policy]
+
+Currently, we only support generating credentials of type [`TokenCredential`][aad_authentication] and / or [`AzureKeyCredential`][azure_key_credential]. If you'd like to use your own custom credential,
 you can pass the custom type into the client. However, you may have to use a custom authentication policy to handle the credential. That can also be passed in to the
 client. Say your custom credential is called `MyCredential`, and the policy that handles this credential is called `MyAuthenticationPolicy`. Initializing your
 client would look something like `client = PetsClient(credential=MyCredential(), authentication_policy=MyAuthenticationPolicy())`, though this of course varies
@@ -84,7 +91,9 @@ client = PetsClient(credential=DefaultAzureCredential(), api_version="v1")
 [azure_mgmt_core_library]: https://pypi.org/project/azure-mgmt-core/
 [azure_identity_library]: https://pypi.org/project/azure-identity/
 [flag_index]: https://github.com/Azure/autorest/tree/master/docs/generate/flags.md
-[aad_authentication]: https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-azure-active-directory
+[aad_authentication]: https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-an-authentication-token
 [identity_credentials]: https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/identity/azure-identity#credentials
 [default_azure_credential]: https://docs.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python
 [azure_key_credential]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
+[bearer_token_credential_policy]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.pipeline.policies.bearertokencredentialpolicy?view=azure-python
+[azure_key_credential_policy]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.pipeline.policies.azurekeycredentialpolicy?view=azure-python

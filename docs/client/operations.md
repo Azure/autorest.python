@@ -29,7 +29,7 @@ dog = client.get_dog()
 
 ### Async Operations
 
-When calling our async operations, we use our async client, which is in a different module. Following the [example above](#sync-operations Sync Operations),
+When calling our async operations, we use our async client, which is in a different module. Following the [example above](#sync-operations "Sync Operations"),
 our call to `get_dog` looks like this:
 
 ```python
@@ -72,7 +72,7 @@ output_product = poller.result()
 
 ### Async Long Running Operations
 
-By default, our async long running operations return an [`AsyncLROPoller`][asyync_lro_poller] polling object, though there [are ways][custom_poller] of changing this. Same as the sync version,
+By default, our async long running operations return an [`AsyncLROPoller`][async_lro_poller] polling object, though there [are ways][custom_poller] of changing this. Same as the sync version,
 calling `.wait()` on this poller waits for the operation to finish, while calling `.result()` both waits on the operation and returns the final response.
 
 ```python
@@ -115,7 +115,7 @@ pages = client.basic_paging()
 
 ### Async Paging Operations
 
-By default, our sync paging operations return an [`AsyncItemPaged`][async_item_paged] pager, though there [are ways][custom_pager] of changing this. Since network calls aren't
+By default, our async paging operations return an [`AsyncItemPaged`][async_item_paged] pager, though there [are ways][custom_pager] of changing this. Since network calls aren't
 made until starting to page, our generated operation is synchronous, and there's no need to wait the initial call to the function. Since network calls are made when iterating,
 we have to do async looping.
 
@@ -144,8 +144,8 @@ a pager that pages through the final lists of data.
 
 <!-- LINKS -->
 [operation_group_example]: https://github.com/Azure/azure-rest-api-specs/blob/master/specification/batch/data-plane/Microsoft.Batch/stable/2020-09-01.12.0/BatchService.json#L64
-[mixin_example]: https://github.com/Azure/autorest/blob/new_docs/docs/openapi/examples/pets.json#L20
-[pets_swaggger]: https://github.com/Azure/autorest/blob/new_docs/docs/openapi/examples/pets.json
+[mixin_example]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json#L20
+[pets_swagger]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json
 [initializing]: ./initializing.md
 [lro_poller]:  https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [custom_poller]: ../generate/directives.md#generate-with-a-custom-poller

@@ -36,7 +36,7 @@ By default, a long running operation will generate with poller [`LROPoller`][lro
 2. The initialization parameters must be the same as [`LROPoller`][lro_poller_docs]'s
 3. If you want continuation token support on your poller, you need to implement class method `from_continuation_token` with the same method signature as [`LROPoller`][lro_poller_docs]'s
 
-We will be modifying the long running operation in the [example swagger][directives_swagger], so the `where` in our directive will be `where: '$.paths["/directives/polling"].put'`
+We will be modifying the long running operation in the [example swagger][polling_paging_swagger], so the `where` in our directive will be `where: '$.paths["/directives/polling"].put'`
 
 We use `$["x-python-custom-poller-sync"]` and `$["x-python-custom-poller-async"]` to specify our sync and async custom pollers. You have to use the full import path of the custom poller you're specifying, i.e. `my.library.CustomPoller`. Putting this altogether, we get the following directive, which we will insert in our config file.
 
@@ -95,7 +95,7 @@ By default, a paging operation will generate with pager [`ItemPaged`][item_paged
 
 1. Your custom pager must have the same initialization parameters as [`ItemPaged`][item_paged_docs]
 
-We will be modifying the paging operation in the [example swagger][directives_swagger], so the `where` in our directive will be `where: '$.paths["/directives/paging"].get'`
+We will be modifying the paging operation in the [example swagger][polling_paging_swagger], so the `where` in our directive will be `where: '$.paths["/directives/paging"].get'`
 
 We use `$["x-python-custom-pager-sync"]` and `$["x-python-custom-pager-async"]` to specify our sync and async custom pagers. You have to use the full import path of the custom pager you're specifying, i.e. `my.library.CustomPager`. Putting this altogether, we get the following directive, which we will insert in our config file.
 

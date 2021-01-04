@@ -4,7 +4,7 @@ These documents are Python-specific, see [our main docs][main_docs] for more gen
 
 
 1. Generating Python Clients with AutoRest
-    - How do I generate code? Main documents are [here][main_generate], while here are the [python-specific docs][python_generate]
+    - How do I generate code? Main documents are [here][main_generate], while python-specific docs are [here][python_generate]
 
 2. Using Your Generated Python Client
     - How do I [use my Python client][python_client] now that I've generated it? Main docs are [here][main_client]
@@ -13,7 +13,7 @@ These documents are Python-specific, see [our main docs][main_docs] for more gen
     - I have old generated code using the previous version of AutoRest. How do I upgrade my code? Main docs [here][main_migrate], Python-specific docs [here][python_migrate]
 
 4. Developing with AutoRest
-    - How do I generate or contribute to AutoRest in [dev mode][python_dev] Main docs [here][main_dev]
+    - How do I generate or contribute to AutoRest in [dev mode][python_dev]? Main docs [here][main_dev]
 
 5. Samples
     - [Sample][sample] readmes and generated code for common scenarios.
