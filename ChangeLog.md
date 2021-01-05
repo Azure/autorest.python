@@ -9,6 +9,10 @@ Modelerfour version: 4.15.421
 
 - Add support for [`black`](https://pypi.org/project/black/) formatting of your generated files. Pass flag `--black` when generating to get this behavior.  #836
 
+**Bug Fixes**
+
+- Wrap individual enum descriptions  #844
+
 ### 2020-11-12 - 5.5.0
 Autorest core version: 3.0.6318
 

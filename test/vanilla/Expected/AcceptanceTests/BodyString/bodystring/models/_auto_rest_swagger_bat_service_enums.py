@@ -28,6 +28,7 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
 
 
 class Colors(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+    """Referenced Color Enum Description."""
 
     RED_COLOR = "red color"
     GREEN_COLOR = "green-color"

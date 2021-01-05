@@ -41,8 +41,10 @@ class GoblinSharkColor(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     PINK = "pink"
     GRAY = "gray"
     BROWN = "brown"
-    UPPER_RED = "RED"  #: Uppercase RED.
-    LOWER_RED = "red"  #: Lowercase RED.
+    #: Uppercase RED.
+    UPPER_RED = "RED"
+    #: Lowercase RED.
+    LOWER_RED = "red"
 
 
 class MyKind(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
