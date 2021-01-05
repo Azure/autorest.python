@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._multiple_inheritance_service_client import MultipleInheritanceServiceClient
-__all__ = ['MultipleInheritanceServiceClient']
+
+__all__ = ["MultipleInheritanceServiceClient"]

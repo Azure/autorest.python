@@ -10,10 +10,11 @@ from ._auto_rest_parameter_flattening import AutoRestParameterFlattening
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestParameterFlattening']
+__all__ = ["AutoRestParameterFlattening"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

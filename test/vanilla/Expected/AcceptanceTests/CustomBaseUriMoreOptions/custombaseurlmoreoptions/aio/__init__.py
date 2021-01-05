@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_parameterized_custom_host_test_client import AutoRestParameterizedCustomHostTestClient
-__all__ = ['AutoRestParameterizedCustomHostTestClient']
+
+__all__ = ["AutoRestParameterizedCustomHostTestClient"]

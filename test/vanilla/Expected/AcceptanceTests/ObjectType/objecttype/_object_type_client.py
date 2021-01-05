@@ -32,7 +32,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
     ):
         # type: (...) -> None
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = ObjectTypeClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -40,7 +40,6 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
 
     def close(self):
         # type: () -> None

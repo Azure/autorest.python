@@ -9,5 +9,5 @@
 from ._paging_operations import PagingOperations
 
 __all__ = [
-    'PagingOperations',
+    "PagingOperations",
 ]

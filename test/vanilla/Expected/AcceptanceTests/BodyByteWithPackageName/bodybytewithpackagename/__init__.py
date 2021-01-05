@@ -10,10 +10,11 @@ from ._class_name import ClassName
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['ClassName']
+__all__ = ["ClassName"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

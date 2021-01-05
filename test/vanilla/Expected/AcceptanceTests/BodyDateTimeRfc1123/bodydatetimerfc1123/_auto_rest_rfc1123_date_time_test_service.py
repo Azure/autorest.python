@@ -35,7 +35,7 @@ class AutoRestRFC1123DateTimeTestService(object):
     ):
         # type: (...) -> None
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestRFC1123DateTimeTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -44,8 +44,7 @@ class AutoRestRFC1123DateTimeTestService(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.datetimerfc1123 = Datetimerfc1123Operations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.datetimerfc1123 = Datetimerfc1123Operations(self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None

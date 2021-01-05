@@ -9,6 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
+
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
@@ -39,16 +40,19 @@ class AccessTier(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     COOL = "Cool"
     ARCHIVE = "Archive"
 
+
 class ArchiveStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     REHYDRATE_PENDING_TO_HOT = "rehydrate-pending-to-hot"
     REHYDRATE_PENDING_TO_COOL = "rehydrate-pending-to-cool"
+
 
 class BlobType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     BLOCK_BLOB = "BlockBlob"
     PAGE_BLOB = "PageBlob"
     APPEND_BLOB = "AppendBlob"
+
 
 class CopyStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
@@ -57,10 +61,12 @@ class CopyStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     ABORTED = "aborted"
     FAILED = "failed"
 
+
 class LeaseDurationType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     INFINITE = "infinite"
     FIXED = "fixed"
+
 
 class LeaseStateType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
@@ -70,10 +76,12 @@ class LeaseStateType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     BREAKING = "breaking"
     BROKEN = "broken"
 
+
 class LeaseStatusType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     LOCKED = "locked"
     UNLOCKED = "unlocked"
+
 
 class PublicAccessType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 

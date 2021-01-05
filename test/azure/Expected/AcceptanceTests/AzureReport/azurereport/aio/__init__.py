@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_report_service_for_azure import AutoRestReportServiceForAzure
-__all__ = ['AutoRestReportServiceForAzure']
+
+__all__ = ["AutoRestReportServiceForAzure"]

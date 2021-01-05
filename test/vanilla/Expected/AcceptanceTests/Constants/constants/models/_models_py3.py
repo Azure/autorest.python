@@ -21,14 +21,11 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueDefaultEnum"]] = "value1",
-        **kwargs
+        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueDefaultEnum"]] = "value1", **kwargs
     ):
         super(ModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -42,14 +39,11 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = None,
-        **kwargs
+        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = None, **kwargs
     ):
         super(ModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -63,14 +57,11 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
-        **kwargs
+        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1", **kwargs
     ):
         super(ModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -84,14 +75,11 @@ class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
-        **kwargs
+        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None, **kwargs
     ):
         super(ModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -107,19 +95,14 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        parameter: Union[str, "ModelAsStringRequiredOneValueDefaultEnum"] = "value1",
-        **kwargs
-    ):
+    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredOneValueDefaultEnum"] = "value1", **kwargs):
         super(ModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
 
@@ -134,19 +117,14 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        parameter: Union[str, "ModelAsStringRequiredOneValueNoDefaultEnum"],
-        **kwargs
-    ):
+    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredOneValueNoDefaultEnum"], **kwargs):
         super(ModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
 
@@ -161,19 +139,14 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        parameter: Union[str, "ModelAsStringRequiredTwoValueDefaultEnum"] = "value1",
-        **kwargs
-    ):
+    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs):
         super(ModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
 
@@ -188,19 +161,14 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        parameter: Union[str, "ModelAsStringRequiredTwoValueNoDefaultEnum"],
-        **kwargs
-    ):
+    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
         super(ModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
 
@@ -215,19 +183,16 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'constant': True},
+        "parameter": {"constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
 
 
@@ -241,19 +206,16 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'constant': True},
+        "parameter": {"constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
 
 
@@ -265,14 +227,11 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
-        **kwargs
+        self, *, parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1", **kwargs
     ):
         super(NoModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -286,14 +245,11 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
-        **kwargs
+        self, *, parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None, **kwargs
     ):
         super(NoModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter
@@ -311,19 +267,16 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True, 'constant': True},
+        "parameter": {"required": True, "constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
 
 
@@ -339,19 +292,16 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True, 'constant': True},
+        "parameter": {"required": True, "constant": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
     parameter = "value1"
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(NoModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
 
 
@@ -365,19 +315,14 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        parameter: Union[str, "NoModelAsStringRequiredTwoValueDefaultEnum"] = "value1",
-        **kwargs
-    ):
+    def __init__(self, *, parameter: Union[str, "NoModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs):
         super(NoModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = parameter
 
@@ -392,18 +337,13 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
     """
 
     _validation = {
-        'parameter': {'required': True},
+        "parameter": {"required": True},
     }
 
     _attribute_map = {
-        'parameter': {'key': 'parameter', 'type': 'str'},
+        "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        parameter: Union[str, "NoModelAsStringRequiredTwoValueNoDefaultEnum"],
-        **kwargs
-    ):
+    def __init__(self, *, parameter: Union[str, "NoModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
         super(NoModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = parameter

@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_service import AutoRestSwaggerBATService
-__all__ = ['AutoRestSwaggerBATService']
+
+__all__ = ["AutoRestSwaggerBATService"]

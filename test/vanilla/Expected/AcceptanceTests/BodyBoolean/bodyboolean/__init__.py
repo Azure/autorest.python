@@ -10,10 +10,11 @@ from ._auto_rest_bool_test_service import AutoRestBoolTestService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestBoolTestService']
+__all__ = ["AutoRestBoolTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

@@ -50,7 +50,7 @@ class AutoRestLongRunningOperationTestService(object):
     ):
         # type: (...) -> None
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -59,14 +59,12 @@ class AutoRestLongRunningOperationTestService(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.lros = LROsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.lro_retrys = LRORetrysOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.lrosads = LROSADsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.lros = LROsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lro_retrys = LRORetrysOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lrosads = LROSADsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.lr_os_custom_header = LROsCustomHeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def close(self):
         # type: () -> None

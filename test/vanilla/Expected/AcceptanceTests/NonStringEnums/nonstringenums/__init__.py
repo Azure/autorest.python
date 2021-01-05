@@ -10,10 +10,11 @@ from ._non_string_enums_client import NonStringEnumsClient
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['NonStringEnumsClient']
+__all__ = ["NonStringEnumsClient"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

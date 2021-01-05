@@ -38,7 +38,7 @@ class AutoRestSwaggerBATService(object):
     ):
         # type: (...) -> None
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestSwaggerBATServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -47,10 +47,8 @@ class AutoRestSwaggerBATService(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.string = StringOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.enum = EnumOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None

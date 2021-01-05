@@ -38,7 +38,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        base_url = '{vault}{secret}{dnsSuffix}'
+        base_url = "{vault}{secret}{dnsSuffix}"
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -47,8 +47,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.paths = PathsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None

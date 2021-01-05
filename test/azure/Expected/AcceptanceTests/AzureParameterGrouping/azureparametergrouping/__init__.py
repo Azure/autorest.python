@@ -10,10 +10,11 @@ from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupin
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestParameterGroupingTestService']
+__all__ = ["AutoRestParameterGroupingTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

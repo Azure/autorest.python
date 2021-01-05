@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._xms_error_response_extensions import XMSErrorResponseExtensions
-__all__ = ['XMSErrorResponseExtensions']
+
+__all__ = ["XMSErrorResponseExtensions"]

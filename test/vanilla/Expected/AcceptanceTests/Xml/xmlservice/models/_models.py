@@ -24,25 +24,22 @@ class AccessPolicy(msrest.serialization.Model):
     """
 
     _validation = {
-        'start': {'required': True},
-        'expiry': {'required': True},
-        'permission': {'required': True},
+        "start": {"required": True},
+        "expiry": {"required": True},
+        "permission": {"required": True},
     }
 
     _attribute_map = {
-        'start': {'key': 'Start', 'type': 'iso-8601'},
-        'expiry': {'key': 'Expiry', 'type': 'iso-8601'},
-        'permission': {'key': 'Permission', 'type': 'str'},
+        "start": {"key": "Start", "type": "iso-8601"},
+        "expiry": {"key": "Expiry", "type": "iso-8601"},
+        "permission": {"key": "Permission", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(AccessPolicy, self).__init__(**kwargs)
-        self.start = kwargs['start']
-        self.expiry = kwargs['expiry']
-        self.permission = kwargs['permission']
+        self.start = kwargs["start"]
+        self.expiry = kwargs["expiry"]
+        self.permission = kwargs["permission"]
 
 
 class AppleBarrel(msrest.serialization.Model):
@@ -55,17 +52,14 @@ class AppleBarrel(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
-        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
+        "good_apples": {"key": "GoodApples", "type": "[str]", "xml": {"wrapped": True, "itemsName": "Apple"}},
+        "bad_apples": {"key": "BadApples", "type": "[str]", "xml": {"wrapped": True, "itemsName": "Apple"}},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(AppleBarrel, self).__init__(**kwargs)
-        self.good_apples = kwargs.get('good_apples', None)
-        self.bad_apples = kwargs.get('bad_apples', None)
+        self.good_apples = kwargs.get("good_apples", None)
+        self.bad_apples = kwargs.get("bad_apples", None)
 
 
 class Banana(msrest.serialization.Model):
@@ -80,22 +74,17 @@ class Banana(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str', 'xml': {'name': 'name'}},
-        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
-        'expiration': {'key': 'expiration', 'type': 'iso-8601', 'xml': {'name': 'expiration'}},
+        "name": {"key": "name", "type": "str", "xml": {"name": "name"}},
+        "flavor": {"key": "flavor", "type": "str", "xml": {"name": "flavor"}},
+        "expiration": {"key": "expiration", "type": "iso-8601", "xml": {"name": "expiration"}},
     }
-    _xml_map = {
-        'name': 'banana'
-    }
+    _xml_map = {"name": "banana"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Banana, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
-        self.flavor = kwargs.get('flavor', None)
-        self.expiration = kwargs.get('expiration', None)
+        self.name = kwargs.get("name", None)
+        self.flavor = kwargs.get("flavor", None)
+        self.expiration = kwargs.get("expiration", None)
 
 
 class Blob(msrest.serialization.Model):
@@ -116,33 +105,28 @@ class Blob(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
-        'deleted': {'required': True},
-        'snapshot': {'required': True},
-        'properties': {'required': True},
+        "name": {"required": True},
+        "deleted": {"required": True},
+        "snapshot": {"required": True},
+        "properties": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
-        'deleted': {'key': 'Deleted', 'type': 'bool'},
-        'snapshot': {'key': 'Snapshot', 'type': 'str'},
-        'properties': {'key': 'Properties', 'type': 'BlobProperties'},
-        'metadata': {'key': 'Metadata', 'type': '{str}'},
+        "name": {"key": "Name", "type": "str"},
+        "deleted": {"key": "Deleted", "type": "bool"},
+        "snapshot": {"key": "Snapshot", "type": "str"},
+        "properties": {"key": "Properties", "type": "BlobProperties"},
+        "metadata": {"key": "Metadata", "type": "{str}"},
     }
-    _xml_map = {
-        'name': 'Blob'
-    }
+    _xml_map = {"name": "Blob"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Blob, self).__init__(**kwargs)
-        self.name = kwargs['name']
-        self.deleted = kwargs['deleted']
-        self.snapshot = kwargs['snapshot']
-        self.properties = kwargs['properties']
-        self.metadata = kwargs.get('metadata', None)
+        self.name = kwargs["name"]
+        self.deleted = kwargs["deleted"]
+        self.snapshot = kwargs["snapshot"]
+        self.properties = kwargs["properties"]
+        self.metadata = kwargs.get("metadata", None)
 
 
 class BlobPrefix(msrest.serialization.Model):
@@ -155,19 +139,16 @@ class BlobPrefix(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
+        "name": {"key": "Name", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(BlobPrefix, self).__init__(**kwargs)
-        self.name = kwargs['name']
+        self.name = kwargs["name"]
 
 
 class BlobProperties(msrest.serialization.Model):
@@ -237,74 +218,71 @@ class BlobProperties(msrest.serialization.Model):
     """
 
     _validation = {
-        'last_modified': {'required': True},
-        'etag': {'required': True},
+        "last_modified": {"required": True},
+        "etag": {"required": True},
     }
 
     _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
-        'etag': {'key': 'Etag', 'type': 'str'},
-        'content_length': {'key': 'Content-Length', 'type': 'long'},
-        'content_type': {'key': 'Content-Type', 'type': 'str'},
-        'content_encoding': {'key': 'Content-Encoding', 'type': 'str'},
-        'content_language': {'key': 'Content-Language', 'type': 'str'},
-        'content_md5': {'key': 'Content-MD5', 'type': 'str'},
-        'content_disposition': {'key': 'Content-Disposition', 'type': 'str'},
-        'cache_control': {'key': 'Cache-Control', 'type': 'str'},
-        'blob_sequence_number': {'key': 'x-ms-blob-sequence-number', 'type': 'int'},
-        'blob_type': {'key': 'BlobType', 'type': 'str'},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
-        'lease_state': {'key': 'LeaseState', 'type': 'str'},
-        'lease_duration': {'key': 'LeaseDuration', 'type': 'str'},
-        'copy_id': {'key': 'CopyId', 'type': 'str'},
-        'copy_status': {'key': 'CopyStatus', 'type': 'str'},
-        'copy_source': {'key': 'CopySource', 'type': 'str'},
-        'copy_progress': {'key': 'CopyProgress', 'type': 'str'},
-        'copy_completion_time': {'key': 'CopyCompletionTime', 'type': 'rfc-1123'},
-        'copy_status_description': {'key': 'CopyStatusDescription', 'type': 'str'},
-        'server_encrypted': {'key': 'ServerEncrypted', 'type': 'bool'},
-        'incremental_copy': {'key': 'IncrementalCopy', 'type': 'bool'},
-        'destination_snapshot': {'key': 'DestinationSnapshot', 'type': 'str'},
-        'deleted_time': {'key': 'DeletedTime', 'type': 'rfc-1123'},
-        'remaining_retention_days': {'key': 'RemainingRetentionDays', 'type': 'int'},
-        'access_tier': {'key': 'AccessTier', 'type': 'str'},
-        'access_tier_inferred': {'key': 'AccessTierInferred', 'type': 'bool'},
-        'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
+        "last_modified": {"key": "Last-Modified", "type": "rfc-1123"},
+        "etag": {"key": "Etag", "type": "str"},
+        "content_length": {"key": "Content-Length", "type": "long"},
+        "content_type": {"key": "Content-Type", "type": "str"},
+        "content_encoding": {"key": "Content-Encoding", "type": "str"},
+        "content_language": {"key": "Content-Language", "type": "str"},
+        "content_md5": {"key": "Content-MD5", "type": "str"},
+        "content_disposition": {"key": "Content-Disposition", "type": "str"},
+        "cache_control": {"key": "Cache-Control", "type": "str"},
+        "blob_sequence_number": {"key": "x-ms-blob-sequence-number", "type": "int"},
+        "blob_type": {"key": "BlobType", "type": "str"},
+        "lease_status": {"key": "LeaseStatus", "type": "str"},
+        "lease_state": {"key": "LeaseState", "type": "str"},
+        "lease_duration": {"key": "LeaseDuration", "type": "str"},
+        "copy_id": {"key": "CopyId", "type": "str"},
+        "copy_status": {"key": "CopyStatus", "type": "str"},
+        "copy_source": {"key": "CopySource", "type": "str"},
+        "copy_progress": {"key": "CopyProgress", "type": "str"},
+        "copy_completion_time": {"key": "CopyCompletionTime", "type": "rfc-1123"},
+        "copy_status_description": {"key": "CopyStatusDescription", "type": "str"},
+        "server_encrypted": {"key": "ServerEncrypted", "type": "bool"},
+        "incremental_copy": {"key": "IncrementalCopy", "type": "bool"},
+        "destination_snapshot": {"key": "DestinationSnapshot", "type": "str"},
+        "deleted_time": {"key": "DeletedTime", "type": "rfc-1123"},
+        "remaining_retention_days": {"key": "RemainingRetentionDays", "type": "int"},
+        "access_tier": {"key": "AccessTier", "type": "str"},
+        "access_tier_inferred": {"key": "AccessTierInferred", "type": "bool"},
+        "archive_status": {"key": "ArchiveStatus", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(BlobProperties, self).__init__(**kwargs)
-        self.last_modified = kwargs['last_modified']
-        self.etag = kwargs['etag']
-        self.content_length = kwargs.get('content_length', None)
-        self.content_type = kwargs.get('content_type', None)
-        self.content_encoding = kwargs.get('content_encoding', None)
-        self.content_language = kwargs.get('content_language', None)
-        self.content_md5 = kwargs.get('content_md5', None)
-        self.content_disposition = kwargs.get('content_disposition', None)
-        self.cache_control = kwargs.get('cache_control', None)
-        self.blob_sequence_number = kwargs.get('blob_sequence_number', None)
-        self.blob_type = kwargs.get('blob_type', None)
-        self.lease_status = kwargs.get('lease_status', None)
-        self.lease_state = kwargs.get('lease_state', None)
-        self.lease_duration = kwargs.get('lease_duration', None)
-        self.copy_id = kwargs.get('copy_id', None)
-        self.copy_status = kwargs.get('copy_status', None)
-        self.copy_source = kwargs.get('copy_source', None)
-        self.copy_progress = kwargs.get('copy_progress', None)
-        self.copy_completion_time = kwargs.get('copy_completion_time', None)
-        self.copy_status_description = kwargs.get('copy_status_description', None)
-        self.server_encrypted = kwargs.get('server_encrypted', None)
-        self.incremental_copy = kwargs.get('incremental_copy', None)
-        self.destination_snapshot = kwargs.get('destination_snapshot', None)
-        self.deleted_time = kwargs.get('deleted_time', None)
-        self.remaining_retention_days = kwargs.get('remaining_retention_days', None)
-        self.access_tier = kwargs.get('access_tier', None)
-        self.access_tier_inferred = kwargs.get('access_tier_inferred', None)
-        self.archive_status = kwargs.get('archive_status', None)
+        self.last_modified = kwargs["last_modified"]
+        self.etag = kwargs["etag"]
+        self.content_length = kwargs.get("content_length", None)
+        self.content_type = kwargs.get("content_type", None)
+        self.content_encoding = kwargs.get("content_encoding", None)
+        self.content_language = kwargs.get("content_language", None)
+        self.content_md5 = kwargs.get("content_md5", None)
+        self.content_disposition = kwargs.get("content_disposition", None)
+        self.cache_control = kwargs.get("cache_control", None)
+        self.blob_sequence_number = kwargs.get("blob_sequence_number", None)
+        self.blob_type = kwargs.get("blob_type", None)
+        self.lease_status = kwargs.get("lease_status", None)
+        self.lease_state = kwargs.get("lease_state", None)
+        self.lease_duration = kwargs.get("lease_duration", None)
+        self.copy_id = kwargs.get("copy_id", None)
+        self.copy_status = kwargs.get("copy_status", None)
+        self.copy_source = kwargs.get("copy_source", None)
+        self.copy_progress = kwargs.get("copy_progress", None)
+        self.copy_completion_time = kwargs.get("copy_completion_time", None)
+        self.copy_status_description = kwargs.get("copy_status_description", None)
+        self.server_encrypted = kwargs.get("server_encrypted", None)
+        self.incremental_copy = kwargs.get("incremental_copy", None)
+        self.destination_snapshot = kwargs.get("destination_snapshot", None)
+        self.deleted_time = kwargs.get("deleted_time", None)
+        self.remaining_retention_days = kwargs.get("remaining_retention_days", None)
+        self.access_tier = kwargs.get("access_tier", None)
+        self.access_tier_inferred = kwargs.get("access_tier_inferred", None)
+        self.archive_status = kwargs.get("archive_status", None)
 
 
 class Blobs(msrest.serialization.Model):
@@ -317,17 +295,14 @@ class Blobs(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'blob_prefix': {'key': 'BlobPrefix', 'type': '[BlobPrefix]'},
-        'blob': {'key': 'Blob', 'type': '[Blob]'},
+        "blob_prefix": {"key": "BlobPrefix", "type": "[BlobPrefix]"},
+        "blob": {"key": "Blob", "type": "[Blob]"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Blobs, self).__init__(**kwargs)
-        self.blob_prefix = kwargs.get('blob_prefix', None)
-        self.blob = kwargs.get('blob', None)
+        self.blob_prefix = kwargs.get("blob_prefix", None)
+        self.blob = kwargs.get("blob", None)
 
 
 class ComplexTypeNoMeta(msrest.serialization.Model):
@@ -338,15 +313,12 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'ID', 'type': 'str'},
+        "id": {"key": "ID", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs.get("id", None)
 
 
 class ComplexTypeWithMeta(msrest.serialization.Model):
@@ -357,18 +329,13 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'ID', 'type': 'str'},
+        "id": {"key": "ID", "type": "str"},
     }
-    _xml_map = {
-        'name': 'XMLComplexTypeWithMeta'
-    }
+    _xml_map = {"name": "XMLComplexTypeWithMeta"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs.get("id", None)
 
 
 class Container(msrest.serialization.Model):
@@ -385,24 +352,21 @@ class Container(msrest.serialization.Model):
     """
 
     _validation = {
-        'name': {'required': True},
-        'properties': {'required': True},
+        "name": {"required": True},
+        "properties": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'Name', 'type': 'str'},
-        'properties': {'key': 'Properties', 'type': 'ContainerProperties'},
-        'metadata': {'key': 'Metadata', 'type': '{str}'},
+        "name": {"key": "Name", "type": "str"},
+        "properties": {"key": "Properties", "type": "ContainerProperties"},
+        "metadata": {"key": "Metadata", "type": "{str}"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Container, self).__init__(**kwargs)
-        self.name = kwargs['name']
-        self.properties = kwargs['properties']
-        self.metadata = kwargs.get('metadata', None)
+        self.name = kwargs["name"]
+        self.properties = kwargs["properties"]
+        self.metadata = kwargs.get("metadata", None)
 
 
 class ContainerProperties(msrest.serialization.Model):
@@ -426,30 +390,27 @@ class ContainerProperties(msrest.serialization.Model):
     """
 
     _validation = {
-        'last_modified': {'required': True},
-        'etag': {'required': True},
+        "last_modified": {"required": True},
+        "etag": {"required": True},
     }
 
     _attribute_map = {
-        'last_modified': {'key': 'Last-Modified', 'type': 'rfc-1123'},
-        'etag': {'key': 'Etag', 'type': 'str'},
-        'lease_status': {'key': 'LeaseStatus', 'type': 'str'},
-        'lease_state': {'key': 'LeaseState', 'type': 'str'},
-        'lease_duration': {'key': 'LeaseDuration', 'type': 'str'},
-        'public_access': {'key': 'PublicAccess', 'type': 'str'},
+        "last_modified": {"key": "Last-Modified", "type": "rfc-1123"},
+        "etag": {"key": "Etag", "type": "str"},
+        "lease_status": {"key": "LeaseStatus", "type": "str"},
+        "lease_state": {"key": "LeaseState", "type": "str"},
+        "lease_duration": {"key": "LeaseDuration", "type": "str"},
+        "public_access": {"key": "PublicAccess", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ContainerProperties, self).__init__(**kwargs)
-        self.last_modified = kwargs['last_modified']
-        self.etag = kwargs['etag']
-        self.lease_status = kwargs.get('lease_status', None)
-        self.lease_state = kwargs.get('lease_state', None)
-        self.lease_duration = kwargs.get('lease_duration', None)
-        self.public_access = kwargs.get('public_access', None)
+        self.last_modified = kwargs["last_modified"]
+        self.etag = kwargs["etag"]
+        self.lease_status = kwargs.get("lease_status", None)
+        self.lease_state = kwargs.get("lease_state", None)
+        self.lease_duration = kwargs.get("lease_duration", None)
+        self.public_access = kwargs.get("public_access", None)
 
 
 class CorsRule(msrest.serialization.Model):
@@ -478,34 +439,29 @@ class CorsRule(msrest.serialization.Model):
     """
 
     _validation = {
-        'allowed_origins': {'required': True},
-        'allowed_methods': {'required': True},
-        'allowed_headers': {'required': True},
-        'exposed_headers': {'required': True},
-        'max_age_in_seconds': {'required': True, 'minimum': 0},
+        "allowed_origins": {"required": True},
+        "allowed_methods": {"required": True},
+        "allowed_headers": {"required": True},
+        "exposed_headers": {"required": True},
+        "max_age_in_seconds": {"required": True, "minimum": 0},
     }
 
     _attribute_map = {
-        'allowed_origins': {'key': 'AllowedOrigins', 'type': 'str'},
-        'allowed_methods': {'key': 'AllowedMethods', 'type': 'str'},
-        'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str'},
-        'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
-        'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
+        "allowed_origins": {"key": "AllowedOrigins", "type": "str"},
+        "allowed_methods": {"key": "AllowedMethods", "type": "str"},
+        "allowed_headers": {"key": "AllowedHeaders", "type": "str"},
+        "exposed_headers": {"key": "ExposedHeaders", "type": "str"},
+        "max_age_in_seconds": {"key": "MaxAgeInSeconds", "type": "int"},
     }
-    _xml_map = {
-        'name': 'CorsRule'
-    }
+    _xml_map = {"name": "CorsRule"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(CorsRule, self).__init__(**kwargs)
-        self.allowed_origins = kwargs['allowed_origins']
-        self.allowed_methods = kwargs['allowed_methods']
-        self.allowed_headers = kwargs['allowed_headers']
-        self.exposed_headers = kwargs['exposed_headers']
-        self.max_age_in_seconds = kwargs['max_age_in_seconds']
+        self.allowed_origins = kwargs["allowed_origins"]
+        self.allowed_methods = kwargs["allowed_methods"]
+        self.allowed_headers = kwargs["allowed_headers"]
+        self.exposed_headers = kwargs["exposed_headers"]
+        self.max_age_in_seconds = kwargs["max_age_in_seconds"]
 
 
 class Error(msrest.serialization.Model):
@@ -518,17 +474,14 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get('status', None)
-        self.message = kwargs.get('message', None)
+        self.status = kwargs.get("status", None)
+        self.message = kwargs.get("message", None)
 
 
 class JSONInput(msrest.serialization.Model):
@@ -539,15 +492,12 @@ class JSONInput(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
+        "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(JSONInput, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs.get("id", None)
 
 
 class JSONOutput(msrest.serialization.Model):
@@ -558,15 +508,12 @@ class JSONOutput(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
+        "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(JSONOutput, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs.get("id", None)
 
 
 class ListBlobsResponse(msrest.serialization.Model):
@@ -593,42 +540,37 @@ class ListBlobsResponse(msrest.serialization.Model):
     """
 
     _validation = {
-        'container_name': {'required': True},
-        'prefix': {'required': True},
-        'marker': {'required': True},
-        'max_results': {'required': True},
-        'delimiter': {'required': True},
-        'blobs': {'required': True},
-        'next_marker': {'required': True},
+        "container_name": {"required": True},
+        "prefix": {"required": True},
+        "marker": {"required": True},
+        "max_results": {"required": True},
+        "delimiter": {"required": True},
+        "blobs": {"required": True},
+        "next_marker": {"required": True},
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
-        'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str'},
-        'marker': {'key': 'Marker', 'type': 'str'},
-        'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'delimiter': {'key': 'Delimiter', 'type': 'str'},
-        'blobs': {'key': 'Blobs', 'type': 'Blobs'},
-        'next_marker': {'key': 'NextMarker', 'type': 'str'},
+        "service_endpoint": {"key": "ServiceEndpoint", "type": "str", "xml": {"attr": True}},
+        "container_name": {"key": "ContainerName", "type": "str", "xml": {"attr": True}},
+        "prefix": {"key": "Prefix", "type": "str"},
+        "marker": {"key": "Marker", "type": "str"},
+        "max_results": {"key": "MaxResults", "type": "int"},
+        "delimiter": {"key": "Delimiter", "type": "str"},
+        "blobs": {"key": "Blobs", "type": "Blobs"},
+        "next_marker": {"key": "NextMarker", "type": "str"},
     }
-    _xml_map = {
-        'name': 'EnumerationResults'
-    }
+    _xml_map = {"name": "EnumerationResults"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ListBlobsResponse, self).__init__(**kwargs)
-        self.service_endpoint = kwargs.get('service_endpoint', None)
-        self.container_name = kwargs['container_name']
-        self.prefix = kwargs['prefix']
-        self.marker = kwargs['marker']
-        self.max_results = kwargs['max_results']
-        self.delimiter = kwargs['delimiter']
-        self.blobs = kwargs['blobs']
-        self.next_marker = kwargs['next_marker']
+        self.service_endpoint = kwargs.get("service_endpoint", None)
+        self.container_name = kwargs["container_name"]
+        self.prefix = kwargs["prefix"]
+        self.marker = kwargs["marker"]
+        self.max_results = kwargs["max_results"]
+        self.delimiter = kwargs["delimiter"]
+        self.blobs = kwargs["blobs"]
+        self.next_marker = kwargs["next_marker"]
 
 
 class ListContainersResponse(msrest.serialization.Model):
@@ -651,35 +593,30 @@ class ListContainersResponse(msrest.serialization.Model):
     """
 
     _validation = {
-        'service_endpoint': {'required': True},
-        'prefix': {'required': True},
-        'max_results': {'required': True},
-        'next_marker': {'required': True},
+        "service_endpoint": {"required": True},
+        "prefix": {"required": True},
+        "max_results": {"required": True},
+        "next_marker": {"required": True},
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
-        'prefix': {'key': 'Prefix', 'type': 'str'},
-        'marker': {'key': 'Marker', 'type': 'str'},
-        'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'wrapped': True}},
-        'next_marker': {'key': 'NextMarker', 'type': 'str'},
+        "service_endpoint": {"key": "ServiceEndpoint", "type": "str", "xml": {"attr": True}},
+        "prefix": {"key": "Prefix", "type": "str"},
+        "marker": {"key": "Marker", "type": "str"},
+        "max_results": {"key": "MaxResults", "type": "int"},
+        "containers": {"key": "Containers", "type": "[Container]", "xml": {"wrapped": True}},
+        "next_marker": {"key": "NextMarker", "type": "str"},
     }
-    _xml_map = {
-        'name': 'EnumerationResults'
-    }
+    _xml_map = {"name": "EnumerationResults"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ListContainersResponse, self).__init__(**kwargs)
-        self.service_endpoint = kwargs['service_endpoint']
-        self.prefix = kwargs['prefix']
-        self.marker = kwargs.get('marker', None)
-        self.max_results = kwargs['max_results']
-        self.containers = kwargs.get('containers', None)
-        self.next_marker = kwargs['next_marker']
+        self.service_endpoint = kwargs["service_endpoint"]
+        self.prefix = kwargs["prefix"]
+        self.marker = kwargs.get("marker", None)
+        self.max_results = kwargs["max_results"]
+        self.containers = kwargs.get("containers", None)
+        self.next_marker = kwargs["next_marker"]
 
 
 class Logging(msrest.serialization.Model):
@@ -700,31 +637,28 @@ class Logging(msrest.serialization.Model):
     """
 
     _validation = {
-        'version': {'required': True},
-        'delete': {'required': True},
-        'read': {'required': True},
-        'write': {'required': True},
-        'retention_policy': {'required': True},
+        "version": {"required": True},
+        "delete": {"required": True},
+        "read": {"required": True},
+        "write": {"required": True},
+        "retention_policy": {"required": True},
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
-        'delete': {'key': 'Delete', 'type': 'bool'},
-        'read': {'key': 'Read', 'type': 'bool'},
-        'write': {'key': 'Write', 'type': 'bool'},
-        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        "version": {"key": "Version", "type": "str"},
+        "delete": {"key": "Delete", "type": "bool"},
+        "read": {"key": "Read", "type": "bool"},
+        "write": {"key": "Write", "type": "bool"},
+        "retention_policy": {"key": "RetentionPolicy", "type": "RetentionPolicy"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Logging, self).__init__(**kwargs)
-        self.version = kwargs['version']
-        self.delete = kwargs['delete']
-        self.read = kwargs['read']
-        self.write = kwargs['write']
-        self.retention_policy = kwargs['retention_policy']
+        self.version = kwargs["version"]
+        self.delete = kwargs["delete"]
+        self.read = kwargs["read"]
+        self.write = kwargs["write"]
+        self.retention_policy = kwargs["retention_policy"]
 
 
 class Metrics(msrest.serialization.Model):
@@ -744,25 +678,22 @@ class Metrics(msrest.serialization.Model):
     """
 
     _validation = {
-        'enabled': {'required': True},
+        "enabled": {"required": True},
     }
 
     _attribute_map = {
-        'version': {'key': 'Version', 'type': 'str'},
-        'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_apis': {'key': 'IncludeAPIs', 'type': 'bool'},
-        'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
+        "version": {"key": "Version", "type": "str"},
+        "enabled": {"key": "Enabled", "type": "bool"},
+        "include_apis": {"key": "IncludeAPIs", "type": "bool"},
+        "retention_policy": {"key": "RetentionPolicy", "type": "RetentionPolicy"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Metrics, self).__init__(**kwargs)
-        self.version = kwargs.get('version', None)
-        self.enabled = kwargs['enabled']
-        self.include_apis = kwargs.get('include_apis', None)
-        self.retention_policy = kwargs.get('retention_policy', None)
+        self.version = kwargs.get("version", None)
+        self.enabled = kwargs["enabled"]
+        self.include_apis = kwargs.get("include_apis", None)
+        self.retention_policy = kwargs.get("retention_policy", None)
 
 
 class ObjectWithXMsTextProperty(msrest.serialization.Model):
@@ -775,20 +706,15 @@ class ObjectWithXMsTextProperty(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'language': {'key': 'language', 'type': 'str', 'xml': {'name': 'language', 'attr': True}},
-        'content': {'key': 'content', 'type': 'str', 'xml': {'text': True}},
+        "language": {"key": "language", "type": "str", "xml": {"name": "language", "attr": True}},
+        "content": {"key": "content", "type": "str", "xml": {"text": True}},
     }
-    _xml_map = {
-        'name': 'Data'
-    }
+    _xml_map = {"name": "Data"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(ObjectWithXMsTextProperty, self).__init__(**kwargs)
-        self.language = kwargs.get('language', None)
-        self.content = kwargs.get('content', None)
+        self.language = kwargs.get("language", None)
+        self.content = kwargs.get("content", None)
 
 
 class RetentionPolicy(msrest.serialization.Model):
@@ -805,22 +731,19 @@ class RetentionPolicy(msrest.serialization.Model):
     """
 
     _validation = {
-        'enabled': {'required': True},
-        'days': {'minimum': 1},
+        "enabled": {"required": True},
+        "days": {"minimum": 1},
     }
 
     _attribute_map = {
-        'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'days': {'key': 'Days', 'type': 'int'},
+        "enabled": {"key": "Enabled", "type": "bool"},
+        "days": {"key": "Days", "type": "int"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(RetentionPolicy, self).__init__(**kwargs)
-        self.enabled = kwargs['enabled']
-        self.days = kwargs.get('days', None)
+        self.enabled = kwargs["enabled"]
+        self.days = kwargs.get("days", None)
 
 
 class RootWithRefAndMeta(msrest.serialization.Model):
@@ -833,17 +756,14 @@ class RootWithRefAndMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeWithMeta'},
-        'something': {'key': 'Something', 'type': 'str'},
+        "ref_to_model": {"key": "RefToModel", "type": "ComplexTypeWithMeta"},
+        "something": {"key": "Something", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
-        self.ref_to_model = kwargs.get('ref_to_model', None)
-        self.something = kwargs.get('something', None)
+        self.ref_to_model = kwargs.get("ref_to_model", None)
+        self.something = kwargs.get("something", None)
 
 
 class RootWithRefAndNoMeta(msrest.serialization.Model):
@@ -856,17 +776,14 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'ref_to_model': {'key': 'RefToModel', 'type': 'ComplexTypeNoMeta'},
-        'something': {'key': 'Something', 'type': 'str'},
+        "ref_to_model": {"key": "RefToModel", "type": "ComplexTypeNoMeta"},
+        "something": {"key": "Something", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
-        self.ref_to_model = kwargs.get('ref_to_model', None)
-        self.something = kwargs.get('something', None)
+        self.ref_to_model = kwargs.get("ref_to_model", None)
+        self.something = kwargs.get("something", None)
 
 
 class SignedIdentifier(msrest.serialization.Model):
@@ -881,25 +798,20 @@ class SignedIdentifier(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
-        'access_policy': {'required': True},
+        "id": {"required": True},
+        "access_policy": {"required": True},
     }
 
     _attribute_map = {
-        'id': {'key': 'Id', 'type': 'str'},
-        'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy'},
+        "id": {"key": "Id", "type": "str"},
+        "access_policy": {"key": "AccessPolicy", "type": "AccessPolicy"},
     }
-    _xml_map = {
-        'name': 'SignedIdentifier'
-    }
+    _xml_map = {"name": "SignedIdentifier"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(SignedIdentifier, self).__init__(**kwargs)
-        self.id = kwargs['id']
-        self.access_policy = kwargs['access_policy']
+        self.id = kwargs["id"]
+        self.access_policy = kwargs["access_policy"]
 
 
 class Slide(msrest.serialization.Model):
@@ -914,22 +826,17 @@ class Slide(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'type': {'key': 'type', 'type': 'str', 'xml': {'attr': True}},
-        'title': {'key': 'title', 'type': 'str'},
-        'items': {'key': 'items', 'type': '[str]', 'xml': {'itemsName': 'item'}},
+        "type": {"key": "type", "type": "str", "xml": {"attr": True}},
+        "title": {"key": "title", "type": "str"},
+        "items": {"key": "items", "type": "[str]", "xml": {"itemsName": "item"}},
     }
-    _xml_map = {
-        'name': 'slide'
-    }
+    _xml_map = {"name": "slide"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Slide, self).__init__(**kwargs)
-        self.type = kwargs.get('type', None)
-        self.title = kwargs.get('title', None)
-        self.items = kwargs.get('items', None)
+        self.type = kwargs.get("type", None)
+        self.title = kwargs.get("title", None)
+        self.items = kwargs.get("items", None)
 
 
 class Slideshow(msrest.serialization.Model):
@@ -946,24 +853,19 @@ class Slideshow(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
-        'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
-        'slides': {'key': 'slides', 'type': '[Slide]'},
+        "title": {"key": "title", "type": "str", "xml": {"attr": True}},
+        "date": {"key": "date", "type": "str", "xml": {"attr": True}},
+        "author": {"key": "author", "type": "str", "xml": {"attr": True}},
+        "slides": {"key": "slides", "type": "[Slide]"},
     }
-    _xml_map = {
-        'name': 'slideshow'
-    }
+    _xml_map = {"name": "slideshow"}
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Slideshow, self).__init__(**kwargs)
-        self.title = kwargs.get('title', None)
-        self.date = kwargs.get('date', None)
-        self.author = kwargs.get('author', None)
-        self.slides = kwargs.get('slides', None)
+        self.title = kwargs.get("title", None)
+        self.date = kwargs.get("date", None)
+        self.author = kwargs.get("author", None)
+        self.slides = kwargs.get("slides", None)
 
 
 class StorageServiceProperties(msrest.serialization.Model):
@@ -988,22 +890,19 @@ class StorageServiceProperties(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'logging': {'key': 'Logging', 'type': 'Logging'},
-        'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
-        'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
-        'cors': {'key': 'Cors', 'type': '[CorsRule]', 'xml': {'wrapped': True, 'itemsName': 'CorsRule'}},
-        'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
-        'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
+        "logging": {"key": "Logging", "type": "Logging"},
+        "hour_metrics": {"key": "HourMetrics", "type": "Metrics"},
+        "minute_metrics": {"key": "MinuteMetrics", "type": "Metrics"},
+        "cors": {"key": "Cors", "type": "[CorsRule]", "xml": {"wrapped": True, "itemsName": "CorsRule"}},
+        "default_service_version": {"key": "DefaultServiceVersion", "type": "str"},
+        "delete_retention_policy": {"key": "DeleteRetentionPolicy", "type": "RetentionPolicy"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(StorageServiceProperties, self).__init__(**kwargs)
-        self.logging = kwargs.get('logging', None)
-        self.hour_metrics = kwargs.get('hour_metrics', None)
-        self.minute_metrics = kwargs.get('minute_metrics', None)
-        self.cors = kwargs.get('cors', None)
-        self.default_service_version = kwargs.get('default_service_version', None)
-        self.delete_retention_policy = kwargs.get('delete_retention_policy', None)
+        self.logging = kwargs.get("logging", None)
+        self.hour_metrics = kwargs.get("hour_metrics", None)
+        self.minute_metrics = kwargs.get("minute_metrics", None)
+        self.cors = kwargs.get("cors", None)
+        self.default_service_version = kwargs.get("default_service_version", None)
+        self.delete_retention_policy = kwargs.get("delete_retention_policy", None)

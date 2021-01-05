@@ -9,5 +9,5 @@
 from ._parameter_grouping_operations import ParameterGroupingOperations
 
 __all__ = [
-    'ParameterGroupingOperations',
+    "ParameterGroupingOperations",
 ]
