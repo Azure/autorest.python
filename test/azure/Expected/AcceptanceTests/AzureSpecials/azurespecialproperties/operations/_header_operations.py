@@ -8,7 +8,13 @@
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -20,8 +26,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
-    T = TypeVar('T')
+    T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
 
 class HeaderOperations(object):
     """HeaderOperations operations.
@@ -61,23 +68,23 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.custom_named_request_id.metadata['url']  # type: ignore
+        url = self.custom_named_request_id.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["foo-client-request-id"] = self._serialize.header(
+            "foo_client_request_id", foo_client_request_id, "str"
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -89,12 +96,12 @@ class HeaderOperations(object):
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
-        response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
+        response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}  # type: ignore
+    custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_param_grouping(
@@ -113,27 +120,27 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
-        
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
         accept = "application/json"
 
         # Construct URL
-        url = self.custom_named_request_id_param_grouping.metadata['url']  # type: ignore
+        url = self.custom_named_request_id_param_grouping.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", _foo_client_request_id, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["foo-client-request-id"] = self._serialize.header(
+            "foo_client_request_id", _foo_client_request_id, "str"
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -145,12 +152,12 @@ class HeaderOperations(object):
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
-        response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
+        response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}  # type: ignore
+    custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_head(
@@ -168,23 +175,23 @@ class HeaderOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.custom_named_request_id_head.metadata['url']  # type: ignore
+        url = self.custom_named_request_id_head.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["foo-client-request-id"] = self._serialize.header(
+            "foo_client_request_id", foo_client_request_id, "str"
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -197,10 +204,11 @@ class HeaderOperations(object):
 
         response_headers = {}
         if response.status_code == 200:
-            response_headers['foo-request-id']=self._deserialize('str', response.headers.get('foo-request-id'))
+            response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
         return 200 <= response.status_code <= 299
-    custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}  # type: ignore
+
+    custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore

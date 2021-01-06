@@ -47,7 +47,7 @@ class StorageManagementClient(object):
     ):
         # type: (...) -> None
         if not base_url:
-            base_url = 'https://management.azure.com'
+            base_url = "https://management.azure.com"
         self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -57,9 +57,9 @@ class StorageManagementClient(object):
         self._deserialize = Deserializer(client_models)
 
         self.storage_accounts = StorageAccountsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.usage = UsageOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.usage = UsageOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None

@@ -20,15 +20,10 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': '[str]'},
+        "value": {"key": "value", "type": "[str]"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional[List[str]] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional[List[str]] = None, **kwargs):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -43,19 +38,14 @@ class ArrayWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        'value': {'required': True},
+        "value": {"required": True},
     }
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': '[str]'},
+        "value": {"key": "value", "type": "[str]"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: List[str],
-        **kwargs
-    ):
+    def __init__(self, *, value: List[str], **kwargs):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -68,15 +58,10 @@ class ClassOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'Product'},
+        "value": {"key": "value", "type": "Product"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional["Product"] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional["Product"] = None, **kwargs):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -91,19 +76,14 @@ class ClassWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        'value': {'required': True},
+        "value": {"required": True},
     }
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'Product'},
+        "value": {"key": "value", "type": "Product"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: "Product",
-        **kwargs
-    ):
+    def __init__(self, *, value: "Product", **kwargs):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -118,17 +98,11 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -142,15 +116,10 @@ class IntOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'int'},
+        "value": {"key": "value", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional[int] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional[int] = None, **kwargs):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -165,19 +134,14 @@ class IntWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        'value': {'required': True},
+        "value": {"required": True},
     }
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'int'},
+        "value": {"key": "value", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: int,
-        **kwargs
-    ):
+    def __init__(self, *, value: int, **kwargs):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -194,21 +158,15 @@ class Product(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
+        "id": {"required": True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: int,
-        name: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, id: int, name: Optional[str] = None, **kwargs):
         super(Product, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -222,15 +180,10 @@ class StringOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'str'},
+        "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, value: Optional[str] = None, **kwargs):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -245,18 +198,13 @@ class StringWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        'value': {'required': True},
+        "value": {"required": True},
     }
 
     _attribute_map = {
-        'value': {'key': 'value', 'type': 'str'},
+        "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        value: str,
-        **kwargs
-    ):
+    def __init__(self, *, value: str, **kwargs):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = value

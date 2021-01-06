@@ -34,7 +34,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        base_url = 'http://{accountName}{host}'
+        base_url = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -42,7 +42,6 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
 
     def close(self):
         # type: () -> None

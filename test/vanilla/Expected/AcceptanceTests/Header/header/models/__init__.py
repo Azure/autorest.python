@@ -16,6 +16,6 @@ from ._auto_rest_swagger_bat_header_service_enums import (
 )
 
 __all__ = [
-    'Error',
-    'GreyscaleColors',
+    "Error",
+    "GreyscaleColors",
 ]

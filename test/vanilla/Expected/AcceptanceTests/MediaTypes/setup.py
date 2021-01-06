@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Play with produces/consumes and media-types in general.
-    """
+    """,
 )

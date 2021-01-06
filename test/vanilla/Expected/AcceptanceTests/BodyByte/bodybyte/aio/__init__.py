@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_byte_service import AutoRestSwaggerBATByteService
-__all__ = ['AutoRestSwaggerBATByteService']
+
+__all__ = ["AutoRestSwaggerBATByteService"]

@@ -20,17 +20,14 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'code': {'key': 'code', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "code": {"key": "code", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(Error, self).__init__(**kwargs)
-        self.code = kwargs.get('code', None)
-        self.message = kwargs.get('message', None)
+        self.code = kwargs.get("code", None)
+        self.message = kwargs.get("message", None)
 
 
 class SampleResourceGroup(msrest.serialization.Model):
@@ -43,14 +40,11 @@ class SampleResourceGroup(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'location': {'key': 'location', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
+        "location": {"key": "location", "type": "str"},
     }
 
-    def __init__(
-        self,
-        **kwargs
-    ):
+    def __init__(self, **kwargs):
         super(SampleResourceGroup, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
-        self.location = kwargs.get('location', None)
+        self.name = kwargs.get("name", None)
+        self.location = kwargs.get("location", None)

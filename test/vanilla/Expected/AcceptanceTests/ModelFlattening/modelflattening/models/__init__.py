@@ -36,16 +36,16 @@ from ._auto_rest_resource_flattening_test_service_enums import (
 )
 
 __all__ = [
-    'BaseProduct',
-    'Error',
-    'FlattenParameterGroup',
-    'FlattenedProduct',
-    'GenericUrl',
-    'ProductUrl',
-    'ProductWrapper',
-    'Resource',
-    'ResourceCollection',
-    'SimpleProduct',
-    'WrappedProduct',
-    'FlattenedProductPropertiesProvisioningStateValues',
+    "BaseProduct",
+    "Error",
+    "FlattenParameterGroup",
+    "FlattenedProduct",
+    "GenericUrl",
+    "ProductUrl",
+    "ProductWrapper",
+    "Resource",
+    "ResourceCollection",
+    "SimpleProduct",
+    "WrappedProduct",
+    "FlattenedProductPropertiesProvisioningStateValues",
 ]

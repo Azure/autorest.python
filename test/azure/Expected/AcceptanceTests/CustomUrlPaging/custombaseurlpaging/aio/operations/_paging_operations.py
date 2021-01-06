@@ -9,7 +9,13 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -17,8 +23,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PagingOperations:
     """PagingOperations async operations.
@@ -43,11 +50,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_pages_partial_url(
-        self,
-        account_name: str,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -58,24 +61,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         def prepare_request(next_link=None):
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
             if not next_link:
                 # Construct URL
-                url = self.get_pages_partial_url.metadata['url']  # type: ignore
+                url = self.get_pages_partial_url.metadata["url"]  # type: ignore
                 path_format_arguments = {
-                    'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-                    'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
                 # Construct parameters
@@ -86,15 +87,15 @@ class PagingOperations:
                 url = next_link
                 query_parameters = {}  # type: Dict[str, Any]
                 path_format_arguments = {
-                    'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-                    'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
                 request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -112,17 +113,12 @@ class PagingOperations:
 
             return pipeline_response
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_pages_partial_url.metadata = {'url': '/paging/customurl/partialnextlink'}  # type: ignore
+        return AsyncItemPaged(get_next, extract_data)
+
+    get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(
-        self,
-        account_name: str,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
@@ -132,24 +128,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         def prepare_request(next_link=None):
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
             if not next_link:
                 # Construct URL
-                url = self.get_pages_partial_url_operation.metadata['url']  # type: ignore
+                url = self.get_pages_partial_url_operation.metadata["url"]  # type: ignore
                 path_format_arguments = {
-                    'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-                    'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
                 # Construct parameters
@@ -157,11 +151,11 @@ class PagingOperations:
 
                 request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = '/paging/customurl/{nextLink}'
+                url = "/paging/customurl/{nextLink}"
                 path_format_arguments = {
-                    'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-                    'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
-                    'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                    "nextLink": self._serialize.url("next_link", next_link, "str", skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
                 # Construct parameters
@@ -171,7 +165,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -189,7 +183,6 @@ class PagingOperations:
 
             return pipeline_response
 
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-    get_pages_partial_url_operation.metadata = {'url': '/paging/customurl/partialnextlinkop'}  # type: ignore
+        return AsyncItemPaged(get_next, extract_data)
+
+    get_pages_partial_url_operation.metadata = {"url": "/paging/customurl/partialnextlinkop"}  # type: ignore

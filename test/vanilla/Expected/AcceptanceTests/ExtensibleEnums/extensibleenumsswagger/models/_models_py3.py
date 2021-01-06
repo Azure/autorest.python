@@ -28,13 +28,13 @@ class Pet(msrest.serialization.Model):
     """
 
     _validation = {
-        'int_enum': {'required': True},
+        "int_enum": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'days_of_week': {'key': 'DaysOfWeek', 'type': 'str'},
-        'int_enum': {'key': 'IntEnum', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
+        "days_of_week": {"key": "DaysOfWeek", "type": "str"},
+        "int_enum": {"key": "IntEnum", "type": "str"},
     }
 
     def __init__(

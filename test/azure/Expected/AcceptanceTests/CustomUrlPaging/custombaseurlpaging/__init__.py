@@ -10,10 +10,11 @@ from ._auto_rest_parameterized_host_test_paging_client import AutoRestParameteri
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestParameterizedHostTestPagingClient']
+__all__ = ["AutoRestParameterizedHostTestPagingClient"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

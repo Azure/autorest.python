@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._object_type_client import ObjectTypeClient
-__all__ = ['ObjectTypeClient']
+
+__all__ = ["ObjectTypeClient"]

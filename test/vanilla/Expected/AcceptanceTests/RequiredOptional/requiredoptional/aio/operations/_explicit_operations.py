@@ -8,15 +8,22 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class ExplicitOperations:
     """ExplicitOperations async operations.
@@ -41,11 +48,7 @@ class ExplicitOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_required_integer_parameter(
-        self,
-        body_parameter: int,
-        **kwargs
-    ) -> None:
+    async def post_required_integer_parameter(self, body_parameter: int, **kwargs) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before
         the request is sent.
 
@@ -56,28 +59,26 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_integer_parameter.metadata['url']  # type: ignore
+        url = self.post_required_integer_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, 'int')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(body_parameter, "int")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -90,14 +91,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
+    post_required_integer_parameter.metadata = {"url": "/reqopt/requied/integer/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_integer_parameter(
-        self,
-        body_parameter: Optional[int] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_integer_parameter(self, body_parameter: Optional[int] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put null.
 
         :param body_parameter:
@@ -107,31 +104,29 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_integer_parameter.metadata['url']  # type: ignore
+        url = self.post_optional_integer_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'int')
+            body_content = self._serialize.body(body_parameter, "int")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -144,14 +139,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
+    post_optional_integer_parameter.metadata = {"url": "/reqopt/optional/integer/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_integer_property(
-        self,
-        value: int,
-        **kwargs
-    ) -> None:
+    async def post_required_integer_property(self, value: int, **kwargs) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -162,30 +153,28 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_integer_property.metadata['url']  # type: ignore
+        url = self.post_required_integer_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, 'IntWrapper')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(_body_parameter, "IntWrapper")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -198,14 +187,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
+    post_required_integer_property.metadata = {"url": "/reqopt/requied/integer/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_integer_property(
-        self,
-        value: Optional[int] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_integer_property(self, value: Optional[int] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param value:
@@ -215,33 +200,31 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_integer_property.metadata['url']  # type: ignore
+        url = self.post_optional_integer_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
+            body_content = self._serialize.body(_body_parameter, "IntOptionalWrapper")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -254,14 +237,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
+    post_optional_integer_property.metadata = {"url": "/reqopt/optional/integer/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_integer_header(
-        self,
-        header_parameter: int,
-        **kwargs
-    ) -> None:
+    async def post_required_integer_header(self, header_parameter: int, **kwargs) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -272,23 +251,21 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_integer_header.metadata['url']  # type: ignore
+        url = self.post_required_integer_header.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["headerParameter"] = self._serialize.header("header_parameter", header_parameter, "int")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -302,14 +279,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
+    post_required_integer_header.metadata = {"url": "/reqopt/requied/integer/header"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_integer_header(
-        self,
-        header_parameter: Optional[int] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_integer_header(self, header_parameter: Optional[int] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :param header_parameter:
@@ -319,15 +292,13 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_integer_header.metadata['url']  # type: ignore
+        url = self.post_optional_integer_header.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -335,8 +306,8 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if header_parameter is not None:
-            header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["headerParameter"] = self._serialize.header("header_parameter", header_parameter, "int")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -350,14 +321,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore
+    post_optional_integer_header.metadata = {"url": "/reqopt/optional/integer/header"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_string_parameter(
-        self,
-        body_parameter: str,
-        **kwargs
-    ) -> None:
+    async def post_required_string_parameter(self, body_parameter: str, **kwargs) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the
         request is sent.
 
@@ -368,28 +335,26 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_string_parameter.metadata['url']  # type: ignore
+        url = self.post_required_string_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, 'str')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(body_parameter, "str")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -402,14 +367,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}  # type: ignore
+    post_required_string_parameter.metadata = {"url": "/reqopt/requied/string/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_string_parameter(
-        self,
-        body_parameter: Optional[str] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_string_parameter(self, body_parameter: Optional[str] = None, **kwargs) -> None:
         """Test explicitly optional string. Please put null.
 
         :param body_parameter:
@@ -419,31 +380,29 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_string_parameter.metadata['url']  # type: ignore
+        url = self.post_optional_string_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'str')
+            body_content = self._serialize.body(body_parameter, "str")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -456,14 +415,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}  # type: ignore
+    post_optional_string_parameter.metadata = {"url": "/reqopt/optional/string/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_string_property(
-        self,
-        value: str,
-        **kwargs
-    ) -> None:
+    async def post_required_string_property(self, value: str, **kwargs) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -474,30 +429,28 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_string_property.metadata['url']  # type: ignore
+        url = self.post_required_string_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, 'StringWrapper')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(_body_parameter, "StringWrapper")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -510,14 +463,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}  # type: ignore
+    post_required_string_property.metadata = {"url": "/reqopt/requied/string/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_string_property(
-        self,
-        value: Optional[str] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_string_property(self, value: Optional[str] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param value:
@@ -527,33 +476,31 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_string_property.metadata['url']  # type: ignore
+        url = self.post_optional_string_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'StringOptionalWrapper')
+            body_content = self._serialize.body(_body_parameter, "StringOptionalWrapper")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -566,14 +513,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}  # type: ignore
+    post_optional_string_property.metadata = {"url": "/reqopt/optional/string/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_string_header(
-        self,
-        header_parameter: str,
-        **kwargs
-    ) -> None:
+    async def post_required_string_header(self, header_parameter: str, **kwargs) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -584,23 +527,21 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_string_header.metadata['url']  # type: ignore
+        url = self.post_required_string_header.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["headerParameter"] = self._serialize.header("header_parameter", header_parameter, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -614,14 +555,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}  # type: ignore
+    post_required_string_header.metadata = {"url": "/reqopt/requied/string/header"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_string_header(
-        self,
-        body_parameter: Optional[str] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_string_header(self, body_parameter: Optional[str] = None, **kwargs) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
         :param body_parameter:
@@ -631,15 +568,13 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_string_header.metadata['url']  # type: ignore
+        url = self.post_optional_string_header.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -647,8 +582,8 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if body_parameter is not None:
-            header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["bodyParameter"] = self._serialize.header("body_parameter", body_parameter, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -662,14 +597,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}  # type: ignore
+    post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_class_parameter(
-        self,
-        body_parameter: "_models.Product",
-        **kwargs
-    ) -> None:
+    async def post_required_class_parameter(self, body_parameter: "_models.Product", **kwargs) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
@@ -680,28 +611,26 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_class_parameter.metadata['url']  # type: ignore
+        url = self.post_required_class_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, 'Product')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(body_parameter, "Product")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -714,14 +643,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}  # type: ignore
+    post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_class_parameter(
-        self,
-        body_parameter: Optional["_models.Product"] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_class_parameter(self, body_parameter: Optional["_models.Product"] = None, **kwargs) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
@@ -731,31 +656,29 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_class_parameter.metadata['url']  # type: ignore
+        url = self.post_optional_class_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'Product')
+            body_content = self._serialize.body(body_parameter, "Product")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -768,14 +691,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}  # type: ignore
+    post_optional_class_parameter.metadata = {"url": "/reqopt/optional/class/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_class_property(
-        self,
-        value: "_models.Product",
-        **kwargs
-    ) -> None:
+    async def post_required_class_property(self, value: "_models.Product", **kwargs) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
@@ -786,30 +705,28 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_class_property.metadata['url']  # type: ignore
+        url = self.post_required_class_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(_body_parameter, "ClassWrapper")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -822,14 +739,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}  # type: ignore
+    post_required_class_property.metadata = {"url": "/reqopt/requied/class/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_class_property(
-        self,
-        value: Optional["_models.Product"] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_class_property(self, value: Optional["_models.Product"] = None, **kwargs) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param value:
@@ -839,33 +752,31 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_class_property.metadata['url']  # type: ignore
+        url = self.post_optional_class_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'ClassOptionalWrapper')
+            body_content = self._serialize.body(_body_parameter, "ClassOptionalWrapper")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -878,14 +789,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}  # type: ignore
+    post_optional_class_property.metadata = {"url": "/reqopt/optional/class/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_array_parameter(
-        self,
-        body_parameter: List[str],
-        **kwargs
-    ) -> None:
+    async def post_required_array_parameter(self, body_parameter: List[str], **kwargs) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
@@ -896,28 +803,26 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_array_parameter.metadata['url']  # type: ignore
+        url = self.post_required_array_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, '[str]')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(body_parameter, "[str]")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -930,14 +835,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}  # type: ignore
+    post_required_array_parameter.metadata = {"url": "/reqopt/requied/array/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_array_parameter(
-        self,
-        body_parameter: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_array_parameter(self, body_parameter: Optional[List[str]] = None, **kwargs) -> None:
         """Test explicitly optional array. Please put null.
 
         :param body_parameter:
@@ -947,31 +848,29 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_array_parameter.metadata['url']  # type: ignore
+        url = self.post_optional_array_parameter.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, '[str]')
+            body_content = self._serialize.body(body_parameter, "[str]")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -984,14 +883,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}  # type: ignore
+    post_optional_array_parameter.metadata = {"url": "/reqopt/optional/array/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_array_property(
-        self,
-        value: List[str],
-        **kwargs
-    ) -> None:
+    async def post_required_array_property(self, value: List[str], **kwargs) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -1002,30 +897,28 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_array_property.metadata['url']  # type: ignore
+        url = self.post_required_array_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(_body_parameter, "ArrayWrapper")
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1038,14 +931,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}  # type: ignore
+    post_required_array_property.metadata = {"url": "/reqopt/requied/array/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_array_property(
-        self,
-        value: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_array_property(self, value: Optional[List[str]] = None, **kwargs) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param value:
@@ -1055,33 +944,31 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_array_property.metadata['url']  # type: ignore
+        url = self.post_optional_array_property.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'ArrayOptionalWrapper')
+            body_content = self._serialize.body(_body_parameter, "ArrayOptionalWrapper")
         else:
             body_content = None
-        body_content_kwargs['content'] = body_content
+        body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1094,14 +981,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}  # type: ignore
+    post_optional_array_property.metadata = {"url": "/reqopt/optional/array/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_array_header(
-        self,
-        header_parameter: List[str],
-        **kwargs
-    ) -> None:
+    async def post_required_array_header(self, header_parameter: List[str], **kwargs) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -1112,23 +995,23 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_array_header.metadata['url']  # type: ignore
+        url = self.post_required_array_header.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["headerParameter"] = self._serialize.header(
+            "header_parameter", header_parameter, "[str]", div=","
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1142,14 +1025,10 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}  # type: ignore
+    post_required_array_header.metadata = {"url": "/reqopt/requied/array/header"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_array_header(
-        self,
-        header_parameter: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def post_optional_array_header(self, header_parameter: Optional[List[str]] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :param header_parameter:
@@ -1159,15 +1038,13 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_array_header.metadata['url']  # type: ignore
+        url = self.post_optional_array_header.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1175,8 +1052,10 @@ class ExplicitOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if header_parameter is not None:
-            header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["headerParameter"] = self._serialize.header(
+                "header_parameter", header_parameter, "[str]", div=","
+            )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1190,4 +1069,4 @@ class ExplicitOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}  # type: ignore
+    post_optional_array_header.metadata = {"url": "/reqopt/optional/array/header"}  # type: ignore

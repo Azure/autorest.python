@@ -10,10 +10,11 @@ from ._multiple_inheritance_service_client import MultipleInheritanceServiceClie
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['MultipleInheritanceServiceClient']
+__all__ = ["MultipleInheritanceServiceClient"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

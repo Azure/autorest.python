@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._non_string_enums_client import NonStringEnumsClient
-__all__ = ['NonStringEnumsClient']
+
+__all__ = ["NonStringEnumsClient"]

@@ -10,10 +10,11 @@ from ._auto_rest_swagger_bat_header_service import AutoRestSwaggerBATHeaderServi
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestSwaggerBATHeaderService']
+__all__ = ["AutoRestSwaggerBATHeaderService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

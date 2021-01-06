@@ -35,7 +35,7 @@ class AutoRestParameterFlattening(object):
     ):
         # type: (...) -> None
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestParameterFlatteningConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -45,7 +45,8 @@ class AutoRestParameterFlattening(object):
         self._deserialize = Deserializer(client_models)
 
         self.availability_sets = AvailabilitySetsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def close(self):
         # type: () -> None

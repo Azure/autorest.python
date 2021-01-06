@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_paging_test_service import AutoRestPagingTestService
-__all__ = ['AutoRestPagingTestService']
+
+__all__ = ["AutoRestPagingTestService"]

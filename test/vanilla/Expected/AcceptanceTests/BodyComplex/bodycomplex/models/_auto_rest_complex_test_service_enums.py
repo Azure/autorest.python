@@ -9,6 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
+
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
@@ -33,15 +34,18 @@ class CMYKColors(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     YELLOW = "YELLOW"
     BLAC_K = "blacK"
 
+
 class GoblinSharkColor(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Colors possible
-    """
+    """Colors possible"""
 
     PINK = "pink"
     GRAY = "gray"
     BROWN = "brown"
-    UPPER_RED = "RED"  #: Uppercase RED.
-    LOWER_RED = "red"  #: Lowercase RED.
+    #: Uppercase RED.
+    UPPER_RED = "RED"
+    #: Lowercase RED.
+    LOWER_RED = "red"
+
 
 class MyKind(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 

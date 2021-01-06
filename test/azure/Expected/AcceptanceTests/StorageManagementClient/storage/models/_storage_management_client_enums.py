@@ -9,6 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
+
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
@@ -34,9 +35,9 @@ class AccountStatus(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     AVAILABLE = "Available"
     UNAVAILABLE = "Unavailable"
 
+
 class AccountType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Gets or sets the account type.
-    """
+    """Gets or sets the account type."""
 
     STANDARD_LRS = "Standard_LRS"
     STANDARD_ZRS = "Standard_ZRS"
@@ -44,18 +45,20 @@ class AccountType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     STANDARD_RAGRS = "Standard_RAGRS"
     PREMIUM_LRS = "Premium_LRS"
 
+
 class KeyName(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
     KEY1 = "key1"
     KEY2 = "key2"
 
+
 class ProvisioningState(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Gets the status of the storage account at the time the operation was called.
-    """
+    """Gets the status of the storage account at the time the operation was called."""
 
     CREATING = "Creating"
     RESOLVING_DNS = "ResolvingDNS"
     SUCCEEDED = "Succeeded"
+
 
 class Reason(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     """Gets the reason that a storage account name could not be used. The Reason element is only
@@ -65,9 +68,9 @@ class Reason(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     ACCOUNT_NAME_INVALID = "AccountNameInvalid"
     ALREADY_EXISTS = "AlreadyExists"
 
+
 class UsageUnit(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Gets the unit of measurement.
-    """
+    """Gets the unit of measurement."""
 
     COUNT = "Count"
     BYTES = "Bytes"

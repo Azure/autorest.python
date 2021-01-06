@@ -31,15 +31,15 @@ class PetAPTrue(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
-        'status': {'readonly': True},
+        "id": {"required": True},
+        "status": {"readonly": True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{object}'},
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
+        "additional_properties": {"key": "", "type": "{object}"},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
+        "status": {"key": "status", "type": "bool"},
     }
 
     def __init__(
@@ -78,16 +78,16 @@ class CatAPTrue(PetAPTrue):
     """
 
     _validation = {
-        'id': {'required': True},
-        'status': {'readonly': True},
+        "id": {"required": True},
+        "status": {"readonly": True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{object}'},
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
-        'friendly': {'key': 'friendly', 'type': 'bool'},
+        "additional_properties": {"key": "", "type": "{object}"},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
+        "status": {"key": "status", "type": "bool"},
+        "friendly": {"key": "friendly", "type": "bool"},
     }
 
     def __init__(
@@ -113,17 +113,11 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -147,24 +141,19 @@ class PetAPInProperties(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
-        'status': {'readonly': True},
+        "id": {"required": True},
+        "status": {"readonly": True},
     }
 
     _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
-        'additional_properties': {'key': 'additionalProperties', 'type': '{float}'},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
+        "status": {"key": "status", "type": "bool"},
+        "additional_properties": {"key": "additionalProperties", "type": "{float}"},
     }
 
     def __init__(
-        self,
-        *,
-        id: int,
-        name: Optional[str] = None,
-        additional_properties: Optional[Dict[str, float]] = None,
-        **kwargs
+        self, *, id: int, name: Optional[str] = None, additional_properties: Optional[Dict[str, float]] = None, **kwargs
     ):
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = id
@@ -196,18 +185,18 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
-        'status': {'readonly': True},
-        'odata_location': {'required': True},
+        "id": {"required": True},
+        "status": {"readonly": True},
+        "odata_location": {"required": True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{str}'},
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
-        'odata_location': {'key': '@odata\\.location', 'type': 'str'},
-        'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
+        "additional_properties": {"key": "", "type": "{str}"},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
+        "status": {"key": "status", "type": "bool"},
+        "odata_location": {"key": "@odata\\.location", "type": "str"},
+        "additional_properties1": {"key": "additionalProperties", "type": "{float}"},
     }
 
     def __init__(
@@ -248,15 +237,15 @@ class PetAPObject(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
-        'status': {'readonly': True},
+        "id": {"required": True},
+        "status": {"readonly": True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{object}'},
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
+        "additional_properties": {"key": "", "type": "{object}"},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
+        "status": {"key": "status", "type": "bool"},
     }
 
     def __init__(
@@ -293,24 +282,19 @@ class PetAPString(msrest.serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
-        'status': {'readonly': True},
+        "id": {"required": True},
+        "status": {"readonly": True},
     }
 
     _attribute_map = {
-        'additional_properties': {'key': '', 'type': '{str}'},
-        'id': {'key': 'id', 'type': 'int'},
-        'name': {'key': 'name', 'type': 'str'},
-        'status': {'key': 'status', 'type': 'bool'},
+        "additional_properties": {"key": "", "type": "{str}"},
+        "id": {"key": "id", "type": "int"},
+        "name": {"key": "name", "type": "str"},
+        "status": {"key": "status", "type": "bool"},
     }
 
     def __init__(
-        self,
-        *,
-        id: int,
-        additional_properties: Optional[Dict[str, str]] = None,
-        name: Optional[str] = None,
-        **kwargs
+        self, *, id: int, additional_properties: Optional[Dict[str, str]] = None, name: Optional[str] = None, **kwargs
     ):
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties

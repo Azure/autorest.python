@@ -25,13 +25,9 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
     :param str base_url: Service URL
     """
 
-    def __init__(
-        self,
-        base_url: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = ObjectTypeClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -39,7 +35,6 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._serialize = Serializer(client_models)
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
-
 
     async def close(self) -> None:
         await self._client.close()

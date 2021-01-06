@@ -10,10 +10,11 @@ from ._auto_rest_time_test_service import AutoRestTimeTestService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestTimeTestService']
+__all__ = ["AutoRestTimeTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

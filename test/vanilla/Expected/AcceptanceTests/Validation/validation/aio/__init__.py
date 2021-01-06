@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_validation_test import AutoRestValidationTest
-__all__ = ['AutoRestValidationTest']
+
+__all__ = ["AutoRestValidationTest"]

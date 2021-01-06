@@ -25,12 +25,8 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :type host: str
     """
 
-    def __init__(
-        self,
-        host: str = "host",
-        **kwargs: Any
-    ) -> None:
-        base_url = 'http://{accountName}{host}'
+    def __init__(self, host: str = "host", **kwargs: Any) -> None:
+        base_url = "http://{accountName}{host}"
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(host, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -39,8 +35,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.paging = PagingOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()

@@ -8,7 +8,13 @@
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -18,8 +24,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
-    T = TypeVar('T')
+    T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
 
 class HttpSuccessOperations(object):
     """HttpSuccessOperations operations.
@@ -41,8 +48,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def head200(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Return 200 status code if successful.
@@ -52,14 +58,12 @@ class HttpSuccessOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.head200.metadata['url']  # type: ignore
+        url = self.head200.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -79,12 +83,12 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
-    head200.metadata = {'url': '/http/success/200'}  # type: ignore
+
+    head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def head204(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Return 204 status code if successful.
@@ -94,14 +98,12 @@ class HttpSuccessOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.head204.metadata['url']  # type: ignore
+        url = self.head204.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -121,12 +123,12 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
-    head204.metadata = {'url': '/http/success/204'}  # type: ignore
+
+    head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def head404(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Return 404 status code if successful.
@@ -136,14 +138,12 @@ class HttpSuccessOperations(object):
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         # Construct URL
-        url = self.head404.metadata['url']  # type: ignore
+        url = self.head404.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -163,4 +163,5 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
-    head404.metadata = {'url': '/http/success/404'}  # type: ignore
+
+    head404.metadata = {"url": "/http/success/404"}  # type: ignore

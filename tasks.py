@@ -147,7 +147,8 @@ def _build_flags(
         "payload-flattening-threshold": 1,
         "keep-version-file": True,
         "namespace": _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()),
-        "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
+        "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION,
+        "black": True,
     }
     if override_flags:
         flags.update(override_flags)

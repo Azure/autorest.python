@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._lro_with_paramaterized_endpoints import LROWithParamaterizedEndpoints
-__all__ = ['LROWithParamaterizedEndpoints']
+
+__all__ = ["LROWithParamaterizedEndpoints"]
