@@ -15,8 +15,6 @@ import msrest.serialization
 class PetAPTrue(msrest.serialization.Model):
     """PetAPTrue.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
@@ -26,7 +24,8 @@ class PetAPTrue(msrest.serialization.Model):
     :type id: int
     :param name:
     :type name: str
-    :ivar status:
+    :ivar status: This variable is only populated by the server, and will be ignored when sending a
+     request.
     :vartype status: bool
     """
 
@@ -60,8 +59,6 @@ class PetAPTrue(msrest.serialization.Model):
 class CatAPTrue(PetAPTrue):
     """CatAPTrue.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
@@ -71,7 +68,8 @@ class CatAPTrue(PetAPTrue):
     :type id: int
     :param name:
     :type name: str
-    :ivar status:
+    :ivar status: This variable is only populated by the server, and will be ignored when sending a
+     request.
     :vartype status: bool
     :param friendly:
     :type friendly: bool
@@ -126,15 +124,14 @@ class Error(msrest.serialization.Model):
 class PetAPInProperties(msrest.serialization.Model):
     """PetAPInProperties.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param id: Required.
     :type id: int
     :param name:
     :type name: str
-    :ivar status:
+    :ivar status: This variable is only populated by the server, and will be ignored when sending a
+     request.
     :vartype status: bool
     :param additional_properties: Dictionary of :code:`<number>`.
     :type additional_properties: dict[str, float]
@@ -165,8 +162,6 @@ class PetAPInProperties(msrest.serialization.Model):
 class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     """PetAPInPropertiesWithAPString.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
@@ -176,7 +171,8 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     :type id: int
     :param name:
     :type name: str
-    :ivar status:
+    :ivar status: This variable is only populated by the server, and will be ignored when sending a
+     request.
     :vartype status: bool
     :param odata_location: Required.
     :type odata_location: str
@@ -221,8 +217,6 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
 class PetAPObject(msrest.serialization.Model):
     """PetAPObject.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
@@ -232,7 +226,8 @@ class PetAPObject(msrest.serialization.Model):
     :type id: int
     :param name:
     :type name: str
-    :ivar status:
+    :ivar status: This variable is only populated by the server, and will be ignored when sending a
+     request.
     :vartype status: bool
     """
 
@@ -266,8 +261,6 @@ class PetAPObject(msrest.serialization.Model):
 class PetAPString(msrest.serialization.Model):
     """PetAPString.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are deserialized to this
@@ -277,7 +270,8 @@ class PetAPString(msrest.serialization.Model):
     :type id: int
     :param name:
     :type name: str
-    :ivar status:
+    :ivar status: This variable is only populated by the server, and will be ignored when sending a
+     request.
     :vartype status: bool
     """
 

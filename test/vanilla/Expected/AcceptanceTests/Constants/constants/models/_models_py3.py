@@ -16,7 +16,7 @@ from ._auto_rest_swagger_constant_service_enums import *
 class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredOneValueDefault.
 
-    :param parameter:  Possible values include: "value1".
+    :param parameter: Possible values include: "value1".
     :type parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
     """
 
@@ -34,7 +34,7 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredOneValueNoDefault.
 
-    :param parameter:  Possible values include: "value1".
+    :param parameter: Possible values include: "value1".
     :type parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
     """
 
@@ -52,7 +52,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredTwoValueDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
+    :param parameter: Possible values include: "value1", "value2".
     :type parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
@@ -70,7 +70,7 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredTwoValueNoDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
+    :param parameter: Possible values include: "value1", "value2".
     :type parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
@@ -176,9 +176,7 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar parameter:  Default value: "value1".
+    :ivar parameter: This variable is a constant with value "value1".
     :vartype parameter: str
     """
 
@@ -199,9 +197,7 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar parameter:  Default value: "value1".
+    :ivar parameter: This variable is a constant with value "value1".
     :vartype parameter: str
     """
 
@@ -222,7 +218,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredTwoValueDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
+    :param parameter: Possible values include: "value1", "value2".
     :type parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
@@ -240,7 +236,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
+    :param parameter: Possible values include: "value1", "value2".
     :type parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
@@ -258,11 +254,9 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
     """NoModelAsStringRequiredOneValueDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required.  Default value: "value1".
+    :ivar parameter: Required.  This variable is a constant with value "value1".
     :vartype parameter: str
     """
 
@@ -283,11 +277,9 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringRequiredOneValueNoDefault.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar parameter: Required.  Default value: "value1".
+    :ivar parameter: Required.  This variable is a constant with value "value1".
     :vartype parameter: str
     """
 

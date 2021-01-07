@@ -54,17 +54,18 @@ class OperationResultError(msrest.serialization.Model):
 class Resource(msrest.serialization.Model):
     """Resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar type: Resource Type.
+    :ivar type: Resource Type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
-    :ivar name: Resource Name.
+    :ivar name: Resource Name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
     """
 
@@ -94,21 +95,23 @@ class Resource(msrest.serialization.Model):
 class Product(Resource):
     """Product.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar type: Resource Type.
+    :ivar type: Resource Type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
-    :ivar name: Resource Name.
+    :ivar name: Resource Name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state_values: This variable is only populated by the server, and will be
+     ignored when sending a request. Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
@@ -159,9 +162,8 @@ class Sku(msrest.serialization.Model):
 class SubResource(msrest.serialization.Model):
     """SubResource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id: Sub Resource Id.
+    :ivar id: Sub Resource Id. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype id: str
     """
 
@@ -181,13 +183,13 @@ class SubResource(msrest.serialization.Model):
 class SubProduct(SubResource):
     """SubProduct.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id: Sub Resource Id.
+    :ivar id: Sub Resource Id. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype id: str
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state_values: This variable is only populated by the server, and will be
+     ignored when sending a request. Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues

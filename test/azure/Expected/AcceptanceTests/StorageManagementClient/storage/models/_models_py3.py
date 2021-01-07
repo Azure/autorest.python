@@ -146,15 +146,16 @@ class Foo(msrest.serialization.Model):
 class Resource(msrest.serialization.Model):
     """Resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar name: Resource name.
+    :ivar name: Resource name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
-    :ivar type: Resource type.
+    :ivar type: Resource type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param location: Required. Resource location.
     :type location: str
@@ -189,15 +190,16 @@ class Resource(msrest.serialization.Model):
 class StorageAccount(Resource):
     """The storage account.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar name: Resource name.
+    :ivar name: Resource name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
-    :ivar type: Resource type.
+    :ivar type: Resource type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param location: Required. Resource location.
     :type location: str
@@ -328,15 +330,16 @@ class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
 class StorageAccountCreateParameters(Resource):
     """The parameters to provide for the account.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar name: Resource name.
+    :ivar name: Resource name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
-    :ivar type: Resource type.
+    :ivar type: Resource type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param location: Required. Resource location.
     :type location: str
@@ -419,7 +422,7 @@ class StorageAccountListResult(msrest.serialization.Model):
 class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
-    :param key_name:  Possible values include: "key1", "key2".
+    :param key_name: Possible values include: "key1", "key2".
     :type key_name: str or ~storage.models.KeyName
     """
 
@@ -435,15 +438,16 @@ class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
 class StorageAccountUpdateParameters(Resource):
     """The parameters to update on the account.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar name: Resource name.
+    :ivar name: Resource name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
-    :ivar type: Resource type.
+    :ivar type: Resource type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param location: Required. Resource location.
     :type location: str

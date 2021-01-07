@@ -54,7 +54,7 @@ class NotFoundErrorBase(BaseError):
     :type some_base_prop: str
     :param reason:
     :type reason: str
-    :param what_not_found: Required. Constant filled by server.
+    :param what_not_found: Required.  Constant filled by server.
     :type what_not_found: str
     """
 
@@ -85,7 +85,7 @@ class AnimalNotFound(NotFoundErrorBase):
     :type some_base_prop: str
     :param reason:
     :type reason: str
-    :param what_not_found: Required. Constant filled by server.
+    :param what_not_found: Required.  Constant filled by server.
     :type what_not_found: str
     :param name:
     :type name: str
@@ -117,7 +117,7 @@ class LinkNotFound(NotFoundErrorBase):
     :type some_base_prop: str
     :param reason:
     :type reason: str
-    :param what_not_found: Required. Constant filled by server.
+    :param what_not_found: Required.  Constant filled by server.
     :type what_not_found: str
     :param what_sub_address:
     :type what_sub_address: str
@@ -143,11 +143,10 @@ class LinkNotFound(NotFoundErrorBase):
 class Pet(Animal):
     """Pet.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     :param ani_type:
     :type ani_type: str
-    :ivar name: Gets the Pet by id.
+    :ivar name: Gets the Pet by id. This variable is only populated by the server, and will be
+     ignored when sending a request.
     :vartype name: str
     """
 
@@ -191,7 +190,7 @@ class PetActionError(PetAction):
 
     :param action_response: action feedback.
     :type action_response: str
-    :param error_type: Required. Constant filled by server.
+    :param error_type: Required.  Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
     :type error_message: str
@@ -225,7 +224,7 @@ class PetSadError(PetActionError):
 
     :param action_response: action feedback.
     :type action_response: str
-    :param error_type: Required. Constant filled by server.
+    :param error_type: Required.  Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
     :type error_message: str
@@ -259,7 +258,7 @@ class PetHungryOrThirstyError(PetSadError):
 
     :param action_response: action feedback.
     :type action_response: str
-    :param error_type: Required. Constant filled by server.
+    :param error_type: Required.  Constant filled by server.
     :type error_type: str
     :param error_message: the error message.
     :type error_message: str

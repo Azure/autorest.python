@@ -34,11 +34,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
         # this bool doesn't consider you to be constant if you are a discriminator
         self.constant: bool = isinstance(self.schema, ConstantSchema) and not self.is_discriminator
-
-        if description:
-            self.description = description
-        else:
-            self.description = yaml_data["language"]["python"]["description"]
+        self._description = description or yaml_data["language"]["python"]["description"]
 
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.required:
@@ -52,6 +48,13 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             validation_map.update(validation_map_from_schema)
         self.validation_map = validation_map or None
         self.client_default_value = client_default_value
+
+    @property
+    def description(self) -> str:
+        description = self._description.strip()
+        if description and description[-1] != ".":
+            description += "."
+        return description + " "
 
     @property
     def escaped_swagger_name(self) -> str:

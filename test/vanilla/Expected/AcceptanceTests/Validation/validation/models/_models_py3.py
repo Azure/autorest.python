@@ -15,11 +15,10 @@ import msrest.serialization
 class ChildProduct(msrest.serialization.Model):
     """The product documentation.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Required. Constant string. Default value: "constant".
+    :ivar const_property: Required. Constant string. This variable is a constant with value
+     "constant".
     :vartype const_property: str
     :param count: Count.
     :type count: int
@@ -44,13 +43,13 @@ class ChildProduct(msrest.serialization.Model):
 class ConstantProduct(msrest.serialization.Model):
     """The product documentation.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Required. Constant string. Default value: "constant".
+    :ivar const_property: Required. Constant string. This variable is a constant with value
+     "constant".
     :vartype const_property: str
-    :ivar const_property2: Required. Constant string2. Default value: "constant2".
+    :ivar const_property2: Required. Constant string2. This variable is a constant with value
+     "constant2".
     :vartype const_property2: str
     """
 
@@ -100,8 +99,6 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """The product documentation.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param display_names: Non required array of unique items from 0 to 6 elements.
@@ -114,11 +111,13 @@ class Product(msrest.serialization.Model):
     :type child: ~validation.models.ChildProduct
     :param const_child: Required. The product documentation.
     :type const_child: ~validation.models.ConstantProduct
-    :ivar const_int: Required. Constant int. Default value: "0".
+    :ivar const_int: Required. Constant int. This variable is a constant with value "0".
     :vartype const_int: int
-    :ivar const_string: Required. Constant string. Default value: "constant".
+    :ivar const_string: Required. Constant string. This variable is a constant with value
+     "constant".
     :vartype const_string: str
-    :ivar const_string_as_enum: Constant string as Enum. Default value: "constant_string_as_enum".
+    :ivar const_string_as_enum: Constant string as Enum. This variable is a constant with value
+     "constant_string_as_enum".
     :vartype const_string_as_enum: str
     """
 

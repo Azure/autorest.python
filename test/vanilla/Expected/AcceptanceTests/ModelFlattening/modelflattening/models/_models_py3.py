@@ -74,17 +74,18 @@ class Error(msrest.serialization.Model):
 class Resource(msrest.serialization.Model):
     """Resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar type: Resource Type.
+    :ivar type: Resource Type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
-    :ivar name: Resource Name.
+    :ivar name: Resource Name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
     """
 
@@ -114,23 +115,25 @@ class Resource(msrest.serialization.Model):
 class FlattenedProduct(Resource):
     """Flattened product.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id: Resource Id.
+    :ivar id: Resource Id. This variable is only populated by the server, and will be ignored when
+     sending a request.
     :vartype id: str
-    :ivar type: Resource Type.
+    :ivar type: Resource Type. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype type: str
     :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
-    :ivar name: Resource Name.
+    :ivar name: Resource Name. This variable is only populated by the server, and will be ignored
+     when sending a request.
     :vartype name: str
     :param p_name:
     :type p_name: str
     :param type_properties_type:
     :type type_properties_type: str
-    :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state_values: This variable is only populated by the server, and will be
+     ignored when sending a request. Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
@@ -319,8 +322,6 @@ class ResourceCollection(msrest.serialization.Model):
 class SimpleProduct(BaseProduct):
     """The product documentation.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product for a given
@@ -331,7 +332,8 @@ class SimpleProduct(BaseProduct):
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
+    :ivar capacity: Capacity of product. For example, 4 people. This variable is a constant with
+     value "Large".
     :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str

@@ -58,8 +58,6 @@ class ModelBaseSerializer:
         else:
             param_doc_string = f":param {prop.name}:"
         description = prop.description
-        if description and description[-1] != ".":
-            description += "."
         if prop.name == "tags":
             description = "A set of tags. " + description
         if prop.required:
@@ -69,16 +67,18 @@ class ModelBaseSerializer:
                 description = "Required. "
         if prop.constant:
             constant_prop = cast(ConstantSchema, prop.schema)
-            description += f' Default value: "{constant_prop.value}".'
+            description += f'This variable is a constant with value "{constant_prop.value}". '
+        if prop.readonly:
+            description += "This variable is only populated by the server, and will be ignored when sending a request. "
         if prop.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(prop.schema, EnumSchema):
             values = [prop.schema.enum_type.get_declaration(v.value) for v in prop.schema.values]
-            description += " Possible values include: {}.".format(", ".join(values))
+            description += "Possible values include: {}. ".format(", ".join(values))
             if prop.schema.default_value:
-                description += f' Default value: "{prop.schema.default_value}".'
+                description += f'Default value: "{prop.schema.default_value}". '
         if description:
-            param_doc_string += " " + description
+            param_doc_string += " " + description.strip()
         return param_doc_string
 
     @staticmethod

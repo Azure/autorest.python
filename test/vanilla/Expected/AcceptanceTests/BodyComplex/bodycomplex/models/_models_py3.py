@@ -39,7 +39,7 @@ class Basic(msrest.serialization.Model):
     :param name: Name property with a very long description that does not fit on a single line and
      a line break.
     :type name: str
-    :param color:  Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
+    :param color: Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
     :type color: str or ~bodycomplex.models.CMYKColors
     """
 
@@ -161,7 +161,7 @@ class Fish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
+    :param fishtype: Required.  Constant filled by server.
     :type fishtype: str
     :param species:
     :type species: str
@@ -203,7 +203,7 @@ class Shark(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
+    :param fishtype: Required.  Constant filled by server.
     :type fishtype: str
     :param species:
     :type species: str
@@ -257,7 +257,7 @@ class Cookiecuttershark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
+    :param fishtype: Required.  Constant filled by server.
     :type fishtype: str
     :param species:
     :type species: str
@@ -408,7 +408,7 @@ class DotFish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fish_type: Required. Constant filled by server.
+    :param fish_type: Required.  Constant filled by server.
     :type fish_type: str
     :param species:
     :type species: str
@@ -472,7 +472,7 @@ class DotSalmon(DotFish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fish_type: Required. Constant filled by server.
+    :param fish_type: Required.  Constant filled by server.
     :type fish_type: str
     :param species:
     :type species: str
@@ -599,7 +599,7 @@ class Goblinshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
+    :param fishtype: Required.  Constant filled by server.
     :type fishtype: str
     :param species:
     :type species: str
@@ -703,7 +703,7 @@ class MyBaseType(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.  Possible values include: "Kind1".
+    :param kind: Required.  Constant filled by server. Possible values include: "Kind1".
     :type kind: str or ~bodycomplex.models.MyKind
     :param prop_b1:
     :type prop_b1: str
@@ -735,7 +735,7 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.  Possible values include: "Kind1".
+    :param kind: Required.  Constant filled by server. Possible values include: "Kind1".
     :type kind: str or ~bodycomplex.models.MyKind
     :param prop_b1:
     :type prop_b1: str
@@ -767,9 +767,8 @@ class MyDerivedType(MyBaseType):
 class ReadonlyObj(msrest.serialization.Model):
     """ReadonlyObj.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id:
+    :ivar id: This variable is only populated by the server, and will be ignored when sending a
+     request.
     :vartype id: str
     :param size:
     :type size: int
@@ -798,7 +797,7 @@ class Salmon(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
+    :param fishtype: Required.  Constant filled by server.
     :type fishtype: str
     :param species:
     :type species: str
@@ -849,7 +848,7 @@ class Sawshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
+    :param fishtype: Required.  Constant filled by server.
     :type fishtype: str
     :param species:
     :type species: str
@@ -941,7 +940,7 @@ class SmartSalmon(Salmon):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
+    :param fishtype: Required.  Constant filled by server.
     :type fishtype: str
     :param species:
     :type species: str
