@@ -1,4 +1,4 @@
-# <img align="center" src="../images/logo.png">  Troubleshooting
+# <img align="center" src="./images/logo.png">  Troubleshooting
 
 ## Generation Errors
 
