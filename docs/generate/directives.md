@@ -118,7 +118,7 @@ To illustrate the generated code difference, here is the before and after of typ
 
 ## Generate with a Custom Default Paging Method
 
-By default, a long running operation will generate with default sans I/O paging method `BasicPagingMethod`. With this directive, you can change the generated code to generate with your custom default paging method.
+By default, a pageable operation will generate with default sans I/O paging method `BasicPagingMethod`. With this directive, you can change the generated code to generate with your custom default paging method.
 
 You can also pass in a paging method through `kwargs` to each operation. Use this directive if you want the generated code to generate with your custom default paging method, instead of passing in your custom paging method to the generated code.
 
