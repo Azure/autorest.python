@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._media_types_client import MediaTypesClient
-__all__ = ['MediaTypesClient']
+
+__all__ = ["MediaTypesClient"]

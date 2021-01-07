@@ -9,5 +9,5 @@
 from ._paths_operations import PathsOperations
 
 __all__ = [
-    'PathsOperations',
+    "PathsOperations",
 ]

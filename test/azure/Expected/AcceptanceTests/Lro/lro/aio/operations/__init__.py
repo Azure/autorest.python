@@ -12,8 +12,8 @@ from ._lrosads_operations import LROSADsOperations
 from ._lr_os_custom_header_operations import LROsCustomHeaderOperations
 
 __all__ = [
-    'LROsOperations',
-    'LRORetrysOperations',
-    'LROSADsOperations',
-    'LROsCustomHeaderOperations',
+    "LROsOperations",
+    "LRORetrysOperations",
+    "LROSADsOperations",
+    "LROsCustomHeaderOperations",
 ]

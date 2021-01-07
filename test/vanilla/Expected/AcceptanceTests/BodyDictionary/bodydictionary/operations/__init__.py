@@ -9,5 +9,5 @@
 from ._dictionary_operations import DictionaryOperations
 
 __all__ = [
-    'DictionaryOperations',
+    "DictionaryOperations",
 ]

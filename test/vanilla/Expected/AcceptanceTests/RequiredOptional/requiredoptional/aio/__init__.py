@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_required_optional_test_service import AutoRestRequiredOptionalTestService
-__all__ = ['AutoRestRequiredOptionalTestService']
+
+__all__ = ["AutoRestRequiredOptionalTestService"]

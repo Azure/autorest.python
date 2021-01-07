@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_constant_service import AutoRestSwaggerConstantService
-__all__ = ['AutoRestSwaggerConstantService']
+
+__all__ = ["AutoRestSwaggerConstantService"]

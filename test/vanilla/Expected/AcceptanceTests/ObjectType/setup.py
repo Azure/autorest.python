@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Service client for testing basic type: object swaggers.
-    """
+    """,
 )

@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Long-running Operation for AutoRest.
-    """
+    """,
 )

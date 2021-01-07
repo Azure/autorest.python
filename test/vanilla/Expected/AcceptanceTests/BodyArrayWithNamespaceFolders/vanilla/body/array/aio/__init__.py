@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_swagger_bat_array_service import AutoRestSwaggerBATArrayService
-__all__ = ['AutoRestSwaggerBATArrayService']
+
+__all__ = ["AutoRestSwaggerBATArrayService"]

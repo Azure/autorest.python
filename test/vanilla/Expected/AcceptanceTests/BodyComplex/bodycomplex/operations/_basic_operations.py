@@ -8,7 +8,13 @@
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -19,8 +25,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
-    T = TypeVar('T')
+    T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
 
 class BasicOperations(object):
     """BasicOperations operations.
@@ -46,8 +53,7 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_valid(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> "_models.Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
@@ -57,22 +63,20 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_valid.metadata['url']  # type: ignore
+        url = self.get_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -83,13 +87,14 @@ class BasicOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('Basic', pipeline_response)
+        deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/basic/valid'}  # type: ignore
+
+    get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace
     def put_valid(
@@ -107,30 +112,28 @@ class BasicOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         api_version = "2016-02-29"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.put_valid.metadata['url']  # type: ignore
+        url = self.put_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, 'Basic')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(complex_body, "Basic")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -143,12 +146,11 @@ class BasicOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/basic/valid'}  # type: ignore
+    put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace
     def get_invalid(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> "_models.Basic"
         """Get a basic complex type that is invalid for the local strong type.
@@ -158,22 +160,20 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid.metadata['url']  # type: ignore
+        url = self.get_invalid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -184,18 +184,18 @@ class BasicOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('Basic', pipeline_response)
+        deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/complex/basic/invalid'}  # type: ignore
+
+    get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
     @distributed_trace
     def get_empty(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> "_models.Basic"
         """Get a basic complex type that is empty.
@@ -205,22 +205,20 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_empty.metadata['url']  # type: ignore
+        url = self.get_empty.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -231,18 +229,18 @@ class BasicOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('Basic', pipeline_response)
+        deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/complex/basic/empty'}  # type: ignore
+
+    get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
     @distributed_trace
     def get_null(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> "_models.Basic"
         """Get a basic complex type whose properties are null.
@@ -252,22 +250,20 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_null.metadata['url']  # type: ignore
+        url = self.get_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -278,18 +274,18 @@ class BasicOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('Basic', pipeline_response)
+        deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/complex/basic/null'}  # type: ignore
+
+    get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
 
     @distributed_trace
     def get_not_provided(
-        self,
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> "_models.Basic"
         """Get a basic complex type while the server doesn't provide a response payload.
@@ -299,22 +295,20 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Basic"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_not_provided.metadata['url']  # type: ignore
+        url = self.get_not_provided.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -325,10 +319,11 @@ class BasicOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('Basic', pipeline_response)
+        deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_not_provided.metadata = {'url': '/complex/basic/notprovided'}  # type: ignore
+
+    get_not_provided.metadata = {"url": "/complex/basic/notprovided"}  # type: ignore

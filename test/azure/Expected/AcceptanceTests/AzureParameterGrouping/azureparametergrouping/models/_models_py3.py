@@ -22,17 +22,11 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'status': {'key': 'status', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
+        "status": {"key": "status", "type": "int"},
+        "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs
-    ):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -48,17 +42,11 @@ class FirstParameterGroup(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'header_one': {'key': 'header-one', 'type': 'str'},
-        'query_one': {'key': 'query-one', 'type': 'int'},
+        "header_one": {"key": "header-one", "type": "str"},
+        "query_one": {"key": "query-one", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        header_one: Optional[str] = None,
-        query_one: Optional[int] = 30,
-        **kwargs
-    ):
+    def __init__(self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs):
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = header_one
         self.query_one = query_one
@@ -74,17 +62,11 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
     """
 
     _attribute_map = {
-        'header_two': {'key': 'header-two', 'type': 'str'},
-        'query_two': {'key': 'query-two', 'type': 'int'},
+        "header_two": {"key": "header-two", "type": "str"},
+        "query_two": {"key": "query-two", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        header_two: Optional[str] = None,
-        query_two: Optional[int] = 30,
-        **kwargs
-    ):
+    def __init__(self, *, header_two: Optional[str] = None, query_two: Optional[int] = 30, **kwargs):
         super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
         self.header_two = header_two
         self.query_two = query_two
@@ -100,17 +82,11 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        'custom_header': {'key': 'customHeader', 'type': 'str'},
-        'query': {'key': 'query', 'type': 'int'},
+        "custom_header": {"key": "customHeader", "type": "str"},
+        "query": {"key": "query", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        custom_header: Optional[str] = None,
-        query: Optional[int] = 30,
-        **kwargs
-    ):
+    def __init__(self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs):
         super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
         self.custom_header = custom_header
         self.query = query
@@ -132,25 +108,19 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     """
 
     _validation = {
-        'path': {'required': True},
-        'body': {'required': True},
+        "path": {"required": True},
+        "body": {"required": True},
     }
 
     _attribute_map = {
-        'custom_header': {'key': 'customHeader', 'type': 'str'},
-        'query': {'key': 'query', 'type': 'int'},
-        'path': {'key': 'path', 'type': 'str'},
-        'body': {'key': 'body', 'type': 'int'},
+        "custom_header": {"key": "customHeader", "type": "str"},
+        "query": {"key": "query", "type": "int"},
+        "path": {"key": "path", "type": "str"},
+        "body": {"key": "body", "type": "int"},
     }
 
     def __init__(
-        self,
-        *,
-        path: str,
-        body: int,
-        custom_header: Optional[str] = None,
-        query: Optional[int] = 30,
-        **kwargs
+        self, *, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
     ):
         super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
         self.custom_header = custom_header

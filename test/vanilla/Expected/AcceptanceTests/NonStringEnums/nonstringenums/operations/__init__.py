@@ -10,6 +10,6 @@ from ._int_operations import IntOperations
 from ._float_operations import FloatOperations
 
 __all__ = [
-    'IntOperations',
-    'FloatOperations',
+    "IntOperations",
+    "FloatOperations",
 ]

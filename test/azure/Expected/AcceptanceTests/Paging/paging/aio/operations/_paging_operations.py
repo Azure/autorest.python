@@ -10,7 +10,13 @@ from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVa
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.paging import CallbackPagingMethod, NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
@@ -21,8 +27,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PagingOperations:
     """PagingOperations async operations.
@@ -46,31 +53,26 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_no_item_name_pages_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_no_item_name_pages_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_no_item_name_pages_initial.metadata['url']  # type: ignore
+        url = self._get_no_item_name_pages_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_no_item_name_pages_initial.metadata = {'url': '/paging/noitemname'}  # type: ignore
+
+    _get_no_item_name_pages_initial.metadata = {"url": "/paging/noitemname"}  # type: ignore
 
     @distributed_trace
-    def get_no_item_name_pages(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResultValue"]:
+    def get_no_item_name_pages(self, **kwargs) -> AsyncIterable["_models.ProductResultValue"]:
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -84,11 +86,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResultValue', pipeline_response)
 
-        _initial_request = self._get_no_item_name_pages_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResultValue", pipeline_response)
+
+        _initial_request = self._get_no_item_name_pages_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -100,37 +102,32 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_null_next_link_name_pages_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_null_next_link_name_pages_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_next_link_name_pages_initial.metadata['url']  # type: ignore
+        url = self._get_null_next_link_name_pages_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_null_next_link_name_pages_initial.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
+
+    _get_null_next_link_name_pages_initial.metadata = {"url": "/paging/nullnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_null_next_link_name_pages(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_null_next_link_name_pages(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -144,11 +141,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
 
-        _initial_request = self._get_null_next_link_name_pages_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResult", pipeline_response)
+
+        _initial_request = self._get_null_next_link_name_pages_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -162,36 +159,31 @@ class PagingOperations:
             client=self._client,
             continuation_token_location=None,
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_single_pages_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_single_pages_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_single_pages_initial.metadata['url']  # type: ignore
+        url = self._get_single_pages_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_single_pages_initial.metadata = {'url': '/paging/single'}  # type: ignore
+
+    _get_single_pages_initial.metadata = {"url": "/paging/single"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_single_pages(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -205,11 +197,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
 
-        _initial_request = self._get_single_pages_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResult", pipeline_response)
+
+        _initial_request = self._get_single_pages_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -221,38 +213,33 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _first_response_empty_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _first_response_empty_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._first_response_empty_initial.metadata['url']  # type: ignore
+        url = self._first_response_empty_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _first_response_empty_initial.metadata = {'url': '/paging/firstResponseEmpty/1'}  # type: ignore
+
+    _first_response_empty_initial.metadata = {"url": "/paging/firstResponseEmpty/1"}  # type: ignore
 
     @distributed_trace
-    def first_response_empty(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResultValue"]:
+    def first_response_empty(self, **kwargs) -> AsyncIterable["_models.ProductResultValue"]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -267,11 +254,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResultValue', pipeline_response)
 
-        _initial_request = self._first_response_empty_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResultValue", pipeline_response)
+
+        _initial_request = self._first_response_empty_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -283,7 +270,7 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
             _cls=kwargs.pop("cls", None),
             **kwargs,
@@ -304,7 +291,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -312,16 +299,19 @@ class PagingOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if client_request_id is not None:
-            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            header_parameters["client-request-id"] = self._serialize.header(
+                "client_request_id", client_request_id, "str"
+            )
         if _maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            header_parameters["maxresults"] = self._serialize.header("maxresults", _maxresults, "int")
         if _timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["timeout"] = self._serialize.header("timeout", _timeout, "int")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_initial.metadata = {'url': '/paging/multiple'}  # type: ignore
+
+    _get_multiple_pages_initial.metadata = {"url": "/paging/multiple"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -347,8 +337,9 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
+            return self._deserialize("ProductResult", pipeline_response)
 
         _initial_request = self._get_multiple_pages_initial(
             client_request_id=client_request_id,
@@ -365,66 +356,58 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_with_query_params_initial(
-        self,
-        required_query_parameter: int,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_with_query_params_initial(self, required_query_parameter: int, **kwargs) -> HttpRequest:
         query_constant = True
         accept = "application/json"
 
         # Construct URL
-        url = self._get_with_query_params_initial.metadata['url']  # type: ignore
+        url = self._get_with_query_params_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
-        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+        query_parameters["requiredQueryParameter"] = self._serialize.query(
+            "required_query_parameter", required_query_parameter, "int"
+        )
+        query_parameters["queryConstant"] = self._serialize.query("query_constant", query_constant, "bool")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_with_query_params_initial.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
 
-    def _get_with_query_params_next(
-        self,
-        next_link: str,
-        **kwargs
-    ) -> HttpRequest:
+    _get_with_query_params_initial.metadata = {"url": "/paging/multiple/getWithQueryParams"}  # type: ignore
+
+    def _get_with_query_params_next(self, next_link: str, **kwargs) -> HttpRequest:
         query_constant = True
         accept = "application/json"
 
         # Construct URL
-        url = self._get_with_query_params_next.metadata['url']  # type: ignore
+        url = self._get_with_query_params_next.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+        query_parameters["queryConstant"] = self._serialize.query("query_constant", query_constant, "bool")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_with_query_params_next.metadata = {'url': '/paging/multiple/nextOperationWithQueryParams'}  # type: ignore
+
+    _get_with_query_params_next.metadata = {"url": "/paging/multiple/nextOperationWithQueryParams"}  # type: ignore
 
     @distributed_trace
-    def get_with_query_params(
-        self,
-        required_query_parameter: int,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_with_query_params(self, required_query_parameter: int, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -442,8 +425,9 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
+            return self._deserialize("ProductResult", pipeline_response)
 
         _initial_request = self._get_with_query_params_initial(
             required_query_parameter=required_query_parameter,
@@ -456,18 +440,15 @@ class PagingOperations:
 
         if isinstance(paging_method, type):
             # in here if paging method is not initialized yet.
-            paging_method = paging_method(
-                next_request_callback=_next_request_callback,
-                **kwargs
-            )
+            paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -487,7 +468,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_odata_multiple_pages_initial.metadata['url']  # type: ignore
+        url = self._get_odata_multiple_pages_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -495,16 +476,19 @@ class PagingOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if client_request_id is not None:
-            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            header_parameters["client-request-id"] = self._serialize.header(
+                "client_request_id", client_request_id, "str"
+            )
         if _maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            header_parameters["maxresults"] = self._serialize.header("maxresults", _maxresults, "int")
         if _timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["timeout"] = self._serialize.header("timeout", _timeout, "int")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_odata_multiple_pages_initial.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
+
+    _get_odata_multiple_pages_initial.metadata = {"url": "/paging/multiple/odata"}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -530,8 +514,9 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('OdataProductResult', pipeline_response)
+            return self._deserialize("OdataProductResult", pipeline_response)
 
         _initial_request = self._get_odata_multiple_pages_initial(
             client_request_id=client_request_id,
@@ -548,9 +533,9 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='odata_next_link',
+            continuation_token_location="odata_next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -572,9 +557,9 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_with_offset_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_with_offset_initial.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'offset': self._serialize.url("offset", _offset, 'int'),
+            "offset": self._serialize.url("offset", _offset, "int"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -584,16 +569,19 @@ class PagingOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if client_request_id is not None:
-            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            header_parameters["client-request-id"] = self._serialize.header(
+                "client_request_id", client_request_id, "str"
+            )
         if _maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            header_parameters["maxresults"] = self._serialize.header("maxresults", _maxresults, "int")
         if _timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["timeout"] = self._serialize.header("timeout", _timeout, "int")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_with_offset_initial.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
+
+    _get_multiple_pages_with_offset_initial.metadata = {"url": "/paging/multiple/withpath/{offset}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -619,15 +607,16 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
+            return self._deserialize("ProductResult", pipeline_response)
 
         _offset = None
         if paging_get_multiple_pages_with_offset_options is not None:
             _offset = paging_get_multiple_pages_with_offset_options.offset
 
         path_format_arguments = {
-            'offset': self._serialize.url("offset", _offset, 'int'),
+            "offset": self._serialize.url("offset", _offset, "int"),
         }
 
         _initial_request = self._get_multiple_pages_with_offset_initial(
@@ -639,47 +628,39 @@ class PagingOperations:
 
         if isinstance(paging_method, type):
             # in here if paging method is not initialized yet.
-            paging_method = paging_method(
-                path_format_arguments=path_format_arguments,
-                **kwargs
-            )
+            paging_method = paging_method(path_format_arguments=path_format_arguments, **kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_multiple_pages_retry_first_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_multiple_pages_retry_first_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_retry_first_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_retry_first_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_retry_first_initial.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
+
+    _get_multiple_pages_retry_first_initial.metadata = {"url": "/paging/multiple/retryfirst"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_first(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_retry_first(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -694,11 +675,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
 
-        _initial_request = self._get_multiple_pages_retry_first_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResult", pipeline_response)
+
+        _initial_request = self._get_multiple_pages_retry_first_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -710,38 +691,33 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_multiple_pages_retry_second_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_multiple_pages_retry_second_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_retry_second_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_retry_second_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_retry_second_initial.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
+
+    _get_multiple_pages_retry_second_initial.metadata = {"url": "/paging/multiple/retrysecond"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_retry_second(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_retry_second(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -756,11 +732,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
 
-        _initial_request = self._get_multiple_pages_retry_second_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResult", pipeline_response)
+
+        _initial_request = self._get_multiple_pages_retry_second_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -772,38 +748,33 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_single_pages_failure_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_single_pages_failure_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_single_pages_failure_initial.metadata['url']  # type: ignore
+        url = self._get_single_pages_failure_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_single_pages_failure_initial.metadata = {'url': '/paging/single/failure'}  # type: ignore
+
+    _get_single_pages_failure_initial.metadata = {"url": "/paging/single/failure"}  # type: ignore
 
     @distributed_trace
-    def get_single_pages_failure(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_single_pages_failure(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -817,11 +788,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
 
-        _initial_request = self._get_single_pages_failure_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResult", pipeline_response)
+
+        _initial_request = self._get_single_pages_failure_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -833,38 +804,33 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_multiple_pages_failure_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_multiple_pages_failure_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_failure_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_failure_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_failure_initial.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
+
+    _get_multiple_pages_failure_initial.metadata = {"url": "/paging/multiple/failure"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_failure(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -878,11 +844,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
 
-        _initial_request = self._get_multiple_pages_failure_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResult", pipeline_response)
+
+        _initial_request = self._get_multiple_pages_failure_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -894,38 +860,33 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_multiple_pages_failure_uri_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_multiple_pages_failure_uri_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_failure_uri_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_failure_uri_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_failure_uri_initial.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
+
+    _get_multiple_pages_failure_uri_initial.metadata = {"url": "/paging/multiple/failureuri"}  # type: ignore
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(
-        self,
-        **kwargs
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_multiple_pages_failure_uri(self, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -939,11 +900,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
 
-        _initial_request = self._get_multiple_pages_failure_uri_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResult", pipeline_response)
+
+        _initial_request = self._get_multiple_pages_failure_uri_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -955,75 +916,65 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
-    def _get_multiple_pages_fragment_next_link_initial(
-        self,
-        api_version: str,
-        tenant: str,
-        **kwargs
-    ) -> HttpRequest:
+    def _get_multiple_pages_fragment_next_link_initial(self, api_version: str, tenant: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_next_link_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_fragment_next_link_initial.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'tenant': self._serialize.url("tenant", tenant, 'str'),
+            "tenant": self._serialize.url("tenant", tenant, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+        query_parameters["api_version"] = self._serialize.query("api_version", api_version, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_fragment_next_link_initial.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
+
+    _get_multiple_pages_fragment_next_link_initial.metadata = {"url": "/paging/multiple/fragment/{tenant}"}  # type: ignore
 
     def _get_multiple_pages_fragment_next_link_next(
-        self,
-        next_link: str,
-        api_version: str,
-        tenant: str,
-        **kwargs
+        self, next_link: str, api_version: str, tenant: str, **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_next_link_next.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_fragment_next_link_next.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
-            'tenant': self._serialize.url("tenant", tenant, 'str'),
+            "nextLink": self._serialize.url("next_link", next_link, "str", skip_quote=True),
+            "tenant": self._serialize.url("tenant", tenant, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+        query_parameters["api_version"] = self._serialize.query("api_version", api_version, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_fragment_next_link_next.metadata = {'url': '/paging/multiple/fragment/{tenant}/{nextLink}'}  # type: ignore
+
+    _get_multiple_pages_fragment_next_link_next.metadata = {"url": "/paging/multiple/fragment/{tenant}/{nextLink}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
-        self,
-        api_version: str,
-        tenant: str,
-        **kwargs
+        self, api_version: str, tenant: str, **kwargs
     ) -> AsyncIterable["_models.OdataProductResult"]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
@@ -1042,8 +993,9 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('OdataProductResult', pipeline_response)
+            return self._deserialize("OdataProductResult", pipeline_response)
 
         _initial_request = self._get_multiple_pages_fragment_next_link_initial(
             api_version=api_version,
@@ -1059,26 +1011,21 @@ class PagingOperations:
 
         if isinstance(paging_method, type):
             # in here if paging method is not initialized yet.
-            paging_method = paging_method(
-                next_request_callback=_next_request_callback,
-                **kwargs
-            )
+            paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='odata_next_link',
+            continuation_token_location="odata_next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
 
     def _get_multiple_pages_fragment_with_grouping_next_link_initial(
-        self,
-        custom_parameter_group: "_models.CustomParameterGroup",
-        **kwargs
+        self, custom_parameter_group: "_models.CustomParameterGroup", **kwargs
     ) -> HttpRequest:
 
         _api_version = None
@@ -1089,29 +1036,27 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_initial.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'tenant': self._serialize.url("tenant", _tenant, 'str'),
+            "tenant": self._serialize.url("tenant", _tenant, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+        query_parameters["api_version"] = self._serialize.query("api_version", _api_version, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_fragment_with_grouping_next_link_initial.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
+
+    _get_multiple_pages_fragment_with_grouping_next_link_initial.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
 
     def _get_multiple_pages_fragment_with_grouping_next_link_next(
-        self,
-        next_link: str,
-        custom_parameter_group: "_models.CustomParameterGroup",
-        **kwargs
+        self, next_link: str, custom_parameter_group: "_models.CustomParameterGroup", **kwargs
     ) -> HttpRequest:
 
         _api_version = None
@@ -1122,30 +1067,29 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_with_grouping_next_link_next.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_next.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
-            'tenant': self._serialize.url("tenant", _tenant, 'str'),
+            "nextLink": self._serialize.url("next_link", next_link, "str", skip_quote=True),
+            "tenant": self._serialize.url("tenant", _tenant, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+        query_parameters["api_version"] = self._serialize.query("api_version", _api_version, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_multiple_pages_fragment_with_grouping_next_link_next.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'}  # type: ignore
+
+    _get_multiple_pages_fragment_with_grouping_next_link_next.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
-        self,
-        custom_parameter_group: "_models.CustomParameterGroup",
-        **kwargs
+        self, custom_parameter_group: "_models.CustomParameterGroup", **kwargs
     ) -> AsyncIterable["_models.OdataProductResult"]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
@@ -1162,8 +1106,9 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('OdataProductResult', pipeline_response)
+            return self._deserialize("OdataProductResult", pipeline_response)
 
         _initial_request = self._get_multiple_pages_fragment_with_grouping_next_link_initial(
             custom_parameter_group=custom_parameter_group,
@@ -1177,18 +1122,15 @@ class PagingOperations:
 
         if isinstance(paging_method, type):
             # in here if paging method is not initialized yet.
-            paging_method = paging_method(
-                next_request_callback=_next_request_callback,
-                **kwargs
-            )
+            paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)
 
         return AsyncItemPaged(
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='odata_next_link',
+            continuation_token_location="odata_next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -1199,11 +1141,9 @@ class PagingOperations:
         paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
     ) -> "_models.ProductResult":
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _maxresults = None
         _timeout = None
@@ -1213,7 +1153,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_lro_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_lro_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1221,12 +1161,14 @@ class PagingOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         if client_request_id is not None:
-            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+            header_parameters["client-request-id"] = self._serialize.header(
+                "client_request_id", client_request_id, "str"
+            )
         if _maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            header_parameters["maxresults"] = self._serialize.header("maxresults", _maxresults, "int")
         if _timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+            header_parameters["timeout"] = self._serialize.header("timeout", _timeout, "int")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1236,13 +1178,14 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('ProductResult', pipeline_response)
+        deserialized = self._deserialize("ProductResult", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+
+    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
@@ -1259,8 +1202,8 @@ class PagingOperations:
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
+        :keyword polling: Pass in True if you'd like the AsyncLROBasePolling polling method,
+         False for no polling, or your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
@@ -1274,30 +1217,27 @@ class PagingOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-        polling = kwargs.pop('polling', False)  # type: Union[bool, AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
-        lro_delay = kwargs.pop(
-            'polling_interval',
-            self._config.polling_interval
-        )
-        cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+        polling = kwargs.pop("polling", False)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._get_multiple_pages_lro_initial(
                 client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-                cls=lambda x,y,z: x,
-                **kwargs
+                cls=lambda x, y, z: x,
+                **kwargs,
             )
 
-        kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
+            return self._deserialize("ProductResult", pipeline_response)
 
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
-            
+
             paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
             if isinstance(paging_method, type):
@@ -1308,51 +1248,52 @@ class PagingOperations:
                 paging_method=paging_method,
                 deserialize_output=deserialize_output,
                 client=self._client,
-                continuation_token_location='next_link',
+                continuation_token_location="next_link",
                 initial_state=pipeline_response,
-                item_name='values',
+                item_name="values",
                 _cls=kwargs.pop("cls", None),
                 **kwargs,
             )
 
-        if polling is True: polling_method = AsyncLROBasePolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
-        else: polling_method = polling
+        if polling is True:
+            polling_method = AsyncLROBasePolling(lro_delay, **kwargs)
+        elif polling is False:
+            polling_method = AsyncNoPolling()
+        else:
+            polling_method = polling
         if cont_token:
             return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
-                deserialization_callback=get_long_running_output
+                deserialization_callback=get_long_running_output,
             )
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
-    def _get_paging_model_with_item_name_with_xms_client_name_initial(
-        self,
-        **kwargs
-    ) -> HttpRequest:
+    begin_get_multiple_pages_lro.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
+
+    def _get_paging_model_with_item_name_with_xms_client_name_initial(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_paging_model_with_item_name_with_xms_client_name_initial.metadata['url']  # type: ignore
+        url = self._get_paging_model_with_item_name_with_xms_client_name_initial.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_paging_model_with_item_name_with_xms_client_name_initial.metadata = {'url': '/paging/itemNameWithXMSClientName'}  # type: ignore
+
+    _get_paging_model_with_item_name_with_xms_client_name_initial.metadata = {"url": "/paging/itemNameWithXMSClientName"}  # type: ignore
 
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(
-        self,
-        **kwargs
+        self, **kwargs
     ) -> AsyncIterable["_models.ProductResultValueWithXMSClientName"]:
         """A paging operation that returns a paging model whose item name is is overriden by x-ms-client-
         name 'indexes'.
@@ -1368,11 +1309,11 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
 
-        _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial(
-        )
+        def deserialize_output(pipeline_response):
+            return self._deserialize("ProductResultValueWithXMSClientName", pipeline_response)
+
+        _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial()
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
@@ -1384,9 +1325,9 @@ class PagingOperations:
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='indexes',
+            item_name="indexes",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

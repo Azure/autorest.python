@@ -9,5 +9,5 @@
 from ._array_operations import ArrayOperations
 
 __all__ = [
-    'ArrayOperations',
+    "ArrayOperations",
 ]

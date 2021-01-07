@@ -42,7 +42,7 @@ class AutoRestUrlTestService(object):
         **kwargs: Any
     ) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -50,12 +50,9 @@ class AutoRestUrlTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.paths = PathsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.queries = QueriesOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.path_items = PathItemsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()

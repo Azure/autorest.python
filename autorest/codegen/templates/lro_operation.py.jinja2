@@ -13,7 +13,7 @@ response_headers = {
 }
 {% endmacro %}
 {% macro operation_docstring(async_mode) %}
-{{ helper.operation_docstring_helper(operation, async_mode) }}
+{{ helper.operation_docstring_helper(code_model, operation, async_mode) }}
 {{ return_docstring(async_mode) }}
 :raises ~azure.core.exceptions.HttpResponseError:
 """{% endmacro %}

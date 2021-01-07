@@ -99,6 +99,9 @@ class PagingOperation(Operation):
             + f"{log_name}:{rest_api_name} in model {response_schema.name}"
         )
 
+    def _get_paging_extension(self, extension_name):
+        return self.yaml_data["extensions"][extension_name]
+
     @property
     def item_name(self) -> str:
         if self._item_name is None:
@@ -128,7 +131,7 @@ class PagingOperation(Operation):
 
     def get_pager_path(self, async_mode: bool) -> str:
         extension_name = "pager-async" if async_mode else "pager-sync"
-        return self.yaml_data["extensions"][extension_name]
+        return self._get_paging_extension(extension_name)
 
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]

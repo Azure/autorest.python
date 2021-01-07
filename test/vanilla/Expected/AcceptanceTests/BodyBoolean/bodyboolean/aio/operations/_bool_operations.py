@@ -8,15 +8,22 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class BoolOperations:
     """BoolOperations async operations.
@@ -41,10 +48,7 @@ class BoolOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_true(
-        self,
-        **kwargs
-    ) -> bool:
+    async def get_true(self, **kwargs) -> bool:
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,22 +56,20 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_true.metadata['url']  # type: ignore
+        url = self.get_true.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -78,19 +80,17 @@ class BoolOperations:
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_true.metadata = {'url': '/bool/true'}  # type: ignore
+
+    get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def put_true(
-        self,
-        **kwargs
-    ) -> None:
+    async def put_true(self, **kwargs) -> None:
         """Set Boolean value true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,29 +98,27 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         bool_body = True
         accept = "application/json"
 
         # Construct URL
-        url = self.put_true.metadata['url']  # type: ignore
+        url = self.put_true.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(bool_body, 'bool')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(bool_body, "bool")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -133,13 +131,10 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_true.metadata = {'url': '/bool/true'}  # type: ignore
+    put_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def get_false(
-        self,
-        **kwargs
-    ) -> bool:
+    async def get_false(self, **kwargs) -> bool:
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -147,22 +142,20 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_false.metadata['url']  # type: ignore
+        url = self.get_false.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -173,19 +166,17 @@ class BoolOperations:
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_false.metadata = {'url': '/bool/false'}  # type: ignore
+
+    get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def put_false(
-        self,
-        **kwargs
-    ) -> None:
+    async def put_false(self, **kwargs) -> None:
         """Set Boolean value false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -193,29 +184,27 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         content_type = kwargs.pop("content_type", "application/json")
         bool_body = False
         accept = "application/json"
 
         # Construct URL
-        url = self.put_false.metadata['url']  # type: ignore
+        url = self.put_false.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(bool_body, 'bool')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(bool_body, "bool")
+        body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -228,13 +217,10 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_false.metadata = {'url': '/bool/false'}  # type: ignore
+    put_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(
-        self,
-        **kwargs
-    ) -> Optional[bool]:
+    async def get_null(self, **kwargs) -> Optional[bool]:
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -242,22 +228,20 @@ class BoolOperations:
         :rtype: bool or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[bool]]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[bool]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_null.metadata['url']  # type: ignore
+        url = self.get_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -268,19 +252,17 @@ class BoolOperations:
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/bool/null'}  # type: ignore
+
+    get_null.metadata = {"url": "/bool/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(
-        self,
-        **kwargs
-    ) -> bool:
+    async def get_invalid(self, **kwargs) -> bool:
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -288,22 +270,20 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid.metadata['url']  # type: ignore
+        url = self.get_invalid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -314,10 +294,11 @@ class BoolOperations:
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('bool', pipeline_response)
+        deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/bool/invalid'}  # type: ignore
+
+    get_invalid.metadata = {"url": "/bool/invalid"}  # type: ignore

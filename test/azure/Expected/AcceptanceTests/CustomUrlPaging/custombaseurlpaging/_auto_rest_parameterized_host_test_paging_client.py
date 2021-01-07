@@ -35,7 +35,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        base_url = 'http://{accountName}{host}'
+        base_url = "http://{accountName}{host}"
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(host, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -44,8 +44,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-        self.paging = PagingOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+        self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None

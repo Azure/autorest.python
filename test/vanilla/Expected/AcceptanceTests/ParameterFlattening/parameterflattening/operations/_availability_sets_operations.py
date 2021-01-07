@@ -8,7 +8,13 @@
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -19,8 +25,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
-    T = TypeVar('T')
+    T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
 
 class AvailabilitySetsOperations(object):
     """AvailabilitySetsOperations operations.
@@ -66,20 +73,18 @@ class AvailabilitySetsOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.update.metadata['url']  # type: ignore
+        url = self.update.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'availabilitySetName': self._serialize.url("avset", avset, 'str', max_length=80, min_length=0),
+            "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
+            "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -88,11 +93,11 @@ class AvailabilitySetsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_tags, 'AvailabilitySetUpdateParameters')
-        body_content_kwargs['content'] = body_content
+        body_content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
+        body_content_kwargs["content"] = body_content
         request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -104,4 +109,4 @@ class AvailabilitySetsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}  # type: ignore
+    update.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}  # type: ignore

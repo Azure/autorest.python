@@ -54,14 +54,10 @@ class AutoRestAzureSpecialParametersTestClient(object):
     """
 
     def __init__(
-        self,
-        credential: "AsyncTokenCredential",
-        subscription_id: str,
-        base_url: Optional[str] = None,
-        **kwargs: Any
+        self, credential: "AsyncTokenCredential", subscription_id: str, base_url: Optional[str] = None, **kwargs: Any
     ) -> None:
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -70,21 +66,25 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self._deserialize = Deserializer(client_models)
 
         self.xms_client_request_id = XMsClientRequestIdOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.subscription_in_method = SubscriptionInMethodOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.api_version_default = ApiVersionDefaultOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.api_version_local = ApiVersionLocalOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.skip_url_encoding = SkipUrlEncodingOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.odata = OdataOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()

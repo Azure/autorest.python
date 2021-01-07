@@ -64,7 +64,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
     ):
         # type: (...) -> None
         if not base_url:
-            base_url = 'http://localhost:3000'
+            base_url = "http://localhost:3000"
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -73,21 +73,25 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self._deserialize = Deserializer(client_models)
 
         self.xms_client_request_id = XMsClientRequestIdOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.subscription_in_method = SubscriptionInMethodOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.api_version_default = ApiVersionDefaultOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.api_version_local = ApiVersionLocalOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.skip_url_encoding = SkipUrlEncodingOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.odata = OdataOperations(
-            self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize)
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
         # type: () -> None

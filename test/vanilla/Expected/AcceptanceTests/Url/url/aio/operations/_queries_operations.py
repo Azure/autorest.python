@@ -9,15 +9,22 @@ import datetime
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+
 
 class QueriesOperations:
     """QueriesOperations async operations.
@@ -42,10 +49,7 @@ class QueriesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_boolean_true(self, **kwargs) -> None:
         """Get true Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,24 +57,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         bool_query = True
         accept = "application/json"
 
         # Construct URL
-        url = self.get_boolean_true.metadata['url']  # type: ignore
+        url = self.get_boolean_true.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
+        query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -84,13 +86,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_true.metadata = {'url': '/queries/bool/true'}  # type: ignore
+    get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_false(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_boolean_false(self, **kwargs) -> None:
         """Get false Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,24 +97,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         bool_query = False
         accept = "application/json"
 
         # Construct URL
-        url = self.get_boolean_false.metadata['url']  # type: ignore
+        url = self.get_boolean_false.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
+        query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -129,14 +126,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_false.metadata = {'url': '/queries/bool/false'}  # type: ignore
+    get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_null(
-        self,
-        bool_query: Optional[bool] = None,
-        **kwargs
-    ) -> None:
+    async def get_boolean_null(self, bool_query: Optional[bool] = None, **kwargs) -> None:
         """Get null Boolean value on query (query string should be absent).
 
         :param bool_query: null boolean value.
@@ -146,24 +139,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_boolean_null.metadata['url']  # type: ignore
+        url = self.get_boolean_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if bool_query is not None:
-            query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
+            query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -177,13 +168,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_null.metadata = {'url': '/queries/bool/null'}  # type: ignore
+    get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_one_million(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_int_one_million(self, **kwargs) -> None:
         """Get '1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -191,24 +179,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         int_query = 1000000
         accept = "application/json"
 
         # Construct URL
-        url = self.get_int_one_million.metadata['url']  # type: ignore
+        url = self.get_int_one_million.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'int')
+        query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -222,13 +208,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_one_million.metadata = {'url': '/queries/int/1000000'}  # type: ignore
+    get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_negative_one_million(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_int_negative_one_million(self, **kwargs) -> None:
         """Get '-1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -236,24 +219,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         int_query = -1000000
         accept = "application/json"
 
         # Construct URL
-        url = self.get_int_negative_one_million.metadata['url']  # type: ignore
+        url = self.get_int_negative_one_million.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'int')
+        query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -267,14 +248,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}  # type: ignore
+    get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_null(
-        self,
-        int_query: Optional[int] = None,
-        **kwargs
-    ) -> None:
+    async def get_int_null(self, int_query: Optional[int] = None, **kwargs) -> None:
         """Get null integer value (no query parameter).
 
         :param int_query: null integer value.
@@ -284,24 +261,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_int_null.metadata['url']  # type: ignore
+        url = self.get_int_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if int_query is not None:
-            query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'int')
+            query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -315,13 +290,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_null.metadata = {'url': '/queries/int/null'}  # type: ignore
+    get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_ten_billion(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_ten_billion(self, **kwargs) -> None:
         """Get '10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -329,24 +301,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         long_query = 10000000000
         accept = "application/json"
 
         # Construct URL
-        url = self.get_ten_billion.metadata['url']  # type: ignore
+        url = self.get_ten_billion.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'long')
+        query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -360,13 +330,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_ten_billion.metadata = {'url': '/queries/long/10000000000'}  # type: ignore
+    get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_negative_ten_billion(
-        self,
-        **kwargs
-    ) -> None:
+    async def get_negative_ten_billion(self, **kwargs) -> None:
         """Get '-10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -374,24 +341,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         long_query = -10000000000
         accept = "application/json"
 
         # Construct URL
-        url = self.get_negative_ten_billion.metadata['url']  # type: ignore
+        url = self.get_negative_ten_billion.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'long')
+        query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -405,14 +370,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}  # type: ignore
+    get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_long_null(
-        self,
-        long_query: Optional[int] = None,
-        **kwargs
-    ) -> None:
+    async def get_long_null(self, long_query: Optional[int] = None, **kwargs) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value.
@@ -422,24 +383,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.get_long_null.metadata['url']  # type: ignore
+        url = self.get_long_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if long_query is not None:
-            query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'long')
+            query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -453,13 +412,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_long_null.metadata = {'url': '/queries/long/null'}  # type: ignore
+    get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_positive(
-        self,
-        **kwargs
-    ) -> None:
+    async def float_scientific_positive(self, **kwargs) -> None:
         """Get '1.034E+20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -467,24 +423,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         float_query = 103400000000000000000
         accept = "application/json"
 
         # Construct URL
-        url = self.float_scientific_positive.metadata['url']  # type: ignore
+        url = self.float_scientific_positive.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
+        query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -498,13 +452,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}  # type: ignore
+    float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_negative(
-        self,
-        **kwargs
-    ) -> None:
+    async def float_scientific_negative(self, **kwargs) -> None:
         """Get '-1.034E-20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -512,24 +463,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         float_query = -1.034e-20
         accept = "application/json"
 
         # Construct URL
-        url = self.float_scientific_negative.metadata['url']  # type: ignore
+        url = self.float_scientific_negative.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
+        query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -543,14 +492,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}  # type: ignore
+    float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
 
     @distributed_trace_async
-    async def float_null(
-        self,
-        float_query: Optional[float] = None,
-        **kwargs
-    ) -> None:
+    async def float_null(self, float_query: Optional[float] = None, **kwargs) -> None:
         """Get null numeric value (no query parameter).
 
         :param float_query: null numeric value.
@@ -560,24 +505,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.float_null.metadata['url']  # type: ignore
+        url = self.float_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if float_query is not None:
-            query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
+            query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -591,13 +534,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_null.metadata = {'url': '/queries/float/null'}  # type: ignore
+    float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_positive(
-        self,
-        **kwargs
-    ) -> None:
+    async def double_decimal_positive(self, **kwargs) -> None:
         """Get '9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -605,24 +545,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         double_query = 9999999.999
         accept = "application/json"
 
         # Construct URL
-        url = self.double_decimal_positive.metadata['url']  # type: ignore
+        url = self.double_decimal_positive.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
+        query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -636,13 +574,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}  # type: ignore
+    double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_negative(
-        self,
-        **kwargs
-    ) -> None:
+    async def double_decimal_negative(self, **kwargs) -> None:
         """Get '-9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -650,24 +585,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         double_query = -9999999.999
         accept = "application/json"
 
         # Construct URL
-        url = self.double_decimal_negative.metadata['url']  # type: ignore
+        url = self.double_decimal_negative.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
+        query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -681,14 +614,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}  # type: ignore
+    double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
 
     @distributed_trace_async
-    async def double_null(
-        self,
-        double_query: Optional[float] = None,
-        **kwargs
-    ) -> None:
+    async def double_null(self, double_query: Optional[float] = None, **kwargs) -> None:
         """Get null numeric value (no query parameter).
 
         :param double_query: null numeric value.
@@ -698,24 +627,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.double_null.metadata['url']  # type: ignore
+        url = self.double_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if double_query is not None:
-            query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
+            query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -729,13 +656,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_null.metadata = {'url': '/queries/double/null'}  # type: ignore
+    double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
     @distributed_trace_async
-    async def string_unicode(
-        self,
-        **kwargs
-    ) -> None:
+    async def string_unicode(self, **kwargs) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -743,24 +667,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
         accept = "application/json"
 
         # Construct URL
-        url = self.string_unicode.metadata['url']  # type: ignore
+        url = self.string_unicode.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
+        query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -774,13 +696,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_unicode.metadata = {'url': '/queries/string/unicode/'}  # type: ignore
+    string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
     @distributed_trace_async
-    async def string_url_encoded(
-        self,
-        **kwargs
-    ) -> None:
+    async def string_url_encoded(self, **kwargs) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -788,24 +707,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         string_query = "begin!*'();:@ &=+$,/?#[]end"
         accept = "application/json"
 
         # Construct URL
-        url = self.string_url_encoded.metadata['url']  # type: ignore
+        url = self.string_url_encoded.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
+        query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -819,13 +736,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}  # type: ignore
+    string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
     @distributed_trace_async
-    async def string_empty(
-        self,
-        **kwargs
-    ) -> None:
+    async def string_empty(self, **kwargs) -> None:
         """Get ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -833,24 +747,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         string_query = ""
         accept = "application/json"
 
         # Construct URL
-        url = self.string_empty.metadata['url']  # type: ignore
+        url = self.string_empty.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
+        query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -864,14 +776,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_empty.metadata = {'url': '/queries/string/empty'}  # type: ignore
+    string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def string_null(
-        self,
-        string_query: Optional[str] = None,
-        **kwargs
-    ) -> None:
+    async def string_null(self, string_query: Optional[str] = None, **kwargs) -> None:
         """Get null (no query parameter in url).
 
         :param string_query: null string value.
@@ -881,24 +789,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.string_null.metadata['url']  # type: ignore
+        url = self.string_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if string_query is not None:
-            query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
+            query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -912,14 +818,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_null.metadata = {'url': '/queries/string/null'}  # type: ignore
+    string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
 
     @distributed_trace_async
-    async def enum_valid(
-        self,
-        enum_query: Optional[Union[str, "_models.UriColor"]] = None,
-        **kwargs
-    ) -> None:
+    async def enum_valid(self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> None:
         """Get using uri with query parameter 'green color'.
 
         :param enum_query: 'green color' enum value.
@@ -929,24 +831,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.enum_valid.metadata['url']  # type: ignore
+        url = self.enum_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if enum_query is not None:
-            query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'str')
+            query_parameters["enumQuery"] = self._serialize.query("enum_query", enum_query, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -960,14 +860,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_valid.metadata = {'url': '/queries/enum/green%20color'}  # type: ignore
+    enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
 
     @distributed_trace_async
-    async def enum_null(
-        self,
-        enum_query: Optional[Union[str, "_models.UriColor"]] = None,
-        **kwargs
-    ) -> None:
+    async def enum_null(self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> None:
         """Get null (no query parameter in url).
 
         :param enum_query: null string value.
@@ -977,24 +873,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.enum_null.metadata['url']  # type: ignore
+        url = self.enum_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if enum_query is not None:
-            query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'str')
+            query_parameters["enumQuery"] = self._serialize.query("enum_query", enum_query, "str")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1008,14 +902,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_null.metadata = {'url': '/queries/enum/null'}  # type: ignore
+    enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_multi_byte(
-        self,
-        byte_query: Optional[bytearray] = None,
-        **kwargs
-    ) -> None:
+    async def byte_multi_byte(self, byte_query: Optional[bytearray] = None, **kwargs) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -1025,24 +915,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.byte_multi_byte.metadata['url']  # type: ignore
+        url = self.byte_multi_byte.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if byte_query is not None:
-            query_parameters['byteQuery'] = self._serialize.query("byte_query", byte_query, 'bytearray')
+            query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1056,13 +944,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}  # type: ignore
+    byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_empty(
-        self,
-        **kwargs
-    ) -> None:
+    async def byte_empty(self, **kwargs) -> None:
         """Get '' as byte array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1070,24 +955,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         byte_query = bytearray("", encoding="utf-8")
         accept = "application/json"
 
         # Construct URL
-        url = self.byte_empty.metadata['url']  # type: ignore
+        url = self.byte_empty.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['byteQuery'] = self._serialize.query("byte_query", byte_query, 'bytearray')
+        query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1101,14 +984,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_empty.metadata = {'url': '/queries/byte/empty'}  # type: ignore
+    byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_null(
-        self,
-        byte_query: Optional[bytearray] = None,
-        **kwargs
-    ) -> None:
+    async def byte_null(self, byte_query: Optional[bytearray] = None, **kwargs) -> None:
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri).
@@ -1118,24 +997,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.byte_null.metadata['url']  # type: ignore
+        url = self.byte_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if byte_query is not None:
-            query_parameters['byteQuery'] = self._serialize.query("byte_query", byte_query, 'bytearray')
+            query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1149,13 +1026,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {'url': '/queries/byte/null'}  # type: ignore
+    byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
     @distributed_trace_async
-    async def date_valid(
-        self,
-        **kwargs
-    ) -> None:
+    async def date_valid(self, **kwargs) -> None:
         """Get '2012-01-01' as date.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1163,24 +1037,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         date_query = "2012-01-01"
         accept = "application/json"
 
         # Construct URL
-        url = self.date_valid.metadata['url']  # type: ignore
+        url = self.date_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['dateQuery'] = self._serialize.query("date_query", date_query, 'date')
+        query_parameters["dateQuery"] = self._serialize.query("date_query", date_query, "date")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1194,14 +1066,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_valid.metadata = {'url': '/queries/date/2012-01-01'}  # type: ignore
+    date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
 
     @distributed_trace_async
-    async def date_null(
-        self,
-        date_query: Optional[datetime.date] = None,
-        **kwargs
-    ) -> None:
+    async def date_null(self, date_query: Optional[datetime.date] = None, **kwargs) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
         :param date_query: null as date (no query parameters in uri).
@@ -1211,24 +1079,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.date_null.metadata['url']  # type: ignore
+        url = self.date_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if date_query is not None:
-            query_parameters['dateQuery'] = self._serialize.query("date_query", date_query, 'date')
+            query_parameters["dateQuery"] = self._serialize.query("date_query", date_query, "date")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1242,13 +1108,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_null.metadata = {'url': '/queries/date/null'}  # type: ignore
+    date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_valid(
-        self,
-        **kwargs
-    ) -> None:
+    async def date_time_valid(self, **kwargs) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1256,24 +1119,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         date_time_query = "2012-01-01T01:01:01Z"
         accept = "application/json"
 
         # Construct URL
-        url = self.date_time_valid.metadata['url']  # type: ignore
+        url = self.date_time_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['dateTimeQuery'] = self._serialize.query("date_time_query", date_time_query, 'iso-8601')
+        query_parameters["dateTimeQuery"] = self._serialize.query("date_time_query", date_time_query, "iso-8601")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1287,14 +1148,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}  # type: ignore
+    date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_null(
-        self,
-        date_time_query: Optional[datetime.datetime] = None,
-        **kwargs
-    ) -> None:
+    async def date_time_null(self, date_time_query: Optional[datetime.datetime] = None, **kwargs) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
         :param date_time_query: null as date-time (no query parameters).
@@ -1304,24 +1161,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.date_time_null.metadata['url']  # type: ignore
+        url = self.date_time_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if date_time_query is not None:
-            query_parameters['dateTimeQuery'] = self._serialize.query("date_time_query", date_time_query, 'iso-8601')
+            query_parameters["dateTimeQuery"] = self._serialize.query("date_time_query", date_time_query, "iso-8601")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1335,14 +1190,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_null.metadata = {'url': '/queries/datetime/null'}  # type: ignore
+    date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_valid(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_csv_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-
         array format.
 
@@ -1354,24 +1205,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_csv_valid.metadata['url']  # type: ignore
+        url = self.array_string_csv_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1385,14 +1234,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}  # type: ignore
+    array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_null(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_csv_null(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format.
@@ -1402,24 +1247,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_csv_null.metadata['url']  # type: ignore
+        url = self.array_string_csv_null.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1433,14 +1276,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}  # type: ignore
+    array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_empty(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_csv_empty(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array format.
@@ -1450,24 +1289,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_csv_empty.metadata['url']  # type: ignore
+        url = self.array_string_csv_empty.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1481,14 +1318,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}  # type: ignore
+    array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_no_collection_format_empty(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_no_collection_format_empty(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
 
@@ -1499,24 +1332,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_no_collection_format_empty.metadata['url']  # type: ignore
+        url = self.array_string_no_collection_format_empty.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
+            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1530,14 +1361,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_no_collection_format_empty.metadata = {'url': '/queries/array/none/string/empty'}  # type: ignore
+    array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_ssv_valid(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_ssv_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-
         array format.
 
@@ -1549,24 +1376,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_ssv_valid.metadata['url']  # type: ignore
+        url = self.array_string_ssv_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=' ')
+            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=" ")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1580,14 +1405,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}  # type: ignore
+    array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_tsv_valid(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_tsv_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-
         array format.
 
@@ -1599,24 +1420,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_tsv_valid.metadata['url']  # type: ignore
+        url = self.array_string_tsv_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div='	')
+            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div="	")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1630,14 +1449,10 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}  # type: ignore
+    array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def array_string_pipes_valid(
-        self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+    async def array_string_pipes_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
 
@@ -1649,24 +1464,22 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_pipes_valid.metadata['url']  # type: ignore
+        url = self.array_string_pipes_valid.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
-            query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div='|')
+            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div="|")
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1680,4 +1493,4 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}  # type: ignore
+    array_string_pipes_valid.metadata = {"url": "/queries/array/pipes/string/valid"}  # type: ignore

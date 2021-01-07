@@ -9,6 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
+
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
@@ -27,8 +28,7 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
 
 
 class ContentType(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Content type for upload
-    """
+    """Content type for upload"""
 
     #: Content Type 'application/pdf'.
     APPLICATION_PDF = "application/pdf"

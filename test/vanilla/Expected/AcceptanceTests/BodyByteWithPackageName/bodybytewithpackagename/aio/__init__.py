@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._class_name import ClassName
-__all__ = ['ClassName']
+
+__all__ = ["ClassName"]

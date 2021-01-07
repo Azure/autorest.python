@@ -7,4 +7,5 @@
 # --------------------------------------------------------------------------
 
 from ._storage_management_client import StorageManagementClient
-__all__ = ['StorageManagementClient']
+
+__all__ = ["StorageManagementClient"]

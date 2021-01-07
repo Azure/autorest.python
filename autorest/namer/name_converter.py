@@ -95,6 +95,31 @@ class NameConverter:
                 "x-python-custom-poller-async", "azure.core.polling.AsyncLROPoller"
             )
 
+            # polling methods
+            sync_polling_method_directive = "x-python-custom-default-polling-method-sync"
+            operation["extensions"]["default-polling-method-sync"] = {
+                "azure-arm": operation_extensions.get(
+                    sync_polling_method_directive, "azure.mgmt.core.polling.arm_polling.ARMPolling"
+                ),
+                "data-plane": operation_extensions.get(
+                    sync_polling_method_directive, "azure.core.polling.base_polling.LROBasePolling"
+                ),
+            }
+            async_polling_method_directive = "x-python-custom-default-polling-method-async"
+            operation["extensions"]["default-polling-method-async"] = {
+                "azure-arm": operation_extensions.get(
+                    async_polling_method_directive, "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
+                ),
+                "data-plane": operation_extensions.get(
+                    async_polling_method_directive, "azure.core.polling.async_base_polling.AsyncLROBasePolling"
+                ),
+            }
+
+            operation["extensions"]["default-no-polling-method-sync"] = "azure.core.polling.NoPolling"
+            operation["extensions"]["default-no-polling-method-async"] = "azure.core.polling.AsyncNoPolling"
+            operation["extensions"]["base-polling-method-sync"] = "azure.core.polling.PollingMethod"
+            operation["extensions"]["base-polling-method-async"] = "azure.core.polling.AsyncPollingMethod"
+
     @staticmethod
     def _convert_schemas(schemas: Dict[str, Any]) -> None:
         for enum in schemas.get("sealedChoices", []) + schemas.get("choices", []):

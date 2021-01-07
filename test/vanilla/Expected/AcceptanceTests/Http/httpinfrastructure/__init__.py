@@ -10,10 +10,11 @@ from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastruct
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestHttpInfrastructureTestService']
+__all__ = ["AutoRestHttpInfrastructureTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

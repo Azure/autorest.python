@@ -9,7 +9,13 @@ import functools
 from typing import TYPE_CHECKING
 import warnings
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    map_error,
+)
 from azure.core.paging import CallbackPagingMethod, ItemPaged, NextLinkPagingMethod
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
@@ -21,8 +27,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
 
-    T = TypeVar('T')
+    T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
 
 class PagingOperations(object):
     """PagingOperations operations.
@@ -55,10 +62,10 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_initial.metadata['url']  # type: ignore
+        url = self._get_pages_partial_url_initial.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -67,11 +74,12 @@ class PagingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_pages_partial_url_initial.metadata = {'url': '/paging/customurl/partialnextlink'}  # type: ignore
+
+    _get_pages_partial_url_initial.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
     def get_pages_partial_url(
@@ -96,12 +104,13 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
+            return self._deserialize("ProductResult", pipeline_response)
 
         path_format_arguments = {
-            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
 
         _initial_request = self._get_pages_partial_url_initial(
@@ -112,18 +121,15 @@ class PagingOperations(object):
 
         if isinstance(paging_method, type):
             # in here if paging method is not initialized yet.
-            paging_method = paging_method(
-                path_format_arguments=path_format_arguments,
-                **kwargs
-            )
+            paging_method = paging_method(path_format_arguments=path_format_arguments, **kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )
@@ -137,10 +143,10 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_operation_initial.metadata['url']  # type: ignore
+        url = self._get_pages_partial_url_operation_initial.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -149,11 +155,12 @@ class PagingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_pages_partial_url_operation_initial.metadata = {'url': '/paging/customurl/partialnextlinkop'}  # type: ignore
+
+    _get_pages_partial_url_operation_initial.metadata = {"url": "/paging/customurl/partialnextlinkop"}  # type: ignore
 
     def _get_pages_partial_url_operation_next(
         self,
@@ -165,11 +172,11 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_operation_next.metadata['url']  # type: ignore
+        url = self._get_pages_partial_url_operation_next.metadata["url"]  # type: ignore
         path_format_arguments = {
-            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
-            'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
-            'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
+            "nextLink": self._serialize.url("next_link", next_link, "str", skip_quote=True),
+            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -178,11 +185,12 @@ class PagingOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         request = self._client.get(url, query_parameters, header_parameters)
         return request
-    _get_pages_partial_url_operation_next.metadata = {'url': '/paging/customurl/{nextLink}'}  # type: ignore
+
+    _get_pages_partial_url_operation_next.metadata = {"url": "/paging/customurl/{nextLink}"}  # type: ignore
 
     @distributed_trace
     def get_pages_partial_url_operation(
@@ -206,8 +214,9 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         def deserialize_output(pipeline_response):
-            return self._deserialize('ProductResult', pipeline_response)
+            return self._deserialize("ProductResult", pipeline_response)
 
         _initial_request = self._get_pages_partial_url_operation_initial(
             account_name=account_name,
@@ -221,18 +230,15 @@ class PagingOperations(object):
 
         if isinstance(paging_method, type):
             # in here if paging method is not initialized yet.
-            paging_method = paging_method(
-                next_request_callback=_next_request_callback,
-                **kwargs
-            )
+            paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)
 
         return ItemPaged(
             paging_method=paging_method,
             deserialize_output=deserialize_output,
             client=self._client,
-            continuation_token_location='next_link',
+            continuation_token_location="next_link",
             initial_state=_initial_request,
-            item_name='values',
+            item_name="values",
             _cls=kwargs.pop("cls", None),
             **kwargs,
         )

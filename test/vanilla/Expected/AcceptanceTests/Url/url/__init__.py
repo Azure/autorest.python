@@ -10,10 +10,11 @@ from ._auto_rest_url_test_service import AutoRestUrlTestService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestUrlTestService']
+__all__ = ["AutoRestUrlTestService"]
 
 try:
     from ._patch import patch_sdk  # type: ignore
+
     patch_sdk()
 except ImportError:
     pass

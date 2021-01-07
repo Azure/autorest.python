@@ -9,6 +9,7 @@
 from enum import Enum, EnumMeta
 from six import with_metaclass
 
+
 class _CaseInsensitiveEnumMeta(EnumMeta):
     def __getitem__(self, name):
         return super().__getitem__(name.upper())
@@ -27,8 +28,7 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
 
 
 class DaysOfWeekExtensibleEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
-    """Type of Pet
-    """
+    """Type of Pet"""
 
     MONDAY = "Monday"
     TUESDAY = "Tuesday"
@@ -38,9 +38,11 @@ class DaysOfWeekExtensibleEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enu
     SATURDAY = "Saturday"
     SUNDAY = "Sunday"
 
+
 class IntEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-    #: one.
+    #: This is a really long comment to see what wrapping looks like. This comment is really long and
+    #: it should wrap for readability. Please wrap. This should wrap.
     ONE = "1"
     #: two.
     TWO = "2"
