@@ -77,9 +77,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return ItemPaged(
             paging_method=paging_method,
@@ -140,9 +143,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return ItemPaged(
             paging_method=paging_method,
@@ -210,9 +216,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return ItemPaged(
             paging_method=paging_method,
@@ -273,9 +282,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return PagerWithMetadata(
             paging_method=paging_method,
@@ -344,9 +356,12 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return ItemPaged(
             paging_method=paging_method,
@@ -432,12 +447,15 @@ class AutoRestSpecialPagingTestServiceOperationsMixin(object):
 
         paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(
                 next_request_callback=_next_request_callback,
                 **kwargs
             )
+        except:
+            pass
 
         return ItemPaged(
             paging_method=paging_method,

@@ -30,8 +30,7 @@ _next_request_callback = functools.partial(
 
 paging_method = kwargs.pop("paging_method", {{ operation.get_default_paging_method() }})
 
-if isinstance(paging_method, type):
-    # in here if paging method is not initialized yet.
+try:
     paging_method = paging_method({{ "**kwargs)" if not operation.get_default_paging_method_parameters() }}
     {% if operation.get_default_paging_method_parameters() %}
         {% for parameter in operation.get_default_paging_method_parameters() %}
@@ -40,6 +39,8 @@ if isinstance(paging_method, type):
         **kwargs
     )
     {% endif %}
+except:
+    pass
 
 return {{ operation.get_pager(async_mode) }}(
     paging_method=paging_method,

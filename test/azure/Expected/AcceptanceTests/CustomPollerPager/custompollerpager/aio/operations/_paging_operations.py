@@ -92,9 +92,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -151,9 +154,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -211,12 +217,15 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", MyPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(
                 header_name='x-ms-token',
                 **kwargs
             )
+        except:
+            pass
 
         return AsyncCustomPager(
             paging_method=paging_method,
@@ -275,9 +284,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -356,9 +368,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -452,12 +467,15 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(
                 next_request_callback=_next_request_callback,
                 **kwargs
             )
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -537,9 +555,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -633,12 +654,15 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(
                 path_format_arguments=path_format_arguments,
                 **kwargs
             )
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -697,9 +721,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -758,9 +785,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -818,9 +848,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -878,9 +911,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -938,9 +974,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -1047,12 +1086,15 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(
                 next_request_callback=_next_request_callback,
                 **kwargs
             )
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -1164,12 +1206,15 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(
                 next_request_callback=_next_request_callback,
                 **kwargs
             )
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
@@ -1288,9 +1333,12 @@ class PagingOperations:
             
             paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-            if isinstance(paging_method, type):
-                # in here if paging method is not initialized yet.
+            try:
+                # we accept both initialized and uninitialized paging methods, so we try to initialize
+                # the inputted paging method
                 paging_method = paging_method(**kwargs)
+            except:
+                pass
 
             return AsyncItemPaged(
                 paging_method=paging_method,
@@ -1363,9 +1411,12 @@ class PagingOperations:
 
         paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
 
-        if isinstance(paging_method, type):
-            # in here if paging method is not initialized yet.
+        try:
+            # we accept both initialized and uninitialized paging methods, so we try to initialize
+            # the inputted paging method
             paging_method = paging_method(**kwargs)
+        except:
+            pass
 
         return AsyncItemPaged(
             paging_method=paging_method,
