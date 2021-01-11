@@ -27,7 +27,7 @@ def main():
     venv_context = env_builder.ensure_directories(venv_path)
     requirements_path = _ROOT_DIR / 'dev_requirements.txt'
 
-    python_run(venv_context, "pip", ["install", "-r", "{}".format(_ROOT_DIR / 'dev_requirements.txt')])
+    python_run(venv_context, "pip", ["install", "-r", str(requirements_path)])
 
 if __name__ == "__main__":
     main()
