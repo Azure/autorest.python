@@ -25,7 +25,7 @@ def main():
 
     env_builder = venv.EnvBuilder(with_pip=True)
     venv_context = env_builder.ensure_directories(venv_path)
-    python_run(venv_context, ["autorest", "jsonrpc", "server"], *sys.argv[1:])
+    python_run(venv_context, "autorest.jsonrpc.server", *sys.argv[1:])
 
 if __name__ == "__main__":
     main()

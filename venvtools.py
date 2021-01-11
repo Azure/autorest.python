@@ -62,7 +62,7 @@ def python_run(venv_context, module, command=[], *, additional_dir=".", error_ok
             venv_context.env_exe,
             "-m", module
         ] + command
-        message = "Executing: {}".format(" ".join(cmd_line))
+        print("Executing: {}".format(" ".join(cmd_line)), file=sys.stderr)
         subprocess.run(
             cmd_line,
             cwd=_ROOT_DIR / additional_dir,
