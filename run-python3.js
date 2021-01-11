@@ -25,4 +25,5 @@ runPython3(...process.argv.slice(2)).catch(err => {
   if (!error.startsWith("Error: Command failed")) {
     console.error(error);
   }
+  return 1;
 });
