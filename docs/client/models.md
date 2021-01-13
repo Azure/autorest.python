@@ -36,4 +36,4 @@ v3_models = client.models(api_version='3.0.0')
 ```
 
 <!-- LINKS -->
-[models_ex]: ../samples/specification/multiapi/generated/azure/multiapi/sample/_multiapi_service_client.py#L91
+[models_ex]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/samples/specification/multiapi/generated/azure/multiapi/sample/_multiapi_service_client.py#L91

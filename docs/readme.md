@@ -23,15 +23,15 @@ These documents are Python-specific, see [our main docs][main_docs] for more gen
 7. [Troubleshooting][troubleshooting]
 
 <!-- LINKS -->
-[main_docs]: https://github.com/Azure/autorest/tree/master/docs
+[main_docs]: https://github.com/Azure/autorest/tree/master/docs/readme.md
 [main_generate]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md
-[python_generate]: ./generate/readme.md
-[python_client]: ./client/readme.md
-[main_client]: https://github.com/Azure/autorest/tree/master/docs/generate/client.md
+[python_generate]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/generate/readme.md
+[python_client]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/readme.md
+[main_client]: https://github.com/Azure/autorest/tree/master/docs/client/readme.md
 [main_migrate]: https://github.com/Azure/autorest/tree/master/docs/migrate/readme.md
-[python_migrate]: ./migrate/readme.md
-[python_dev]: ./developer/readme.md
-[main_dev]: https://github.com/Azure/autorest/tree/master/docs/dev/readme.md
-[sample]: ./samples/readme.md
-[faq]: ./faq.md
-[troubleshooting]: ./troubleshooting.md
+[python_migrate]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/migrate/readme.md
+[python_dev]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/developer/readme.md
+[main_dev]: https://github.com/Azure/autorest/tree/master/docs/developer/readme.md
+[sample]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/samples/readme.md
+[faq]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/faq.md
+[troubleshooting]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/troubleshooting.md
