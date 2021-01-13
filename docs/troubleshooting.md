@@ -45,8 +45,8 @@ Once debugging our code, you need to add this to the VSCode launch configuration
 Once this has been successfully added, all that's needed is to add flag `--python.debugger` on our command line. You should now be able to step through the Python generator's code base.
 
 <!-- LINKS -->
-[main_docs]: https://github.com/Azure/autorest/tree/master/docs/generate/troubleshooting.md
+[main_docs]: https://github.com/Azure/autorest/tree/master/docs/troubleshooting.md
 [autorest_issues]: https://github.com/Azure/autorest/issues
 [autorest_python_issues]: https://github.com/Azure/autorest.python/issues
-[main_debugging]: https://github.com/Azure/autorest/tree/master/docs/generate/troubleshooting.md#debugging
+[main_debugging]: https://github.com/Azure/autorest/tree/master/docs/troubleshooting.md#debugging
 [autorest_python_repo]: https://github.com/Azure/autorest.python/tree/autorestv3

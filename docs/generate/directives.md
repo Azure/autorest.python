@@ -14,7 +14,7 @@ directive:
 ````
 
 Additionally, they all require you to specify which operation you would like to modify. You refer to operation using it's path in the swagger, and the HTTP verb it's listed under.
-So, if you were modifying the `put` operation under the path `/directives/polling`, your `where` part of the directive would look like `where: '$.paths["/directives/polling"].put'`
+So, if you were modifying the `put` operation under the path `/basic/polling`, your `where` part of the directive would look like `where: '$.paths["/basic/polling"].put'`
 
 Where they differ is in the conditions your custom objects need to fulfill, how you mark the directive, and how they change the generated code.
 
@@ -24,7 +24,7 @@ The following scenarios all use the [pollingPaging.json][polling_paging_swagger]
 * [Generate with a Custom Poller](#generate-with-a-custom-poller "Generate with a Custom Poller")
 * [Generate with a Custom Default Polling Method](#generate-with-a-custom-default-polling-method "Generate with a Custom Default Polling Method")
 * [Generate with a Custom Pager](#generate-with-a-custom-pager "Generate with a Custom Pager")
-* [Generate with a Custom Paging Method](#generate-with-a-custom-paging-method "Generate with a Custom Paging Method")
+* [Generate with a Custom Default Paging Method](#generate-with-a-custom-default-paging-method "Generate with a Custom Default Paging Method")
 
 ## Generate with a Custom Poller
 
@@ -36,14 +36,14 @@ By default, a long running operation will generate with poller [`LROPoller`][lro
 2. The initialization parameters must be the same as [`LROPoller`][lro_poller_docs]'s
 3. If you want continuation token support on your poller, you need to implement class method `from_continuation_token` with the same method signature as [`LROPoller`][lro_poller_docs]'s
 
-We will be modifying the long running operation in the [example swagger][polling_paging_swagger], so the `where` in our directive will be `where: '$.paths["/directives/polling"].put'`
+We will be modifying the long running operation in the [example swagger][polling_paging_swagger], so the `where` in our directive will be `where: '$.paths["/basic/polling"].put'`
 
 We use `$["x-python-custom-poller-sync"]` and `$["x-python-custom-poller-async"]` to specify our sync and async custom pollers. You have to use the full import path of the custom poller you're specifying, i.e. `my.library.CustomPoller`. Putting this altogether, we get the following directive, which we will insert in our config file.
 
 ```yaml
 directive:
     from: swagger-document
-    where: '$.paths["/directives/polling"].put'
+    where: '$.paths["/basic/polling"].put'
     transform: >
         $["x-python-custom-poller-sync"] = "my.library.CustomPoller";
         $["x-python-custom-poller-async"] = "my.library.aio.AsyncCustomPoller"
@@ -73,7 +73,7 @@ We use `$["x-python-custom-default-polling-method-sync"]` and `$["x-python-custo
 ```yaml
 directive:
     from: swagger-document
-    where: '$.paths["/directives/polling"].put'
+    where: '$.paths["/basic/polling"].put'
     transform: >
         $["x-python-custom-default-polling-method-sync"] = "my.library.CustomDefaultPollingMethod";
         $["x-python-custom-default-polling-method-async"] = "my.library.aio.AsyncCustomDefaultPollingMethod"
@@ -95,14 +95,14 @@ By default, a paging operation will generate with pager [`ItemPaged`][item_paged
 
 1. Your custom pager must have the same initialization parameters as [`ItemPaged`][item_paged_docs]
 
-We will be modifying the paging operation in the [example swagger][polling_paging_swagger], so the `where` in our directive will be `where: '$.paths["/directives/paging"].get'`
+We will be modifying the paging operation in the [example swagger][polling_paging_swagger], so the `where` in our directive will be `where: '$.paths["/basic/paging"].get'`
 
 We use `$["x-python-custom-pager-sync"]` and `$["x-python-custom-pager-async"]` to specify our sync and async custom pagers. You have to use the full import path of the custom pager you're specifying, i.e. `my.library.CustomPager`. Putting this altogether, we get the following directive, which we will insert in our config file.
 
 ```yaml
 directive:
     from: swagger-document
-    where: '$.paths["/directives/paging"].get'
+    where: '$.paths["/basic/paging"].get'
     transform: >
         $["x-python-custom-pager-sync"] = "my.library.CustomPager";
         $["x-python-custom-pager-async"] = "my.library.aio.AsyncCustomPager"
@@ -131,7 +131,7 @@ We use `$["x-python-custom-default-paging-method]` to specify our default  pagin
 ```yaml
 directive:
     from: swagger-document
-    where: '$.paths["/directives/paging"].get'
+    where: '$.paths["/basic/paging"].get'
     transform: >
         $["x-python-custom-default-paging-method"] = "my.library.CustomDefaultPagingMethod";
 ```
@@ -145,14 +145,14 @@ Here is the before and after of the generated code.
 # <img align="center" src="../images/after_paging_method_directive.png">
 
 
-For a full multiapi config example, see our [sample][sample_directives]
+For a full directives config example, see our [sample][sample_directives]
 
 <!-- LINKS -->
 [main_docs]: https://github.com/Azure/autorest/tree/master/docs/generate/directives.md
 [lro_poller_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
 [azure_core_pypi]: https://pypi.org/project/azure-core/
 [async_lro_poller_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
-[polling_paging_swagger]: ../samples/specification/directives/pollingPaging.json
+[polling_paging_swagger]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pollingPaging.json
 
 [lro_base_polling_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.base_polling.lrobasepolling?view=azure-python
 [async_lro_base_polling_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.async_base_polling.asynclrobasepolling?view=azure-python
@@ -163,4 +163,4 @@ For a full multiapi config example, see our [sample][sample_directives]
 
 [item_paged_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
 [async_item_paged_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python
-[sample_directives]: ../samples/specification/directives/readme.md
+[sample_directives]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/samples/specification/directives/readme.md
