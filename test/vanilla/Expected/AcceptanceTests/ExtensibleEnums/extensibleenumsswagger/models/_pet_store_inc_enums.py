@@ -41,8 +41,7 @@ class DaysOfWeekExtensibleEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enu
 
 class IntEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
 
-    #: This is a really long comment to see what wrapping looks like. This comment is really long and
-    #: it should wrap for readability. Please wrap. This should wrap.
+    #: one.
     ONE = "1"
     #: two.
     TWO = "2"

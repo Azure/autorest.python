@@ -13,7 +13,7 @@ from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from .operations import StringOperations
@@ -32,13 +32,10 @@ class AutoRestSwaggerBATService(object):
     """
 
     def __init__(
-        self,
-        base_url=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "http://localhost:3000"
+        base_url = "None"
         self._config = AutoRestSwaggerBATServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 

@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import ItemPaged, NextLinkPagingMethod
+from azure.core.paging import ContinueWithNextLink, ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
@@ -79,7 +79,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -178,7 +178,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.

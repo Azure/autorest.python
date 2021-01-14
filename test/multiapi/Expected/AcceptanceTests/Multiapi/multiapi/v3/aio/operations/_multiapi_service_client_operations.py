@@ -11,7 +11,7 @@ import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
-from azure.core.paging import NextLinkPagingMethod
+from azure.core.paging import ContinueWithNextLink
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.exceptions import ARMErrorFormat
@@ -51,7 +51,7 @@ class MultiapiServiceClientOperationsMixin:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -66,11 +66,9 @@ class MultiapiServiceClientOperationsMixin:
         _initial_request = self._test_paging_initial(
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass

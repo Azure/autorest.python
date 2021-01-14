@@ -75,14 +75,14 @@ class NameConverter:
             initialization_parameters = ""
             if pageable.get("operationName"):
                 initialization_parameters = "next_request_callback=_next_request_callback"
-                default_paging_method = "azure.core.paging.CallbackPagingMethod"
+                default_paging_method = "azure.core.paging.ContinueWithCallback"
 
             else:
                 # might have path_format_arguments going into initizalization
                 # parameters later on. This is handled later in the code,
                 # in the PagingOperation class, where we can better check
                 # if there are any path format arguments
-                default_paging_method = "azure.core.paging.NextLinkPagingMethod"
+                default_paging_method = "azure.core.paging.ContinueWithNextLink"
             operation["extensions"]["default-paging-method"] = operation_extensions.get(
                 "x-python-custom-default-paging-method",
                 f"{default_paging_method}({initialization_parameters})"

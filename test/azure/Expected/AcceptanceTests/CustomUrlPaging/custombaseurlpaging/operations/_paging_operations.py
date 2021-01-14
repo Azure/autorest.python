@@ -16,7 +16,7 @@ from azure.core.exceptions import (
     ResourceNotFoundError,
     map_error,
 )
-from azure.core.paging import CallbackPagingMethod, ItemPaged, NextLinkPagingMethod
+from azure.core.paging import ContinueWithCallback, ContinueWithNextLink, ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -95,7 +95,7 @@ class PagingOperations(object):
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -117,7 +117,7 @@ class PagingOperations(object):
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
             paging_method = paging_method(path_format_arguments=path_format_arguments, **kwargs)
@@ -206,7 +206,7 @@ class PagingOperations(object):
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is CallbackPagingMethod. You can pass in
+         response. Default is ContinueWithCallback. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -227,7 +227,7 @@ class PagingOperations(object):
             account_name=account_name,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithCallback)
 
         try:
             paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)

@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from pagingspecial.aio import AutoRestSpecialPagingTestService
-from azure.core.paging import HeaderPagingMethod, CallbackPagingMethod, NextLinkPagingMethod
+from azure.core.paging import ContinueWithRequestHeader, ContinueWithCallback, ContinueWithNextLink
 import pytest
 
 @pytest.fixture
@@ -38,7 +38,7 @@ async def client(credential, authentication_policy):
 class TestPaging(object):
     @pytest.mark.asyncio
     async def test_next_link_in_response_headers(self, client):
-        class MyPagingMethod(NextLinkPagingMethod):
+        class MyPagingMethod(ContinueWithNextLink):
             def get_continuation_token(self, pipeline_response, deserialized, continuation_token_location=None):
                 return pipeline_response.http_response.headers.get('x-ms-nextLink', None)
 
@@ -50,7 +50,7 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_continuation_token(self, client):
-        paging_method = HeaderPagingMethod(header_name="x-ms-token")
+        paging_method = ContinueWithRequestHeader(header_name="x-ms-token")
         pages = client.continuation_token(paging_method=paging_method)
         items = []
         async for item in pages:
@@ -59,7 +59,7 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_continuation_token_in_response_headers(self, client):
-        class MyPagingMethod(HeaderPagingMethod):
+        class MyPagingMethod(ContinueWithRequestHeader):
             def get_continuation_token(self, pipeline_response, deserialized, client):
                 return pipeline_response.http_response.headers.get('x-ms-token', None)
 
@@ -72,7 +72,7 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_token_with_metadata(self, client):
-        class MyPagingMethod(HeaderPagingMethod):
+        class MyPagingMethod(ContinueWithRequestHeader):
             def __init__(self, header_name):
                 super(MyPagingMethod, self).__init__(header_name=header_name)
                 self._count = None
@@ -94,20 +94,20 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_next_link_and_continuation_token(self, client):
-        class HeaderPagingMethodAndNextLink(NextLinkPagingMethod):
+        class ContinueWithRequestHeaderAndNextLink(ContinueWithNextLink):
             def __init__(self, header_name):
-                super(HeaderPagingMethodAndNextLink, self).__init__()
+                super(ContinueWithRequestHeaderAndNextLink, self).__init__()
                 self._header_name = header_name
 
             def get_next_request(self, continuation_token, initial_request, client):
                 split_token = continuation_token.split(",")
                 token_to_pass_to_headers = split_token[0]
                 next_link = split_token[1]
-                request = super(HeaderPagingMethodAndNextLink, self).get_next_request(next_link, initial_request, client=client)
+                request = super(ContinueWithRequestHeaderAndNextLink, self).get_next_request(next_link, initial_request, client=client)
                 request.headers[self._header_name] = split_token[0]
                 return request
 
-        paging_method = HeaderPagingMethodAndNextLink(header_name="x-ms-token")
+        paging_method = ContinueWithRequestHeaderAndNextLink(header_name="x-ms-token")
 
         pages = client.next_link_and_continuation_token(paging_method=paging_method)
         items = []
@@ -118,7 +118,7 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_continuation_token_with_separate_next_operation(self, client):
 
-        class MyPagingMethod(CallbackPagingMethod):
+        class MyPagingMethod(ContinueWithCallback):
             def get_next_request(self, continuation_token, initial_request, client):
                 request = super(MyPagingMethod, self).get_next_request(continuation_token, initial_request, client)
                 request.headers['x-ms-token'] = continuation_token

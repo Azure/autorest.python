@@ -17,7 +17,7 @@ from azure.core.exceptions import (
     ResourceNotFoundError,
     map_error,
 )
-from azure.core.paging import CallbackPagingMethod, NextLinkPagingMethod
+from azure.core.paging import ContinueWithCallback, ContinueWithNextLink
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
@@ -77,7 +77,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -92,11 +92,9 @@ class PagingOperations:
 
         _initial_request = self._get_no_item_name_pages_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -135,7 +133,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -150,11 +148,9 @@ class PagingOperations:
 
         _initial_request = self._get_null_next_link_name_pages_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -194,7 +190,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -209,11 +205,9 @@ class PagingOperations:
 
         _initial_request = self._get_single_pages_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -254,7 +248,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -269,11 +263,9 @@ class PagingOperations:
 
         _initial_request = self._first_response_empty_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -340,7 +332,7 @@ class PagingOperations:
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -358,11 +350,9 @@ class PagingOperations:
             paging_get_multiple_pages_options=paging_get_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -431,7 +421,7 @@ class PagingOperations:
         :type required_query_parameter: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is CallbackPagingMethod. You can pass in
+         response. Default is ContinueWithCallback. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -451,11 +441,9 @@ class PagingOperations:
             self._get_with_query_params_next,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithCallback)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)
         except:
             pass
@@ -523,7 +511,7 @@ class PagingOperations:
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -541,11 +529,9 @@ class PagingOperations:
             paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -619,7 +605,7 @@ class PagingOperations:
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -645,11 +631,9 @@ class PagingOperations:
             client_request_id=client_request_id,
         )
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(path_format_arguments=path_format_arguments, **kwargs)
         except:
             pass
@@ -690,7 +674,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -705,11 +689,9 @@ class PagingOperations:
 
         _initial_request = self._get_multiple_pages_retry_first_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -750,7 +732,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -765,11 +747,9 @@ class PagingOperations:
 
         _initial_request = self._get_multiple_pages_retry_second_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -809,7 +789,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -824,11 +804,9 @@ class PagingOperations:
 
         _initial_request = self._get_single_pages_failure_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -868,7 +846,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -883,11 +861,9 @@ class PagingOperations:
 
         _initial_request = self._get_multiple_pages_failure_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -927,7 +903,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -942,11 +918,9 @@ class PagingOperations:
 
         _initial_request = self._get_multiple_pages_failure_uri_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass
@@ -1023,7 +997,7 @@ class PagingOperations:
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is CallbackPagingMethod. You can pass in
+         response. Default is ContinueWithCallback. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -1046,11 +1020,9 @@ class PagingOperations:
             tenant=tenant,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithCallback)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)
         except:
             pass
@@ -1139,7 +1111,7 @@ class PagingOperations:
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is CallbackPagingMethod. You can pass in
+         response. Default is ContinueWithCallback. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -1160,11 +1132,9 @@ class PagingOperations:
             custom_parameter_group=custom_parameter_group,
         )
 
-        paging_method = kwargs.pop("paging_method", CallbackPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithCallback)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(next_request_callback=_next_request_callback, **kwargs)
         except:
             pass
@@ -1252,7 +1222,7 @@ class PagingOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -1283,11 +1253,9 @@ class PagingOperations:
         def get_long_running_output(pipeline_response):
             # TODO: check that cls and error_map kwargs persist here
 
-            paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+            paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
             try:
-                # we accept both initialized and uninitialized paging methods, so we try to initialize
-                # the inputted paging method
                 paging_method = paging_method(**kwargs)
             except:
                 pass
@@ -1348,7 +1316,7 @@ class PagingOperations:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword paging_method: The paging strategy to adopt for making requests and processing the
-         response. Default is NextLinkPagingMethod. You can pass in
+         response. Default is ContinueWithNextLink. You can pass in
          either an initialized or uninitialized custom paging method. If you pass in an uninitialized
          paging method, make sure your paging method class can input kwargs, as we will initialize your
          paging method with the parameters we would pass into the default paging method + extra kwargs.
@@ -1363,11 +1331,9 @@ class PagingOperations:
 
         _initial_request = self._get_paging_model_with_item_name_with_xms_client_name_initial()
 
-        paging_method = kwargs.pop("paging_method", NextLinkPagingMethod)
+        paging_method = kwargs.pop("paging_method", ContinueWithNextLink)
 
         try:
-            # we accept both initialized and uninitialized paging methods, so we try to initialize
-            # the inputted paging method
             paging_method = paging_method(**kwargs)
         except:
             pass

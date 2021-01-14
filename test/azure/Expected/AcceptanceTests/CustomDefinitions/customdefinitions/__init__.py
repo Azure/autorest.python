@@ -1,5 +1,5 @@
 from azure.core.paging import ItemPaged, ReturnType, PageIterator
-from azure.core.paging import HeaderPagingMethod
+from azure.core.paging import ContinueWithRequestHeader
 from azure.core.polling import LROPoller
 from azure.core.polling._poller import PollingReturnType
 
@@ -19,7 +19,7 @@ class PagerWithMetadata(ItemPaged[ReturnType]):
         # type: () -> float
         return self._paging_method._count
 
-class MyPagingMethod(HeaderPagingMethod):
+class MyPagingMethod(ContinueWithRequestHeader):
     pass
 
 __all__ = [
