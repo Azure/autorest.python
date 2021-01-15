@@ -74,7 +74,7 @@ class PollingPagingExampleOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _basic_polling_initial.metadata = {'url': '/directives/polling'}  # type: ignore
+    _basic_polling_initial.metadata = {'url': '/basic/polling'}  # type: ignore
 
     def begin_basic_polling(
         self,
@@ -132,7 +132,7 @@ class PollingPagingExampleOperationsMixin(object):
             )
         else:
             return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_basic_polling.metadata = {'url': '/directives/polling'}  # type: ignore
+    begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
 
     def basic_paging(
         self,
@@ -193,4 +193,4 @@ class PollingPagingExampleOperationsMixin(object):
         return CustomPager(
             get_next, extract_data
         )
-    basic_paging.metadata = {'url': '/directives/paging'}  # type: ignore
+    basic_paging.metadata = {'url': '/basic/paging'}  # type: ignore

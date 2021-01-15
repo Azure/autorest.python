@@ -10,8 +10,8 @@ After [generating][generate] your client, this section tells you how to actually
 
 <!-- LINKS -->
 [generate]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md
-[initializing]: ./initializing.md
-[operations]: ./operations.md
-[models]: ./models.md
-[troubleshooting]: ./troubleshooting.md
-[tracing]: ./tracing.md
+[initializing]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/initializing.md
+[operations]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/operations.md
+[models]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/models.md
+[troubleshooting]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/troubleshooting.md
+[tracing]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/tracing.md
