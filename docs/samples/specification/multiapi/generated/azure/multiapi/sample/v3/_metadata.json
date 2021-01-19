@@ -1,0 +1,92 @@
+{
+    "chosen_version": "3.0.0",
+    "total_api_version_list": ["3.0.0"],
+    "client": {
+        "name": "MultiapiServiceClient",
+        "filename": "_multiapi_service_client",
+        "description": "Service client for multiapi client testing.",
+        "base_url": "\u0027http://localhost:3000\u0027",
+        "custom_base_url": null,
+        "azure_arm": true,
+        "has_lro_operations": false,
+        "client_side_validation": false,
+        "sync_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"ARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}}",
+        "async_imports": "{\"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}, \"regular\": {\"azurecore\": {\"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"], \"msrest\": [\"Deserializer\", \"Serializer\"], \"azure.mgmt.core\": [\"AsyncARMPipelineClient\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}}"
+    },
+    "global_parameters": {
+        "sync": {
+            "credential": {
+                "signature": "credential,  # type: \"TokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials.TokenCredential",
+                "required": true
+            }
+        },
+        "async": {
+            "credential": {
+                "signature": "credential: \"AsyncTokenCredential\",",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
+                "required": true
+            }
+        },
+        "constant": {
+        },
+        "call": "credential"
+    },
+    "config": {
+        "credential": true,
+        "credential_scopes": ["https://management.azure.com/.default"],
+        "credential_default_policy_type": "BearerTokenCredentialPolicy",
+        "credential_default_policy_type_has_async_version": true,
+        "credential_key_header_name": null,
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
+    },
+    "operation_groups": {
+        "operation_group_one": "OperationGroupOneOperations",
+        "operation_group_two": "OperationGroupTwoOperations"
+    },
+    "operation_mixins": {
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"ClientAuthenticationError\", \"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.mgmt.core.exceptions\": [\"ARMErrorFormat\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"HttpRequest\", \"HttpResponse\"], \"azure.core.paging\": [\"ContinueWithNextLink\", \"ItemPaged\"]}, \"stdlib\": {\"warnings\": [null], \"functools\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Callable\", \"Dict\", \"Generic\", \"Iterable\", \"Optional\", \"TypeVar\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.exceptions\": [\"ClientAuthenticationError\", \"HttpResponseError\", \"ResourceExistsError\", \"ResourceNotFoundError\", \"map_error\"], \"azure.mgmt.core.exceptions\": [\"ARMErrorFormat\"], \"azure.core.pipeline\": [\"PipelineResponse\"], \"azure.core.pipeline.transport\": [\"AsyncHttpResponse\", \"HttpRequest\"], \"azure.core.async_paging\": [\"AsyncItemPaged\", \"AsyncList\"], \"azure.core.paging\": [\"ContinueWithNextLink\"]}, \"stdlib\": {\"warnings\": [null], \"functools\": [null]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"AsyncIterable\", \"Callable\", \"Dict\", \"Generic\", \"Optional\", \"TypeVar\"]}}}",
+        "operations": {
+            "_test_paging_initial" : {
+                "sync": {
+                    "signature": "def _test_paging_initial(\n    self,\n    **kwargs  # type: Any\n):\n",
+                    "doc": "\"\"\"\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~azure.multiapi.sample.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                },
+                "async": {
+                    "coroutine": false,
+                    "signature": "def _test_paging_initial(\n    self,\n    **kwargs\n) -\u003e \"_models.PagingResult\":\n",
+                    "doc": "\"\"\"\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult, or the result of cls(response)\n:rtype: ~azure.multiapi.sample.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                },
+                "call": ""
+            },
+            "test_paging" : {
+                "sync": {
+                    "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
+                    "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword paging_method: The paging strategy to adopt for making requests and processing the\n response. Default is ContinueWithNextLink. You can pass in\n either an initialized or uninitialized custom paging method. If you pass in an uninitialized\n paging method, make sure your paging method class can input kwargs, as we will initialize your\n paging method with the parameters we would pass into the default paging method + extra kwargs.\n:paramtype paging_method: ~azure.core.paging.PagingMethod\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~azure.multiapi.sample.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                },
+                "async": {
+                    "coroutine": false,
+                    "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"_models.PagingResult\"]:\n",
+                    "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword paging_method: The paging strategy to adopt for making requests and processing the\n response. Default is ContinueWithNextLink. You can pass in\n either an initialized or uninitialized custom paging method. If you pass in an uninitialized\n paging method, make sure your paging method class can input kwargs, as we will initialize your\n paging method with the parameters we would pass into the default paging method + extra kwargs.\n:paramtype paging_method: ~azure.core.paging.PagingMethod\n:return: An iterator like instance of either PagingResult or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.multiapi.sample.models.PagingResult]\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                },
+                "call": ""
+            },
+            "test_different_calls" : {
+                "sync": {
+                    "signature": "def test_different_calls(\n    self,\n    greeting_in_english,  # type: str\n    greeting_in_chinese=None,  # type: Optional[str]\n    greeting_in_french=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
+                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test.\n:type greeting_in_chinese: str\n:param greeting_in_french: pass in \u0027bonjour\u0027 to pass test.\n:type greeting_in_french: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                },
+                "async": {
+                    "coroutine": true,
+                    "signature": "async def test_different_calls(\n    self,\n    greeting_in_english: str,\n    greeting_in_chinese: Optional[str] = None,\n    greeting_in_french: Optional[str] = None,\n    **kwargs\n) -\u003e None:\n",
+                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test.\n:type greeting_in_chinese: str\n:param greeting_in_french: pass in \u0027bonjour\u0027 to pass test.\n:type greeting_in_french: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                },
+                "call": "greeting_in_english, greeting_in_chinese, greeting_in_french"
+            }
+        }
+    }
+}

@@ -1,9 +1,9 @@
 # Change Log
 
-### 2020-xx-xx - 5.6.0
+### 2021-01-15 - 5.6.0
 Autorest core version: 3.0.6318
 
-Modelerfour version: 4.15.421
+Modelerfour version: 4.15.442
 
 **New Features**
 
@@ -14,6 +14,7 @@ package](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/core/azur
 **Bug Fixes**
 
 - Wrap individual enum descriptions  #844
+- Bump `Modelerfour` minimum version to `4.15.442` to fix [circular reference error](https://github.com/Azure/autorest/issues/3630). Special thanks to @amrElroumy for this PR.  #866
 
 ### 2020-11-12 - 5.5.0
 Autorest core version: 3.0.6318

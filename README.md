@@ -1,6 +1,6 @@
 # Generating with Autorest for Python v5.0.0
 
-See [here](https://github.com/Azure/autorest.python/wiki/Generating-with-autorest-for-python-v5.0.0)
+See [here](https://github.com/Azure/autorest.python/wiki/Generating-with-autorest-for-python-v5.0.0) for Python-specific docs, and [here] for general docs
 
 # Contributing
 
@@ -30,7 +30,7 @@ pass-thru:
   - subset-reducer
 version: ^3.0.6318
 use-extension:
-  "@autorest/modelerfour": 4.15.432
+  "@autorest/modelerfour": 4.15.442
 
 modelerfour:
   group-parameters: true
@@ -131,3 +131,7 @@ scope-black/emitter:
 
 output-artifact: python-files
 ```
+
+<!-- LINKS -->
+[python_docs]: https://github.com/Azure/autorest.python/tree/autorestv3/docs/readme.md
+[main_docs]: https://github.com/Azure/autorest/tree/master/docs

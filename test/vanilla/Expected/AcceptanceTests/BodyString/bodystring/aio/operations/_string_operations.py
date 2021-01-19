@@ -90,11 +90,11 @@ class StringOperations:
     get_null.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace_async
-    async def put_null(self, body: object, **kwargs) -> None:
+    async def put_null(self, string_body: Optional[str] = None, **kwargs) -> None:
         """Set string value null.
 
-        :param body: Data export patch body.
-        :type body: object
+        :param string_body: string body.
+        :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -118,7 +118,10 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "object")
+        if string_body is not None:
+            body_content = self._serialize.body(string_body, "str")
+        else:
+            body_content = None
         body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

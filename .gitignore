@@ -112,7 +112,7 @@ venv.bak/
 node_modules/
 
 # autorest default folder
-generated
+/generated
 **/code-model-v4-no-tags.yaml
 
 # VS code
