@@ -8,7 +8,7 @@ def __init__(
     {{ param_signature }},
         {% endfor %}
         {% if code_model.base_url %}
-    base_url: Optional[str] = None,
+    {{ code_model.base_url_method_signature(True) }}
         {% endif %}
     **kwargs: Any
     {% else %}
@@ -16,7 +16,7 @@ def __init__(
     {{ param_signature }}
         {% endfor %}
         {% if code_model.base_url %}
-    base_url=None,  # type: Optional[str]
+    {{ code_model.base_url_method_signature(False) }}
         {% endif %}
     **kwargs  # type: Any
     {% endif %}
