@@ -66,7 +66,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.operation_groups: List[OperationGroup] = []
         self.global_parameters: ParameterList = ParameterList()
         self.custom_base_url: Optional[str] = None
-        self.base_url: Optional[str] = None
+        self.base_url: bool = False
+        self.base_url_default_value: Optional[str] = None
         self.service_client: Client = Client()
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
@@ -233,16 +234,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for schema in self.schemas.values():
             schema.properties = CodeModel._add_properties_from_inheritance_helper(schema, schema.properties)
 
-    @property
-    def required_base_url(self) -> bool:
-        return not self.custom_base_url and self.base_url == ""
-
-    def base_url_parameter(self, async_mode: bool) -> str:
+    def base_url_method_signature(self, async_mode: bool) -> str:
         if async_mode:
-            if self.required_base_url:
+            if not self.base_url_default_value:
                 return "base_url: str,"
             return "base_url: Optional[str] = None,"
-        if self.required_base_url:
+        if not self.base_url_default_value:
             return "base_url,  # type: str"
         return "base_url=None,  # type: Optional[str]"
 
@@ -352,9 +349,3 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation_group in self.operation_groups
             for operation in operation_group.operations
         ])
-
-    @staticmethod
-    def base_url_method_signature(async_mode: bool) -> str:
-        if async_mode:
-            return "base_url: Optional[str] = None,"
-        return "base_url=None,  # type: Optional[str]"

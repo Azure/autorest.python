@@ -86,7 +86,8 @@ class CodeGenerator(Plugin):
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)
-            code_model.base_url = dollar_host_parameter.yaml_data["clientDefaultValue"]
+            code_model.base_url = True
+            code_model.base_url_default_value = dollar_host_parameter.yaml_data["clientDefaultValue"]
 
         # Create operations
         if yaml_data.get("operationGroups"):

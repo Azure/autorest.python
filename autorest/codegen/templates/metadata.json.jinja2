@@ -7,7 +7,8 @@
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.description | tojson }},
-        "base_url": {{ (keywords.escape_str(code_model.base_url) if code_model.base_url else None) | tojson }},
+        "base_url": {{ code_model.base_url | tojson }},
+        "base_url_default_value": {{ (keywords.escape_str(code_model.base_url_default_value) if code_model.base_url_default_value else None) | tojson }},
         "custom_base_url": {{ (keywords.escape_str(code_model.custom_base_url) if code_model.custom_base_url else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
@@ -50,12 +51,12 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not code_model.custom_base_url %}
+                {% if code_model.base_url %}
                 "base_url": {
                     "signature": {{ code_model.base_url_method_signature(False) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
-                    "required": {{ code_model.required_base_url | tojson }}
+                    "required": {{ (not code_model.base_url_default_value) | tojson }}
                 },
                 {% endif %}
                 "profile": {
@@ -72,12 +73,12 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not code_model.custom_base_url %}
+                {% if code_model.base_url %}
                 "base_url": {
                     "signature": {{ code_model.base_url_method_signature(True) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
-                    "required": {{ code_model.required_base_url | tojson }}
+                    "required": {{ (not code_model.base_url_default_value) | tojson }}
                 },
                 {% endif %}
                 "profile": {

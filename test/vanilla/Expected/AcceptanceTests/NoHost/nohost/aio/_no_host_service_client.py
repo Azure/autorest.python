@@ -25,7 +25,7 @@ class NoHostServiceClient(NoHostServiceClientOperationsMixin):
     :param str base_url: Service URL
     """
 
-    def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, base_url: str, **kwargs: Any) -> None:
         self._config = NoHostServiceClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

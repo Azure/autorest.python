@@ -34,6 +34,7 @@ class Client:
         self.pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient"
         self.filename = default_version_metadata["client"]["filename"]
         self.base_url = default_version_metadata["client"]["base_url"]
+        self.base_url_default_value = default_version_metadata["client"]["base_url_default_value"]
         self.description = default_version_metadata["client"]["description"]
         self.client_side_validation = default_version_metadata["client"]["client_side_validation"]
         self.default_version_metadata = default_version_metadata

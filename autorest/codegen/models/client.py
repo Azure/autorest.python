@@ -30,7 +30,7 @@ class Client:
 
         any_optional_gp = any(not gp.required for gp in code_model.global_parameters)
 
-        if any_optional_gp or code_model.base_url:
+        if any_optional_gp or code_model.base_url_default_value:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if code_model.options["azure_arm"]:

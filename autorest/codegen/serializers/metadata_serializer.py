@@ -161,8 +161,8 @@ class MetadataSerializer:
 
         # setting to true, because for multiapi we always generate with a version file with version 0.1.0
         self.code_model.options['package_version'] = '0.1.0'
-        if self.code_model.options['azure_arm'] and not self.code_model.base_url:
-            self.code_model.base_url = 'https://management.azure.com'
+        if self.code_model.options['azure_arm'] and not self.code_model.base_url_default_value:
+            self.code_model.base_url_default_value = 'https://management.azure.com'
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,

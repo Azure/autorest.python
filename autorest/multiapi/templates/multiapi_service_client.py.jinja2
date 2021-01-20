@@ -1,18 +1,15 @@
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for parameter in code_model.global_parameters.parameters %}
+    {% for parameter in code_model.global_parameters.service_client_parameters %}
         {% if parameter.required %}
     {{ parameter.signature(async_mode) }}
         {% endif %}
     {% endfor %}
-    {% for parameter in code_model.global_parameters.parameters %}
+    {% for parameter in code_model.global_parameters.service_client_parameters %}
         {% if not parameter.required %}
     {{ parameter.signature(async_mode) }}
         {% endif %}
-    {% endfor %}
-    {% for parameter in code_model.global_parameters.service_client_specific_global_parameters %}
-    {{ parameter.signature(async_mode) }}
     {% endfor %}
     **kwargs  # type: Any
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
@@ -56,11 +53,7 @@ class {{ code_model.service_client.name }}({% if code_model.operation_mixin_grou
 {% if code_model.global_parameters.parameters %}
 
 {% endif %}
-{% for parameter in code_model.global_parameters.parameters %}
-    :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
-    :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
-{% endfor %}
-{% for parameter in code_model.global_parameters.service_client_specific_global_parameters %}
+{% for parameter in code_model.global_parameters.service_client_parameters %}
     :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
     :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
 {% endfor %}
@@ -90,9 +83,9 @@ class {{ code_model.service_client.name }}({% if code_model.operation_mixin_grou
             {% endfor %}
         else:
             raise ValueError("API version {} is not available".format(api_version))
-        {% elif code_model.service_client.base_url %}
+        {% elif code_model.service_client.base_url_default_value %}
         if not base_url:
-            base_url = {{ code_model.service_client.base_url }}
+            base_url = {{ code_model.service_client.base_url_default_value }}
         {% endif %}
         self._config = {{ code_model.service_client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}**kwargs)
         self._client = {{ async_prefix }}{{ code_model.service_client.pipeline_client }}(base_url=base_url, config=self._config, **kwargs)

@@ -27,7 +27,7 @@ class GlobalParameters:
         self.global_parameters_metadata = global_parameters_metadata
 
     @property
-    def service_client_specific_global_parameters(self) -> List[GlobalParameter]:
+    def _service_client_specific_global_parameters(self) -> List[GlobalParameter]:
         """Return global params specific to multiapi service client + config
         api_version, base_url (re-adding it in specific are), and profile
         """
@@ -38,6 +38,10 @@ class GlobalParameters:
             service_client_params_sync,
             service_client_params_async
         )
+
+    @property
+    def service_client_parameters(self) -> List[GlobalParameter]:
+        return self.parameters + self._service_client_specific_global_parameters
 
     @property
     def parameters(self) -> List[GlobalParameter]:

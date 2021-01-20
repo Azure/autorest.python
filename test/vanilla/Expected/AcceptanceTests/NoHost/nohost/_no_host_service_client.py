@@ -27,7 +27,7 @@ class NoHostServiceClient(NoHostServiceClientOperationsMixin):
 
     def __init__(
         self,
-        base_url=None,  # type: Optional[str]
+        base_url,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
