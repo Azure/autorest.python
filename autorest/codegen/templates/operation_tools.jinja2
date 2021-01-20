@@ -191,3 +191,7 @@ else:
     {% endif %}
 {% endif %}
 request = self._client.{{ http_verb if http_verb else operation.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
+
+{# request creation #}
+{% macro content_type_docstring(operation) %}
+{% endmacro %}
