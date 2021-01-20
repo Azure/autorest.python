@@ -37,7 +37,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.config = Config(default_version_metadata)
         self.operation_mixin_group = OperationMixinGroup(version_path_to_metadata, default_api_version)
         self.global_parameters = GlobalParameters(
-            default_version_metadata["global_parameters"], self.service_client
+            default_version_metadata["global_parameters"]
         )
         self.user_specified_default_api = user_specified_default_api
 

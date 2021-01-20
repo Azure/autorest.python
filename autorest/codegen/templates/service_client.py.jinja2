@@ -7,8 +7,8 @@ def __init__(
         {% for param_signature in code_model.global_parameters.async_method_signature %}
     {{ param_signature }},
         {% endfor %}
-        {% if code_model.base_url or code_model.required_base_url %}
-    {{ code_model.base_url_parameter(True) }}
+        {% if not code_model.custom_base_url %}
+    {{ code_model.base_url_method_signature(True) }}
         {% endif %}
     **kwargs: Any
     {% else %}
@@ -16,7 +16,7 @@ def __init__(
     {{ param_signature }}
         {% endfor %}
         {% if not code_model.custom_base_url %}
-    {{ code_model.base_url_parameter(False) }}
+    {{ code_model.base_url_method_signature(False) }}
         {% endif %}
     **kwargs  # type: Any
     {% endif %}

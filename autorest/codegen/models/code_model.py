@@ -352,3 +352,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation_group in self.operation_groups
             for operation in operation_group.operations
         ])
+
+    @staticmethod
+    def base_url_method_signature(async_mode: bool) -> str:
+        if async_mode:
+            return "base_url: Optional[str] = None,"
+        return "base_url=None,  # type: Optional[str]"
