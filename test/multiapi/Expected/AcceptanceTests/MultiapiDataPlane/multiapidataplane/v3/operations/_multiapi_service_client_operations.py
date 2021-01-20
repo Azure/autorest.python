@@ -84,3 +84,62 @@ class MultiapiServiceClientOperationsMixin(object):
             get_next, extract_data
         )
     test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore
+
+    def test_different_calls(
+        self,
+        greeting_in_english,  # type: str
+        greeting_in_chinese=None,  # type: Optional[str]
+        greeting_in_french=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Has added parameters across the API versions.
+
+        :param greeting_in_english: pass in 'hello' to pass test.
+        :type greeting_in_english: str
+        :param greeting_in_chinese: pass in 'nihao' to pass test.
+        :type greeting_in_chinese: str
+        :param greeting_in_french: pass in 'bonjour' to pass test.
+        :type greeting_in_french: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+        api_version = "3.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self.test_different_calls.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
+        if greeting_in_chinese is not None:
+            header_parameters['greetingInChinese'] = self._serialize.header("greeting_in_chinese", greeting_in_chinese, 'str')
+        if greeting_in_french is not None:
+            header_parameters['greetingInFrench'] = self._serialize.header("greeting_in_french", greeting_in_french, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore

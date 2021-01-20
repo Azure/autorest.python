@@ -12,8 +12,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
-from azure.core.polling.base_polling import LROBasePolling
-from my.library import CustomPager, CustomPoller
+from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .. import models as _models
 
@@ -88,8 +87,8 @@ class PollingPagingExampleOperationsMixin(object):
         :type product: ~azure.directives.sample.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: True for ARMPolling, False for no polling, or a
-         polling object for personal polling strategy
+        :keyword polling: Pass in True if you'd like the CustomDefaultPollingMethod polling method,
+         False for no polling, or your own initialized polling object for a personal polling strategy.
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of CustomPoller that returns either Product or the result of cls(response)
@@ -120,7 +119,7 @@ class PollingPagingExampleOperationsMixin(object):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        if polling is True: polling_method = LROBasePolling(lro_delay,  **kwargs)
+        if polling is True: polling_method = CustomDefaultPollingMethod(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         if cont_token:

@@ -70,7 +70,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         self,
         credential,  # type: "TokenCredential"
         api_version=None, # type: Optional[str]
-        base_url=None, # type: Optional[str]
+        base_url=None,  # type: Optional[str]
         profile=KnownProfiles.default, # type: KnownProfiles
         **kwargs  # type: Any
     ):

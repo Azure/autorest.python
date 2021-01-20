@@ -2795,15 +2795,15 @@ class DictionaryOperations(object):
     def get_dictionary_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to object, or the result of cls(response)
-        :rtype: dict[str, object]
+        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
@@ -2827,7 +2827,7 @@ class DictionaryOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{object}", pipeline_response)
+        deserialized = self._deserialize("{{str}}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2840,15 +2840,15 @@ class DictionaryOperations(object):
     def get_dictionary_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to object, or the result of cls(response)
-        :rtype: dict[str, object]
+        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
@@ -2872,7 +2872,7 @@ class DictionaryOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{object}", pipeline_response)
+        deserialized = self._deserialize("{{str}}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2885,16 +2885,16 @@ class DictionaryOperations(object):
     def get_dictionary_item_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to object, or the result of cls(response)
-        :rtype: dict[str, object]
+        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
@@ -2918,7 +2918,7 @@ class DictionaryOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{object}", pipeline_response)
+        deserialized = self._deserialize("{{str}}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2931,16 +2931,16 @@ class DictionaryOperations(object):
     def get_dictionary_item_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to object, or the result of cls(response)
-        :rtype: dict[str, object]
+        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
@@ -2964,7 +2964,7 @@ class DictionaryOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{object}", pipeline_response)
+        deserialized = self._deserialize("{{str}}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2977,17 +2977,17 @@ class DictionaryOperations(object):
     def get_dictionary_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, object]
+        # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to object, or the result of cls(response)
-        :rtype: dict[str, object]
+        :return: dict mapping str to dict mapping str to str, or the result of cls(response)
+        :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, object]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
         accept = "application/json"
@@ -3011,7 +3011,7 @@ class DictionaryOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{object}", pipeline_response)
+        deserialized = self._deserialize("{{str}}", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3023,7 +3023,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_dictionary_valid(
         self,
-        array_body,  # type: Dict[str, object]
+        array_body,  # type: Dict[str, Dict[str, str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -3032,7 +3032,7 @@ class DictionaryOperations(object):
         "eight", "9": "nine"}}.
 
         :param array_body:
-        :type array_body: dict[str, object]
+        :type array_body: dict[str, dict[str, str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -3056,7 +3056,7 @@ class DictionaryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "{object}")
+        body_content = self._serialize.body(array_body, "{{str}}")
         body_content_kwargs["content"] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
