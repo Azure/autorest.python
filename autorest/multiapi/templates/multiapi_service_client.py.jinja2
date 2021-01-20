@@ -82,15 +82,15 @@ class {{ code_model.service_client.name }}({% if code_model.operation_mixin_grou
     )
 
     {{ method_signature()|indent }}
-        {% if not code_model.service_client.base_url %}
-        {% for custom_base_url, api_versions in code_model.service_client.custom_base_url_to_api_version|dictsort %}
-        {% set if_statement = "if" if loop.first else "elif" %}
+        {% if code_model.service_client.custom_base_url %}
+            {% for custom_base_url, api_versions in code_model.service_client.custom_base_url_to_api_version|dictsort %}
+                {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement ~ " api_version == '" ~ api_versions|join("' or api_version == '") ~ "'" }}:
             base_url = {{ custom_base_url }}
-        {% endfor %}
+            {% endfor %}
         else:
             raise ValueError("API version {} is not available".format(api_version))
-        {% else %}
+        {% elif code_model.service_client.base_url %}
         if not base_url:
             base_url = {{ code_model.service_client.base_url }}
         {% endif %}

@@ -64,6 +64,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'ObjectType': 'object-type.json',
     'NonStringEnums': 'non-string-enum.json',
     'MultipleInheritance': 'multiple-inheritance.json',
+    'NoHost': 'no-host.json',
     'NoOperations': 'no-operations.json',
 }
 

@@ -233,6 +233,19 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for schema in self.schemas.values():
             schema.properties = CodeModel._add_properties_from_inheritance_helper(schema, schema.properties)
 
+    @property
+    def required_base_url(self) -> bool:
+        return not self.custom_base_url and self.base_url == ""
+
+    def base_url_parameter(self, async_mode: bool) -> str:
+        if async_mode:
+            if self.required_base_url:
+                return "base_url: str,"
+            return "base_url: Optional[str] = None,"
+        if self.required_base_url:
+            return "base_url,  # type: str"
+        return "base_url=None,  # type: Optional[str]"
+
     @staticmethod
     def _add_exceptions_from_inheritance_helper(schema) -> bool:
         if schema.is_exception:

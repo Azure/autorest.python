@@ -43,12 +43,12 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param api_version: API version to use if no profile is provided, or if missing in profile.
-    :type api_version: str
     :param base_url: Service URL
     :type base_url: str
     :param profile: A profile definition, from KnownProfiles to dict.
     :type profile: azure.profiles.KnownProfiles
+    :param api_version: API version to use if no profile is provided, or if missing in profile.
+    :type api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
@@ -67,13 +67,11 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def __init__(
         self,
         credential: "AsyncTokenCredential",
-        api_version: Optional[str] = None,
         base_url: Optional[str] = None,
-        profile: KnownProfiles = KnownProfiles.default,
+        profile=KnownProfiles.default, # type: KnownProfiles
+        api_version: Optional[str] = None,
         **kwargs  # type: Any
     ) -> None:
-        if not base_url:
-            base_url = 'http://localhost:3000'
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiServiceClient, self).__init__(

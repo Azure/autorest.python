@@ -5,7 +5,7 @@
         "name": "MultiapiServiceClient",
         "filename": "_multiapi_service_client",
         "description": "Service client for multiapi client testing.",
-        "base_url": "\u0027http://localhost:3000\u0027",
+        "base_url": null,
         "custom_base_url": null,
         "azure_arm": true,
         "has_lro_operations": false,
@@ -32,7 +32,49 @@
         },
         "constant": {
         },
-        "call": "credential"
+        "call": "credential",
+        "service_client_specific": {
+            "sync": {
+                "base_url": {
+                    "signature": "base_url=None,  # type: Optional[str]",
+                    "description": "Service URL",
+                    "docstring_type": "str",
+                    "required": false
+                },
+                "profile": {
+                    "signature": "profile=KnownProfiles.default, # type: KnownProfiles",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false
+                },
+                "api_version": {
+                    "signature": "api_version=None, # type: Optional[str]",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false
+                }
+            },
+            "async": {
+                "base_url": {
+                    "signature": "base_url: Optional[str] = None,",
+                    "description": "Service URL",
+                    "docstring_type": "str",
+                    "required": false
+                },
+                "profile": {
+                    "signature": "profile=KnownProfiles.default, # type: KnownProfiles",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false
+                },
+                "api_version": {
+                    "signature": "api_version: Optional[str] = None,",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false
+                }
+            }
+        }
     },
     "config": {
         "credential": true,

@@ -7,16 +7,16 @@ def __init__(
         {% for param_signature in code_model.global_parameters.async_method_signature %}
     {{ param_signature }},
         {% endfor %}
-        {% if code_model.base_url %}
-    base_url: Optional[str] = None,
+        {% if code_model.base_url or code_model.required_base_url %}
+    {{ code_model.base_url_parameter(True) }}
         {% endif %}
     **kwargs: Any
     {% else %}
         {% for param_signature in code_model.global_parameters.sync_method_signature %}
     {{ param_signature }}
         {% endfor %}
-        {% if code_model.base_url %}
-    base_url=None,  # type: Optional[str]
+        {% if not code_model.custom_base_url %}
+    {{ code_model.base_url_parameter(False) }}
         {% endif %}
     **kwargs  # type: Any
     {% endif %}
@@ -67,9 +67,9 @@ class {{ code_model.class_name }}({{ base_class }}):
         {% if not async_mode %}
         # type: (...) -> None
         {% endif %}
-        {% if not code_model.base_url %}
+        {% if code_model.custom_base_url %}
         base_url = {{ keywords.escape_str(code_model.custom_base_url) }}
-        {% else %}
+        {% elif code_model.base_url %}
         if not base_url:
             base_url = {{ keywords.escape_str(code_model.base_url) }}
         {% endif %}

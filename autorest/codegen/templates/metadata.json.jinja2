@@ -7,8 +7,7 @@
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.description | tojson }},
-        {% set base_url =  code_model.base_url if code_model.base_url else ('https://management.azure.com' if code_model.options["azure_arm"] else None )%}
-        "base_url": {{ (keywords.escape_str(base_url) if base_url else None) | tojson }},
+        "base_url": {{ (keywords.escape_str(code_model.base_url) if base_url else None) | tojson }},
         "custom_base_url": {{ (keywords.escape_str(code_model.custom_base_url) if code_model.custom_base_url else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
@@ -42,7 +41,53 @@
             {{ gp.serialized_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "call": {{ code_model.global_parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
+        "call": {{ code_model.global_parameters.method | map(attribute="serialized_name") | join(', ') | tojson }},
+        "service_client_specific": {
+            "sync": {
+                {% if not code_model.custom_base_url %}
+                "base_url": {
+                    "signature": {{ code_model.base_url_parameter(False) | tojson }},
+                    "description": "Service URL",
+                    "docstring_type": "str",
+                    "required": {{ code_model.required_base_url | tojson }}
+                },
+                {% endif %}
+                "profile": {
+                    "signature": "profile=KnownProfiles.default, # type: KnownProfiles",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false
+                },
+                "api_version": {
+                    "signature": "api_version=None, # type: Optional[str]",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false
+                }
+            },
+            "async": {
+                {% if not code_model.custom_base_url %}
+                "base_url": {
+                    "signature": {{ code_model.base_url_parameter(True) | tojson }},
+                    "description": "Service URL",
+                    "docstring_type": "str",
+                    "required": {{ code_model.required_base_url | tojson }}
+                },
+                {% endif %}
+                "profile": {
+                    "signature": "profile=KnownProfiles.default, # type: KnownProfiles",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false
+                },
+                "api_version": {
+                    "signature": "api_version: Optional[str] = None,",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false
+                }
+            }
+        }
     },
     "config": {
         "credential": {{ code_model.options['credential'] | tojson }},
