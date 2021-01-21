@@ -3,60 +3,61 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
+{% set request = operation.request %}
 cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     {{ op_tools.error_map(operation, code_model)|indent }}
-{% if operation.request.parameters.grouped %}
+{% if request.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
 {%- endif -%}
-{% if operation.request.parameters.is_flattened %}
-    {{ operation.request.parameters.build_flattened_object() }}
+{% if request.parameters.is_flattened %}
+    {{ request.parameters.build_flattened_object() }}
 {% endif %}
-{% if operation.request.parameters.constant|selectattr("implementation", "equalto", "Method") %}
-    {% for constant_parameter in operation.request.parameters.constant|selectattr("implementation", "equalto", "Method") %}
+{% if request.parameters.constant|selectattr("implementation", "equalto", "Method") %}
+    {% for constant_parameter in request.parameters.constant|selectattr("implementation", "equalto", "Method") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endfor %}
 {% endif %}
 
     def prepare_request(next_link=None):
-        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
+        {{ op_tools.header_parameters(code_model, request, async_mode)|indent(8) }}
         if not next_link:
             # Construct URL
             url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
-        {% if operation.request.parameters.path %}
+        {% if request.parameters.path %}
             path_format_arguments = {
-        {% for path_parameter in operation.request.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.request.build_serialize_data_call(path_parameter, "url") }},
+        {% for path_parameter in request.parameters.path %}
+                '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
         {% endfor %}
             }
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
-            {{ op_tools.query_parameters(operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation)|indent(12) }}
+            {{ op_tools.query_parameters(request, async_mode)|indent(12) }}
+            {{ op_tools.body_parameters(request)|indent(12) }}
         else:
 {% if operation.next_operation %}
-            url = '{{ operation.next_operation.request.url }}'
-        {% if operation.next_operation.request.parameters.path %}
+            url = '{{ operation.next_request.url }}'
+        {% if operation.next_request.parameters.path %}
             path_format_arguments = {
-        {% for path_parameter in operation.next_operation.request.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.next_operation.request.build_serialize_data_call(path_parameter, "url") }},
+        {% for path_parameter in operation.next_request.parameters.path %}
+                '{{ path_parameter.rest_api_name }}': {{ operation.next_request.build_serialize_data_call(path_parameter, "url") }},
         {% endfor %}
             }
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
-            {{ op_tools.query_parameters(operation.next_operation, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation.next_operation)|indent(12) }}
+            {{ op_tools.query_parameters(operation.next_operation.request, async_mode)|indent(12) }}
+            {{ op_tools.body_parameters(operation.next_operation.request)|indent(12) }}
 {% else %}
             url = next_link
             query_parameters = {}  # type: Dict[str, Any]
-        {% if operation.request.parameters.path and not code_model.base_url%}
+        {% if request.parameters.path and not code_model.base_url%}
             path_format_arguments = {
-        {% for path_parameter in operation.request.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.request.build_serialize_data_call(path_parameter, "url") }},
+        {% for path_parameter in request.parameters.path %}
+                '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
         {% endfor %}
             }
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
-            {{ op_tools.body_parameters(operation, http_verb="get")|indent(12) }}
+            {{ op_tools.body_parameters(request, http_verb="get")|indent(12) }}
 {% endif %}
         return request
 

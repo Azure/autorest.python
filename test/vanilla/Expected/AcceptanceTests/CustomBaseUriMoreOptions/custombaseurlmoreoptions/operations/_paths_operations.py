@@ -51,6 +51,41 @@ class PathsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _get_empty_request(
+        self,
+        vault,  # type: str
+        secret,  # type: str
+        key_name,  # type: str
+        key_version="v1",  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get_empty.metadata["url"]  # type: ignore
+        path_format_arguments = {
+            "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
+            "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
+            "dnsSuffix": self._serialize.url(
+                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
+            ),
+            "keyName": self._serialize.url("key_name", key_name, "str"),
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        if key_version is not None:
+            query_parameters["keyVersion"] = self._serialize.query("key_version", key_version, "str")
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
+
     @distributed_trace
     def get_empty(
         self,
@@ -79,31 +114,12 @@ class PathsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.get_empty.metadata["url"]  # type: ignore
-        path_format_arguments = {
-            "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
-            "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
-            "dnsSuffix": self._serialize.url(
-                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
-            ),
-            "keyName": self._serialize.url("key_name", key_name, "str"),
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
+        request = self._get_empty_request(
+            vault=vault, secret=secret, key_name=key_name, key_version=key_version, **kwargs
+        )
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if key_version is not None:
-            query_parameters["keyVersion"] = self._serialize.query("key_version", key_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

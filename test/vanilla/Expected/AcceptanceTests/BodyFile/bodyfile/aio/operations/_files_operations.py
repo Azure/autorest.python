@@ -47,18 +47,7 @@ class FilesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get_file(self, **kwargs) -> IO:
-        """Get file.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_file_request(self, **kwargs) -> HttpRequest:
         accept = "image/png, application/json"
 
         # Construct URL
@@ -71,7 +60,24 @@ class FilesOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_file(self, **kwargs) -> IO:
+        """Get file.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: IO, or the result of cls(response)
+        :rtype: IO
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_file_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
@@ -89,18 +95,7 @@ class FilesOperations:
 
     get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
-    @distributed_trace_async
-    async def get_file_large(self, **kwargs) -> IO:
-        """Get a large file.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_file_large_request(self, **kwargs) -> HttpRequest:
         accept = "image/png, application/json"
 
         # Construct URL
@@ -113,7 +108,24 @@ class FilesOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_file_large(self, **kwargs) -> IO:
+        """Get a large file.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: IO, or the result of cls(response)
+        :rtype: IO
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_file_large_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
@@ -131,18 +143,7 @@ class FilesOperations:
 
     get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
-    @distributed_trace_async
-    async def get_empty_file(self, **kwargs) -> IO:
-        """Get empty file.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_empty_file_request(self, **kwargs) -> HttpRequest:
         accept = "image/png, application/json"
 
         # Construct URL
@@ -155,7 +156,24 @@ class FilesOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_empty_file(self, **kwargs) -> IO:
+        """Get empty file.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: IO, or the result of cls(response)
+        :rtype: IO
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_empty_file_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 

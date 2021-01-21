@@ -51,6 +51,24 @@ class HttpRetryOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _head408_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.head408.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.head(url, query_parameters, header_parameters)
+
     @distributed_trace
     def head408(
         self, **kwargs  # type: Any
@@ -66,19 +84,10 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.head408.metadata["url"]  # type: ignore
+        request = self._head408_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -92,25 +101,12 @@ class HttpRetryOperations(object):
 
     head408.metadata = {"url": "/http/retry/408"}  # type: ignore
 
-    @distributed_trace
-    def put500(
+    def _put500_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Return 500 status code, then 200 after retry.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -131,22 +127,10 @@ class HttpRetryOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-    put500.metadata = {"url": "/http/retry/500"}  # type: ignore
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
-    def patch500(
+    def put500(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -164,6 +148,29 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put500_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    put500.metadata = {"url": "/http/retry/500"}  # type: ignore
+
+    def _patch500_request(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -184,7 +191,31 @@ class HttpRetryOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def patch500(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Return 500 status code, then 200 after retry.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._patch500_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -197,6 +228,24 @@ class HttpRetryOperations(object):
             return cls(pipeline_response, None, {})
 
     patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
+
+    def _get502_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get502.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get502(
@@ -213,19 +262,10 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.get502.metadata["url"]  # type: ignore
+        request = self._get502_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -238,6 +278,24 @@ class HttpRetryOperations(object):
             return cls(pipeline_response, None, {})
 
     get502.metadata = {"url": "/http/retry/502"}  # type: ignore
+
+    def _options502_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.options502.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.options(url, query_parameters, header_parameters)
 
     @distributed_trace
     def options502(
@@ -254,19 +312,10 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[bool]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.options502.metadata["url"]  # type: ignore
+        request = self._options502_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.options(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -284,25 +333,12 @@ class HttpRetryOperations(object):
 
     options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
-    @distributed_trace
-    def post503(
+    def _post503_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Return 503 status code, then 200 after retry.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -323,22 +359,10 @@ class HttpRetryOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-    post503.metadata = {"url": "/http/retry/503"}  # type: ignore
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
-    def delete503(
+    def post503(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -356,6 +380,29 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post503_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    post503.metadata = {"url": "/http/retry/503"}  # type: ignore
+
+    def _delete503_request(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -376,7 +423,31 @@ class HttpRetryOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def delete503(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Return 503 status code, then 200 after retry.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._delete503_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -390,25 +461,12 @@ class HttpRetryOperations(object):
 
     delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
-    @distributed_trace
-    def put504(
+    def _put504_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Return 504 status code, then 200 after retry.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -429,22 +487,10 @@ class HttpRetryOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-    put504.metadata = {"url": "/http/retry/504"}  # type: ignore
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
-    def patch504(
+    def put504(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -462,6 +508,29 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put504_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    put504.metadata = {"url": "/http/retry/504"}  # type: ignore
+
+    def _patch504_request(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -482,7 +551,31 @@ class HttpRetryOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def patch504(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Return 504 status code, then 200 after retry.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._patch504_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

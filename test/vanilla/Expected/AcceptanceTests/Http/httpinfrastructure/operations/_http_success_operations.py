@@ -51,6 +51,24 @@ class HttpSuccessOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _head200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.head200.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.head(url, query_parameters, header_parameters)
+
     @distributed_trace
     def head200(
         self, **kwargs  # type: Any
@@ -66,19 +84,10 @@ class HttpSuccessOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.head200.metadata["url"]  # type: ignore
+        request = self._head200_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -91,6 +100,24 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, None, {})
 
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
+
+    def _get200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get200.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get200(
@@ -107,19 +134,10 @@ class HttpSuccessOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[bool]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.get200.metadata["url"]  # type: ignore
+        request = self._get200_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -137,6 +155,24 @@ class HttpSuccessOperations(object):
 
     get200.metadata = {"url": "/http/success/200"}  # type: ignore
 
+    def _options200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.options200.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.options(url, query_parameters, header_parameters)
+
     @distributed_trace
     def options200(
         self, **kwargs  # type: Any
@@ -152,19 +188,10 @@ class HttpSuccessOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[bool]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.options200.metadata["url"]  # type: ignore
+        request = self._options200_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.options(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -182,25 +209,12 @@ class HttpSuccessOperations(object):
 
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    @distributed_trace
-    def put200(
+    def _put200_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Put boolean value true returning 200 success.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -221,7 +235,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def put200(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put boolean value true returning 200 success.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put200_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -235,25 +273,12 @@ class HttpSuccessOperations(object):
 
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    @distributed_trace
-    def patch200(
+    def _patch200_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Patch true Boolean value in request returning 200.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -274,7 +299,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def patch200(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Patch true Boolean value in request returning 200.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._patch200_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -288,25 +337,12 @@ class HttpSuccessOperations(object):
 
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    @distributed_trace
-    def post200(
+    def _post200_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post bollean value true in request that returns a 200.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -327,7 +363,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def post200(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post bollean value true in request that returns a 200.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post200_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -341,25 +401,12 @@ class HttpSuccessOperations(object):
 
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    @distributed_trace
-    def delete200(
+    def _delete200_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Delete simple boolean value true returns 200.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -380,7 +427,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def delete200(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Delete simple boolean value true returns 200.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._delete200_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -394,25 +465,12 @@ class HttpSuccessOperations(object):
 
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    @distributed_trace
-    def put201(
+    def _put201_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Put true Boolean value in request returns 201.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -433,7 +491,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def put201(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put true Boolean value in request returns 201.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put201_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -447,25 +529,12 @@ class HttpSuccessOperations(object):
 
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
-    @distributed_trace
-    def post201(
+    def _post201_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post true Boolean value in request returns 201 (Created).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -486,7 +555,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def post201(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post true Boolean value in request returns 201 (Created).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post201_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -500,25 +593,12 @@ class HttpSuccessOperations(object):
 
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
-    @distributed_trace
-    def put202(
+    def _put202_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Put true Boolean value in request returns 202 (Accepted).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -539,7 +619,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def put202(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put true Boolean value in request returns 202 (Accepted).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put202_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -553,25 +657,12 @@ class HttpSuccessOperations(object):
 
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    @distributed_trace
-    def patch202(
+    def _patch202_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Patch true Boolean value in request returns 202.
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -592,7 +683,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def patch202(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Patch true Boolean value in request returns 202.
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._patch202_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -606,25 +721,12 @@ class HttpSuccessOperations(object):
 
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    @distributed_trace
-    def post202(
+    def _post202_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post true Boolean value in request returns 202 (Accepted).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -645,7 +747,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def post202(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post true Boolean value in request returns 202 (Accepted).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post202_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -659,25 +785,12 @@ class HttpSuccessOperations(object):
 
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    @distributed_trace
-    def delete202(
+    def _delete202_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Delete true Boolean value in request returns 202 (accepted).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -698,7 +811,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def delete202(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Delete true Boolean value in request returns 202 (accepted).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._delete202_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -711,6 +848,24 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, None, {})
 
     delete202.metadata = {"url": "/http/success/202"}  # type: ignore
+
+    def _head204_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.head204.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.head(url, query_parameters, header_parameters)
 
     @distributed_trace
     def head204(
@@ -727,19 +882,10 @@ class HttpSuccessOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.head204.metadata["url"]  # type: ignore
+        request = self._head204_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -753,25 +899,12 @@ class HttpSuccessOperations(object):
 
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    @distributed_trace
-    def put204(
+    def _put204_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Put true Boolean value in request returns 204 (no content).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -792,7 +925,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def put204(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put true Boolean value in request returns 204 (no content).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put204_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -806,25 +963,12 @@ class HttpSuccessOperations(object):
 
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    @distributed_trace
-    def patch204(
+    def _patch204_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Patch true Boolean value in request returns 204 (no content).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -845,7 +989,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def patch204(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Patch true Boolean value in request returns 204 (no content).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._patch204_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -859,25 +1027,12 @@ class HttpSuccessOperations(object):
 
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    @distributed_trace
-    def post204(
+    def _post204_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post true Boolean value in request returns 204 (no content).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -898,7 +1053,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def post204(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post true Boolean value in request returns 204 (no content).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post204_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -912,25 +1091,12 @@ class HttpSuccessOperations(object):
 
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    @distributed_trace
-    def delete204(
+    def _delete204_request(
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Delete true Boolean value in request returns 204 (no content).
-
-        :param boolean_value: Simple boolean value true.
-        :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -951,7 +1117,31 @@ class HttpSuccessOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def delete204(
+        self,
+        boolean_value=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Delete true Boolean value in request returns 204 (no content).
+
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._delete204_request(boolean_value=boolean_value, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -964,6 +1154,24 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, None, {})
 
     delete204.metadata = {"url": "/http/success/204"}  # type: ignore
+
+    def _head404_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.head404.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.head(url, query_parameters, header_parameters)
 
     @distributed_trace
     def head404(
@@ -980,19 +1188,10 @@ class HttpSuccessOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.head404.metadata["url"]  # type: ignore
+        request = self._head404_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -51,6 +51,24 @@ class XmlOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _get_complex_type_ref_no_meta_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_complex_type_ref_no_meta.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
+
     @distributed_trace
     def get_complex_type_ref_no_meta(
         self, **kwargs  # type: Any
@@ -66,19 +84,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.RootWithRefAndNoMeta"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_complex_type_ref_no_meta.metadata["url"]  # type: ignore
+        request = self._get_complex_type_ref_no_meta_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -94,6 +103,29 @@ class XmlOperations(object):
         return deserialized
 
     get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
+
+    def _put_complex_type_ref_no_meta_request(
+        self,
+        model,  # type: "_models.RootWithRefAndNoMeta"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_complex_type_ref_no_meta.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_complex_type_ref_no_meta(
@@ -114,22 +146,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_complex_type_ref_no_meta.metadata["url"]  # type: ignore
+        request = self._put_complex_type_ref_no_meta_request(model=model, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -141,6 +161,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
+
+    def _get_complex_type_ref_with_meta_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_complex_type_ref_with_meta.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_complex_type_ref_with_meta(
@@ -157,19 +195,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.RootWithRefAndMeta"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_complex_type_ref_with_meta.metadata["url"]  # type: ignore
+        request = self._get_complex_type_ref_with_meta_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -185,6 +214,29 @@ class XmlOperations(object):
         return deserialized
 
     get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
+
+    def _put_complex_type_ref_with_meta_request(
+        self,
+        model,  # type: "_models.RootWithRefAndMeta"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_complex_type_ref_with_meta.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_complex_type_ref_with_meta(
@@ -205,22 +257,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_complex_type_ref_with_meta.metadata["url"]  # type: ignore
+        request = self._put_complex_type_ref_with_meta_request(model=model, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -232,6 +272,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
+
+    def _get_simple_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_simple.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_simple(
@@ -248,19 +306,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Slideshow"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_simple.metadata["url"]  # type: ignore
+        request = self._get_simple_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -277,6 +326,31 @@ class XmlOperations(object):
         return deserialized
 
     get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
+
+    def _put_simple_request(
+        self,
+        slideshow,  # type: "_models.Slideshow"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.put_simple.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_simple(
@@ -297,24 +371,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.put_simple.metadata["url"]  # type: ignore
+        request = self._put_simple_request(slideshow=slideshow, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -327,6 +387,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
+
+    def _get_wrapped_lists_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_wrapped_lists.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_wrapped_lists(
@@ -343,19 +421,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.AppleBarrel"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_wrapped_lists.metadata["url"]  # type: ignore
+        request = self._get_wrapped_lists_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -371,6 +440,31 @@ class XmlOperations(object):
         return deserialized
 
     get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
+
+    def _put_wrapped_lists_request(
+        self,
+        wrapped_lists,  # type: "_models.AppleBarrel"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.put_wrapped_lists.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_wrapped_lists(
@@ -391,24 +485,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.put_wrapped_lists.metadata["url"]  # type: ignore
+        request = self._put_wrapped_lists_request(wrapped_lists=wrapped_lists, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -421,6 +501,22 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
+
+    def _get_headers_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+
+        # Construct URL
+        url = self.get_headers.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_headers(
@@ -438,16 +534,9 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        # Construct URL
-        url = self.get_headers.metadata["url"]  # type: ignore
+        request = self._get_headers_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -462,6 +551,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
+
+    def _get_empty_list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_empty_list.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_empty_list(
@@ -478,19 +585,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Slideshow"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_empty_list.metadata["url"]  # type: ignore
+        request = self._get_empty_list_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -506,6 +604,29 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
+
+    def _put_empty_list_request(
+        self,
+        slideshow,  # type: "_models.Slideshow"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_empty_list.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_list(
@@ -526,22 +647,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_empty_list.metadata["url"]  # type: ignore
+        request = self._put_empty_list_request(slideshow=slideshow, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -553,6 +662,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
+
+    def _get_empty_wrapped_lists_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_empty_wrapped_lists.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_empty_wrapped_lists(
@@ -569,19 +696,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.AppleBarrel"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_empty_wrapped_lists.metadata["url"]  # type: ignore
+        request = self._get_empty_wrapped_lists_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -597,6 +715,29 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
+
+    def _put_empty_wrapped_lists_request(
+        self,
+        apple_barrel,  # type: "_models.AppleBarrel"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_empty_wrapped_lists.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_wrapped_lists(
@@ -617,22 +758,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_empty_wrapped_lists.metadata["url"]  # type: ignore
+        request = self._put_empty_wrapped_lists_request(apple_barrel=apple_barrel, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -644,6 +773,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
+
+    def _get_root_list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_root_list.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_root_list(
@@ -660,19 +807,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_root_list.metadata["url"]  # type: ignore
+        request = self._get_root_list_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -688,6 +826,30 @@ class XmlOperations(object):
         return deserialized
 
     get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
+
+    def _put_root_list_request(
+        self,
+        bananas,  # type: List["_models.Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_root_list.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        body_content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_root_list(
@@ -708,23 +870,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_root_list.metadata["url"]  # type: ignore
+        request = self._put_root_list_request(bananas=bananas, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        body_content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -736,6 +885,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
+
+    def _get_root_list_single_item_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_root_list_single_item.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_root_list_single_item(
@@ -752,19 +919,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_root_list_single_item.metadata["url"]  # type: ignore
+        request = self._get_root_list_single_item_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -780,6 +938,30 @@ class XmlOperations(object):
         return deserialized
 
     get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
+
+    def _put_root_list_single_item_request(
+        self,
+        bananas,  # type: List["_models.Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_root_list_single_item.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        body_content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_root_list_single_item(
@@ -800,23 +982,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_root_list_single_item.metadata["url"]  # type: ignore
+        request = self._put_root_list_single_item_request(bananas=bananas, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        body_content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -828,6 +997,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
+
+    def _get_empty_root_list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_empty_root_list.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_empty_root_list(
@@ -844,19 +1031,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_empty_root_list.metadata["url"]  # type: ignore
+        request = self._get_empty_root_list_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -872,6 +1050,30 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
+
+    def _put_empty_root_list_request(
+        self,
+        bananas,  # type: List["_models.Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_empty_root_list.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        body_content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_root_list(
@@ -892,23 +1094,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_empty_root_list.metadata["url"]  # type: ignore
+        request = self._put_empty_root_list_request(bananas=bananas, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        body_content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -920,6 +1109,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
+
+    def _get_empty_child_element_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_empty_child_element.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_empty_child_element(
@@ -936,19 +1143,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Banana"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_empty_child_element.metadata["url"]  # type: ignore
+        request = self._get_empty_child_element_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -964,6 +1162,29 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
+
+    def _put_empty_child_element_request(
+        self,
+        banana,  # type: "_models.Banana"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_empty_child_element.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(banana, "Banana", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_child_element(
@@ -984,22 +1205,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_empty_child_element.metadata["url"]  # type: ignore
+        request = self._put_empty_child_element_request(banana=banana, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(banana, "Banana", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1011,6 +1220,26 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
+
+    def _list_containers_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        comp = "list"
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.list_containers.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def list_containers(
@@ -1027,21 +1256,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListContainersResponse"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        comp = "list"
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.list_containers.metadata["url"]  # type: ignore
+        request = self._list_containers_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1058,21 +1276,10 @@ class XmlOperations(object):
 
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
-    @distributed_trace
-    def get_service_properties(
+    def _get_service_properties_request(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.StorageServiceProperties"
-        """Gets storage service properties.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageServiceProperties, or the result of cls(response)
-        :rtype: ~xmlservice.models.StorageServiceProperties
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageServiceProperties"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         comp = "properties"
         restype = "service"
         accept = "application/xml"
@@ -1089,7 +1296,27 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def get_service_properties(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.StorageServiceProperties"
+        """Gets storage service properties.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: StorageServiceProperties, or the result of cls(response)
+        :rtype: ~xmlservice.models.StorageServiceProperties
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageServiceProperties"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_service_properties_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1105,6 +1332,33 @@ class XmlOperations(object):
         return deserialized
 
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
+
+    def _put_service_properties_request(
+        self,
+        properties,  # type: "_models.StorageServiceProperties"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        comp = "properties"
+        restype = "service"
+        content_type = kwargs.pop("content_type", "application/xml")
+
+        # Construct URL
+        url = self.put_service_properties.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
+        query_parameters["restype"] = self._serialize.query("restype", restype, "str")
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_service_properties(
@@ -1125,26 +1379,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        comp = "properties"
-        restype = "service"
-        content_type = kwargs.pop("content_type", "application/xml")
 
-        # Construct URL
-        url = self.put_service_properties.metadata["url"]  # type: ignore
+        request = self._put_service_properties_request(properties=properties, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-        query_parameters["restype"] = self._serialize.query("restype", restype, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1157,21 +1395,10 @@ class XmlOperations(object):
 
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
-    @distributed_trace
-    def get_acls(
+    def _get_acls_request(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.SignedIdentifier"]
-        """Gets storage ACLs for a container.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of SignedIdentifier, or the result of cls(response)
-        :rtype: list[~xmlservice.models.SignedIdentifier]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.SignedIdentifier"]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         comp = "acl"
         restype = "container"
         accept = "application/xml"
@@ -1188,7 +1415,27 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def get_acls(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> List["_models.SignedIdentifier"]
+        """Gets storage ACLs for a container.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: list of SignedIdentifier, or the result of cls(response)
+        :rtype: list[~xmlservice.models.SignedIdentifier]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.SignedIdentifier"]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_acls_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1205,25 +1452,12 @@ class XmlOperations(object):
 
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
-    @distributed_trace
-    def put_acls(
+    def _put_acls_request(
         self,
         properties,  # type: List["_models.SignedIdentifier"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Puts storage ACLs for a container.
-
-        :param properties:
-        :type properties: list[~xmlservice.models.SignedIdentifier]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         comp = "acl"
         restype = "container"
         content_type = kwargs.pop("content_type", "application/xml")
@@ -1246,7 +1480,31 @@ class XmlOperations(object):
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
         )
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def put_acls(
+        self,
+        properties,  # type: List["_models.SignedIdentifier"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Puts storage ACLs for a container.
+
+        :param properties:
+        :type properties: list[~xmlservice.models.SignedIdentifier]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put_acls_request(properties=properties, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1259,21 +1517,10 @@ class XmlOperations(object):
 
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
-    @distributed_trace
-    def list_blobs(
+    def _list_blobs_request(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ListBlobsResponse"
-        """Lists blobs in a storage container.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ListBlobsResponse, or the result of cls(response)
-        :rtype: ~xmlservice.models.ListBlobsResponse
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListBlobsResponse"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         comp = "list"
         restype = "container"
         accept = "application/xml"
@@ -1290,7 +1537,27 @@ class XmlOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def list_blobs(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.ListBlobsResponse"
+        """Lists blobs in a storage container.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ListBlobsResponse, or the result of cls(response)
+        :rtype: ~xmlservice.models.ListBlobsResponse
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListBlobsResponse"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._list_blobs_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1306,6 +1573,31 @@ class XmlOperations(object):
         return deserialized
 
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
+
+    def _json_input_request(
+        self,
+        id=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+
+        _properties = _models.JSONInput(id=id)
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.json_input.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_properties, "JSONInput")
+        body_content_kwargs["content"] = body_content
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def json_input(
@@ -1328,23 +1620,9 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _properties = _models.JSONInput(id=id)
-        content_type = kwargs.pop("content_type", "application/json")
+        request = self._json_input_request(id=id, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct URL
-        url = self.json_input.metadata["url"]  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_properties, "JSONInput")
-        body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1356,6 +1634,24 @@ class XmlOperations(object):
             return cls(pipeline_response, None, {})
 
     json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
+
+    def _json_output_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.json_output.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def json_output(
@@ -1372,19 +1668,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.JSONOutput"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.json_output.metadata["url"]  # type: ignore
+        request = self._json_output_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1400,6 +1687,24 @@ class XmlOperations(object):
         return deserialized
 
     json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
+
+    def _get_xms_text_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_xms_text.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_xms_text(
@@ -1417,19 +1722,10 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ObjectWithXMsTextProperty"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/xml"
 
-        # Construct URL
-        url = self.get_xms_text.metadata["url"]  # type: ignore
+        request = self._get_xms_text_request(**kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

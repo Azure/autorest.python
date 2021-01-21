@@ -47,22 +47,7 @@ class FormdataOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def upload_file(self, file_content: IO, file_name: str, **kwargs) -> IO:
-        """Upload file.
-
-        :param file_content: File to upload.
-        :type file_content: IO
-        :param file_name: File name to upload. Name has to be spelled exactly as written here.
-        :type file_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _upload_file_request(self, file_content: IO, file_name: str, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "multipart/form-data")
         accept = "application/octet-stream, application/json"
 
@@ -82,7 +67,28 @@ class FormdataOperations:
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+        return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+
+    @distributed_trace_async
+    async def upload_file(self, file_content: IO, file_name: str, **kwargs) -> IO:
+        """Upload file.
+
+        :param file_content: File to upload.
+        :type file_content: IO
+        :param file_name: File name to upload. Name has to be spelled exactly as written here.
+        :type file_name: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: IO, or the result of cls(response)
+        :rtype: IO
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._upload_file_request(file_content=file_content, file_name=file_name, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
@@ -100,20 +106,7 @@ class FormdataOperations:
 
     upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
-    @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO, **kwargs) -> IO:
-        """Upload file.
-
-        :param file_content: File to upload.
-        :type file_content: IO
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _upload_file_via_body_request(self, file_content: IO, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/octet-stream, application/json"
 
@@ -130,7 +123,26 @@ class FormdataOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content_kwargs["stream_content"] = file_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def upload_file_via_body(self, file_content: IO, **kwargs) -> IO:
+        """Upload file.
+
+        :param file_content: File to upload.
+        :type file_content: IO
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: IO, or the result of cls(response)
+        :rtype: IO
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._upload_file_via_body_request(file_content=file_content, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
@@ -148,20 +160,7 @@ class FormdataOperations:
 
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
-    @distributed_trace_async
-    async def upload_files(self, file_content: List[IO], **kwargs) -> IO:
-        """Upload multiple files.
-
-        :param file_content: Files to upload.
-        :type file_content: list[IO]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
-        :rtype: IO
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _upload_files_request(self, file_content: List[IO], **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "multipart/form-data")
         accept = "application/octet-stream, application/json"
 
@@ -180,7 +179,26 @@ class FormdataOperations:
         _form_content = {
             "fileContent": file_content,
         }
-        request = self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+        return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+
+    @distributed_trace_async
+    async def upload_files(self, file_content: List[IO], **kwargs) -> IO:
+        """Upload multiple files.
+
+        :param file_content: Files to upload.
+        :type file_content: list[IO]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: IO, or the result of cls(response)
+        :rtype: IO
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._upload_files_request(file_content=file_content, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 

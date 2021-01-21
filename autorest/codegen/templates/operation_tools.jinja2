@@ -33,10 +33,10 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% endif %}{% endmacro %}
 
 {# content type docstring #}
-{% macro content_type_docstring(operation) %}
-{% set content_type_constant = operation.request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
+{% macro content_type_docstring(request) %}
+{% set content_type_constant = request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") | selectattr("serialized_name", "equalto", "content_type") | first  %}
 :keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.constant_declaration }}.
- Allowed values are: "{{ operation.request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
+ Allowed values are: "{{ request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
 {# error map handling #}
 {% macro error_map(operation, code_model) %}
@@ -89,14 +89,15 @@ deserialized = response.stream_download(self._client._pipeline)
 deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_response)
   {% endif %}
 {% endmacro %}
-{# write grouped parameters #}
-{% macro grouped_parameters(operation) %}
-{% if operation.request.parameters.grouped %}
 
-    {% for grouped_parameter in operation.request.parameters.grouped %}
+{# write grouped parameters #}
+{% macro grouped_parameters(request) %}
+{% if request.parameters.grouped %}
+
+    {% for grouped_parameter in request.parameters.grouped %}
 {{ grouped_parameter.serialized_name }} = None
     {% endfor %}
-    {% for grouper_name, grouped_parameters in operation.request.parameters.grouped|groupby("grouped_by.serialized_name") %}
+    {% for grouper_name, grouped_parameters in request.parameters.grouped|groupby("grouped_by.serialized_name") %}
 if {{ grouper_name }} is not None:
         {% for grouped_parameter in grouped_parameters %}
     {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name.lstrip('_') }}
@@ -104,90 +105,93 @@ if {{ grouper_name }} is not None:
     {% endfor %}
 {% endif %}
 {% endmacro %}
+
 {# write queryparameters #}
-{% macro query_parameters(operation, async_mode) %}
+{% macro query_parameters(request, async_mode) %}
 # Construct parameters
 query_parameters = {}  # type: Dict[str, Any]
-{% if operation.request.parameters.query %}
-    {% for query_parameter in operation.request.parameters.query %}
+{% if request.parameters.query %}
+    {% for query_parameter in request.parameters.query %}
         {%if query_parameter.required %}
-query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.request.build_serialize_data_call(query_parameter, "query") }}
+query_parameters['{{ query_parameter.rest_api_name }}'] = {{ request.build_serialize_data_call(query_parameter, "query") }}
         {% else %}
 if {{ query_parameter.full_serialized_name }} is not None:
-    query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.request.build_serialize_data_call(query_parameter, "query") }}
+    query_parameters['{{ query_parameter.rest_api_name }}'] = {{ request.build_serialize_data_call(query_parameter, "query") }}
         {% endif %}
     {% endfor %}
 {% endif %}{% endmacro %}
+
 {# write request headers #}
-{% macro header_parameters(code_model, operation, async_mode) %}
+{% macro header_parameters(code_model, request, async_mode) %}
 # Construct headers
 header_parameters = {}  # type: Dict[str, Any]
-{% if operation.request.parameters.headers %}
-    {% for header_parameter in operation.request.parameters.headers %}
+{% if request.parameters.headers %}
+    {% for header_parameter in request.parameters.headers %}
         {%if header_parameter.required %}
-header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.request.build_serialize_data_call(header_parameter, "header") }}
+header_parameters['{{ header_parameter.rest_api_name }}'] = {{ request.build_serialize_data_call(header_parameter, "header") }}
         {% else %}
 if {{ header_parameter.full_serialized_name }} is not None:
-    header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.request.build_serialize_data_call(header_parameter, "header") }}
+    header_parameters['{{ header_parameter.rest_api_name }}'] = {{ request.build_serialize_data_call(header_parameter, "header") }}
         {% endif %}
     {% endfor %}
 {% endif %}{% endmacro %}
+
 {# helper for stream body params #}
-{% macro stream_body_params(operation) %}body_content_kwargs['stream_content'] = {{ operation.request.parameters.body[0].serialized_name }}{% endmacro %}
+{% macro stream_body_params(request) %}body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}{% endmacro %}
 {# helper for non-stream body params with schema #}
-{% macro non_stream_body_params(operation, send_xml, request_as_xml) %}
-{% set ser_ctxt = operation.request.parameters.body[0].xml_serialization_ctxt if send_xml else None %}
+{% macro non_stream_body_params(request, send_xml, request_as_xml) %}
+{% set ser_ctxt = request.parameters.body[0].xml_serialization_ctxt if send_xml else None %}
 {% if ser_ctxt %}
 serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 {% endif %}
-{% if operation.request.parameters.body[0].required %}
-body_content = self._serialize.body({{ operation.request.parameters.body[0].serialized_name }}, '{{ operation.request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+{% if request.parameters.body[0].required %}
+body_content = self._serialize.body({{ request.parameters.body[0].serialized_name }}, '{{ request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
 {% else %}
-if {{ operation.request.parameters.body[0].serialized_name }} is not None:
-    body_content = self._serialize.body({{ operation.request.parameters.body[0].serialized_name }}, '{{ operation.request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+if {{ request.parameters.body[0].serialized_name }} is not None:
+    body_content = self._serialize.body({{ request.parameters.body[0].serialized_name }}, '{{ request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
 else:
     body_content = None
 {% endif %}
 body_content_kwargs['content'] = body_content{% endmacro %}
 {# write body parameters #}
-{% macro body_parameters(operation, http_verb=None) %}
+{% macro body_parameters(request, http_verb=None) %}
 {% set body_content_kwargs_signature = "" %}
 {% set form_content_kwarg_signature = "" %}
-{% if operation.request.multipart %}
+{% if request.multipart %}
     {% set form_content_kwarg_signature = ", form_content=_form_content" %}
 # Construct form data
 _form_content = {
-    {% for param in operation.request.parameters.body %}
+    {% for param in request.parameters.body %}
     '{{ param.rest_api_name }}': {{ param.serialized_name }},
     {% endfor %}
 }
 {% else %}
-    {% set send_xml = "xml" if operation.request.parameters.has_body and "xml" in operation.request.content_type %}
+    {% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
     {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
-    {% if operation.request.parameters.has_body %}
+    {% if request.parameters.has_body %}
         {% set body_content_kwargs_signature = ", **body_content_kwargs" %}
 body_content_kwargs = {}  # type: Dict[str, Any]
-        {% if (operation.request.schema_requests | length) == 1 %}
-            {% if operation.request.schema_requests[0].is_stream_request %}
-{{ stream_body_params(operation) }}
-            {% elif operation.request.schema_requests[0].body_parameter_has_schema %}
-{{ non_stream_body_params(operation, send_xml, request_as_xml) }}
+        {% if (request.schema_requests | length) == 1 %}
+            {% if request.schema_requests[0].is_stream_request %}
+{{ stream_body_params(request) }}
+            {% elif request.schema_requests[0].body_parameter_has_schema %}
+{{ non_stream_body_params(request, send_xml, request_as_xml) }}
             {% endif %}
         {% else %}
-            {% for request in operation.request.schema_requests %}
+            {% for request in request.schema_requests %}
 {{ "el" if not loop.first }}if header_parameters['Content-Type'].split(";")[0] in {{ request.pre_semicolon_media_types }}:
                 {% if request.is_stream_request %}
-    {{ stream_body_params(operation)|indent }}
+    {{ stream_body_params(request)|indent }}
                 {% elif request.body_parameter_has_schema %}
-    {{ non_stream_body_params(operation, send_xml, request_as_xml)|indent }}
+    {{ non_stream_body_params(request, send_xml, request_as_xml)|indent }}
                 {% endif %}
             {% endfor %}
 else:
     raise ValueError(
         "The content_type '{}' is not one of the allowed values: "
-        "{{ operation.request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
+        "{{ request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
     )
         {% endif %}
     {% endif %}
 {% endif %}
-request = self._client.{{ http_verb if http_verb else operation.request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
+return self._client.{{ http_verb if http_verb else request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}

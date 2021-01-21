@@ -48,18 +48,7 @@ class TimeOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get(self, **kwargs) -> datetime.time:
-        """Get time value "11:34:56".
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: time, or the result of cls(response)
-        :rtype: ~datetime.time
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.time]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -72,7 +61,24 @@ class TimeOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get(self, **kwargs) -> datetime.time:
+        """Get time value "11:34:56".
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: time, or the result of cls(response)
+        :rtype: ~datetime.time
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.time]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -90,20 +96,7 @@ class TimeOperations:
 
     get.metadata = {"url": "/time/get"}  # type: ignore
 
-    @distributed_trace_async
-    async def put(self, time_body: datetime.time, **kwargs) -> str:
-        """Put time value "08:07:56".
-
-        :param time_body: Put time value "08:07:56" in parameter to pass testserver.
-        :type time_body: ~datetime.time
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
-        :rtype: str
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _put_request(self, time_body: datetime.time, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -121,7 +114,26 @@ class TimeOperations:
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(time_body, "time")
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def put(self, time_body: datetime.time, **kwargs) -> str:
+        """Put time value "08:07:56".
+
+        :param time_body: Put time value "08:07:56" in parameter to pass testserver.
+        :type time_body: ~datetime.time
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str, or the result of cls(response)
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put_request(time_body=time_body, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -47,24 +47,7 @@ class AvailabilitySetsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def update(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs) -> None:
-        """Updates the tags for an availability set.
-
-        :param resource_group_name: The name of the resource group.
-        :type resource_group_name: str
-        :param avset: The name of the storage availability set.
-        :type avset: str
-        :param tags: A description about the set of tags.
-        :type tags: dict[str, str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _update_request(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs) -> HttpRequest:
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         content_type = kwargs.pop("content_type", "application/json")
@@ -87,7 +70,30 @@ class AvailabilitySetsOperations:
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
         body_content_kwargs["content"] = body_content
-        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def update(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs) -> None:
+        """Updates the tags for an availability set.
+
+        :param resource_group_name: The name of the resource group.
+        :type resource_group_name: str
+        :param avset: The name of the storage availability set.
+        :type avset: str
+        :param tags: A description about the set of tags.
+        :type tags: dict[str, str]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._update_request(resource_group_name=resource_group_name, avset=avset, tags=tags, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -48,18 +48,7 @@ class DurationOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[datetime.timedelta]:
-        """Get null duration value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or None, or the result of cls(response)
-        :rtype: ~datetime.timedelta or None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.timedelta]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -72,7 +61,24 @@ class DurationOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_null(self, **kwargs) -> Optional[datetime.timedelta]:
+        """Get null duration value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: timedelta or None, or the result of cls(response)
+        :rtype: ~datetime.timedelta or None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.timedelta]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_null_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -90,20 +96,7 @@ class DurationOperations:
 
     get_null.metadata = {"url": "/duration/null"}  # type: ignore
 
-    @distributed_trace_async
-    async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs) -> None:
-        """Put a positive duration value.
-
-        :param duration_body: duration body.
-        :type duration_body: ~datetime.timedelta
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _put_positive_duration_request(self, duration_body: datetime.timedelta, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -121,7 +114,26 @@ class DurationOperations:
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(duration_body, "duration")
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs) -> None:
+        """Put a positive duration value.
+
+        :param duration_body: duration body.
+        :type duration_body: ~datetime.timedelta
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put_positive_duration_request(duration_body=duration_body, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -135,18 +147,7 @@ class DurationOperations:
 
     put_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
-    @distributed_trace_async
-    async def get_positive_duration(self, **kwargs) -> datetime.timedelta:
-        """Get a positive duration value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
-        :rtype: ~datetime.timedelta
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.timedelta]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_positive_duration_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -159,7 +160,24 @@ class DurationOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_positive_duration(self, **kwargs) -> datetime.timedelta:
+        """Get a positive duration value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: timedelta, or the result of cls(response)
+        :rtype: ~datetime.timedelta
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.timedelta]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_positive_duration_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -177,18 +195,7 @@ class DurationOperations:
 
     get_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
-    @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> datetime.timedelta:
-        """Get an invalid duration value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
-        :rtype: ~datetime.timedelta
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.timedelta]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_invalid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -201,7 +208,24 @@ class DurationOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_invalid(self, **kwargs) -> datetime.timedelta:
+        """Get an invalid duration value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: timedelta, or the result of cls(response)
+        :rtype: ~datetime.timedelta
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.timedelta]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_invalid_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

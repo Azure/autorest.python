@@ -47,18 +47,7 @@ class ReadonlypropertyOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.ReadonlyObj":
-        """Get complex types that have readonly properties.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ReadonlyObj, or the result of cls(response)
-        :rtype: ~bodycomplex.models.ReadonlyObj
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ReadonlyObj"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_valid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -71,7 +60,24 @@ class ReadonlypropertyOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_valid(self, **kwargs) -> "_models.ReadonlyObj":
+        """Get complex types that have readonly properties.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ReadonlyObj, or the result of cls(response)
+        :rtype: ~bodycomplex.models.ReadonlyObj
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ReadonlyObj"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_valid_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -89,20 +95,7 @@ class ReadonlypropertyOperations:
 
     get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
-    @distributed_trace_async
-    async def put_valid(self, size: Optional[int] = None, **kwargs) -> None:
-        """Put complex types that have readonly properties.
-
-        :param size:
-        :type size: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _put_valid_request(self, size: Optional[int] = None, **kwargs) -> HttpRequest:
 
         _complex_body = _models.ReadonlyObj(size=size)
         content_type = kwargs.pop("content_type", "application/json")
@@ -122,7 +115,26 @@ class ReadonlypropertyOperations:
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_complex_body, "ReadonlyObj")
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def put_valid(self, size: Optional[int] = None, **kwargs) -> None:
+        """Put complex types that have readonly properties.
+
+        :param size:
+        :type size: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put_valid_request(size=size, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

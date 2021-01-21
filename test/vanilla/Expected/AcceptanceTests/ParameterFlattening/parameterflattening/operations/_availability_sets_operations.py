@@ -51,6 +51,38 @@ class AvailabilitySetsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _update_request(
+        self,
+        resource_group_name,  # type: str
+        avset,  # type: str
+        tags,  # type: Dict[str, str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+
+        _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
+        content_type = kwargs.pop("content_type", "application/json")
+
+        # Construct URL
+        url = self.update.metadata["url"]  # type: ignore
+        path_format_arguments = {
+            "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
+            "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
+        body_content_kwargs["content"] = body_content
+        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
     @distributed_trace
     def update(
         self,
@@ -77,28 +109,9 @@ class AvailabilitySetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
-        content_type = kwargs.pop("content_type", "application/json")
+        request = self._update_request(resource_group_name=resource_group_name, avset=avset, tags=tags, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct URL
-        url = self.update.metadata["url"]  # type: ignore
-        path_format_arguments = {
-            "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-            "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
-        body_content_kwargs["content"] = body_content
-        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

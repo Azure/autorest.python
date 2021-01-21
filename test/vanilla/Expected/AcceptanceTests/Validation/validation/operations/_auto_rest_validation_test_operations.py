@@ -30,28 +30,13 @@ if TYPE_CHECKING:
 
 
 class AutoRestValidationTestOperationsMixin(object):
-    @distributed_trace
-    def validation_of_method_parameters(
+    def _validation_of_method_parameters_request(
         self,
         resource_group_name,  # type: str
         id,  # type: int
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Product"
-        """Validates input parameters on the method. See swagger for details.
-
-        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
-        :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
-        :type id: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         accept = "application/json"
 
@@ -79,7 +64,36 @@ class AutoRestValidationTestOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def validation_of_method_parameters(
+        self,
+        resource_group_name,  # type: str
+        id,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.Product"
+        """Validates input parameters on the method. See swagger for details.
+
+        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+        :type resource_group_name: str
+        :param id: Required int multiple of 10 from 100 to 1000.
+        :type id: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product, or the result of cls(response)
+        :rtype: ~validation.models.Product
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._validation_of_method_parameters_request(
+            resource_group_name=resource_group_name, id=id, **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -97,31 +111,14 @@ class AutoRestValidationTestOperationsMixin(object):
 
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
-    @distributed_trace
-    def validation_of_body(
+    def _validation_of_body_request(
         self,
         resource_group_name,  # type: str
         id,  # type: int
         body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Product"
-        """Validates body parameters on the method. See swagger for details.
-
-        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
-        :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
-        :type id: int
-        :param body:
-        :type body: ~validation.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -152,7 +149,37 @@ class AutoRestValidationTestOperationsMixin(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def validation_of_body(
+        self,
+        resource_group_name,  # type: str
+        id,  # type: int
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.Product"
+        """Validates body parameters on the method. See swagger for details.
+
+        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+        :type resource_group_name: str
+        :param id: Required int multiple of 10 from 100 to 1000.
+        :type id: int
+        :param body:
+        :type body: ~validation.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product, or the result of cls(response)
+        :rtype: ~validation.models.Product
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._validation_of_body_request(resource_group_name=resource_group_name, id=id, body=body, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -170,21 +197,10 @@ class AutoRestValidationTestOperationsMixin(object):
 
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
-    @distributed_trace
-    def get_with_constant_in_path(
+    def _get_with_constant_in_path_request(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """get_with_constant_in_path.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         constant_param = "constant"
 
         # Construct URL
@@ -200,7 +216,27 @@ class AutoRestValidationTestOperationsMixin(object):
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def get_with_constant_in_path(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """get_with_constant_in_path.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_with_constant_in_path_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -213,25 +249,12 @@ class AutoRestValidationTestOperationsMixin(object):
 
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
-    @distributed_trace
-    def post_with_constant_in_body(
+    def _post_with_constant_in_body_request(
         self,
         body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Product"
-        """post_with_constant_in_body.
-
-        :param body:
-        :type body: ~validation.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
-        :rtype: ~validation.models.Product
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         constant_param = "constant"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -257,7 +280,31 @@ class AutoRestValidationTestOperationsMixin(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def post_with_constant_in_body(
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.Product"
+        """post_with_constant_in_body.
+
+        :param body:
+        :type body: ~validation.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product, or the result of cls(response)
+        :rtype: ~validation.models.Product
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post_with_constant_in_body_request(body=body, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

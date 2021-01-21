@@ -4,6 +4,7 @@
 
 {% macro operation_docstring_helper(code_model, operation, async_mode) %}
 {% import 'keywords.jinja2' as keywords with context %}
+{% set request = operation.request %}
 """{{ operation.summary if operation.summary else operation.description | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
 {% if operation.summary and operation.description %}
 
@@ -15,14 +16,14 @@
     This method is deprecated
 
 {% endif -%}
-{% for parameter in operation.request.parameters.method %}
+{% for parameter in request.parameters.method %}
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
-{% if (operation.request.schema_requests | length) > 1 %}
-{{ op_tools.content_type_docstring(operation) }}
+{% if (request.schema_requests | length) > 1 %}
+{{ op_tools.content_type_docstring(request) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -44,7 +45,7 @@
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
         raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
-            {% for parameter in operation.request.parameters.method %}
+            {% for parameter in request.parameters.method %}
             {{ parameter.serialized_name }}={{ parameter.serialized_name }},
             {% endfor %}
             cls=lambda x,y,z: x,
@@ -60,11 +61,11 @@
     {% set path_format_arguments = "" %}
     {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
     {% set operation_name = "begin_"+operation.python_name %}
-    {% if operation.request.parameters.path %}
+    {% if request.parameters.path %}
     {% set path_format_arguments = ", path_format_arguments=path_format_arguments" %}
     path_format_arguments = {
-        {% for path_parameter in operation.request.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ operation.request.build_serialize_data_call(path_parameter, "url") }},
+        {% for path_parameter in request.parameters.path %}
+        '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
         {% endfor %}
     }
 
@@ -81,5 +82,5 @@
         )
     else:
         return {{ operation.get_poller(async_mode) }}(self._client, raw_result, get_long_running_output, polling_method)
-{{ operation_name }}.metadata = {'url': '{{ operation.request.url }}'}  # type: ignore
+{{ operation_name }}.metadata = {'url': '{{ request.url }}'}  # type: ignore
 {%- endmacro -%}

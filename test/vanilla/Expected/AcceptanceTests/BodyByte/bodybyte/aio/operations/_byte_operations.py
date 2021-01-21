@@ -47,18 +47,7 @@ class ByteOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get_null(self, **kwargs) -> bytearray:
-        """Get null byte value.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -71,7 +60,24 @@ class ByteOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_null(self, **kwargs) -> bytearray:
+        """Get null byte value.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: bytearray, or the result of cls(response)
+        :rtype: bytearray
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_null_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -89,18 +95,7 @@ class ByteOperations:
 
     get_null.metadata = {"url": "/byte/null"}  # type: ignore
 
-    @distributed_trace_async
-    async def get_empty(self, **kwargs) -> bytearray:
-        """Get empty byte value ''.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_empty_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -113,7 +108,24 @@ class ByteOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_empty(self, **kwargs) -> bytearray:
+        """Get empty byte value ''.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: bytearray, or the result of cls(response)
+        :rtype: bytearray
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_empty_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -131,18 +143,7 @@ class ByteOperations:
 
     get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
 
-    @distributed_trace_async
-    async def get_non_ascii(self, **kwargs) -> bytearray:
-        """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_non_ascii_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -155,7 +156,24 @@ class ByteOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_non_ascii(self, **kwargs) -> bytearray:
+        """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: bytearray, or the result of cls(response)
+        :rtype: bytearray
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_non_ascii_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -173,20 +191,7 @@ class ByteOperations:
 
     get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
-    @distributed_trace_async
-    async def put_non_ascii(self, byte_body: bytearray, **kwargs) -> None:
-        """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-
-        :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-        :type byte_body: bytearray
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _put_non_ascii_request(self, byte_body: bytearray, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -204,7 +209,26 @@ class ByteOperations:
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(byte_body, "bytearray")
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def put_non_ascii(self, byte_body: bytearray, **kwargs) -> None:
+        """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+
+        :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+        :type byte_body: bytearray
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put_non_ascii_request(byte_body=byte_body, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -218,18 +242,7 @@ class ByteOperations:
 
     put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
-    @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> bytearray:
-        """Get invalid byte value ':::SWAGGER::::'.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bytearray, or the result of cls(response)
-        :rtype: bytearray
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_invalid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -242,7 +255,24 @@ class ByteOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_invalid(self, **kwargs) -> bytearray:
+        """Get invalid byte value ':::SWAGGER::::'.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: bytearray, or the result of cls(response)
+        :rtype: bytearray
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_invalid_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

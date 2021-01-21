@@ -26,6 +26,23 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestReportServiceOperationsMixin:
+    def _get_report_request(self, qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get_report.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        if qualifier is not None:
+            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
+
     @distributed_trace_async
     async def get_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
         """Get test coverage report.
@@ -42,21 +59,10 @@ class AutoRestReportServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.get_report.metadata["url"]  # type: ignore
+        request = self._get_report_request(qualifier=qualifier, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if qualifier is not None:
-            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -74,6 +80,23 @@ class AutoRestReportServiceOperationsMixin:
 
     get_report.metadata = {"url": "/report"}  # type: ignore
 
+    def _get_optional_report_request(self, qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get_optional_report.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        if qualifier is not None:
+            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
+
     @distributed_trace_async
     async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
         """Get optional test coverage report.
@@ -90,21 +113,10 @@ class AutoRestReportServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.get_optional_report.metadata["url"]  # type: ignore
+        request = self._get_optional_report_request(qualifier=qualifier, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if qualifier is not None:
-            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -47,18 +47,7 @@ class FlattencomplexOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.MyBaseType":
-        """get_valid.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyBaseType, or the result of cls(response)
-        :rtype: ~bodycomplex.models.MyBaseType
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyBaseType"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_valid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -71,7 +60,24 @@ class FlattencomplexOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_valid(self, **kwargs) -> "_models.MyBaseType":
+        """get_valid.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: MyBaseType, or the result of cls(response)
+        :rtype: ~bodycomplex.models.MyBaseType
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyBaseType"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_valid_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -51,8 +51,7 @@ class PathItemsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace
-    def get_all_with_values(
+    def _get_all_with_values_request(
         self,
         path_item_string_path,  # type: str
         local_string_path,  # type: str
@@ -60,28 +59,7 @@ class PathItemsOperations(object):
         local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
-
-        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
-        :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
-        :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
-        :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
-        :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -114,22 +92,10 @@ class PathItemsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-            return cls(pipeline_response, None, {})
-
-    get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
+        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
-    def get_global_query_null(
+    def get_all_with_values(
         self,
         path_item_string_path,  # type: str
         local_string_path,  # type: str
@@ -139,7 +105,7 @@ class PathItemsOperations(object):
     ):
         # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery=null,
+        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
@@ -159,6 +125,38 @@ class PathItemsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_all_with_values_request(
+            path_item_string_path=path_item_string_path,
+            local_string_path=local_string_path,
+            path_item_string_query=path_item_string_query,
+            local_string_query=local_string_query,
+            **kwargs
+        )
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
+
+    def _get_global_query_null_request(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -191,7 +189,49 @@ class PathItemsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def get_global_query_null(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery=null,
+        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+
+        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+        :type path_item_string_path: str
+        :param local_string_path: should contain value 'localStringPath'.
+        :type local_string_path: str
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+         parameter.
+        :type path_item_string_query: str
+        :param local_string_query: should contain value 'localStringQuery'.
+        :type local_string_query: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_global_query_null_request(
+            path_item_string_path=path_item_string_path,
+            local_string_path=local_string_path,
+            path_item_string_query=path_item_string_query,
+            local_string_query=local_string_query,
+            **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -205,8 +245,7 @@ class PathItemsOperations(object):
 
     get_global_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
 
-    @distributed_trace
-    def get_global_and_local_query_null(
+    def _get_global_and_local_query_null_request(
         self,
         path_item_string_path,  # type: str
         local_string_path,  # type: str
@@ -214,28 +253,7 @@ class PathItemsOperations(object):
         local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery=null,
-        pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
-
-        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
-        :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
-        :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
-        :type path_item_string_query: str
-        :param local_string_query: should contain null value.
-        :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -268,7 +286,49 @@ class PathItemsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def get_global_and_local_query_null(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery=null,
+        pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
+
+        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+        :type path_item_string_path: str
+        :param local_string_path: should contain value 'localStringPath'.
+        :type local_string_path: str
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+         parameter.
+        :type path_item_string_query: str
+        :param local_string_query: should contain null value.
+        :type local_string_query: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_global_and_local_query_null_request(
+            path_item_string_path=path_item_string_path,
+            local_string_path=local_string_path,
+            path_item_string_query=path_item_string_query,
+            local_string_query=local_string_query,
+            **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -282,8 +342,7 @@ class PathItemsOperations(object):
 
     get_global_and_local_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
 
-    @distributed_trace
-    def get_local_path_item_query_null(
+    def _get_local_path_item_query_null_request(
         self,
         path_item_string_path,  # type: str
         local_string_path,  # type: str
@@ -291,27 +350,7 @@ class PathItemsOperations(object):
         local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-        pathItemStringQuery=null, localStringQuery=null.
-
-        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
-        :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
-        :type local_string_path: str
-        :param path_item_string_query: should contain value null.
-        :type path_item_string_query: str
-        :param local_string_query: should contain value null.
-        :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -344,7 +383,48 @@ class PathItemsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def get_local_path_item_query_null(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+        pathItemStringQuery=null, localStringQuery=null.
+
+        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+        :type path_item_string_path: str
+        :param local_string_path: should contain value 'localStringPath'.
+        :type local_string_path: str
+        :param path_item_string_query: should contain value null.
+        :type path_item_string_query: str
+        :param local_string_query: should contain value null.
+        :type local_string_query: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_local_path_item_query_null_request(
+            path_item_string_path=path_item_string_path,
+            local_string_path=local_string_path,
+            path_item_string_query=path_item_string_query,
+            local_string_query=local_string_query,
+            **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

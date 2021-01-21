@@ -43,20 +43,7 @@ class FloatOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> str:
-        """Put a float enum.
-
-        :param input: Input float enum.
-        :type input: str or ~nonstringenums.models.FloatEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
-        :rtype: str
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _put_request(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -77,7 +64,26 @@ class FloatOperations:
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> str:
+        """Put a float enum.
+
+        :param input: Input float enum.
+        :type input: str or ~nonstringenums.models.FloatEnum
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str, or the result of cls(response)
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put_request(input=input, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -94,18 +100,7 @@ class FloatOperations:
 
     put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
 
-    @distributed_trace_async
-    async def get(self, **kwargs) -> Union[float, "_models.FloatEnum"]:
-        """Get a float enum.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatEnum, or the result of cls(response)
-        :rtype: str or ~nonstringenums.models.FloatEnum
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -118,7 +113,24 @@ class FloatOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get(self, **kwargs) -> Union[float, "_models.FloatEnum"]:
+        """Get a float enum.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: FloatEnum, or the result of cls(response)
+        :rtype: str or ~nonstringenums.models.FloatEnum
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Union[float, "_models.FloatEnum"]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_request(**kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

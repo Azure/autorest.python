@@ -18,5 +18,7 @@ class {{ operation_group.class_name }}{{ object_base_class }}:
     {% else %}
     {% macro someop() %}{% include "operation.py.jinja2" %}{% endmacro %}
     {% endif %}
+    {%- macro request() %}{% include "request.py.jinja2" %}{% endmacro %}
+    {{ request()|indent }}
     {{ someop()|indent }}
 {% endfor %}

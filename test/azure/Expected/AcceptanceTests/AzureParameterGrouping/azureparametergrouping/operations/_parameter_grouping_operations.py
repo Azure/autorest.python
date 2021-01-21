@@ -51,25 +51,12 @@ class ParameterGroupingOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace
-    def post_required(
+    def _post_required_request(
         self,
         parameter_grouping_post_required_parameters,  # type: "_models.ParameterGroupingPostRequiredParameters"
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post a bunch of required parameters grouped.
-
-        :param parameter_grouping_post_required_parameters: Parameter group.
-        :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
 
         _custom_header = None
         _query = None
@@ -105,7 +92,33 @@ class ParameterGroupingOperations(object):
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body, "int")
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def post_required(
+        self,
+        parameter_grouping_post_required_parameters,  # type: "_models.ParameterGroupingPostRequiredParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post a bunch of required parameters grouped.
+
+        :param parameter_grouping_post_required_parameters: Parameter group.
+        :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post_required_request(
+            parameter_grouping_post_required_parameters=parameter_grouping_post_required_parameters, **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -119,25 +132,12 @@ class ParameterGroupingOperations(object):
 
     post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
 
-    @distributed_trace
-    def post_optional(
+    def _post_optional_request(
         self,
         parameter_grouping_post_optional_parameters=None,  # type: Optional["_models.ParameterGroupingPostOptionalParameters"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post a bunch of optional parameters grouped.
-
-        :param parameter_grouping_post_optional_parameters: Parameter group.
-        :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
 
         _custom_header = None
         _query = None
@@ -160,7 +160,33 @@ class ParameterGroupingOperations(object):
             header_parameters["customHeader"] = self._serialize.header("custom_header", _custom_header, "str")
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.post(url, query_parameters, header_parameters)
+        return self._client.post(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def post_optional(
+        self,
+        parameter_grouping_post_optional_parameters=None,  # type: Optional["_models.ParameterGroupingPostOptionalParameters"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post a bunch of optional parameters grouped.
+
+        :param parameter_grouping_post_optional_parameters: Parameter group.
+        :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post_optional_request(
+            parameter_grouping_post_optional_parameters=parameter_grouping_post_optional_parameters, **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -174,28 +200,13 @@ class ParameterGroupingOperations(object):
 
     post_optional.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
 
-    @distributed_trace
-    def post_multi_param_groups(
+    def _post_multi_param_groups_request(
         self,
         first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
         parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post parameters from multiple different parameter groups.
-
-        :param first_parameter_group: Parameter group.
-        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
-        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
-        :type parameter_grouping_post_multi_param_groups_second_param_group: ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
 
         _header_one = None
         _query_one = None
@@ -227,7 +238,38 @@ class ParameterGroupingOperations(object):
             header_parameters["header-two"] = self._serialize.header("header_two", _header_two, "str")
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.post(url, query_parameters, header_parameters)
+        return self._client.post(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def post_multi_param_groups(
+        self,
+        first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
+        parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post parameters from multiple different parameter groups.
+
+        :param first_parameter_group: Parameter group.
+        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
+        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
+        :type parameter_grouping_post_multi_param_groups_second_param_group: ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post_multi_param_groups_request(
+            first_parameter_group=first_parameter_group,
+            parameter_grouping_post_multi_param_groups_second_param_group=parameter_grouping_post_multi_param_groups_second_param_group,
+            **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -241,25 +283,12 @@ class ParameterGroupingOperations(object):
 
     post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
-    @distributed_trace
-    def post_shared_parameter_group_object(
+    def _post_shared_parameter_group_object_request(
         self,
         first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """Post parameters with a shared parameter group object.
-
-        :param first_parameter_group: Parameter group.
-        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
 
         _header_one = None
         _query_one = None
@@ -282,7 +311,33 @@ class ParameterGroupingOperations(object):
             header_parameters["header-one"] = self._serialize.header("header_one", _header_one, "str")
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.post(url, query_parameters, header_parameters)
+        return self._client.post(url, query_parameters, header_parameters)
+
+    @distributed_trace
+    def post_shared_parameter_group_object(
+        self,
+        first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Post parameters with a shared parameter group object.
+
+        :param first_parameter_group: Parameter group.
+        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post_shared_parameter_group_object_request(
+            first_parameter_group=first_parameter_group, **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

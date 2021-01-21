@@ -47,28 +47,9 @@ class PathsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get_empty(
+    def _get_empty_request(
         self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
-    ) -> None:
-        """Get a 200 to test a valid base uri.
-
-        :param vault: The vault name, e.g. https://myvault.
-        :type vault: str
-        :param secret: Secret value.
-        :type secret: str
-        :param key_name: The key name with value 'key1'.
-        :type key_name: str
-        :param key_version: The key version. Default value 'v1'.
-        :type key_version: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    ) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -93,7 +74,36 @@ class PathsOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    @distributed_trace_async
+    async def get_empty(
+        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
+    ) -> None:
+        """Get a 200 to test a valid base uri.
+
+        :param vault: The vault name, e.g. https://myvault.
+        :type vault: str
+        :param secret: Secret value.
+        :type secret: str
+        :param key_name: The key name with value 'key1'.
+        :type key_name: str
+        :param key_version: The key version. Default value 'v1'.
+        :type key_version: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_empty_request(
+            vault=vault, secret=secret, key_name=key_name, key_version=key_version, **kwargs
+        )
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

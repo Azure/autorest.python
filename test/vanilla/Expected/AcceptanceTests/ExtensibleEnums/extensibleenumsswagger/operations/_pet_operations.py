@@ -51,6 +51,30 @@ class PetOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _get_by_pet_id_request(
+        self,
+        pet_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self.get_by_pet_id.metadata["url"]  # type: ignore
+        path_format_arguments = {
+            "petId": self._serialize.url("pet_id", pet_id, "str"),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
+
     @distributed_trace
     def get_by_pet_id(
         self,
@@ -70,23 +94,10 @@ class PetOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.get_by_pet_id.metadata["url"]  # type: ignore
-        path_format_arguments = {
-            "petId": self._serialize.url("pet_id", pet_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
+        request = self._get_by_pet_id_request(pet_id=pet_id, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -103,25 +114,12 @@ class PetOperations(object):
 
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
-    @distributed_trace
-    def add_pet(
+    def _add_pet_request(
         self,
         pet_param=None,  # type: Optional["_models.Pet"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Pet"
-        """add pet.
-
-        :param pet_param: pet param.
-        :type pet_param: ~extensibleenumsswagger.models.Pet
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet, or the result of cls(response)
-        :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -142,7 +140,31 @@ class PetOperations(object):
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace
+    def add_pet(
+        self,
+        pet_param=None,  # type: Optional["_models.Pet"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.Pet"
+        """add pet.
+
+        :param pet_param: pet param.
+        :type pet_param: ~extensibleenumsswagger.models.Pet
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Pet, or the result of cls(response)
+        :rtype: ~extensibleenumsswagger.models.Pet
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._add_pet_request(pet_param=pet_param, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

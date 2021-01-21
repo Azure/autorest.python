@@ -26,22 +26,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MediaTypesClientOperationsMixin:
-    @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> str:
-        """Analyze body, that could be different media types.
-
-        :param input: Input parameter.
-        :type input: IO or ~mediatypes.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
-         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
-        :rtype: str
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _analyze_body_request(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -77,7 +62,28 @@ class MediaTypesClientOperationsMixin:
                     header_parameters["Content-Type"]
                 )
             )
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> str:
+        """Analyze body, that could be different media types.
+
+        :param input: Input parameter.
+        :type input: IO or ~mediatypes.models.SourcePath
+        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str, or the result of cls(response)
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._analyze_body_request(input=input, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -94,20 +100,7 @@ class MediaTypesClientOperationsMixin:
 
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
-    @distributed_trace_async
-    async def content_type_with_encoding(self, input: str, **kwargs) -> str:
-        """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
-
-        :param input: Input parameter.
-        :type input: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
-        :rtype: str
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _content_type_with_encoding_request(self, input: str, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "text/plain")
         accept = "application/json"
 
@@ -125,7 +118,26 @@ class MediaTypesClientOperationsMixin:
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(input, "str")
         body_content_kwargs["content"] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    @distributed_trace_async
+    async def content_type_with_encoding(self, input: str, **kwargs) -> str:
+        """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
+
+        :param input: Input parameter.
+        :type input: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str, or the result of cls(response)
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._content_type_with_encoding_request(input=input, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
