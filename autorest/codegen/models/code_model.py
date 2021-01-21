@@ -147,14 +147,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     def _lro_initial_function(operation: LROOperation) -> Operation:
         return Operation(
             yaml_data={},
+            request=operation.request,
             name="_" + operation.name + "_initial",
             description="",
-            url=operation.url,
-            method=operation.method,
-            multipart=operation.multipart,
             api_versions=operation.api_versions,
-            parameters=operation.parameters.parameters,
-            requests=operation.requests,
             responses=operation.responses,
             exceptions=operation.exceptions,
             want_description_docstring=False,
@@ -301,12 +297,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 for obj in chain(
-                    operation.parameters,
-                    operation.multiple_media_type_parameters or [],
+                    operation.request.parameters,
+                    operation.request.multiple_media_type_parameters or [],
                     operation.responses,
                     operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses),
-                    chain.from_iterable(request.parameters for request in operation.requests)
+                    chain.from_iterable(request.parameters for request in operation.request.schema_requests)
                 ):
                     self._populate_schema(obj)
 
@@ -317,15 +313,16 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     def generate_single_parameter_from_multiple_media_types(self) -> None:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
-                if operation.multiple_media_type_parameters:
+                if operation.request.multiple_media_type_parameters:
                     type_annot = ", ".join([
-                        param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
+                        param.schema.operation_type_annotation
+                        for param in operation.request.multiple_media_type_parameters
                     ])
                     docstring_type = " or ".join([
-                        param.schema.docstring_type for param in operation.multiple_media_type_parameters
+                        param.schema.docstring_type for param in operation.request.multiple_media_type_parameters
                     ])
                     chosen_parameter = next(
-                        iter(filter(lambda x: x.has_multiple_media_types, operation.parameters)), None
+                        iter(filter(lambda x: x.has_multiple_media_types, operation.request.parameters)), None
                     )
                     if not chosen_parameter:
                         raise ValueError("You are missing a parameter that has multiple media types")

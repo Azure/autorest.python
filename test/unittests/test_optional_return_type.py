@@ -13,11 +13,7 @@ def operation():
         yaml_data={},
         name="optional_return_type_test",
         description="Operation to test optional return types",
-        url="http://www.optional_return_type.com",
-        method="method",
-        multipart=False,
         api_versions=set(["2020-05-01"]),
-        requests=[]
     )
 
 @pytest.fixture
@@ -26,11 +22,7 @@ def lro_operation():
         yaml_data={},
         name="lro_optional_return_type_test",
         description="LRO Operation to test optional return types",
-        url="http://www.optional_return_type.com",
-        method="method",
-        multipart=False,
         api_versions=set(["2020-05-01"]),
-        requests=[]
     )
 
 @pytest.fixture
@@ -39,11 +31,7 @@ def paging_operation():
         yaml_data={"extensions": {"x-ms-pageable": {}}},
         name="paging_optional_return_type_test",
         description="Paging Operation to test optional return types",
-        url="http://www.optional_return_type.com",
-        method="method",
-        multipart=False,
         api_versions=set(["2020-05-01"]),
-        requests=[]
     )
 
 def test_success_with_body_and_fail_no_body(operation):

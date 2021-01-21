@@ -8,24 +8,18 @@ from typing import Any, Dict, List, Set, Optional
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .imports import FileImport
-from .schema_request import SchemaRequest
-from .parameter import Parameter
+from .request import Request
 from .schema_response import SchemaResponse
 
 class LROPagingOperation(PagingOperation, LROOperation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
+        request: Request,
         name: str,
         description: str,
-        url: str,
-        method: str,
-        multipart: bool,
         api_versions: Set[str],
-        requests: List[SchemaRequest],
         summary: Optional[str] = None,
-        parameters: Optional[List[Parameter]] = None,
-        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
@@ -33,16 +27,11 @@ class LROPagingOperation(PagingOperation, LROOperation):
     ) -> None:
         super(LROPagingOperation, self).__init__(
             yaml_data,
+            request,
             name,
             description,
-            url,
-            method,
-            multipart,
             api_versions,
-            requests,
             summary,
-            parameters,
-            multiple_media_type_parameters,
             responses,
             exceptions,
             want_description_docstring,

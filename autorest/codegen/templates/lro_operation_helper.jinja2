@@ -15,13 +15,13 @@
     This method is deprecated
 
 {% endif -%}
-{% for parameter in operation.parameters.method %}
+{% for parameter in operation.request.parameters.method %}
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
-{% if (operation.requests | length) > 1 %}
+{% if (operation.request.schema_requests | length) > 1 %}
 {{ op_tools.content_type_docstring(operation) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
@@ -44,7 +44,7 @@
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
         raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
-            {% for parameter in operation.parameters.method %}
+            {% for parameter in operation.request.parameters.method %}
             {{ parameter.serialized_name }}={{ parameter.serialized_name }},
             {% endfor %}
             cls=lambda x,y,z: x,
@@ -60,11 +60,11 @@
     {% set path_format_arguments = "" %}
     {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
     {% set operation_name = "begin_"+operation.python_name %}
-    {% if operation.parameters.path %}
+    {% if operation.request.parameters.path %}
     {% set path_format_arguments = ", path_format_arguments=path_format_arguments" %}
     path_format_arguments = {
-        {% for path_parameter in operation.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
+        {% for path_parameter in operation.request.parameters.path %}
+        '{{ path_parameter.rest_api_name }}': {{ operation.request.build_serialize_data_call(path_parameter, "url") }},
         {% endfor %}
     }
 
@@ -81,5 +81,5 @@
         )
     else:
         return {{ operation.get_poller(async_mode) }}(self._client, raw_result, get_long_running_output, polling_method)
-{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore
+{{ operation_name }}.metadata = {'url': '{{ operation.request.url }}'}  # type: ignore
 {%- endmacro -%}

@@ -3,7 +3,7 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {# return_type is a variable that holds the return type if we already know what it is #}
-{% set return_type = "bool" if operation.method == 'head' and code_model.options['head_as_boolean'] else None %}
+{% set return_type = "bool" if operation.request.method == 'head' and code_model.options['head_as_boolean'] else None %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro return_docstring(async_mode, return_type=None) %}
 {%- if return_type -%}
@@ -31,13 +31,13 @@
     This method is deprecated
 
 {% endif -%}
-{% for parameter in operation.parameters.method %}
+{% for parameter in operation.request.parameters.method %}
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
-{% if (operation.requests | length) > 1 %}
+{% if (operation.request.schema_requests | length) > 1 %}
 {{ op_tools.content_type_docstring(operation) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
@@ -60,15 +60,15 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
-{% if operation.parameters.grouped %}
+{% if operation.request.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
 {%- endif -%}
-{% if operation.parameters.is_flattened %}
+{% if operation.request.parameters.is_flattened %}
 
-    {{ operation.parameters.build_flattened_object() }}
+    {{ operation.request.parameters.build_flattened_object() }}
 {% endif %}
-{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
-    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+{% if operation.request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {% for constant_parameter in operation.request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% if constant_parameter.serialized_name == "content_type" %}
     content_type = kwargs.pop("content_type", {{ constant_parameter.constant_declaration }})
     {% else %}
@@ -79,10 +79,10 @@
 
     # Construct URL
     url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
-{% if operation.parameters.path %}
+{% if operation.request.parameters.path %}
     path_format_arguments = {
-{% for path_parameter in operation.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
+{% for path_parameter in operation.request.parameters.path %}
+        '{{ path_parameter.rest_api_name }}': {{ operation.request.build_serialize_data_call(path_parameter, "url") }},
 {% endfor %}
     }
     url = self._client.format_url(url, **path_format_arguments)
@@ -129,7 +129,7 @@
 {% if operation.has_response_body %}
     return deserialized
 {% endif %}
-{% if operation.method == 'head' and code_model.options['head_as_boolean'] %}
+{% if operation.request.method == 'head' and code_model.options['head_as_boolean'] %}
     return 200 <= response.status_code <= 299
 {% endif %}
-{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(operation.url) }}}  # type: ignore
+{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(operation.request.url) }}}  # type: ignore

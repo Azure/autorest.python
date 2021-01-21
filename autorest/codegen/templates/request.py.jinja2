@@ -1,0 +1,34 @@
+{% import 'keywords.jinja2' as keywords with context %}
+{% import 'operation_tools.jinja2' as op_tools %}
+{% set request = operation.request %}
+{% if request.parameters.grouped %}
+    {{ op_tools.grouped_parameters(operation)|indent }}
+{%- endif -%}
+{% if request.parameters.is_flattened %}
+
+    {{ request.parameters.build_flattened_object() }}
+{% endif %}
+{% if request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {% for constant_parameter in request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {% if constant_parameter.serialized_name == "content_type" %}
+    content_type = kwargs.pop("content_type", {{ constant_parameter.constant_declaration }})
+    {% else %}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
+    {% endif %}
+    {% endfor %}
+{% endif %}
+
+    # Construct URL
+    url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
+{% if request.parameters.path %}
+    path_format_arguments = {
+{% for path_parameter in request.parameters.path %}
+        '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
+{% endfor %}
+    }
+    url = self._client.format_url(url, **path_format_arguments)
+{% endif %}
+
+    {{ op_tools.query_parameters(request, async_mode)|indent }}
+    {{ op_tools.header_parameters(code_model, request, async_mode)|indent }}
+    {{ op_tools.body_parameters(request)|indent }}

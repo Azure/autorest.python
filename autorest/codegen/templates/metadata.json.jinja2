@@ -146,7 +146,7 @@
                     "signature": {{ op_tools.method_signature(operation, operation_name, True, coroutine, async_return_type_wrapper) | tojson }},
                     "doc": {{ operation_docstring(async_mode=True) | tojson }}
                 },
-                "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
+                "call": {{ operation.request.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         }
