@@ -8,7 +8,7 @@ Modelerfour version: 4.15.442
 **Bug Fixes**
 
 - Instead of throwing a `DeserializationError` in the case of failed error model deserialization, we swallow the error and return the `HttpResponseError` to users.
-You need to make sure your `msrest` version is `0.6.20` or above  #870
+WARNING: You need to make sure your `msrest` version is `0.6.20` or above, or a lot of your calls will fail with an `AttributeError` message  #870
 
 ### 2021-01-15 - 5.6.0
 Autorest core version: 3.0.6318
