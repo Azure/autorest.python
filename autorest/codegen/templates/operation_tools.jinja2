@@ -1,3 +1,4 @@
+{% import 'keywords.jinja2' as keywords with context %}
 {% macro return_type_annotation(operation, return_type_wrapper, return_type=None) %}
 {%- if return_type -%}
 {{ return_type }}
@@ -153,6 +154,7 @@ else:
     body_content = None
 {% endif %}
 body_content_kwargs['content'] = body_content{% endmacro %}
+
 {# write body parameters #}
 {% macro body_parameters(request, http_verb=None) %}
 {% set body_content_kwargs_signature = "" %}
@@ -195,3 +197,46 @@ else:
     {% endif %}
 {% endif %}
 return self._client.{{ http_verb if http_verb else request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
+
+{# deal with response #}
+{% macro handle_response(code_model, operation) %}
+response = pipeline_response.http_response
+
+if response.status_code not in {{ operation.success_status_code|string() }}:
+	map_error(status_code=response.status_code, response=response, error_map=error_map)
+	{% if operation.default_exception %}
+	error = self._deserialize({{ operation.default_exception }}, response)
+	{% endif %}
+	raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
+
+{% if operation.any_response_has_headers %}
+response_headers = {}
+{% endif %}
+{# now we only initialize deserialized to None if we know there is both > 1 response with body and > 1 response of None #}
+{# otherwise, we know that deserialized will be set to a value then returned #}
+{% if operation.has_optional_return_type %}
+deserialized = None
+{% endif %}
+{% if operation.has_response_body or operation.any_response_has_headers %}
+  {% if operation.responses|count > 1 %}
+    {% for status_code in operation.success_status_code %}
+      {% set response =  operation.get_response_from_status(status_code) %}
+      {% if response.headers or response.has_body %}
+if response.status_code == {{ status_code }}:
+	{{ response_handling(response)|indent(8) }}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% set response = operation.responses[0] %}
+{{ response_handling(response)|indent }}
+  {% endif %}
+{% endif %}
+if cls:
+    return cls(pipeline_response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
+
+{% if operation.has_response_body %}
+return deserialized
+{% endif %}
+{% if operation.request.method == 'head' and code_model.options['head_as_boolean'] %}
+return 200 <= response.status_code <= 299
+{% endif %}{% endmacro %}
