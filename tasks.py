@@ -50,6 +50,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'ExtensibleEnums': 'extensible-enums-swagger.json',
     'Header': 'header.json',
     'Http': 'httpInfrastructure.json',
+    'IncorrectErrorResponse': 'incorrect-error-response.json',
     'Report': 'report.json',
     'RequiredOptional': 'required-optional.json',
     'Url': 'url.json',

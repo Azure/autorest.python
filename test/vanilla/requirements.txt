@@ -27,6 +27,7 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/ExtensibleEnums
 -e ./Expected/AcceptanceTests/Header
 -e ./Expected/AcceptanceTests/Http
+-e ./Expected/AcceptanceTests/IncorrectErrorResponse
 -e ./Expected/AcceptanceTests/MediaTypes
 -e ./Expected/AcceptanceTests/ModelFlattening
 -e ./Expected/AcceptanceTests/MultipleInheritance
