@@ -1,7 +1,5 @@
 {% import 'operation_tools.jinja2' as op_tools %}
-
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
-
 {% macro operation_docstring_helper(code_model, operation, async_mode) %}
 {% import 'keywords.jinja2' as keywords with context %}
 {% set request = operation.request %}
@@ -36,31 +34,38 @@
 
 {% macro lro_operation(code_model, operation, async_mode) %}
 {% import 'keywords.jinja2' as keywords with context %}
+{% set request = operation.request %}
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ keywords.async_class }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     lro_delay = kwargs.pop(
         'polling_interval',
         self._config.polling_interval
     )
+    {{ op_tools.error_map(operation, code_model)|indent }}
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
-        raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
+        request = self.{{ operation.request.name }}(
             {% for parameter in request.parameters.method %}
             {{ parameter.serialized_name }}={{ parameter.serialized_name }},
             {% endfor %}
-            cls=lambda x,y,z: x,
             **kwargs
         )
-
-    kwargs.pop('error_map', None)
-    kwargs.pop('content_type', None)
+        kwargs.pop('content_type', None)
+        {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
+        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
+        response = pipeline_response.http_response
+        {{ op_tools.handle_error_response(code_model, operation)|indent(8) }}
+        {% set response = operation.responses[0] %}
+        {% if response.headers %}
+        {{ op_tools.response_headers(response)|indent(8) }}
+        {% endif %}
     {%- endmacro -%}
 
     {% macro lro_operation_return(code_model, operation, async_mode) %}
     {% import 'keywords.jinja2' as keywords with context %}
+	{% set request = operation.request %}
     {% set path_format_arguments = "" %}
     {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
-    {% set operation_name = "begin_"+operation.python_name %}
     {% if request.parameters.path %}
     {% set path_format_arguments = ", path_format_arguments=path_format_arguments" %}
     path_format_arguments = {
@@ -81,6 +86,6 @@
             deserialization_callback=get_long_running_output
         )
     else:
-        return {{ operation.get_poller(async_mode) }}(self._client, raw_result, get_long_running_output, polling_method)
-{{ operation_name }}.metadata = {'url': '{{ request.url }}'}  # type: ignore
+        return {{ operation.get_poller(async_mode) }}(self._client, pipeline_response, get_long_running_output, polling_method)
+{{ operation.python_name }}.metadata = {'url': '{{ request.url }}'}  # type: ignore
 {%- endmacro -%}

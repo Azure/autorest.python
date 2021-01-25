@@ -3,7 +3,6 @@
 {% import 'lro_operation_helper.jinja2' as lro_helper %}
 {% import 'paging_operation_helper.jinja2' as paging_helper %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
-{% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring(async_mode) %}
 :return: An instance of {{ operation.get_poller(async_mode) }} that returns an iterator like instance of either {{ operation.responses[0].docstring_text }} or the result of cls(response)
 :rtype: ~{{ operation.get_poller_path(async_mode) }}[~{{ operation.get_pager_path(async_mode) }}[{{ operation.responses[0].docstring_type }}]]{% endmacro %}
@@ -17,7 +16,7 @@
 {{ trace_decorator }}
 {% endif %}
 {% set return_type_wrapper = [operation.get_poller(async_mode), operation.get_pager(async_mode)] %}
-{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}

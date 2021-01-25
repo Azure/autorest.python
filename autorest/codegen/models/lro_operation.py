@@ -41,12 +41,13 @@ class LROOperation(Operation):
             want_description_docstring,
             want_tracing,
         )
-        self.lro_response: Optional[SchemaResponse] = None
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
+        self.name = "begin_" + self.name
 
-    def set_lro_response_type(self) -> None:
+    @property
+    def lro_response(self) -> Optional[SchemaResponse]:
         if not self.responses:
-            return
+            return None
         responses_with_bodies = [r for r in self.responses if r.has_body]
         num_response_schemas = {r.schema for r in responses_with_bodies}
         response = None
@@ -70,7 +71,7 @@ class LROOperation(Operation):
 
         elif num_response_schemas:
             response = responses_with_bodies[0]
-        self.lro_response = response
+        return response
 
     @property
     def has_optional_return_type(self) -> bool:

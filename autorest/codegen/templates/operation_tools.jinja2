@@ -78,11 +78,16 @@ error_map = {
 }
 {% endif %}
 error_map.update(kwargs.pop('error_map', {})){%- endmacro -%}
-{% macro response_handling(response) %}
-  {% if response.headers %}
-    {% for response_header in response.headers %}
+
+{% macro response_headers(response) %}
+response_headers = {}
+{% for response_header in response.headers %}
 response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.serialization_type }}', response.headers.get('{{ response_header.name }}'))
-    {% endfor %}
+{% endfor %}{% endmacro %}
+
+{% macro response_headers_and_deserialization(response) %}
+  {% if response.headers %}
+{{ response_headers(response) }}
   {% endif %}
   {% if response.is_stream_response %}
 deserialized = response.stream_download(self._client._pipeline)
@@ -198,20 +203,20 @@ else:
 {% endif %}
 return self._client.{{ http_verb if http_verb else request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
 
-{# deal with response #}
-{% macro handle_response(code_model, operation) %}
-response = pipeline_response.http_response
-
+{% macro handle_error_response(code_model, operation) %}
 if response.status_code not in {{ operation.success_status_code|string() }}:
 	map_error(status_code=response.status_code, response=response, error_map=error_map)
 	{% if operation.default_exception %}
 	error = self._deserialize({{ operation.default_exception }}, response)
 	{% endif %}
-	raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
+	raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }}){% endmacro %}
 
-{% if operation.any_response_has_headers %}
-response_headers = {}
-{% endif %}
+{# deal with response #}
+{% macro handle_response(code_model, operation) %}
+response = pipeline_response.http_response
+
+{{ handle_error_response(code_model, operation) }}
+
 {# now we only initialize deserialized to None if we know there is both > 1 response with body and > 1 response of None #}
 {# otherwise, we know that deserialized will be set to a value then returned #}
 {% if operation.has_optional_return_type %}
@@ -223,12 +228,12 @@ deserialized = None
       {% set response =  operation.get_response_from_status(status_code) %}
       {% if response.headers or response.has_body %}
 if response.status_code == {{ status_code }}:
-	{{ response_handling(response)|indent(8) }}
+	{{ response_headers_and_deserialization(response) }}
       {% endif %}
     {% endfor %}
   {% else %}
     {% set response = operation.responses[0] %}
-{{ response_handling(response)|indent }}
+{{ response_headers_and_deserialization(response) }}
   {% endif %}
 {% endif %}
 if cls:

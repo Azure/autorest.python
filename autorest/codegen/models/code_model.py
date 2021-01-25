@@ -143,36 +143,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         )
         self.global_parameters.insert(0, credential_parameter)
 
-    @staticmethod
-    def _lro_initial_function(operation: LROOperation) -> Operation:
-        return Operation(
-            yaml_data={},
-            request=operation.request,
-            name="_" + operation.name + "_initial",
-            description="",
-            api_versions=operation.api_versions,
-            responses=operation.responses,
-            exceptions=operation.exceptions,
-            want_description_docstring=False,
-            want_tracing=False,
-        )
-
-    def format_lro_operations(self) -> None:
-        """Adds operations and attributes needed for LROs.
-
-        If there are LRO functions in here, will add initial LRO function. Will also set the return
-        type of the LRO operation
-        """
-        for operation_group in self.operation_groups:
-            i = 0
-            while i < len(operation_group.operations):
-                operation = operation_group.operations[i]
-                if isinstance(operation, LROOperation):
-                    operation.set_lro_response_type()
-                    operation_group.operations.insert(i, CodeModel._lro_initial_function(operation))
-                    i += 1
-                i += 1
-
     def remove_next_operation(self) -> None:
         """Linking paging operations together.
         """
