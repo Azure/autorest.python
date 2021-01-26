@@ -1,6 +1,6 @@
 # Change Log
 
-### 2021-01-15 - 5.6.0
+### 2021-01-26 - 5.6.1
 Autorest core version: 3.0.6318
 
 Modelerfour version: 4.15.442
