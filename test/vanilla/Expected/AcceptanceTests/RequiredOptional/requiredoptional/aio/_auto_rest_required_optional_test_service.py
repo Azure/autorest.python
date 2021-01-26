@@ -13,10 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
-from .operations import ExplicitOperations, ImplicitOperations
-
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ImplicitOperations
 from .operations import ExplicitOperations

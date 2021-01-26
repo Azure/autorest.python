@@ -13,18 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
-from .operations import (
-    HttpClientFailureOperations,
-    HttpFailureOperations,
-    HttpRedirectsOperations,
-    HttpRetryOperations,
-    HttpServerFailureOperations,
-    HttpSuccessOperations,
-    MultipleResponsesOperations,
-)
-
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 from .operations import HttpFailureOperations
 from .operations import HttpSuccessOperations

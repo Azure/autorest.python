@@ -11,9 +11,6 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from ._configuration import NonStringEnumsClientConfiguration
-from .operations import FloatOperations, IntOperations
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional

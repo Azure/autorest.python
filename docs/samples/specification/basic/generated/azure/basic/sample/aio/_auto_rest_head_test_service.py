@@ -13,9 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestHeadTestServiceConfiguration
-from .operations import HttpSuccessOperations
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict

@@ -13,10 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import MultipleInheritanceServiceClientConfiguration
-from .operations import MultipleInheritanceServiceClientOperationsMixin
-
 from ._configuration import MultipleInheritanceServiceClientConfiguration
 from .operations import MultipleInheritanceServiceClientOperationsMixin
 from .. import models

@@ -33,14 +33,6 @@ class Client:
         file_import.add_from_import(
             "azure.core.pipeline.transport", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL
         )
-        file_import.add_from_import("._configuration", f"{code_model.class_name}Configuration", ImportType.LOCAL)
-        for operation_group in code_model.operation_groups:
-            file_import.add_from_import(".operations", f"{ operation_group.class_name }", ImportType.LOCAL)
-
-        if code_model.sorted_schemas:
-            path_to_models = ".." if async_mode else "."
-            file_import.add_from_import(path_to_models, "models", ImportType.LOCAL)
-
         any_optional_gp = any(not gp.required for gp in code_model.global_parameters)
 
         if any_optional_gp or code_model.base_url:

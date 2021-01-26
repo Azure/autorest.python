@@ -13,10 +13,6 @@ from azure.core.pipeline.transport import HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import StorageManagementClientConfiguration
-from .operations import StorageAccountsOperations, UsageOperations
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential

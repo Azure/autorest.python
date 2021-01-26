@@ -13,10 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
-from .operations import ArrayOperations
-
 from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
 from .operations import ArrayOperations
 from .. import models

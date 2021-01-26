@@ -13,10 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import AutoRestDateTestServiceConfiguration
-from .operations import DateOperations
-
 from ._configuration import AutoRestDateTestServiceConfiguration
 from .operations import DateOperations
 from .. import models

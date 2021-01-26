@@ -11,9 +11,6 @@ from typing import TYPE_CHECKING
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
-from .operations import HeadExceptionOperations
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional

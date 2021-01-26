@@ -14,10 +14,6 @@ from azure.core.pipeline.transport import HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import MultiapiServiceClientConfiguration
-from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
-
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin
 from .operations import OperationGroupOneOperations

@@ -13,10 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from .. import models
-from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
-from .operations import QueriesOperations
-
 from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
 from .operations import QueriesOperations
 from .. import models
