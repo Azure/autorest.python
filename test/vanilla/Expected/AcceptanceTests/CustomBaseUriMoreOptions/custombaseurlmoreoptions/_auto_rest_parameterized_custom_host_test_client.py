@@ -11,13 +11,16 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
+from .operations import PathsOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
-from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
-from .operations import PathsOperations
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class AutoRestParameterizedCustomHostTestClient(object):
@@ -50,6 +53,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "dnsSuffix": self._serialize.url(

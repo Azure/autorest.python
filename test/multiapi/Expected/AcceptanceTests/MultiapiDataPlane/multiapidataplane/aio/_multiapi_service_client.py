@@ -12,12 +12,16 @@
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
+from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

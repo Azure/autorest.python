@@ -9,17 +9,17 @@
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
+
+from .. import models
+from ._configuration import MultiapiServiceClientConfiguration
+from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
-
-from ._configuration import MultiapiServiceClientConfiguration
-from .operations import MultiapiServiceClientOperationsMixin
-from .operations import OperationGroupOneOperations
-from .operations import OperationGroupTwoOperations
-from .. import models
 
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
@@ -55,7 +55,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self.operation_group_two = OperationGroupTwoOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

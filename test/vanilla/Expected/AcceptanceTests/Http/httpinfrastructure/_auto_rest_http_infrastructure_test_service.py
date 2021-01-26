@@ -11,19 +11,24 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
+from .operations import (
+    HttpClientFailureOperations,
+    HttpFailureOperations,
+    HttpRedirectsOperations,
+    HttpRetryOperations,
+    HttpServerFailureOperations,
+    HttpSuccessOperations,
+    MultipleResponsesOperations,
+)
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
-from .operations import HttpFailureOperations
-from .operations import HttpSuccessOperations
-from .operations import HttpRedirectsOperations
-from .operations import HttpClientFailureOperations
-from .operations import HttpServerFailureOperations
-from .operations import HttpRetryOperations
-from .operations import MultipleResponsesOperations
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class AutoRestHttpInfrastructureTestService(object):
@@ -77,6 +82,7 @@ class AutoRestHttpInfrastructureTestService(object):
         )
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         return self._client._pipeline.run(request, stream=False, **kwargs)
 
     def close(self):

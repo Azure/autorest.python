@@ -9,11 +9,13 @@
 from typing import Any
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 from .operations import PathsOperations
-from .. import models
 
 
 class AutoRestParameterizedCustomHostTestClient(object):
@@ -39,7 +41,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "dnsSuffix": self._serialize.url(

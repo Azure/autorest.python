@@ -11,13 +11,16 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
+from .operations import PagingOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
-from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
-from .operations import PagingOperations
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class AutoRestParameterizedHostTestPagingClient(object):
@@ -47,6 +50,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }

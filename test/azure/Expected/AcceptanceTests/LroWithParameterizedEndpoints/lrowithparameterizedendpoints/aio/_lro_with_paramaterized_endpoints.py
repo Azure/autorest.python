@@ -9,11 +9,13 @@
 from typing import Any
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
 from .operations import LROWithParamaterizedEndpointsOperationsMixin
-from .. import models
 
 
 class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin):
@@ -34,7 +36,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }

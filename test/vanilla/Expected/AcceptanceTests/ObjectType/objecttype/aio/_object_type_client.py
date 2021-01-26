@@ -9,14 +9,16 @@
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
+
+from ._configuration import ObjectTypeClientConfiguration
+from .operations import ObjectTypeClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
-
-from ._configuration import ObjectTypeClientConfiguration
-from .operations import ObjectTypeClientOperationsMixin
 
 
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):
@@ -36,7 +38,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

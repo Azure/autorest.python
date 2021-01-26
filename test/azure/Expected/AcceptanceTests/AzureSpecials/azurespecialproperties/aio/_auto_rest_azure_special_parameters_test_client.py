@@ -8,23 +8,27 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
+
+from .. import models
+from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
+from .operations import (
+    ApiVersionDefaultOperations,
+    ApiVersionLocalOperations,
+    HeaderOperations,
+    OdataOperations,
+    SkipUrlEncodingOperations,
+    SubscriptionInCredentialsOperations,
+    SubscriptionInMethodOperations,
+    XMsClientRequestIdOperations,
+)
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
-
-from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
-from .operations import XMsClientRequestIdOperations
-from .operations import SubscriptionInCredentialsOperations
-from .operations import SubscriptionInMethodOperations
-from .operations import ApiVersionDefaultOperations
-from .operations import ApiVersionLocalOperations
-from .operations import SkipUrlEncodingOperations
-from .operations import OdataOperations
-from .operations import HeaderOperations
-from .. import models
 
 
 class AutoRestAzureSpecialParametersTestClient(object):
@@ -86,7 +90,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }

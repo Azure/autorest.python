@@ -9,15 +9,17 @@
 from typing import Any, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
+
+from .. import models
+from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
+from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
-
-from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
-from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
-from .. import models
 
 
 class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
@@ -45,7 +47,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         self._deserialize = Deserializer(client_models)
 
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }

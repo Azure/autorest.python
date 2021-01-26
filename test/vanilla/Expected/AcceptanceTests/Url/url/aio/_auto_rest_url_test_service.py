@@ -9,13 +9,13 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestUrlTestServiceConfiguration
-from .operations import PathsOperations
-from .operations import QueriesOperations
-from .operations import PathItemsOperations
 from .. import models
+from ._configuration import AutoRestUrlTestServiceConfiguration
+from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
 
 class AutoRestUrlTestService(object):
@@ -54,7 +54,7 @@ class AutoRestUrlTestService(object):
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             "globalStringPath": self._serialize.url(
                 "self._config.global_string_path", self._config.global_string_path, "str"

@@ -9,19 +9,23 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestComplexTestServiceConfiguration
-from .operations import BasicOperations
-from .operations import PrimitiveOperations
-from .operations import ArrayOperations
-from .operations import DictionaryOperations
-from .operations import InheritanceOperations
-from .operations import PolymorphismOperations
-from .operations import PolymorphicrecursiveOperations
-from .operations import ReadonlypropertyOperations
-from .operations import FlattencomplexOperations
 from .. import models
+from ._configuration import AutoRestComplexTestServiceConfiguration
+from .operations import (
+    ArrayOperations,
+    BasicOperations,
+    DictionaryOperations,
+    FlattencomplexOperations,
+    InheritanceOperations,
+    PolymorphicrecursiveOperations,
+    PolymorphismOperations,
+    PrimitiveOperations,
+    ReadonlypropertyOperations,
+)
 
 
 class AutoRestComplexTestService(object):
@@ -72,7 +76,7 @@ class AutoRestComplexTestService(object):
         )
         self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

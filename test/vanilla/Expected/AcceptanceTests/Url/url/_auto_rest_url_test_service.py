@@ -11,15 +11,16 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestUrlTestServiceConfiguration
+from .operations import PathItemsOperations, PathsOperations, QueriesOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-from ._configuration import AutoRestUrlTestServiceConfiguration
-from .operations import PathsOperations
-from .operations import QueriesOperations
-from .operations import PathItemsOperations
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class AutoRestUrlTestService(object):
@@ -60,6 +61,7 @@ class AutoRestUrlTestService(object):
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         path_format_arguments = {
             "globalStringPath": self._serialize.url(
                 "self._config.global_string_path", self._config.global_string_path, "str"

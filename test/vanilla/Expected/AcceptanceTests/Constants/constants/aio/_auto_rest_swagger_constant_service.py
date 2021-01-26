@@ -9,11 +9,13 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestSwaggerConstantServiceConfiguration
 from .operations import ContantsOperations
-from .. import models
 
 
 class AutoRestSwaggerConstantService(object):
@@ -37,7 +39,7 @@ class AutoRestSwaggerConstantService(object):
 
         self.contants = ContantsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

@@ -9,11 +9,13 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestValidationTestConfiguration
 from .operations import AutoRestValidationTestOperationsMixin
-from .. import models
 
 
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
@@ -34,7 +36,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }

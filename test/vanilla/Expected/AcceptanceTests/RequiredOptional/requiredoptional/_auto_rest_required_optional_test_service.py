@@ -11,14 +11,16 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
+from .operations import ExplicitOperations, ImplicitOperations
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
-from .operations import ImplicitOperations
-from .operations import ExplicitOperations
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class AutoRestRequiredOptionalTestService(object):
@@ -61,6 +63,7 @@ class AutoRestRequiredOptionalTestService(object):
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         path_format_arguments = {
             "required-global-path": self._serialize.url(
                 "self._config.required_global_path", self._config.required_global_path, "str"

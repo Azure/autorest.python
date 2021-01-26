@@ -9,11 +9,13 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import PollingPagingExampleConfiguration
 from .operations import PollingPagingExampleOperationsMixin
-from .. import models
 
 
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
@@ -39,7 +41,7 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         self._deserialize = Deserializer(client_models)
 
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

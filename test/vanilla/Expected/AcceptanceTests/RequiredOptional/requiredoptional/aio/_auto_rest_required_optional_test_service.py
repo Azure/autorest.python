@@ -9,12 +9,13 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
-from .operations import ImplicitOperations
-from .operations import ExplicitOperations
 from .. import models
+from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
+from .operations import ExplicitOperations, ImplicitOperations
 
 
 class AutoRestRequiredOptionalTestService(object):
@@ -55,7 +56,7 @@ class AutoRestRequiredOptionalTestService(object):
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             "required-global-path": self._serialize.url(
                 "self._config.required_global_path", self._config.required_global_path, "str"

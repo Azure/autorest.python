@@ -9,14 +9,16 @@
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
+
+from ._configuration import AutoRestHeadTestServiceConfiguration
+from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
-
-from ._configuration import AutoRestHeadTestServiceConfiguration
-from .operations import HttpSuccessOperations
 
 
 class AutoRestHeadTestService(object):
@@ -45,7 +47,7 @@ class AutoRestHeadTestService(object):
         self.http_success = HttpSuccessOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

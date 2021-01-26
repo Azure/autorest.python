@@ -9,11 +9,13 @@
 from typing import Any
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
 
+from .. import models
 from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
 from .operations import PagingOperations
-from .. import models
 
 
 class AutoRestParameterizedHostTestPagingClient(object):
@@ -37,7 +39,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
 
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }

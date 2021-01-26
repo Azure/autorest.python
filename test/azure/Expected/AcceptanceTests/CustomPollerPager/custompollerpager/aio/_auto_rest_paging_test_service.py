@@ -8,16 +8,18 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
+
+from .. import models
+from ._configuration import AutoRestPagingTestServiceConfiguration
+from .operations import PagingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
-
-from ._configuration import AutoRestPagingTestServiceConfiguration
-from .operations import PagingOperations
-from .. import models
 
 
 class AutoRestPagingTestService(object):
@@ -50,7 +52,7 @@ class AutoRestPagingTestService(object):
         self.paging = PagingOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

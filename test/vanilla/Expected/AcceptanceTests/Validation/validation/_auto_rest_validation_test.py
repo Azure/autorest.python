@@ -11,13 +11,16 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestValidationTestConfiguration
+from .operations import AutoRestValidationTestOperationsMixin
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-from ._configuration import AutoRestValidationTestConfiguration
-from .operations import AutoRestValidationTestOperationsMixin
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
@@ -45,6 +48,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._deserialize = Deserializer(client_models)
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }

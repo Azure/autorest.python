@@ -9,15 +9,16 @@
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest
 from msrest import Deserializer, Serializer
+
+from ._configuration import NonStringEnumsClientConfiguration
+from .operations import FloatOperations, IntOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
-
-from ._configuration import NonStringEnumsClientConfiguration
-from .operations import IntOperations
-from .operations import FloatOperations
 
 
 class NonStringEnumsClient(object):
@@ -44,7 +45,7 @@ class NonStringEnumsClient(object):
         self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request, **kwargs):
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
         return await self._client._pipeline.run(request, stream=False, **kwargs)
 
     async def close(self) -> None:

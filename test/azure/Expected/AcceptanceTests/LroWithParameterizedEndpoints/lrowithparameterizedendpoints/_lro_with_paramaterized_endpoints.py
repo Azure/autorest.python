@@ -11,13 +11,16 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import LROWithParamaterizedEndpointsConfiguration
+from .operations import LROWithParamaterizedEndpointsOperationsMixin
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
-from ._configuration import LROWithParamaterizedEndpointsConfiguration
-from .operations import LROWithParamaterizedEndpointsOperationsMixin
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin):
@@ -44,6 +47,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         self._deserialize = Deserializer(client_models)
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }

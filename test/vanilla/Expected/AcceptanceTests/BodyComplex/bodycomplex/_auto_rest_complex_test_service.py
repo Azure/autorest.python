@@ -11,21 +11,26 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
+from ._configuration import AutoRestComplexTestServiceConfiguration
+from .operations import (
+    ArrayOperations,
+    BasicOperations,
+    DictionaryOperations,
+    FlattencomplexOperations,
+    InheritanceOperations,
+    PolymorphicrecursiveOperations,
+    PolymorphismOperations,
+    PrimitiveOperations,
+    ReadonlypropertyOperations,
+)
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-from ._configuration import AutoRestComplexTestServiceConfiguration
-from .operations import BasicOperations
-from .operations import PrimitiveOperations
-from .operations import ArrayOperations
-from .operations import DictionaryOperations
-from .operations import InheritanceOperations
-from .operations import PolymorphismOperations
-from .operations import PolymorphicrecursiveOperations
-from .operations import ReadonlypropertyOperations
-from .operations import FlattencomplexOperations
-from . import models
+    from azure.core.pipeline import PipelineResponse
+    from azure.core.pipeline.transport import HttpRequest
 
 
 class AutoRestComplexTestService(object):
@@ -82,6 +87,7 @@ class AutoRestComplexTestService(object):
         self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def invoke(self, request, **kwargs):
+        # type: (HttpRequest, Any) -> PipelineResponse
         return self._client._pipeline.run(request, stream=False, **kwargs)
 
     def close(self):
