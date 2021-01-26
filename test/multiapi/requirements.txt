@@ -1,4 +1,4 @@
-msrest>=0.6.20
+msrest>=0.6.21
 azure-core>=1.7.0
 azure-mgmt-core>=1.2.0
 pytest

@@ -1,4 +1,4 @@
-# <img align="center" src="../images/logo.png">  Initializing Your Python Client
+# <img align="center" src="../images/logo.png"> Initializing Your Python Client
 
 The first step to using your generated client in code is to import and initialize your client. Our SDKs are modelled such
 that the client is the main point of access to the generated code.
@@ -20,11 +20,11 @@ from azure.pets import PetsClient
 The only scenario the generated code can force dependencies is if you generate with a `setup.py` file using the `--basic-setup-py` flag.
 The following are core libraries your generated code depend on, and the minimum version we highly recommend:
 
-| Library | Description | Min Version
-|------------------|-------------|-------------
-|[`azure-core`][azure_core_library]|The most important library to have installed. It provides shared exceptions and modules for all the Python SDK client libraries.|1.8.2
-|[`msrest`][msrest_library]|Library mainly used for serializing and deserializing objects|0.6.20
-|[`azure-mgmt-core`][azure_mgmt_core_library]|Required if you're generating mgmt plane code (see `--azure-arm` flag in our [flag index][flag_index]. Provides mgmt plane specific shared exceptions and modules.|1.2.1
+| Library                                      | Description                                                                                                                                                        | Min Version |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| [`azure-core`][azure_core_library]           | The most important library to have installed. It provides shared exceptions and modules for all the Python SDK client libraries.                                   | 1.8.2       |
+| [`msrest`][msrest_library]                   | Library mainly used for serializing and deserializing objects                                                                                                      | 0.6.21      |
+| [`azure-mgmt-core`][azure_mgmt_core_library] | Required if you're generating mgmt plane code (see `--azure-arm` flag in our [flag index][flag_index]. Provides mgmt plane specific shared exceptions and modules. | 1.2.1       |
 
 > Note: We highly recommend tying your library to a major version, for instance, adding `azure-core<2.0.0` to tie the `azure-core` library to `1.x.x`
 
@@ -57,10 +57,10 @@ client = PetsClient(credential=AzureKeyCredential(credential))
 
 Each of these credential types also correspond to their own authentication policies that handle the credential. AutoRest automatically generates with the following default authentication policies based on the credential types:
 
-| Credential Type | Authentication Policy
-|------------------|-------------
-|[`TokenCredential`][aad_authentication] | [`BearerTokenCredentialPolicy`][bearer_token_credential_policy]
-|[`AzureKeyCredential`][azure_key_credential] | [`AzureKeyCredentialPolicy`][azure_key_credential_policy]
+| Credential Type                              | Authentication Policy                                           |
+| -------------------------------------------- | --------------------------------------------------------------- |
+| [`TokenCredential`][aad_authentication]      | [`BearerTokenCredentialPolicy`][bearer_token_credential_policy] |
+| [`AzureKeyCredential`][azure_key_credential] | [`AzureKeyCredentialPolicy`][azure_key_credential_policy]       |
 
 Currently, we only support generating credentials of type [`TokenCredential`][aad_authentication] and / or [`AzureKeyCredential`][azure_key_credential]. If you'd like to use your own custom credential,
 you can pass the custom type into the client. However, you may have to use a custom authentication policy to handle the credential. That can also be passed in to the
@@ -85,6 +85,7 @@ client = PetsClient(credential=DefaultAzureCredential(), api_version="v1")
 ```
 
 <!-- LINKS -->
+
 [multiapi_generation]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/generate/multiapi.md
 [azure_core_library]: https://pypi.org/project/azure-core/
 [msrest_library]: https://pypi.org/project/msrest/
