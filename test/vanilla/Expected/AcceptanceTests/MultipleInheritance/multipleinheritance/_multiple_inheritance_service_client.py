@@ -42,6 +42,9 @@ class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperation
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
+    def invoke(self, request, **kwargs):
+        return self._client._pipeline.run(request, stream=False, **kwargs)
+
     def close(self):
         # type: () -> None
         self._client.close()

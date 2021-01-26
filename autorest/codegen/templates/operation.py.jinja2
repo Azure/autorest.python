@@ -82,7 +82,7 @@
 {% if operation.parameters.path %}
     path_format_arguments = {
 {% for path_parameter in operation.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
+        '{{ path_parameter.rest_api_name }}': {{ path_parameter.build_serialize_data_call("url") }},
 {% endfor %}
     }
     url = self._client.format_url(url, **path_format_arguments)

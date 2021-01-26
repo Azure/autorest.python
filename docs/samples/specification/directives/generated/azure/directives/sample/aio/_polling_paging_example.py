@@ -39,6 +39,9 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         self._deserialize = Deserializer(client_models)
 
 
+    async def invoke(self, request, **kwargs):
+        return await self._client._pipeline.run(request, stream=False, **kwargs)
+
     async def close(self) -> None:
         await self._client.close()
 

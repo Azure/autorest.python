@@ -44,6 +44,13 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
+    def invoke(self, request, **kwargs):
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
+        return self._client._pipeline.run(request, stream=False, **kwargs)
+
     def close(self):
         # type: () -> None
         self._client.close()

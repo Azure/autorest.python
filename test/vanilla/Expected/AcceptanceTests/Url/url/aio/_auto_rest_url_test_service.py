@@ -54,6 +54,15 @@ class AutoRestUrlTestService(object):
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
+    async def invoke(self, request, **kwargs):
+        path_format_arguments = {
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
+        return await self._client._pipeline.run(request, stream=False, **kwargs)
+
     async def close(self) -> None:
         await self._client.close()
 

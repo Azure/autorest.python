@@ -39,6 +39,16 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
+    async def invoke(self, request, **kwargs):
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+            "dnsSuffix": self._serialize.url(
+                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
+        return await self._client._pipeline.run(request, stream=False, **kwargs)
+
     async def close(self) -> None:
         await self._client.close()
 

@@ -111,10 +111,10 @@ query_parameters = {}  # type: Dict[str, Any]
 {% if operation.parameters.query %}
     {% for query_parameter in operation.parameters.query %}
         {%if query_parameter.required %}
-query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+query_parameters['{{ query_parameter.rest_api_name }}'] = {{ query_parameter.build_serialize_data_call("query") }}
         {% else %}
 if {{ query_parameter.full_serialized_name }} is not None:
-    query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
+    query_parameters['{{ query_parameter.rest_api_name }}'] = {{ query_parameter.build_serialize_data_call("query") }}
         {% endif %}
     {% endfor %}
 {% endif %}{% endmacro %}
@@ -125,10 +125,10 @@ header_parameters = {}  # type: Dict[str, Any]
 {% if operation.parameters.headers %}
     {% for header_parameter in operation.parameters.headers %}
         {%if header_parameter.required %}
-header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+header_parameters['{{ header_parameter.rest_api_name }}'] = {{ header_parameter.build_serialize_data_call("header") }}
         {% else %}
 if {{ header_parameter.full_serialized_name }} is not None:
-    header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
+    header_parameters['{{ header_parameter.rest_api_name }}'] = {{ header_parameter.build_serialize_data_call("header") }}
         {% endif %}
     {% endfor %}
 {% endif %}{% endmacro %}

@@ -49,6 +49,9 @@ class AutoRestHeadTestService(object):
         self.http_success = HttpSuccessOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
+    async def invoke(self, request, **kwargs):
+        return await self._client._pipeline.run(request, stream=False, **kwargs)
+
     async def close(self) -> None:
         await self._client.close()
 

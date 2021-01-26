@@ -46,6 +46,9 @@ class AutoRestSwaggerBATFileService(object):
 
         self.files = FilesOperations(self._client, self._config, self._serialize, self._deserialize)
 
+    def invoke(self, request, **kwargs):
+        return self._client._pipeline.run(request, stream=False, **kwargs)
+
     def close(self):
         # type: () -> None
         self._client.close()

@@ -48,6 +48,13 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         self._deserialize = Deserializer(client_models)
 
 
+    def invoke(self, request, **kwargs):
+        path_format_arguments = {
+            'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
+        return self._client._pipeline.run(request, stream=False, **kwargs)
+
     def close(self):
         # type: () -> None
         self._client.close()
