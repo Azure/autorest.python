@@ -47,7 +47,8 @@ class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperation
 
     def invoke(self, request, **kwargs):
         # type: (HttpRequest, Any) -> PipelineResponse
-        return self._client._pipeline.run(request, **kwargs)
+        stream = kwargs.pop("stream", False)
+        return self._client._pipeline.run(request, stream=stream, **kwargs)
 
     def close(self):
         # type: () -> None

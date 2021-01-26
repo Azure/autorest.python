@@ -41,7 +41,8 @@ class AutoRestPagingTestService(object):
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
     async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
-        return await self._client._pipeline.run(request, **kwargs)
+        stream = kwargs.pop("stream", False)
+        return await self._client._pipeline.run(request, stream=stream, **kwargs)
 
     async def close(self) -> None:
         await self._client.close()

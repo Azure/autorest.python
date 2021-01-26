@@ -55,7 +55,8 @@ class AutoRestParameterizedHostTestPagingClient(object):
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
-        return self._client._pipeline.run(request, **kwargs)
+        stream = kwargs.pop("stream", False)
+        return self._client._pipeline.run(request, stream=stream, **kwargs)
 
     def close(self):
         # type: () -> None

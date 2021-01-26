@@ -63,7 +63,8 @@ class AutoRestUrlTestService(object):
             ),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
-        return await self._client._pipeline.run(request, **kwargs)
+        stream = kwargs.pop("stream", False)
+        return await self._client._pipeline.run(request, stream=stream, **kwargs)
 
     async def close(self) -> None:
         await self._client.close()
