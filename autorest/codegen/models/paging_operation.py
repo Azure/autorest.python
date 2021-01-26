@@ -107,6 +107,16 @@ class PagingOperation(Operation):
         return self.get_pager_path(async_mode).split(".")[-1]
 
     @property
+    def next_request(self) -> Optional[Request]:
+        if "get_pages_partial_url_operation" in self.python_name:
+            a = "b"
+        if not self.next_operation:
+            return None
+        next_request = self.next_operation.request
+        next_request.name = f"_{self.python_name}_next_request"
+        return next_request
+
+    @property
     def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code.
         """

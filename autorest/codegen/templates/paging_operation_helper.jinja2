@@ -7,7 +7,7 @@
 cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% if request.parameters.grouped %}
-    {{ op_tools.grouped_parameters(operation)|indent }}
+    {{ op_tools.grouped_parameters(request)|indent }}
 {%- endif -%}
 {% if request.parameters.is_flattened %}
     {{ request.parameters.build_flattened_object() }}
@@ -19,46 +19,21 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
 {% endif %}
 
     def prepare_request(next_link=None):
-        {{ op_tools.header_parameters(code_model, request, async_mode)|indent(8) }}
         if not next_link:
-            # Construct URL
-            url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
-        {% if request.parameters.path %}
-            path_format_arguments = {
-        {% for path_parameter in request.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.query_parameters(request, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(request)|indent(12) }}
+            {{ op_tools.get_request(request)|indent(12) }}
         else:
-{% if operation.next_operation %}
-            url = '{{ operation.next_request.url }}'
-        {% if operation.next_request.parameters.path %}
+            {{ op_tools.get_request(operation.next_request if operation.next_request else request)|indent(12) }}
+            {% if not operation.next_request %}
+            # little hacky, but this code will soon be replaced with code that won't need the hack
+                {% if request.parameters.path %}
             path_format_arguments = {
-        {% for path_parameter in operation.next_request.parameters.path %}
-                '{{ path_parameter.rest_api_name }}': {{ operation.next_request.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-            }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.query_parameters(operation.next_operation.request, async_mode)|indent(12) }}
-            {{ op_tools.body_parameters(operation.next_operation.request)|indent(12) }}
-{% else %}
-            url = next_link
-            query_parameters = {}  # type: Dict[str, Any]
-        {% if request.parameters.path and not code_model.base_url%}
-            path_format_arguments = {
-        {% for path_parameter in request.parameters.path %}
+                    {% for path_parameter in request.parameters.path %}
                 '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
+                    {% endfor %}
             }
-            url = self._client.format_url(url, **path_format_arguments)
-        {% endif %}
-            {{ op_tools.body_parameters(request, http_verb="get")|indent(12) }}
-{% endif %}
+                {% endif %}
+            request.url = self._client.format_url(next_link{{", **path_format_arguments" if request.parameters.path}})
+            {% endif %}
         return request
 
     {{ keywords.def }} extract_data(pipeline_response):

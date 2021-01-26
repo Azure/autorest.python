@@ -1,6 +1,5 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
-{% set request = operation.request %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {# return_type is a variable that holds the return type if we already know what it is #}
@@ -49,7 +48,7 @@
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
 {% endif %}
-{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper="", return_type=return_type) }}
+{{ op_tools.method_signature(operation, request, operation.python_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper="", return_type=return_type) }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, "", return_type=return_type) }}
 {% endif %}
@@ -62,16 +61,9 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
-    request = self.{{ request.name }}({{ "**kwargs)" if not request.parameters.method }}
-    {% if request.parameters.method %}
-        {% for parameter in request.parameters.method %}
-        {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-        {% endfor %}
-        **kwargs
-    )
-    {% endif %}
+    {{ op_tools.get_request(request)|indent }}
     kwargs.pop('content_type', None)
 
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}
-{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(operation.request.url) }}}  # type: ignore
+{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(request.url) }}}  # type: ignore

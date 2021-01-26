@@ -1,8 +1,7 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
-{% set request = operation.request %}
 
-{{ op_tools.method_signature(operation, request.name, async_mode=async_mode, coroutine=False, return_type_wrapper="", return_type="HttpRequest") }}
+{{ op_tools.method_signature(operation, request, request.name, async_mode=async_mode, coroutine=False, return_type_wrapper="", return_type="HttpRequest") }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, "", return_type="HttpRequest") }}
 {% endif %}
@@ -24,7 +23,7 @@
 {% endif %}
 
     # Construct URL
-    url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
+    url = self.{{ request.name }}.metadata['url']  # type: ignore
 {% if request.parameters.path %}
     path_format_arguments = {
 {% for path_parameter in request.parameters.path %}
@@ -37,3 +36,4 @@
     {{ op_tools.query_parameters(request, async_mode)|indent }}
     {{ op_tools.header_parameters(code_model, request, async_mode)|indent }}
     {{ op_tools.body_parameters(request)|indent }}
+{{ request.name }}.metadata = {'url': {{ keywords.escape_str(request.url) }}}  # type: ignore

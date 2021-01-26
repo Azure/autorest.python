@@ -15,18 +15,18 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
 {{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
 {# get method signature #}
-{% macro method_signature(operation, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
+{% macro method_signature(operation, request, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
 {{ "async " if coroutine else "" }}def {{ operation_name }}(
 {% if async_mode %}
     self,
-    {% for param_signature in operation.request.parameters.async_method_signature %}
+    {% for param_signature in request.parameters.async_method_signature %}
     {{ param_signature }},
     {% endfor %}
     **kwargs
 ){{ async_return_type_annotation(operation, return_type_wrapper, return_type) }}:
 {% else %}
     self,
-    {% for param_signature in operation.request.parameters.sync_method_signature %}
+    {% for param_signature in request.parameters.sync_method_signature %}
     {{ param_signature }}
     {% endfor %}
     **kwargs  # type: Any
@@ -161,7 +161,7 @@ else:
 body_content_kwargs['content'] = body_content{% endmacro %}
 
 {# write body parameters #}
-{% macro body_parameters(request, http_verb=None) %}
+{% macro body_parameters(request, http_verb=None, returns_request=True) %}
 {% set body_content_kwargs_signature = "" %}
 {% set form_content_kwarg_signature = "" %}
 {% if request.multipart %}
@@ -201,7 +201,7 @@ else:
         {% endif %}
     {% endif %}
 {% endif %}
-return self._client.{{ http_verb if http_verb else request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
+{{ "return" if returns_request else "request =" }} self._client.{{ http_verb if http_verb else request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
 
 {% macro handle_error_response(code_model, operation) %}
 if response.status_code not in {{ operation.success_status_code|string() }}:
@@ -244,4 +244,14 @@ return deserialized
 {% endif %}
 {% if operation.request.method == 'head' and code_model.options['head_as_boolean'] %}
 return 200 <= response.status_code <= 299
+{% endif %}{% endmacro %}
+
+{% macro get_request(request) %}
+request = self.{{ request.name }}({{ "**kwargs)" if not request.parameters.method }}
+{% if request.parameters.method %}
+    {% for parameter in request.parameters.method %}
+    {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+    {% endfor %}
+    **kwargs
+)
 {% endif %}{% endmacro %}
