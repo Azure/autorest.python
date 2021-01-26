@@ -132,6 +132,18 @@ if {{ header_parameter.full_serialized_name }} is not None:
         {% endif %}
     {% endfor %}
 {% endif %}{% endmacro %}
+
+{# path format arguments #}
+{% macro path_format_arguments(path_parameters) %}
+path_format_arguments = {
+{% for path_parameter in path_parameters %}
+    '{{ path_parameter.rest_api_name }}': {{ path_parameter.build_serialize_data_call("url") }},
+{% endfor %}
+}{% endmacro %}
+
+{% macro format_path_format_arguments(url_name="url") %}
+{{ url_name }} = self._client.format_url({{ url_name }}, **path_format_arguments){% endmacro %}
+
 {# helper for stream body params #}
 {% macro stream_body_params(operation) %}body_content_kwargs['stream_content'] = {{ operation.parameters.body[0].serialized_name }}{% endmacro %}
 {# helper for non-stream body params with schema #}

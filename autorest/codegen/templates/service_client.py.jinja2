@@ -1,4 +1,5 @@
 {% import 'keywords.jinja2' as keywords with context %}
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set path_to_models = ".." if async_mode else "." %}
 {% macro method_signature() %}
 def __init__(
@@ -94,12 +95,8 @@ class {{ code_model.class_name }}({{ base_class }}):
 
     {{ keywords.def }} invoke(self, request, **kwargs):
         {% if code_model.global_parameters.path %}
-        path_format_arguments = {
-        {% for path_parameter in code_model.global_parameters.path %}
-            '{{ path_parameter.rest_api_name }}': {{ path_parameter.build_serialize_data_call("url") }},
-        {% endfor %}
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
+        {{ op_tools.format_path_format_arguments(url_name="request.url")|indent(8) }}
         {% endif %}
         return {{ keywords.await }}self._client._pipeline.run(request, stream=False, **kwargs)
 

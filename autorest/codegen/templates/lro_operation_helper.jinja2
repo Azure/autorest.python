@@ -62,11 +62,7 @@
     {% set operation_name = "begin_"+operation.python_name %}
     {% if operation.parameters.path %}
     {% set path_format_arguments = ", path_format_arguments=path_format_arguments" %}
-    path_format_arguments = {
-        {% for path_parameter in operation.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ path_parameter.build_serialize_data_call("url") }},
-        {% endfor %}
-    }
+    {{ op_tools.path_format_arguments(operation.parameters.path)|indent }}
 
     {% endif %}
     if polling is True: polling_method = {{ operation.get_default_polling_method(async_mode, code_model.options["azure_arm"]) }}(lro_delay{{ lro_options }}{{ path_format_arguments }},  **kwargs)
