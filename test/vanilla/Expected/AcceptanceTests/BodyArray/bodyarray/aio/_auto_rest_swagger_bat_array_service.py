@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
 from .operations import ArrayOperations
 
+from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
+from .operations import ArrayOperations
+from .. import models
+
 
 class AutoRestSwaggerBATArrayService(object):
     """Test Infrastructure for AutoRest Swagger BAT.

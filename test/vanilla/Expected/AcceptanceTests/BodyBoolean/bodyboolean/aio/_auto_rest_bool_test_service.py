@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestBoolTestServiceConfiguration
 from .operations import BoolOperations
 
+from ._configuration import AutoRestBoolTestServiceConfiguration
+from .operations import BoolOperations
+from .. import models
+
 
 class AutoRestBoolTestService(object):
     """Test Infrastructure for AutoRest.

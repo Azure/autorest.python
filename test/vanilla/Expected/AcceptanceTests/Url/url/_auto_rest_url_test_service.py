@@ -22,6 +22,12 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestUrlTestServiceConfiguration
+from .operations import PathsOperations
+from .operations import QueriesOperations
+from .operations import PathItemsOperations
+from . import models
+
 
 class AutoRestUrlTestService(object):
     """Test Infrastructure for AutoRest.

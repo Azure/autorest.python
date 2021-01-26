@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestNumberTestServiceConfiguration
 from .operations import NumberOperations
 
+from ._configuration import AutoRestNumberTestServiceConfiguration
+from .operations import NumberOperations
+from .. import models
+
 
 class AutoRestNumberTestService(object):
     """Test Infrastructure for AutoRest.

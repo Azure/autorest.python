@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestParameterFlatteningConfiguration
 from .operations import AvailabilitySetsOperations
 
+from ._configuration import AutoRestParameterFlatteningConfiguration
+from .operations import AvailabilitySetsOperations
+from .. import models
+
 
 class AutoRestParameterFlattening(object):
     """Resource Flattening for AutoRest.

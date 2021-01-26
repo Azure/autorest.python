@@ -21,6 +21,9 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import ObjectTypeClientConfiguration
+from .operations import ObjectTypeClientOperationsMixin
+
 
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):
     """Service client for testing basic type: object swaggers.

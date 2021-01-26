@@ -23,6 +23,11 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import StorageManagementClientConfiguration
+from .operations import StorageAccountsOperations
+from .operations import UsageOperations
+from . import models
+
 
 class StorageManagementClient(object):
     """StorageManagementClient.

@@ -17,6 +17,12 @@ from .. import models
 from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
+from ._configuration import AutoRestUrlTestServiceConfiguration
+from .operations import PathsOperations
+from .operations import QueriesOperations
+from .operations import PathItemsOperations
+from .. import models
+
 
 class AutoRestUrlTestService(object):
     """Test Infrastructure for AutoRest.

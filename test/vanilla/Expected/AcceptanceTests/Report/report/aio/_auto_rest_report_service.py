@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestReportServiceConfiguration
 from .operations import AutoRestReportServiceOperationsMixin
 
+from ._configuration import AutoRestReportServiceConfiguration
+from .operations import AutoRestReportServiceOperationsMixin
+from .. import models
+
 
 class AutoRestReportService(AutoRestReportServiceOperationsMixin):
     """Test Infrastructure for AutoRest.

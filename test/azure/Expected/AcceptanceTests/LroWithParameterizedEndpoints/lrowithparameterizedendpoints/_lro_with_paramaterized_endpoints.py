@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import LROWithParamaterizedEndpointsConfiguration
+from .operations import LROWithParamaterizedEndpointsOperationsMixin
+from . import models
+
 
 class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin):
     """Test Infrastructure for AutoRest.

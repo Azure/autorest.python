@@ -30,6 +30,17 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
+from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
+from .operations import XMsClientRequestIdOperations
+from .operations import SubscriptionInCredentialsOperations
+from .operations import SubscriptionInMethodOperations
+from .operations import ApiVersionDefaultOperations
+from .operations import ApiVersionLocalOperations
+from .operations import SkipUrlEncodingOperations
+from .operations import OdataOperations
+from .operations import HeaderOperations
+from .. import models
+
 
 class AutoRestAzureSpecialParametersTestClient(object):
     """Test Infrastructure for AutoRest.

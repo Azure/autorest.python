@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
 from .operations import PagingOperations
 
+from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
+from .operations import PagingOperations
+from .. import models
+
 
 class AutoRestParameterizedHostTestPagingClient(object):
     """Test Infrastructure for AutoRest.

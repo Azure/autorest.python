@@ -21,6 +21,12 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
+from ._configuration import MultiapiServiceClientConfiguration
+from .operations import MultiapiServiceClientOperationsMixin
+from .operations import OperationGroupOneOperations
+from .operations import OperationGroupTwoOperations
+from .. import models
+
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.

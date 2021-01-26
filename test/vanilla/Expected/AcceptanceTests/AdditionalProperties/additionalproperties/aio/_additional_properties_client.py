@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AdditionalPropertiesClientConfiguration
 from .operations import PetsOperations
 
+from ._configuration import AdditionalPropertiesClientConfiguration
+from .operations import PetsOperations
+from .. import models
+
 
 class AdditionalPropertiesClient(object):
     """Test Infrastructure for AutoRest.

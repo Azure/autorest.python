@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestParameterFlatteningConfiguration
+from .operations import AvailabilitySetsOperations
+from . import models
+
 
 class AutoRestParameterFlattening(object):
     """Resource Flattening for AutoRest.

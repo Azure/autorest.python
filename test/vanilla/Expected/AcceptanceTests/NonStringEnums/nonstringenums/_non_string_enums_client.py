@@ -21,6 +21,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import NonStringEnumsClientConfiguration
+from .operations import IntOperations
+from .operations import FloatOperations
+
 
 class NonStringEnumsClient(object):
     """Testing non-string enums.

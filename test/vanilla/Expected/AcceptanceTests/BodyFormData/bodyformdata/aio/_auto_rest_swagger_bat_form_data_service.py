@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
 from .operations import FormdataOperations
 
+from ._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
+from .operations import FormdataOperations
+from .. import models
+
 
 class AutoRestSwaggerBATFormDataService(object):
     """Test Infrastructure for AutoRest Swagger BAT.

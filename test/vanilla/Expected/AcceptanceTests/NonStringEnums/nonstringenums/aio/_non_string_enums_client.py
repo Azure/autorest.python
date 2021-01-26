@@ -20,6 +20,10 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
+from ._configuration import NonStringEnumsClientConfiguration
+from .operations import IntOperations
+from .operations import FloatOperations
+
 
 class NonStringEnumsClient(object):
     """Testing non-string enums.

@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 from .operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
+from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
+from .operations import AutoRestResourceFlatteningTestServiceOperationsMixin
+from .. import models
+
 
 class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin):
     """Resource Flattening for AutoRest.

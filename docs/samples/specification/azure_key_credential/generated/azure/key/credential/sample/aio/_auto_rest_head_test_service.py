@@ -21,6 +21,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
+from ._configuration import AutoRestHeadTestServiceConfiguration
+from .operations import HttpSuccessOperations
+
 
 class AutoRestHeadTestService(object):
     """Test Infrastructure for AutoRest.

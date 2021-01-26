@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
 from .operations import ParameterGroupingOperations
 
+from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
+from .operations import ParameterGroupingOperations
+from .. import models
+
 
 class AutoRestParameterGroupingTestService(object):
     """Test Infrastructure for AutoRest.

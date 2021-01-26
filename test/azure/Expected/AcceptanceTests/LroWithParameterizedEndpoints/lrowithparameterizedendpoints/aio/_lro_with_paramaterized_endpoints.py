@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
 from .operations import LROWithParamaterizedEndpointsOperationsMixin
 
+from ._configuration import LROWithParamaterizedEndpointsConfiguration
+from .operations import LROWithParamaterizedEndpointsOperationsMixin
+from .. import models
+
 
 class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin):
     """Test Infrastructure for AutoRest.

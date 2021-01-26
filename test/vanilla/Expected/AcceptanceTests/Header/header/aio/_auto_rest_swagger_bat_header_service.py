@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
 from .operations import HeaderOperations
 
+from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
+from .operations import HeaderOperations
+from .. import models
+
 
 class AutoRestSwaggerBATHeaderService(object):
     """Test Infrastructure for AutoRest.

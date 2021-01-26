@@ -21,6 +21,10 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
+from ._configuration import AutoRestPagingTestServiceConfiguration
+from .operations import PagingOperations
+from .. import models
+
 
 class AutoRestPagingTestService(object):
     """Long-running Operation for AutoRest.

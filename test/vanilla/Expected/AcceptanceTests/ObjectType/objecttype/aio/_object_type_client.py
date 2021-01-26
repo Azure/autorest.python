@@ -20,6 +20,9 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
+from ._configuration import ObjectTypeClientConfiguration
+from .operations import ObjectTypeClientOperationsMixin
+
 
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):
     """Service client for testing basic type: object swaggers.

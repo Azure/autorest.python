@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import MediaTypesClientConfiguration
 from .operations import MediaTypesClientOperationsMixin
 
+from ._configuration import MediaTypesClientConfiguration
+from .operations import MediaTypesClientOperationsMixin
+from .. import models
+
 
 class MediaTypesClient(MediaTypesClientOperationsMixin):
     """Play with produces/consumes and media-types in general.

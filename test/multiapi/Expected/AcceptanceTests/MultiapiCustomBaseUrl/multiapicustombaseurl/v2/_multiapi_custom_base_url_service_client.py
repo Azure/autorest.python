@@ -23,6 +23,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
+from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
+from . import models
+
 
 class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.

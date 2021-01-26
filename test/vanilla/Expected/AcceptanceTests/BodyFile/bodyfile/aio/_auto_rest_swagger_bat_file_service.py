@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATFileServiceConfiguration
 from .operations import FilesOperations
 
+from ._configuration import AutoRestSwaggerBATFileServiceConfiguration
+from .operations import FilesOperations
+from .. import models
+
 
 class AutoRestSwaggerBATFileService(object):
     """Test Infrastructure for AutoRest Swagger BAT.

@@ -22,6 +22,9 @@ if TYPE_CHECKING:
 
     from azure.core.credentials_async import AsyncTokenCredential
 
+from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
+from .operations import HeadExceptionOperations
+
 
 class AutoRestHeadExceptionTestService(object):
     """Test Infrastructure for AutoRest.

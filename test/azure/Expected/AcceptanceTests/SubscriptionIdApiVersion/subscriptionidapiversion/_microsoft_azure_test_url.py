@@ -23,6 +23,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import MicrosoftAzureTestUrlConfiguration
+from .operations import GroupOperations
+from . import models
+
 
 class MicrosoftAzureTestUrl(object):
     """Some cool documentation.

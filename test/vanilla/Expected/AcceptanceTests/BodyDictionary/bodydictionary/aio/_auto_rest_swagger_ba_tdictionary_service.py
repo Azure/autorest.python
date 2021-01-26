@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATDictionaryServiceConfiguration
 from .operations import DictionaryOperations
 
+from ._configuration import AutoRestSwaggerBATDictionaryServiceConfiguration
+from .operations import DictionaryOperations
+from .. import models
+
 
 class AutoRestSwaggerBATDictionaryService(object):
     """Test Infrastructure for AutoRest Swagger BAT.

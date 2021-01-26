@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestPagingTestServiceConfiguration
+from .operations import PagingOperations
+from . import models
+
 
 class AutoRestPagingTestService(object):
     """Long-running Operation for AutoRest.

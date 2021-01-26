@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
+from .operations import Datetimerfc1123Operations
+from . import models
+
 
 class AutoRestRFC1123DateTimeTestService(object):
     """Test Infrastructure for AutoRest.

@@ -21,6 +21,13 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
+from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
+from .operations import LROsOperations
+from .operations import LRORetrysOperations
+from .operations import LROSADsOperations
+from .operations import LROsCustomHeaderOperations
+from .. import models
+
 
 class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest.

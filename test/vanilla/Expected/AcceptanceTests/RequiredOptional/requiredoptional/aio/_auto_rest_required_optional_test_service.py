@@ -17,6 +17,11 @@ from .. import models
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ExplicitOperations, ImplicitOperations
 
+from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
+from .operations import ImplicitOperations
+from .operations import ExplicitOperations
+from .. import models
+
 
 class AutoRestRequiredOptionalTestService(object):
     """Test Infrastructure for AutoRest.

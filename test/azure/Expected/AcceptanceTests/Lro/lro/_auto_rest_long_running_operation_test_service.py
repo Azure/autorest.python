@@ -23,6 +23,13 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
+from .operations import LROsOperations
+from .operations import LRORetrysOperations
+from .operations import LROSADsOperations
+from .operations import LROsCustomHeaderOperations
+from . import models
+
 
 class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest.

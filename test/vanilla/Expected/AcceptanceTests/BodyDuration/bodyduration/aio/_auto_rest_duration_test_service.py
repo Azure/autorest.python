@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestDurationTestServiceConfiguration
 from .operations import DurationOperations
 
+from ._configuration import AutoRestDurationTestServiceConfiguration
+from .operations import DurationOperations
+from .. import models
+
 
 class AutoRestDurationTestService(object):
     """Test Infrastructure for AutoRest.

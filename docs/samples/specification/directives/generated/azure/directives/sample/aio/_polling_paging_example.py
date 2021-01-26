@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import PollingPagingExampleConfiguration
 from .operations import PollingPagingExampleOperationsMixin
 
+from ._configuration import PollingPagingExampleConfiguration
+from .operations import PollingPagingExampleOperationsMixin
+from .. import models
+
 
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
     """Show polling and paging generation.

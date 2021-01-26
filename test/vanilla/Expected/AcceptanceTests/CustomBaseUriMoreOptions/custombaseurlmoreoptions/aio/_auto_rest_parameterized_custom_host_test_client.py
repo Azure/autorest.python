@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 from .operations import PathsOperations
 
+from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
+from .operations import PathsOperations
+from .. import models
+
 
 class AutoRestParameterizedCustomHostTestClient(object):
     """Test Infrastructure for AutoRest.

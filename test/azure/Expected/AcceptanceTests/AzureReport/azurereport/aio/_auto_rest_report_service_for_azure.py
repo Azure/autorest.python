@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestReportServiceForAzureConfiguration
 from .operations import AutoRestReportServiceForAzureOperationsMixin
 
+from ._configuration import AutoRestReportServiceForAzureConfiguration
+from .operations import AutoRestReportServiceForAzureOperationsMixin
+from .. import models
+
 
 class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
     """Test Infrastructure for AutoRest.

@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
 from .operations import QueriesOperations
 
+from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
+from .operations import QueriesOperations
+from .. import models
+
 
 class AutoRestUrlMutliCollectionFormatTestService(object):
     """Test Infrastructure for AutoRest.

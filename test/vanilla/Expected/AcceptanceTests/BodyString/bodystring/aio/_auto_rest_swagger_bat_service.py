@@ -17,6 +17,11 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from .operations import EnumOperations, StringOperations
 
+from ._configuration import AutoRestSwaggerBATServiceConfiguration
+from .operations import StringOperations
+from .operations import EnumOperations
+from .. import models
+
 
 class AutoRestSwaggerBATService(object):
     """Test Infrastructure for AutoRest Swagger BAT.

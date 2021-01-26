@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import ClassNameConfiguration
 from .operations import ByteOperations
 
+from ._configuration import ClassNameConfiguration
+from .operations import ByteOperations
+from .. import models
+
 
 class ClassName(object):
     """Test Infrastructure for AutoRest Swagger BAT.

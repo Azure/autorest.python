@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import MultipleInheritanceServiceClientConfiguration
 from .operations import MultipleInheritanceServiceClientOperationsMixin
 
+from ._configuration import MultipleInheritanceServiceClientConfiguration
+from .operations import MultipleInheritanceServiceClientOperationsMixin
+from .. import models
+
 
 class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperationsMixin):
     """Service client for multiinheritance client testing.

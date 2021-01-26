@@ -23,6 +23,12 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import MultiapiServiceClientConfiguration
+from .operations import MultiapiServiceClientOperationsMixin
+from .operations import OperationGroupOneOperations
+from .operations import OperationGroupTwoOperations
+from . import models
+
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.

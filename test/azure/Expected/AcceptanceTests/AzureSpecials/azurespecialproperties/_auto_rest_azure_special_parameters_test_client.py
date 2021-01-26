@@ -32,6 +32,17 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
+from .operations import XMsClientRequestIdOperations
+from .operations import SubscriptionInCredentialsOperations
+from .operations import SubscriptionInMethodOperations
+from .operations import ApiVersionDefaultOperations
+from .operations import ApiVersionLocalOperations
+from .operations import SkipUrlEncodingOperations
+from .operations import OdataOperations
+from .operations import HeaderOperations
+from . import models
+
 
 class AutoRestAzureSpecialParametersTestClient(object):
     """Test Infrastructure for AutoRest.

@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestIntegerTestServiceConfiguration
+from .operations import IntOperations
+from . import models
+
 
 class AutoRestIntegerTestService(object):
     """Test Infrastructure for AutoRest.

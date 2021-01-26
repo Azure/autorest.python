@@ -30,6 +30,16 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
+from .operations import HttpFailureOperations
+from .operations import HttpSuccessOperations
+from .operations import HttpRedirectsOperations
+from .operations import HttpClientFailureOperations
+from .operations import HttpServerFailureOperations
+from .operations import HttpRetryOperations
+from .operations import MultipleResponsesOperations
+from . import models
+
 
 class AutoRestHttpInfrastructureTestService(object):
     """Test Infrastructure for AutoRest.

@@ -21,6 +21,10 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
+from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
+from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
+from .. import models
+
 
 class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.

@@ -21,6 +21,10 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
+from ._configuration import MicrosoftAzureTestUrlConfiguration
+from .operations import GroupOperations
+from .. import models
+
 
 class MicrosoftAzureTestUrl(object):
     """Some cool documentation.

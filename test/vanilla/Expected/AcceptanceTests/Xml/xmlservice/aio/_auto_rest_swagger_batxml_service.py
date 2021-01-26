@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
 from .operations import XmlOperations
 
+from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
+from .operations import XmlOperations
+from .. import models
+
 
 class AutoRestSwaggerBATXMLService(object):
     """Test Infrastructure for AutoRest Swagger BAT.

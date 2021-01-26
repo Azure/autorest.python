@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
 
+from ._configuration import AutoRestPagingTestServiceConfiguration
+from .operations import PagingOperations
+from .. import models
+
 
 class AutoRestPagingTestService(object):
     """Long-running Operation for AutoRest.

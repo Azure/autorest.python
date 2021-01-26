@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestSwaggerBATDictionaryServiceConfiguration
+from .operations import DictionaryOperations
+from . import models
+
 
 class AutoRestSwaggerBATDictionaryService(object):
     """Test Infrastructure for AutoRest Swagger BAT.

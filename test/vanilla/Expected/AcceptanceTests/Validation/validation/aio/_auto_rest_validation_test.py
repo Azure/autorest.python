@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import AutoRestValidationTestConfiguration
 from .operations import AutoRestValidationTestOperationsMixin
 
+from ._configuration import AutoRestValidationTestConfiguration
+from .operations import AutoRestValidationTestOperationsMixin
+from .. import models
+
 
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.

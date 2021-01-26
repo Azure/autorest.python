@@ -22,6 +22,9 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
+from .operations import HeadExceptionOperations
+
 
 class AutoRestHeadExceptionTestService(object):
     """Test Infrastructure for AutoRest.

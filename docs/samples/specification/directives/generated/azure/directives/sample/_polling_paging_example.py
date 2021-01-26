@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import PollingPagingExampleConfiguration
+from .operations import PollingPagingExampleOperationsMixin
+from . import models
+
 
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
     """Show polling and paging generation.

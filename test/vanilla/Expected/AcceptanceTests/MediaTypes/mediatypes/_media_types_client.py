@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import MediaTypesClientConfiguration
+from .operations import MediaTypesClientOperationsMixin
+from . import models
+
 
 class MediaTypesClient(MediaTypesClientOperationsMixin):
     """Play with produces/consumes and media-types in general.

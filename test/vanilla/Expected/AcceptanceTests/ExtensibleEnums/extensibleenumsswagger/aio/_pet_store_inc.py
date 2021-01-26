@@ -17,6 +17,10 @@ from .. import models
 from ._configuration import PetStoreIncConfiguration
 from .operations import PetOperations
 
+from ._configuration import PetStoreIncConfiguration
+from .operations import PetOperations
+from .. import models
+
 
 class PetStoreInc(object):
     """PetStore.

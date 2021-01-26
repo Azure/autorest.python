@@ -27,6 +27,18 @@ from .operations import (
     ReadonlypropertyOperations,
 )
 
+from ._configuration import AutoRestComplexTestServiceConfiguration
+from .operations import BasicOperations
+from .operations import PrimitiveOperations
+from .operations import ArrayOperations
+from .operations import DictionaryOperations
+from .operations import InheritanceOperations
+from .operations import PolymorphismOperations
+from .operations import PolymorphicrecursiveOperations
+from .operations import ReadonlypropertyOperations
+from .operations import FlattencomplexOperations
+from .. import models
+
 
 class AutoRestComplexTestService(object):
     """Test Infrastructure for AutoRest.

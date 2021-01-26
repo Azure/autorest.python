@@ -22,6 +22,10 @@ if TYPE_CHECKING:
     from azure.core.pipeline import PipelineResponse
     from azure.core.pipeline.transport import HttpRequest
 
+from ._configuration import MultipleInheritanceServiceClientConfiguration
+from .operations import MultipleInheritanceServiceClientOperationsMixin
+from . import models
+
 
 class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperationsMixin):
     """Service client for multiinheritance client testing.
