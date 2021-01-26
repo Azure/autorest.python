@@ -108,3 +108,19 @@ class TestInvoke(object):
             with open(sample_file, 'rb') as data:
                 sample_data = hash(data.read())
             assert sample_data == hash(file_handle.getvalue())
+
+    @pytest.mark.asyncio
+    async def test_invoke_with_client_path_format_arguments(self):
+        from validation.aio import AutoRestValidationTest
+
+        client = AutoRestValidationTest("mySubscriptionId", base_url="http://localhost:3000")
+
+        request = HttpRequest("GET", "http://localhost:3000/fakepath/{subscriptionId}/123/150",
+            headers={
+                'Accept': 'application/json'
+            },
+        )
+
+        pipeline_response = await client.invoke(request)
+        assert pipeline_response.http_request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
+        assert pipeline_response.http_response.status_code == 404  # there's actually no route on the testserver for this test. just want to make sure url was properly formatted
