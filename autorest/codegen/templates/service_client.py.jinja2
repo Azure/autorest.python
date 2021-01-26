@@ -92,7 +92,7 @@ class {{ code_model.class_name }}({{ base_class }}):
         {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
         {{ op_tools.format_path_format_arguments(url_name="request.url")|indent(8) }}
         {% endif %}
-        return {{ keywords.await }}self._client._pipeline.run(request, stream=False, **kwargs)
+        return {{ keywords.await }}self._client._pipeline.run(request, **kwargs)
 
     {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}

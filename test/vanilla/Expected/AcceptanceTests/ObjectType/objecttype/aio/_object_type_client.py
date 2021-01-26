@@ -39,7 +39,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
 
     async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
-        return await self._client._pipeline.run(request, stream=False, **kwargs)
+        return await self._client._pipeline.run(request, **kwargs)
 
     async def close(self) -> None:
         await self._client.close()

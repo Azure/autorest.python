@@ -51,7 +51,7 @@ class AdditionalPropertiesClient(object):
 
     def invoke(self, request, **kwargs):
         # type: (HttpRequest, Any) -> PipelineResponse
-        return self._client._pipeline.run(request, stream=False, **kwargs)
+        return self._client._pipeline.run(request, **kwargs)
 
     def close(self):
         # type: () -> None
