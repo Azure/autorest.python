@@ -36,7 +36,6 @@ class LROPagingOperation(PagingOperation, LROOperation):
             exceptions,
             want_description_docstring,
             want_tracing,
-            override_success_response_to_200=True
         )
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
@@ -46,3 +45,8 @@ class LROPagingOperation(PagingOperation, LROOperation):
         file_import = lro_imports
         file_import.merge(paging_imports)
         return file_import
+
+    @property
+    def paging_success_status_code(self):
+        # hardcode paging's success status code in lro + paging to be 200
+        return [200]

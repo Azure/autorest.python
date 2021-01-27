@@ -28,8 +28,6 @@ class PagingOperation(Operation):
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
-        *,
-        override_success_response_to_200: bool = False
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
@@ -47,7 +45,6 @@ class PagingOperation(Operation):
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
-        self.override_success_response_to_200 = override_success_response_to_200
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
@@ -115,14 +112,6 @@ class PagingOperation(Operation):
         next_request = self.next_operation.request
         next_request.name = f"_{self.python_name}_next_request"
         return next_request
-
-    @property
-    def success_status_code(self) -> List[Union[str, int]]:
-        """The list of all successfull status code.
-        """
-        if self.override_success_response_to_200:
-            return [200]
-        return super(PagingOperation, self).success_status_code
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)

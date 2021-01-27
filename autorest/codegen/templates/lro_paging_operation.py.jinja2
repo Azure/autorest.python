@@ -21,7 +21,7 @@
     {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}
     {{ operation_docstring(async_mode) | indent }}
-    {{ paging_helper.paging_operation(code_model, operation, async_mode) }}
+    {{ paging_helper.paging_operation(code_model, operation, async_mode, success_status_code=operation.paging_success_status_code) }}
 
 {{ lro_helper.lro_operation(code_model, operation, async_mode) }}
     def get_long_running_output(pipeline_response):

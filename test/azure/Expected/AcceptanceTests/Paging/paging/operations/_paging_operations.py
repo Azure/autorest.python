@@ -1465,7 +1465,6 @@ class PagingOperations(object):
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
-                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -1502,7 +1501,7 @@ class PagingOperations(object):
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
-            if response.status_code not in [200]:
+            if response.status_code not in [202]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 

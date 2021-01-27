@@ -1,5 +1,5 @@
 {% import 'operation_tools.jinja2' as op_tools %}
-{% macro paging_operation(code_model, operation, async_mode) %}
+{% macro paging_operation(code_model, operation, async_mode, success_status_code=operation.success_status_code) %}
 {% import 'keywords.jinja2' as keywords with context %}
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
@@ -54,7 +54,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
         pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code not in {{ operation.success_status_code|string() }}:
+        if response.status_code not in {{ success_status_code|string() }}:
             {% if operation.default_exception %}
             error = self._deserialize({{ operation.default_exception }}, response)
             {% endif %}
