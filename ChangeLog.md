@@ -1,6 +1,6 @@
 # Change Log
 
-### 2021-01-26 - 5.6.1
+### 2021-01-27 - 5.6.1
 
 Autorest core version: 3.0.6318
 
