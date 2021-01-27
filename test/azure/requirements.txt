@@ -5,7 +5,7 @@ pytest-asyncio;python_full_version>="3.5.2"
 async_generator;python_full_version>="3.5.2"
 azure-core>=1.8.2
 azure-mgmt-core>=1.2.1
-msrest>=0.6.10
+msrest>=0.6.21
 aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/AzureBodyDuration
 -e ./Expected/AcceptanceTests/AzureParameterGrouping
