@@ -187,7 +187,7 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.PetActionError, response)
+            error = self._deserialize.failsafe_deserialize(_models.PetActionError, response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize("PetAction", pipeline_response)
@@ -260,7 +260,7 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.PetActionError, response)
+            error = self._deserialize.failsafe_deserialize(_models.PetActionError, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
