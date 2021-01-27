@@ -54,6 +54,7 @@ class NonStringEnumsClient(object):
 
     def invoke(self, request, **kwargs):
         # type: (HttpRequest, Any) -> PipelineResponse
+        request.url = self._client.format_url(request.url)
         stream = kwargs.pop("stream", False)
         pipeline_response = self._client._pipeline.run(request, stream=stream, **kwargs)
         return pipeline_response.http_response

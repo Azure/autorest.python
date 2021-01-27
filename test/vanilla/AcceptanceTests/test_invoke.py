@@ -39,7 +39,7 @@ class TestInvoke(object):
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
-        request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid",
+        request = HttpRequest("GET", "/complex/inheritance/valid",
             headers={
                 'Accept': 'application/json'
             },
@@ -58,7 +58,7 @@ class TestInvoke(object):
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
-        request = HttpRequest("PUT", "http://localhost:3000/complex/inheritance/valid",
+        request = HttpRequest("PUT", "/complex/inheritance/valid",
             headers={
                 'Accept': 'application/json',
                 'Content-Length': '179',
@@ -77,7 +77,7 @@ class TestInvoke(object):
         file_length = 0
         with io.BytesIO() as file_handle:
 
-            request = HttpRequest("GET", "http://localhost:3000/files/stream/nonempty",
+            request = HttpRequest("GET", "/files/stream/nonempty",
                 headers={
                     'Accept': 'image/png, application/json'
                 },
@@ -112,7 +112,7 @@ class TestInvoke(object):
 
         client = AutoRestValidationTest("mySubscriptionId", base_url="http://localhost:3000")
 
-        request = HttpRequest("GET", "http://localhost:3000/fakepath/{subscriptionId}/123/150",
+        request = HttpRequest("GET", "/fakepath/{subscriptionId}/123/150",
             headers={
                 'Accept': 'application/json'
             },
@@ -120,3 +120,23 @@ class TestInvoke(object):
 
         response = client.invoke(request)
         assert response.request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
+
+    def test_invoke_full_url(self):
+        from bodycomplex import AutoRestComplexTestService
+        from bodycomplex.models import Siamese
+
+        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+
+        request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid",
+            headers={
+                'Accept': 'application/json'
+            },
+        )
+
+        response = client.invoke(request)
+
+        deserialized = Siamese.deserialize(response)
+        assert 2 ==  deserialized.id
+        assert "Siameeee" ==  deserialized.name
+        assert -1 ==  deserialized.hates[1].id
+        assert "Tomato" ==  deserialized.hates[1].name

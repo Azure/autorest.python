@@ -36,6 +36,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         self._deserialize = Deserializer(client_models)
 
     async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
+        request.url = self._client.format_url(request.url)
         stream = kwargs.pop("stream", False)
         pipeline_response = await self._client._pipeline.run(request, stream=stream, **kwargs)
         return pipeline_response.http_response
