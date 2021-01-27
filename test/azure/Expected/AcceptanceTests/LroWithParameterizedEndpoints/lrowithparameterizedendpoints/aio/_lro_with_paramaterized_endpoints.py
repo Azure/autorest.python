@@ -42,7 +42,8 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
         stream = kwargs.pop("stream", False)
-        return await self._client._pipeline.run(request, stream=stream, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     async def close(self) -> None:
         await self._client.close()

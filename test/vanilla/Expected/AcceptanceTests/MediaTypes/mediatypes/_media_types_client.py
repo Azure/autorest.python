@@ -48,7 +48,8 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
     def invoke(self, request, **kwargs):
         # type: (HttpRequest, Any) -> PipelineResponse
         stream = kwargs.pop("stream", False)
-        return self._client._pipeline.run(request, stream=stream, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     def close(self):
         # type: () -> None

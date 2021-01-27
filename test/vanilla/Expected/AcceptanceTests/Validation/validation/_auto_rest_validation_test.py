@@ -54,7 +54,8 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
         stream = kwargs.pop("stream", False)
-        return self._client._pipeline.run(request, stream=stream, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     def close(self):
         # type: () -> None

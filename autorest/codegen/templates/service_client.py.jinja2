@@ -102,7 +102,8 @@ class {{ code_model.class_name }}({{ base_class }}):
         {{ op_tools.format_path_format_arguments(url_name="request.url")|indent(8) }}
         {% endif %}
         stream = kwargs.pop("stream", False)
-        return {{ keywords.await }}self._client._pipeline.run(request, stream=stream, **kwargs)
+        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, stream=stream, **kwargs)
+        return pipeline_response.http_response
 
     {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}

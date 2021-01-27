@@ -47,8 +47,8 @@ class TestInvoke(object):
             },
         )
 
-        pipeline_response = await client.invoke(request)
-        deserialized = Siamese.deserialize(pipeline_response)
+        response = await client.invoke(request)
+        deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
         assert "Siameeee" ==  deserialized.name
         assert -1 ==  deserialized.hates[1].id
@@ -68,7 +68,8 @@ class TestInvoke(object):
             data='{"id": 2, "name": "Siameeee", "color": "green", "hates": [{"id": 1, "name": "Potato", "food": "tomato"}, {"id": -1, "name": "Tomato", "food": "french fries"}], "breed": "persian"}'
         )
 
-        pipeline_response = await client.invoke(request)
+        response = await client.invoke(request)
+        assert response.status_code == 200
 
     @pytest.mark.asyncio
     async def test_invoke_with_stream(self):
@@ -84,8 +85,7 @@ class TestInvoke(object):
                 },
             )
 
-            pipeline_response = await client.invoke(request, stream=True)
-            response = pipeline_response.http_response
+            response = await client.invoke(request, stream=True)
             assert response.status_code == 200
 
             stream = response.stream_download(client._client._pipeline)
@@ -121,6 +121,5 @@ class TestInvoke(object):
             },
         )
 
-        pipeline_response = await client.invoke(request)
-        assert pipeline_response.http_request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
-        assert pipeline_response.http_response.status_code == 404  # there's actually no route on the testserver for this test. just want to make sure url was properly formatted
+        response = await client.invoke(request)
+        assert response.request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'

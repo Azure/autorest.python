@@ -45,17 +45,19 @@ class TestInvoke(object):
             },
         )
 
-        pipeline_response = client.invoke(request)
-        deserialized = Siamese.deserialize(pipeline_response)
+        response = client.invoke(request)
+
+        deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
         assert "Siameeee" ==  deserialized.name
         assert -1 ==  deserialized.hates[1].id
         assert "Tomato" ==  deserialized.hates[1].name
 
-    def test_invoke_with_body_put(self):
+    def test_invoke_with_body_put_json_dumps(self):
         from bodycomplex import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
+
         request = HttpRequest("PUT", "http://localhost:3000/complex/inheritance/valid",
             headers={
                 'Accept': 'application/json',
@@ -65,7 +67,8 @@ class TestInvoke(object):
             data='{"id": 2, "name": "Siameeee", "color": "green", "hates": [{"id": 1, "name": "Potato", "food": "tomato"}, {"id": -1, "name": "Tomato", "food": "french fries"}], "breed": "persian"}'
         )
 
-        pipeline_response = client.invoke(request)
+        response = client.invoke(request)
+        assert response.status_code == 200
 
     def test_invoke_with_stream(self):
         from bodyfile import AutoRestSwaggerBATFileService
@@ -80,8 +83,7 @@ class TestInvoke(object):
                 },
             )
 
-            pipeline_response = client.invoke(request, stream=True)
-            response = pipeline_response.http_response
+            response = client.invoke(request, stream=True)
             assert response.status_code == 200
 
             stream = response.stream_download(client._client._pipeline)
@@ -116,6 +118,5 @@ class TestInvoke(object):
             },
         )
 
-        pipeline_response = client.invoke(request)
-        assert pipeline_response.http_request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
-        assert pipeline_response.http_response.status_code == 404  # there's actually no route on the testserver for this test. just want to make sure url was properly formatted
+        response = client.invoke(request)
+        assert response.request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
