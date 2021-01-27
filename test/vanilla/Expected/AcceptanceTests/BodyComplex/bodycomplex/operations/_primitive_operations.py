@@ -111,7 +111,7 @@ class PrimitiveOperations(object):
 
     def _put_int_request(
         self,
-        complex_body,  # type: "_models.IntWrapper"
+        body,  # type: "_models.IntWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -130,7 +130,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "IntWrapper")
+        body_content = self._serialize.body(body, "IntWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -156,7 +156,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_int_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_int_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -231,7 +232,7 @@ class PrimitiveOperations(object):
 
     def _put_long_request(
         self,
-        complex_body,  # type: "_models.LongWrapper"
+        body,  # type: "_models.LongWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -250,7 +251,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "LongWrapper")
+        body_content = self._serialize.body(body, "LongWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -276,7 +277,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_long_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_long_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -351,7 +353,7 @@ class PrimitiveOperations(object):
 
     def _put_float_request(
         self,
-        complex_body,  # type: "_models.FloatWrapper"
+        body,  # type: "_models.FloatWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -370,7 +372,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "FloatWrapper")
+        body_content = self._serialize.body(body, "FloatWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -396,7 +398,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_float_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_float_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -471,7 +474,7 @@ class PrimitiveOperations(object):
 
     def _put_double_request(
         self,
-        complex_body,  # type: "_models.DoubleWrapper"
+        body,  # type: "_models.DoubleWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -490,7 +493,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "DoubleWrapper")
+        body_content = self._serialize.body(body, "DoubleWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -517,7 +520,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_double_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_double_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -592,7 +596,7 @@ class PrimitiveOperations(object):
 
     def _put_bool_request(
         self,
-        complex_body,  # type: "_models.BooleanWrapper"
+        body,  # type: "_models.BooleanWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -611,7 +615,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "BooleanWrapper")
+        body_content = self._serialize.body(body, "BooleanWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -637,7 +641,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_bool_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_bool_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -712,7 +717,7 @@ class PrimitiveOperations(object):
 
     def _put_string_request(
         self,
-        complex_body,  # type: "_models.StringWrapper"
+        body,  # type: "_models.StringWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -731,7 +736,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "StringWrapper")
+        body_content = self._serialize.body(body, "StringWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -757,7 +762,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_string_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_string_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -832,7 +838,7 @@ class PrimitiveOperations(object):
 
     def _put_date_request(
         self,
-        complex_body,  # type: "_models.DateWrapper"
+        body,  # type: "_models.DateWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -851,7 +857,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "DateWrapper")
+        body_content = self._serialize.body(body, "DateWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -877,7 +883,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_date_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -952,7 +959,7 @@ class PrimitiveOperations(object):
 
     def _put_date_time_request(
         self,
-        complex_body,  # type: "_models.DatetimeWrapper"
+        body,  # type: "_models.DatetimeWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -971,7 +978,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "DatetimeWrapper")
+        body_content = self._serialize.body(body, "DatetimeWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -997,7 +1004,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_time_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1072,7 +1080,7 @@ class PrimitiveOperations(object):
 
     def _put_date_time_rfc1123_request(
         self,
-        complex_body,  # type: "_models.Datetimerfc1123Wrapper"
+        body,  # type: "_models.Datetimerfc1123Wrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1091,7 +1099,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
+        body_content = self._serialize.body(body, "Datetimerfc1123Wrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1118,7 +1126,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_time_rfc1123_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_date_time_rfc1123_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1198,7 +1207,7 @@ class PrimitiveOperations(object):
     ):
         # type: (...) -> HttpRequest
 
-        _complex_body = _models.DurationWrapper(field=field)
+        body = _models.DurationWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1214,7 +1223,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_complex_body, "DurationWrapper")
+        body_content = self._serialize.body(body, "DurationWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1240,6 +1249,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _complex_body
         request = self._put_duration_request(field=field, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1320,7 +1330,7 @@ class PrimitiveOperations(object):
     ):
         # type: (...) -> HttpRequest
 
-        _complex_body = _models.ByteWrapper(field=field)
+        body = _models.ByteWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1336,7 +1346,7 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_complex_body, "ByteWrapper")
+        body_content = self._serialize.body(body, "ByteWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1362,6 +1372,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _complex_body
         request = self._put_byte_request(field=field, **kwargs)
         kwargs.pop("content_type", None)
 

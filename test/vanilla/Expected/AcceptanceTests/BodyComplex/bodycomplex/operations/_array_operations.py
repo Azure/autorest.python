@@ -115,7 +115,7 @@ class ArrayOperations(object):
     ):
         # type: (...) -> HttpRequest
 
-        _complex_body = _models.ArrayWrapper(array=array)
+        body = _models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -131,7 +131,7 @@ class ArrayOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_complex_body, "ArrayWrapper")
+        body_content = self._serialize.body(body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -157,6 +157,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _complex_body
         request = self._put_valid_request(array=array, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -237,7 +238,7 @@ class ArrayOperations(object):
     ):
         # type: (...) -> HttpRequest
 
-        _complex_body = _models.ArrayWrapper(array=array)
+        body = _models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -253,7 +254,7 @@ class ArrayOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_complex_body, "ArrayWrapper")
+        body_content = self._serialize.body(body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -279,6 +280,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _complex_body
         request = self._put_empty_request(array=array, **kwargs)
         kwargs.pop("content_type", None)
 

@@ -199,7 +199,7 @@ class ImplicitOperations:
 
     put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
 
-    def _put_optional_body_request(self, body_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    def _put_optional_body_request(self, body: Optional[str] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -215,8 +215,8 @@ class ImplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, "str")
+        if body is not None:
+            body_content = self._serialize.body(body, "str")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -239,7 +239,7 @@ class ImplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_optional_body_request(body_parameter=body_parameter, **kwargs)
+        request = self._put_optional_body_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -252,7 +252,7 @@ class DateOperations:
 
     get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
-    def _put_max_date_request(self, date_body: datetime.date, **kwargs: Any) -> HttpRequest:
+    def _put_max_date_request(self, body: datetime.date, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -268,7 +268,7 @@ class DateOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(date_body, "date")
+        body_content = self._serialize.body(body, "date")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -289,7 +289,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_max_date_request(date_body=date_body, **kwargs)
+        request = self._put_max_date_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -356,7 +356,7 @@ class DateOperations:
 
     get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
-    def _put_min_date_request(self, date_body: datetime.date, **kwargs: Any) -> HttpRequest:
+    def _put_min_date_request(self, body: datetime.date, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -372,7 +372,7 @@ class DateOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(date_body, "date")
+        body_content = self._serialize.body(body, "date")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -393,7 +393,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_min_date_request(date_body=date_body, **kwargs)
+        request = self._put_min_date_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

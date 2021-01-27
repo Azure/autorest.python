@@ -281,7 +281,7 @@ class NumberOperations(object):
 
     def _put_big_float_request(
         self,
-        number_body,  # type: float
+        body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -300,7 +300,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -326,7 +326,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_big_float_request(number_body=number_body, **kwargs)
+        request = self._put_big_float_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -401,7 +401,7 @@ class NumberOperations(object):
 
     def _put_big_double_request(
         self,
-        number_body,  # type: float
+        body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -420,7 +420,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -446,7 +446,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_big_double_request(number_body=number_body, **kwargs)
+        request = self._put_big_double_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -524,7 +524,7 @@ class NumberOperations(object):
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        number_body = 99999999.99
+        body = 99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -539,7 +539,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -640,7 +640,7 @@ class NumberOperations(object):
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        number_body = -99999999.99
+        body = -99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -655,7 +655,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -753,7 +753,7 @@ class NumberOperations(object):
 
     def _put_big_decimal_request(
         self,
-        number_body,  # type: float
+        body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -772,7 +772,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -798,7 +798,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_big_decimal_request(number_body=number_body, **kwargs)
+        request = self._put_big_decimal_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -876,7 +876,7 @@ class NumberOperations(object):
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        number_body = 99999999.99
+        body = 99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -891,7 +891,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -992,7 +992,7 @@ class NumberOperations(object):
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        number_body = -99999999.99
+        body = -99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -1007,7 +1007,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1105,7 +1105,7 @@ class NumberOperations(object):
 
     def _put_small_float_request(
         self,
-        number_body,  # type: float
+        body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1124,7 +1124,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1150,7 +1150,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_small_float_request(number_body=number_body, **kwargs)
+        request = self._put_small_float_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1225,7 +1225,7 @@ class NumberOperations(object):
 
     def _put_small_double_request(
         self,
-        number_body,  # type: float
+        body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1244,7 +1244,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1270,7 +1270,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_small_double_request(number_body=number_body, **kwargs)
+        request = self._put_small_double_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1345,7 +1345,7 @@ class NumberOperations(object):
 
     def _put_small_decimal_request(
         self,
-        number_body,  # type: float
+        body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1364,7 +1364,7 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(number_body, "float")
+        body_content = self._serialize.body(body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1390,7 +1390,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_small_decimal_request(number_body=number_body, **kwargs)
+        request = self._put_small_decimal_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

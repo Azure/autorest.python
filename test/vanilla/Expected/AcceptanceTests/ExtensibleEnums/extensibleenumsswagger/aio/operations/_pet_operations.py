@@ -102,7 +102,7 @@ class PetOperations:
 
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
-    def _add_pet_request(self, pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> HttpRequest:
+    def _add_pet_request(self, body: Optional["_models.Pet"] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -118,8 +118,8 @@ class PetOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if pet_param is not None:
-            body_content = self._serialize.body(pet_param, "Pet")
+        if body is not None:
+            body_content = self._serialize.body(body, "Pet")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -142,7 +142,7 @@ class PetOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._add_pet_request(pet_param=pet_param, **kwargs)
+        request = self._add_pet_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

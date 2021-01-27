@@ -57,7 +57,7 @@ class StorageAccountsOperations(object):
 
     def _check_name_availability_request(
         self,
-        account_name,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
+        body,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -82,7 +82,7 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
+        body_content = self._serialize.body(body, "StorageAccountCheckNameAvailabilityParameters")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -110,7 +110,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._check_name_availability_request(account_name=account_name, **kwargs)
+        request = self._check_name_availability_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -133,7 +133,7 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "_models.StorageAccountCreateParameters"
+        body,  # type: "_models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -160,7 +160,7 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(parameters, "StorageAccountCreateParameters")
+        body_content = self._serialize.body(body, "StorageAccountCreateParameters")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -206,7 +206,7 @@ class StorageAccountsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._create_request(
-                resource_group_name=resource_group_name, account_name=account_name, parameters=parameters, **kwargs
+                resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
             )
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -398,7 +398,7 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "_models.StorageAccountUpdateParameters"
+        body,  # type: "_models.StorageAccountUpdateParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -425,7 +425,7 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(parameters, "StorageAccountUpdateParameters")
+        body_content = self._serialize.body(body, "StorageAccountUpdateParameters")
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -467,7 +467,7 @@ class StorageAccountsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._update_request(
-            resource_group_name=resource_group_name, account_name=account_name, parameters=parameters, **kwargs
+            resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -745,7 +745,7 @@ class StorageAccountsOperations(object):
     ):
         # type: (...) -> HttpRequest
 
-        _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        body = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json, text/json"
@@ -769,7 +769,7 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
+        body_content = self._serialize.body(body, "StorageAccountRegenerateKeyParameters")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 

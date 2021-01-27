@@ -282,7 +282,7 @@ class Datetimerfc1123Operations(object):
 
     def _put_utc_max_date_time_request(
         self,
-        datetime_body,  # type: datetime.datetime
+        body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -301,7 +301,7 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "rfc-1123")
+        body_content = self._serialize.body(body, "rfc-1123")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -327,7 +327,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_utc_max_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_utc_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -459,7 +459,7 @@ class Datetimerfc1123Operations(object):
 
     def _put_utc_min_date_time_request(
         self,
-        datetime_body,  # type: datetime.datetime
+        body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -478,7 +478,7 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "rfc-1123")
+        body_content = self._serialize.body(body, "rfc-1123")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -504,7 +504,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_utc_min_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_utc_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

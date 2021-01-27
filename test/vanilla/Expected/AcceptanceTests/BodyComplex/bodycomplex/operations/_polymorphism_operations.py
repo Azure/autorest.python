@@ -110,7 +110,7 @@ class PolymorphismOperations(object):
 
     def _put_valid_request(
         self,
-        complex_body,  # type: "_models.Fish"
+        body,  # type: "_models.Fish"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -129,7 +129,7 @@ class PolymorphismOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "Fish")
+        body_content = self._serialize.body(body, "Fish")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -187,7 +187,8 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_valid_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -438,7 +439,7 @@ class PolymorphismOperations(object):
 
     def _put_complicated_request(
         self,
-        complex_body,  # type: "_models.Salmon"
+        body,  # type: "_models.Salmon"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -457,7 +458,7 @@ class PolymorphismOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "Salmon")
+        body_content = self._serialize.body(body, "Salmon")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -484,7 +485,8 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_complicated_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_complicated_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -502,7 +504,7 @@ class PolymorphismOperations(object):
 
     def _put_missing_discriminator_request(
         self,
-        complex_body,  # type: "_models.Salmon"
+        body,  # type: "_models.Salmon"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -521,7 +523,7 @@ class PolymorphismOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "Salmon")
+        body_content = self._serialize.body(body, "Salmon")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -547,7 +549,8 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_missing_discriminator_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_missing_discriminator_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -569,7 +572,7 @@ class PolymorphismOperations(object):
 
     def _put_valid_missing_required_request(
         self,
-        complex_body,  # type: "_models.Fish"
+        body,  # type: "_models.Fish"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -588,7 +591,7 @@ class PolymorphismOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "Fish")
+        body_content = self._serialize.body(body, "Fish")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -641,7 +644,8 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_valid_missing_required_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_valid_missing_required_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

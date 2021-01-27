@@ -94,7 +94,7 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_lro_request(
         self,
-        product: Optional["_models.Product"] = None,
+        body: Optional["_models.Product"] = None,
         **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
@@ -112,8 +112,8 @@ class MultiapiServiceClientOperationsMixin:
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
+        if body is not None:
+            body_content = self._serialize.body(body, 'Product')
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
@@ -152,7 +152,7 @@ class MultiapiServiceClientOperationsMixin:
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
             request = self._test_lro_request(
-                product=product,
+                body=body,
                 **kwargs
             )
             kwargs.pop('content_type', None)

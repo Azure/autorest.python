@@ -56,7 +56,7 @@ class LROSADsOperations(object):
 
     def _put_non_retry400_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -75,8 +75,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -112,7 +112,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_non_retry400_request(product=product, **kwargs)
+            request = self._put_non_retry400_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -147,7 +147,7 @@ class LROSADsOperations(object):
 
     def _put_non_retry201_creating400_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -166,8 +166,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -204,7 +204,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_non_retry201_creating400_request(product=product, **kwargs)
+            request = self._put_non_retry201_creating400_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -239,7 +239,7 @@ class LROSADsOperations(object):
 
     def _put_non_retry201_creating400_invalid_json_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -258,8 +258,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -296,7 +296,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_non_retry201_creating400_invalid_json_request(product=product, **kwargs)
+            request = self._put_non_retry201_creating400_invalid_json_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -331,7 +331,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry400_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -350,8 +350,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -388,7 +388,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_relative_retry400_request(product=product, **kwargs)
+            request = self._put_async_relative_retry400_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -675,7 +675,7 @@ class LROSADsOperations(object):
 
     def _post_non_retry400_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -694,8 +694,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -731,7 +731,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post_non_retry400_request(product=product, **kwargs)
+            request = self._post_non_retry400_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -766,7 +766,7 @@ class LROSADsOperations(object):
 
     def _post202_non_retry400_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -785,8 +785,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -822,7 +822,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post202_non_retry400_request(product=product, **kwargs)
+            request = self._post202_non_retry400_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -857,7 +857,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry400_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -876,8 +876,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -914,7 +914,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post_async_relative_retry400_request(product=product, **kwargs)
+            request = self._post_async_relative_retry400_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -952,7 +952,7 @@ class LROSADsOperations(object):
 
     def _put_error201_no_provisioning_state_payload_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -971,8 +971,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1008,7 +1008,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_error201_no_provisioning_state_payload_request(product=product, **kwargs)
+            request = self._put_error201_no_provisioning_state_payload_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1043,7 +1043,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_no_status_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1062,8 +1062,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1101,7 +1101,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_relative_retry_no_status_request(product=product, **kwargs)
+            request = self._put_async_relative_retry_no_status_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1150,7 +1150,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_no_status_payload_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1169,8 +1169,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1208,7 +1208,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_relative_retry_no_status_payload_request(product=product, **kwargs)
+            request = self._put_async_relative_retry_no_status_payload_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1414,7 +1414,7 @@ class LROSADsOperations(object):
 
     def _post202_no_location_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1433,8 +1433,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1471,7 +1471,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post202_no_location_request(product=product, **kwargs)
+            request = self._post202_no_location_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1506,7 +1506,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry_no_payload_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1525,8 +1525,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1564,7 +1564,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post_async_relative_retry_no_payload_request(product=product, **kwargs)
+            request = self._post_async_relative_retry_no_payload_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1602,7 +1602,7 @@ class LROSADsOperations(object):
 
     def _put200_invalid_json_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1621,8 +1621,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1659,7 +1659,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put200_invalid_json_request(product=product, **kwargs)
+            request = self._put200_invalid_json_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1694,7 +1694,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_invalid_header_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1713,8 +1713,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1752,7 +1752,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_relative_retry_invalid_header_request(product=product, **kwargs)
+            request = self._put_async_relative_retry_invalid_header_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1801,7 +1801,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_invalid_json_polling_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -1820,8 +1820,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1859,7 +1859,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_relative_retry_invalid_json_polling_request(product=product, **kwargs)
+            request = self._put_async_relative_retry_invalid_json_polling_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2151,7 +2151,7 @@ class LROSADsOperations(object):
 
     def _post202_retry_invalid_header_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -2170,8 +2170,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -2208,7 +2208,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post202_retry_invalid_header_request(product=product, **kwargs)
+            request = self._post202_retry_invalid_header_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2243,7 +2243,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry_invalid_header_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -2262,8 +2262,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -2301,7 +2301,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post_async_relative_retry_invalid_header_request(product=product, **kwargs)
+            request = self._post_async_relative_retry_invalid_header_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2339,7 +2339,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry_invalid_json_polling_request(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -2358,8 +2358,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if product is not None:
-            body_content = self._serialize.body(product, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -2397,7 +2397,7 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post_async_relative_retry_invalid_json_polling_request(product=product, **kwargs)
+            request = self._post_async_relative_retry_invalid_json_polling_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response

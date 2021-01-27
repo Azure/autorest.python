@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def _put_array_request(
         self,
-        resource_array=None,  # type: Optional[List["_models.Resource"]]
+        body=None,  # type: Optional[List["_models.Resource"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -51,8 +51,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if resource_array is not None:
-            body_content = self._serialize.body(resource_array, "[Resource]")
+        if body is not None:
+            body_content = self._serialize.body(body, "[Resource]")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -80,7 +80,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_array_request(resource_array=resource_array, **kwargs)
+        request = self._put_array_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -155,7 +155,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     def _put_wrapped_array_request(
         self,
-        resource_array=None,  # type: Optional[List["_models.WrappedProduct"]]
+        body=None,  # type: Optional[List["_models.WrappedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -174,8 +174,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if resource_array is not None:
-            body_content = self._serialize.body(resource_array, "[WrappedProduct]")
+        if body is not None:
+            body_content = self._serialize.body(body, "[WrappedProduct]")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -204,7 +204,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_wrapped_array_request(resource_array=resource_array, **kwargs)
+        request = self._put_wrapped_array_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -280,7 +280,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     def _put_dictionary_request(
         self,
-        resource_dictionary=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
+        body=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -299,8 +299,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if resource_dictionary is not None:
-            body_content = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
+        if body is not None:
+            body_content = self._serialize.body(body, "{FlattenedProduct}")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -328,7 +328,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_dictionary_request(resource_dictionary=resource_dictionary, **kwargs)
+        request = self._put_dictionary_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -403,7 +403,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     def _put_resource_collection_request(
         self,
-        resource_complex_object=None,  # type: Optional["_models.ResourceCollection"]
+        body=None,  # type: Optional["_models.ResourceCollection"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -422,8 +422,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if resource_complex_object is not None:
-            body_content = self._serialize.body(resource_complex_object, "ResourceCollection")
+        if body is not None:
+            body_content = self._serialize.body(body, "ResourceCollection")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -451,7 +451,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_resource_collection_request(resource_complex_object=resource_complex_object, **kwargs)
+        request = self._put_resource_collection_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -526,7 +526,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     def _put_simple_product_request(
         self,
-        simple_body_product=None,  # type: Optional["_models.SimpleProduct"]
+        body=None,  # type: Optional["_models.SimpleProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -545,8 +545,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, "SimpleProduct")
+        if body is not None:
+            body_content = self._serialize.body(body, "SimpleProduct")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -574,7 +574,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_simple_product_request(simple_body_product=simple_body_product, **kwargs)
+        request = self._put_simple_product_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -605,7 +605,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     ):
         # type: (...) -> HttpRequest
 
-        _simple_body_product = _models.SimpleProduct(
+        body = _models.SimpleProduct(
             product_id=product_id,
             description=description,
             max_product_display_name=max_product_display_name,
@@ -627,8 +627,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _simple_body_product is not None:
-            body_content = self._serialize.body(_simple_body_product, "SimpleProduct")
+        if body is not None:
+            body_content = self._serialize.body(body, "SimpleProduct")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -705,7 +705,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> HttpRequest
 
         _name = None
-        _simple_body_product = None
+        body = None
         _product_id = None
         _description = None
         _max_product_display_name = None
@@ -713,14 +713,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         _odata_value = None
         if flatten_parameter_group is not None:
             _name = flatten_parameter_group.name
-            _simple_body_product = flatten_parameter_group.simple_body_product
+            body = flatten_parameter_group.body
             _product_id = flatten_parameter_group.product_id
             _description = flatten_parameter_group.description
             _max_product_display_name = flatten_parameter_group.max_product_display_name
             _generic_value = flatten_parameter_group.generic_value
             _odata_value = flatten_parameter_group.odata_value
 
-        _simple_body_product = _models.SimpleProduct(
+        body = _models.SimpleProduct(
             product_id=_product_id,
             description=_description,
             max_product_display_name=_max_product_display_name,
@@ -746,8 +746,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _simple_body_product is not None:
-            body_content = self._serialize.body(_simple_body_product, "SimpleProduct")
+        if body is not None:
+            body_content = self._serialize.body(body, "SimpleProduct")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content

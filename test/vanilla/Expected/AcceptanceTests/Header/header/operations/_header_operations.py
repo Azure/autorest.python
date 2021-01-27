@@ -54,7 +54,7 @@ class HeaderOperations(object):
 
     def _param_existing_key_request(
         self,
-        user_agent_parameter,  # type: str
+        user_agent,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -68,7 +68,7 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["User-Agent"] = self._serialize.header("user_agent_parameter", user_agent_parameter, "str")
+        header_parameters["User-Agent"] = self._serialize.header("user_agent", user_agent, "str")
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
@@ -95,7 +95,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
+        request = self._param_existing_key_request(user_agent=user_agent, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

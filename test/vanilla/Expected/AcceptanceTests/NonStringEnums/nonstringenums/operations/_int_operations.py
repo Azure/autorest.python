@@ -49,7 +49,7 @@ class IntOperations(object):
 
     def _put_request(
         self,
-        input=None,  # type: Optional[Union[int, "_models.IntEnum"]]
+        body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -68,8 +68,8 @@ class IntOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if input is not None:
-            body_content = self._serialize.body(input, "int")
+        if body is not None:
+            body_content = self._serialize.body(body, "int")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -97,7 +97,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_request(input=input, **kwargs)
+        request = self._put_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

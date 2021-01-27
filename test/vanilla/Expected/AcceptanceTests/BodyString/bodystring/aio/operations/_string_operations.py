@@ -98,7 +98,7 @@ class StringOperations:
 
     get_null.metadata = {"url": "/string/null"}  # type: ignore
 
-    def _put_null_request(self, string_body: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    def _put_null_request(self, body: Optional[str] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -114,8 +114,8 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if string_body is not None:
-            body_content = self._serialize.body(string_body, "str")
+        if body is not None:
+            body_content = self._serialize.body(body, "str")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -138,7 +138,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_null_request(string_body=string_body, **kwargs)
+        request = self._put_null_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -207,7 +207,7 @@ class StringOperations:
 
     def _put_empty_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
-        string_body = ""
+        body = ""
         accept = "application/json"
 
         # Construct URL
@@ -222,7 +222,7 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(string_body, "str")
+        body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -311,7 +311,7 @@ class StringOperations:
 
     def _put_mbcs_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
-        string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         accept = "application/json"
 
         # Construct URL
@@ -326,7 +326,7 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(string_body, "str")
+        body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -417,7 +417,7 @@ class StringOperations:
 
     def _put_whitespace_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
-        string_body = "    Now is the time for all good men to come to the aid of their country    "
+        body = "    Now is the time for all good men to come to the aid of their country    "
         accept = "application/json"
 
         # Construct URL
@@ -432,7 +432,7 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(string_body, "str")
+        body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -623,7 +623,7 @@ class StringOperations:
 
     get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
-    def _put_base64_url_encoded_request(self, string_body: bytes, **kwargs: Any) -> HttpRequest:
+    def _put_base64_url_encoded_request(self, body: bytes, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -639,7 +639,7 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(string_body, "base64")
+        body_content = self._serialize.body(body, "base64")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -660,7 +660,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_base64_url_encoded_request(string_body=string_body, **kwargs)
+        request = self._put_base64_url_encoded_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

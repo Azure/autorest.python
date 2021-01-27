@@ -235,7 +235,7 @@ class ImplicitOperations(object):
 
     def _put_optional_body_request(
         self,
-        body_parameter=None,  # type: Optional[str]
+        body=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -254,8 +254,8 @@ class ImplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, "str")
+        if body is not None:
+            body_content = self._serialize.body(body, "str")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -283,7 +283,7 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_optional_body_request(body_parameter=body_parameter, **kwargs)
+        request = self._put_optional_body_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

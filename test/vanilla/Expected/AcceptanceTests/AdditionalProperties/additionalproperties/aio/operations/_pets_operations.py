@@ -47,7 +47,7 @@ class PetsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _create_ap_true_request(self, create_parameters: "_models.PetAPTrue", **kwargs: Any) -> HttpRequest:
+    def _create_ap_true_request(self, body: "_models.PetAPTrue", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -63,7 +63,7 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, "PetAPTrue")
+        body_content = self._serialize.body(body, "PetAPTrue")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -84,7 +84,7 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._create_ap_true_request(create_parameters=create_parameters, **kwargs)
+        request = self._create_ap_true_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -104,7 +104,7 @@ class PetsOperations:
 
     create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
-    def _create_cat_ap_true_request(self, create_parameters: "_models.CatAPTrue", **kwargs: Any) -> HttpRequest:
+    def _create_cat_ap_true_request(self, body: "_models.CatAPTrue", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -120,7 +120,7 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, "CatAPTrue")
+        body_content = self._serialize.body(body, "CatAPTrue")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -141,7 +141,7 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._create_cat_ap_true_request(create_parameters=create_parameters, **kwargs)
+        request = self._create_cat_ap_true_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -161,7 +161,7 @@ class PetsOperations:
 
     create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
-    def _create_ap_object_request(self, create_parameters: "_models.PetAPObject", **kwargs: Any) -> HttpRequest:
+    def _create_ap_object_request(self, body: "_models.PetAPObject", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -177,7 +177,7 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, "PetAPObject")
+        body_content = self._serialize.body(body, "PetAPObject")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -198,7 +198,7 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._create_ap_object_request(create_parameters=create_parameters, **kwargs)
+        request = self._create_ap_object_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -218,7 +218,7 @@ class PetsOperations:
 
     create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
-    def _create_ap_string_request(self, create_parameters: "_models.PetAPString", **kwargs: Any) -> HttpRequest:
+    def _create_ap_string_request(self, body: "_models.PetAPString", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -234,7 +234,7 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, "PetAPString")
+        body_content = self._serialize.body(body, "PetAPString")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -255,7 +255,7 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._create_ap_string_request(create_parameters=create_parameters, **kwargs)
+        request = self._create_ap_string_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -275,9 +275,7 @@ class PetsOperations:
 
     create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
-    def _create_ap_in_properties_request(
-        self, create_parameters: "_models.PetAPInProperties", **kwargs: Any
-    ) -> HttpRequest:
+    def _create_ap_in_properties_request(self, body: "_models.PetAPInProperties", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -293,7 +291,7 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, "PetAPInProperties")
+        body_content = self._serialize.body(body, "PetAPInProperties")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -316,7 +314,7 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._create_ap_in_properties_request(create_parameters=create_parameters, **kwargs)
+        request = self._create_ap_in_properties_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -337,7 +335,7 @@ class PetsOperations:
     create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     def _create_ap_in_properties_with_ap_string_request(
-        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
+        self, body: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -354,7 +352,7 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
+        body_content = self._serialize.body(body, "PetAPInPropertiesWithAPString")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -377,7 +375,7 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._create_ap_in_properties_with_ap_string_request(create_parameters=create_parameters, **kwargs)
+        request = self._create_ap_in_properties_with_ap_string_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

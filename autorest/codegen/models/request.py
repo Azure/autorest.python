@@ -8,10 +8,12 @@ from typing import Any, cast, Dict, List, Optional, TypeVar
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
 from .list_schema import ListSchema
-from .parameter import Parameter, ParameterStyle
+from .parameter import ParameterStyle, Parameter
+from .request_parameter import RequestParameter
 from .parameter_list import ParameterList
 from .schema_request import SchemaRequest
 from .imports import FileImport
+from .utils import get_converted_parameters
 
 
 T = TypeVar('T')
@@ -46,8 +48,8 @@ class Request(BaseModel):
         method: str,
         multipart: bool,
         schema_requests: List[SchemaRequest],
-        parameters: Optional[List[Parameter]] = None,
-        multiple_media_type_parameters: Optional[List[Parameter]] = None,
+        parameters: Optional[List[RequestParameter]] = None,
+        multiple_media_type_parameters: Optional[List[RequestParameter]] = None,
     ):
         super(Request, self).__init__(yaml_data)
         self.name = name
@@ -73,7 +75,7 @@ class Request(BaseModel):
         return any(request.is_stream_request for request in self.schema_requests)
 
     @staticmethod
-    def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
+    def build_serialize_data_call(parameter: RequestParameter, function_name: str) -> str:
 
         optional_parameters = []
 
@@ -132,11 +134,13 @@ class Request(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], parameters, multiple_media_type_parameters) -> "Request":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Request":
         operation_name = yaml_data["language"]["python"]["name"]
         name = f"_{operation_name}_request"
 
         first_request = yaml_data["requests"][0]
+
+        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, RequestParameter.from_yaml)
 
         return cls(
             yaml_data=yaml_data,

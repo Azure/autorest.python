@@ -27,7 +27,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MediaTypesClientOperationsMixin:
     def _analyze_body_request(
-        self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any
+        self, body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -69,11 +69,11 @@ class MediaTypesClientOperationsMixin:
     _analyze_body_request.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> str:
+    async def analyze_body(self, input: Optional["_models.SourcePath"] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO or ~mediatypes.models.SourcePath
+        :type input: ~mediatypes.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -85,7 +85,7 @@ class MediaTypesClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._analyze_body_request(input=input, **kwargs)
+        request = self._analyze_body_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -104,7 +104,7 @@ class MediaTypesClientOperationsMixin:
 
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
-    def _content_type_with_encoding_request(self, input: str, **kwargs: Any) -> HttpRequest:
+    def _content_type_with_encoding_request(self, body: str, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "text/plain")
         accept = "application/json"
 
@@ -120,7 +120,7 @@ class MediaTypesClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(input, "str")
+        body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -141,7 +141,7 @@ class MediaTypesClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._content_type_with_encoding_request(input=input, **kwargs)
+        request = self._content_type_with_encoding_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

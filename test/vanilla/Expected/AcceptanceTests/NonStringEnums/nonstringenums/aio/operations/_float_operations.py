@@ -43,7 +43,7 @@ class FloatOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_request(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs: Any) -> HttpRequest:
+    def _put_request(self, body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -59,8 +59,8 @@ class FloatOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if input is not None:
-            body_content = self._serialize.body(input, "float")
+        if body is not None:
+            body_content = self._serialize.body(body, "float")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -83,7 +83,7 @@ class FloatOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_request(input=input, **kwargs)
+        request = self._put_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

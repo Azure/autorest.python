@@ -111,7 +111,7 @@ class TimeOperations(object):
 
     def _put_request(
         self,
-        time_body,  # type: datetime.time
+        body,  # type: datetime.time
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -130,7 +130,7 @@ class TimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(time_body, "time")
+        body_content = self._serialize.body(body, "time")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -156,7 +156,7 @@ class TimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_request(time_body=time_body, **kwargs)
+        request = self._put_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

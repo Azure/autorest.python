@@ -49,7 +49,7 @@ class AvailabilitySetsOperations:
 
     def _update_request(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs: Any) -> HttpRequest:
 
-        _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
+        body = _models.AvailabilitySetUpdateParameters(tags=tags)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -68,7 +68,7 @@ class AvailabilitySetsOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
+        body_content = self._serialize.body(body, "AvailabilitySetUpdateParameters")
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 

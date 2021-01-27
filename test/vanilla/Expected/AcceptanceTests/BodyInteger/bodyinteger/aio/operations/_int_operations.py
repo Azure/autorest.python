@@ -354,7 +354,7 @@ class IntOperations:
 
     get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
 
-    def _put_max32_request(self, int_body: int, **kwargs: Any) -> HttpRequest:
+    def _put_max32_request(self, body: int, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -370,7 +370,7 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(int_body, "int")
+        body_content = self._serialize.body(body, "int")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -391,7 +391,7 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_max32_request(int_body=int_body, **kwargs)
+        request = self._put_max32_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -407,7 +407,7 @@ class IntOperations:
 
     put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
 
-    def _put_max64_request(self, int_body: int, **kwargs: Any) -> HttpRequest:
+    def _put_max64_request(self, body: int, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -423,7 +423,7 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(int_body, "long")
+        body_content = self._serialize.body(body, "long")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -444,7 +444,7 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_max64_request(int_body=int_body, **kwargs)
+        request = self._put_max64_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -460,7 +460,7 @@ class IntOperations:
 
     put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
 
-    def _put_min32_request(self, int_body: int, **kwargs: Any) -> HttpRequest:
+    def _put_min32_request(self, body: int, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -476,7 +476,7 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(int_body, "int")
+        body_content = self._serialize.body(body, "int")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -497,7 +497,7 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_min32_request(int_body=int_body, **kwargs)
+        request = self._put_min32_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -513,7 +513,7 @@ class IntOperations:
 
     put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
 
-    def _put_min64_request(self, int_body: int, **kwargs: Any) -> HttpRequest:
+    def _put_min64_request(self, body: int, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -529,7 +529,7 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(int_body, "long")
+        body_content = self._serialize.body(body, "long")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -550,7 +550,7 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_min64_request(int_body=int_body, **kwargs)
+        request = self._put_min64_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -617,7 +617,7 @@ class IntOperations:
 
     get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
 
-    def _put_unix_time_date_request(self, int_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    def _put_unix_time_date_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -633,7 +633,7 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(int_body, "unix-time")
+        body_content = self._serialize.body(body, "unix-time")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -654,7 +654,7 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_unix_time_date_request(int_body=int_body, **kwargs)
+        request = self._put_unix_time_date_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

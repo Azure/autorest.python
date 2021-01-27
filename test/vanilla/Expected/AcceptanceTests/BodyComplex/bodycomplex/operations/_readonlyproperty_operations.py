@@ -115,7 +115,7 @@ class ReadonlypropertyOperations(object):
     ):
         # type: (...) -> HttpRequest
 
-        _complex_body = _models.ReadonlyObj(size=size)
+        body = _models.ReadonlyObj(size=size)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -131,7 +131,7 @@ class ReadonlypropertyOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_complex_body, "ReadonlyObj")
+        body_content = self._serialize.body(body, "ReadonlyObj")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -157,6 +157,7 @@ class ReadonlypropertyOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _complex_body
         request = self._put_valid_request(size=size, **kwargs)
         kwargs.pop("content_type", None)
 

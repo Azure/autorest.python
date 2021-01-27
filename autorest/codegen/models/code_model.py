@@ -267,6 +267,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 for obj in chain(
+                    operation.parameters,
                     operation.request.parameters,
                     operation.request.multiple_media_type_parameters or [],
                     operation.responses,

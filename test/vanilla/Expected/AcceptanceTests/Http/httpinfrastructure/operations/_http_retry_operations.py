@@ -106,7 +106,7 @@ class HttpRetryOperations(object):
 
     def _put500_request(
         self,
-        boolean_value=True,  # type: Optional[bool]
+        body=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -125,8 +125,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -154,7 +154,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put500_request(boolean_value=boolean_value, **kwargs)
+        request = self._put500_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -172,7 +172,7 @@ class HttpRetryOperations(object):
 
     def _patch500_request(
         self,
-        boolean_value=True,  # type: Optional[bool]
+        body=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -191,8 +191,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -220,7 +220,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch500_request(boolean_value=boolean_value, **kwargs)
+        request = self._patch500_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -348,7 +348,7 @@ class HttpRetryOperations(object):
 
     def _post503_request(
         self,
-        boolean_value=True,  # type: Optional[bool]
+        body=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -367,8 +367,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -396,7 +396,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post503_request(boolean_value=boolean_value, **kwargs)
+        request = self._post503_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -414,7 +414,7 @@ class HttpRetryOperations(object):
 
     def _delete503_request(
         self,
-        boolean_value=True,  # type: Optional[bool]
+        body=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -433,8 +433,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -462,7 +462,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete503_request(boolean_value=boolean_value, **kwargs)
+        request = self._delete503_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -480,7 +480,7 @@ class HttpRetryOperations(object):
 
     def _put504_request(
         self,
-        boolean_value=True,  # type: Optional[bool]
+        body=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -499,8 +499,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -528,7 +528,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put504_request(boolean_value=boolean_value, **kwargs)
+        request = self._put504_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -546,7 +546,7 @@ class HttpRetryOperations(object):
 
     def _patch504_request(
         self,
-        boolean_value=True,  # type: Optional[bool]
+        body=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -565,8 +565,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -594,7 +594,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch504_request(boolean_value=boolean_value, **kwargs)
+        request = self._patch504_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

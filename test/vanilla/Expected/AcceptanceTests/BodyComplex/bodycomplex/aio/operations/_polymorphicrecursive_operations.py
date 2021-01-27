@@ -98,7 +98,7 @@ class PolymorphicrecursiveOperations:
 
     get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
-    def _put_valid_request(self, complex_body: "_models.Fish", **kwargs: Any) -> HttpRequest:
+    def _put_valid_request(self, body: "_models.Fish", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -114,7 +114,7 @@ class PolymorphicrecursiveOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "Fish")
+        body_content = self._serialize.body(body, "Fish")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -187,7 +187,8 @@ class PolymorphicrecursiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_valid_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

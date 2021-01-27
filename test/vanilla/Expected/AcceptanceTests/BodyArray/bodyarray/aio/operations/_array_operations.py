@@ -201,7 +201,7 @@ class ArrayOperations:
 
     get_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
-    def _put_empty_request(self, array_body: List[str], **kwargs: Any) -> HttpRequest:
+    def _put_empty_request(self, body: List[str], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -217,7 +217,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[str]")
+        body_content = self._serialize.body(body, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -238,7 +238,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_empty_request(array_body=array_body, **kwargs)
+        request = self._put_empty_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -305,7 +305,7 @@ class ArrayOperations:
 
     get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
-    def _put_boolean_tfft_request(self, array_body: List[bool], **kwargs: Any) -> HttpRequest:
+    def _put_boolean_tfft_request(self, body: List[bool], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -321,7 +321,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[bool]")
+        body_content = self._serialize.body(body, "[bool]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -342,7 +342,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_boolean_tfft_request(array_body=array_body, **kwargs)
+        request = self._put_boolean_tfft_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -511,7 +511,7 @@ class ArrayOperations:
 
     get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
-    def _put_integer_valid_request(self, array_body: List[int], **kwargs: Any) -> HttpRequest:
+    def _put_integer_valid_request(self, body: List[int], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -527,7 +527,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[int]")
+        body_content = self._serialize.body(body, "[int]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -548,7 +548,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_integer_valid_request(array_body=array_body, **kwargs)
+        request = self._put_integer_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -717,7 +717,7 @@ class ArrayOperations:
 
     get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
-    def _put_long_valid_request(self, array_body: List[int], **kwargs: Any) -> HttpRequest:
+    def _put_long_valid_request(self, body: List[int], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -733,7 +733,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[long]")
+        body_content = self._serialize.body(body, "[long]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -754,7 +754,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_long_valid_request(array_body=array_body, **kwargs)
+        request = self._put_long_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -923,7 +923,7 @@ class ArrayOperations:
 
     get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
-    def _put_float_valid_request(self, array_body: List[float], **kwargs: Any) -> HttpRequest:
+    def _put_float_valid_request(self, body: List[float], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -939,7 +939,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[float]")
+        body_content = self._serialize.body(body, "[float]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -960,7 +960,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_float_valid_request(array_body=array_body, **kwargs)
+        request = self._put_float_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1129,7 +1129,7 @@ class ArrayOperations:
 
     get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
-    def _put_double_valid_request(self, array_body: List[float], **kwargs: Any) -> HttpRequest:
+    def _put_double_valid_request(self, body: List[float], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1145,7 +1145,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[float]")
+        body_content = self._serialize.body(body, "[float]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1166,7 +1166,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_double_valid_request(array_body=array_body, **kwargs)
+        request = self._put_double_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1335,7 +1335,7 @@ class ArrayOperations:
 
     get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_string_valid_request(self, array_body: List[str], **kwargs: Any) -> HttpRequest:
+    def _put_string_valid_request(self, body: List[str], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1351,7 +1351,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[str]")
+        body_content = self._serialize.body(body, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1372,7 +1372,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_string_valid_request(array_body=array_body, **kwargs)
+        request = self._put_string_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1439,7 +1439,7 @@ class ArrayOperations:
 
     get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_enum_valid_request(self, array_body: List[Union[str, "_models.FooEnum"]], **kwargs: Any) -> HttpRequest:
+    def _put_enum_valid_request(self, body: List[Union[str, "_models.FooEnum"]], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1455,7 +1455,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[str]")
+        body_content = self._serialize.body(body, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1476,7 +1476,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_enum_valid_request(array_body=array_body, **kwargs)
+        request = self._put_enum_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1543,9 +1543,7 @@ class ArrayOperations:
 
     get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_string_enum_valid_request(
-        self, array_body: List[Union[str, "_models.Enum1"]], **kwargs: Any
-    ) -> HttpRequest:
+    def _put_string_enum_valid_request(self, body: List[Union[str, "_models.Enum1"]], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1561,7 +1559,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[str]")
+        body_content = self._serialize.body(body, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1582,7 +1580,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_string_enum_valid_request(array_body=array_body, **kwargs)
+        request = self._put_string_enum_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1752,7 +1750,7 @@ class ArrayOperations:
 
     get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
-    def _put_uuid_valid_request(self, array_body: List[str], **kwargs: Any) -> HttpRequest:
+    def _put_uuid_valid_request(self, body: List[str], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1768,7 +1766,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[str]")
+        body_content = self._serialize.body(body, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1790,7 +1788,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_uuid_valid_request(array_body=array_body, **kwargs)
+        request = self._put_uuid_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1908,7 +1906,7 @@ class ArrayOperations:
 
     get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
-    def _put_date_valid_request(self, array_body: List[datetime.date], **kwargs: Any) -> HttpRequest:
+    def _put_date_valid_request(self, body: List[datetime.date], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1924,7 +1922,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[date]")
+        body_content = self._serialize.body(body, "[date]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1945,7 +1943,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_valid_request(array_body=array_body, **kwargs)
+        request = self._put_date_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2115,7 +2113,7 @@ class ArrayOperations:
 
     get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
-    def _put_date_time_valid_request(self, array_body: List[datetime.datetime], **kwargs: Any) -> HttpRequest:
+    def _put_date_time_valid_request(self, body: List[datetime.datetime], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2131,7 +2129,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[iso-8601]")
+        body_content = self._serialize.body(body, "[iso-8601]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -2153,7 +2151,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_time_valid_request(array_body=array_body, **kwargs)
+        request = self._put_date_time_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2323,7 +2321,7 @@ class ArrayOperations:
 
     get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
-    def _put_date_time_rfc1123_valid_request(self, array_body: List[datetime.datetime], **kwargs: Any) -> HttpRequest:
+    def _put_date_time_rfc1123_valid_request(self, body: List[datetime.datetime], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2339,7 +2337,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[rfc-1123]")
+        body_content = self._serialize.body(body, "[rfc-1123]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -2361,7 +2359,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_time_rfc1123_valid_request(array_body=array_body, **kwargs)
+        request = self._put_date_time_rfc1123_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2428,7 +2426,7 @@ class ArrayOperations:
 
     get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
-    def _put_duration_valid_request(self, array_body: List[datetime.timedelta], **kwargs: Any) -> HttpRequest:
+    def _put_duration_valid_request(self, body: List[datetime.timedelta], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2444,7 +2442,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[duration]")
+        body_content = self._serialize.body(body, "[duration]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -2465,7 +2463,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_duration_valid_request(array_body=array_body, **kwargs)
+        request = self._put_duration_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2533,7 +2531,7 @@ class ArrayOperations:
 
     get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
-    def _put_byte_valid_request(self, array_body: List[bytearray], **kwargs: Any) -> HttpRequest:
+    def _put_byte_valid_request(self, body: List[bytearray], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2549,7 +2547,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[bytearray]")
+        body_content = self._serialize.body(body, "[bytearray]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -2571,7 +2569,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_byte_valid_request(array_body=array_body, **kwargs)
+        request = self._put_byte_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2948,7 +2946,7 @@ class ArrayOperations:
 
     get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
-    def _put_complex_valid_request(self, array_body: List["_models.Product"], **kwargs: Any) -> HttpRequest:
+    def _put_complex_valid_request(self, body: List["_models.Product"], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2964,7 +2962,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[Product]")
+        body_content = self._serialize.body(body, "[Product]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -2986,7 +2984,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_complex_valid_request(array_body=array_body, **kwargs)
+        request = self._put_complex_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3257,7 +3255,7 @@ class ArrayOperations:
 
     get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
-    def _put_array_valid_request(self, array_body: List[List[str]], **kwargs: Any) -> HttpRequest:
+    def _put_array_valid_request(self, body: List[List[str]], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -3273,7 +3271,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[[str]]")
+        body_content = self._serialize.body(body, "[[str]]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -3294,7 +3292,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_array_valid_request(array_body=array_body, **kwargs)
+        request = self._put_array_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3568,7 +3566,7 @@ class ArrayOperations:
 
     get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
 
-    def _put_dictionary_valid_request(self, array_body: List[Dict[str, str]], **kwargs: Any) -> HttpRequest:
+    def _put_dictionary_valid_request(self, body: List[Dict[str, str]], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -3584,7 +3582,7 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(array_body, "[{str}]")
+        body_content = self._serialize.body(body, "[{str}]")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -3606,7 +3604,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_dictionary_valid_request(array_body=array_body, **kwargs)
+        request = self._put_dictionary_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

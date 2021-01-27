@@ -100,7 +100,7 @@ class BoolOperations:
 
     def _put_true_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
-        bool_body = True
+        body = True
         accept = "application/json"
 
         # Construct URL
@@ -115,7 +115,7 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(bool_body, "bool")
+        body_content = self._serialize.body(body, "bool")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -204,7 +204,7 @@ class BoolOperations:
 
     def _put_false_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
-        bool_body = False
+        body = False
         accept = "application/json"
 
         # Construct URL
@@ -219,7 +219,7 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(bool_body, "bool")
+        body_content = self._serialize.body(body, "bool")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 

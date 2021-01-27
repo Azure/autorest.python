@@ -47,7 +47,7 @@ class ExplicitOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _post_required_integer_parameter_request(self, body_parameter: int, **kwargs: Any) -> HttpRequest:
+    def _post_required_integer_parameter_request(self, body: int, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -63,7 +63,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, "int")
+        body_content = self._serialize.body(body, "int")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -85,7 +85,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_integer_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_required_integer_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -101,9 +101,7 @@ class ExplicitOperations:
 
     post_required_integer_parameter.metadata = {"url": "/reqopt/requied/integer/parameter"}  # type: ignore
 
-    def _post_optional_integer_parameter_request(
-        self, body_parameter: Optional[int] = None, **kwargs: Any
-    ) -> HttpRequest:
+    def _post_optional_integer_parameter_request(self, body: Optional[int] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -119,8 +117,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, "int")
+        if body is not None:
+            body_content = self._serialize.body(body, "int")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -143,7 +141,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_integer_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_optional_integer_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -161,7 +159,7 @@ class ExplicitOperations:
 
     def _post_required_integer_property_request(self, value: int, **kwargs: Any) -> HttpRequest:
 
-        _body_parameter = _models.IntWrapper(value=value)
+        body = _models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -177,7 +175,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, "IntWrapper")
+        body_content = self._serialize.body(body, "IntWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -217,7 +215,7 @@ class ExplicitOperations:
 
     def _post_optional_integer_property_request(self, value: Optional[int] = None, **kwargs: Any) -> HttpRequest:
 
-        _body_parameter = _models.IntOptionalWrapper(value=value)
+        body = _models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -233,8 +231,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, "IntOptionalWrapper")
+        if body is not None:
+            body_content = self._serialize.body(body, "IntOptionalWrapper")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -375,7 +373,7 @@ class ExplicitOperations:
 
     post_optional_integer_header.metadata = {"url": "/reqopt/optional/integer/header"}  # type: ignore
 
-    def _post_required_string_parameter_request(self, body_parameter: str, **kwargs: Any) -> HttpRequest:
+    def _post_required_string_parameter_request(self, body: str, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -391,7 +389,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, "str")
+        body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -413,7 +411,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_string_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_required_string_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -429,9 +427,7 @@ class ExplicitOperations:
 
     post_required_string_parameter.metadata = {"url": "/reqopt/requied/string/parameter"}  # type: ignore
 
-    def _post_optional_string_parameter_request(
-        self, body_parameter: Optional[str] = None, **kwargs: Any
-    ) -> HttpRequest:
+    def _post_optional_string_parameter_request(self, body: Optional[str] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -447,8 +443,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, "str")
+        if body is not None:
+            body_content = self._serialize.body(body, "str")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -471,7 +467,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_string_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_optional_string_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -489,7 +485,7 @@ class ExplicitOperations:
 
     def _post_required_string_property_request(self, value: str, **kwargs: Any) -> HttpRequest:
 
-        _body_parameter = _models.StringWrapper(value=value)
+        body = _models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -505,7 +501,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, "StringWrapper")
+        body_content = self._serialize.body(body, "StringWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -545,7 +541,7 @@ class ExplicitOperations:
 
     def _post_optional_string_property_request(self, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
 
-        _body_parameter = _models.StringOptionalWrapper(value=value)
+        body = _models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -561,8 +557,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, "StringOptionalWrapper")
+        if body is not None:
+            body_content = self._serialize.body(body, "StringOptionalWrapper")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -701,7 +697,7 @@ class ExplicitOperations:
 
     post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
-    def _post_required_class_parameter_request(self, body_parameter: "_models.Product", **kwargs: Any) -> HttpRequest:
+    def _post_required_class_parameter_request(self, body: "_models.Product", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -717,7 +713,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, "Product")
+        body_content = self._serialize.body(body, "Product")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -739,7 +735,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_class_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_required_class_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -756,7 +752,7 @@ class ExplicitOperations:
     post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
     def _post_optional_class_parameter_request(
-        self, body_parameter: Optional["_models.Product"] = None, **kwargs: Any
+        self, body: Optional["_models.Product"] = None, **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -773,8 +769,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, "Product")
+        if body is not None:
+            body_content = self._serialize.body(body, "Product")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -799,7 +795,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_class_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_optional_class_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -817,7 +813,7 @@ class ExplicitOperations:
 
     def _post_required_class_property_request(self, value: "_models.Product", **kwargs: Any) -> HttpRequest:
 
-        _body_parameter = _models.ClassWrapper(value=value)
+        body = _models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -833,7 +829,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, "ClassWrapper")
+        body_content = self._serialize.body(body, "ClassWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -875,7 +871,7 @@ class ExplicitOperations:
         self, value: Optional["_models.Product"] = None, **kwargs: Any
     ) -> HttpRequest:
 
-        _body_parameter = _models.ClassOptionalWrapper(value=value)
+        body = _models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -891,8 +887,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, "ClassOptionalWrapper")
+        if body is not None:
+            body_content = self._serialize.body(body, "ClassOptionalWrapper")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -931,7 +927,7 @@ class ExplicitOperations:
 
     post_optional_class_property.metadata = {"url": "/reqopt/optional/class/property"}  # type: ignore
 
-    def _post_required_array_parameter_request(self, body_parameter: List[str], **kwargs: Any) -> HttpRequest:
+    def _post_required_array_parameter_request(self, body: List[str], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -947,7 +943,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body_parameter, "[str]")
+        body_content = self._serialize.body(body, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -969,7 +965,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_array_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_required_array_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -985,9 +981,7 @@ class ExplicitOperations:
 
     post_required_array_parameter.metadata = {"url": "/reqopt/requied/array/parameter"}  # type: ignore
 
-    def _post_optional_array_parameter_request(
-        self, body_parameter: Optional[List[str]] = None, **kwargs: Any
-    ) -> HttpRequest:
+    def _post_optional_array_parameter_request(self, body: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1003,8 +997,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, "[str]")
+        if body is not None:
+            body_content = self._serialize.body(body, "[str]")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1027,7 +1021,7 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_array_parameter_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_optional_array_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1045,7 +1039,7 @@ class ExplicitOperations:
 
     def _post_required_array_property_request(self, value: List[str], **kwargs: Any) -> HttpRequest:
 
-        _body_parameter = _models.ArrayWrapper(value=value)
+        body = _models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1061,7 +1055,7 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_body_parameter, "ArrayWrapper")
+        body_content = self._serialize.body(body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1101,7 +1095,7 @@ class ExplicitOperations:
 
     def _post_optional_array_property_request(self, value: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
 
-        _body_parameter = _models.ArrayOptionalWrapper(value=value)
+        body = _models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1117,8 +1111,8 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, "ArrayOptionalWrapper")
+        if body is not None:
+            body_content = self._serialize.body(body, "ArrayOptionalWrapper")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content

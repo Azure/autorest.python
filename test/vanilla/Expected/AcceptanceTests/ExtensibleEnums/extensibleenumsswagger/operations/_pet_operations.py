@@ -118,7 +118,7 @@ class PetOperations(object):
 
     def _add_pet_request(
         self,
-        pet_param=None,  # type: Optional["_models.Pet"]
+        body=None,  # type: Optional["_models.Pet"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -137,8 +137,8 @@ class PetOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if pet_param is not None:
-            body_content = self._serialize.body(pet_param, "Pet")
+        if body is not None:
+            body_content = self._serialize.body(body, "Pet")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -166,7 +166,7 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._add_pet_request(pet_param=pet_param, **kwargs)
+        request = self._add_pet_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

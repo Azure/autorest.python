@@ -111,7 +111,7 @@ class DurationOperations(object):
 
     def _put_positive_duration_request(
         self,
-        duration_body,  # type: datetime.timedelta
+        body,  # type: datetime.timedelta
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -130,7 +130,7 @@ class DurationOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(duration_body, "duration")
+        body_content = self._serialize.body(body, "duration")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -156,7 +156,7 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_positive_duration_request(duration_body=duration_body, **kwargs)
+        request = self._put_positive_duration_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

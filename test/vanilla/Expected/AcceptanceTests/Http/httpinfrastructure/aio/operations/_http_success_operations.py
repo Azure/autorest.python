@@ -196,7 +196,7 @@ class HttpSuccessOperations:
 
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _put200_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _put200_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -212,8 +212,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -236,7 +236,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put200_request(boolean_value=boolean_value, **kwargs)
+        request = self._put200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -252,7 +252,7 @@ class HttpSuccessOperations:
 
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _patch200_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _patch200_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -268,8 +268,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -292,7 +292,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch200_request(boolean_value=boolean_value, **kwargs)
+        request = self._patch200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -308,7 +308,7 @@ class HttpSuccessOperations:
 
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _post200_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _post200_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -324,8 +324,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -348,7 +348,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post200_request(boolean_value=boolean_value, **kwargs)
+        request = self._post200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -364,7 +364,7 @@ class HttpSuccessOperations:
 
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _delete200_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _delete200_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -380,8 +380,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -404,7 +404,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete200_request(boolean_value=boolean_value, **kwargs)
+        request = self._delete200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -420,7 +420,7 @@ class HttpSuccessOperations:
 
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _put201_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _put201_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -436,8 +436,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -460,7 +460,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put201_request(boolean_value=boolean_value, **kwargs)
+        request = self._put201_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -476,7 +476,7 @@ class HttpSuccessOperations:
 
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
-    def _post201_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _post201_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -492,8 +492,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -516,7 +516,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post201_request(boolean_value=boolean_value, **kwargs)
+        request = self._post201_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -532,7 +532,7 @@ class HttpSuccessOperations:
 
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
-    def _put202_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _put202_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -548,8 +548,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -572,7 +572,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put202_request(boolean_value=boolean_value, **kwargs)
+        request = self._put202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -588,7 +588,7 @@ class HttpSuccessOperations:
 
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _patch202_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _patch202_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -604,8 +604,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -628,7 +628,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch202_request(boolean_value=boolean_value, **kwargs)
+        request = self._patch202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -644,7 +644,7 @@ class HttpSuccessOperations:
 
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _post202_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _post202_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -660,8 +660,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -684,7 +684,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post202_request(boolean_value=boolean_value, **kwargs)
+        request = self._post202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -700,7 +700,7 @@ class HttpSuccessOperations:
 
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _delete202_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _delete202_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -716,8 +716,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -740,7 +740,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_request(boolean_value=boolean_value, **kwargs)
+        request = self._delete202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -803,7 +803,7 @@ class HttpSuccessOperations:
 
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _put204_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _put204_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -819,8 +819,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -843,7 +843,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put204_request(boolean_value=boolean_value, **kwargs)
+        request = self._put204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -859,7 +859,7 @@ class HttpSuccessOperations:
 
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _patch204_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _patch204_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -875,8 +875,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -899,7 +899,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch204_request(boolean_value=boolean_value, **kwargs)
+        request = self._patch204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -915,7 +915,7 @@ class HttpSuccessOperations:
 
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _post204_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _post204_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -931,8 +931,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -955,7 +955,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post204_request(boolean_value=boolean_value, **kwargs)
+        request = self._post204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -971,7 +971,7 @@ class HttpSuccessOperations:
 
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _delete204_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
+    def _delete204_request(self, body: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -987,8 +987,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, "bool")
+        if body is not None:
+            body_content = self._serialize.body(body, "bool")
         else:
             body_content = None
         body_content_kwargs["content"] = body_content
@@ -1011,7 +1011,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete204_request(boolean_value=boolean_value, **kwargs)
+        request = self._delete204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

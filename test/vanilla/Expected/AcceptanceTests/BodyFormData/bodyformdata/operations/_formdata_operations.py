@@ -53,8 +53,8 @@ class FormdataOperations(object):
 
     def _upload_file_request(
         self,
-        file_content,  # type: IO
-        file_name,  # type: str
+        body,  # type: IO
+        body,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -74,8 +74,8 @@ class FormdataOperations(object):
 
         # Construct form data
         _form_content = {
-            "fileContent": file_content,
-            "fileName": file_name,
+            "fileContent": body,
+            "fileName": body,
         }
         return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
 
@@ -104,7 +104,7 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._upload_file_request(file_content=file_content, file_name=file_name, **kwargs)
+        request = self._upload_file_request(body=body, body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -126,7 +126,7 @@ class FormdataOperations(object):
 
     def _upload_file_via_body_request(
         self,
-        file_content,  # type: IO
+        body,  # type: IO
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -145,7 +145,7 @@ class FormdataOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["stream_content"] = file_content
+        body_content_kwargs["stream_content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     _upload_file_via_body_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
@@ -170,7 +170,7 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._upload_file_via_body_request(file_content=file_content, **kwargs)
+        request = self._upload_file_via_body_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -192,7 +192,7 @@ class FormdataOperations(object):
 
     def _upload_files_request(
         self,
-        file_content,  # type: List[IO]
+        body,  # type: List[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -212,7 +212,7 @@ class FormdataOperations(object):
 
         # Construct form data
         _form_content = {
-            "fileContent": file_content,
+            "fileContent": body,
         }
         return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
 
@@ -238,7 +238,7 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._upload_files_request(file_content=file_content, **kwargs)
+        request = self._upload_files_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)

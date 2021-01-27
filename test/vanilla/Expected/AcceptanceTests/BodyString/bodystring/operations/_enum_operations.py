@@ -110,7 +110,7 @@ class EnumOperations(object):
 
     def _put_not_expandable_request(
         self,
-        string_body,  # type: Union[str, "_models.Colors"]
+        body,  # type: Union[str, "_models.Colors"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -129,7 +129,7 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(string_body, "str")
+        body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -155,7 +155,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_not_expandable_request(string_body=string_body, **kwargs)
+        request = self._put_not_expandable_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -230,7 +230,7 @@ class EnumOperations(object):
 
     def _put_referenced_request(
         self,
-        enum_string_body,  # type: Union[str, "_models.Colors"]
+        body,  # type: Union[str, "_models.Colors"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -249,7 +249,7 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(enum_string_body, "str")
+        body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -275,7 +275,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_referenced_request(enum_string_body=enum_string_body, **kwargs)
+        request = self._put_referenced_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -355,7 +355,7 @@ class EnumOperations(object):
     ):
         # type: (...) -> HttpRequest
 
-        _enum_string_body = _models.RefColorConstant(field1=field1)
+        body = _models.RefColorConstant(field1=field1)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -371,7 +371,7 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_enum_string_body, "RefColorConstant")
+        body_content = self._serialize.body(body, "RefColorConstant")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 

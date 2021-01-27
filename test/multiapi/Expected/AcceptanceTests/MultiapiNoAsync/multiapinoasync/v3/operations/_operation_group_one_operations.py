@@ -46,7 +46,7 @@ class OperationGroupOneOperations(object):
 
     def _test_two_request(
         self,
-        parameter_one=None,  # type: Optional["_models.ModelThree"]
+        body=None,  # type: Optional["_models.ModelThree"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -67,8 +67,8 @@ class OperationGroupOneOperations(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if parameter_one is not None:
-            body_content = self._serialize.body(parameter_one, 'ModelThree')
+        if body is not None:
+            body_content = self._serialize.body(body, 'ModelThree')
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
@@ -97,7 +97,7 @@ class OperationGroupOneOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         request = self._test_two_request(
-            parameter_one=parameter_one,
+            body=body,
             **kwargs
         )
         kwargs.pop('content_type', None)

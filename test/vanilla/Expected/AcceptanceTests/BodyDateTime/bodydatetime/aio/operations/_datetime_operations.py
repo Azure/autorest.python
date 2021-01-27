@@ -252,7 +252,7 @@ class DatetimeOperations:
 
     get_underflow.metadata = {"url": "/datetime/underflow"}  # type: ignore
 
-    def _put_utc_max_date_time_request(self, datetime_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    def _put_utc_max_date_time_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -268,7 +268,7 @@ class DatetimeOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "iso-8601")
+        body_content = self._serialize.body(body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -289,7 +289,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_utc_max_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_utc_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -305,7 +305,7 @@ class DatetimeOperations:
 
     put_utc_max_date_time.metadata = {"url": "/datetime/max/utc"}  # type: ignore
 
-    def _put_utc_max_date_time7_digits_request(self, datetime_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    def _put_utc_max_date_time7_digits_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -321,7 +321,7 @@ class DatetimeOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "iso-8601")
+        body_content = self._serialize.body(body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -345,7 +345,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_utc_max_date_time7_digits_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_utc_max_date_time7_digits_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -517,9 +517,7 @@ class DatetimeOperations:
 
     get_utc_uppercase_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms/uppercase"}  # type: ignore
 
-    def _put_local_positive_offset_max_date_time_request(
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> HttpRequest:
+    def _put_local_positive_offset_max_date_time_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -535,7 +533,7 @@ class DatetimeOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "iso-8601")
+        body_content = self._serialize.body(body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -556,7 +554,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_local_positive_offset_max_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_local_positive_offset_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -674,9 +672,7 @@ class DatetimeOperations:
 
     get_local_positive_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/uppercase"}  # type: ignore
 
-    def _put_local_negative_offset_max_date_time_request(
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> HttpRequest:
+    def _put_local_negative_offset_max_date_time_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -692,7 +688,7 @@ class DatetimeOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "iso-8601")
+        body_content = self._serialize.body(body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -713,7 +709,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_local_negative_offset_max_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_local_negative_offset_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -831,7 +827,7 @@ class DatetimeOperations:
 
     get_local_negative_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/lowercase"}  # type: ignore
 
-    def _put_utc_min_date_time_request(self, datetime_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    def _put_utc_min_date_time_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -847,7 +843,7 @@ class DatetimeOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "iso-8601")
+        body_content = self._serialize.body(body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -868,7 +864,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_utc_min_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_utc_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -935,9 +931,7 @@ class DatetimeOperations:
 
     get_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
-    def _put_local_positive_offset_min_date_time_request(
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> HttpRequest:
+    def _put_local_positive_offset_min_date_time_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -953,7 +947,7 @@ class DatetimeOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "iso-8601")
+        body_content = self._serialize.body(body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -974,7 +968,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_local_positive_offset_min_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_local_positive_offset_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1041,9 +1035,7 @@ class DatetimeOperations:
 
     get_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
-    def _put_local_negative_offset_min_date_time_request(
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> HttpRequest:
+    def _put_local_negative_offset_min_date_time_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1059,7 +1051,7 @@ class DatetimeOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(datetime_body, "iso-8601")
+        body_content = self._serialize.body(body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1080,7 +1072,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_local_negative_offset_min_date_time_request(datetime_body=datetime_body, **kwargs)
+        request = self._put_local_negative_offset_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

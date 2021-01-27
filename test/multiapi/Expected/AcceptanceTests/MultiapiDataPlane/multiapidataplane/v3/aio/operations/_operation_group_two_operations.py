@@ -41,7 +41,7 @@ class OperationGroupTwoOperations:
 
     def _test_four_request(
         self,
-        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        body: Optional[Union[IO, "_models.SourcePath"]] = None,
         **kwargs: Any
     ) -> HttpRequest:
         api_version = "3.0.0"
@@ -79,13 +79,13 @@ class OperationGroupTwoOperations:
 
     async def test_four(
         self,
-        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        input: Optional["_models.SourcePath"] = None,
         **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: IO or ~multiapidataplane.v3.models.SourcePath
+        :type input: ~multiapidataplane.v3.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -100,7 +100,7 @@ class OperationGroupTwoOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         request = self._test_four_request(
-            input=input,
+            body=body,
             **kwargs
         )
         kwargs.pop('content_type', None)

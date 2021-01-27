@@ -46,7 +46,7 @@ class OperationGroupTwoOperations(object):
 
     def _test_four_request(
         self,
-        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -85,14 +85,14 @@ class OperationGroupTwoOperations(object):
 
     def test_four(
         self,
-        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        input=None,  # type: Optional["_models.SourcePath"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: IO or ~azure.multiapi.sample.models.SourcePath
+        :type input: ~azure.multiapi.sample.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -107,7 +107,7 @@ class OperationGroupTwoOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         request = self._test_four_request(
-            input=input,
+            body=body,
             **kwargs
         )
         kwargs.pop('content_type', None)

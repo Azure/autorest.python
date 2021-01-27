@@ -31,7 +31,7 @@
     This method is deprecated
 
 {% endif -%}
-{% for parameter in request.parameters.method %}
+{% for parameter in operation.parameters.method %}
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
@@ -61,6 +61,9 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
+    {% if operation.parameters.has_body %}
+    body = {{ operation.parameters.body[0].serialized_name }}
+    {% endif %}
     {{ op_tools.get_request(request)|indent }}
     kwargs.pop('content_type', None)
 

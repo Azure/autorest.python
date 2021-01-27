@@ -110,7 +110,7 @@ class InheritanceOperations(object):
 
     def _put_valid_request(
         self,
-        complex_body,  # type: "_models.Siamese"
+        body,  # type: "_models.Siamese"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -129,7 +129,7 @@ class InheritanceOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(complex_body, "Siamese")
+        body_content = self._serialize.body(body, "Siamese")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -157,7 +157,8 @@ class InheritanceOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_valid_request(complex_body=complex_body, **kwargs)
+        body = complex_body
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
