@@ -116,6 +116,7 @@ class ParameterGroupingOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _body
         request = self._post_required_request(
             parameter_grouping_post_required_parameters=parameter_grouping_post_required_parameters, **kwargs
         )

@@ -110,12 +110,10 @@ class ArrayOperations(object):
 
     def _put_valid_request(
         self,
-        array=None,  # type: Optional[List[str]]
+        body,  # type: "_models.ArrayWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -157,8 +155,8 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_valid_request(array=array, **kwargs)
+        body = _models.ArrayWrapper(array=array)
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -233,12 +231,10 @@ class ArrayOperations(object):
 
     def _put_empty_request(
         self,
-        array=None,  # type: Optional[List[str]]
+        body,  # type: "_models.ArrayWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ArrayWrapper(array=array)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -280,8 +276,8 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_empty_request(array=array, **kwargs)
+        body = _models.ArrayWrapper(array=array)
+        request = self._put_empty_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

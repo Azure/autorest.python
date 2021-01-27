@@ -327,6 +327,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_utc_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -393,6 +394,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_utc_max_date_time7_digits_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -630,6 +632,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_local_positive_offset_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -807,6 +810,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_local_negative_offset_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -984,6 +988,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_utc_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1104,6 +1109,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_local_positive_offset_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1224,6 +1230,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_local_negative_offset_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

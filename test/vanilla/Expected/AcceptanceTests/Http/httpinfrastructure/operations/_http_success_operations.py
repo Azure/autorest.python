@@ -268,6 +268,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._put200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -334,6 +335,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._patch200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -400,6 +402,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._post200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -466,6 +469,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._delete200_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -532,6 +536,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._put201_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -598,6 +603,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._post201_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -664,6 +670,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._put202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -730,6 +737,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._patch202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -796,6 +804,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._post202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -862,6 +871,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._delete202_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -981,6 +991,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._put204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1047,6 +1058,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._patch204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1113,6 +1125,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._post204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1179,6 +1192,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._delete204_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

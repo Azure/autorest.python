@@ -98,9 +98,7 @@ class ArrayOperations:
 
     get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
-    def _put_valid_request(self, array: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.ArrayWrapper(array=array)
+    def _put_valid_request(self, body: "_models.ArrayWrapper", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -137,8 +135,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_valid_request(array=array, **kwargs)
+        body = _models.ArrayWrapper(array=array)
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -205,9 +203,7 @@ class ArrayOperations:
 
     get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
-    def _put_empty_request(self, array: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.ArrayWrapper(array=array)
+    def _put_empty_request(self, body: "_models.ArrayWrapper", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -244,8 +240,8 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_empty_request(array=array, **kwargs)
+        body = _models.ArrayWrapper(array=array)
+        request = self._put_empty_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

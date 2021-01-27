@@ -110,12 +110,10 @@ class DictionaryOperations(object):
 
     def _put_valid_request(
         self,
-        default_program=None,  # type: Optional[Dict[str, str]]
+        body,  # type: "_models.DictionaryWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.DictionaryWrapper(default_program=default_program)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -157,8 +155,8 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_valid_request(default_program=default_program, **kwargs)
+        body = _models.DictionaryWrapper(default_program=default_program)
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -233,12 +231,10 @@ class DictionaryOperations(object):
 
     def _put_empty_request(
         self,
-        default_program=None,  # type: Optional[Dict[str, str]]
+        body,  # type: "_models.DictionaryWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.DictionaryWrapper(default_program=default_program)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -280,8 +276,8 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_empty_request(default_program=default_program, **kwargs)
+        body = _models.DictionaryWrapper(default_program=default_program)
+        request = self._put_empty_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

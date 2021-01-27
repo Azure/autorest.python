@@ -289,6 +289,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = date_body
         request = self._put_max_date_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -393,6 +394,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = date_body
         request = self._put_min_date_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

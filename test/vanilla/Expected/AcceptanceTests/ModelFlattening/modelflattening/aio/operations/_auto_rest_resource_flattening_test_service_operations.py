@@ -66,6 +66,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = resource_array
         request = self._put_array_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -178,6 +179,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = resource_array
         request = self._put_wrapped_array_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -290,6 +292,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = resource_dictionary
         request = self._put_dictionary_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -401,6 +404,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = resource_complex_object
         request = self._put_resource_collection_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -510,6 +514,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = simple_body_product
         request = self._put_simple_product_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -531,22 +536,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     def _post_flattened_simple_product_request(
-        self,
-        product_id: str,
-        description: Optional[str] = None,
-        max_product_display_name: Optional[str] = None,
-        generic_value: Optional[str] = None,
-        odata_value: Optional[str] = None,
-        **kwargs: Any
+        self, body: Optional["_models.SimpleProduct"] = None, **kwargs: Any
     ) -> HttpRequest:
-
-        body = _models.SimpleProduct(
-            product_id=product_id,
-            description=description,
-            max_product_display_name=max_product_display_name,
-            generic_value=generic_value,
-            odata_value=odata_value,
-        )
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -604,14 +595,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_flattened_simple_product_request(
+        body = _models.SimpleProduct(
             product_id=product_id,
             description=description,
             max_product_display_name=max_product_display_name,
             generic_value=generic_value,
             odata_value=odata_value,
-            **kwargs
         )
+        request = self._post_flattened_simple_product_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -650,14 +641,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             _max_product_display_name = flatten_parameter_group.max_product_display_name
             _generic_value = flatten_parameter_group.generic_value
             _odata_value = flatten_parameter_group.odata_value
-
-        body = _models.SimpleProduct(
-            product_id=_product_id,
-            description=_description,
-            max_product_display_name=_max_product_display_name,
-            generic_value=_generic_value,
-            odata_value=_odata_value,
-        )
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -703,6 +686,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _models.SimpleProduct(
+            product_id=_product_id,
+            description=_description,
+            max_product_display_name=_max_product_display_name,
+            generic_value=_generic_value,
+            odata_value=_odata_value,
+        )
         request = self._put_simple_product_with_grouping_request(
             flatten_parameter_group=flatten_parameter_group, **kwargs
         )

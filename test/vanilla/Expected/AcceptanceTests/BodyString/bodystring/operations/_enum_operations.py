@@ -155,6 +155,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = string_body
         request = self._put_not_expandable_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -275,6 +276,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = enum_string_body
         request = self._put_referenced_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -350,12 +352,10 @@ class EnumOperations(object):
 
     def _put_referenced_constant_request(
         self,
-        field1=None,  # type: Optional[str]
+        body,  # type: "_models.RefColorConstant"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.RefColorConstant(field1=field1)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -397,7 +397,8 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_referenced_constant_request(field1=field1, **kwargs)
+        body = _models.RefColorConstant(field1=field1)
+        request = self._put_referenced_constant_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -288,6 +288,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_big_float_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -392,6 +393,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_big_double_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -495,6 +497,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_big_double_positive_decimal_request(**kwargs)
 
         kwargs.pop("content_type", None)
@@ -599,6 +602,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_big_double_negative_decimal_request(**kwargs)
 
         kwargs.pop("content_type", None)
@@ -704,6 +708,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_big_decimal_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -807,6 +812,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_big_decimal_positive_decimal_request(**kwargs)
 
         kwargs.pop("content_type", None)
@@ -911,6 +917,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_big_decimal_negative_decimal_request(**kwargs)
 
         kwargs.pop("content_type", None)
@@ -1016,6 +1023,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_small_float_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1120,6 +1128,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_small_double_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1224,6 +1233,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = number_body
         request = self._put_small_decimal_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

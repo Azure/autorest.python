@@ -110,12 +110,10 @@ class ReadonlypropertyOperations(object):
 
     def _put_valid_request(
         self,
-        size=None,  # type: Optional[int]
+        body,  # type: "_models.ReadonlyObj"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ReadonlyObj(size=size)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -157,8 +155,8 @@ class ReadonlypropertyOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_valid_request(size=size, **kwargs)
+        body = _models.ReadonlyObj(size=size)
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

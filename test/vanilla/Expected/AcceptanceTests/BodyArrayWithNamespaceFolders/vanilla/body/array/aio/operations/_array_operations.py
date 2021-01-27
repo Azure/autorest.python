@@ -238,6 +238,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_empty_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -342,6 +343,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_boolean_tfft_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -548,6 +550,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_integer_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -754,6 +757,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_long_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -960,6 +964,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_float_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1166,6 +1171,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_double_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1372,6 +1378,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_string_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1476,6 +1483,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_enum_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1580,6 +1588,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_string_enum_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1788,6 +1797,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_uuid_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1943,6 +1953,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_date_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -2151,6 +2162,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_date_time_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -2359,6 +2371,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_date_time_rfc1123_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -2463,6 +2476,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_duration_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -2569,6 +2583,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_byte_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -2984,6 +2999,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_complex_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -3292,6 +3308,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_array_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -3604,6 +3621,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = array_body
         request = self._put_dictionary_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

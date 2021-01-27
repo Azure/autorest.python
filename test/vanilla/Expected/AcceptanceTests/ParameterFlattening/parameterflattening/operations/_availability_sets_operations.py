@@ -55,12 +55,10 @@ class AvailabilitySetsOperations(object):
         self,
         resource_group_name,  # type: str
         avset,  # type: str
-        tags,  # type: Dict[str, str]
+        body,  # type: "_models.AvailabilitySetUpdateParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.AvailabilitySetUpdateParameters(tags=tags)
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -111,7 +109,8 @@ class AvailabilitySetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._update_request(resource_group_name=resource_group_name, avset=avset, tags=tags, **kwargs)
+        body = _models.AvailabilitySetUpdateParameters(tags=tags)
+        request = self._update_request(resource_group_name=resource_group_name, avset=avset, body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

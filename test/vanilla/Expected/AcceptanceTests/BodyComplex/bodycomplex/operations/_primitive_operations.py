@@ -1202,12 +1202,10 @@ class PrimitiveOperations(object):
 
     def _put_duration_request(
         self,
-        field=None,  # type: Optional[datetime.timedelta]
+        body,  # type: "_models.DurationWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.DurationWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1249,8 +1247,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_duration_request(field=field, **kwargs)
+        body = _models.DurationWrapper(field=field)
+        request = self._put_duration_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1325,12 +1323,10 @@ class PrimitiveOperations(object):
 
     def _put_byte_request(
         self,
-        field=None,  # type: Optional[bytearray]
+        body,  # type: "_models.ByteWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ByteWrapper(field=field)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1372,8 +1368,8 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_byte_request(field=field, **kwargs)
+        body = _models.ByteWrapper(field=field)
+        request = self._put_byte_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

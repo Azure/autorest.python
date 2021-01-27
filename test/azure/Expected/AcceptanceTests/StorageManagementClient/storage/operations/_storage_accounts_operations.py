@@ -110,6 +110,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = account_name
         request = self._check_name_availability_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -466,6 +467,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = parameters
         request = self._update_request(
             resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
         )
@@ -740,12 +742,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        key_name=None,  # type: Optional[Union[str, "_models.KeyName"]]
+        body,  # type: "_models.StorageAccountRegenerateKeyParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json, text/json"
@@ -803,8 +803,9 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         request = self._regenerate_key_request(
-            resource_group_name=resource_group_name, account_name=account_name, key_name=key_name, **kwargs
+            resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
         )
         kwargs.pop("content_type", None)
 

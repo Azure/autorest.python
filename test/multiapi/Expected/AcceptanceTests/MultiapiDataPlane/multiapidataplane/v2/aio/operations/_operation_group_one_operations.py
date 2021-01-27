@@ -89,6 +89,7 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        body = parameter_one
         request = self._test_two_request(
             body=body,
             **kwargs

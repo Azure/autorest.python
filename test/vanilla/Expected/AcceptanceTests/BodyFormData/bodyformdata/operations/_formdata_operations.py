@@ -104,6 +104,7 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = file_content
         request = self._upload_file_request(body=body, body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -170,6 +171,7 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = file_content
         request = self._upload_file_via_body_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -238,6 +240,7 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = file_content
         request = self._upload_files_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

@@ -98,9 +98,7 @@ class ReadonlypropertyOperations:
 
     get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
-    def _put_valid_request(self, size: Optional[int] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.ReadonlyObj(size=size)
+    def _put_valid_request(self, body: "_models.ReadonlyObj", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -137,8 +135,8 @@ class ReadonlypropertyOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_valid_request(size=size, **kwargs)
+        body = _models.ReadonlyObj(size=size)
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -98,6 +98,7 @@ class PetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = create_parameters
         request = self._create_ap_true_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -165,6 +166,7 @@ class PetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = create_parameters
         request = self._create_cat_ap_true_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -232,6 +234,7 @@ class PetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = create_parameters
         request = self._create_ap_object_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -299,6 +302,7 @@ class PetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = create_parameters
         request = self._create_ap_string_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -366,6 +370,7 @@ class PetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = create_parameters
         request = self._create_ap_in_properties_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -433,6 +438,7 @@ class PetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = create_parameters
         request = self._create_ap_in_properties_with_ap_string_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

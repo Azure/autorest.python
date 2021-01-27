@@ -327,6 +327,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_utc_max_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -504,6 +505,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = datetime_body
         request = self._put_utc_min_date_time_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

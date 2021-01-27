@@ -7,10 +7,6 @@
 {% if request.parameters.grouped %}
     {{ op_tools.grouped_parameters(request)|indent }}
 {%- endif -%}
-{% if request.parameters.is_flattened %}
-
-    {{ request.parameters.build_flattened_object() }}
-{% endif %}
 {% if request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% if constant_parameter.serialized_name == "content_type" %}

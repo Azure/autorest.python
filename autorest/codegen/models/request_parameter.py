@@ -1,4 +1,3 @@
-
 # -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
@@ -8,6 +7,22 @@ from typing import Any, Dict
 from .parameter import Parameter, ParameterLocation, ParameterStyle
 
 class RequestParameter(Parameter):
+
+    @property
+    def in_method_signature(self) -> bool:
+        if self.serialized_name == "field":
+            a = "b"
+        return not(
+            # If I only have one value, I can't be set, so no point being in signature
+            self.constant
+            # If i'm not in the method code, no point in being in signature
+            or not self.in_method_code
+            # If I'm grouped, my grouper will be on signature, not me
+            or self.target_property_name
+            or self.grouped_by
+            # If I'm a kwarg, don't include in the signature
+            or self.is_kwarg
+        )
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":

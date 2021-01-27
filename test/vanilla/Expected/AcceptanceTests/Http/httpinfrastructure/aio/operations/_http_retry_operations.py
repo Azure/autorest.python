@@ -134,6 +134,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._put500_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -190,6 +191,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._patch500_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -344,6 +346,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._post503_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -400,6 +403,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._delete503_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -456,6 +460,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._put504_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -512,6 +517,7 @@ class HttpRetryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = boolean_value
         request = self._patch504_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

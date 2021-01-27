@@ -99,6 +99,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_required_integer_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -165,6 +166,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_optional_integer_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -183,12 +185,10 @@ class ExplicitOperations(object):
 
     def _post_required_integer_property_request(
         self,
-        value,  # type: int
+        body,  # type: "_models.IntWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.IntWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -231,7 +231,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_integer_property_request(value=value, **kwargs)
+        body = _models.IntWrapper(value=value)
+        request = self._post_required_integer_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -249,12 +250,10 @@ class ExplicitOperations(object):
 
     def _post_optional_integer_property_request(
         self,
-        value=None,  # type: Optional[int]
+        body=None,  # type: Optional["_models.IntOptionalWrapper"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.IntOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -299,7 +298,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_integer_property_request(value=value, **kwargs)
+        body = _models.IntOptionalWrapper(value=value)
+        request = self._post_optional_integer_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -483,6 +483,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_required_string_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -549,6 +550,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_optional_string_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -567,12 +569,10 @@ class ExplicitOperations(object):
 
     def _post_required_string_property_request(
         self,
-        value,  # type: str
+        body,  # type: "_models.StringWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.StringWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -615,7 +615,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_string_property_request(value=value, **kwargs)
+        body = _models.StringWrapper(value=value)
+        request = self._post_required_string_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -633,12 +634,10 @@ class ExplicitOperations(object):
 
     def _post_optional_string_property_request(
         self,
-        value=None,  # type: Optional[str]
+        body=None,  # type: Optional["_models.StringOptionalWrapper"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.StringOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -683,7 +682,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_string_property_request(value=value, **kwargs)
+        body = _models.StringOptionalWrapper(value=value)
+        request = self._post_optional_string_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -867,6 +867,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_required_class_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -933,6 +934,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_optional_class_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -951,12 +953,10 @@ class ExplicitOperations(object):
 
     def _post_required_class_property_request(
         self,
-        value,  # type: "_models.Product"
+        body,  # type: "_models.ClassWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ClassWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -999,7 +999,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_class_property_request(value=value, **kwargs)
+        body = _models.ClassWrapper(value=value)
+        request = self._post_required_class_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1017,12 +1018,10 @@ class ExplicitOperations(object):
 
     def _post_optional_class_property_request(
         self,
-        value=None,  # type: Optional["_models.Product"]
+        body=None,  # type: Optional["_models.ClassOptionalWrapper"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ClassOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1067,7 +1066,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_class_property_request(value=value, **kwargs)
+        body = _models.ClassOptionalWrapper(value=value)
+        request = self._post_optional_class_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1131,6 +1131,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_required_array_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1197,6 +1198,7 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body_parameter
         request = self._post_optional_array_parameter_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1215,12 +1217,10 @@ class ExplicitOperations(object):
 
     def _post_required_array_property_request(
         self,
-        value,  # type: List[str]
+        body,  # type: "_models.ArrayWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ArrayWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1263,7 +1263,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_array_property_request(value=value, **kwargs)
+        body = _models.ArrayWrapper(value=value)
+        request = self._post_required_array_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1281,12 +1282,10 @@ class ExplicitOperations(object):
 
     def _post_optional_array_property_request(
         self,
-        value=None,  # type: Optional[List[str]]
+        body=None,  # type: Optional["_models.ArrayOptionalWrapper"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.ArrayOptionalWrapper(value=value)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1331,7 +1330,8 @@ class ExplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_array_property_request(value=value, **kwargs)
+        body = _models.ArrayOptionalWrapper(value=value)
+        request = self._post_optional_array_property_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -157,6 +157,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body
         request = self._validation_of_body_request(resource_group_name=resource_group_name, id=id, body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -275,6 +276,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = body
         request = self._post_with_constant_in_body_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

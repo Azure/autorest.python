@@ -132,6 +132,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = model
         request = self._put_complex_type_ref_no_meta_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -232,6 +233,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = model
         request = self._put_complex_type_ref_with_meta_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -335,6 +337,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = slideshow
         request = self._put_simple_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -438,6 +441,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = wrapped_lists
         request = self._put_wrapped_lists_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -586,6 +590,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = slideshow
         request = self._put_empty_list_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -686,6 +691,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = apple_barrel
         request = self._put_empty_wrapped_lists_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -787,6 +793,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = bananas
         request = self._put_root_list_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -888,6 +895,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = bananas
         request = self._put_root_list_single_item_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -989,6 +997,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = bananas
         request = self._put_empty_root_list_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1089,6 +1098,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = banana
         request = self._put_empty_child_element_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1249,6 +1259,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = properties
         request = self._put_service_properties_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1360,6 +1371,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = properties
         request = self._put_acls_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
@@ -1429,9 +1441,7 @@ class XmlOperations:
 
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
-    def _json_input_request(self, id: Optional[int] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.JSONInput(id=id)
+    def _json_input_request(self, body: "_models.JSONInput", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -1467,7 +1477,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._json_input_request(id=id, **kwargs)
+        body = _models.JSONInput(id=id)
+        request = self._json_input_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -61,7 +61,9 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
-    {% if operation.parameters.has_body %}
+    {% if operation.parameters.is_flattened %}
+    {{ operation.parameters.build_flattened_object() }}
+    {% elif operation.parameters.has_body %}
     body = {{ operation.parameters.body[0].serialized_name }}
     {% endif %}
     {{ op_tools.get_request(request)|indent }}

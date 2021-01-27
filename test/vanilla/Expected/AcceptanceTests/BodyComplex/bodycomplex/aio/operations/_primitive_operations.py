@@ -1046,9 +1046,7 @@ class PrimitiveOperations:
 
     get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
-    def _put_duration_request(self, field: Optional[datetime.timedelta] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.DurationWrapper(field=field)
+    def _put_duration_request(self, body: "_models.DurationWrapper", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1085,8 +1083,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_duration_request(field=field, **kwargs)
+        body = _models.DurationWrapper(field=field)
+        request = self._put_duration_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1153,9 +1151,7 @@ class PrimitiveOperations:
 
     get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
-    def _put_byte_request(self, field: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.ByteWrapper(field=field)
+    def _put_byte_request(self, body: "_models.ByteWrapper", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1192,8 +1188,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_byte_request(field=field, **kwargs)
+        body = _models.ByteWrapper(field=field)
+        request = self._put_byte_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -114,6 +114,7 @@ class ObjectTypeClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = put_object
         request = self._put_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

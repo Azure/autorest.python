@@ -1683,12 +1683,10 @@ class LROsOperations(object):
 
     def _put_sub_resource_request(
         self,
-        provisioning_state=None,  # type: Optional[str]
+        body=None,  # type: Optional["_models.SubProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.SubProduct(provisioning_state=provisioning_state)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1741,7 +1739,7 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_sub_resource_request(provisioning_state=provisioning_state, **kwargs)
+            request = self._put_sub_resource_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1776,12 +1774,10 @@ class LROsOperations(object):
 
     def _put_async_sub_resource_request(
         self,
-        provisioning_state=None,  # type: Optional[str]
+        body=None,  # type: Optional["_models.SubProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-
-        body = _models.SubProduct(provisioning_state=provisioning_state)
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1834,7 +1830,7 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_sub_resource_request(provisioning_state=provisioning_state, **kwargs)
+            request = self._put_async_sub_resource_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response

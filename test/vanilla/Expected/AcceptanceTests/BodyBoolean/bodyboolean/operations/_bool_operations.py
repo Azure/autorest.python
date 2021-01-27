@@ -150,6 +150,7 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = bool_body
         request = self._put_true_request(**kwargs)
 
         kwargs.pop("content_type", None)
@@ -266,6 +267,7 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        body = bool_body
         request = self._put_false_request(**kwargs)
 
         kwargs.pop("content_type", None)

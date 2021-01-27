@@ -98,9 +98,7 @@ class DictionaryOperations:
 
     get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
-    def _put_valid_request(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.DictionaryWrapper(default_program=default_program)
+    def _put_valid_request(self, body: "_models.DictionaryWrapper", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -137,8 +135,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_valid_request(default_program=default_program, **kwargs)
+        body = _models.DictionaryWrapper(default_program=default_program)
+        request = self._put_valid_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -205,9 +203,7 @@ class DictionaryOperations:
 
     get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
-    def _put_empty_request(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.DictionaryWrapper(default_program=default_program)
+    def _put_empty_request(self, body: "_models.DictionaryWrapper", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -244,8 +240,8 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _complex_body
-        request = self._put_empty_request(default_program=default_program, **kwargs)
+        body = _models.DictionaryWrapper(default_program=default_program)
+        request = self._put_empty_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

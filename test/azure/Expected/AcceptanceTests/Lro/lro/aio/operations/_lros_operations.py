@@ -1561,9 +1561,7 @@ class LROsOperations:
 
     begin_put_async_non_resource.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
-    def _put_sub_resource_request(self, provisioning_state: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.SubProduct(provisioning_state=provisioning_state)
+    def _put_sub_resource_request(self, body: Optional["_models.SubProduct"] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1613,7 +1611,7 @@ class LROsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_sub_resource_request(provisioning_state=provisioning_state, **kwargs)
+            request = self._put_sub_resource_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1646,9 +1644,9 @@ class LROsOperations:
 
     begin_put_sub_resource.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
-    def _put_async_sub_resource_request(self, provisioning_state: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-
-        body = _models.SubProduct(provisioning_state=provisioning_state)
+    def _put_async_sub_resource_request(
+        self, body: Optional["_models.SubProduct"] = None, **kwargs: Any
+    ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1698,7 +1696,7 @@ class LROsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_sub_resource_request(provisioning_state=provisioning_state, **kwargs)
+            request = self._put_async_sub_resource_request(body=body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
