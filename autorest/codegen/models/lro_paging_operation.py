@@ -3,40 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-
-from typing import Any, Dict, List, Set, Optional
+from .imports import FileImport
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .imports import FileImport
-from .request import Request
-from .schema_response import SchemaResponse
 
 class LROPagingOperation(PagingOperation, LROOperation):
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        request: Request,
-        name: str,
-        description: str,
-        api_versions: Set[str],
-        summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
-        want_description_docstring: bool = True,
-        want_tracing: bool = True
-    ) -> None:
-        super(LROPagingOperation, self).__init__(
-            yaml_data,
-            request,
-            name,
-            description,
-            api_versions,
-            summary,
-            responses,
-            exceptions,
-            want_description_docstring,
-            want_tracing,
-        )
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         lro_imports = LROOperation.imports(self, code_model, async_mode)

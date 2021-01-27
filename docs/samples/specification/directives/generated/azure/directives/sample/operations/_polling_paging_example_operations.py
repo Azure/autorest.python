@@ -168,6 +168,7 @@ class PollingPagingExampleOperationsMixin(object):
                 request = self._basic_paging_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 

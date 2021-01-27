@@ -95,6 +95,7 @@ class PagingOperations(object):
                 request = self._get_no_item_name_pages_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -169,6 +170,7 @@ class PagingOperations(object):
                 request = self._get_null_next_link_name_pages_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -243,6 +245,7 @@ class PagingOperations(object):
                 request = self._get_single_pages_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -318,6 +321,7 @@ class PagingOperations(object):
                 request = self._first_response_empty_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -424,6 +428,7 @@ class PagingOperations(object):
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -635,6 +640,7 @@ class PagingOperations(object):
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -752,6 +758,7 @@ class PagingOperations(object):
                 path_format_arguments = {
                     'offset': self._serialize.url("offset", _offset, 'int'),
                 }
+                request.method = "get"
                 request.url = self._client.format_url(next_link, **path_format_arguments)
             return request
 
@@ -827,6 +834,7 @@ class PagingOperations(object):
                 request = self._get_multiple_pages_retry_first_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -902,6 +910,7 @@ class PagingOperations(object):
                 request = self._get_multiple_pages_retry_second_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -976,6 +985,7 @@ class PagingOperations(object):
                 request = self._get_single_pages_failure_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -1050,6 +1060,7 @@ class PagingOperations(object):
                 request = self._get_multiple_pages_failure_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -1124,6 +1135,7 @@ class PagingOperations(object):
                 request = self._get_multiple_pages_failure_uri_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -1486,6 +1498,7 @@ class PagingOperations(object):
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 
@@ -1528,7 +1541,7 @@ class PagingOperations(object):
             kwargs.pop('content_type', None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
-            if response.status_code not in [200]:
+            if response.status_code not in [202]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1605,6 +1618,7 @@ class PagingOperations(object):
                 request = self._get_paging_model_with_item_name_with_xms_client_name_request(**kwargs)
 
                 # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.method = "get"
                 request.url = self._client.format_url(next_link)
             return request
 

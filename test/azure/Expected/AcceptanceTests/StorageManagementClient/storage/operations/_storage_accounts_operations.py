@@ -618,6 +618,7 @@ class StorageAccountsOperations(object):
                         "self._config.subscription_id", self._config.subscription_id, "str"
                     ),
                 }
+                request.method = "get"
                 request.url = self._client.format_url(next_link, **path_format_arguments)
             return request
 
@@ -708,6 +709,7 @@ class StorageAccountsOperations(object):
                         "self._config.subscription_id", self._config.subscription_id, "str"
                     ),
                 }
+                request.method = "get"
                 request.url = self._client.format_url(next_link, **path_format_arguments)
             return request
 

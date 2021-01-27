@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, Dict, List, Any, Optional, Set, Union
+from typing import cast, Dict, List, Any, Optional, Set
 
 from .operation import Operation
 from .schema_response import SchemaResponse
@@ -105,8 +105,6 @@ class PagingOperation(Operation):
 
     @property
     def next_request(self) -> Optional[Request]:
-        if "get_pages_partial_url_operation" in self.python_name:
-            a = "b"
         if not self.next_operation:
             return None
         next_request = self.next_operation.request

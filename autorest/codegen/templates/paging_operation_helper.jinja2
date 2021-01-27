@@ -32,6 +32,7 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
                     {% endfor %}
             }
                 {% endif %}
+            request.method = "get"
             request.url = self._client.format_url(next_link{{", **path_format_arguments" if request.parameters.path}})
             {% endif %}
         return request
