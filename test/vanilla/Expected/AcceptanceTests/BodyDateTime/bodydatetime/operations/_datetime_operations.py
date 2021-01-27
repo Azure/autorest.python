@@ -59,7 +59,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_null.metadata["url"]  # type: ignore
+        url = self._get_null_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -69,6 +69,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_null_request.metadata = {"url": "/datetime/null"}  # type: ignore
 
     @distributed_trace
     def get_null(
@@ -87,6 +89,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_null_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -113,7 +116,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid.metadata["url"]  # type: ignore
+        url = self._get_invalid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -123,6 +126,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_invalid_request.metadata = {"url": "/datetime/invalid"}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -141,6 +146,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_invalid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -167,7 +173,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_overflow.metadata["url"]  # type: ignore
+        url = self._get_overflow_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -177,6 +183,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_overflow_request.metadata = {"url": "/datetime/overflow"}  # type: ignore
 
     @distributed_trace
     def get_overflow(
@@ -195,6 +203,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_overflow_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -221,7 +230,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_underflow.metadata["url"]  # type: ignore
+        url = self._get_underflow_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -231,6 +240,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_underflow_request.metadata = {"url": "/datetime/underflow"}  # type: ignore
 
     @distributed_trace
     def get_underflow(
@@ -249,6 +260,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_underflow_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -278,7 +290,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_utc_max_date_time.metadata["url"]  # type: ignore
+        url = self._put_utc_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -292,6 +304,8 @@ class DatetimeOperations(object):
         body_content = self._serialize.body(datetime_body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_utc_max_date_time_request.metadata = {"url": "/datetime/max/utc"}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(
@@ -339,7 +353,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_utc_max_date_time7_digits.metadata["url"]  # type: ignore
+        url = self._put_utc_max_date_time7_digits_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -353,6 +367,8 @@ class DatetimeOperations(object):
         body_content = self._serialize.body(datetime_body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_utc_max_date_time7_digits_request.metadata = {"url": "/datetime/max/utc7ms"}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time7_digits(
@@ -400,7 +416,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_utc_lowercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_utc_lowercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -410,6 +426,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_utc_lowercase_max_date_time_request.metadata = {"url": "/datetime/max/utc/lowercase"}  # type: ignore
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(
@@ -428,6 +446,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_utc_lowercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -454,7 +473,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_utc_uppercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -464,6 +483,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_utc_uppercase_max_date_time_request.metadata = {"url": "/datetime/max/utc/uppercase"}  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(
@@ -482,6 +503,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_utc_uppercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -508,7 +530,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time7_digits.metadata["url"]  # type: ignore
+        url = self._get_utc_uppercase_max_date_time7_digits_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -518,6 +540,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_utc_uppercase_max_date_time7_digits_request.metadata = {"url": "/datetime/max/utc7ms/uppercase"}  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(
@@ -539,6 +563,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_utc_uppercase_max_date_time7_digits_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -568,7 +593,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_local_positive_offset_max_date_time.metadata["url"]  # type: ignore
+        url = self._put_local_positive_offset_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -582,6 +607,8 @@ class DatetimeOperations(object):
         body_content = self._serialize.body(datetime_body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_local_positive_offset_max_date_time_request.metadata = {"url": "/datetime/max/localpositiveoffset"}  # type: ignore
 
     @distributed_trace
     def put_local_positive_offset_max_date_time(
@@ -626,7 +653,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_positive_offset_lowercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_local_positive_offset_lowercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -636,6 +663,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_local_positive_offset_lowercase_max_date_time_request.metadata = {"url": "/datetime/max/localpositiveoffset/lowercase"}  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(
@@ -654,6 +683,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_local_positive_offset_lowercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -680,7 +710,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_positive_offset_uppercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_local_positive_offset_uppercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -690,6 +720,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_local_positive_offset_uppercase_max_date_time_request.metadata = {"url": "/datetime/max/localpositiveoffset/uppercase"}  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(
@@ -708,6 +740,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_local_positive_offset_uppercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -737,7 +770,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_local_negative_offset_max_date_time.metadata["url"]  # type: ignore
+        url = self._put_local_negative_offset_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -751,6 +784,8 @@ class DatetimeOperations(object):
         body_content = self._serialize.body(datetime_body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_local_negative_offset_max_date_time_request.metadata = {"url": "/datetime/max/localnegativeoffset"}  # type: ignore
 
     @distributed_trace
     def put_local_negative_offset_max_date_time(
@@ -795,7 +830,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_negative_offset_uppercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_local_negative_offset_uppercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -805,6 +840,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_local_negative_offset_uppercase_max_date_time_request.metadata = {"url": "/datetime/max/localnegativeoffset/uppercase"}  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(
@@ -823,6 +860,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_local_negative_offset_uppercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -849,7 +887,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_negative_offset_lowercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_local_negative_offset_lowercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -859,6 +897,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_local_negative_offset_lowercase_max_date_time_request.metadata = {"url": "/datetime/max/localnegativeoffset/lowercase"}  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(
@@ -877,6 +917,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_local_negative_offset_lowercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -906,7 +947,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_utc_min_date_time.metadata["url"]  # type: ignore
+        url = self._put_utc_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -920,6 +961,8 @@ class DatetimeOperations(object):
         body_content = self._serialize.body(datetime_body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_utc_min_date_time_request.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(
@@ -964,7 +1007,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_utc_min_date_time.metadata["url"]  # type: ignore
+        url = self._get_utc_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -974,6 +1017,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_utc_min_date_time_request.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
     @distributed_trace
     def get_utc_min_date_time(
@@ -992,6 +1037,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_utc_min_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1021,7 +1067,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_local_positive_offset_min_date_time.metadata["url"]  # type: ignore
+        url = self._put_local_positive_offset_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1035,6 +1081,8 @@ class DatetimeOperations(object):
         body_content = self._serialize.body(datetime_body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_local_positive_offset_min_date_time_request.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
     @distributed_trace
     def put_local_positive_offset_min_date_time(
@@ -1079,7 +1127,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_positive_offset_min_date_time.metadata["url"]  # type: ignore
+        url = self._get_local_positive_offset_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1089,6 +1137,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_local_positive_offset_min_date_time_request.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_min_date_time(
@@ -1107,6 +1157,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_local_positive_offset_min_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1136,7 +1187,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_local_negative_offset_min_date_time.metadata["url"]  # type: ignore
+        url = self._put_local_negative_offset_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1150,6 +1201,8 @@ class DatetimeOperations(object):
         body_content = self._serialize.body(datetime_body, "iso-8601")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_local_negative_offset_min_date_time_request.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
 
     @distributed_trace
     def put_local_negative_offset_min_date_time(
@@ -1194,7 +1247,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_negative_offset_min_date_time.metadata["url"]  # type: ignore
+        url = self._get_local_negative_offset_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1204,6 +1257,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_local_negative_offset_min_date_time_request.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_min_date_time(
@@ -1222,6 +1277,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_local_negative_offset_min_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1248,7 +1304,7 @@ class DatetimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_local_no_offset_min_date_time.metadata["url"]  # type: ignore
+        url = self._get_local_no_offset_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1258,6 +1314,8 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_local_no_offset_min_date_time_request.metadata = {"url": "/datetime/min/localnooffset"}  # type: ignore
 
     @distributed_trace
     def get_local_no_offset_min_date_time(
@@ -1276,6 +1334,7 @@ class DatetimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_local_no_offset_min_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

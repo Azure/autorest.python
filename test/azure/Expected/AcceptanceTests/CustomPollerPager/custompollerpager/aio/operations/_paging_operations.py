@@ -44,6 +44,25 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
+    def _get_no_item_name_pages_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_no_item_name_pages_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_no_item_name_pages_request.metadata = {'url': '/paging/noitemname'}  # type: ignore
+
     def get_no_item_name_pages(
         self,
         **kwargs
@@ -63,21 +82,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_no_item_name_pages.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_no_item_name_pages_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_no_item_name_pages_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -104,6 +116,25 @@ class PagingOperations:
         )
     get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}  # type: ignore
 
+    def _get_null_next_link_name_pages_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_null_next_link_name_pages_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_null_next_link_name_pages_request.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
+
     def get_null_next_link_name_pages(
         self,
         **kwargs
@@ -123,21 +154,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_null_next_link_name_pages.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_null_next_link_name_pages_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_null_next_link_name_pages_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -164,6 +188,25 @@ class PagingOperations:
         )
     get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
 
+    def _get_single_pages_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_single_pages_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_single_pages_request.metadata = {'url': '/paging/single'}  # type: ignore
+
     def get_single_pages(
         self,
         **kwargs
@@ -183,21 +226,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_single_pages.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_single_pages_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_single_pages_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -224,6 +260,25 @@ class PagingOperations:
         )
     get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
 
+    def _first_response_empty_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._first_response_empty_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _first_response_empty_request.metadata = {'url': '/paging/firstResponseEmpty/1'}  # type: ignore
+
     def first_response_empty(
         self,
         **kwargs
@@ -244,21 +299,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.first_response_empty.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._first_response_empty_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._first_response_empty_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -284,6 +332,39 @@ class PagingOperations:
             get_next, extract_data
         )
     first_response_empty.metadata = {'url': '/paging/firstResponseEmpty/1'}  # type: ignore
+
+    def _get_multiple_pages_request(
+        self,
+        client_request_id: Optional[str] = None,
+        paging_get_multiple_pages_options: Optional["_models.PagingGetMultiplePagesOptions"] = None,
+        **kwargs
+    ) -> HttpRequest:
+        
+        _maxresults = None
+        _timeout = None
+        if paging_get_multiple_pages_options is not None:
+            _maxresults = paging_get_multiple_pages_options.maxresults
+            _timeout = paging_get_multiple_pages_options.timeout
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if client_request_id is not None:
+            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+        if _maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+        if _timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_request.metadata = {'url': '/paging/multiple'}  # type: ignore
 
     def get_multiple_pages(
         self,
@@ -316,27 +397,20 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            if client_request_id is not None:
-                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if _maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
-            if _timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_request(
+                    client_request_id=client_request_id,
+                    paging_get_multiple_pages_options=paging_get_multiple_pages_options,
+                    **kwargs
+                )
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_request(
+                    client_request_id=client_request_id,
+                    paging_get_multiple_pages_options=paging_get_multiple_pages_options,
+                    **kwargs
+                )
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -363,6 +437,49 @@ class PagingOperations:
         )
     get_multiple_pages.metadata = {'url': '/paging/multiple'}  # type: ignore
 
+    def _get_with_query_params_request(
+        self,
+        required_query_parameter: int,
+        **kwargs
+    ) -> HttpRequest:
+        query_constant = True
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_with_query_params_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
+        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_with_query_params_request.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
+
+    def _get_with_query_params_next_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        query_constant = True
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_with_query_params_next_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_with_query_params_next_request.metadata = {'url': '/paging/multiple/nextOperationWithQueryParams'}  # type: ignore
     def get_with_query_params(
         self,
         required_query_parameter: int,
@@ -388,26 +505,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_with_query_params.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
-                query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
-
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_with_query_params_request(
+                    required_query_parameter=required_query_parameter,
+                    **kwargs
+                )
             else:
-                url = '/paging/multiple/nextOperationWithQueryParams'
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+                request = self._get_with_query_params_next_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         async def extract_data(pipeline_response):
@@ -433,6 +538,39 @@ class PagingOperations:
             get_next, extract_data
         )
     get_with_query_params.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
+
+    def _get_odata_multiple_pages_request(
+        self,
+        client_request_id: Optional[str] = None,
+        paging_get_odata_multiple_pages_options: Optional["_models.PagingGetOdataMultiplePagesOptions"] = None,
+        **kwargs
+    ) -> HttpRequest:
+        
+        _maxresults = None
+        _timeout = None
+        if paging_get_odata_multiple_pages_options is not None:
+            _maxresults = paging_get_odata_multiple_pages_options.maxresults
+            _timeout = paging_get_odata_multiple_pages_options.timeout
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_odata_multiple_pages_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if client_request_id is not None:
+            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+        if _maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+        if _timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_odata_multiple_pages_request.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
 
     def get_odata_multiple_pages(
         self,
@@ -465,27 +603,20 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            if client_request_id is not None:
-                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if _maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
-            if _timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_odata_multiple_pages.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_odata_multiple_pages_request(
+                    client_request_id=client_request_id,
+                    paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
+                    **kwargs
+                )
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_odata_multiple_pages_request(
+                    client_request_id=client_request_id,
+                    paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
+                    **kwargs
+                )
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -511,6 +642,45 @@ class PagingOperations:
             get_next, extract_data
         )
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
+
+    def _get_multiple_pages_with_offset_request(
+        self,
+        paging_get_multiple_pages_with_offset_options: "_models.PagingGetMultiplePagesWithOffsetOptions",
+        client_request_id: Optional[str] = None,
+        **kwargs
+    ) -> HttpRequest:
+        
+        _maxresults = None
+        _offset = None
+        _timeout = None
+        if paging_get_multiple_pages_with_offset_options is not None:
+            _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+            _offset = paging_get_multiple_pages_with_offset_options.offset
+            _timeout = paging_get_multiple_pages_with_offset_options.timeout
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_with_offset_request.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'offset': self._serialize.url("offset", _offset, 'int'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        if client_request_id is not None:
+            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
+        if _maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+        if _timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_with_offset_request.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
 
     def get_multiple_pages_with_offset(
         self,
@@ -545,31 +715,23 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            if client_request_id is not None:
-                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if _maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
-            if _timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_with_offset.metadata['url']  # type: ignore
+                request = self._get_multiple_pages_with_offset_request(
+                    paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
+                    client_request_id=client_request_id,
+                    **kwargs
+                )
+            else:
+                request = self._get_multiple_pages_with_offset_request(
+                    paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
+                    client_request_id=client_request_id,
+                    **kwargs
+                )
+                # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     'offset': self._serialize.url("offset", _offset, 'int'),
                 }
-                url = self._client.format_url(url, **path_format_arguments)
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-
-                request = self._client.get(url, query_parameters, header_parameters)
-            else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request.url = self._client.format_url(next_link, **path_format_arguments)
             return request
 
         async def extract_data(pipeline_response):
@@ -596,6 +758,25 @@ class PagingOperations:
         )
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
 
+    def _get_multiple_pages_retry_first_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_retry_first_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_retry_first_request.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
+
     def get_multiple_pages_retry_first(
         self,
         **kwargs
@@ -616,21 +797,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_retry_first.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_multiple_pages_retry_first_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_retry_first_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -657,6 +831,25 @@ class PagingOperations:
         )
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
 
+    def _get_multiple_pages_retry_second_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_retry_second_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_retry_second_request.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
+
     def get_multiple_pages_retry_second(
         self,
         **kwargs
@@ -677,21 +870,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_retry_second.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_multiple_pages_retry_second_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_retry_second_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -718,6 +904,25 @@ class PagingOperations:
         )
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
 
+    def _get_single_pages_failure_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_single_pages_failure_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_single_pages_failure_request.metadata = {'url': '/paging/single/failure'}  # type: ignore
+
     def get_single_pages_failure(
         self,
         **kwargs
@@ -737,21 +942,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_single_pages_failure.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_single_pages_failure_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_single_pages_failure_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -778,6 +976,25 @@ class PagingOperations:
         )
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}  # type: ignore
 
+    def _get_multiple_pages_failure_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_failure_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_failure_request.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
+
     def get_multiple_pages_failure(
         self,
         **kwargs
@@ -797,21 +1014,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_failure.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_multiple_pages_failure_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_failure_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -838,6 +1048,25 @@ class PagingOperations:
         )
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
 
+    def _get_multiple_pages_failure_uri_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_failure_uri_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_failure_uri_request.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
+
     def get_multiple_pages_failure_uri(
         self,
         **kwargs
@@ -857,21 +1086,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_failure_uri.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_multiple_pages_failure_uri_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_failure_uri_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -898,6 +1120,59 @@ class PagingOperations:
         )
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
 
+    def _get_multiple_pages_fragment_next_link_request(
+        self,
+        api_version: str,
+        tenant: str,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_next_link_request.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", tenant, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_fragment_next_link_request.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
+
+    def _get_multiple_pages_fragment_next_link_next_request(
+        self,
+        api_version: str,
+        tenant: str,
+        next_link: str,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_next_link_next_request.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", tenant, 'str'),
+            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_fragment_next_link_next_request.metadata = {'url': '/paging/multiple/fragment/{tenant}/{nextLink}'}  # type: ignore
     def get_multiple_pages_fragment_next_link(
         self,
         api_version: str,
@@ -923,34 +1198,19 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_fragment_next_link.metadata['url']  # type: ignore
-                path_format_arguments = {
-                    'tenant': self._serialize.url("tenant", tenant, 'str'),
-                }
-                url = self._client.format_url(url, **path_format_arguments)
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
-
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_fragment_next_link_request(
+                    api_version=api_version,
+                    tenant=tenant,
+                    **kwargs
+                )
             else:
-                url = '/paging/multiple/fragment/{tenant}/{nextLink}'
-                path_format_arguments = {
-                    'tenant': self._serialize.url("tenant", tenant, 'str'),
-                    'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
-                }
-                url = self._client.format_url(url, **path_format_arguments)
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
-
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_fragment_next_link_next_request(
+                    api_version=api_version,
+                    tenant=tenant,
+                    next_link=next_link,
+                    **kwargs
+                )
             return request
 
         async def extract_data(pipeline_response):
@@ -977,6 +1237,69 @@ class PagingOperations:
         )
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
 
+    def _get_multiple_pages_fragment_with_grouping_next_link_request(
+        self,
+        custom_parameter_group: "_models.CustomParameterGroup",
+        **kwargs
+    ) -> HttpRequest:
+        
+        _api_version = None
+        _tenant = None
+        if custom_parameter_group is not None:
+            _api_version = custom_parameter_group.api_version
+            _tenant = custom_parameter_group.tenant
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_request.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", _tenant, 'str'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_fragment_with_grouping_next_link_request.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
+
+    def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
+        self,
+        next_link: str,
+        custom_parameter_group: "_models.CustomParameterGroup",
+        **kwargs
+    ) -> HttpRequest:
+        
+        _api_version = None
+        _tenant = None
+        if custom_parameter_group is not None:
+            _api_version = custom_parameter_group.api_version
+            _tenant = custom_parameter_group.tenant
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_multiple_pages_fragment_with_grouping_next_link_next_request.metadata['url']  # type: ignore
+        path_format_arguments = {
+            'tenant': self._serialize.url("tenant", _tenant, 'str'),
+            'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_multiple_pages_fragment_with_grouping_next_link_next_request.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'}  # type: ignore
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
         custom_parameter_group: "_models.CustomParameterGroup",
@@ -1005,34 +1328,17 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']  # type: ignore
-                path_format_arguments = {
-                    'tenant': self._serialize.url("tenant", _tenant, 'str'),
-                }
-                url = self._client.format_url(url, **path_format_arguments)
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
-
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_fragment_with_grouping_next_link_request(
+                    custom_parameter_group=custom_parameter_group,
+                    **kwargs
+                )
             else:
-                url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
-                path_format_arguments = {
-                    'tenant': self._serialize.url("tenant", _tenant, 'str'),
-                    'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
-                }
-                url = self._client.format_url(url, **path_format_arguments)
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
-
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_fragment_with_grouping_next_link_next_request(
+                    next_link=next_link,
+                    custom_parameter_group=custom_parameter_group,
+                    **kwargs
+                )
             return request
 
         async def extract_data(pipeline_response):
@@ -1059,17 +1365,12 @@ class PagingOperations:
         )
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
 
-    async def _get_multiple_pages_lro_initial(
+    def _get_multiple_pages_lro_request(
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
-    ) -> "_models.ProductResult":
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+    ) -> HttpRequest:
         
         _maxresults = None
         _timeout = None
@@ -1079,7 +1380,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_lro_initial.metadata['url']  # type: ignore
+        url = self._get_multiple_pages_lro_request.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1094,21 +1395,8 @@ class PagingOperations:
             header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [202]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-        deserialized = self._deserialize('ProductResult', pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+        return self._client.post(url, query_parameters, header_parameters)
+    _get_multiple_pages_lro_request.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
     async def begin_get_multiple_pages_lro(
         self,
@@ -1146,27 +1434,20 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            if client_request_id is not None:
-                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if _maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
-            if _timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_multiple_pages_lro.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-
-                request = self._client.post(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_lro_request(
+                    client_request_id=client_request_id,
+                    paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
+                    **kwargs
+                )
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_multiple_pages_lro_request(
+                    client_request_id=client_request_id,
+                    paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
+                    **kwargs
+                )
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -1194,17 +1475,24 @@ class PagingOperations:
             'polling_interval',
             self._config.polling_interval
         )
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = await self._get_multiple_pages_lro_initial(
+            request = self._get_multiple_pages_lro_request(
                 client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-                cls=lambda x,y,z: x,
                 **kwargs
             )
+            kwargs.pop('content_type', None)
+            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
         def get_long_running_output(pipeline_response):
             async def internal_get_next(next_link=None):
                 if next_link is None:
@@ -1226,8 +1514,28 @@ class PagingOperations:
                 deserialization_callback=get_long_running_output
             )
         else:
-            return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)
+            return AsyncCustomPoller(self._client, pipeline_response, get_long_running_output, polling_method)
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+
+
+    def _get_paging_model_with_item_name_with_xms_client_name_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_paging_model_with_item_name_with_xms_client_name_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _get_paging_model_with_item_name_with_xms_client_name_request.metadata = {'url': '/paging/itemNameWithXMSClientName'}  # type: ignore
 
     def get_paging_model_with_item_name_with_xms_client_name(
         self,
@@ -1249,21 +1557,14 @@ class PagingOperations:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.get_paging_model_with_item_name_with_xms_client_name.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._get_paging_model_with_item_name_with_xms_client_name_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._get_paging_model_with_item_name_with_xms_client_name_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):

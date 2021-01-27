@@ -60,7 +60,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_boolean_true.metadata["url"]  # type: ignore
+        url = self._get_boolean_true_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "boolPath": self._serialize.url("bool_path", bool_path, "bool"),
         }
@@ -74,6 +74,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_boolean_true_request.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
 
     @distributed_trace
     def get_boolean_true(
@@ -92,6 +94,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_boolean_true_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,7 +118,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_boolean_false.metadata["url"]  # type: ignore
+        url = self._get_boolean_false_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "boolPath": self._serialize.url("bool_path", bool_path, "bool"),
         }
@@ -129,6 +132,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_boolean_false_request.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
 
     @distributed_trace
     def get_boolean_false(
@@ -147,6 +152,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_boolean_false_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -170,7 +176,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_int_one_million.metadata["url"]  # type: ignore
+        url = self._get_int_one_million_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "intPath": self._serialize.url("int_path", int_path, "int"),
         }
@@ -184,6 +190,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_int_one_million_request.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
 
     @distributed_trace
     def get_int_one_million(
@@ -202,6 +210,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_int_one_million_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -225,7 +234,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_int_negative_one_million.metadata["url"]  # type: ignore
+        url = self._get_int_negative_one_million_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "intPath": self._serialize.url("int_path", int_path, "int"),
         }
@@ -239,6 +248,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_int_negative_one_million_request.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
 
     @distributed_trace
     def get_int_negative_one_million(
@@ -257,6 +268,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_int_negative_one_million_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -280,7 +292,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_ten_billion.metadata["url"]  # type: ignore
+        url = self._get_ten_billion_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "longPath": self._serialize.url("long_path", long_path, "long"),
         }
@@ -294,6 +306,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_ten_billion_request.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace
     def get_ten_billion(
@@ -312,6 +326,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_ten_billion_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -335,7 +350,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_negative_ten_billion.metadata["url"]  # type: ignore
+        url = self._get_negative_ten_billion_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "longPath": self._serialize.url("long_path", long_path, "long"),
         }
@@ -349,6 +364,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_negative_ten_billion_request.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace
     def get_negative_ten_billion(
@@ -367,6 +384,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_negative_ten_billion_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -390,7 +408,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.float_scientific_positive.metadata["url"]  # type: ignore
+        url = self._float_scientific_positive_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "floatPath": self._serialize.url("float_path", float_path, "float"),
         }
@@ -404,6 +422,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _float_scientific_positive_request.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
 
     @distributed_trace
     def float_scientific_positive(
@@ -422,6 +442,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._float_scientific_positive_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -445,7 +466,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.float_scientific_negative.metadata["url"]  # type: ignore
+        url = self._float_scientific_negative_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "floatPath": self._serialize.url("float_path", float_path, "float"),
         }
@@ -459,6 +480,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _float_scientific_negative_request.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
 
     @distributed_trace
     def float_scientific_negative(
@@ -477,6 +500,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._float_scientific_negative_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -500,7 +524,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.double_decimal_positive.metadata["url"]  # type: ignore
+        url = self._double_decimal_positive_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "doublePath": self._serialize.url("double_path", double_path, "float"),
         }
@@ -514,6 +538,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _double_decimal_positive_request.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace
     def double_decimal_positive(
@@ -532,6 +558,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._double_decimal_positive_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -555,7 +582,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.double_decimal_negative.metadata["url"]  # type: ignore
+        url = self._double_decimal_negative_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "doublePath": self._serialize.url("double_path", double_path, "float"),
         }
@@ -569,6 +596,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _double_decimal_negative_request.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace
     def double_decimal_negative(
@@ -587,6 +616,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._double_decimal_negative_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -610,7 +640,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.string_unicode.metadata["url"]  # type: ignore
+        url = self._string_unicode_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -624,6 +654,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _string_unicode_request.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_unicode(
@@ -642,6 +674,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._string_unicode_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -665,7 +698,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.string_url_encoded.metadata["url"]  # type: ignore
+        url = self._string_url_encoded_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -679,6 +712,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _string_url_encoded_request.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_url_encoded(
@@ -697,6 +732,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._string_url_encoded_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -720,7 +756,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.string_url_non_encoded.metadata["url"]  # type: ignore
+        url = self._string_url_non_encoded_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str", skip_quote=True),
         }
@@ -734,6 +770,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _string_url_non_encoded_request.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_url_non_encoded(
@@ -754,6 +792,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._string_url_non_encoded_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -777,7 +816,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.string_empty.metadata["url"]  # type: ignore
+        url = self._string_empty_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -791,6 +830,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _string_empty_request.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_empty(
@@ -809,6 +850,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._string_empty_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -833,7 +875,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.string_null.metadata["url"]  # type: ignore
+        url = self._string_null_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -847,6 +889,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _string_null_request.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_null(
@@ -893,7 +937,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.enum_valid.metadata["url"]  # type: ignore
+        url = self._enum_valid_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "enumPath": self._serialize.url("enum_path", enum_path, "str"),
         }
@@ -907,6 +951,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _enum_valid_request.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
 
     @distributed_trace
     def enum_valid(
@@ -953,7 +999,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.enum_null.metadata["url"]  # type: ignore
+        url = self._enum_null_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "enumPath": self._serialize.url("enum_path", enum_path, "str"),
         }
@@ -967,6 +1013,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _enum_null_request.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
 
     @distributed_trace
     def enum_null(
@@ -1013,7 +1061,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.byte_multi_byte.metadata["url"]  # type: ignore
+        url = self._byte_multi_byte_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
         }
@@ -1027,6 +1075,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _byte_multi_byte_request.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
 
     @distributed_trace
     def byte_multi_byte(
@@ -1072,7 +1122,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.byte_empty.metadata["url"]  # type: ignore
+        url = self._byte_empty_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
         }
@@ -1086,6 +1136,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _byte_empty_request.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
 
     @distributed_trace
     def byte_empty(
@@ -1104,6 +1156,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._byte_empty_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1128,7 +1181,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.byte_null.metadata["url"]  # type: ignore
+        url = self._byte_null_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
         }
@@ -1142,6 +1195,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _byte_null_request.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
 
     @distributed_trace
     def byte_null(
@@ -1187,7 +1242,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.date_valid.metadata["url"]  # type: ignore
+        url = self._date_valid_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "datePath": self._serialize.url("date_path", date_path, "date"),
         }
@@ -1201,6 +1256,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _date_valid_request.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
 
     @distributed_trace
     def date_valid(
@@ -1219,6 +1276,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._date_valid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1243,7 +1301,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.date_null.metadata["url"]  # type: ignore
+        url = self._date_null_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "datePath": self._serialize.url("date_path", date_path, "date"),
         }
@@ -1257,6 +1315,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _date_null_request.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
 
     @distributed_trace
     def date_null(
@@ -1303,7 +1363,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.date_time_valid.metadata["url"]  # type: ignore
+        url = self._date_time_valid_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "dateTimePath": self._serialize.url("date_time_path", date_time_path, "iso-8601"),
         }
@@ -1317,6 +1377,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _date_time_valid_request.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
 
     @distributed_trace
     def date_time_valid(
@@ -1335,6 +1397,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._date_time_valid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1359,7 +1422,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.date_time_null.metadata["url"]  # type: ignore
+        url = self._date_time_null_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "dateTimePath": self._serialize.url("date_time_path", date_time_path, "iso-8601"),
         }
@@ -1373,6 +1436,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _date_time_null_request.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
 
     @distributed_trace
     def date_time_null(
@@ -1419,7 +1484,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.base64_url.metadata["url"]  # type: ignore
+        url = self._base64_url_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "base64UrlPath": self._serialize.url("base64_url_path", base64_url_path, "base64"),
         }
@@ -1433,6 +1498,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _base64_url_request.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
 
     @distributed_trace
     def base64_url(
@@ -1479,7 +1546,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.array_csv_in_path.metadata["url"]  # type: ignore
+        url = self._array_csv_in_path_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "arrayPath": self._serialize.url("array_path", array_path, "[str]", div=","),
         }
@@ -1493,6 +1560,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _array_csv_in_path_request.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
 
     @distributed_trace
     def array_csv_in_path(
@@ -1541,7 +1610,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.unix_time_url.metadata["url"]  # type: ignore
+        url = self._unix_time_url_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "unixTimeUrlPath": self._serialize.url("unix_time_url_path", unix_time_url_path, "unix-time"),
         }
@@ -1555,6 +1624,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _unix_time_url_request.metadata = {"url": "/paths/int/1460505600/{unixTimeUrlPath}"}  # type: ignore
 
     @distributed_trace
     def unix_time_url(

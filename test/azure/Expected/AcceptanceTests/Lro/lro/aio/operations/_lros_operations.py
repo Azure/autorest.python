@@ -55,7 +55,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put200_succeeded.metadata["url"]  # type: ignore
+        url = self._put200_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -72,6 +72,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put200_succeeded_request.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_succeeded(
@@ -137,7 +139,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put201_succeeded.metadata["url"]  # type: ignore
+        url = self._put201_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -154,6 +156,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put201_succeeded_request.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_succeeded(
@@ -218,7 +222,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post202_list.metadata["url"]  # type: ignore
+        url = self._post202_list_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -228,6 +232,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post202_list_request.metadata = {"url": "/lro/list"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_list(self, **kwargs) -> AsyncLROPoller[List["_models.Product"]]:
@@ -252,6 +258,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._post202_list_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -289,7 +296,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put200_succeeded_no_state.metadata["url"]  # type: ignore
+        url = self._put200_succeeded_no_state_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -306,6 +313,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put200_succeeded_no_state_request.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_succeeded_no_state(
@@ -371,7 +380,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put202_retry200.metadata["url"]  # type: ignore
+        url = self._put202_retry200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -388,6 +397,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put202_retry200_request.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put202_retry200(
@@ -456,7 +467,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put201_creating_succeeded200.metadata["url"]  # type: ignore
+        url = self._put201_creating_succeeded200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -473,6 +484,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put201_creating_succeeded200_request.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
@@ -541,7 +554,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put200_updating_succeeded204.metadata["url"]  # type: ignore
+        url = self._put200_updating_succeeded204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -558,6 +571,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put200_updating_succeeded204_request.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_updating_succeeded204(
@@ -624,7 +639,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put201_creating_failed200.metadata["url"]  # type: ignore
+        url = self._put201_creating_failed200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -641,6 +656,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put201_creating_failed200_request.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_creating_failed200(
@@ -707,7 +724,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put200_acceptedcanceled200.metadata["url"]  # type: ignore
+        url = self._put200_acceptedcanceled200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -724,6 +741,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put200_acceptedcanceled200_request.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_acceptedcanceled200(
@@ -790,7 +809,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_no_header_in_retry.metadata["url"]  # type: ignore
+        url = self._put_no_header_in_retry_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -807,6 +826,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_no_header_in_retry_request.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_no_header_in_retry(
@@ -878,7 +899,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._put_async_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -895,6 +916,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_retry_succeeded_request.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
@@ -977,7 +1000,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_no_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._put_async_no_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -994,6 +1017,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_no_retry_succeeded_request.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_no_retry_succeeded(
@@ -1072,7 +1097,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_retry_failed.metadata["url"]  # type: ignore
+        url = self._put_async_retry_failed_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1089,6 +1114,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_retry_failed_request.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_retry_failed(
@@ -1169,7 +1196,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_no_retrycanceled.metadata["url"]  # type: ignore
+        url = self._put_async_no_retrycanceled_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1186,6 +1213,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_no_retrycanceled_request.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_no_retrycanceled(
@@ -1266,7 +1295,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_no_header_in_retry.metadata["url"]  # type: ignore
+        url = self._put_async_no_header_in_retry_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1283,6 +1312,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_no_header_in_retry_request.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_no_header_in_retry(
@@ -1359,7 +1390,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_non_resource.metadata["url"]  # type: ignore
+        url = self._put_non_resource_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1376,6 +1407,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_non_resource_request.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_non_resource(
@@ -1440,7 +1473,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_non_resource.metadata["url"]  # type: ignore
+        url = self._put_async_non_resource_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1457,6 +1490,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_non_resource_request.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_non_resource(
@@ -1523,7 +1558,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_sub_resource.metadata["url"]  # type: ignore
+        url = self._put_sub_resource_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1540,6 +1575,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_sub_resource_request.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_sub_resource(
@@ -1606,7 +1643,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_sub_resource.metadata["url"]  # type: ignore
+        url = self._put_async_sub_resource_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1623,6 +1660,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_sub_resource_request.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_sub_resource(
@@ -1686,7 +1725,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_provisioning202_accepted200_succeeded.metadata["url"]  # type: ignore
+        url = self._delete_provisioning202_accepted200_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1696,6 +1735,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_provisioning202_accepted200_succeeded_request.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
@@ -1721,6 +1762,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_provisioning202_accepted200_succeeded_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1757,7 +1799,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_provisioning202_deleting_failed200.metadata["url"]  # type: ignore
+        url = self._delete_provisioning202_deleting_failed200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1767,6 +1809,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_provisioning202_deleting_failed200_request.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_provisioning202_deleting_failed200(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
@@ -1792,6 +1836,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_provisioning202_deleting_failed200_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1828,7 +1873,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_provisioning202_deletingcanceled200.metadata["url"]  # type: ignore
+        url = self._delete_provisioning202_deletingcanceled200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1838,6 +1883,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_provisioning202_deletingcanceled200_request.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_provisioning202_deletingcanceled200(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
@@ -1863,6 +1910,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_provisioning202_deletingcanceled200_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1899,7 +1947,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete204_succeeded.metadata["url"]  # type: ignore
+        url = self._delete204_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1909,6 +1957,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete204_succeeded_request.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs) -> AsyncLROPoller[None]:
@@ -1932,6 +1982,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete204_succeeded_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1965,7 +2016,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete202_retry200.metadata["url"]  # type: ignore
+        url = self._delete202_retry200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1975,6 +2026,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete202_retry200_request.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry200(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
@@ -1999,6 +2052,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete202_retry200_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2035,7 +2089,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete202_no_retry204.metadata["url"]  # type: ignore
+        url = self._delete202_no_retry204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2045,6 +2099,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete202_no_retry204_request.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_no_retry204(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
@@ -2069,6 +2125,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete202_no_retry204_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2105,7 +2162,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_no_header_in_retry.metadata["url"]  # type: ignore
+        url = self._delete_no_header_in_retry_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2115,6 +2172,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_no_header_in_retry_request.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_no_header_in_retry(self, **kwargs) -> AsyncLROPoller[None]:
@@ -2139,6 +2198,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_no_header_in_retry_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2174,7 +2234,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_no_header_in_retry.metadata["url"]  # type: ignore
+        url = self._delete_async_no_header_in_retry_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2184,6 +2244,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_no_header_in_retry_request.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_header_in_retry(self, **kwargs) -> AsyncLROPoller[None]:
@@ -2208,6 +2270,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_no_header_in_retry_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2243,7 +2306,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._delete_async_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2253,6 +2316,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_retry_succeeded_request.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_succeeded(self, **kwargs) -> AsyncLROPoller[None]:
@@ -2277,6 +2342,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_retry_succeeded_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2316,7 +2382,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_no_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._delete_async_no_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2326,6 +2392,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_no_retry_succeeded_request.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_retry_succeeded(self, **kwargs) -> AsyncLROPoller[None]:
@@ -2350,6 +2418,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_no_retry_succeeded_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2389,7 +2458,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_retry_failed.metadata["url"]  # type: ignore
+        url = self._delete_async_retry_failed_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2399,6 +2468,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_retry_failed_request.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_failed(self, **kwargs) -> AsyncLROPoller[None]:
@@ -2423,6 +2494,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_retry_failed_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2462,7 +2534,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_retrycanceled.metadata["url"]  # type: ignore
+        url = self._delete_async_retrycanceled_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2472,6 +2544,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_retrycanceled_request.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retrycanceled(self, **kwargs) -> AsyncLROPoller[None]:
@@ -2496,6 +2570,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_retrycanceled_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2535,7 +2610,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post200_with_payload.metadata["url"]  # type: ignore
+        url = self._post200_with_payload_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2545,6 +2620,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post200_with_payload_request.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post200_with_payload(self, **kwargs) -> AsyncLROPoller["_models.Sku"]:
@@ -2569,6 +2646,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._post200_with_payload_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2606,7 +2684,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post202_retry200.metadata["url"]  # type: ignore
+        url = self._post202_retry200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2623,6 +2701,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post202_retry200_request.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry200(
@@ -2688,7 +2768,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post202_no_retry204.metadata["url"]  # type: ignore
+        url = self._post202_no_retry204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2705,6 +2785,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post202_no_retry204_request.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_no_retry204(
@@ -2777,7 +2859,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_double_headers_final_location_get.metadata["url"]  # type: ignore
+        url = self._post_double_headers_final_location_get_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2787,6 +2869,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_double_headers_final_location_get_request.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_location_get(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
@@ -2812,6 +2896,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._post_double_headers_final_location_get_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2848,7 +2933,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_double_headers_final_azure_header_get.metadata["url"]  # type: ignore
+        url = self._post_double_headers_final_azure_header_get_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2858,6 +2943,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_double_headers_final_azure_header_get_request.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
@@ -2883,6 +2970,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._post_double_headers_final_azure_header_get_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2921,7 +3009,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_double_headers_final_azure_header_get_default.metadata["url"]  # type: ignore
+        url = self._post_double_headers_final_azure_header_get_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2931,6 +3019,8 @@ class LROsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_double_headers_final_azure_header_get_default_request.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get_default(
@@ -2958,6 +3048,7 @@ class LROsOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._post_double_headers_final_azure_header_get_default_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2995,7 +3086,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._post_async_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3012,6 +3103,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_retry_succeeded_request.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
@@ -3080,7 +3173,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_no_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._post_async_no_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3097,6 +3190,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_no_retry_succeeded_request.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_no_retry_succeeded(
@@ -3163,7 +3258,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_retry_failed.metadata["url"]  # type: ignore
+        url = self._post_async_retry_failed_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3180,6 +3275,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_retry_failed_request.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retry_failed(
@@ -3249,7 +3346,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_retrycanceled.metadata["url"]  # type: ignore
+        url = self._post_async_retrycanceled_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3266,6 +3363,8 @@ class LROsOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_retrycanceled_request.metadata = {"url": "/lro/postasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retrycanceled(

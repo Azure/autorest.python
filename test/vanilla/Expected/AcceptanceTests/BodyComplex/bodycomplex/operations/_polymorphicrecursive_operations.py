@@ -58,7 +58,7 @@ class PolymorphicrecursiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_valid.metadata["url"]  # type: ignore
+        url = self._get_valid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class PolymorphicrecursiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_valid_request.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace
     def get_valid(
@@ -86,6 +88,7 @@ class PolymorphicrecursiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_valid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,7 +118,7 @@ class PolymorphicrecursiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_valid.metadata["url"]  # type: ignore
+        url = self._put_valid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -129,6 +132,8 @@ class PolymorphicrecursiveOperations(object):
         body_content = self._serialize.body(complex_body, "Fish")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_valid_request.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace
     def put_valid(

@@ -108,7 +108,8 @@
         "async_imports": {{ str(async_mixin_imports) | tojson }},
         "operations": {
             {% for operation in mixin_operations %}
-            {{ operation_name | tojson }} : {
+            {{ operation.python_name | tojson }} : {
+                {% set request = operation.request %}
                 "sync": {
                     {% if is_lro(operation) and is_paging(operation) %}
                         {% from "lro_paging_operation.py.jinja2" import operation_docstring with context %}

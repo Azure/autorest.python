@@ -40,7 +40,7 @@ class MediaTypesClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.analyze_body.metadata["url"]  # type: ignore
+        url = self._analyze_body_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -72,6 +72,8 @@ class MediaTypesClientOperationsMixin(object):
                 )
             )
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _analyze_body_request.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace
     def analyze_body(
@@ -124,7 +126,7 @@ class MediaTypesClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.content_type_with_encoding.metadata["url"]  # type: ignore
+        url = self._content_type_with_encoding_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -138,6 +140,8 @@ class MediaTypesClientOperationsMixin(object):
         body_content = self._serialize.body(input, "str")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _content_type_with_encoding_request.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace
     def content_type_with_encoding(

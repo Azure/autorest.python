@@ -60,7 +60,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_required_path.metadata["url"]  # type: ignore
+        url = self._get_required_path_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "pathParameter": self._serialize.url("path_parameter", path_parameter, "str"),
         }
@@ -74,6 +74,8 @@ class ImplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_required_path_request.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
 
     @distributed_trace
     def get_required_path(
@@ -120,7 +122,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_optional_query.metadata["url"]  # type: ignore
+        url = self._put_optional_query_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -132,6 +134,8 @@ class ImplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_optional_query_request.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
 
     @distributed_trace
     def put_optional_query(
@@ -178,7 +182,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_optional_header.metadata["url"]  # type: ignore
+        url = self._put_optional_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -190,6 +194,8 @@ class ImplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_optional_header_request.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
 
     @distributed_trace
     def put_optional_header(
@@ -237,7 +243,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_optional_body.metadata["url"]  # type: ignore
+        url = self._put_optional_body_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -254,6 +260,8 @@ class ImplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_optional_body_request.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
 
     @distributed_trace
     def put_optional_body(
@@ -298,7 +306,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_required_global_path.metadata["url"]  # type: ignore
+        url = self._get_required_global_path_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "required-global-path": self._serialize.url(
                 "self._config.required_global_path", self._config.required_global_path, "str"
@@ -314,6 +322,8 @@ class ImplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_required_global_path_request.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
 
     @distributed_trace
     def get_required_global_path(
@@ -332,6 +342,7 @@ class ImplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_required_global_path_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -354,7 +365,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_required_global_query.metadata["url"]  # type: ignore
+        url = self._get_required_global_query_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -367,6 +378,8 @@ class ImplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_required_global_query_request.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
 
     @distributed_trace
     def get_required_global_query(
@@ -385,6 +398,7 @@ class ImplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_required_global_query_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -407,7 +421,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_optional_global_query.metadata["url"]  # type: ignore
+        url = self._get_optional_global_query_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -421,6 +435,8 @@ class ImplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_optional_global_query_request.metadata = {"url": "/reqopt/global/optional/query"}  # type: ignore
 
     @distributed_trace
     def get_optional_global_query(
@@ -439,6 +455,7 @@ class ImplicitOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_optional_global_query_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

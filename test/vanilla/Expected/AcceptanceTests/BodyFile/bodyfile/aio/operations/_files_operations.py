@@ -51,7 +51,7 @@ class FilesOperations:
         accept = "image/png, application/json"
 
         # Construct URL
-        url = self.get_file.metadata["url"]  # type: ignore
+        url = self._get_file_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,6 +61,8 @@ class FilesOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_file_request.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_file(self, **kwargs) -> IO:
@@ -76,6 +78,7 @@ class FilesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_file_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -99,7 +102,7 @@ class FilesOperations:
         accept = "image/png, application/json"
 
         # Construct URL
-        url = self.get_file_large.metadata["url"]  # type: ignore
+        url = self._get_file_large_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -109,6 +112,8 @@ class FilesOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_file_large_request.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
     @distributed_trace_async
     async def get_file_large(self, **kwargs) -> IO:
@@ -124,6 +129,7 @@ class FilesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_file_large_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -147,7 +153,7 @@ class FilesOperations:
         accept = "image/png, application/json"
 
         # Construct URL
-        url = self.get_empty_file.metadata["url"]  # type: ignore
+        url = self._get_empty_file_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -157,6 +163,8 @@ class FilesOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_empty_file_request.metadata = {"url": "/files/stream/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_file(self, **kwargs) -> IO:
@@ -172,6 +180,7 @@ class FilesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_empty_file_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)

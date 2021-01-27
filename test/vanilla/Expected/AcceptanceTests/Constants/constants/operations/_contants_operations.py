@@ -59,7 +59,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_no_required_two_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -70,6 +70,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_no_required_two_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_no_default(
@@ -116,7 +118,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_two_value_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_no_required_two_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -127,6 +129,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_no_required_two_value_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(
@@ -173,7 +177,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_no_required_one_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -184,6 +188,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_no_required_one_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(
@@ -230,7 +236,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_no_model_as_string_no_required_one_value_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_no_required_one_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -241,6 +247,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_no_required_one_value_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(
@@ -287,7 +295,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_no_model_as_string_required_two_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_required_two_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -297,6 +305,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_required_two_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_no_default(
@@ -343,7 +353,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_no_model_as_string_required_two_value_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_required_two_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -353,6 +363,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_required_two_value_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_default(
@@ -398,7 +410,7 @@ class ContantsOperations(object):
         input = "value1"
 
         # Construct URL
-        url = self.put_no_model_as_string_required_one_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_required_one_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -408,6 +420,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_required_one_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_no_default(
@@ -428,6 +442,7 @@ class ContantsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_no_model_as_string_required_one_value_no_default_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -449,7 +464,7 @@ class ContantsOperations(object):
         input = "value1"
 
         # Construct URL
-        url = self.put_no_model_as_string_required_one_value_default.metadata["url"]  # type: ignore
+        url = self._put_no_model_as_string_required_one_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -459,6 +474,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_no_model_as_string_required_one_value_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_default(
@@ -479,6 +496,7 @@ class ContantsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_no_model_as_string_required_one_value_default_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -501,7 +519,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_no_required_two_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_no_required_two_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -512,6 +530,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_no_required_two_value_no_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_no_default(
@@ -558,7 +578,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_no_required_two_value_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_no_required_two_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -569,6 +589,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_no_required_two_value_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(
@@ -615,7 +637,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_no_required_one_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_no_required_one_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -626,6 +648,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_no_required_one_value_no_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_no_default(
@@ -672,7 +696,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_no_required_one_value_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_no_required_one_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -683,6 +707,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_no_required_one_value_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(
@@ -729,7 +755,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_required_two_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_required_two_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -739,6 +765,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_required_two_value_no_default_request.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_two_value_no_default(
@@ -785,7 +813,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_required_two_value_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_required_two_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -795,6 +823,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_required_two_value_default_request.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_two_value_default(
@@ -841,7 +871,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_required_one_value_no_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_required_one_value_no_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -851,6 +881,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_required_one_value_no_default_request.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_one_value_no_default(
@@ -897,7 +929,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self.put_model_as_string_required_one_value_default.metadata["url"]  # type: ignore
+        url = self._put_model_as_string_required_one_value_default_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -907,6 +939,8 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
+
+    _put_model_as_string_required_one_value_default_request.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_one_value_default(

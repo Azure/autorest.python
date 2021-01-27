@@ -39,6 +39,27 @@ class OperationGroupOneOperations:
         self._deserialize = deserializer
         self._config = config
 
+    def _test_two_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "1.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_two_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _test_two_request.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
+
     async def test_two(
         self,
         **kwargs
@@ -55,21 +76,11 @@ class OperationGroupOneOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "1.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_two.metadata['url']  # type: ignore
+        request = self._test_two_request(**kwargs)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        kwargs.pop('content_type', None)
 
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -82,3 +93,4 @@ class OperationGroupOneOperations:
             return cls(pipeline_response, None, {})
 
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
+

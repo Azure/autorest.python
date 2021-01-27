@@ -48,6 +48,31 @@ class OdataOperations:
         self._deserialize = deserializer
         self._config = config
 
+    def _get_with_filter_request(
+        self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs
+    ) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._get_with_filter_request.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        if filter is not None:
+            query_parameters["$filter"] = self._serialize.query("filter", filter, "str")
+        if top is not None:
+            query_parameters["$top"] = self._serialize.query("top", top, "int")
+        if orderby is not None:
+            query_parameters["$orderby"] = self._serialize.query("orderby", orderby, "str")
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
+
+    _get_with_filter_request.metadata = {"url": "/azurespecials/odata/filter"}  # type: ignore
+
     @distributed_trace_async
     async def get_with_filter(
         self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs
@@ -68,25 +93,10 @@ class OdataOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.get_with_filter.metadata["url"]  # type: ignore
+        request = self._get_with_filter_request(filter=filter, top=top, orderby=orderby, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if filter is not None:
-            query_parameters["$filter"] = self._serialize.query("filter", filter, "str")
-        if top is not None:
-            query_parameters["$top"] = self._serialize.query("top", top, "int")
-        if orderby is not None:
-            query_parameters["$orderby"] = self._serialize.query("orderby", orderby, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

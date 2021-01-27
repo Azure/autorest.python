@@ -30,7 +30,7 @@ class AutoRestReportServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_report.metadata["url"]  # type: ignore
+        url = self._get_report_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -42,6 +42,8 @@ class AutoRestReportServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_report_request.metadata = {"url": "/report"}  # type: ignore
 
     @distributed_trace_async
     async def get_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
@@ -84,7 +86,7 @@ class AutoRestReportServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_optional_report.metadata["url"]  # type: ignore
+        url = self._get_optional_report_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -96,6 +98,8 @@ class AutoRestReportServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_optional_report_request.metadata = {"url": "/report/optional"}  # type: ignore
 
     @distributed_trace_async
     async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:

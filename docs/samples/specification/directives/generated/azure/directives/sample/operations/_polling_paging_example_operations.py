@@ -25,22 +25,17 @@ if TYPE_CHECKING:
 
 class PollingPagingExampleOperationsMixin(object):
 
-    def _basic_polling_initial(
+    def _basic_polling_request(
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.Product"]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self._basic_polling_initial.metadata['url']  # type: ignore
+        url = self._basic_polling_request.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -56,24 +51,8 @@ class PollingPagingExampleOperationsMixin(object):
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 204]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _basic_polling_initial.metadata = {'url': '/basic/polling'}  # type: ignore
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    _basic_polling_request.metadata = {'url': '/basic/polling'}  # type: ignore
 
     def begin_basic_polling(
         self,
@@ -101,16 +80,24 @@ class PollingPagingExampleOperationsMixin(object):
             'polling_interval',
             self._config.polling_interval
         )
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = self._basic_polling_initial(
+            request = self._basic_polling_request(
                 product=product,
-                cls=lambda x,y,z: x,
                 **kwargs
             )
+            kwargs.pop('content_type', None)
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+            if response.status_code not in [200, 204]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = self._deserialize(_models.Error, response)
+                raise HttpResponseError(response=response, model=error)
 
-        kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
 
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize('Product', pipeline_response)
@@ -130,8 +117,29 @@ class PollingPagingExampleOperationsMixin(object):
                 deserialization_callback=get_long_running_output
             )
         else:
-            return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)
+            return CustomPoller(self._client, pipeline_response, get_long_running_output, polling_method)
     begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
+
+
+    def _basic_paging_request(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        accept = "application/json"
+
+        # Construct URL
+        url = self._basic_paging_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _basic_paging_request.metadata = {'url': '/basic/paging'}  # type: ignore
 
     def basic_paging(
         self,
@@ -153,21 +161,14 @@ class PollingPagingExampleOperationsMixin(object):
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.basic_paging.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
+                request = self._basic_paging_request(**kwargs)
 
-                request = self._client.get(url, query_parameters, header_parameters)
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._basic_paging_request(**kwargs)
+
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):

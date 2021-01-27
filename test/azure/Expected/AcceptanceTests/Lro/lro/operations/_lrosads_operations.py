@@ -64,7 +64,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_non_retry400.metadata["url"]  # type: ignore
+        url = self._put_non_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,6 +81,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_non_retry400_request.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
 
     @distributed_trace
     def begin_put_non_retry400(
@@ -153,7 +155,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_non_retry201_creating400.metadata["url"]  # type: ignore
+        url = self._put_non_retry201_creating400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -170,6 +172,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_non_retry201_creating400_request.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
 
     @distributed_trace
     def begin_put_non_retry201_creating400(
@@ -243,7 +247,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_non_retry201_creating400_invalid_json.metadata["url"]  # type: ignore
+        url = self._put_non_retry201_creating400_invalid_json_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -260,6 +264,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_non_retry201_creating400_invalid_json_request.metadata = {"url": "/lro/nonretryerror/put/201/creating/400/invalidjson"}  # type: ignore
 
     @distributed_trace
     def begin_put_non_retry201_creating400_invalid_json(
@@ -333,7 +339,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_relative_retry400.metadata["url"]  # type: ignore
+        url = self._put_async_relative_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -350,6 +356,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_relative_retry400_request.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry400(
@@ -434,7 +442,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_non_retry400.metadata["url"]  # type: ignore
+        url = self._delete_non_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -444,6 +452,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_non_retry400_request.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
 
     @distributed_trace
     def begin_delete_non_retry400(
@@ -470,6 +480,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_non_retry400_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -509,7 +520,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete202_non_retry400.metadata["url"]  # type: ignore
+        url = self._delete202_non_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -519,6 +530,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete202_non_retry400_request.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
 
     @distributed_trace
     def begin_delete202_non_retry400(
@@ -545,6 +558,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete202_non_retry400_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -584,7 +598,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_relative_retry400.metadata["url"]  # type: ignore
+        url = self._delete_async_relative_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -594,6 +608,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_relative_retry400_request.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry400(
@@ -621,6 +637,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_relative_retry400_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -666,7 +683,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_non_retry400.metadata["url"]  # type: ignore
+        url = self._post_non_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -683,6 +700,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_non_retry400_request.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
 
     @distributed_trace
     def begin_post_non_retry400(
@@ -755,7 +774,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post202_non_retry400.metadata["url"]  # type: ignore
+        url = self._post202_non_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -772,6 +791,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post202_non_retry400_request.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
 
     @distributed_trace
     def begin_post202_non_retry400(
@@ -844,7 +865,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_relative_retry400.metadata["url"]  # type: ignore
+        url = self._post_async_relative_retry400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -861,6 +882,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_relative_retry400_request.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry400(
@@ -937,7 +960,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_error201_no_provisioning_state_payload.metadata["url"]  # type: ignore
+        url = self._put_error201_no_provisioning_state_payload_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -954,6 +977,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_error201_no_provisioning_state_payload_request.metadata = {"url": "/lro/error/put/201/noprovisioningstatepayload"}  # type: ignore
 
     @distributed_trace
     def begin_put_error201_no_provisioning_state_payload(
@@ -1026,7 +1051,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_relative_retry_no_status.metadata["url"]  # type: ignore
+        url = self._put_async_relative_retry_no_status_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1043,6 +1068,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_relative_retry_no_status_request.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status(
@@ -1131,7 +1158,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_relative_retry_no_status_payload.metadata["url"]  # type: ignore
+        url = self._put_async_relative_retry_no_status_payload_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1148,6 +1175,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_relative_retry_no_status_payload_request.metadata = {"url": "/lro/error/putasync/retry/nostatuspayload"}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status_payload(
@@ -1233,7 +1262,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete204_succeeded.metadata["url"]  # type: ignore
+        url = self._delete204_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1243,6 +1272,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete204_succeeded_request.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
 
     @distributed_trace
     def begin_delete204_succeeded(
@@ -1269,6 +1300,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete204_succeeded_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1305,7 +1337,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_relative_retry_no_status.metadata["url"]  # type: ignore
+        url = self._delete_async_relative_retry_no_status_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1315,6 +1347,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_relative_retry_no_status_request.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_no_status(
@@ -1342,6 +1376,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_relative_retry_no_status_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1387,7 +1422,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post202_no_location.metadata["url"]  # type: ignore
+        url = self._post202_no_location_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1404,6 +1439,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post202_no_location_request.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
 
     @distributed_trace
     def begin_post202_no_location(
@@ -1477,7 +1514,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_relative_retry_no_payload.metadata["url"]  # type: ignore
+        url = self._post_async_relative_retry_no_payload_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1494,6 +1531,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_relative_retry_no_payload_request.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry_no_payload(
@@ -1571,7 +1610,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put200_invalid_json.metadata["url"]  # type: ignore
+        url = self._put200_invalid_json_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1588,6 +1627,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put200_invalid_json_request.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
 
     @distributed_trace
     def begin_put200_invalid_json(
@@ -1661,7 +1702,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_relative_retry_invalid_header.metadata["url"]  # type: ignore
+        url = self._put_async_relative_retry_invalid_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1678,6 +1719,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_relative_retry_invalid_header_request.metadata = {"url": "/lro/error/putasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_header(
@@ -1766,7 +1809,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_relative_retry_invalid_json_polling.metadata["url"]  # type: ignore
+        url = self._put_async_relative_retry_invalid_json_polling_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1783,6 +1826,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_relative_retry_invalid_json_polling_request.metadata = {"url": "/lro/error/putasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_json_polling(
@@ -1868,7 +1913,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete202_retry_invalid_header.metadata["url"]  # type: ignore
+        url = self._delete202_retry_invalid_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1878,6 +1923,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete202_retry_invalid_header_request.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
     def begin_delete202_retry_invalid_header(
@@ -1905,6 +1952,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete202_retry_invalid_header_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1944,7 +1992,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_relative_retry_invalid_header.metadata["url"]  # type: ignore
+        url = self._delete_async_relative_retry_invalid_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1954,6 +2002,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_relative_retry_invalid_header_request.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_invalid_header(
@@ -1981,6 +2031,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_relative_retry_invalid_header_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2023,7 +2074,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_delete_async_relative_retry_invalid_json_polling.metadata["url"]  # type: ignore
+        url = self._delete_async_relative_retry_invalid_json_polling_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2033,6 +2084,8 @@ class LROSADsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.delete(url, query_parameters, header_parameters)
+
+    _delete_async_relative_retry_invalid_json_polling_request.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_invalid_json_polling(
@@ -2060,6 +2113,7 @@ class LROSADsOperations(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._delete_async_relative_retry_invalid_json_polling_request(**kwargs)
+
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2105,7 +2159,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post202_retry_invalid_header.metadata["url"]  # type: ignore
+        url = self._post202_retry_invalid_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2122,6 +2176,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post202_retry_invalid_header_request.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
     def begin_post202_retry_invalid_header(
@@ -2195,7 +2251,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_relative_retry_invalid_header.metadata["url"]  # type: ignore
+        url = self._post_async_relative_retry_invalid_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2212,6 +2268,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_relative_retry_invalid_header_request.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_header(
@@ -2289,7 +2347,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_relative_retry_invalid_json_polling.metadata["url"]  # type: ignore
+        url = self._post_async_relative_retry_invalid_json_polling_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2306,6 +2364,8 @@ class LROSADsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_relative_retry_invalid_json_polling_request.metadata = {"url": "/lro/error/postasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_json_polling(

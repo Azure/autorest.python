@@ -63,7 +63,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_empty.metadata["url"]  # type: ignore
+        url = self._get_empty_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
@@ -85,6 +85,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_empty_request.metadata = {"url": "/customuri/{subscriptionId}/{keyName}"}  # type: ignore
 
     @distributed_trace
     def get_empty(

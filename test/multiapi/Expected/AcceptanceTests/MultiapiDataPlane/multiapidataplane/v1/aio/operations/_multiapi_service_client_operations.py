@@ -22,6 +22,32 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultiapiServiceClientOperationsMixin:
 
+    def _test_one_request(
+        self,
+        id: int,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "1.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_one_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['id'] = self._serialize.query("id", id, 'int')
+        if message is not None:
+            query_parameters['message'] = self._serialize.query("message", message, 'str')
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.put(url, query_parameters, header_parameters)
+    _test_one_request.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
+
     async def test_one(
         self,
         id: int,
@@ -44,24 +70,14 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "1.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_one.metadata['url']  # type: ignore
+        request = self._test_one_request(
+            id=id,
+            message=message,
+            **kwargs
+        )
+        kwargs.pop('content_type', None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['id'] = self._serialize.query("id", id, 'int')
-        if message is not None:
-            query_parameters['message'] = self._serialize.query("message", message, 'str')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -75,21 +91,17 @@ class MultiapiServiceClientOperationsMixin:
 
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
-    async def _test_lro_initial(
+
+    def _test_lro_request(
         self,
         product: Optional["_models.Product"] = None,
         **kwargs
-    ) -> Optional["_models.Product"]:
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+    ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self._test_lro_initial.metadata['url']  # type: ignore
+        url = self._test_lro_request.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -105,24 +117,8 @@ class MultiapiServiceClientOperationsMixin:
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 204]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(_models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize('Product', pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _test_lro_initial.metadata = {'url': '/multiapi/lro'}  # type: ignore
+        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+    _test_lro_request.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
     async def begin_test_lro(
         self,
@@ -149,16 +145,24 @@ class MultiapiServiceClientOperationsMixin:
             'polling_interval',
             self._config.polling_interval
         )
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = await self._test_lro_initial(
+            request = self._test_lro_request(
                 product=product,
-                cls=lambda x,y,z: x,
                 **kwargs
             )
+            kwargs.pop('content_type', None)
+            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+            if response.status_code not in [200, 204]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = self._deserialize(_models.Error, response)
+                raise HttpResponseError(response=response, model=error)
 
-        kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
 
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize('Product', pipeline_response)
@@ -178,20 +182,16 @@ class MultiapiServiceClientOperationsMixin:
                 deserialization_callback=get_long_running_output
             )
         else:
-            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+            return AsyncLROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
     begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
-    async def _test_lro_and_paging_initial(
+
+    def _test_lro_and_paging_request(
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
         **kwargs
-    ) -> "_models.PagingResult":
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+    ) -> HttpRequest:
         
         _maxresults = None
         _timeout = None
@@ -201,7 +201,7 @@ class MultiapiServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._test_lro_and_paging_initial.metadata['url']  # type: ignore
+        url = self._test_lro_and_paging_request.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -216,21 +216,8 @@ class MultiapiServiceClientOperationsMixin:
             header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
-        request = self._client.post(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = self._deserialize('PagingResult', pipeline_response)
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-    _test_lro_and_paging_initial.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
+        return self._client.post(url, query_parameters, header_parameters)
+    _test_lro_and_paging_request.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
     async def begin_test_lro_and_paging(
         self,
@@ -268,27 +255,20 @@ class MultiapiServiceClientOperationsMixin:
         accept = "application/json"
 
         def prepare_request(next_link=None):
-            # Construct headers
-            header_parameters = {}  # type: Dict[str, Any]
-            if client_request_id is not None:
-                header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if _maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
-            if _timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
-            header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
             if not next_link:
-                # Construct URL
-                url = self.test_lro_and_paging.metadata['url']  # type: ignore
-                # Construct parameters
-                query_parameters = {}  # type: Dict[str, Any]
-
-                request = self._client.post(url, query_parameters, header_parameters)
+                request = self._test_lro_and_paging_request(
+                    client_request_id=client_request_id,
+                    test_lro_and_paging_options=test_lro_and_paging_options,
+                    **kwargs
+                )
             else:
-                url = next_link
-                query_parameters = {}  # type: Dict[str, Any]
-                request = self._client.get(url, query_parameters, header_parameters)
+                request = self._test_lro_and_paging_request(
+                    client_request_id=client_request_id,
+                    test_lro_and_paging_options=test_lro_and_paging_options,
+                    **kwargs
+                )
+                # little hacky, but this code will soon be replaced with code that won't need the hack
+                request.url = self._client.format_url(next_link)
             return request
 
         async def extract_data(pipeline_response):
@@ -316,17 +296,24 @@ class MultiapiServiceClientOperationsMixin:
             'polling_interval',
             self._config.polling_interval
         )
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = await self._test_lro_and_paging_initial(
+            request = self._test_lro_and_paging_request(
                 client_request_id=client_request_id,
                 test_lro_and_paging_options=test_lro_and_paging_options,
-                cls=lambda x,y,z: x,
                 **kwargs
             )
+            kwargs.pop('content_type', None)
+            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
 
-        kwargs.pop('error_map', None)
-        kwargs.pop('content_type', None)
         def get_long_running_output(pipeline_response):
             async def internal_get_next(next_link=None):
                 if next_link is None:
@@ -348,8 +335,32 @@ class MultiapiServiceClientOperationsMixin:
                 deserialization_callback=get_long_running_output
             )
         else:
-            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+            return AsyncLROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
+
+
+    def _test_different_calls_request(
+        self,
+        greeting_in_english: str,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "1.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_different_calls_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _test_different_calls_request.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
 
     async def test_different_calls(
         self,
@@ -370,22 +381,13 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "1.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_different_calls.metadata['url']  # type: ignore
+        request = self._test_different_calls_request(
+            greeting_in_english=greeting_in_english,
+            **kwargs
+        )
+        kwargs.pop('content_type', None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -398,3 +400,4 @@ class MultiapiServiceClientOperationsMixin:
             return cls(pipeline_response, None, {})
 
     test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
+

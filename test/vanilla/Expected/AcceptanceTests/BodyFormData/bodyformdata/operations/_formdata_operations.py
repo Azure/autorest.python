@@ -62,7 +62,7 @@ class FormdataOperations(object):
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = self.upload_file.metadata["url"]  # type: ignore
+        url = self._upload_file_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -78,6 +78,8 @@ class FormdataOperations(object):
             "fileName": file_name,
         }
         return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+
+    _upload_file_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace
     def upload_file(
@@ -132,7 +134,7 @@ class FormdataOperations(object):
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = self.upload_file_via_body.metadata["url"]  # type: ignore
+        url = self._upload_file_via_body_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -145,6 +147,8 @@ class FormdataOperations(object):
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content_kwargs["stream_content"] = file_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _upload_file_via_body_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace
     def upload_file_via_body(
@@ -196,7 +200,7 @@ class FormdataOperations(object):
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = self.upload_files.metadata["url"]  # type: ignore
+        url = self._upload_files_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -211,6 +215,8 @@ class FormdataOperations(object):
             "fileContent": file_content,
         }
         return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+
+    _upload_files_request.metadata = {"url": "/formdata/stream/uploadfiles"}  # type: ignore
 
     @distributed_trace
     def upload_files(

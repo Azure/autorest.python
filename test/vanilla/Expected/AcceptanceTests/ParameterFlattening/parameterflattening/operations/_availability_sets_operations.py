@@ -64,7 +64,7 @@ class AvailabilitySetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.update.metadata["url"]  # type: ignore
+        url = self._update_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),
@@ -82,6 +82,8 @@ class AvailabilitySetsOperations(object):
         body_content = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _update_request.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}  # type: ignore
 
     @distributed_trace
     def update(

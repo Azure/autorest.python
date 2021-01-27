@@ -58,7 +58,7 @@ class ArrayOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_valid.metadata["url"]  # type: ignore
+        url = self._get_valid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class ArrayOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_valid_request.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace
     def get_valid(
@@ -86,6 +88,7 @@ class ArrayOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_valid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -117,7 +120,7 @@ class ArrayOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_valid.metadata["url"]  # type: ignore
+        url = self._put_valid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -131,6 +134,8 @@ class ArrayOperations(object):
         body_content = self._serialize.body(_complex_body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_valid_request.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace
     def put_valid(
@@ -175,7 +180,7 @@ class ArrayOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_empty.metadata["url"]  # type: ignore
+        url = self._get_empty_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -185,6 +190,8 @@ class ArrayOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_empty_request.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace
     def get_empty(
@@ -203,6 +210,7 @@ class ArrayOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_empty_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -234,7 +242,7 @@ class ArrayOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_empty.metadata["url"]  # type: ignore
+        url = self._put_empty_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -248,6 +256,8 @@ class ArrayOperations(object):
         body_content = self._serialize.body(_complex_body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_empty_request.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace
     def put_empty(
@@ -292,7 +302,7 @@ class ArrayOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_not_provided.metadata["url"]  # type: ignore
+        url = self._get_not_provided_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -302,6 +312,8 @@ class ArrayOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_not_provided_request.metadata = {"url": "/complex/array/notprovided"}  # type: ignore
 
     @distributed_trace
     def get_not_provided(
@@ -320,6 +332,7 @@ class ArrayOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_not_provided_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -52,7 +52,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_true.metadata["url"]  # type: ignore
+        url = self._create_ap_true_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -66,6 +66,8 @@ class PetsOperations:
         body_content = self._serialize.body(create_parameters, "PetAPTrue")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _create_ap_true_request.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_true(self, create_parameters: "_models.PetAPTrue", **kwargs) -> "_models.PetAPTrue":
@@ -107,7 +109,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.create_cat_ap_true.metadata["url"]  # type: ignore
+        url = self._create_cat_ap_true_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -121,6 +123,8 @@ class PetsOperations:
         body_content = self._serialize.body(create_parameters, "CatAPTrue")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _create_cat_ap_true_request.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
     @distributed_trace_async
     async def create_cat_ap_true(self, create_parameters: "_models.CatAPTrue", **kwargs) -> "_models.CatAPTrue":
@@ -162,7 +166,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_object.metadata["url"]  # type: ignore
+        url = self._create_ap_object_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -176,6 +180,8 @@ class PetsOperations:
         body_content = self._serialize.body(create_parameters, "PetAPObject")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _create_ap_object_request.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_object(self, create_parameters: "_models.PetAPObject", **kwargs) -> "_models.PetAPObject":
@@ -217,7 +223,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_string.metadata["url"]  # type: ignore
+        url = self._create_ap_string_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -231,6 +237,8 @@ class PetsOperations:
         body_content = self._serialize.body(create_parameters, "PetAPString")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _create_ap_string_request.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_string(self, create_parameters: "_models.PetAPString", **kwargs) -> "_models.PetAPString":
@@ -272,7 +280,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_in_properties.metadata["url"]  # type: ignore
+        url = self._create_ap_in_properties_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -286,6 +294,8 @@ class PetsOperations:
         body_content = self._serialize.body(create_parameters, "PetAPInProperties")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _create_ap_in_properties_request.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_in_properties(
@@ -331,7 +341,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.create_ap_in_properties_with_ap_string.metadata["url"]  # type: ignore
+        url = self._create_ap_in_properties_with_ap_string_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -345,6 +355,8 @@ class PetsOperations:
         body_content = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _create_ap_in_properties_with_ap_string_request.metadata = {"url": "/additionalProperties/in/properties/with/additionalProperties/string"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(

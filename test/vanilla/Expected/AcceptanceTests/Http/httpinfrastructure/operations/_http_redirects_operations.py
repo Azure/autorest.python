@@ -58,7 +58,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.head300.metadata["url"]  # type: ignore
+        url = self._head300_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head300_request.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
     def head300(
@@ -86,6 +88,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head300_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -96,9 +99,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 300:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -112,7 +115,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get300.metadata["url"]  # type: ignore
+        url = self._get300_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -122,6 +125,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get300_request.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
     def get300(
@@ -140,6 +145,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get300_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -151,11 +157,11 @@ class HttpRedirectsOperations(object):
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None
+        response_headers = {}
         if response.status_code == 300:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        deserialized = self._deserialize("[str]", pipeline_response)
+            deserialized = self._deserialize("[str]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -171,7 +177,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.head301.metadata["url"]  # type: ignore
+        url = self._head301_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -181,6 +187,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head301_request.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def head301(
@@ -199,6 +207,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head301_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -209,9 +218,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 301:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -225,7 +234,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get301.metadata["url"]  # type: ignore
+        url = self._get301_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -235,6 +244,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get301_request.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def get301(
@@ -253,6 +264,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get301_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -263,9 +275,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 301:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -282,7 +294,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put301.metadata["url"]  # type: ignore
+        url = self._put301_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -299,6 +311,8 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put301_request.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def put301(
@@ -347,7 +361,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.head302.metadata["url"]  # type: ignore
+        url = self._head302_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -357,6 +371,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head302_request.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def head302(
@@ -375,6 +391,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head302_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -385,9 +402,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 302:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -401,7 +418,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get302.metadata["url"]  # type: ignore
+        url = self._get302_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -411,6 +428,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get302_request.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def get302(
@@ -429,6 +448,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get302_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -439,9 +459,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 302:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -458,7 +478,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.patch302.metadata["url"]  # type: ignore
+        url = self._patch302_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -475,6 +495,8 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch302_request.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def patch302(
@@ -526,7 +548,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post303.metadata["url"]  # type: ignore
+        url = self._post303_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -543,6 +565,8 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post303_request.metadata = {"url": "/http/redirect/303"}  # type: ignore
 
     @distributed_trace
     def post303(
@@ -576,9 +600,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 303:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -592,7 +616,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.head307.metadata["url"]  # type: ignore
+        url = self._head307_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -602,6 +626,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def head307(
@@ -620,6 +646,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head307_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -630,9 +657,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 307:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -646,7 +673,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get307.metadata["url"]  # type: ignore
+        url = self._get307_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -656,6 +683,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def get307(
@@ -674,6 +703,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get307_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -684,9 +714,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 307:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -700,7 +730,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.options307.metadata["url"]  # type: ignore
+        url = self._options307_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -710,6 +740,8 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
+
+    _options307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def options307(
@@ -728,6 +760,7 @@ class HttpRedirectsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._options307_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -738,9 +771,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 307:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -757,7 +790,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put307.metadata["url"]  # type: ignore
+        url = self._put307_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -774,6 +807,8 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def put307(
@@ -806,9 +841,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 307:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -825,7 +860,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.patch307.metadata["url"]  # type: ignore
+        url = self._patch307_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -842,6 +877,8 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def patch307(
@@ -874,9 +911,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 307:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -893,7 +930,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post307.metadata["url"]  # type: ignore
+        url = self._post307_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -910,6 +947,8 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def post307(
@@ -942,9 +981,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 307:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -961,7 +1000,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.delete307.metadata["url"]  # type: ignore
+        url = self._delete307_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -978,6 +1017,8 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def delete307(
@@ -1010,9 +1051,9 @@ class HttpRedirectsOperations(object):
             error = self._deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
+        response_headers = {}
         if response.status_code == 307:
-            response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)

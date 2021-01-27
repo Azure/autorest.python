@@ -58,7 +58,7 @@ class HttpFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_empty_error.metadata["url"]  # type: ignore
+        url = self._get_empty_error_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class HttpFailureOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_empty_error_request.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
     @distributed_trace
     def get_empty_error(
@@ -86,6 +88,7 @@ class HttpFailureOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_empty_error_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -112,7 +115,7 @@ class HttpFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_no_model_error.metadata["url"]  # type: ignore
+        url = self._get_no_model_error_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -122,6 +125,8 @@ class HttpFailureOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_no_model_error_request.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
     @distributed_trace
     def get_no_model_error(
@@ -140,6 +145,7 @@ class HttpFailureOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_no_model_error_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -165,7 +171,7 @@ class HttpFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_no_model_empty.metadata["url"]  # type: ignore
+        url = self._get_no_model_empty_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -175,6 +181,8 @@ class HttpFailureOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_no_model_empty_request.metadata = {"url": "/http/failure/nomodel/empty"}  # type: ignore
 
     @distributed_trace
     def get_no_model_empty(
@@ -193,6 +201,7 @@ class HttpFailureOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_no_model_empty_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

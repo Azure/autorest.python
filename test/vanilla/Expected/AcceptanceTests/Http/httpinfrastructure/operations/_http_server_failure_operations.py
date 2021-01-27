@@ -58,7 +58,7 @@ class HttpServerFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.head501.metadata["url"]  # type: ignore
+        url = self._head501_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class HttpServerFailureOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head501_request.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
     def head501(
@@ -86,6 +88,7 @@ class HttpServerFailureOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head501_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -108,7 +111,7 @@ class HttpServerFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get501.metadata["url"]  # type: ignore
+        url = self._get501_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -118,6 +121,8 @@ class HttpServerFailureOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get501_request.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
     def get501(
@@ -136,6 +141,7 @@ class HttpServerFailureOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get501_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -161,7 +167,7 @@ class HttpServerFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post505.metadata["url"]  # type: ignore
+        url = self._post505_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -178,6 +184,8 @@ class HttpServerFailureOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post505_request.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace
     def post505(
@@ -225,7 +233,7 @@ class HttpServerFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.delete505.metadata["url"]  # type: ignore
+        url = self._delete505_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -242,6 +250,8 @@ class HttpServerFailureOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete505_request.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace
     def delete505(

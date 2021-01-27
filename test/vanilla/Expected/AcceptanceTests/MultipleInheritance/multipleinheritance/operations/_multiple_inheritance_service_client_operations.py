@@ -37,7 +37,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_horse.metadata["url"]  # type: ignore
+        url = self._get_horse_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -47,6 +47,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_horse_request.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace
     def get_horse(
@@ -65,6 +67,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_horse_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -94,7 +97,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_horse.metadata["url"]  # type: ignore
+        url = self._put_horse_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -108,6 +111,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(horse, "Horse")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_horse_request.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace
     def put_horse(
@@ -155,7 +160,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_pet.metadata["url"]  # type: ignore
+        url = self._get_pet_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -165,6 +170,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_pet_request.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace
     def get_pet(
@@ -183,6 +190,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_pet_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -214,7 +222,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_pet.metadata["url"]  # type: ignore
+        url = self._put_pet_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -228,6 +236,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(_pet, "Pet")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_pet_request.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace
     def put_pet(
@@ -275,7 +285,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_feline.metadata["url"]  # type: ignore
+        url = self._get_feline_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -285,6 +295,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_feline_request.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace
     def get_feline(
@@ -303,6 +315,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_feline_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -332,7 +345,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_feline.metadata["url"]  # type: ignore
+        url = self._put_feline_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -346,6 +359,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(feline, "Feline")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_feline_request.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace
     def put_feline(
@@ -393,7 +408,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_cat.metadata["url"]  # type: ignore
+        url = self._get_cat_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -403,6 +418,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_cat_request.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace
     def get_cat(
@@ -421,6 +438,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_cat_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -450,7 +468,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_cat.metadata["url"]  # type: ignore
+        url = self._put_cat_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -464,6 +482,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(cat, "Cat")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_cat_request.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace
     def put_cat(
@@ -511,7 +531,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_kitten.metadata["url"]  # type: ignore
+        url = self._get_kitten_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -521,6 +541,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_kitten_request.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
     @distributed_trace
     def get_kitten(
@@ -540,6 +562,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_kitten_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -569,7 +592,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_kitten.metadata["url"]  # type: ignore
+        url = self._put_kitten_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -583,6 +606,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         body_content = self._serialize.body(kitten, "Kitten")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_kitten_request.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
     @distributed_trace
     def put_kitten(

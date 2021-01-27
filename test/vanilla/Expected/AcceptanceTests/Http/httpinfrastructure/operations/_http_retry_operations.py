@@ -58,7 +58,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.head408.metadata["url"]  # type: ignore
+        url = self._head408_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head408_request.metadata = {"url": "/http/retry/408"}  # type: ignore
 
     @distributed_trace
     def head408(
@@ -86,6 +88,7 @@ class HttpRetryOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head408_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -111,7 +114,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put500.metadata["url"]  # type: ignore
+        url = self._put500_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -128,6 +131,8 @@ class HttpRetryOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put500_request.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
     def put500(
@@ -175,7 +180,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.patch500.metadata["url"]  # type: ignore
+        url = self._patch500_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -192,6 +197,8 @@ class HttpRetryOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch500_request.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
     def patch500(
@@ -236,7 +243,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get502.metadata["url"]  # type: ignore
+        url = self._get502_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -246,6 +253,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get502_request.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace
     def get502(
@@ -264,6 +273,7 @@ class HttpRetryOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get502_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -286,7 +296,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.options502.metadata["url"]  # type: ignore
+        url = self._options502_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -296,6 +306,8 @@ class HttpRetryOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
+
+    _options502_request.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace
     def options502(
@@ -314,6 +326,7 @@ class HttpRetryOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._options502_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -343,7 +356,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post503.metadata["url"]  # type: ignore
+        url = self._post503_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -360,6 +373,8 @@ class HttpRetryOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post503_request.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
     def post503(
@@ -407,7 +422,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.delete503.metadata["url"]  # type: ignore
+        url = self._delete503_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -424,6 +439,8 @@ class HttpRetryOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete503_request.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
     def delete503(
@@ -471,7 +488,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put504.metadata["url"]  # type: ignore
+        url = self._put504_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -488,6 +505,8 @@ class HttpRetryOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put504_request.metadata = {"url": "/http/retry/504"}  # type: ignore
 
     @distributed_trace
     def put504(
@@ -535,7 +554,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.patch504.metadata["url"]  # type: ignore
+        url = self._patch504_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -552,6 +571,8 @@ class HttpRetryOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch504_request.metadata = {"url": "/http/retry/504"}  # type: ignore
 
     @distributed_trace
     def patch504(

@@ -384,14 +384,12 @@ class PagingOperations:
                     paging_get_multiple_pages_options=paging_get_multiple_pages_options,
                     **kwargs
                 )
-
             else:
                 request = self._get_multiple_pages_request(
                     client_request_id=client_request_id,
                     paging_get_multiple_pages_options=paging_get_multiple_pages_options,
                     **kwargs
                 )
-
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.url = self._client.format_url(next_link)
             return request
@@ -458,8 +456,9 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _get_with_query_params_next_request.metadata = {"url": "/paging/multiple/nextOperationWithQueryParams"}  # type: ignore@distributed_trace
+    _get_with_query_params_next_request.metadata = {"url": "/paging/multiple/nextOperationWithQueryParams"}  # type: ignore
 
+    @distributed_trace
     def get_with_query_params(self, required_query_parameter: int, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
@@ -483,7 +482,6 @@ class PagingOperations:
                 request = self._get_with_query_params_request(
                     required_query_parameter=required_query_parameter, **kwargs
                 )
-
             else:
                 request = self._get_with_query_params_next_request(**kwargs)
 
@@ -584,14 +582,12 @@ class PagingOperations:
                     paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
                     **kwargs
                 )
-
             else:
                 request = self._get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
                     **kwargs
                 )
-
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.url = self._client.format_url(next_link)
             return request
@@ -699,14 +695,12 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     **kwargs
                 )
-
             else:
                 request = self._get_multiple_pages_with_offset_request(
                     paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
                     client_request_id=client_request_id,
                     **kwargs
                 )
-
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     "offset": self._serialize.url("offset", _offset, "int"),
@@ -1109,8 +1103,9 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _get_multiple_pages_fragment_next_link_next_request.metadata = {"url": "/paging/multiple/fragment/{tenant}/{nextLink}"}  # type: ignore@distributed_trace
+    _get_multiple_pages_fragment_next_link_next_request.metadata = {"url": "/paging/multiple/fragment/{tenant}/{nextLink}"}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self, api_version: str, tenant: str, **kwargs
     ) -> AsyncIterable["_models.OdataProductResult"]:
@@ -1135,12 +1130,10 @@ class PagingOperations:
                 request = self._get_multiple_pages_fragment_next_link_request(
                     api_version=api_version, tenant=tenant, **kwargs
                 )
-
             else:
                 request = self._get_multiple_pages_fragment_next_link_next_request(
                     api_version=api_version, tenant=tenant, next_link=next_link, **kwargs
                 )
-
             return request
 
         async def extract_data(pipeline_response):
@@ -1225,8 +1218,9 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _get_multiple_pages_fragment_with_grouping_next_link_next_request.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}"}  # type: ignore@distributed_trace
+    _get_multiple_pages_fragment_with_grouping_next_link_next_request.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}"}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self, custom_parameter_group: "_models.CustomParameterGroup", **kwargs
     ) -> AsyncIterable["_models.OdataProductResult"]:
@@ -1255,12 +1249,10 @@ class PagingOperations:
                 request = self._get_multiple_pages_fragment_with_grouping_next_link_request(
                     custom_parameter_group=custom_parameter_group, **kwargs
                 )
-
             else:
                 request = self._get_multiple_pages_fragment_with_grouping_next_link_next_request(
                     next_link=next_link, custom_parameter_group=custom_parameter_group, **kwargs
                 )
-
             return request
 
         async def extract_data(pipeline_response):
@@ -1363,14 +1355,12 @@ class PagingOperations:
                     paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                     **kwargs
                 )
-
             else:
                 request = self._get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                     **kwargs
                 )
-
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.url = self._client.format_url(next_link)
             return request
@@ -1406,7 +1396,6 @@ class PagingOperations:
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                 **kwargs
             )
-
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response

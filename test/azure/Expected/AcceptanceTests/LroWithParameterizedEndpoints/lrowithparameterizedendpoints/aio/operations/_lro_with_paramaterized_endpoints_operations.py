@@ -32,7 +32,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_poll_with_parameterized_endpoints.metadata["url"]  # type: ignore
+        url = self._poll_with_parameterized_endpoints_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -47,6 +47,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _poll_with_parameterized_endpoints_request.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
     @distributed_trace_async
     async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs) -> AsyncLROPoller[str]:

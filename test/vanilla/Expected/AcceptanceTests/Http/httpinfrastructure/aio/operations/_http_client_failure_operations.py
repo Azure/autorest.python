@@ -51,7 +51,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.head400.metadata["url"]  # type: ignore
+        url = self._head400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,6 +61,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head400_request.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def head400(self, **kwargs) -> None:
@@ -76,6 +78,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head400_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -95,7 +98,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get400.metadata["url"]  # type: ignore
+        url = self._get400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -105,6 +108,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get400_request.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def get400(self, **kwargs) -> None:
@@ -120,6 +125,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get400_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -139,7 +145,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.options400.metadata["url"]  # type: ignore
+        url = self._options400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -149,6 +155,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
+
+    _options400_request.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def options400(self, **kwargs) -> None:
@@ -164,6 +172,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._options400_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -184,7 +193,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put400.metadata["url"]  # type: ignore
+        url = self._put400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -201,6 +210,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put400_request.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def put400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -238,7 +249,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.patch400.metadata["url"]  # type: ignore
+        url = self._patch400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -255,6 +266,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch400_request.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def patch400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -292,7 +305,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.post400.metadata["url"]  # type: ignore
+        url = self._post400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -309,6 +322,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post400_request.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def post400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -346,7 +361,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.delete400.metadata["url"]  # type: ignore
+        url = self._delete400_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -363,6 +378,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete400_request.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def delete400(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -399,7 +416,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.head401.metadata["url"]  # type: ignore
+        url = self._head401_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -409,6 +426,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head401_request.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
     @distributed_trace_async
     async def head401(self, **kwargs) -> None:
@@ -424,6 +443,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head401_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -443,7 +463,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get402.metadata["url"]  # type: ignore
+        url = self._get402_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -453,6 +473,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get402_request.metadata = {"url": "/http/failure/client/402"}  # type: ignore
 
     @distributed_trace_async
     async def get402(self, **kwargs) -> None:
@@ -468,6 +490,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get402_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -487,7 +510,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.options403.metadata["url"]  # type: ignore
+        url = self._options403_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -497,6 +520,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
+
+    _options403_request.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace_async
     async def options403(self, **kwargs) -> None:
@@ -512,6 +537,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._options403_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -531,7 +557,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get403.metadata["url"]  # type: ignore
+        url = self._get403_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -541,6 +567,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get403_request.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace_async
     async def get403(self, **kwargs) -> None:
@@ -556,6 +584,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get403_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -576,7 +605,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put404.metadata["url"]  # type: ignore
+        url = self._put404_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -593,6 +622,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put404_request.metadata = {"url": "/http/failure/client/404"}  # type: ignore
 
     @distributed_trace_async
     async def put404(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -630,7 +661,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.patch405.metadata["url"]  # type: ignore
+        url = self._patch405_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -647,6 +678,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch405_request.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
     @distributed_trace_async
     async def patch405(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -684,7 +717,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.post406.metadata["url"]  # type: ignore
+        url = self._post406_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -701,6 +734,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post406_request.metadata = {"url": "/http/failure/client/406"}  # type: ignore
 
     @distributed_trace_async
     async def post406(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -738,7 +773,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.delete407.metadata["url"]  # type: ignore
+        url = self._delete407_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -755,6 +790,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete407_request.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
     @distributed_trace_async
     async def delete407(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -792,7 +829,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put409.metadata["url"]  # type: ignore
+        url = self._put409_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -809,6 +846,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put409_request.metadata = {"url": "/http/failure/client/409"}  # type: ignore
 
     @distributed_trace_async
     async def put409(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -845,7 +884,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.head410.metadata["url"]  # type: ignore
+        url = self._head410_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -855,6 +894,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head410_request.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
     @distributed_trace_async
     async def head410(self, **kwargs) -> None:
@@ -870,6 +911,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head410_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -889,7 +931,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get411.metadata["url"]  # type: ignore
+        url = self._get411_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -899,6 +941,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get411_request.metadata = {"url": "/http/failure/client/411"}  # type: ignore
 
     @distributed_trace_async
     async def get411(self, **kwargs) -> None:
@@ -914,6 +958,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get411_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -933,7 +978,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.options412.metadata["url"]  # type: ignore
+        url = self._options412_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -943,6 +988,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
+
+    _options412_request.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace_async
     async def options412(self, **kwargs) -> None:
@@ -958,6 +1005,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._options412_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -977,7 +1025,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get412.metadata["url"]  # type: ignore
+        url = self._get412_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -987,6 +1035,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get412_request.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace_async
     async def get412(self, **kwargs) -> None:
@@ -1002,6 +1052,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get412_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1022,7 +1073,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put413.metadata["url"]  # type: ignore
+        url = self._put413_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1039,6 +1090,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put413_request.metadata = {"url": "/http/failure/client/413"}  # type: ignore
 
     @distributed_trace_async
     async def put413(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -1076,7 +1129,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.patch414.metadata["url"]  # type: ignore
+        url = self._patch414_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1093,6 +1146,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch414_request.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
     @distributed_trace_async
     async def patch414(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -1130,7 +1185,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.post415.metadata["url"]  # type: ignore
+        url = self._post415_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1147,6 +1202,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post415_request.metadata = {"url": "/http/failure/client/415"}  # type: ignore
 
     @distributed_trace_async
     async def post415(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -1183,7 +1240,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get416.metadata["url"]  # type: ignore
+        url = self._get416_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1193,6 +1250,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get416_request.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
     @distributed_trace_async
     async def get416(self, **kwargs) -> None:
@@ -1208,6 +1267,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get416_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1228,7 +1288,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.delete417.metadata["url"]  # type: ignore
+        url = self._delete417_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1245,6 +1305,8 @@ class HttpClientFailureOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete417_request.metadata = {"url": "/http/failure/client/417"}  # type: ignore
 
     @distributed_trace_async
     async def delete417(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -1281,7 +1343,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.head429.metadata["url"]  # type: ignore
+        url = self._head429_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1291,6 +1353,8 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head429_request.metadata = {"url": "/http/failure/client/429"}  # type: ignore
 
     @distributed_trace_async
     async def head429(self, **kwargs) -> None:
@@ -1306,6 +1370,7 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head429_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

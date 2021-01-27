@@ -59,7 +59,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_null.metadata["url"]  # type: ignore
+        url = self._get_null_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -69,6 +69,8 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_null_request.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
 
     @distributed_trace
     def get_null(
@@ -87,6 +89,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_null_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -113,7 +116,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid.metadata["url"]  # type: ignore
+        url = self._get_invalid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -123,6 +126,8 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_invalid_request.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -141,6 +146,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_invalid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -167,7 +173,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_overflow.metadata["url"]  # type: ignore
+        url = self._get_overflow_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -177,6 +183,8 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_overflow_request.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
 
     @distributed_trace
     def get_overflow(
@@ -195,6 +203,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_overflow_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -221,7 +230,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_underflow.metadata["url"]  # type: ignore
+        url = self._get_underflow_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -231,6 +240,8 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_underflow_request.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
 
     @distributed_trace
     def get_underflow(
@@ -249,6 +260,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_underflow_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -278,7 +290,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_utc_max_date_time.metadata["url"]  # type: ignore
+        url = self._put_utc_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -292,6 +304,8 @@ class Datetimerfc1123Operations(object):
         body_content = self._serialize.body(datetime_body, "rfc-1123")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_utc_max_date_time_request.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(
@@ -336,7 +350,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_utc_lowercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_utc_lowercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -346,6 +360,8 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_utc_lowercase_max_date_time_request.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(
@@ -364,6 +380,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_utc_lowercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -390,7 +407,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time.metadata["url"]  # type: ignore
+        url = self._get_utc_uppercase_max_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -400,6 +417,8 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_utc_uppercase_max_date_time_request.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(
@@ -418,6 +437,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_utc_uppercase_max_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -447,7 +467,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_utc_min_date_time.metadata["url"]  # type: ignore
+        url = self._put_utc_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -461,6 +481,8 @@ class Datetimerfc1123Operations(object):
         body_content = self._serialize.body(datetime_body, "rfc-1123")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_utc_min_date_time_request.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(
@@ -505,7 +527,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_utc_min_date_time.metadata["url"]  # type: ignore
+        url = self._get_utc_min_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -515,6 +537,8 @@ class Datetimerfc1123Operations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_utc_min_date_time_request.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
 
     @distributed_trace
     def get_utc_min_date_time(
@@ -533,6 +557,7 @@ class Datetimerfc1123Operations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_utc_min_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

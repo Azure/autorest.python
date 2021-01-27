@@ -52,6 +52,32 @@ class UsageOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+        api_version = "2015-05-01-preview"
+        accept = "application/json, text/json"
+
+        # Construct URL
+        url = self._list_request.metadata["url"]  # type: ignore
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.get(url, query_parameters, header_parameters)
+
+    _list_request.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"}  # type: ignore
+
     @distributed_trace
     def list(
         self, **kwargs  # type: Any
@@ -67,25 +93,11 @@ class UsageOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.UsageListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        api_version = "2015-05-01-preview"
-        accept = "application/json, text/json"
 
-        # Construct URL
-        url = self.list.metadata["url"]  # type: ignore
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
+        request = self._list_request(**kwargs)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+        kwargs.pop("content_type", None)
 
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

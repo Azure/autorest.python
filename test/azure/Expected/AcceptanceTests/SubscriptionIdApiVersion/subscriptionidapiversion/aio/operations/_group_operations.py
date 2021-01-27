@@ -48,25 +48,12 @@ class GroupOperations:
         self._deserialize = deserializer
         self._config = config
 
-    @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name: str, **kwargs) -> "_models.SampleResourceGroup":
-        """Provides a resouce group with name 'testgroup101' and location 'West US'.
-
-        :param resource_group_name: Resource Group name 'testgroup101'.
-        :type resource_group_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: SampleResourceGroup, or the result of cls(response)
-        :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SampleResourceGroup"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+    def _get_sample_resource_group_request(self, resource_group_name: str, **kwargs) -> HttpRequest:
         api_version = "2014-04-01-preview"
         accept = "application/json"
 
         # Construct URL
-        url = self.get_sample_resource_group.metadata["url"]  # type: ignore
+        url = self._get_sample_resource_group_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
@@ -81,7 +68,28 @@ class GroupOperations:
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        request = self._client.get(url, query_parameters, header_parameters)
+        return self._client.get(url, query_parameters, header_parameters)
+
+    _get_sample_resource_group_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"}  # type: ignore
+
+    @distributed_trace_async
+    async def get_sample_resource_group(self, resource_group_name: str, **kwargs) -> "_models.SampleResourceGroup":
+        """Provides a resouce group with name 'testgroup101' and location 'West US'.
+
+        :param resource_group_name: Resource Group name 'testgroup101'.
+        :type resource_group_name: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: SampleResourceGroup, or the result of cls(response)
+        :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SampleResourceGroup"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._get_sample_resource_group_request(resource_group_name=resource_group_name, **kwargs)
+        kwargs.pop("content_type", None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

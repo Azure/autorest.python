@@ -51,7 +51,7 @@ class PetOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_by_pet_id.metadata["url"]  # type: ignore
+        url = self._get_by_pet_id_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "petId": self._serialize.url("pet_id", pet_id, "str"),
         }
@@ -65,6 +65,8 @@ class PetOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_by_pet_id_request.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
     async def get_by_pet_id(self, pet_id: str, **kwargs) -> "_models.Pet":
@@ -105,7 +107,7 @@ class PetOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.add_pet.metadata["url"]  # type: ignore
+        url = self._add_pet_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -122,6 +124,8 @@ class PetOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _add_pet_request.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore
 
     @distributed_trace_async
     async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs) -> "_models.Pet":

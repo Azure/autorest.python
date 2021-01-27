@@ -58,7 +58,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_null.metadata["url"]  # type: ignore
+        url = self._get_null_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_null_request.metadata = {"url": "/number/null"}  # type: ignore
 
     @distributed_trace
     def get_null(
@@ -86,6 +88,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_null_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -112,7 +115,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid_float.metadata["url"]  # type: ignore
+        url = self._get_invalid_float_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -122,6 +125,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_invalid_float_request.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
     @distributed_trace
     def get_invalid_float(
@@ -140,6 +145,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_invalid_float_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -166,7 +172,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid_double.metadata["url"]  # type: ignore
+        url = self._get_invalid_double_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -176,6 +182,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_invalid_double_request.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
     @distributed_trace
     def get_invalid_double(
@@ -194,6 +202,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_invalid_double_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -220,7 +229,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid_decimal.metadata["url"]  # type: ignore
+        url = self._get_invalid_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -230,6 +239,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_invalid_decimal_request.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
     @distributed_trace
     def get_invalid_decimal(
@@ -248,6 +259,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_invalid_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -277,7 +289,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_big_float.metadata["url"]  # type: ignore
+        url = self._put_big_float_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -291,6 +303,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_big_float_request.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
     def put_big_float(
@@ -335,7 +349,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_big_float.metadata["url"]  # type: ignore
+        url = self._get_big_float_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -345,6 +359,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_big_float_request.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
     def get_big_float(
@@ -363,6 +379,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_big_float_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -392,7 +409,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_big_double.metadata["url"]  # type: ignore
+        url = self._put_big_double_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -406,6 +423,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_big_double_request.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def put_big_double(
@@ -450,7 +469,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_big_double.metadata["url"]  # type: ignore
+        url = self._get_big_double_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -460,6 +479,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_big_double_request.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def get_big_double(
@@ -478,6 +499,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_big_double_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -506,7 +528,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_big_double_positive_decimal.metadata["url"]  # type: ignore
+        url = self._put_big_double_positive_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -520,6 +542,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_big_double_positive_decimal_request.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_double_positive_decimal(
@@ -538,6 +562,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_big_double_positive_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -560,7 +585,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_big_double_positive_decimal.metadata["url"]  # type: ignore
+        url = self._get_big_double_positive_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -570,6 +595,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_big_double_positive_decimal_request.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_double_positive_decimal(
@@ -588,6 +615,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_big_double_positive_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -616,7 +644,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_big_double_negative_decimal.metadata["url"]  # type: ignore
+        url = self._put_big_double_negative_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -630,6 +658,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_big_double_negative_decimal_request.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_double_negative_decimal(
@@ -648,6 +678,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_big_double_negative_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -670,7 +701,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_big_double_negative_decimal.metadata["url"]  # type: ignore
+        url = self._get_big_double_negative_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -680,6 +711,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_big_double_negative_decimal_request.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_double_negative_decimal(
@@ -698,6 +731,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_big_double_negative_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -727,7 +761,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_big_decimal.metadata["url"]  # type: ignore
+        url = self._put_big_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -741,6 +775,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_big_decimal_request.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def put_big_decimal(
@@ -785,7 +821,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_big_decimal.metadata["url"]  # type: ignore
+        url = self._get_big_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -795,6 +831,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_big_decimal_request.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def get_big_decimal(
@@ -813,6 +851,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_big_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -841,7 +880,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_big_decimal_positive_decimal.metadata["url"]  # type: ignore
+        url = self._put_big_decimal_positive_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -855,6 +894,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_big_decimal_positive_decimal_request.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_decimal_positive_decimal(
@@ -873,6 +914,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_big_decimal_positive_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -895,7 +937,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_big_decimal_positive_decimal.metadata["url"]  # type: ignore
+        url = self._get_big_decimal_positive_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -905,6 +947,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_big_decimal_positive_decimal_request.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_decimal_positive_decimal(
@@ -923,6 +967,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_big_decimal_positive_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -951,7 +996,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_big_decimal_negative_decimal.metadata["url"]  # type: ignore
+        url = self._put_big_decimal_negative_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -965,6 +1010,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_big_decimal_negative_decimal_request.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_decimal_negative_decimal(
@@ -983,6 +1030,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_big_decimal_negative_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1005,7 +1053,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_big_decimal_negative_decimal.metadata["url"]  # type: ignore
+        url = self._get_big_decimal_negative_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1015,6 +1063,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_big_decimal_negative_decimal_request.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_decimal_negative_decimal(
@@ -1033,6 +1083,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_big_decimal_negative_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1062,7 +1113,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_small_float.metadata["url"]  # type: ignore
+        url = self._put_small_float_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1076,6 +1127,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_small_float_request.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
     def put_small_float(
@@ -1120,7 +1173,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_small_float.metadata["url"]  # type: ignore
+        url = self._get_small_float_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1130,6 +1183,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_small_float_request.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
     def get_small_float(
@@ -1148,6 +1203,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_small_float_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1177,7 +1233,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_small_double.metadata["url"]  # type: ignore
+        url = self._put_small_double_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1191,6 +1247,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_small_double_request.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def put_small_double(
@@ -1235,7 +1293,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_small_double.metadata["url"]  # type: ignore
+        url = self._get_small_double_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1245,6 +1303,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_small_double_request.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def get_small_double(
@@ -1263,6 +1323,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_small_double_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1292,7 +1353,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_small_decimal.metadata["url"]  # type: ignore
+        url = self._put_small_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1306,6 +1367,8 @@ class NumberOperations(object):
         body_content = self._serialize.body(number_body, "float")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_small_decimal_request.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def put_small_decimal(
@@ -1350,7 +1413,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_small_decimal.metadata["url"]  # type: ignore
+        url = self._get_small_decimal_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1360,6 +1423,8 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_small_decimal_request.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def get_small_decimal(
@@ -1378,6 +1443,7 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_small_decimal_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

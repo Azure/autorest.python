@@ -60,7 +60,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_empty.metadata["url"]  # type: ignore
+        url = self._get_empty_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -75,6 +75,8 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_empty_request.metadata = {"url": "/customuri"}  # type: ignore
 
     @distributed_trace
     def get_empty(

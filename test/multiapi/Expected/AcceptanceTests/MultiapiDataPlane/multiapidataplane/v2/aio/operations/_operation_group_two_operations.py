@@ -39,6 +39,29 @@ class OperationGroupTwoOperations:
         self._deserialize = deserializer
         self._config = config
 
+    def _test_four_request(
+        self,
+        parameter_one: bool,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "2.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_four_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['parameterOne'] = self._serialize.query("parameter_one", parameter_one, 'bool')
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.post(url, query_parameters, header_parameters)
+    _test_four_request.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
+
     async def test_four(
         self,
         parameter_one: bool,
@@ -58,22 +81,13 @@ class OperationGroupTwoOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_four.metadata['url']  # type: ignore
+        request = self._test_four_request(
+            parameter_one=parameter_one,
+            **kwargs
+        )
+        kwargs.pop('content_type', None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['parameterOne'] = self._serialize.query("parameter_one", parameter_one, 'bool')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -86,3 +100,4 @@ class OperationGroupTwoOperations:
             return cls(pipeline_response, None, {})
 
     test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
+

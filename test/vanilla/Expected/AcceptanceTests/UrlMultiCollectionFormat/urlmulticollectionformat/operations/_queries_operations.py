@@ -60,7 +60,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_multi_null.metadata["url"]  # type: ignore
+        url = self._array_string_multi_null_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -74,6 +74,8 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _array_string_multi_null_request.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
 
     @distributed_trace
     def array_string_multi_null(
@@ -120,7 +122,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_multi_empty.metadata["url"]  # type: ignore
+        url = self._array_string_multi_empty_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -134,6 +136,8 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _array_string_multi_empty_request.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
 
     @distributed_trace
     def array_string_multi_empty(
@@ -180,7 +184,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.array_string_multi_valid.metadata["url"]  # type: ignore
+        url = self._array_string_multi_valid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -194,6 +198,8 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _array_string_multi_valid_request.metadata = {"url": "/queries/array/multi/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_multi_valid(

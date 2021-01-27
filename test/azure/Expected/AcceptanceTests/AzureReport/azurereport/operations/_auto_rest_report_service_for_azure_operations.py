@@ -39,7 +39,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_report.metadata["url"]  # type: ignore
+        url = self._get_report_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -51,6 +51,8 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_report_request.metadata = {"url": "/report/azure"}  # type: ignore
 
     @distributed_trace
     def get_report(

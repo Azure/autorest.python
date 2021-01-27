@@ -39,6 +39,36 @@ class OperationGroupOneOperations:
         self._deserialize = deserializer
         self._config = config
 
+    def _test_two_request(
+        self,
+        parameter_one: Optional["_models.ModelTwo"] = None,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "2.0.0"
+        content_type = kwargs.pop("content_type", "application/json")
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_two_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        if parameter_one is not None:
+            body_content = self._serialize.body(parameter_one, 'ModelTwo')
+        else:
+            body_content = None
+        body_content_kwargs['content'] = body_content
+        return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
+    _test_two_request.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
+
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelTwo"] = None,
@@ -58,29 +88,13 @@ class OperationGroupOneOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2.0.0"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_two.metadata['url']  # type: ignore
+        request = self._test_two_request(
+            parameter_one=parameter_one,
+            **kwargs
+        )
+        kwargs.pop('content_type', None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if parameter_one is not None:
-            body_content = self._serialize.body(parameter_one, 'ModelTwo')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -95,7 +109,30 @@ class OperationGroupOneOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
+
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
+
+
+    def _test_three_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "2.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_three_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.put(url, query_parameters, header_parameters)
+    _test_three_request.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore
 
     async def test_three(
         self,
@@ -113,21 +150,11 @@ class OperationGroupOneOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_three.metadata['url']  # type: ignore
+        request = self._test_three_request(**kwargs)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        kwargs.pop('content_type', None)
 
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -140,3 +167,4 @@ class OperationGroupOneOperations:
             return cls(pipeline_response, None, {})
 
     test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore
+

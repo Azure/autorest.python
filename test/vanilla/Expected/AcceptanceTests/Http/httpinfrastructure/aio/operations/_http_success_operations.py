@@ -51,7 +51,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.head200.metadata["url"]  # type: ignore
+        url = self._head200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,6 +61,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def head200(self, **kwargs) -> None:
@@ -76,6 +78,7 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head200_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -95,7 +98,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get200.metadata["url"]  # type: ignore
+        url = self._get200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -105,6 +108,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def get200(self, **kwargs) -> bool:
@@ -120,6 +125,7 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get200_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -143,7 +149,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.options200.metadata["url"]  # type: ignore
+        url = self._options200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -153,6 +159,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
+
+    _options200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def options200(self, **kwargs) -> bool:
@@ -168,6 +176,7 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._options200_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -192,7 +201,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put200.metadata["url"]  # type: ignore
+        url = self._put200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -209,6 +218,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def put200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -246,7 +257,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.patch200.metadata["url"]  # type: ignore
+        url = self._patch200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -263,6 +274,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def patch200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -300,7 +313,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.post200.metadata["url"]  # type: ignore
+        url = self._post200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -317,6 +330,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def post200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -354,7 +369,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.delete200.metadata["url"]  # type: ignore
+        url = self._delete200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -371,6 +386,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def delete200(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -408,7 +425,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put201.metadata["url"]  # type: ignore
+        url = self._put201_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -425,6 +442,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put201_request.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
     async def put201(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -462,7 +481,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.post201.metadata["url"]  # type: ignore
+        url = self._post201_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -479,6 +498,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post201_request.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
     async def post201(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -516,7 +537,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put202.metadata["url"]  # type: ignore
+        url = self._put202_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -533,6 +554,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def put202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -570,7 +593,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.patch202.metadata["url"]  # type: ignore
+        url = self._patch202_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -587,6 +610,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def patch202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -624,7 +649,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.post202.metadata["url"]  # type: ignore
+        url = self._post202_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -641,6 +666,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def post202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -678,7 +705,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.delete202.metadata["url"]  # type: ignore
+        url = self._delete202_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -695,6 +722,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def delete202(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -731,7 +760,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.head204.metadata["url"]  # type: ignore
+        url = self._head204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -741,6 +770,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def head204(self, **kwargs) -> None:
@@ -756,6 +787,7 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head204_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -776,7 +808,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put204.metadata["url"]  # type: ignore
+        url = self._put204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -793,6 +825,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def put204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -830,7 +864,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.patch204.metadata["url"]  # type: ignore
+        url = self._patch204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -847,6 +881,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _patch204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def patch204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -884,7 +920,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.post204.metadata["url"]  # type: ignore
+        url = self._post204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -901,6 +937,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def post204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -938,7 +976,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.delete204.metadata["url"]  # type: ignore
+        url = self._delete204_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -955,6 +993,8 @@ class HttpSuccessOperations:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _delete204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def delete204(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -991,7 +1031,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.head404.metadata["url"]  # type: ignore
+        url = self._head404_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1001,6 +1041,8 @@ class HttpSuccessOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
+
+    _head404_request.metadata = {"url": "/http/success/404"}  # type: ignore
 
     @distributed_trace_async
     async def head404(self, **kwargs) -> None:
@@ -1016,6 +1058,7 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._head404_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

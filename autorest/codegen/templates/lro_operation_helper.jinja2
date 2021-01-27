@@ -52,6 +52,7 @@
         {{ op_tools.handle_error_response(code_model, operation)|indent(8) }}
         {% set response = operation.responses[0] %}
         {% if response.headers %}
+        response_headers = {}
         {{ op_tools.response_headers(response)|indent(8) }}
         {% endif %}
     {%- endmacro -%}

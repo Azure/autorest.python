@@ -59,7 +59,7 @@ class TimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get.metadata["url"]  # type: ignore
+        url = self._get_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -69,6 +69,8 @@ class TimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_request.metadata = {"url": "/time/get"}  # type: ignore
 
     @distributed_trace
     def get(
@@ -87,6 +89,7 @@ class TimeOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -116,7 +119,7 @@ class TimeOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put.metadata["url"]  # type: ignore
+        url = self._put_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -130,6 +133,8 @@ class TimeOperations(object):
         body_content = self._serialize.body(time_body, "time")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_request.metadata = {"url": "/time/put"}  # type: ignore
 
     @distributed_trace
     def put(

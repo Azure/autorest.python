@@ -20,6 +20,32 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultiapiServiceClientOperationsMixin:
 
+    def _test_one_request(
+        self,
+        id: int,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "2.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_one_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['id'] = self._serialize.query("id", id, 'int')
+        if message is not None:
+            query_parameters['message'] = self._serialize.query("message", message, 'str')
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.put(url, query_parameters, header_parameters)
+    _test_one_request.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
+
     async def test_one(
         self,
         id: int,
@@ -42,24 +68,14 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_one.metadata['url']  # type: ignore
+        request = self._test_one_request(
+            id=id,
+            message=message,
+            **kwargs
+        )
+        kwargs.pop('content_type', None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['id'] = self._serialize.query("id", id, 'int')
-        if message is not None:
-            query_parameters['message'] = self._serialize.query("message", message, 'str')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -74,7 +90,35 @@ class MultiapiServiceClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
+
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
+
+
+    def _test_different_calls_request(
+        self,
+        greeting_in_english: str,
+        greeting_in_chinese: Optional[str] = None,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "2.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_different_calls_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
+        if greeting_in_chinese is not None:
+            header_parameters['greetingInChinese'] = self._serialize.header("greeting_in_chinese", greeting_in_chinese, 'str')
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.get(url, query_parameters, header_parameters)
+    _test_different_calls_request.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
 
     async def test_different_calls(
         self,
@@ -98,24 +142,14 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "2.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_different_calls.metadata['url']  # type: ignore
+        request = self._test_different_calls_request(
+            greeting_in_english=greeting_in_english,
+            greeting_in_chinese=greeting_in_chinese,
+            **kwargs
+        )
+        kwargs.pop('content_type', None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
-        if greeting_in_chinese is not None:
-            header_parameters['greetingInChinese'] = self._serialize.header("greeting_in_chinese", greeting_in_chinese, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.get(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -128,3 +162,4 @@ class MultiapiServiceClientOperationsMixin:
             return cls(pipeline_response, None, {})
 
     test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
+

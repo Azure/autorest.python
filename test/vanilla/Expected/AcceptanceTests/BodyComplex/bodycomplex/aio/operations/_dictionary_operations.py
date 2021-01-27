@@ -51,7 +51,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_valid.metadata["url"]  # type: ignore
+        url = self._get_valid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,6 +61,8 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_valid_request.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_valid(self, **kwargs) -> "_models.DictionaryWrapper":
@@ -76,6 +78,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_valid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -102,7 +105,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put_valid.metadata["url"]  # type: ignore
+        url = self._put_valid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -116,6 +119,8 @@ class DictionaryOperations:
         body_content = self._serialize.body(_complex_body, "DictionaryWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_valid_request.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, default_program: Optional[Dict[str, str]] = None, **kwargs) -> None:
@@ -152,7 +157,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_empty.metadata["url"]  # type: ignore
+        url = self._get_empty_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -162,6 +167,8 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_empty_request.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> "_models.DictionaryWrapper":
@@ -177,6 +184,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_empty_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -203,7 +211,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put_empty.metadata["url"]  # type: ignore
+        url = self._put_empty_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -217,6 +225,8 @@ class DictionaryOperations:
         body_content = self._serialize.body(_complex_body, "DictionaryWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_empty_request.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, default_program: Optional[Dict[str, str]] = None, **kwargs) -> None:
@@ -253,7 +263,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_null.metadata["url"]  # type: ignore
+        url = self._get_null_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -263,6 +273,8 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_null_request.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs) -> "_models.DictionaryWrapper":
@@ -278,6 +290,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_null_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -301,7 +314,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_not_provided.metadata["url"]  # type: ignore
+        url = self._get_not_provided_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -311,6 +324,8 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_not_provided_request.metadata = {"url": "/complex/dictionary/typed/notprovided"}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs) -> "_models.DictionaryWrapper":
@@ -326,6 +341,7 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_not_provided_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -58,7 +58,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_not_expandable.metadata["url"]  # type: ignore
+        url = self._get_not_expandable_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,6 +68,8 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_not_expandable_request.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
     def get_not_expandable(
@@ -86,6 +88,7 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_not_expandable_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,7 +118,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_not_expandable.metadata["url"]  # type: ignore
+        url = self._put_not_expandable_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -129,6 +132,8 @@ class EnumOperations(object):
         body_content = self._serialize.body(string_body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_not_expandable_request.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
     def put_not_expandable(
@@ -173,7 +178,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_referenced.metadata["url"]  # type: ignore
+        url = self._get_referenced_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -183,6 +188,8 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_referenced_request.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
     def get_referenced(
@@ -201,6 +208,7 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_referenced_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -230,7 +238,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_referenced.metadata["url"]  # type: ignore
+        url = self._put_referenced_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -244,6 +252,8 @@ class EnumOperations(object):
         body_content = self._serialize.body(enum_string_body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_referenced_request.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
     def put_referenced(
@@ -288,7 +298,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_referenced_constant.metadata["url"]  # type: ignore
+        url = self._get_referenced_constant_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -298,6 +308,8 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_referenced_constant_request.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
     def get_referenced_constant(
@@ -316,6 +328,7 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_referenced_constant_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -347,7 +360,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_referenced_constant.metadata["url"]  # type: ignore
+        url = self._put_referenced_constant_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -361,6 +374,8 @@ class EnumOperations(object):
         body_content = self._serialize.body(_enum_string_body, "RefColorConstant")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_referenced_constant_request.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
     def put_referenced_constant(

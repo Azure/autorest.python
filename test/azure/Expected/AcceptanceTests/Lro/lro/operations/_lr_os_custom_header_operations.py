@@ -64,7 +64,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put_async_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._put_async_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,6 +81,8 @@ class LROsCustomHeaderOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_async_retry_succeeded_request.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
     def begin_put_async_retry_succeeded(
@@ -170,7 +172,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_put201_creating_succeeded200.metadata["url"]  # type: ignore
+        url = self._put201_creating_succeeded200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -187,6 +189,8 @@ class LROsCustomHeaderOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put201_creating_succeeded200_request.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
@@ -262,7 +266,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post202_retry200.metadata["url"]  # type: ignore
+        url = self._post202_retry200_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -279,6 +283,8 @@ class LROsCustomHeaderOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post202_retry200_request.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
     def begin_post202_retry200(
@@ -353,7 +359,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.begin_post_async_retry_succeeded.metadata["url"]  # type: ignore
+        url = self._post_async_retry_succeeded_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -370,6 +376,8 @@ class LROsCustomHeaderOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_async_retry_succeeded_request.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
     def begin_post_async_retry_succeeded(

@@ -59,7 +59,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_int.metadata["url"]  # type: ignore
+        url = self._get_int_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -69,6 +69,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_int_request.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace
     def get_int(
@@ -87,6 +89,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_int_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -116,7 +119,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_int.metadata["url"]  # type: ignore
+        url = self._put_int_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -130,6 +133,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "IntWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_int_request.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace
     def put_int(
@@ -174,7 +179,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_long.metadata["url"]  # type: ignore
+        url = self._get_long_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -184,6 +189,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_long_request.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace
     def get_long(
@@ -202,6 +209,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_long_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -231,7 +239,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_long.metadata["url"]  # type: ignore
+        url = self._put_long_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -245,6 +253,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "LongWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_long_request.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace
     def put_long(
@@ -289,7 +299,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_float.metadata["url"]  # type: ignore
+        url = self._get_float_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -299,6 +309,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_float_request.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace
     def get_float(
@@ -317,6 +329,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_float_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -346,7 +359,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_float.metadata["url"]  # type: ignore
+        url = self._put_float_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -360,6 +373,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "FloatWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_float_request.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace
     def put_float(
@@ -404,7 +419,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_double.metadata["url"]  # type: ignore
+        url = self._get_double_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -414,6 +429,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_double_request.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace
     def get_double(
@@ -432,6 +449,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_double_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -461,7 +479,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_double.metadata["url"]  # type: ignore
+        url = self._put_double_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -475,6 +493,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "DoubleWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_double_request.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace
     def put_double(
@@ -520,7 +540,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_bool.metadata["url"]  # type: ignore
+        url = self._get_bool_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -530,6 +550,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_bool_request.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace
     def get_bool(
@@ -548,6 +570,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_bool_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -577,7 +600,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_bool.metadata["url"]  # type: ignore
+        url = self._put_bool_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -591,6 +614,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "BooleanWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_bool_request.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace
     def put_bool(
@@ -635,7 +660,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_string.metadata["url"]  # type: ignore
+        url = self._get_string_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -645,6 +670,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_string_request.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace
     def get_string(
@@ -663,6 +690,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_string_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -692,7 +720,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_string.metadata["url"]  # type: ignore
+        url = self._put_string_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -706,6 +734,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "StringWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_string_request.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace
     def put_string(
@@ -750,7 +780,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_date.metadata["url"]  # type: ignore
+        url = self._get_date_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -760,6 +790,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_date_request.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace
     def get_date(
@@ -778,6 +810,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_date_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -807,7 +840,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_date.metadata["url"]  # type: ignore
+        url = self._put_date_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -821,6 +854,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "DateWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_date_request.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace
     def put_date(
@@ -865,7 +900,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_date_time.metadata["url"]  # type: ignore
+        url = self._get_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -875,6 +910,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_date_time_request.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace
     def get_date_time(
@@ -893,6 +930,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_date_time_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -922,7 +960,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_date_time.metadata["url"]  # type: ignore
+        url = self._put_date_time_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -936,6 +974,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "DatetimeWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_date_time_request.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace
     def put_date_time(
@@ -980,7 +1020,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_date_time_rfc1123.metadata["url"]  # type: ignore
+        url = self._get_date_time_rfc1123_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -990,6 +1030,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_date_time_rfc1123_request.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
     def get_date_time_rfc1123(
@@ -1008,6 +1050,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_date_time_rfc1123_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1037,7 +1080,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_date_time_rfc1123.metadata["url"]  # type: ignore
+        url = self._put_date_time_rfc1123_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1051,6 +1094,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_date_time_rfc1123_request.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
     def put_date_time_rfc1123(
@@ -1096,7 +1141,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_duration.metadata["url"]  # type: ignore
+        url = self._get_duration_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1106,6 +1151,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_duration_request.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace
     def get_duration(
@@ -1124,6 +1171,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_duration_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1155,7 +1203,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_duration.metadata["url"]  # type: ignore
+        url = self._put_duration_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1169,6 +1217,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(_complex_body, "DurationWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_duration_request.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace
     def put_duration(
@@ -1213,7 +1263,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.get_byte.metadata["url"]  # type: ignore
+        url = self._get_byte_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1223,6 +1273,8 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_byte_request.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
     @distributed_trace
     def get_byte(
@@ -1241,6 +1293,7 @@ class PrimitiveOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_byte_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1272,7 +1325,7 @@ class PrimitiveOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.put_byte.metadata["url"]  # type: ignore
+        url = self._put_byte_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1286,6 +1339,8 @@ class PrimitiveOperations(object):
         body_content = self._serialize.body(_complex_body, "ByteWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_byte_request.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
     @distributed_trace
     def put_byte(

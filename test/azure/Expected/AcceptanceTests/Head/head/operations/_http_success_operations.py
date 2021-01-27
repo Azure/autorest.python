@@ -46,6 +46,24 @@ class HttpSuccessOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    def _head200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+
+        # Construct URL
+        url = self._head200_request.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        return self._client.head(url, query_parameters, header_parameters)
+
+    _head200_request.metadata = {"url": "/http/success/200"}  # type: ignore
+
     @distributed_trace
     def head200(
         self, **kwargs  # type: Any
@@ -62,16 +80,10 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        # Construct URL
-        url = self.head200.metadata["url"]  # type: ignore
+        request = self._head200_request(**kwargs)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
+        kwargs.pop("content_type", None)
 
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -81,10 +93,27 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
         return 200 <= response.status_code <= 299
 
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
+
+    def _head204_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+
+        # Construct URL
+        url = self._head204_request.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        return self._client.head(url, query_parameters, header_parameters)
+
+    _head204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def head204(
@@ -102,16 +131,10 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        # Construct URL
-        url = self.head204.metadata["url"]  # type: ignore
+        request = self._head204_request(**kwargs)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
+        kwargs.pop("content_type", None)
 
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -121,10 +144,27 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
         return 200 <= response.status_code <= 299
 
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
+
+    def _head404_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
+
+        # Construct URL
+        url = self._head404_request.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+
+        return self._client.head(url, query_parameters, header_parameters)
+
+    _head404_request.metadata = {"url": "/http/success/404"}  # type: ignore
 
     @distributed_trace
     def head404(
@@ -142,16 +182,10 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        # Construct URL
-        url = self.head404.metadata["url"]  # type: ignore
+        request = self._head404_request(**kwargs)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
+        kwargs.pop("content_type", None)
 
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -161,7 +195,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
         return 200 <= response.status_code <= 299
 
     head404.metadata = {"url": "/http/success/404"}  # type: ignore

@@ -31,7 +31,7 @@ class AutoRestValidationTestOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.validation_of_method_parameters.metadata["url"]  # type: ignore
+        url = self._validation_of_method_parameters_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "resourceGroupName": self._serialize.url(
@@ -55,6 +55,8 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _validation_of_method_parameters_request.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
     async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs) -> "_models.Product":
@@ -103,7 +105,7 @@ class AutoRestValidationTestOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.validation_of_body.metadata["url"]  # type: ignore
+        url = self._validation_of_body_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "resourceGroupName": self._serialize.url(
@@ -129,6 +131,8 @@ class AutoRestValidationTestOperationsMixin:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _validation_of_body_request.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
     async def validation_of_body(
@@ -175,7 +179,7 @@ class AutoRestValidationTestOperationsMixin:
         constant_param = "constant"
 
         # Construct URL
-        url = self.get_with_constant_in_path.metadata["url"]  # type: ignore
+        url = self._get_with_constant_in_path_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "constantParam": self._serialize.url("constant_param", constant_param, "str"),
         }
@@ -188,6 +192,8 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_with_constant_in_path_request.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
     async def get_with_constant_in_path(self, **kwargs) -> None:
@@ -203,6 +209,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_with_constant_in_path_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -223,7 +230,7 @@ class AutoRestValidationTestOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.post_with_constant_in_body.metadata["url"]  # type: ignore
+        url = self._post_with_constant_in_body_request.metadata["url"]  # type: ignore
         path_format_arguments = {
             "constantParam": self._serialize.url("constant_param", constant_param, "str"),
         }
@@ -244,6 +251,8 @@ class AutoRestValidationTestOperationsMixin:
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_with_constant_in_body_request.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
     async def post_with_constant_in_body(self, body: Optional["_models.Product"] = None, **kwargs) -> "_models.Product":

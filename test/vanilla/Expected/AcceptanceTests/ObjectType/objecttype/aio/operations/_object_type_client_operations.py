@@ -28,7 +28,7 @@ class ObjectTypeClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.get.metadata["url"]  # type: ignore
+        url = self._get_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -38,6 +38,8 @@ class ObjectTypeClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_request.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace_async
     async def get(self, **kwargs) -> object:
@@ -54,6 +56,7 @@ class ObjectTypeClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -78,7 +81,7 @@ class ObjectTypeClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self.put.metadata["url"]  # type: ignore
+        url = self._put_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -92,6 +95,8 @@ class ObjectTypeClientOperationsMixin:
         body_content = self._serialize.body(put_object, "object")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_request.metadata = {"url": "/objectType/put"}  # type: ignore
 
     @distributed_trace_async
     async def put(self, put_object: object, **kwargs) -> None:

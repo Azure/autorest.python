@@ -91,10 +91,8 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._get_pages_partial_url_request(account_name=account_name, **kwargs)
-
             else:
                 request = self._get_pages_partial_url_request(account_name=account_name, **kwargs)
-
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -169,8 +167,9 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _get_pages_partial_url_operation_next_request.metadata = {"url": "/paging/customurl/{nextLink}"}  # type: ignore@distributed_trace
+    _get_pages_partial_url_operation_next_request.metadata = {"url": "/paging/customurl/{nextLink}"}  # type: ignore
 
+    @distributed_trace
     def get_pages_partial_url_operation(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
@@ -189,12 +188,10 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._get_pages_partial_url_operation_request(account_name=account_name, **kwargs)
-
             else:
                 request = self._get_pages_partial_url_operation_next_request(
                     account_name=account_name, next_link=next_link, **kwargs
                 )
-
             return request
 
         async def extract_data(pipeline_response):

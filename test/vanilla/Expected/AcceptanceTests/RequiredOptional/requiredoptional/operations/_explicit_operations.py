@@ -61,7 +61,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_integer_parameter.metadata["url"]  # type: ignore
+        url = self._post_required_integer_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -75,6 +75,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, "int")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_integer_parameter_request.metadata = {"url": "/reqopt/requied/integer/parameter"}  # type: ignore
 
     @distributed_trace
     def post_required_integer_parameter(
@@ -123,7 +125,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_integer_parameter.metadata["url"]  # type: ignore
+        url = self._post_optional_integer_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -140,6 +142,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_integer_parameter_request.metadata = {"url": "/reqopt/optional/integer/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_parameter(
@@ -189,7 +193,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_integer_property.metadata["url"]  # type: ignore
+        url = self._post_required_integer_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -203,6 +207,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(_body_parameter, "IntWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_integer_property_request.metadata = {"url": "/reqopt/requied/integer/property"}  # type: ignore
 
     @distributed_trace
     def post_required_integer_property(
@@ -253,7 +259,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_integer_property.metadata["url"]  # type: ignore
+        url = self._post_optional_integer_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -270,6 +276,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_integer_property_request.metadata = {"url": "/reqopt/optional/integer/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_property(
@@ -316,7 +324,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_integer_header.metadata["url"]  # type: ignore
+        url = self._post_required_integer_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -327,6 +335,8 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_required_integer_header_request.metadata = {"url": "/reqopt/requied/integer/header"}  # type: ignore
 
     @distributed_trace
     def post_required_integer_header(
@@ -374,7 +384,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_integer_header.metadata["url"]  # type: ignore
+        url = self._post_optional_integer_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -386,6 +396,8 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_optional_integer_header_request.metadata = {"url": "/reqopt/optional/integer/header"}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_header(
@@ -433,7 +445,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_string_parameter.metadata["url"]  # type: ignore
+        url = self._post_required_string_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -447,6 +459,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, "str")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_string_parameter_request.metadata = {"url": "/reqopt/requied/string/parameter"}  # type: ignore
 
     @distributed_trace
     def post_required_string_parameter(
@@ -495,7 +509,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_string_parameter.metadata["url"]  # type: ignore
+        url = self._post_optional_string_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -512,6 +526,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_string_parameter_request.metadata = {"url": "/reqopt/optional/string/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_string_parameter(
@@ -561,7 +577,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_string_property.metadata["url"]  # type: ignore
+        url = self._post_required_string_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -575,6 +591,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(_body_parameter, "StringWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_string_property_request.metadata = {"url": "/reqopt/requied/string/property"}  # type: ignore
 
     @distributed_trace
     def post_required_string_property(
@@ -625,7 +643,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_string_property.metadata["url"]  # type: ignore
+        url = self._post_optional_string_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -642,6 +660,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_string_property_request.metadata = {"url": "/reqopt/optional/string/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_string_property(
@@ -688,7 +708,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_string_header.metadata["url"]  # type: ignore
+        url = self._post_required_string_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -699,6 +719,8 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_required_string_header_request.metadata = {"url": "/reqopt/requied/string/header"}  # type: ignore
 
     @distributed_trace
     def post_required_string_header(
@@ -746,7 +768,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_string_header.metadata["url"]  # type: ignore
+        url = self._post_optional_string_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -758,6 +780,8 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_optional_string_header_request.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
     @distributed_trace
     def post_optional_string_header(
@@ -805,7 +829,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_class_parameter.metadata["url"]  # type: ignore
+        url = self._post_required_class_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -819,6 +843,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, "Product")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_class_parameter_request.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
     @distributed_trace
     def post_required_class_parameter(
@@ -867,7 +893,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_class_parameter.metadata["url"]  # type: ignore
+        url = self._post_optional_class_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -884,6 +910,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_class_parameter_request.metadata = {"url": "/reqopt/optional/class/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_class_parameter(
@@ -933,7 +961,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_class_property.metadata["url"]  # type: ignore
+        url = self._post_required_class_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -947,6 +975,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(_body_parameter, "ClassWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_class_property_request.metadata = {"url": "/reqopt/requied/class/property"}  # type: ignore
 
     @distributed_trace
     def post_required_class_property(
@@ -997,7 +1027,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_class_property.metadata["url"]  # type: ignore
+        url = self._post_optional_class_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1014,6 +1044,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_class_property_request.metadata = {"url": "/reqopt/optional/class/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_class_property(
@@ -1061,7 +1093,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_array_parameter.metadata["url"]  # type: ignore
+        url = self._post_required_array_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1075,6 +1107,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(body_parameter, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_array_parameter_request.metadata = {"url": "/reqopt/requied/array/parameter"}  # type: ignore
 
     @distributed_trace
     def post_required_array_parameter(
@@ -1123,7 +1157,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_array_parameter.metadata["url"]  # type: ignore
+        url = self._post_optional_array_parameter_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1140,6 +1174,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_array_parameter_request.metadata = {"url": "/reqopt/optional/array/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_array_parameter(
@@ -1189,7 +1225,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_array_property.metadata["url"]  # type: ignore
+        url = self._post_required_array_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1203,6 +1239,8 @@ class ExplicitOperations(object):
         body_content = self._serialize.body(_body_parameter, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_required_array_property_request.metadata = {"url": "/reqopt/requied/array/property"}  # type: ignore
 
     @distributed_trace
     def post_required_array_property(
@@ -1253,7 +1291,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_array_property.metadata["url"]  # type: ignore
+        url = self._post_optional_array_property_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1270,6 +1308,8 @@ class ExplicitOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _post_optional_array_property_request.metadata = {"url": "/reqopt/optional/array/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_array_property(
@@ -1316,7 +1356,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_required_array_header.metadata["url"]  # type: ignore
+        url = self._post_required_array_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1329,6 +1369,8 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_required_array_header_request.metadata = {"url": "/reqopt/requied/array/header"}  # type: ignore
 
     @distributed_trace
     def post_required_array_header(
@@ -1376,7 +1418,7 @@ class ExplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self.post_optional_array_header.metadata["url"]  # type: ignore
+        url = self._post_optional_array_header_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1390,6 +1432,8 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
+
+    _post_optional_array_header_request.metadata = {"url": "/reqopt/optional/array/header"}  # type: ignore
 
     @distributed_trace
     def post_optional_array_header(

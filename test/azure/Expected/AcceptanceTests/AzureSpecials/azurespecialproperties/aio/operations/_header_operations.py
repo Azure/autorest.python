@@ -48,6 +48,26 @@ class HeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
+    def _custom_named_request_id_request(self, foo_client_request_id: str, **kwargs) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._custom_named_request_id_request.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["foo-client-request-id"] = self._serialize.header(
+            "foo_client_request_id", foo_client_request_id, "str"
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.post(url, query_parameters, header_parameters)
+
+    _custom_named_request_id_request.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
+
     @distributed_trace_async
     async def custom_named_request_id(self, foo_client_request_id: str, **kwargs) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
@@ -62,22 +82,10 @@ class HeaderOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.custom_named_request_id.metadata["url"]  # type: ignore
+        request = self._custom_named_request_id_request(foo_client_request_id=foo_client_request_id, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["foo-client-request-id"] = self._serialize.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -93,6 +101,34 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
+
+    def _custom_named_request_id_param_grouping_request(
+        self,
+        header_custom_named_request_id_param_grouping_parameters: "_models.HeaderCustomNamedRequestIdParamGroupingParameters",
+        **kwargs
+    ) -> HttpRequest:
+
+        _foo_client_request_id = None
+        if header_custom_named_request_id_param_grouping_parameters is not None:
+            _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
+        accept = "application/json"
+
+        # Construct URL
+        url = self._custom_named_request_id_param_grouping_request.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["foo-client-request-id"] = self._serialize.header(
+            "foo_client_request_id", _foo_client_request_id, "str"
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.post(url, query_parameters, header_parameters)
+
+    _custom_named_request_id_param_grouping_request.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(
@@ -114,25 +150,12 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _foo_client_request_id = None
-        if header_custom_named_request_id_param_grouping_parameters is not None:
-            _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
-        accept = "application/json"
-
-        # Construct URL
-        url = self.custom_named_request_id_param_grouping.metadata["url"]  # type: ignore
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["foo-client-request-id"] = self._serialize.header(
-            "foo_client_request_id", _foo_client_request_id, "str"
+        request = self._custom_named_request_id_param_grouping_request(
+            header_custom_named_request_id_param_grouping_parameters=header_custom_named_request_id_param_grouping_parameters,
+            **kwargs
         )
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        kwargs.pop("content_type", None)
 
-        request = self._client.post(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -149,6 +172,26 @@ class HeaderOperations:
 
     custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
 
+    def _custom_named_request_id_head_request(self, foo_client_request_id: str, **kwargs) -> HttpRequest:
+        accept = "application/json"
+
+        # Construct URL
+        url = self._custom_named_request_id_head_request.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["foo-client-request-id"] = self._serialize.header(
+            "foo_client_request_id", foo_client_request_id, "str"
+        )
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        return self._client.head(url, query_parameters, header_parameters)
+
+    _custom_named_request_id_head_request.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore
+
     @distributed_trace_async
     async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs) -> bool:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
@@ -163,22 +206,10 @@ class HeaderOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
-        # Construct URL
-        url = self.custom_named_request_id_head.metadata["url"]  # type: ignore
+        request = self._custom_named_request_id_head_request(foo_client_request_id=foo_client_request_id, **kwargs)
+        kwargs.pop("content_type", None)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["foo-client-request-id"] = self._serialize.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        request = self._client.head(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -193,7 +224,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
         return 200 <= response.status_code <= 299
 
     custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore

@@ -51,7 +51,7 @@ class BoolOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_true.metadata["url"]  # type: ignore
+        url = self._get_true_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,6 +61,8 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_true_request.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
     async def get_true(self, **kwargs) -> bool:
@@ -76,6 +78,7 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_true_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -101,7 +104,7 @@ class BoolOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put_true.metadata["url"]  # type: ignore
+        url = self._put_true_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -115,6 +118,8 @@ class BoolOperations:
         body_content = self._serialize.body(bool_body, "bool")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_true_request.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
     async def put_true(self, **kwargs) -> None:
@@ -130,6 +135,7 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_true_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -149,7 +155,7 @@ class BoolOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_false.metadata["url"]  # type: ignore
+        url = self._get_false_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -159,6 +165,8 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_false_request.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
     async def get_false(self, **kwargs) -> bool:
@@ -174,6 +182,7 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_false_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -199,7 +208,7 @@ class BoolOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.put_false.metadata["url"]  # type: ignore
+        url = self._put_false_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -213,6 +222,8 @@ class BoolOperations:
         body_content = self._serialize.body(bool_body, "bool")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
+    _put_false_request.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
     async def put_false(self, **kwargs) -> None:
@@ -228,6 +239,7 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._put_false_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -247,7 +259,7 @@ class BoolOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_null.metadata["url"]  # type: ignore
+        url = self._get_null_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -257,6 +269,8 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_null_request.metadata = {"url": "/bool/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs) -> Optional[bool]:
@@ -272,6 +286,7 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_null_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -295,7 +310,7 @@ class BoolOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self.get_invalid.metadata["url"]  # type: ignore
+        url = self._get_invalid_request.metadata["url"]  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -305,6 +320,8 @@ class BoolOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
+
+    _get_invalid_request.metadata = {"url": "/bool/invalid"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs) -> bool:
@@ -320,6 +337,7 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_invalid_request(**kwargs)
+
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

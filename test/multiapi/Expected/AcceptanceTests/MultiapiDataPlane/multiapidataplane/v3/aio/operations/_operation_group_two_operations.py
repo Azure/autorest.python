@@ -39,33 +39,17 @@ class OperationGroupTwoOperations:
         self._deserialize = deserializer
         self._config = config
 
-    async def test_four(
+    def _test_four_request(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
         **kwargs
-    ) -> None:
-        """TestFour should be in OperationGroupTwoOperations.
-
-        :param input: Input parameter.
-        :type input: IO or ~multiapidataplane.v3.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
-         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
-        }
-        error_map.update(kwargs.pop('error_map', {}))
+    ) -> HttpRequest:
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
         # Construct URL
-        url = self.test_four.metadata['url']  # type: ignore
+        url = self._test_four_request.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -90,7 +74,37 @@ class OperationGroupTwoOperations:
                 "The content_type '{}' is not one of the allowed values: "
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
             )
-        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+    _test_four_request.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
+
+    async def test_four(
+        self,
+        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        **kwargs
+    ) -> None:
+        """TestFour should be in OperationGroupTwoOperations.
+
+        :param input: Input parameter.
+        :type input: IO or ~multiapidataplane.v3.models.SourcePath
+        :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
+         Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
+
+        request = self._test_four_request(
+            input=input,
+            **kwargs
+        )
+        kwargs.pop('content_type', None)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -103,6 +117,28 @@ class OperationGroupTwoOperations:
             return cls(pipeline_response, None, {})
 
     test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
+
+
+    def _test_five_request(
+        self,
+        **kwargs
+    ) -> HttpRequest:
+        api_version = "3.0.0"
+        accept = "application/json"
+
+        # Construct URL
+        url = self._test_five_request.metadata['url']  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+
+        return self._client.put(url, query_parameters, header_parameters)
+    _test_five_request.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore
 
     async def test_five(
         self,
@@ -120,21 +156,11 @@ class OperationGroupTwoOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        api_version = "3.0.0"
-        accept = "application/json"
 
-        # Construct URL
-        url = self.test_five.metadata['url']  # type: ignore
+        request = self._test_five_request(**kwargs)
 
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        kwargs.pop('content_type', None)
 
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -147,3 +173,4 @@ class OperationGroupTwoOperations:
             return cls(pipeline_response, None, {})
 
     test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore
+
