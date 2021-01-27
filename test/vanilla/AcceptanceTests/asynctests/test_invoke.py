@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import io
+import json
 import pytest
 from azure.core.pipeline.transport import HttpRequest
 
@@ -55,17 +56,76 @@ class TestInvoke(object):
         assert "Tomato" ==  deserialized.hates[1].name
 
     @pytest.mark.asyncio
-    async def test_invoke_with_body_put(self):
+    async def test_invoke_with_body_put_json_dumps(self):
         from bodycomplex.aio import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
+
+        siamese_body = {
+            "id": 2,
+            "name": "Siameeee",
+            "color": "green",
+            "hates":
+                [
+                    {
+                        "id": 1,
+                        "name": "Potato",
+                        "food": "tomato"
+                    },
+                    {
+                        "id": -1,
+                        "name": "Tomato",
+                        "food": "french fries"
+                    }
+                ],
+            "breed": "persian"
+        }
+
         request = HttpRequest("PUT", "/complex/inheritance/valid",
             headers={
                 'Accept': 'application/json',
                 'Content-Length': '179',
                 'Content-Type': 'application/json'
             },
-            data='{"id": 2, "name": "Siameeee", "color": "green", "hates": [{"id": 1, "name": "Potato", "food": "tomato"}, {"id": -1, "name": "Tomato", "food": "french fries"}], "breed": "persian"}'
+            data=json.dumps(siamese_body)
+        )
+
+        response = await client.invoke(request)
+        assert response.status_code == 200
+
+    @pytest.mark.asyncio
+    async def test_invoke_with_body_serialize(self):
+        from bodycomplex.aio import AutoRestComplexTestService
+        from bodycomplex.models import Siamese, Dog
+
+        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+
+        siamese = Siamese(
+            id=2,
+            name="Siameeee",
+            color="green",
+            hates=[
+                Dog(
+                    id=1,
+                    name="Potato",
+                    food="tomato"
+                ),
+                Dog(
+                    id=-1,
+                    name="Tomato",
+                    food="french fries"
+                )
+            ],
+            breed="persian"
+        )
+
+        request = HttpRequest("PUT", "/complex/inheritance/valid",
+            headers={
+                'Accept': 'application/json',
+                'Content-Length': '179',
+                'Content-Type': 'application/json'
+            },
+            data=json.dumps(siamese.serialize())
         )
 
         response = await client.invoke(request)
