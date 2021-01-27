@@ -25,7 +25,7 @@ class PollingPagingExampleOperationsMixin:
     def _basic_polling_request(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -53,7 +53,7 @@ class PollingPagingExampleOperationsMixin:
     async def begin_basic_polling(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncCustomPoller["_models.Product"]:
         """A simple polling operation.
 
@@ -118,7 +118,7 @@ class PollingPagingExampleOperationsMixin:
 
     def _basic_paging_request(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         accept = "application/json"
 
@@ -137,7 +137,7 @@ class PollingPagingExampleOperationsMixin:
 
     def basic_paging(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A simple paging operation.
 

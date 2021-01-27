@@ -27,7 +27,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         api_version = "1.0.0"
         accept = "application/json"
@@ -53,7 +53,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
@@ -96,7 +96,7 @@ class MultiapiServiceClientOperationsMixin:
     def _test_lro_request(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -124,7 +124,7 @@ class MultiapiServiceClientOperationsMixin:
     async def begin_test_lro(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
@@ -191,7 +191,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         
         _maxresults = None
@@ -224,7 +224,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> AsyncLROPoller[AsyncItemPaged["_models.PagingResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
@@ -344,7 +344,7 @@ class MultiapiServiceClientOperationsMixin:
     def _test_different_calls_request(
         self,
         greeting_in_english: str,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         api_version = "1.0.0"
         accept = "application/json"
@@ -367,7 +367,7 @@ class MultiapiServiceClientOperationsMixin:
     async def test_different_calls(
         self,
         greeting_in_english: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
 

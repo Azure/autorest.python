@@ -33,8 +33,8 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
-        endpoint: str,
+        credential: "AsyncTokenCredential",,
+        endpoint: str,,
         **kwargs  # type: Any
     ) -> None:
         if credential is None:

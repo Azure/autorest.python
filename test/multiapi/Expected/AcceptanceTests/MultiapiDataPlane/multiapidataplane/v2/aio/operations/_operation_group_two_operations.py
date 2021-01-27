@@ -42,7 +42,7 @@ class OperationGroupTwoOperations:
     def _test_four_request(
         self,
         parameter_one: bool,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         api_version = "2.0.0"
         accept = "application/json"
@@ -65,7 +65,7 @@ class OperationGroupTwoOperations:
     async def test_four(
         self,
         parameter_one: bool,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 

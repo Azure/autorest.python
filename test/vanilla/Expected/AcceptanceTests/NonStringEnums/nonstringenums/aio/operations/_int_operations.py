@@ -43,7 +43,7 @@ class IntOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_request(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
+    def _put_request(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -69,7 +69,7 @@ class IntOperations:
     _put_request.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
     @distributed_trace_async
-    async def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> str:
+    async def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
         :param input: Input int enum.
@@ -102,7 +102,7 @@ class IntOperations:
 
     put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
-    def _get_request(self, **kwargs) -> HttpRequest:
+    def _get_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -120,7 +120,7 @@ class IntOperations:
     _get_request.metadata = {"url": "/nonStringEnums/int/get"}  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs) -> Union[int, "_models.IntEnum"]:
+    async def get(self, **kwargs: Any) -> Union[int, "_models.IntEnum"]:
         """Get an int enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

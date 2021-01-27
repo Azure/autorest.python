@@ -47,7 +47,7 @@ class InheritanceOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_valid_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class InheritanceOperations:
     _get_valid_request.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.Siamese":
+    async def get_valid(self, **kwargs: Any) -> "_models.Siamese":
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class InheritanceOperations:
 
     get_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
-    def _put_valid_request(self, complex_body: "_models.Siamese", **kwargs) -> HttpRequest:
+    def _put_valid_request(self, complex_body: "_models.Siamese", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -121,7 +121,7 @@ class InheritanceOperations:
     _put_valid_request.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "_models.Siamese", **kwargs) -> None:
+    async def put_valid(self, complex_body: "_models.Siamese", **kwargs: Any) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,

@@ -48,7 +48,7 @@ class ApiVersionLocalOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_method_local_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_method_local_valid_request(self, **kwargs: Any) -> HttpRequest:
         api_version = "2.0"
         accept = "application/json"
 
@@ -68,7 +68,7 @@ class ApiVersionLocalOperations:
     _get_method_local_valid_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_local_valid(self, **kwargs) -> None:
+    async def get_method_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -97,7 +97,7 @@ class ApiVersionLocalOperations:
 
     get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
 
-    def _get_method_local_null_request(self, api_version: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _get_method_local_null_request(self, api_version: Optional[str] = None, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -117,7 +117,7 @@ class ApiVersionLocalOperations:
     _get_method_local_null_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_local_null(self, api_version: Optional[str] = None, **kwargs) -> None:
+    async def get_method_local_null(self, api_version: Optional[str] = None, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :param api_version: This should appear as a method parameter, use value null, this should
@@ -148,7 +148,7 @@ class ApiVersionLocalOperations:
 
     get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
-    def _get_path_local_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_path_local_valid_request(self, **kwargs: Any) -> HttpRequest:
         api_version = "2.0"
         accept = "application/json"
 
@@ -168,7 +168,7 @@ class ApiVersionLocalOperations:
     _get_path_local_valid_request.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_local_valid(self, **kwargs) -> None:
+    async def get_path_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -197,7 +197,7 @@ class ApiVersionLocalOperations:
 
     get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
-    def _get_swagger_local_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_swagger_local_valid_request(self, **kwargs: Any) -> HttpRequest:
         api_version = "2.0"
         accept = "application/json"
 
@@ -217,7 +217,7 @@ class ApiVersionLocalOperations:
     _get_swagger_local_valid_request.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_local_valid(self, **kwargs) -> None:
+    async def get_swagger_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

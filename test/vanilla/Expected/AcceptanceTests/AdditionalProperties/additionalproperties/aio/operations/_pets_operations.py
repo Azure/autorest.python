@@ -47,7 +47,7 @@ class PetsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _create_ap_true_request(self, create_parameters: "_models.PetAPTrue", **kwargs) -> HttpRequest:
+    def _create_ap_true_request(self, create_parameters: "_models.PetAPTrue", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -70,7 +70,7 @@ class PetsOperations:
     _create_ap_true_request.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_true(self, create_parameters: "_models.PetAPTrue", **kwargs) -> "_models.PetAPTrue":
+    async def create_ap_true(self, create_parameters: "_models.PetAPTrue", **kwargs: Any) -> "_models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -104,7 +104,7 @@ class PetsOperations:
 
     create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
-    def _create_cat_ap_true_request(self, create_parameters: "_models.CatAPTrue", **kwargs) -> HttpRequest:
+    def _create_cat_ap_true_request(self, create_parameters: "_models.CatAPTrue", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -127,7 +127,7 @@ class PetsOperations:
     _create_cat_ap_true_request.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters: "_models.CatAPTrue", **kwargs) -> "_models.CatAPTrue":
+    async def create_cat_ap_true(self, create_parameters: "_models.CatAPTrue", **kwargs: Any) -> "_models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -161,7 +161,7 @@ class PetsOperations:
 
     create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
-    def _create_ap_object_request(self, create_parameters: "_models.PetAPObject", **kwargs) -> HttpRequest:
+    def _create_ap_object_request(self, create_parameters: "_models.PetAPObject", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -184,7 +184,7 @@ class PetsOperations:
     _create_ap_object_request.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_object(self, create_parameters: "_models.PetAPObject", **kwargs) -> "_models.PetAPObject":
+    async def create_ap_object(self, create_parameters: "_models.PetAPObject", **kwargs: Any) -> "_models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -218,7 +218,7 @@ class PetsOperations:
 
     create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
-    def _create_ap_string_request(self, create_parameters: "_models.PetAPString", **kwargs) -> HttpRequest:
+    def _create_ap_string_request(self, create_parameters: "_models.PetAPString", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -241,7 +241,7 @@ class PetsOperations:
     _create_ap_string_request.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_string(self, create_parameters: "_models.PetAPString", **kwargs) -> "_models.PetAPString":
+    async def create_ap_string(self, create_parameters: "_models.PetAPString", **kwargs: Any) -> "_models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -275,7 +275,9 @@ class PetsOperations:
 
     create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
-    def _create_ap_in_properties_request(self, create_parameters: "_models.PetAPInProperties", **kwargs) -> HttpRequest:
+    def _create_ap_in_properties_request(
+        self, create_parameters: "_models.PetAPInProperties", **kwargs: Any
+    ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -299,7 +301,7 @@ class PetsOperations:
 
     @distributed_trace_async
     async def create_ap_in_properties(
-        self, create_parameters: "_models.PetAPInProperties", **kwargs
+        self, create_parameters: "_models.PetAPInProperties", **kwargs: Any
     ) -> "_models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
 
@@ -335,7 +337,7 @@ class PetsOperations:
     create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     def _create_ap_in_properties_with_ap_string_request(
-        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs
+        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -360,7 +362,7 @@ class PetsOperations:
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
-        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs
+        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
     ) -> "_models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.
 

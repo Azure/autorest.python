@@ -50,7 +50,9 @@ class LROsCustomHeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_async_retry_succeeded_request(self, product: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _put_async_retry_succeeded_request(
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -77,7 +79,7 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
@@ -151,7 +153,7 @@ class LROsCustomHeaderOperations:
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     def _put201_creating_succeeded200_request(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -179,7 +181,7 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
@@ -238,7 +240,7 @@ class LROsCustomHeaderOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _post202_retry200_request(self, product: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post202_retry200_request(self, product: Optional["_models.Product"] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -265,7 +267,7 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
@@ -323,7 +325,9 @@ class LROsCustomHeaderOperations:
 
     begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
-    def _post_async_retry_succeeded_request(self, product: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post_async_retry_succeeded_request(
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -350,7 +354,7 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an

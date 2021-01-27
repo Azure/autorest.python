@@ -47,7 +47,7 @@ class PathsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_request(self, account_name: str, **kwargs) -> HttpRequest:
+    def _get_empty_request(self, account_name: str, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -70,7 +70,7 @@ class PathsOperations:
     _get_empty_request.metadata = {"url": "/customuri"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, account_name: str, **kwargs) -> None:
+    async def get_empty(self, account_name: str, **kwargs: Any) -> None:
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name.

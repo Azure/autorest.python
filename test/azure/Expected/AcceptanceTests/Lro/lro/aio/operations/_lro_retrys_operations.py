@@ -51,7 +51,7 @@ class LRORetrysOperations:
         self._config = config
 
     def _put201_creating_succeeded200_request(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -79,7 +79,7 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -138,7 +138,7 @@ class LRORetrysOperations:
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
 
     def _put_async_relative_retry_succeeded_request(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -166,7 +166,7 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller["_models.Product"]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-
@@ -238,7 +238,7 @@ class LRORetrysOperations:
 
     begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
 
-    def _delete_provisioning202_accepted200_succeeded_request(self, **kwargs) -> HttpRequest:
+    def _delete_provisioning202_accepted200_succeeded_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -256,7 +256,9 @@ class LRORetrysOperations:
     _delete_provisioning202_accepted200_succeeded_request.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs) -> AsyncLROPoller["_models.Product"]:
+    async def begin_delete_provisioning202_accepted200_succeeded(
+        self, **kwargs: Any
+    ) -> AsyncLROPoller["_models.Product"]:
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
         entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -312,7 +314,7 @@ class LRORetrysOperations:
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    def _delete202_retry200_request(self, **kwargs) -> HttpRequest:
+    def _delete202_retry200_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -330,7 +332,7 @@ class LRORetrysOperations:
     _delete202_retry200_request.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete202_retry200(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
         return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -385,7 +387,7 @@ class LRORetrysOperations:
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
-    def _delete_async_relative_retry_succeeded_request(self, **kwargs) -> HttpRequest:
+    def _delete_async_relative_retry_succeeded_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -403,7 +405,7 @@ class LRORetrysOperations:
     _delete_async_relative_retry_succeeded_request.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_succeeded(self, **kwargs) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -461,7 +463,7 @@ class LRORetrysOperations:
 
     begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
-    def _post202_retry200_request(self, product: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post202_retry200_request(self, product: Optional["_models.Product"] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -488,7 +490,7 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -546,7 +548,7 @@ class LRORetrysOperations:
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
     def _post_async_relative_retry_succeeded_request(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -574,7 +576,7 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_succeeded(
-        self, product: Optional["_models.Product"] = None, **kwargs
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-

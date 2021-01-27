@@ -16,22 +16,15 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
 {# get method signature #}
 {% macro method_signature(operation, request, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
+{% import 'keywords.jinja2' as keywords with context %}
 {{ "async " if coroutine else "" }}def {{ operation_name }}(
-{% if async_mode %}
     self,
-    {% for param_signature in request.parameters.async_method_signature %}
-    {{ param_signature }},
-    {% endfor %}
-    **kwargs
-){{ async_return_type_annotation(operation, return_type_wrapper, return_type) }}:
-{% else %}
-    self,
-    {% for param_signature in request.parameters.sync_method_signature %}
+{% for param_signature in request.parameters.method_signature(async_mode) %}
     {{ param_signature }}
-    {% endfor %}
-    **kwargs  # type: Any
-):
-{% endif %}{% endmacro %}
+{% endfor %}
+    {{ keywords.kwargs_declaration }}
+){{ async_return_type_annotation(operation, return_type_wrapper, return_type) if async_mode }}:
+{% endmacro %}
 
 {# content type docstring #}
 {% macro content_type_docstring(request) %}

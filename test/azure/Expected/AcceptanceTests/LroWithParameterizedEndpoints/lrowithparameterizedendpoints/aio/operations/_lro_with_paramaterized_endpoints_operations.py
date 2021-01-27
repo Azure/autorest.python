@@ -28,7 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROWithParamaterizedEndpointsOperationsMixin:
-    def _poll_with_parameterized_endpoints_request(self, account_name: str, **kwargs) -> HttpRequest:
+    def _poll_with_parameterized_endpoints_request(self, account_name: str, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -51,7 +51,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
     _poll_with_parameterized_endpoints_request.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs) -> AsyncLROPoller[str]:
+    async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
         :param account_name: Account Name. Pass in 'local' to pass test.

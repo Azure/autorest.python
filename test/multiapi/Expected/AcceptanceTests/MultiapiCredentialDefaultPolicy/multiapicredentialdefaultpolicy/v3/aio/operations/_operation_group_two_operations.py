@@ -43,7 +43,7 @@ class OperationGroupTwoOperations:
     def _test_four_request(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
@@ -81,7 +81,7 @@ class OperationGroupTwoOperations:
     async def test_four(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
@@ -122,7 +122,7 @@ class OperationGroupTwoOperations:
 
     def _test_five_request(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         api_version = "3.0.0"
         accept = "application/json"
@@ -143,7 +143,7 @@ class OperationGroupTwoOperations:
 
     async def test_five(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 

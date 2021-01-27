@@ -48,7 +48,9 @@ class ParameterGroupingOperations:
         self._config = config
 
     def _post_required_request(
-        self, parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters", **kwargs
+        self,
+        parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
+        **kwargs: Any
     ) -> HttpRequest:
 
         _custom_header = None
@@ -91,7 +93,9 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_required(
-        self, parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters", **kwargs
+        self,
+        parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
+        **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
@@ -127,7 +131,7 @@ class ParameterGroupingOperations:
     def _post_optional_request(
         self,
         parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
 
         _custom_header = None
@@ -159,7 +163,7 @@ class ParameterGroupingOperations:
     async def post_optional(
         self,
         parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
@@ -198,7 +202,7 @@ class ParameterGroupingOperations:
         parameter_grouping_post_multi_param_groups_second_param_group: Optional[
             "_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"
         ] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
 
         _header_one = None
@@ -242,7 +246,7 @@ class ParameterGroupingOperations:
         parameter_grouping_post_multi_param_groups_second_param_group: Optional[
             "_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"
         ] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
@@ -280,7 +284,7 @@ class ParameterGroupingOperations:
     post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
     def _post_shared_parameter_group_object_request(
-        self, first_parameter_group: Optional["_models.FirstParameterGroup"] = None, **kwargs
+        self, first_parameter_group: Optional["_models.FirstParameterGroup"] = None, **kwargs: Any
     ) -> HttpRequest:
 
         _header_one = None
@@ -310,7 +314,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_shared_parameter_group_object(
-        self, first_parameter_group: Optional["_models.FirstParameterGroup"] = None, **kwargs
+        self, first_parameter_group: Optional["_models.FirstParameterGroup"] = None, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 

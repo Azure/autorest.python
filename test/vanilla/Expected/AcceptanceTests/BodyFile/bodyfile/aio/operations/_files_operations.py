@@ -47,7 +47,7 @@ class FilesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_file_request(self, **kwargs) -> HttpRequest:
+    def _get_file_request(self, **kwargs: Any) -> HttpRequest:
         accept = "image/png, application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class FilesOperations:
     _get_file_request.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_file(self, **kwargs) -> IO:
+    async def get_file(self, **kwargs: Any) -> IO:
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class FilesOperations:
 
     get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
-    def _get_file_large_request(self, **kwargs) -> HttpRequest:
+    def _get_file_large_request(self, **kwargs: Any) -> HttpRequest:
         accept = "image/png, application/json"
 
         # Construct URL
@@ -116,7 +116,7 @@ class FilesOperations:
     _get_file_large_request.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
     @distributed_trace_async
-    async def get_file_large(self, **kwargs) -> IO:
+    async def get_file_large(self, **kwargs: Any) -> IO:
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -149,7 +149,7 @@ class FilesOperations:
 
     get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
-    def _get_empty_file_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_file_request(self, **kwargs: Any) -> HttpRequest:
         accept = "image/png, application/json"
 
         # Construct URL
@@ -167,7 +167,7 @@ class FilesOperations:
     _get_empty_file_request.metadata = {"url": "/files/stream/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_file(self, **kwargs) -> IO:
+    async def get_empty_file(self, **kwargs: Any) -> IO:
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

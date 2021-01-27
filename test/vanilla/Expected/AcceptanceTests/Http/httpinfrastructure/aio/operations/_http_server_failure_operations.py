@@ -47,7 +47,7 @@ class HttpServerFailureOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head501_request(self, **kwargs) -> HttpRequest:
+    def _head501_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class HttpServerFailureOperations:
     _head501_request.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
-    async def head501(self, **kwargs) -> None:
+    async def head501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +94,7 @@ class HttpServerFailureOperations:
 
     head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
-    def _get501_request(self, **kwargs) -> HttpRequest:
+    def _get501_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -112,7 +112,7 @@ class HttpServerFailureOperations:
     _get501_request.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
-    async def get501(self, **kwargs) -> None:
+    async def get501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -141,7 +141,7 @@ class HttpServerFailureOperations:
 
     get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
-    def _post505_request(self, boolean_value: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post505_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -167,7 +167,7 @@ class HttpServerFailureOperations:
     _post505_request.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace_async
-    async def post505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def post505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.
@@ -197,7 +197,7 @@ class HttpServerFailureOperations:
 
     post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
-    def _delete505_request(self, boolean_value: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete505_request(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -223,7 +223,7 @@ class HttpServerFailureOperations:
     _delete505_request.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace_async
-    async def delete505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
+    async def delete505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true.

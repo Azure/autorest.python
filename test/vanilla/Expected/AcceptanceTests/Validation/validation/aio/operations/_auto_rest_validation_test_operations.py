@@ -26,7 +26,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestValidationTestOperationsMixin:
-    def _validation_of_method_parameters_request(self, resource_group_name: str, id: int, **kwargs) -> HttpRequest:
+    def _validation_of_method_parameters_request(self, resource_group_name: str, id: int, **kwargs: Any) -> HttpRequest:
         api_version = "1.0.0"
         accept = "application/json"
 
@@ -59,7 +59,9 @@ class AutoRestValidationTestOperationsMixin:
     _validation_of_method_parameters_request.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
-    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs) -> "_models.Product":
+    async def validation_of_method_parameters(
+        self, resource_group_name: str, id: int, **kwargs: Any
+    ) -> "_models.Product":
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -98,7 +100,7 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     def _validation_of_body_request(
-        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
+        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs: Any
     ) -> HttpRequest:
         api_version = "1.0.0"
         content_type = kwargs.pop("content_type", "application/json")
@@ -136,7 +138,7 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
+        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         """Validates body parameters on the method. See swagger for details.
 
@@ -175,7 +177,7 @@ class AutoRestValidationTestOperationsMixin:
 
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
-    def _get_with_constant_in_path_request(self, **kwargs) -> HttpRequest:
+    def _get_with_constant_in_path_request(self, **kwargs: Any) -> HttpRequest:
         constant_param = "constant"
 
         # Construct URL
@@ -196,7 +198,7 @@ class AutoRestValidationTestOperationsMixin:
     _get_with_constant_in_path_request.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
-    async def get_with_constant_in_path(self, **kwargs) -> None:
+    async def get_with_constant_in_path(self, **kwargs: Any) -> None:
         """get_with_constant_in_path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -224,7 +226,9 @@ class AutoRestValidationTestOperationsMixin:
 
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
-    def _post_with_constant_in_body_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post_with_constant_in_body_request(
+        self, body: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> HttpRequest:
         constant_param = "constant"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -255,7 +259,9 @@ class AutoRestValidationTestOperationsMixin:
     _post_with_constant_in_body_request.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
-    async def post_with_constant_in_body(self, body: Optional["_models.Product"] = None, **kwargs) -> "_models.Product":
+    async def post_with_constant_in_body(
+        self, body: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> "_models.Product":
         """post_with_constant_in_body.
 
         :param body:

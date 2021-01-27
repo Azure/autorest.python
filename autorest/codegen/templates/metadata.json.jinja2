@@ -19,7 +19,7 @@
         "sync": {
             {% for gp in sync_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
-                "signature": {{ gp.sync_method_signature | tojson }},
+                "signature": {{ gp.method_signature(async_mode=True) | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}
@@ -29,7 +29,7 @@
         "async": {
             {% for gp in async_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
-                "signature": {{ (gp.async_method_signature + ",") | tojson }},
+                "signature": {{ (gp.method_signature(async_mode=True) + ",") | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}

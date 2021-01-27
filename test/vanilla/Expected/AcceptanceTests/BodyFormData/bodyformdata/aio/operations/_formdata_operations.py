@@ -47,7 +47,7 @@ class FormdataOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _upload_file_request(self, file_content: IO, file_name: str, **kwargs) -> HttpRequest:
+    def _upload_file_request(self, file_content: IO, file_name: str, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "multipart/form-data")
         accept = "application/octet-stream, application/json"
 
@@ -72,7 +72,7 @@ class FormdataOperations:
     _upload_file_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_file(self, file_content: IO, file_name: str, **kwargs) -> IO:
+    async def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> IO:
         """Upload file.
 
         :param file_content: File to upload.
@@ -108,7 +108,7 @@ class FormdataOperations:
 
     upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
-    def _upload_file_via_body_request(self, file_content: IO, **kwargs) -> HttpRequest:
+    def _upload_file_via_body_request(self, file_content: IO, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/octet-stream, application/json"
 
@@ -130,7 +130,7 @@ class FormdataOperations:
     _upload_file_via_body_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO, **kwargs) -> IO:
+    async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
         """Upload file.
 
         :param file_content: File to upload.
@@ -164,7 +164,7 @@ class FormdataOperations:
 
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
-    def _upload_files_request(self, file_content: List[IO], **kwargs) -> HttpRequest:
+    def _upload_files_request(self, file_content: List[IO], **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "multipart/form-data")
         accept = "application/octet-stream, application/json"
 
@@ -188,7 +188,7 @@ class FormdataOperations:
     _upload_files_request.metadata = {"url": "/formdata/stream/uploadfiles"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_files(self, file_content: List[IO], **kwargs) -> IO:
+    async def upload_files(self, file_content: List[IO], **kwargs: Any) -> IO:
         """Upload multiple files.
 
         :param file_content: Files to upload.

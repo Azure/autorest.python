@@ -62,8 +62,8 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
-        endpoint: str,
+        credential: "AsyncTokenCredential",,
+        endpoint: str,,
         api_version: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
         **kwargs  # type: Any

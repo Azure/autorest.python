@@ -48,7 +48,7 @@ class Datetimerfc1123Operations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -66,7 +66,7 @@ class Datetimerfc1123Operations:
     _get_null_request.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[datetime.datetime]:
+    async def get_null(self, **kwargs: Any) -> Optional[datetime.datetime]:
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -99,7 +99,7 @@ class Datetimerfc1123Operations:
 
     get_null.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -117,7 +117,7 @@ class Datetimerfc1123Operations:
     _get_invalid_request.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs) -> datetime.datetime:
+    async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
         """Get invalid datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -150,7 +150,7 @@ class Datetimerfc1123Operations:
 
     get_invalid.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
 
-    def _get_overflow_request(self, **kwargs) -> HttpRequest:
+    def _get_overflow_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -168,7 +168,7 @@ class Datetimerfc1123Operations:
     _get_overflow_request.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow(self, **kwargs) -> datetime.datetime:
+    async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
         """Get overflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -201,7 +201,7 @@ class Datetimerfc1123Operations:
 
     get_overflow.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
 
-    def _get_underflow_request(self, **kwargs) -> HttpRequest:
+    def _get_underflow_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -219,7 +219,7 @@ class Datetimerfc1123Operations:
     _get_underflow_request.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow(self, **kwargs) -> datetime.datetime:
+    async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
         """Get underflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -252,7 +252,7 @@ class Datetimerfc1123Operations:
 
     get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
 
-    def _put_utc_max_date_time_request(self, datetime_body: datetime.datetime, **kwargs) -> HttpRequest:
+    def _put_utc_max_date_time_request(self, datetime_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -275,7 +275,7 @@ class Datetimerfc1123Operations:
     _put_utc_max_date_time_request.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body: datetime body.
@@ -305,7 +305,7 @@ class Datetimerfc1123Operations:
 
     put_utc_max_date_time.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
 
-    def _get_utc_lowercase_max_date_time_request(self, **kwargs) -> HttpRequest:
+    def _get_utc_lowercase_max_date_time_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -323,7 +323,7 @@ class Datetimerfc1123Operations:
     _get_utc_lowercase_max_date_time_request.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
 
     @distributed_trace_async
-    async def get_utc_lowercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -356,7 +356,7 @@ class Datetimerfc1123Operations:
 
     get_utc_lowercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
 
-    def _get_utc_uppercase_max_date_time_request(self, **kwargs) -> HttpRequest:
+    def _get_utc_uppercase_max_date_time_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -374,7 +374,7 @@ class Datetimerfc1123Operations:
     _get_utc_uppercase_max_date_time_request.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
 
     @distributed_trace_async
-    async def get_utc_uppercase_max_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -407,7 +407,7 @@ class Datetimerfc1123Operations:
 
     get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
 
-    def _put_utc_min_date_time_request(self, datetime_body: datetime.datetime, **kwargs) -> HttpRequest:
+    def _put_utc_min_date_time_request(self, datetime_body: datetime.datetime, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -430,7 +430,7 @@ class Datetimerfc1123Operations:
     _put_utc_min_date_time_request.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs) -> None:
+    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body: datetime body.
@@ -460,7 +460,7 @@ class Datetimerfc1123Operations:
 
     put_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
 
-    def _get_utc_min_date_time_request(self, **kwargs) -> HttpRequest:
+    def _get_utc_min_date_time_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -478,7 +478,7 @@ class Datetimerfc1123Operations:
     _get_utc_min_date_time_request.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
 
     @distributed_trace_async
-    async def get_utc_min_date_time(self, **kwargs) -> datetime.datetime:
+    async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

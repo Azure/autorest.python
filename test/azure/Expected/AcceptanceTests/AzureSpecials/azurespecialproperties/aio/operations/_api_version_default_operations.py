@@ -48,7 +48,7 @@ class ApiVersionDefaultOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_method_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_method_global_valid_request(self, **kwargs: Any) -> HttpRequest:
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -68,7 +68,7 @@ class ApiVersionDefaultOperations:
     _get_method_global_valid_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_global_valid(self, **kwargs) -> None:
+    async def get_method_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -97,7 +97,7 @@ class ApiVersionDefaultOperations:
 
     get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
-    def _get_method_global_not_provided_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_method_global_not_provided_valid_request(self, **kwargs: Any) -> HttpRequest:
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -117,7 +117,7 @@ class ApiVersionDefaultOperations:
     _get_method_global_not_provided_valid_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_global_not_provided_valid(self, **kwargs) -> None:
+    async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -146,7 +146,7 @@ class ApiVersionDefaultOperations:
 
     get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
-    def _get_path_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_path_global_valid_request(self, **kwargs: Any) -> HttpRequest:
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -166,7 +166,7 @@ class ApiVersionDefaultOperations:
     _get_path_global_valid_request.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_global_valid(self, **kwargs) -> None:
+    async def get_path_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -195,7 +195,7 @@ class ApiVersionDefaultOperations:
 
     get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
-    def _get_swagger_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_swagger_global_valid_request(self, **kwargs: Any) -> HttpRequest:
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -215,7 +215,7 @@ class ApiVersionDefaultOperations:
     _get_swagger_global_valid_request.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_global_valid(self, **kwargs) -> None:
+    async def get_swagger_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

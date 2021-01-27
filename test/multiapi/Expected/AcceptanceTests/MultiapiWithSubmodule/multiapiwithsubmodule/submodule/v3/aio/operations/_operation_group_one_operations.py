@@ -43,7 +43,7 @@ class OperationGroupOneOperations:
     def _test_two_request(
         self,
         parameter_one: Optional["_models.ModelThree"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
@@ -73,7 +73,7 @@ class OperationGroupOneOperations:
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelThree"] = None,
-        **kwargs
+        **kwargs: Any
     ) -> "_models.ModelThree":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 

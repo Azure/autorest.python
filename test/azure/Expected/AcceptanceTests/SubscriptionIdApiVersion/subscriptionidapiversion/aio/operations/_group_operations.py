@@ -48,7 +48,7 @@ class GroupOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_sample_resource_group_request(self, resource_group_name: str, **kwargs) -> HttpRequest:
+    def _get_sample_resource_group_request(self, resource_group_name: str, **kwargs: Any) -> HttpRequest:
         api_version = "2014-04-01-preview"
         accept = "application/json"
 
@@ -73,7 +73,7 @@ class GroupOperations:
     _get_sample_resource_group_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name: str, **kwargs) -> "_models.SampleResourceGroup":
+    async def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> "_models.SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.

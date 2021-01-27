@@ -48,7 +48,7 @@ class HeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _custom_named_request_id_request(self, foo_client_request_id: str, **kwargs) -> HttpRequest:
+    def _custom_named_request_id_request(self, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -69,7 +69,7 @@ class HeaderOperations:
     _custom_named_request_id_request.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
     @distributed_trace_async
-    async def custom_named_request_id(self, foo_client_request_id: str, **kwargs) -> None:
+    async def custom_named_request_id(self, foo_client_request_id: str, **kwargs: Any) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
@@ -105,7 +105,7 @@ class HeaderOperations:
     def _custom_named_request_id_param_grouping_request(
         self,
         header_custom_named_request_id_param_grouping_parameters: "_models.HeaderCustomNamedRequestIdParamGroupingParameters",
-        **kwargs
+        **kwargs: Any
     ) -> HttpRequest:
 
         _foo_client_request_id = None
@@ -134,7 +134,7 @@ class HeaderOperations:
     async def custom_named_request_id_param_grouping(
         self,
         header_custom_named_request_id_param_grouping_parameters: "_models.HeaderCustomNamedRequestIdParamGroupingParameters",
-        **kwargs
+        **kwargs: Any
     ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
@@ -172,7 +172,7 @@ class HeaderOperations:
 
     custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
 
-    def _custom_named_request_id_head_request(self, foo_client_request_id: str, **kwargs) -> HttpRequest:
+    def _custom_named_request_id_head_request(self, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -193,7 +193,7 @@ class HeaderOperations:
     _custom_named_request_id_head_request.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore
 
     @distributed_trace_async
-    async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs) -> bool:
+    async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs: Any) -> bool:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.

@@ -42,7 +42,7 @@ class HttpSuccessOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head200_request(self, **kwargs) -> HttpRequest:
+    def _head200_request(self, **kwargs: Any) -> HttpRequest:
 
         # Construct URL
         url = self._head200_request.metadata["url"]  # type: ignore
@@ -58,7 +58,7 @@ class HttpSuccessOperations:
     _head200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def head200(self, **kwargs) -> bool:
+    async def head200(self, **kwargs: Any) -> bool:
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -87,7 +87,7 @@ class HttpSuccessOperations:
 
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _head204_request(self, **kwargs) -> HttpRequest:
+    def _head204_request(self, **kwargs: Any) -> HttpRequest:
 
         # Construct URL
         url = self._head204_request.metadata["url"]  # type: ignore
@@ -103,7 +103,7 @@ class HttpSuccessOperations:
     _head204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def head204(self, **kwargs) -> bool:
+    async def head204(self, **kwargs: Any) -> bool:
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -132,7 +132,7 @@ class HttpSuccessOperations:
 
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _head404_request(self, **kwargs) -> HttpRequest:
+    def _head404_request(self, **kwargs: Any) -> HttpRequest:
 
         # Construct URL
         url = self._head404_request.metadata["url"]  # type: ignore
@@ -148,7 +148,7 @@ class HttpSuccessOperations:
     _head404_request.metadata = {"url": "/http/success/404"}  # type: ignore
 
     @distributed_trace_async
-    async def head404(self, **kwargs) -> bool:
+    async def head404(self, **kwargs: Any) -> bool:
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

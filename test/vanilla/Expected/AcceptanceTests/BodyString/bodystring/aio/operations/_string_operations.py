@@ -47,7 +47,7 @@ class StringOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class StringOperations:
     _get_null_request.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs) -> Optional[str]:
+    async def get_null(self, **kwargs: Any) -> Optional[str]:
         """Get null string value value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class StringOperations:
 
     get_null.metadata = {"url": "/string/null"}  # type: ignore
 
-    def _put_null_request(self, string_body: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _put_null_request(self, string_body: Optional[str] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -124,7 +124,7 @@ class StringOperations:
     _put_null_request.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace_async
-    async def put_null(self, string_body: Optional[str] = None, **kwargs) -> None:
+    async def put_null(self, string_body: Optional[str] = None, **kwargs: Any) -> None:
         """Set string value null.
 
         :param string_body: string body.
@@ -154,7 +154,7 @@ class StringOperations:
 
     put_null.metadata = {"url": "/string/null"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -172,7 +172,7 @@ class StringOperations:
     _get_empty_request.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs) -> str:
+    async def get_empty(self, **kwargs: Any) -> str:
         """Get empty string value value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -205,7 +205,7 @@ class StringOperations:
 
     get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
-    def _put_empty_request(self, **kwargs) -> HttpRequest:
+    def _put_empty_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         string_body = ""
         accept = "application/json"
@@ -229,7 +229,7 @@ class StringOperations:
     _put_empty_request.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, **kwargs) -> None:
+    async def put_empty(self, **kwargs: Any) -> None:
         """Set string value empty ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -258,7 +258,7 @@ class StringOperations:
 
     put_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
-    def _get_mbcs_request(self, **kwargs) -> HttpRequest:
+    def _get_mbcs_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -276,7 +276,7 @@ class StringOperations:
     _get_mbcs_request.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace_async
-    async def get_mbcs(self, **kwargs) -> str:
+    async def get_mbcs(self, **kwargs: Any) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -309,7 +309,7 @@ class StringOperations:
 
     get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
-    def _put_mbcs_request(self, **kwargs) -> HttpRequest:
+    def _put_mbcs_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         accept = "application/json"
@@ -333,7 +333,7 @@ class StringOperations:
     _put_mbcs_request.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace_async
-    async def put_mbcs(self, **kwargs) -> None:
+    async def put_mbcs(self, **kwargs: Any) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -362,7 +362,7 @@ class StringOperations:
 
     put_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
-    def _get_whitespace_request(self, **kwargs) -> HttpRequest:
+    def _get_whitespace_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -380,7 +380,7 @@ class StringOperations:
     _get_whitespace_request.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace_async
-    async def get_whitespace(self, **kwargs) -> str:
+    async def get_whitespace(self, **kwargs: Any) -> str:
         """Get string value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -415,7 +415,7 @@ class StringOperations:
 
     get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
-    def _put_whitespace_request(self, **kwargs) -> HttpRequest:
+    def _put_whitespace_request(self, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         string_body = "    Now is the time for all good men to come to the aid of their country    "
         accept = "application/json"
@@ -439,7 +439,7 @@ class StringOperations:
     _put_whitespace_request.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace_async
-    async def put_whitespace(self, **kwargs) -> None:
+    async def put_whitespace(self, **kwargs: Any) -> None:
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -470,7 +470,7 @@ class StringOperations:
 
     put_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
-    def _get_not_provided_request(self, **kwargs) -> HttpRequest:
+    def _get_not_provided_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -488,7 +488,7 @@ class StringOperations:
     _get_not_provided_request.metadata = {"url": "/string/notProvided"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs) -> str:
+    async def get_not_provided(self, **kwargs: Any) -> str:
         """Get String value when no string value is sent in response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -521,7 +521,7 @@ class StringOperations:
 
     get_not_provided.metadata = {"url": "/string/notProvided"}  # type: ignore
 
-    def _get_base64_encoded_request(self, **kwargs) -> HttpRequest:
+    def _get_base64_encoded_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -539,7 +539,7 @@ class StringOperations:
     _get_base64_encoded_request.metadata = {"url": "/string/base64Encoding"}  # type: ignore
 
     @distributed_trace_async
-    async def get_base64_encoded(self, **kwargs) -> bytearray:
+    async def get_base64_encoded(self, **kwargs: Any) -> bytearray:
         """Get value that is base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -572,7 +572,7 @@ class StringOperations:
 
     get_base64_encoded.metadata = {"url": "/string/base64Encoding"}  # type: ignore
 
-    def _get_base64_url_encoded_request(self, **kwargs) -> HttpRequest:
+    def _get_base64_url_encoded_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -590,7 +590,7 @@ class StringOperations:
     _get_base64_url_encoded_request.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace_async
-    async def get_base64_url_encoded(self, **kwargs) -> bytes:
+    async def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -623,7 +623,7 @@ class StringOperations:
 
     get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
-    def _put_base64_url_encoded_request(self, string_body: bytes, **kwargs) -> HttpRequest:
+    def _put_base64_url_encoded_request(self, string_body: bytes, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -646,7 +646,7 @@ class StringOperations:
     _put_base64_url_encoded_request.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace_async
-    async def put_base64_url_encoded(self, string_body: bytes, **kwargs) -> None:
+    async def put_base64_url_encoded(self, string_body: bytes, **kwargs: Any) -> None:
         """Put value that is base64url encoded.
 
         :param string_body: string body.
@@ -676,7 +676,7 @@ class StringOperations:
 
     put_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
-    def _get_null_base64_url_encoded_request(self, **kwargs) -> HttpRequest:
+    def _get_null_base64_url_encoded_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -694,7 +694,7 @@ class StringOperations:
     _get_null_base64_url_encoded_request.metadata = {"url": "/string/nullBase64UrlEncoding"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null_base64_url_encoded(self, **kwargs) -> Optional[bytes]:
+    async def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

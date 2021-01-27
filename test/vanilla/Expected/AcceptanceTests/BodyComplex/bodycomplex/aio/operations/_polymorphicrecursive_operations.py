@@ -47,7 +47,7 @@ class PolymorphicrecursiveOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_valid_request(self, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class PolymorphicrecursiveOperations:
     _get_valid_request.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs) -> "_models.Fish":
+    async def get_valid(self, **kwargs: Any) -> "_models.Fish":
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class PolymorphicrecursiveOperations:
 
     get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
-    def _put_valid_request(self, complex_body: "_models.Fish", **kwargs) -> HttpRequest:
+    def _put_valid_request(self, complex_body: "_models.Fish", **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -121,7 +121,7 @@ class PolymorphicrecursiveOperations:
     _put_valid_request.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "_models.Fish", **kwargs) -> None:
+    async def put_valid(self, complex_body: "_models.Fish", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:

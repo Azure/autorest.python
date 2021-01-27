@@ -175,19 +175,17 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def docstring_type(self) -> str:
         return self.multiple_media_types_docstring_type or self.schema.docstring_type
 
-    @property
-    def sync_method_signature(self) -> str:
+    def method_signature(self, async_mode: bool) -> str:
         default_value, default_value_declaration, type_annot = self._default_value()
-        if default_value is not None or not self.required:
+        has_default_value = default_value is not None or not self.required
+        if async_mode:
+            if has_default_value:
+                return f"{self.serialized_name}: {type_annot} = {default_value_declaration},"
+            return f"{self.serialized_name}: {type_annot},"
+        if has_default_value:
             return f"{self.serialized_name}={default_value_declaration},  # type: {type_annot}"
         return f"{self.serialized_name},  # type: {type_annot}"
 
-    @property
-    def async_method_signature(self) -> str:
-        default_value, default_value_declaration, type_annot = self._default_value()
-        if default_value is not None or not self.required:
-            return f"{self.serialized_name}: {type_annot} = {default_value_declaration}"
-        return f"{self.serialized_name}: {type_annot}"
 
     @property
     def full_serialized_name(self) -> str:
