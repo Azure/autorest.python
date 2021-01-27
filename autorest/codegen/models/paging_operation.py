@@ -7,6 +7,8 @@ import logging
 from typing import cast, Dict, List, Any, Optional, Set
 
 from .operation import Operation
+from .parameter import Parameter
+from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .request import Request
 from .imports import ImportType, FileImport, TypingSection
@@ -23,6 +25,8 @@ class PagingOperation(Operation):
         name: str,
         description: str,
         api_versions: Set[str],
+        parameters: Optional[List[Parameter]] = None,
+        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         summary: Optional[str] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -35,6 +39,8 @@ class PagingOperation(Operation):
             name,
             description,
             api_versions,
+            parameters,
+            multiple_media_type_parameters,
             summary,
             responses,
             exceptions,

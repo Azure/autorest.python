@@ -15,16 +15,22 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% macro sync_return_type_annotation(operation, return_type_wrapper, return_type=None) %}
 {{ "# type: (...) -> " + return_type_annotation(operation, return_type_wrapper, return_type) }}{% endmacro %}
 {# get method signature #}
-{% macro method_signature(operation, request, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
+{% macro _method_signature(operation, parameters, operation_name, async_mode, coroutine, return_type_wrapper, return_type=None) %}
 {% import 'keywords.jinja2' as keywords with context %}
 {{ "async " if coroutine else "" }}def {{ operation_name }}(
     self,
-{% for param_signature in request.parameters.method_signature(async_mode) %}
+{% for param_signature in parameters.method_signature(async_mode) %}
     {{ param_signature }}
 {% endfor %}
     {{ keywords.kwargs_declaration }}
 ){{ async_return_type_annotation(operation, return_type_wrapper, return_type) if async_mode }}:
 {% endmacro %}
+
+{% macro operation_method_signature(operation, async_mode, coroutine, return_type_wrapper, return_type=None) %}
+{{ _method_signature(operation, operation.parameters, operation.python_name, async_mode, coroutine, return_type_wrapper, return_type) }}{% endmacro %}
+
+{% macro request_method_signature(operation, request, async_mode) %}
+{{ _method_signature(operation, request.parameters, request.name, async_mode, coroutine=False, return_type_wrapper="", return_type="HttpRequest") }}{% endmacro %}
 
 {# content type docstring #}
 {% macro content_type_docstring(request) %}

@@ -1,6 +1,6 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
-{{ op_tools.method_signature(operation, request, request.name, async_mode=async_mode, coroutine=False, return_type_wrapper="", return_type="HttpRequest") }}
+{{ op_tools.request_method_signature(operation, request, async_mode=async_mode) }}
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, "", return_type="HttpRequest") }}
 {% endif %}

@@ -9,6 +9,8 @@ from typing import cast, Dict, List, Any, Optional, Union, Set
 
 from .base_model import BaseModel
 from .imports import FileImport, ImportType, TypingSection
+from .parameter import Parameter
+from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -17,6 +19,25 @@ from .request import Request
 
 _LOGGER = logging.getLogger(__name__)
 
+_M4_HEADER_PARAMETERS = ["content_type", "accept"]
+
+def _remove_multiple_m4_header_parameters(parameters: List[Parameter]) -> List[Parameter]:
+    m4_header_params_in_schema = {
+        k: [p for p in parameters if p.serialized_name == k]
+        for k in _M4_HEADER_PARAMETERS
+    }
+    remaining_params = [p for p in parameters if p.serialized_name not in _M4_HEADER_PARAMETERS]
+    json_m4_header_params = {
+        k: [p for p in m4_header_params_in_schema[k] if p.yaml_data["schema"]["type"] == "constant"]
+        for k in m4_header_params_in_schema
+    }
+    for k, v in json_m4_header_params.items():
+        if v:
+            remaining_params.append(v[0])
+        else:
+            remaining_params.append(m4_header_params_in_schema[k][0])
+
+    return remaining_params
 
 class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
@@ -29,6 +50,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         name: str,
         description: str,
         api_versions: Set[str],
+        parameters: Optional[List[Parameter]] = None,
+        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         summary: Optional[str] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -40,6 +63,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.request = request
         self.description = description
         self.api_versions = api_versions
+        self.parameters = ParameterList(parameters)
+        self.multiple_media_type_parameters = ParameterList(multiple_media_type_parameters)
         self.summary = summary
         self.responses = responses or []
         self.exceptions = exceptions or []
@@ -169,12 +194,66 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
+        multiple_requests = len(yaml_data["requests"]) > 1
+
+        multiple_media_type_parameters: List[Parameter] = []
+        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]
+
+        for request in yaml_data["requests"]:
+            for yaml in request.get("parameters", []):
+                parameter = Parameter.from_yaml(yaml)
+                if yaml["language"]["python"]["name"] in _M4_HEADER_PARAMETERS:
+                    parameter.is_kwarg = True
+                    parameters.append(parameter)
+                elif multiple_requests:
+                    multiple_media_type_parameters.append(parameter)
+                else:
+                    parameters.append(parameter)
+
+        if multiple_requests:
+            parameters = _remove_multiple_m4_header_parameters(parameters)
+            chosen_parameter = multiple_media_type_parameters[0]
+
+            # binary body parameters are required, while object
+            # ones are not. We default to optional in this case.
+            optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
+            if optional_parameters:
+                chosen_parameter = optional_parameters[0]
+            else:
+                chosen_parameter = multiple_media_type_parameters[0]
+            chosen_parameter.has_multiple_media_types = True
+            parameters.append(chosen_parameter)
+
+        if multiple_media_type_parameters:
+            body_parameters_name_set = set(
+                p.serialized_name for p in multiple_media_type_parameters
+            )
+            if len(body_parameters_name_set) > 1:
+                raise ValueError(
+                f"The body parameter with multiple media types has different names: {body_parameters_name_set}"
+            )
+
+
+        parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
+
+        # Need to connect the groupBy and originalParameter
+        for parameter in parameters:
+            parameter_grouped_by_id = id(parameter.grouped_by)
+            if parameter_grouped_by_id in parameters_index:
+                parameter.grouped_by = parameters_index[parameter_grouped_by_id]
+
+            parameter_original_id = id(parameter.original_parameter)
+            if parameter_original_id in parameters_index:
+                parameter.original_parameter = parameters_index[parameter_original_id]
+
         return cls(
             yaml_data=yaml_data,
-            request=Request.from_yaml(yaml_data),
+            request=Request.from_yaml(yaml_data, parameters, multiple_media_type_parameters),
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
+            parameters=parameters,
+            multiple_media_type_parameters=multiple_media_type_parameters,
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them
