@@ -104,12 +104,10 @@ class TestInvoke(object):
 
         request = HttpRequest("PUT", "/complex/inheritance/valid",
             headers={
-                'Accept': 'application/json',
-                'Content-Length': '179',
                 'Content-Type': 'application/json'
-            },
-            data=json.dumps(siamese_body)
+            }
         )
+        request.set_json_body(siamese_body)
 
         response = await client.invoke(request)
         assert response.status_code == 200
@@ -142,12 +140,10 @@ class TestInvoke(object):
 
         request = HttpRequest("PUT", "/complex/inheritance/valid",
             headers={
-                'Accept': 'application/json',
-                'Content-Length': '179',
                 'Content-Type': 'application/json'
-            },
-            data=json.dumps(siamese.serialize())
+            }
         )
+        request.set_json_body(siamese.serialize())
 
         response = await client.invoke(request)
         assert response.status_code == 200
