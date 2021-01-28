@@ -36,7 +36,7 @@ cwd = dirname(realpath(__file__))
 class TestInvoke(object):
 
     @pytest.mark.asyncio
-    async def test_invoke_with_body_get(self):
+    async def test_invoke_with_body_get_model_deserialize(self):
         from bodycomplex.aio import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -53,7 +53,28 @@ class TestInvoke(object):
         assert 2 ==  deserialized.id
         assert "Siameeee" ==  deserialized.name
         assert -1 ==  deserialized.hates[1].id
-        assert "Tomato" ==  deserialized.hates[1].name
+        assert "Tomato" == deserialized.hates[1].name
+
+    @pytest.mark.asyncio
+    async def test_invoke_with_body_get_direct_json(self):
+        from bodycomplex.aio import AutoRestComplexTestService
+        from bodycomplex.models import Siamese
+
+        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+
+        request = HttpRequest("GET", "/complex/inheritance/valid",
+            headers={
+                'Accept': 'application/json'
+            },
+        )
+
+        response = await client.invoke(request)
+
+        json_response = json.loads(response.text())
+        assert 2 == json_response['id']
+        assert "Siameeee" == json_response['name']
+        assert - 1 == json_response['hates'][1]['id']
+        assert "Tomato" == json_response['hates'][1]['name']
 
     @pytest.mark.asyncio
     async def test_invoke_with_body_put_json_dumps(self):
@@ -139,7 +160,7 @@ class TestInvoke(object):
         file_length = 0
         with io.BytesIO() as file_handle:
 
-            request = HttpRequest("GET", "/files/stream/nonempty",
+            request = HttpRequest("GET", "http://localhost:3000/files/stream/nonempty",
                 headers={
                     'Accept': 'image/png, application/json'
                 },
@@ -148,7 +169,26 @@ class TestInvoke(object):
             response = await client.invoke(request, stream=True)
             assert response.status_code == 200
 
-            # can't quite handle stream downloading yet. Need to find a way to link service client and stream_download
+            stream = response.stream_download(None)
+
+            total = len(stream)
+            assert not stream.response.internal_response._released
+
+            async for data in stream:
+                assert 0 < len(data) <= stream.block_size
+                file_length += len(data)
+                print("Downloading... {}%".format(int(file_length*100/total)))
+                file_handle.write(data)
+
+            assert file_length !=  0
+
+            sample_file = realpath(
+                join(cwd, pardir, pardir, pardir, pardir,
+                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+
+            with open(sample_file, 'rb') as data:
+                sample_data = hash(data.read())
+            assert sample_data == hash(file_handle.getvalue())
 
     @pytest.mark.asyncio
     async def test_invoke_with_client_path_format_arguments(self):
@@ -170,7 +210,7 @@ class TestInvoke(object):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+        client = AutoRestComplexTestService(base_url="http://fakeUrl")
 
         request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid",
             headers={
