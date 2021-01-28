@@ -23,6 +23,8 @@ class RequestParameterList(ParameterList):
         )
         seen_body = False
         for parameter in parameters_of_this_implementation:
+            if any([g for g in self.groupers if id(g.yaml_data) == id(parameter.yaml_data)]):
+                continue
             if parameter.in_method_signature:
                 if parameter.location == ParameterLocation.Body:
                     if seen_body:

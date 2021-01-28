@@ -319,15 +319,10 @@ class PagingOperations:
     def _get_multiple_pages_request(
         self,
         client_request_id: Optional[str] = None,
-        paging_get_multiple_pages_options: Optional["_models.PagingGetMultiplePagesOptions"] = None,
+        _maxresults: Optional[int] = None,
+        _timeout: Optional[int] = 30,
         **kwargs: Any
     ) -> HttpRequest:
-
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_options is not None:
-            _maxresults = paging_get_multiple_pages_options.maxresults
-            _timeout = paging_get_multiple_pages_options.timeout
         accept = "application/json"
 
         # Construct URL
@@ -384,15 +379,11 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._get_multiple_pages_request(
-                    client_request_id=client_request_id,
-                    paging_get_multiple_pages_options=paging_get_multiple_pages_options,
-                    **kwargs
+                    client_request_id=client_request_id, _maxresults=_maxresults, _timeout=_timeout, **kwargs
                 )
             else:
                 request = self._get_multiple_pages_request(
-                    client_request_id=client_request_id,
-                    paging_get_multiple_pages_options=paging_get_multiple_pages_options,
-                    **kwargs
+                    client_request_id=client_request_id, _maxresults=_maxresults, _timeout=_timeout, **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
@@ -520,15 +511,10 @@ class PagingOperations:
     def _get_odata_multiple_pages_request(
         self,
         client_request_id: Optional[str] = None,
-        paging_get_odata_multiple_pages_options: Optional["_models.PagingGetOdataMultiplePagesOptions"] = None,
+        _maxresults: Optional[int] = None,
+        _timeout: Optional[int] = 30,
         **kwargs: Any
     ) -> HttpRequest:
-
-        _maxresults = None
-        _timeout = None
-        if paging_get_odata_multiple_pages_options is not None:
-            _maxresults = paging_get_odata_multiple_pages_options.maxresults
-            _timeout = paging_get_odata_multiple_pages_options.timeout
         accept = "application/json"
 
         # Construct URL
@@ -585,15 +571,11 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._get_odata_multiple_pages_request(
-                    client_request_id=client_request_id,
-                    paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
-                    **kwargs
+                    client_request_id=client_request_id, _maxresults=_maxresults, _timeout=_timeout, **kwargs
                 )
             else:
                 request = self._get_odata_multiple_pages_request(
-                    client_request_id=client_request_id,
-                    paging_get_odata_multiple_pages_options=paging_get_odata_multiple_pages_options,
-                    **kwargs
+                    client_request_id=client_request_id, _maxresults=_maxresults, _timeout=_timeout, **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
@@ -625,18 +607,12 @@ class PagingOperations:
 
     def _get_multiple_pages_with_offset_request(
         self,
-        paging_get_multiple_pages_with_offset_options: "_models.PagingGetMultiplePagesWithOffsetOptions",
+        _offset: int,
         client_request_id: Optional[str] = None,
+        _maxresults: Optional[int] = None,
+        _timeout: Optional[int] = 30,
         **kwargs: Any
     ) -> HttpRequest:
-
-        _maxresults = None
-        _offset = None
-        _timeout = None
-        if paging_get_multiple_pages_with_offset_options is not None:
-            _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-            _offset = paging_get_multiple_pages_with_offset_options.offset
-            _timeout = paging_get_multiple_pages_with_offset_options.timeout
         accept = "application/json"
 
         # Construct URL
@@ -699,14 +675,18 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._get_multiple_pages_with_offset_request(
-                    paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
+                    _offset=_offset,
                     client_request_id=client_request_id,
+                    _maxresults=_maxresults,
+                    _timeout=_timeout,
                     **kwargs
                 )
             else:
                 request = self._get_multiple_pages_with_offset_request(
-                    paging_get_multiple_pages_with_offset_options=paging_get_multiple_pages_with_offset_options,
+                    _offset=_offset,
                     client_request_id=client_request_id,
+                    _maxresults=_maxresults,
+                    _timeout=_timeout,
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -1176,14 +1156,8 @@ class PagingOperations:
     get_multiple_pages_fragment_next_link.metadata = {"url": "/paging/multiple/fragment/{tenant}"}  # type: ignore
 
     def _get_multiple_pages_fragment_with_grouping_next_link_request(
-        self, custom_parameter_group: "_models.CustomParameterGroup", **kwargs: Any
+        self, _api_version: str, _tenant: str, **kwargs: Any
     ) -> HttpRequest:
-
-        _api_version = None
-        _tenant = None
-        if custom_parameter_group is not None:
-            _api_version = custom_parameter_group.api_version
-            _tenant = custom_parameter_group.tenant
         accept = "application/json"
 
         # Construct URL
@@ -1206,14 +1180,8 @@ class PagingOperations:
     _get_multiple_pages_fragment_with_grouping_next_link_request.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
 
     def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
-        self, next_link: str, custom_parameter_group: "_models.CustomParameterGroup", **kwargs: Any
+        self, _api_version: str, _tenant: str, next_link: str, **kwargs: Any
     ) -> HttpRequest:
-
-        _api_version = None
-        _tenant = None
-        if custom_parameter_group is not None:
-            _api_version = custom_parameter_group.api_version
-            _tenant = custom_parameter_group.tenant
         accept = "application/json"
 
         # Construct URL
@@ -1263,11 +1231,11 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._get_multiple_pages_fragment_with_grouping_next_link_request(
-                    custom_parameter_group=custom_parameter_group, **kwargs
+                    _api_version=_api_version, _tenant=_tenant, **kwargs
                 )
             else:
                 request = self._get_multiple_pages_fragment_with_grouping_next_link_next_request(
-                    next_link=next_link, custom_parameter_group=custom_parameter_group, **kwargs
+                    _api_version=_api_version, _tenant=_tenant, next_link=next_link, **kwargs
                 )
             return request
 
@@ -1297,15 +1265,10 @@ class PagingOperations:
     def _get_multiple_pages_lro_request(
         self,
         client_request_id: Optional[str] = None,
-        paging_get_multiple_pages_lro_options: Optional["_models.PagingGetMultiplePagesLroOptions"] = None,
+        _maxresults: Optional[int] = None,
+        _timeout: Optional[int] = 30,
         **kwargs: Any
     ) -> HttpRequest:
-
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_lro_options is not None:
-            _maxresults = paging_get_multiple_pages_lro_options.maxresults
-            _timeout = paging_get_multiple_pages_lro_options.timeout
         accept = "application/json"
 
         # Construct URL
@@ -1367,15 +1330,11 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._get_multiple_pages_lro_request(
-                    client_request_id=client_request_id,
-                    paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-                    **kwargs
+                    client_request_id=client_request_id, _maxresults=_maxresults, _timeout=_timeout, **kwargs
                 )
             else:
                 request = self._get_multiple_pages_lro_request(
-                    client_request_id=client_request_id,
-                    paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-                    **kwargs
+                    client_request_id=client_request_id, _maxresults=_maxresults, _timeout=_timeout, **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
@@ -1409,9 +1368,7 @@ class PagingOperations:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             request = self._get_multiple_pages_lro_request(
-                client_request_id=client_request_id,
-                paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
-                **kwargs
+                client_request_id=client_request_id, _maxresults=_maxresults, _timeout=_timeout, **kwargs
             )
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

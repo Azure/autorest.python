@@ -48,20 +48,8 @@ class ParameterGroupingOperations:
         self._config = config
 
     def _post_required_request(
-        self,
-        parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
-        **kwargs: Any
+        self, _path: str, body: int, _custom_header: Optional[str] = None, _query: Optional[int] = 30, **kwargs: Any
     ) -> HttpRequest:
-
-        _custom_header = None
-        _query = None
-        _path = None
-        body = None
-        if parameter_grouping_post_required_parameters is not None:
-            _custom_header = parameter_grouping_post_required_parameters.custom_header
-            _query = parameter_grouping_post_required_parameters.query
-            _path = parameter_grouping_post_required_parameters.path
-            body = parameter_grouping_post_required_parameters.body
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -110,9 +98,18 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _custom_header = None
+        _query = None
+        _path = None
+        _body = None
+        if parameter_grouping_post_required_parameters is not None:
+            _custom_header = parameter_grouping_post_required_parameters.custom_header
+            _query = parameter_grouping_post_required_parameters.query
+            _path = parameter_grouping_post_required_parameters.path
+            _body = parameter_grouping_post_required_parameters.body
         body = _body
         request = self._post_required_request(
-            parameter_grouping_post_required_parameters=parameter_grouping_post_required_parameters, **kwargs
+            _path=_path, body=body, _custom_header=_custom_header, _query=_query, **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -130,16 +127,8 @@ class ParameterGroupingOperations:
     post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
 
     def _post_optional_request(
-        self,
-        parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
-        **kwargs: Any
+        self, _custom_header: Optional[str] = None, _query: Optional[int] = 30, **kwargs: Any
     ) -> HttpRequest:
-
-        _custom_header = None
-        _query = None
-        if parameter_grouping_post_optional_parameters is not None:
-            _custom_header = parameter_grouping_post_optional_parameters.custom_header
-            _query = parameter_grouping_post_optional_parameters.query
         accept = "application/json"
 
         # Construct URL
@@ -179,9 +168,12 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_request(
-            parameter_grouping_post_optional_parameters=parameter_grouping_post_optional_parameters, **kwargs
-        )
+        _custom_header = None
+        _query = None
+        if parameter_grouping_post_optional_parameters is not None:
+            _custom_header = parameter_grouping_post_optional_parameters.custom_header
+            _query = parameter_grouping_post_optional_parameters.query
+        request = self._post_optional_request(_custom_header=_custom_header, _query=_query, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -199,23 +191,12 @@ class ParameterGroupingOperations:
 
     def _post_multi_param_groups_request(
         self,
-        first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
-        parameter_grouping_post_multi_param_groups_second_param_group: Optional[
-            "_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"
-        ] = None,
+        _header_one: Optional[str] = None,
+        _query_one: Optional[int] = 30,
+        _header_two: Optional[str] = None,
+        _query_two: Optional[int] = 30,
         **kwargs: Any
     ) -> HttpRequest:
-
-        _header_one = None
-        _query_one = None
-        _header_two = None
-        _query_two = None
-        if first_parameter_group is not None:
-            _header_one = first_parameter_group.header_one
-            _query_one = first_parameter_group.query_one
-        if parameter_grouping_post_multi_param_groups_second_param_group is not None:
-            _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
-            _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
         accept = "application/json"
 
         # Construct URL
@@ -264,10 +245,18 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _header_one = None
+        _query_one = None
+        _header_two = None
+        _query_two = None
+        if first_parameter_group is not None:
+            _header_one = first_parameter_group.header_one
+            _query_one = first_parameter_group.query_one
+        if parameter_grouping_post_multi_param_groups_second_param_group is not None:
+            _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
+            _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
         request = self._post_multi_param_groups_request(
-            first_parameter_group=first_parameter_group,
-            parameter_grouping_post_multi_param_groups_second_param_group=parameter_grouping_post_multi_param_groups_second_param_group,
-            **kwargs
+            _header_one=_header_one, _query_one=_query_one, _header_two=_header_two, _query_two=_query_two, **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -285,14 +274,8 @@ class ParameterGroupingOperations:
     post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
     def _post_shared_parameter_group_object_request(
-        self, first_parameter_group: Optional["_models.FirstParameterGroup"] = None, **kwargs: Any
+        self, _header_one: Optional[str] = None, _query_one: Optional[int] = 30, **kwargs: Any
     ) -> HttpRequest:
-
-        _header_one = None
-        _query_one = None
-        if first_parameter_group is not None:
-            _header_one = first_parameter_group.header_one
-            _query_one = first_parameter_group.query_one
         accept = "application/json"
 
         # Construct URL
@@ -330,8 +313,13 @@ class ParameterGroupingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _header_one = None
+        _query_one = None
+        if first_parameter_group is not None:
+            _header_one = first_parameter_group.header_one
+            _query_one = first_parameter_group.query_one
         request = self._post_shared_parameter_group_object_request(
-            first_parameter_group=first_parameter_group, **kwargs
+            _header_one=_header_one, _query_one=_query_one, **kwargs
         )
         kwargs.pop("content_type", None)
 

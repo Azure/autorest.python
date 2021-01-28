@@ -10,16 +10,13 @@ class RequestParameter(Parameter):
 
     @property
     def in_method_signature(self) -> bool:
-        if self.serialized_name == "field":
-            a = "b"
         return not(
             # If I only have one value, I can't be set, so no point being in signature
             self.constant
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
-            # If I'm grouped, my grouper will be on signature, not me
+            # If I'm a flattened property of a body, don't want me, want the body param
             or self.target_property_name
-            or self.grouped_by
             # If I'm a kwarg, don't include in the signature
             or self.is_kwarg
         )

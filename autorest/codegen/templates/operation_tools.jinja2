@@ -95,13 +95,13 @@ deserialized = self._deserialize('{{ response.serialization_type }}', pipeline_r
 {% endmacro %}
 
 {# write grouped parameters #}
-{% macro grouped_parameters(request) %}
-{% if request.parameters.grouped %}
+{% macro grouped_parameters(operation) %}
+{% if operation.parameters.grouped %}
 
-    {% for grouped_parameter in request.parameters.grouped %}
+    {% for grouped_parameter in operation.parameters.grouped %}
 {{ grouped_parameter.serialized_name }} = None
     {% endfor %}
-    {% for grouper_name, grouped_parameters in request.parameters.grouped|groupby("grouped_by.serialized_name") %}
+    {% for grouper_name, grouped_parameters in operation.parameters.grouped|groupby("grouped_by.serialized_name") %}
 if {{ grouper_name }} is not None:
         {% for grouped_parameter in grouped_parameters %}
     {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name.lstrip('_') }}

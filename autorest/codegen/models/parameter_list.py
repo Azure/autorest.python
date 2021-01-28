@@ -84,6 +84,14 @@ class ParameterList(MutableSequence):
         return self.get_from_predicate(lambda parameter: cast(bool, parameter.grouped_by))
 
     @property
+    def groupers(self) -> List[Parameter]:
+        groupers = []
+        for parameter in self.parameters:
+            if any([p for p in self.grouped if id(p.grouped_by.yaml_data) == id(parameter.yaml_data)]):
+                groupers.append(parameter)
+        return groupers
+
+    @property
     def constant(self) -> List[Parameter]:
         """Return the constants of this parameter list.
 

@@ -88,7 +88,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
+        return mixin_instance.begin_test_lro_and_paging(client_request_id, _maxresults, _timeout, **kwargs)
 
     async def test_different_calls(
         self,

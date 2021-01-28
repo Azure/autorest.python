@@ -623,24 +623,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     def _put_simple_product_with_grouping_request(
-        self, flatten_parameter_group: "_models.FlattenParameterGroup", **kwargs: Any
+        self, _name: str, body: Optional["_models.SimpleProduct"] = None, **kwargs: Any
     ) -> HttpRequest:
-
-        _name = None
-        body = None
-        _product_id = None
-        _description = None
-        _max_product_display_name = None
-        _generic_value = None
-        _odata_value = None
-        if flatten_parameter_group is not None:
-            _name = flatten_parameter_group.name
-            body = flatten_parameter_group.body
-            _product_id = flatten_parameter_group.product_id
-            _description = flatten_parameter_group.description
-            _max_product_display_name = flatten_parameter_group.max_product_display_name
-            _generic_value = flatten_parameter_group.generic_value
-            _odata_value = flatten_parameter_group.odata_value
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -686,6 +670,21 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _name = None
+        _simple_body_product = None
+        _product_id = None
+        _description = None
+        _max_product_display_name = None
+        _generic_value = None
+        _odata_value = None
+        if flatten_parameter_group is not None:
+            _name = flatten_parameter_group.name
+            _simple_body_product = flatten_parameter_group.simple_body_product
+            _product_id = flatten_parameter_group.product_id
+            _description = flatten_parameter_group.description
+            _max_product_display_name = flatten_parameter_group.max_product_display_name
+            _generic_value = flatten_parameter_group.generic_value
+            _odata_value = flatten_parameter_group.odata_value
         body = _models.SimpleProduct(
             product_id=_product_id,
             description=_description,
@@ -693,9 +692,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             generic_value=_generic_value,
             odata_value=_odata_value,
         )
-        request = self._put_simple_product_with_grouping_request(
-            flatten_parameter_group=flatten_parameter_group, **kwargs
-        )
+        request = self._put_simple_product_with_grouping_request(_name=_name, body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

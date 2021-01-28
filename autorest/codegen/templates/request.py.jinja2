@@ -4,9 +4,6 @@
 {%- if not async_mode %}
     {{ op_tools.sync_return_type_annotation(operation, "", return_type="HttpRequest") }}
 {% endif %}
-{% if request.parameters.grouped %}
-    {{ op_tools.grouped_parameters(request)|indent }}
-{%- endif -%}
 {% if request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in request.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% if constant_parameter.serialized_name == "content_type" %}

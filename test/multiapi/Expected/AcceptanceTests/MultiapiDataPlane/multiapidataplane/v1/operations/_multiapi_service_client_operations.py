@@ -197,16 +197,11 @@ class MultiapiServiceClientOperationsMixin(object):
     def _test_lro_and_paging_request(
         self,
         client_request_id=None,  # type: Optional[str]
-        test_lro_and_paging_options=None,  # type: Optional["_models.TestLroAndPagingOptions"]
+        _maxresults=None,  # type: Optional[int]
+        _timeout=30,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
-        
-        _maxresults = None
-        _timeout = None
-        if test_lro_and_paging_options is not None:
-            _maxresults = test_lro_and_paging_options.maxresults
-            _timeout = test_lro_and_paging_options.timeout
         accept = "application/json"
 
         # Construct URL
@@ -268,13 +263,15 @@ class MultiapiServiceClientOperationsMixin(object):
             if not next_link:
                 request = self._test_lro_and_paging_request(
                     client_request_id=client_request_id,
-                    test_lro_and_paging_options=test_lro_and_paging_options,
+                    _maxresults=_maxresults,
+                    _timeout=_timeout,
                     **kwargs
                 )
             else:
                 request = self._test_lro_and_paging_request(
                     client_request_id=client_request_id,
-                    test_lro_and_paging_options=test_lro_and_paging_options,
+                    _maxresults=_maxresults,
+                    _timeout=_timeout,
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -315,7 +312,8 @@ class MultiapiServiceClientOperationsMixin(object):
         if cont_token is None:
             request = self._test_lro_and_paging_request(
                 client_request_id=client_request_id,
-                test_lro_and_paging_options=test_lro_and_paging_options,
+                _maxresults=_maxresults,
+                _timeout=_timeout,
                 **kwargs
             )
             kwargs.pop('content_type', None)

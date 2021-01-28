@@ -189,15 +189,10 @@ class MultiapiServiceClientOperationsMixin:
     def _test_lro_and_paging_request(
         self,
         client_request_id: Optional[str] = None,
-        test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
+        _maxresults: Optional[int] = None,
+        _timeout: Optional[int] = 30,
         **kwargs: Any
     ) -> HttpRequest:
-        
-        _maxresults = None
-        _timeout = None
-        if test_lro_and_paging_options is not None:
-            _maxresults = test_lro_and_paging_options.maxresults
-            _timeout = test_lro_and_paging_options.timeout
         accept = "application/json"
 
         # Construct URL
@@ -258,13 +253,15 @@ class MultiapiServiceClientOperationsMixin:
             if not next_link:
                 request = self._test_lro_and_paging_request(
                     client_request_id=client_request_id,
-                    test_lro_and_paging_options=test_lro_and_paging_options,
+                    _maxresults=_maxresults,
+                    _timeout=_timeout,
                     **kwargs
                 )
             else:
                 request = self._test_lro_and_paging_request(
                     client_request_id=client_request_id,
-                    test_lro_and_paging_options=test_lro_and_paging_options,
+                    _maxresults=_maxresults,
+                    _timeout=_timeout,
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -305,7 +302,8 @@ class MultiapiServiceClientOperationsMixin:
         if cont_token is None:
             request = self._test_lro_and_paging_request(
                 client_request_id=client_request_id,
-                test_lro_and_paging_options=test_lro_and_paging_options,
+                _maxresults=_maxresults,
+                _timeout=_timeout,
                 **kwargs
             )
             kwargs.pop('content_type', None)

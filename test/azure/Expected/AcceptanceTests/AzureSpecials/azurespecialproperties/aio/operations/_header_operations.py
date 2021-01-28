@@ -103,14 +103,8 @@ class HeaderOperations:
     custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
     def _custom_named_request_id_param_grouping_request(
-        self,
-        header_custom_named_request_id_param_grouping_parameters: "_models.HeaderCustomNamedRequestIdParamGroupingParameters",
-        **kwargs: Any
+        self, _foo_client_request_id: str, **kwargs: Any
     ) -> HttpRequest:
-
-        _foo_client_request_id = None
-        if header_custom_named_request_id_param_grouping_parameters is not None:
-            _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
         accept = "application/json"
 
         # Construct URL
@@ -150,9 +144,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _foo_client_request_id = None
+        if header_custom_named_request_id_param_grouping_parameters is not None:
+            _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
         request = self._custom_named_request_id_param_grouping_request(
-            header_custom_named_request_id_param_grouping_parameters=header_custom_named_request_id_param_grouping_parameters,
-            **kwargs
+            _foo_client_request_id=_foo_client_request_id, **kwargs
         )
         kwargs.pop("content_type", None)
 
