@@ -142,7 +142,9 @@ if {{ header_parameter.full_serialized_name }} is not None:
 
 {# helper for non-stream body params with schema #}
 {% macro non_stream_body_params(request, send_xml, request_as_xml) %}
+{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
 {% set ser_ctxt = request.parameters.body[0].xml_serialization_ctxt if send_xml else None %}
+{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% if ser_ctxt %}
 serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 {% endif %}
@@ -162,14 +164,12 @@ body_content_kwargs['form_content'] = {{ request.parameters.body[0].serialized_n
 {% elif schema_request.is_stream_request %}
 body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-{{ non_stream_body_params(request, send_xml, request_as_xml) }}{% endif %}{% endmacro %}
+{{ non_stream_body_params(request) }}{% endif %}{% endmacro %}
 
 {# write body parameters #}
 {% macro body_parameters(request, http_verb=None, returns_request=True) %}
 {% set body_content_kwargs_signature = "" %}
 {% set form_content_kwarg_signature = "" %}
-{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
-{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% if request.parameters.has_body %}
     {% set body_content_kwargs_signature = ", **body_content_kwargs" %}
 body_content_kwargs = {}  # type: Dict[str, Any]

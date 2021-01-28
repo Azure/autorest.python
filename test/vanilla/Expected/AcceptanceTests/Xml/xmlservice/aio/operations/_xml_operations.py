@@ -111,7 +111,7 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "RootWithRefAndNoMeta")
+        body_content = self._serialize.body(body, "RootWithRefAndNoMeta", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -212,7 +212,7 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "RootWithRefAndMeta")
+        body_content = self._serialize.body(body, "RootWithRefAndMeta", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -316,7 +316,7 @@ class XmlOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Slideshow")
+        body_content = self._serialize.body(body, "Slideshow", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -420,7 +420,7 @@ class XmlOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "AppleBarrel")
+        body_content = self._serialize.body(body, "AppleBarrel", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -569,7 +569,7 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Slideshow")
+        body_content = self._serialize.body(body, "Slideshow", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -670,7 +670,7 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "AppleBarrel")
+        body_content = self._serialize.body(body, "AppleBarrel", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -771,7 +771,8 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "[Banana]")
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        body_content = self._serialize.body(body, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -872,7 +873,8 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "[Banana]")
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        body_content = self._serialize.body(body, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -973,7 +975,8 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "[Banana]")
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        body_content = self._serialize.body(body, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1074,7 +1077,7 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Banana")
+        body_content = self._serialize.body(body, "Banana", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1235,7 +1238,7 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "StorageServiceProperties")
+        body_content = self._serialize.body(body, "StorageServiceProperties", is_xml=True)
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1344,7 +1347,10 @@ class XmlOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "[SignedIdentifier]")
+        serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
+        body_content = self._serialize.body(
+            body, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
+        )
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
