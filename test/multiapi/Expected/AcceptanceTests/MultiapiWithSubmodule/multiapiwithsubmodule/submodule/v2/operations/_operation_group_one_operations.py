@@ -120,7 +120,6 @@ class OperationGroupOneOperations(object):
 
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
 
-
     def _test_three_request(
         self,
         **kwargs  # type: Any
@@ -177,4 +176,3 @@ class OperationGroupOneOperations(object):
             return cls(pipeline_response, None, {})
 
     test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore
-

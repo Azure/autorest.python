@@ -167,4 +167,3 @@ class MultiapiServiceClientOperationsMixin:
             return cls(pipeline_response, None, {})
 
     test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
-

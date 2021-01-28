@@ -98,7 +98,6 @@ class MultiapiServiceClientOperationsMixin(object):
 
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
-
     def _test_lro_request(
         self,
         body=None,  # type: Optional["_models.Product"]
@@ -424,4 +423,3 @@ class MultiapiServiceClientOperationsMixin(object):
             return cls(pipeline_response, None, {})
 
     test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
-

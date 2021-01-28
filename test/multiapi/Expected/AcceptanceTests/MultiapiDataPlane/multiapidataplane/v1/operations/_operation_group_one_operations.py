@@ -99,4 +99,3 @@ class OperationGroupOneOperations(object):
             return cls(pipeline_response, None, {})
 
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
-

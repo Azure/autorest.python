@@ -92,7 +92,6 @@ class MultiapiServiceClientOperationsMixin:
 
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
-
     def _test_different_calls_request(
         self,
         greeting_in_english: str,
@@ -161,4 +160,3 @@ class MultiapiServiceClientOperationsMixin:
             return cls(pipeline_response, None, {})
 
     test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
-

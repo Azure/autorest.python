@@ -91,4 +91,3 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
             return cls(pipeline_response, None, {})
 
     test.metadata = {'url': '/test'}  # type: ignore
-

@@ -118,4 +118,3 @@ class OperationGroupOneOperations(object):
         return deserialized
 
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
-

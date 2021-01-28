@@ -91,7 +91,6 @@ class HttpSuccessOperations(object):
 
     head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
-
     def _head204_request(
         self,
         **kwargs  # type: Any
@@ -145,7 +144,6 @@ class HttpSuccessOperations(object):
 
     head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
-
     def _head404_request(
         self,
         **kwargs  # type: Any
@@ -198,4 +196,3 @@ class HttpSuccessOperations(object):
         return 200 <= response.status_code <= 299
 
     head404.metadata = {'url': '/http/success/404'}  # type: ignore
-
