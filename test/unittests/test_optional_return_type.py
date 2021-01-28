@@ -5,33 +5,49 @@
 # --------------------------------------------------------------------------
 
 import pytest
-from autorest.codegen.models import Operation, LROOperation, PagingOperation, SchemaResponse, CodeModel
+from autorest.codegen.models import (
+    Operation, LROOperation, PagingOperation, SchemaResponse, CodeModel, Request
+)
 
 @pytest.fixture
-def operation():
+def request_preparer():
+    return Request(
+        yaml_data={},
+        name="_optional_return_type_test_request",
+        url="http://fakeUrl",
+        method="get",
+        multipart=False,
+        schema_requests=[]
+    )
+
+@pytest.fixture
+def operation(request_preparer):
     return Operation(
         yaml_data={},
         name="optional_return_type_test",
         description="Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
+        request=request_preparer
     )
 
 @pytest.fixture
-def lro_operation():
+def lro_operation(request_preparer):
     return LROOperation(
         yaml_data={},
         name="lro_optional_return_type_test",
         description="LRO Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
+        request=request_preparer
     )
 
 @pytest.fixture
-def paging_operation():
+def paging_operation(request_preparer):
     return PagingOperation(
         yaml_data={"extensions": {"x-ms-pageable": {}}},
         name="paging_optional_return_type_test",
         description="Paging Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
+        request=request_preparer
     )
 
 def test_success_with_body_and_fail_no_body(operation):
@@ -90,10 +106,6 @@ def test_lro_operation(lro_operation):
     ]
 
     assert lro_operation.has_optional_return_type is False
-
-    lro_initial_function = CodeModel._lro_initial_function(lro_operation)
-
-    assert lro_initial_function.has_optional_return_type is True
 
 def test_paging_operation(paging_operation):
     paging_operation.responses = [
