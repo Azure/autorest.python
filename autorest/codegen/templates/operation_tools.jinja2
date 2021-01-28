@@ -156,12 +156,12 @@ else:
 {% endif %}
 body_content_kwargs['content'] = body_content{% endmacro %}
 
-{% macro set_body_content_kwarg(request) %}
+{% macro set_body_content_kwarg(request, schema_request) %}
 {% if request.multipart %}
 body_content_kwargs['form_content'] = {{ request.parameters.body[0].serialized_name }}
-{% elif request.schema_requests[0].is_stream_request %}
+{% elif schema_request.is_stream_request %}
 body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}
-{% elif request.schema_requests[0].body_parameter_has_schema %}
+{% elif schema_request.body_parameter_has_schema %}
 {{ non_stream_body_params(request, send_xml, request_as_xml) }}{% endif %}{% endmacro %}
 
 {# write body parameters #}
@@ -174,17 +174,17 @@ body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized
     {% set body_content_kwargs_signature = ", **body_content_kwargs" %}
 body_content_kwargs = {}  # type: Dict[str, Any]
     {% if (request.schema_requests | length) == 1 %}
-{{ set_body_content_kwarg(request) }}
+{{ set_body_content_kwarg(request, request.schema_requests[0]) }}
     {% else %}
-        {% for request in request.schema_requests %}
-{{ "el" if not loop.first }}if header_parameters['Content-Type'].split(";")[0] in {{ request.pre_semicolon_media_types }}:
-        {{ set_body_content_kwarg(request)|indent }}
+        {% for schema_request in request.schema_requests %}
+{{ "el" if not loop.first }}if header_parameters['Content-Type'].split(";")[0] in {{ schema_request.pre_semicolon_media_types }}:
+    {{ set_body_content_kwarg(request, schema_request)|indent }}
         {% endfor %}
 else:
-raise ValueError(
-    "The content_type '{}' is not one of the allowed values: "
-    "{{ request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
-)
+    raise ValueError(
+        "The content_type '{}' is not one of the allowed values: "
+        "{{ request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
+    )
     {% endif %}
 {% endif %}
 {{ "return" if returns_request else "request =" }} self._client.{{ http_verb if http_verb else request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}

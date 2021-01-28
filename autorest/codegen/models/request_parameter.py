@@ -27,7 +27,7 @@ class RequestParameter(Parameter):
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
-        name = yaml_data["language"]["default"]["name"]
+        name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])
         if location == ParameterLocation.Body:
             name = "body"
@@ -36,7 +36,7 @@ class RequestParameter(Parameter):
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80
             rest_api_name=yaml_data["language"]["default"].get(
-                "serializedName", name
+                "serializedName", yaml_data["language"]["default"]["name"]
             ),
             serialized_name=name,
             description=yaml_data["language"]["python"]["description"],

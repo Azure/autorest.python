@@ -274,7 +274,6 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = string_body
         request = self._put_empty_request(**kwargs)
 
         kwargs.pop("content_type", None)
@@ -391,7 +390,6 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = string_body
         request = self._put_mbcs_request(**kwargs)
 
         kwargs.pop("content_type", None)
@@ -512,7 +510,6 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = string_body
         request = self._put_whitespace_request(**kwargs)
 
         kwargs.pop("content_type", None)

@@ -63,10 +63,11 @@ class OperationGroupTwoOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if header_parameters['Content-Type'].split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-            body_content_kwargs['stream_content'] = input
+            body_content_kwargs['stream_content'] = body
+
         elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
-            if input is not None:
-                body_content = self._serialize.body(input, 'SourcePath')
+            if body is not None:
+                body_content = self._serialize.body(body, 'SourcePath')
             else:
                 body_content = None
             body_content_kwargs['content'] = body_content
