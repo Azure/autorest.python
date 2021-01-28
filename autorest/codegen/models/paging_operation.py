@@ -8,7 +8,6 @@ from typing import cast, Dict, List, Any, Optional, Set
 
 from .operation import Operation
 from .parameter import Parameter
-from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .request import Request
 from .imports import ImportType, FileImport, TypingSection

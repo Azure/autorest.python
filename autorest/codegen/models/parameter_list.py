@@ -85,9 +85,12 @@ class ParameterList(MutableSequence):
 
     @property
     def groupers(self) -> List[Parameter]:
-        groupers = []
+        groupers: List[Parameter] = []
         for parameter in self.parameters:
-            if any([p for p in self.grouped if id(p.grouped_by.yaml_data) == id(parameter.yaml_data)]):
+            if any([
+                p for p in self.grouped
+                if p.grouped_by and id(p.grouped_by.yaml_data) == id(parameter.yaml_data)
+            ]):
                 groupers.append(parameter)
         return groupers
 

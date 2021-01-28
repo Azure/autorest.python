@@ -3,15 +3,24 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List
+from typing import List, Optional
 from .request_parameter import RequestParameter
 from .parameter_list import ParameterList
-from .parameter import ParameterLocation
+from .parameter import ParameterLocation, Parameter
 
 class RequestParameterList(ParameterList):
+    def __init__(
+        self, parameters: Optional[List[RequestParameter]] = None, implementation: str = "Method"
+    ) -> None:
+        # need to include init to override type failure.
+        # RequestParameterList takes in a list of RequestParameter,
+        # while ParameterList takes in a list of Parameter
+        super(RequestParameterList, self).__init__(
+            parameters, implementation  # type: ignore
+        )
 
     @property
-    def method(self) -> List[RequestParameter]:
+    def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """
         signature_parameters_no_default_value = []

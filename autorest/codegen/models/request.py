@@ -8,10 +8,9 @@ from typing import Any, cast, Dict, List, Optional, TypeVar
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
 from .list_schema import ListSchema
-from .parameter import ParameterStyle, Parameter
+from .parameter import ParameterStyle
 from .request_parameter import RequestParameter
 from .request_parameter_list import RequestParameterList
-from .parameter_list import ParameterList
 from .schema_request import SchemaRequest
 from .imports import FileImport
 from .utils import get_converted_parameters
@@ -59,7 +58,7 @@ class Request(BaseModel):
         self.multipart = multipart
         self.schema_requests = schema_requests
         self.parameters = RequestParameterList(parameters)
-        self.multiple_media_type_parameters = ParameterList(multiple_media_type_parameters)
+        self.multiple_media_type_parameters = RequestParameterList(multiple_media_type_parameters)
 
     @property
     def content_type(self) -> str:
