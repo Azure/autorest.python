@@ -235,7 +235,22 @@ return deserialized
 return 200 <= response.status_code <= 299
 {% endif %}{% endmacro %}
 
-{% macro get_request(request) %}
+{% macro get_request(operation, request) %}
+{% if operation.parameters.grouped %}
+{{ grouped_parameters(operation) }}
+{%- endif -%}
+{% if operation.request.multipart %}
+# Construct form data
+body = {
+    {% for param in operation.parameters.body %}
+    '{{ param.rest_api_name }}': {{ param.serialized_name }},
+    {% endfor %}
+}
+{% elif operation.parameters.is_flattened %}
+{{ operation.parameters.build_flattened_object() }}
+{% elif operation.parameters.has_body and not request.parameters.body[0].constant %}
+body = {{ operation.parameters.body[0].serialized_name }}
+{% endif %}
 request = self.{{ request.name }}({{ "**kwargs)" if not request.parameters.method }}
 {% if request.parameters.method %}
     {% for parameter in request.parameters.method %}

@@ -19,7 +19,7 @@
         "sync": {
             {% for gp in sync_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
-                "signature": {{ gp.method_signature(async_mode=True) | tojson }},
+                "signature": {{ gp.method_signature(async_mode=False) | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}
@@ -29,7 +29,7 @@
         "async": {
             {% for gp in async_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
-                "signature": {{ (gp.method_signature(async_mode=True) + ",") | tojson }},
+                "signature": {{ (gp.method_signature(async_mode=True)) | tojson }},
                 "description": {{ gp.description | tojson }},
                 "docstring_type": {{ gp.docstring_type | tojson }},
                 "required": {{ gp.required | tojson }}
@@ -146,7 +146,7 @@
                     "signature": {{ op_tools.operation_method_signature(operation, True, coroutine, async_return_type_wrapper) | tojson }},
                     "doc": {{ operation_docstring(async_mode=True) | tojson }}
                 },
-                "call": {{ operation.request.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
+                "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         }

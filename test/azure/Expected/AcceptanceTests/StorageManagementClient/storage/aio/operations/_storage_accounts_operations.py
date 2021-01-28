@@ -191,6 +191,7 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
+            body = parameters
             request = self._create_request(
                 resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
             )
@@ -545,8 +546,6 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        api_version = "2015-05-01-preview"
-        accept = "application/json, text/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -629,8 +628,6 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        api_version = "2015-05-01-preview"
-        accept = "application/json, text/json"
 
         def prepare_request(next_link=None):
             if not next_link:

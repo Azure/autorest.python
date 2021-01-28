@@ -33,7 +33,7 @@ class MultiapiServiceClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential: "TokenCredential",
+        credential,  # type: "TokenCredential"
         **kwargs  # type: Any
     ):
         # type: (...) -> None

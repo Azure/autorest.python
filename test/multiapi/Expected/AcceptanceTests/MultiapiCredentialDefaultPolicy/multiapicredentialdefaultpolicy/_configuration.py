@@ -34,7 +34,7 @@ class MultiapiServiceClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential: AzureKeyCredential,
+        credential,  # type: AzureKeyCredential
         **kwargs  # type: Any
     ):
         # type: (...) -> None

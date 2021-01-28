@@ -85,7 +85,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -160,7 +159,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -235,7 +233,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -311,7 +308,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -401,16 +397,15 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_options is not None:
-            _maxresults = paging_get_multiple_pages_options.maxresults
-            _timeout = paging_get_multiple_pages_options.timeout
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
+                
+                _maxresults = None
+                _timeout = None
+                if paging_get_multiple_pages_options is not None:
+                    _maxresults = paging_get_multiple_pages_options.maxresults
+                    _timeout = paging_get_multiple_pages_options.timeout
                 request = self._get_multiple_pages_request(
                     client_request_id=client_request_id,
                     _maxresults=_maxresults,
@@ -418,6 +413,12 @@ class PagingOperations(object):
                     **kwargs
                 )
             else:
+                
+                _maxresults = None
+                _timeout = None
+                if paging_get_multiple_pages_options is not None:
+                    _maxresults = paging_get_multiple_pages_options.maxresults
+                    _timeout = paging_get_multiple_pages_options.timeout
                 request = self._get_multiple_pages_request(
                     client_request_id=client_request_id,
                     _maxresults=_maxresults,
@@ -520,8 +521,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        query_constant = True
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -610,16 +609,15 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-        _maxresults = None
-        _timeout = None
-        if paging_get_odata_multiple_pages_options is not None:
-            _maxresults = paging_get_odata_multiple_pages_options.maxresults
-            _timeout = paging_get_odata_multiple_pages_options.timeout
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
+                
+                _maxresults = None
+                _timeout = None
+                if paging_get_odata_multiple_pages_options is not None:
+                    _maxresults = paging_get_odata_multiple_pages_options.maxresults
+                    _timeout = paging_get_odata_multiple_pages_options.timeout
                 request = self._get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     _maxresults=_maxresults,
@@ -627,6 +625,12 @@ class PagingOperations(object):
                     **kwargs
                 )
             else:
+                
+                _maxresults = None
+                _timeout = None
+                if paging_get_odata_multiple_pages_options is not None:
+                    _maxresults = paging_get_odata_multiple_pages_options.maxresults
+                    _timeout = paging_get_odata_multiple_pages_options.timeout
                 request = self._get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     _maxresults=_maxresults,
@@ -719,18 +723,17 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-        _maxresults = None
-        _offset = None
-        _timeout = None
-        if paging_get_multiple_pages_with_offset_options is not None:
-            _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-            _offset = paging_get_multiple_pages_with_offset_options.offset
-            _timeout = paging_get_multiple_pages_with_offset_options.timeout
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
+                
+                _maxresults = None
+                _offset = None
+                _timeout = None
+                if paging_get_multiple_pages_with_offset_options is not None:
+                    _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+                    _offset = paging_get_multiple_pages_with_offset_options.offset
+                    _timeout = paging_get_multiple_pages_with_offset_options.timeout
                 request = self._get_multiple_pages_with_offset_request(
                     _offset=_offset,
                     client_request_id=client_request_id,
@@ -739,6 +742,14 @@ class PagingOperations(object):
                     **kwargs
                 )
             else:
+                
+                _maxresults = None
+                _offset = None
+                _timeout = None
+                if paging_get_multiple_pages_with_offset_options is not None:
+                    _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+                    _offset = paging_get_multiple_pages_with_offset_options.offset
+                    _timeout = paging_get_multiple_pages_with_offset_options.timeout
                 request = self._get_multiple_pages_with_offset_request(
                     _offset=_offset,
                     client_request_id=client_request_id,
@@ -816,7 +827,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -892,7 +902,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -967,7 +976,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1042,7 +1050,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1117,7 +1124,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1233,7 +1239,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1350,22 +1355,27 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-        _api_version = None
-        _tenant = None
-        if custom_parameter_group is not None:
-            _api_version = custom_parameter_group.api_version
-            _tenant = custom_parameter_group.tenant
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
+                
+                _api_version = None
+                _tenant = None
+                if custom_parameter_group is not None:
+                    _api_version = custom_parameter_group.api_version
+                    _tenant = custom_parameter_group.tenant
                 request = self._get_multiple_pages_fragment_with_grouping_next_link_request(
                     _api_version=_api_version,
                     _tenant=_tenant,
                     **kwargs
                 )
             else:
+                
+                _api_version = None
+                _tenant = None
+                if custom_parameter_group is not None:
+                    _api_version = custom_parameter_group.api_version
+                    _tenant = custom_parameter_group.tenant
                 request = self._get_multiple_pages_fragment_with_grouping_next_link_next_request(
                     _api_version=_api_version,
                     _tenant=_tenant,
@@ -1455,16 +1465,15 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        
-        _maxresults = None
-        _timeout = None
-        if paging_get_multiple_pages_lro_options is not None:
-            _maxresults = paging_get_multiple_pages_lro_options.maxresults
-            _timeout = paging_get_multiple_pages_lro_options.timeout
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
+                
+                _maxresults = None
+                _timeout = None
+                if paging_get_multiple_pages_lro_options is not None:
+                    _maxresults = paging_get_multiple_pages_lro_options.maxresults
+                    _timeout = paging_get_multiple_pages_lro_options.timeout
                 request = self._get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     _maxresults=_maxresults,
@@ -1472,6 +1481,12 @@ class PagingOperations(object):
                     **kwargs
                 )
             else:
+                
+                _maxresults = None
+                _timeout = None
+                if paging_get_multiple_pages_lro_options is not None:
+                    _maxresults = paging_get_multiple_pages_lro_options.maxresults
+                    _timeout = paging_get_multiple_pages_lro_options.timeout
                 request = self._get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     _maxresults=_maxresults,
@@ -1514,6 +1529,12 @@ class PagingOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
+            
+            _maxresults = None
+            _timeout = None
+            if paging_get_multiple_pages_lro_options is not None:
+                _maxresults = paging_get_multiple_pages_lro_options.maxresults
+                _timeout = paging_get_multiple_pages_lro_options.timeout
             request = self._get_multiple_pages_lro_request(
                 client_request_id=client_request_id,
                 _maxresults=_maxresults,
@@ -1590,7 +1611,6 @@ class PagingOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:

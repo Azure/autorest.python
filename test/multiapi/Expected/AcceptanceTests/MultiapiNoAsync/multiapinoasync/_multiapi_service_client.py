@@ -68,7 +68,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     def __init__(
         self,
-        credential: "TokenCredential",
+        credential,  # type: "TokenCredential"
         api_version=None, # type: Optional[str]
         base_url=None,  # type: Optional[str]
         profile=KnownProfiles.default, # type: KnownProfiles

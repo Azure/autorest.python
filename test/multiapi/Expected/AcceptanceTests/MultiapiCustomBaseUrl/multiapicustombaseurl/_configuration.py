@@ -35,8 +35,8 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential: "TokenCredential",
-        endpoint: str,
+        credential,  # type: "TokenCredential"
+        endpoint,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

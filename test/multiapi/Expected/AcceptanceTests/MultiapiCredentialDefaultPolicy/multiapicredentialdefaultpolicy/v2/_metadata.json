@@ -16,7 +16,7 @@
     "global_parameters": {
         "sync": {
             "credential": {
-                "signature": "credential: AzureKeyCredential,",
+                "signature": "credential,  # type: AzureKeyCredential",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials.AzureKeyCredential",
                 "required": true
@@ -24,7 +24,7 @@
         },
         "async": {
             "credential": {
-                "signature": "credential: AzureKeyCredential,,",
+                "signature": "credential: AzureKeyCredential,",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials.AzureKeyCredential",
                 "required": true

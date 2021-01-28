@@ -99,7 +99,6 @@ class PagingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -213,7 +212,6 @@ class PagingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        accept = "application/json"
 
         def prepare_request(next_link=None):
             if not next_link:

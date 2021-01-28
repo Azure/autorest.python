@@ -61,22 +61,7 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
-    {% if operation.parameters.grouped %}
-    {{ op_tools.grouped_parameters(operation)|indent }}
-    {%- endif -%}
-    {% if operation.request.multipart %}
-    # Construct form data
-    body = {
-        {% for param in operation.parameters.body %}
-        '{{ param.rest_api_name }}': {{ param.serialized_name }},
-        {% endfor %}
-    }
-    {% elif operation.parameters.is_flattened %}
-    {{ operation.parameters.build_flattened_object() }}
-    {% elif operation.parameters.has_body and not request.parameters.body[0].constant %}
-    body = {{ operation.parameters.body[0].serialized_name }}
-    {% endif %}
-    {{ op_tools.get_request(request)|indent }}
+    {{ op_tools.get_request(operation, request)|indent }}
     kwargs.pop('content_type', None)
 
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)

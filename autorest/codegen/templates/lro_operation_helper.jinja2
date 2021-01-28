@@ -44,7 +44,7 @@
     {{ op_tools.error_map(operation, code_model)|indent }}
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
-        {{ op_tools.get_request(request)|indent(8) }}
+        {{ op_tools.get_request(operation, request)|indent(8) }}
         kwargs.pop('content_type', None)
         {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
         pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
