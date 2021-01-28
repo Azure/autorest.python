@@ -54,7 +54,6 @@ class FormdataOperations(object):
     def _upload_file_request(
         self,
         body,  # type: IO
-        body,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -72,12 +71,10 @@ class FormdataOperations(object):
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        # Construct form data
-        _form_content = {
-            "fileContent": body,
-            "fileName": body,
-        }
-        return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content_kwargs["form_content"] = body
+
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     _upload_file_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
@@ -104,8 +101,12 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = file_content
-        request = self._upload_file_request(body=body, body=body, **kwargs)
+        # Construct form data
+        body = {
+            "fileContent": file_content,
+            "fileName": file_name,
+        }
+        request = self._upload_file_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -147,6 +148,7 @@ class FormdataOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         body_content_kwargs["stream_content"] = body
+
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     _upload_file_via_body_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
@@ -212,11 +214,10 @@ class FormdataOperations(object):
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
-        # Construct form data
-        _form_content = {
-            "fileContent": body,
-        }
-        return self._client.post(url, query_parameters, header_parameters, form_content=_form_content)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content_kwargs["form_content"] = body
+
+        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     _upload_files_request.metadata = {"url": "/formdata/stream/uploadfiles"}  # type: ignore
 
@@ -240,7 +241,10 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = file_content
+        # Construct form data
+        body = {
+            "fileContent": file_content,
+        }
         request = self._upload_files_request(body=body, **kwargs)
         kwargs.pop("content_type", None)
 

@@ -10,6 +10,7 @@ from .constant_schema import ConstantSchema
 from .list_schema import ListSchema
 from .parameter import ParameterStyle, Parameter
 from .request_parameter import RequestParameter
+from .request_parameter_list import RequestParameterList
 from .parameter_list import ParameterList
 from .schema_request import SchemaRequest
 from .imports import FileImport
@@ -57,7 +58,7 @@ class Request(BaseModel):
         self.method = method
         self.multipart = multipart
         self.schema_requests = schema_requests
-        self.parameters = ParameterList(parameters)
+        self.parameters = RequestParameterList(parameters)
         self.multiple_media_type_parameters = ParameterList(multiple_media_type_parameters)
 
     @property

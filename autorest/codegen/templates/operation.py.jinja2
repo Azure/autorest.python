@@ -61,7 +61,14 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
-    {% if operation.parameters.is_flattened %}
+    {% if operation.request.multipart %}
+    # Construct form data
+    body = {
+        {% for param in operation.parameters.body %}
+        '{{ param.rest_api_name }}': {{ param.serialized_name }},
+        {% endfor %}
+    }
+    {% elif operation.parameters.is_flattened %}
     {{ operation.parameters.build_flattened_object() }}
     {% elif operation.parameters.has_body %}
     body = {{ operation.parameters.body[0].serialized_name }}

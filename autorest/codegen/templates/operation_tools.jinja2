@@ -140,8 +140,6 @@ if {{ header_parameter.full_serialized_name }} is not None:
     {% endfor %}
 {% endif %}{% endmacro %}
 
-{# helper for stream body params #}
-{% macro stream_body_params(request) %}body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}{% endmacro %}
 {# helper for non-stream body params with schema #}
 {% macro non_stream_body_params(request, send_xml, request_as_xml) %}
 {% set ser_ctxt = request.parameters.body[0].xml_serialization_ctxt if send_xml else None %}
@@ -158,45 +156,35 @@ else:
 {% endif %}
 body_content_kwargs['content'] = body_content{% endmacro %}
 
+{% macro set_body_content_kwarg(request) %}
+{% if request.multipart %}
+body_content_kwargs['form_content'] = {{ request.parameters.body[0].serialized_name }}
+{% elif request.schema_requests[0].is_stream_request %}
+body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}
+{% elif request.schema_requests[0].body_parameter_has_schema %}
+{{ non_stream_body_params(request, send_xml, request_as_xml) }}{% endif %}{% endmacro %}
+
 {# write body parameters #}
 {% macro body_parameters(request, http_verb=None, returns_request=True) %}
 {% set body_content_kwargs_signature = "" %}
 {% set form_content_kwarg_signature = "" %}
-{% if request.multipart %}
-    {% set form_content_kwarg_signature = ", form_content=_form_content" %}
-# Construct form data
-_form_content = {
-    {% for param in request.parameters.body %}
-    '{{ param.rest_api_name }}': {{ param.serialized_name }},
-    {% endfor %}
-}
-{% else %}
-    {% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
-    {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
-    {% if request.parameters.has_body %}
-        {% set body_content_kwargs_signature = ", **body_content_kwargs" %}
+{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
+{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
+{% if request.parameters.has_body %}
+    {% set body_content_kwargs_signature = ", **body_content_kwargs" %}
 body_content_kwargs = {}  # type: Dict[str, Any]
-        {% if (request.schema_requests | length) == 1 %}
-            {% if request.schema_requests[0].is_stream_request %}
-{{ stream_body_params(request) }}
-            {% elif request.schema_requests[0].body_parameter_has_schema %}
-{{ non_stream_body_params(request, send_xml, request_as_xml) }}
-            {% endif %}
-        {% else %}
-            {% for request in request.schema_requests %}
+    {% if (request.schema_requests | length) == 1 %}
+{{ set_body_content_kwarg(request) }}
+    {% else %}
+        {% for request in request.schema_requests %}
 {{ "el" if not loop.first }}if header_parameters['Content-Type'].split(";")[0] in {{ request.pre_semicolon_media_types }}:
-                {% if request.is_stream_request %}
-    {{ stream_body_params(request)|indent }}
-                {% elif request.body_parameter_has_schema %}
-    {{ non_stream_body_params(request, send_xml, request_as_xml)|indent }}
-                {% endif %}
-            {% endfor %}
+        {{ set_body_content_kwarg(request)|indent }}
+        {% endfor %}
 else:
-    raise ValueError(
-        "The content_type '{}' is not one of the allowed values: "
-        "{{ request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
-    )
-        {% endif %}
+raise ValueError(
+    "The content_type '{}' is not one of the allowed values: "
+    "{{ request.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
+)
     {% endif %}
 {% endif %}
 {{ "return" if returns_request else "request =" }} self._client.{{ http_verb if http_verb else request.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
