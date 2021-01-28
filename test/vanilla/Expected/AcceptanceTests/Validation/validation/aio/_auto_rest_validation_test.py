@@ -9,8 +9,7 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestValidationTestConfiguration
@@ -36,7 +35,15 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+        """Runs the network request through the client's chained policies.
+
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
+        :return: The response of your network call. Does not do error handling on your response.
+        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        """
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }

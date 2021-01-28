@@ -93,10 +93,18 @@ class {{ code_model.class_name }}({{ base_class }}):
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 
-    {{ keywords.def }} invoke(self, request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ " -> PipelineResponse" if async_mode else "" }}:
+    {{ keywords.def }} invoke(self, request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ " -> HttpResponse" if async_mode else "" }}:
         {% if not async_mode %}
-        # type: (HttpRequest, Any) -> PipelineResponse
+        # type: (HttpRequest, Any) -> HttpResponse
         {% endif %}
+        """Runs the network request through the client's chained policies.
+
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
+        :return: The response of your network call. Does not do error handling on your response.
+        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        """
         {% if code_model.global_parameters.path %}
         {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
         {{ op_tools.format_path_format_arguments(url_name="request.url")|indent(8) }}

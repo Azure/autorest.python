@@ -15,8 +15,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
-    from azure.core.pipeline import PipelineResponse
-    from azure.core.pipeline.transport import HttpRequest
+    from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations import PathsOperations
@@ -63,7 +62,15 @@ class AutoRestUrlTestService(object):
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def invoke(self, request, **kwargs):
-        # type: (HttpRequest, Any) -> PipelineResponse
+        # type: (HttpRequest, Any) -> HttpResponse
+        """Runs the network request through the client's chained policies.
+
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
+        :return: The response of your network call. Does not do error handling on your response.
+        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        """
         path_format_arguments = {
             "globalStringPath": self._serialize.url(
                 "self._config.global_string_path", self._config.global_string_path, "str"

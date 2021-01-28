@@ -11,8 +11,7 @@
 
 from typing import Any, Optional, TYPE_CHECKING
 
-from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin

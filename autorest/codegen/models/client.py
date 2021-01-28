@@ -28,7 +28,7 @@ class Client:
         file_import.add_from_import("msrest", "Deserializer", ImportType.AZURECORE)
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_from_import(
-            "azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
+            "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE, TypingSection.CONDITIONAL
         )
         file_import.add_from_import(
             "azure.core.pipeline.transport", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL

@@ -9,8 +9,7 @@
 from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
-from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
@@ -35,7 +34,15 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-    async def invoke(self, request: HttpRequest, **kwargs: Any) -> PipelineResponse:
+    async def invoke(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+        """Runs the network request through the client's chained policies.
+
+        :param request: The network request you want to make. Required.
+        :type request: ~azure.core.pipeline.transport.HttpRequest
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
+        :return: The response of your network call. Does not do error handling on your response.
+        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        """
         request.url = self._client.format_url(request.url)
         stream = kwargs.pop("stream", False)
         pipeline_response = await self._client._pipeline.run(request, stream=stream, **kwargs)
