@@ -136,8 +136,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_int_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_int_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -241,8 +241,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_long_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_long_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -346,8 +346,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_float_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_float_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -452,8 +452,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_double_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_double_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -557,8 +557,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_bool_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_bool_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -662,8 +662,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_string_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_string_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -767,8 +767,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_date_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_date_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -872,8 +872,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_date_time_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_date_time_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -978,8 +978,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = complex_body
-        request = self._put_date_time_rfc1123_request(body=body, **kwargs)
+        _body = complex_body
+        request = self._put_date_time_rfc1123_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1083,8 +1083,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _models.DurationWrapper(field=field)
-        request = self._put_duration_request(body=body, **kwargs)
+        _body = _models.DurationWrapper(field=field)
+        request = self._put_duration_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1188,8 +1188,8 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _models.ByteWrapper(field=field)
-        request = self._put_byte_request(body=body, **kwargs)
+        _body = _models.ByteWrapper(field=field)
+        request = self._put_byte_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

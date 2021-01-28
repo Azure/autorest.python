@@ -159,9 +159,9 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop('error_map', {}))
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
-            body = product
+            _body = product
             request = self._test_lro_request(
-                body=body,
+                body=_body,
                 **kwargs
             )
             kwargs.pop('content_type', None)
@@ -198,8 +198,8 @@ class MultiapiServiceClientOperationsMixin(object):
     def _test_lro_and_paging_request(
         self,
         client_request_id=None,  # type: Optional[str]
-        _maxresults=None,  # type: Optional[int]
-        _timeout=30,  # type: Optional[int]
+        maxresults=None,  # type: Optional[int]
+        timeout=30,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -215,10 +215,10 @@ class MultiapiServiceClientOperationsMixin(object):
         header_parameters = {}  # type: Dict[str, Any]
         if client_request_id is not None:
             header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-        if _maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
-        if _timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
+        if maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
+        if timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.post(url, query_parameters, header_parameters)
@@ -263,8 +263,8 @@ class MultiapiServiceClientOperationsMixin(object):
                     _timeout = test_lro_and_paging_options.timeout
                 request = self._test_lro_and_paging_request(
                     client_request_id=client_request_id,
-                    _maxresults=_maxresults,
-                    _timeout=_timeout,
+                    maxresults=_maxresults,
+                    timeout=_timeout,
                     **kwargs
                 )
             else:
@@ -276,8 +276,8 @@ class MultiapiServiceClientOperationsMixin(object):
                     _timeout = test_lro_and_paging_options.timeout
                 request = self._test_lro_and_paging_request(
                     client_request_id=client_request_id,
-                    _maxresults=_maxresults,
-                    _timeout=_timeout,
+                    maxresults=_maxresults,
+                    timeout=_timeout,
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -324,8 +324,8 @@ class MultiapiServiceClientOperationsMixin(object):
                 _timeout = test_lro_and_paging_options.timeout
             request = self._test_lro_and_paging_request(
                 client_request_id=client_request_id,
-                _maxresults=_maxresults,
-                _timeout=_timeout,
+                maxresults=_maxresults,
+                timeout=_timeout,
                 **kwargs
             )
             kwargs.pop('content_type', None)

@@ -101,8 +101,8 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = account_name
-        request = self._check_name_availability_request(body=body, **kwargs)
+        _body = account_name
+        request = self._check_name_availability_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -191,9 +191,9 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = parameters
+            _body = parameters
             request = self._create_request(
-                resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
+                resource_group_name=resource_group_name, account_name=account_name, body=_body, **kwargs
             )
             kwargs.pop("content_type", None)
             pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -425,9 +425,9 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = parameters
+        _body = parameters
         request = self._update_request(
-            resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
+            resource_group_name=resource_group_name, account_name=account_name, body=_body, **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -731,9 +731,9 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        _body = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         request = self._regenerate_key_request(
-            resource_group_name=resource_group_name, account_name=account_name, body=body, **kwargs
+            resource_group_name=resource_group_name, account_name=account_name, body=_body, **kwargs
         )
         kwargs.pop("content_type", None)
 

@@ -102,11 +102,11 @@ class FormdataOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         # Construct form data
-        body = {
+        _body = {
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = self._upload_file_request(body=body, **kwargs)
+        request = self._upload_file_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -173,8 +173,8 @@ class FormdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = file_content
-        request = self._upload_file_via_body_request(body=body, **kwargs)
+        _body = file_content
+        request = self._upload_file_via_body_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -242,10 +242,10 @@ class FormdataOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         # Construct form data
-        body = {
+        _body = {
             "fileContent": file_content,
         }
-        request = self._upload_files_request(body=body, **kwargs)
+        request = self._upload_files_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)

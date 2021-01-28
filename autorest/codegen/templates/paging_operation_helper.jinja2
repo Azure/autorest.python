@@ -14,9 +14,9 @@ cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotatio
             {{ op_tools.get_request(operation, operation.next_request if operation.next_request else request)|indent(12) }}
             {% if not operation.next_request %}
             # little hacky, but this code will soon be replaced with code that won't need the hack
-                {% if request.parameters.path %}
+                {% if operation.parameters.path %}
             path_format_arguments = {
-                    {% for path_parameter in request.parameters.path %}
+                    {% for path_parameter in operation.parameters.path %}
                 '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
                     {% endfor %}
             }

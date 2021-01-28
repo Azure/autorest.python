@@ -102,9 +102,7 @@ class HeaderOperations:
 
     custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
-    def _custom_named_request_id_param_grouping_request(
-        self, _foo_client_request_id: str, **kwargs: Any
-    ) -> HttpRequest:
+    def _custom_named_request_id_param_grouping_request(self, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -116,7 +114,7 @@ class HeaderOperations:
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
         header_parameters["foo-client-request-id"] = self._serialize.header(
-            "foo_client_request_id", _foo_client_request_id, "str"
+            "foo_client_request_id", foo_client_request_id, "str"
         )
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
@@ -148,7 +146,7 @@ class HeaderOperations:
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
         request = self._custom_named_request_id_param_grouping_request(
-            _foo_client_request_id=_foo_client_request_id, **kwargs
+            foo_client_request_id=_foo_client_request_id, **kwargs
         )
         kwargs.pop("content_type", None)
 

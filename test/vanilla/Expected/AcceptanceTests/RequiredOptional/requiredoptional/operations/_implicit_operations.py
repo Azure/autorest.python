@@ -283,8 +283,8 @@ class ImplicitOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = body_parameter
-        request = self._put_optional_body_request(body=body, **kwargs)
+        _body = body_parameter
+        request = self._put_optional_body_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

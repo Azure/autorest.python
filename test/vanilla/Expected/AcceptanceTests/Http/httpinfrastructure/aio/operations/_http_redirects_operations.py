@@ -297,8 +297,8 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = boolean_value
-        request = self._put301_request(body=body, **kwargs)
+        _body = boolean_value
+        request = self._put301_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -460,8 +460,8 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = boolean_value
-        request = self._patch302_request(body=body, **kwargs)
+        _body = boolean_value
+        request = self._patch302_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -521,8 +521,8 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = boolean_value
-        request = self._post303_request(body=body, **kwargs)
+        _body = boolean_value
+        request = self._post303_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -735,8 +735,8 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = boolean_value
-        request = self._put307_request(body=body, **kwargs)
+        _body = boolean_value
+        request = self._put307_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -796,8 +796,8 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = boolean_value
-        request = self._patch307_request(body=body, **kwargs)
+        _body = boolean_value
+        request = self._patch307_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -857,8 +857,8 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = boolean_value
-        request = self._post307_request(body=body, **kwargs)
+        _body = boolean_value
+        request = self._post307_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -918,8 +918,8 @@ class HttpRedirectsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = boolean_value
-        request = self._delete307_request(body=body, **kwargs)
+        _body = boolean_value
+        request = self._delete307_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

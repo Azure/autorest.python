@@ -112,8 +112,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_non_retry400_request(body=body, **kwargs)
+            _body = product
+            request = self._put_non_retry400_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -205,8 +205,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_non_retry201_creating400_request(body=body, **kwargs)
+            _body = product
+            request = self._put_non_retry201_creating400_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -298,8 +298,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_non_retry201_creating400_invalid_json_request(body=body, **kwargs)
+            _body = product
+            request = self._put_non_retry201_creating400_invalid_json_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -391,8 +391,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_relative_retry400_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_relative_retry400_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -735,8 +735,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_non_retry400_request(body=body, **kwargs)
+            _body = product
+            request = self._post_non_retry400_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -827,8 +827,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post202_non_retry400_request(body=body, **kwargs)
+            _body = product
+            request = self._post202_non_retry400_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -920,8 +920,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_relative_retry400_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_relative_retry400_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1015,8 +1015,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_error201_no_provisioning_state_payload_request(body=body, **kwargs)
+            _body = product
+            request = self._put_error201_no_provisioning_state_payload_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1109,8 +1109,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_relative_retry_no_status_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_relative_retry_no_status_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1217,8 +1217,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_relative_retry_no_status_payload_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_relative_retry_no_status_payload_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1481,8 +1481,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post202_no_location_request(body=body, **kwargs)
+            _body = product
+            request = self._post202_no_location_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1575,8 +1575,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_relative_retry_no_payload_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_relative_retry_no_payload_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1671,8 +1671,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put200_invalid_json_request(body=body, **kwargs)
+            _body = product
+            request = self._put200_invalid_json_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1765,8 +1765,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_relative_retry_invalid_header_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_relative_retry_invalid_header_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1873,8 +1873,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_relative_retry_invalid_json_polling_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_relative_retry_invalid_json_polling_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2223,8 +2223,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post202_retry_invalid_header_request(body=body, **kwargs)
+            _body = product
+            request = self._post202_retry_invalid_header_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2317,8 +2317,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_relative_retry_invalid_header_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_relative_retry_invalid_header_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2414,8 +2414,8 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_relative_retry_invalid_json_polling_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_relative_retry_invalid_json_polling_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response

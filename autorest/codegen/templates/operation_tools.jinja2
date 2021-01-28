@@ -241,7 +241,7 @@ return 200 <= response.status_code <= 299
 {%- endif -%}
 {% if operation.request.multipart %}
 # Construct form data
-body = {
+_body = {
     {% for param in operation.parameters.body %}
     '{{ param.rest_api_name }}': {{ param.serialized_name }},
     {% endfor %}
@@ -249,12 +249,12 @@ body = {
 {% elif operation.parameters.is_flattened %}
 {{ operation.parameters.build_flattened_object() }}
 {% elif operation.parameters.has_body and not request.parameters.body[0].constant %}
-body = {{ operation.parameters.body[0].serialized_name }}
+_body = {{ operation.parameters.body[0].serialized_name }}
 {% endif %}
 request = self.{{ request.name }}({{ "**kwargs)" if not request.parameters.method }}
 {% if request.parameters.method %}
     {% for parameter in request.parameters.method %}
-    {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+    {{ parameter.serialized_name }}={{ parameter.name_in_high_level_operation }},
     {% endfor %}
     **kwargs
 ){% endif %}

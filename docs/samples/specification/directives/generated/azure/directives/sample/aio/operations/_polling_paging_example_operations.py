@@ -81,9 +81,9 @@ class PollingPagingExampleOperationsMixin:
         error_map.update(kwargs.pop('error_map', {}))
         cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
         if cont_token is None:
-            body = product
+            _body = product
             request = self._basic_polling_request(
-                body=body,
+                body=_body,
                 **kwargs
             )
             kwargs.pop('content_type', None)

@@ -95,9 +95,9 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        body = parameter_one
+        _body = parameter_one
         request = self._test_two_request(
-            body=body,
+            body=_body,
             **kwargs
         )
         kwargs.pop('content_type', None)

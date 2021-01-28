@@ -138,8 +138,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = string_body
-        request = self._put_null_request(body=body, **kwargs)
+        _body = string_body
+        request = self._put_null_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -661,8 +661,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        body = string_body
-        request = self._put_base64_url_encoded_request(body=body, **kwargs)
+        _body = string_body
+        request = self._put_base64_url_encoded_request(body=_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

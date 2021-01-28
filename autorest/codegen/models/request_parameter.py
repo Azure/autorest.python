@@ -6,6 +6,11 @@
 from typing import Any, Dict
 from .parameter import Parameter, ParameterLocation, ParameterStyle
 
+def _make_public(name):
+    if name[0] == "_":
+        return name[1:]
+    return name
+
 class RequestParameter(Parameter):
 
     @property
@@ -21,6 +26,12 @@ class RequestParameter(Parameter):
             or self.is_kwarg
         )
 
+    @property
+    def name_in_high_level_operation(self) -> str:
+        if self.location == ParameterLocation.Body:
+            return "_body"
+        return self.yaml_data["language"]["python"]["name"]
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
@@ -35,7 +46,7 @@ class RequestParameter(Parameter):
             rest_api_name=yaml_data["language"]["default"].get(
                 "serializedName", yaml_data["language"]["default"]["name"]
             ),
-            serialized_name=name,
+            serialized_name=_make_public(name),
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
             required=yaml_data.get("required", False),

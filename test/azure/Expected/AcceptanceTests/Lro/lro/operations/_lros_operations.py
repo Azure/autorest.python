@@ -113,8 +113,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put200_succeeded_request(body=body, **kwargs)
+            _body = product
+            request = self._put200_succeeded_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -206,8 +206,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put201_succeeded_request(body=body, **kwargs)
+            _body = product
+            request = self._put201_succeeded_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -378,8 +378,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put200_succeeded_no_state_request(body=body, **kwargs)
+            _body = product
+            request = self._put200_succeeded_no_state_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -472,8 +472,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put202_retry200_request(body=body, **kwargs)
+            _body = product
+            request = self._put202_retry200_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -566,8 +566,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put201_creating_succeeded200_request(body=body, **kwargs)
+            _body = product
+            request = self._put201_creating_succeeded200_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -660,8 +660,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put200_updating_succeeded204_request(body=body, **kwargs)
+            _body = product
+            request = self._put200_updating_succeeded204_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -754,8 +754,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put201_creating_failed200_request(body=body, **kwargs)
+            _body = product
+            request = self._put201_creating_failed200_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -848,8 +848,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put200_acceptedcanceled200_request(body=body, **kwargs)
+            _body = product
+            request = self._put200_acceptedcanceled200_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -941,8 +941,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_no_header_in_retry_request(body=body, **kwargs)
+            _body = product
+            request = self._put_no_header_in_retry_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1041,8 +1041,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_retry_succeeded_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_retry_succeeded_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1149,8 +1149,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_no_retry_succeeded_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_no_retry_succeeded_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1255,8 +1255,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_retry_failed_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_retry_failed_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1363,8 +1363,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_no_retrycanceled_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_no_retrycanceled_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1469,8 +1469,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._put_async_no_header_in_retry_request(body=body, **kwargs)
+            _body = product
+            request = self._put_async_no_header_in_retry_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1571,8 +1571,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = sku
-            request = self._put_non_resource_request(body=body, **kwargs)
+            _body = sku
+            request = self._put_non_resource_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1663,8 +1663,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = sku
-            request = self._put_async_non_resource_request(body=body, **kwargs)
+            _body = sku
+            request = self._put_async_non_resource_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1755,8 +1755,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = _models.SubProduct(provisioning_state=provisioning_state)
-            request = self._put_sub_resource_request(body=body, **kwargs)
+            _body = _models.SubProduct(provisioning_state=provisioning_state)
+            request = self._put_sub_resource_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -1847,8 +1847,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = _models.SubProduct(provisioning_state=provisioning_state)
-            request = self._put_async_sub_resource_request(body=body, **kwargs)
+            _body = _models.SubProduct(provisioning_state=provisioning_state)
+            request = self._put_async_sub_resource_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -2976,8 +2976,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post202_retry200_request(body=body, **kwargs)
+            _body = product
+            request = self._post202_retry200_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -3069,8 +3069,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post202_no_retry204_request(body=body, **kwargs)
+            _body = product
+            request = self._post202_no_retry204_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -3411,8 +3411,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_retry_succeeded_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_retry_succeeded_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -3505,8 +3505,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_no_retry_succeeded_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_no_retry_succeeded_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -3599,8 +3599,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_retry_failed_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_retry_failed_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -3696,8 +3696,8 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            body = product
-            request = self._post_async_retrycanceled_request(body=body, **kwargs)
+            _body = product
+            request = self._post_async_retrycanceled_request(body=_body, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
