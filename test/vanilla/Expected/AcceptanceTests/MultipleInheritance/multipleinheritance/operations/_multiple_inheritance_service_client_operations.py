@@ -134,8 +134,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = horse
-        request = self._put_horse_request(body=_body, **kwargs)
+        request = self._put_horse_request(body=horse, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -258,8 +257,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = _models.Pet(name=name)
-        request = self._put_pet_request(body=_body, **kwargs)
+        _pet = _models.Pet(name=name)
+        request = self._put_pet_request(body=_pet, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -382,8 +381,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = feline
-        request = self._put_feline_request(body=_body, **kwargs)
+        request = self._put_feline_request(body=feline, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -506,8 +504,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = cat
-        request = self._put_cat_request(body=_body, **kwargs)
+        request = self._put_cat_request(body=cat, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -633,8 +630,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = kitten
-        request = self._put_kitten_request(body=_body, **kwargs)
+        request = self._put_kitten_request(body=kitten, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

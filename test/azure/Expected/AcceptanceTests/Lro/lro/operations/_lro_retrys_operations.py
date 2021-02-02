@@ -114,8 +114,7 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            _body = product
-            request = self._put201_creating_succeeded200_request(body=_body, **kwargs)
+            request = self._put201_creating_succeeded200_request(body=product, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -208,8 +207,7 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            _body = product
-            request = self._put_async_relative_retry_succeeded_request(body=_body, **kwargs)
+            request = self._put_async_relative_retry_succeeded_request(body=product, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -556,8 +554,7 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            _body = product
-            request = self._post202_retry200_request(body=_body, **kwargs)
+            request = self._post202_retry200_request(body=product, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response
@@ -650,8 +647,7 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            _body = product
-            request = self._post_async_relative_retry_succeeded_request(body=_body, **kwargs)
+            request = self._post_async_relative_retry_succeeded_request(body=product, **kwargs)
             kwargs.pop("content_type", None)
             pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
             response = pipeline_response.http_response

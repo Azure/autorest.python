@@ -101,9 +101,8 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _body = input
         request = self._test_four_request(
-            body=_body,
+            body=input,
             **kwargs
         )
         kwargs.pop('content_type', None)

@@ -236,8 +236,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._put200_request(body=_body, **kwargs)
+        request = self._put200_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -293,8 +292,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._patch200_request(body=_body, **kwargs)
+        request = self._patch200_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -350,8 +348,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._post200_request(body=_body, **kwargs)
+        request = self._post200_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -407,8 +404,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._delete200_request(body=_body, **kwargs)
+        request = self._delete200_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -464,8 +460,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._put201_request(body=_body, **kwargs)
+        request = self._put201_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -521,8 +516,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._post201_request(body=_body, **kwargs)
+        request = self._post201_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -578,8 +572,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._put202_request(body=_body, **kwargs)
+        request = self._put202_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -635,8 +628,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._patch202_request(body=_body, **kwargs)
+        request = self._patch202_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -692,8 +684,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._post202_request(body=_body, **kwargs)
+        request = self._post202_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -749,8 +740,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._delete202_request(body=_body, **kwargs)
+        request = self._delete202_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -853,8 +843,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._put204_request(body=_body, **kwargs)
+        request = self._put204_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -910,8 +899,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._patch204_request(body=_body, **kwargs)
+        request = self._patch204_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -967,8 +955,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._post204_request(body=_body, **kwargs)
+        request = self._post204_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1024,8 +1011,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = boolean_value
-        request = self._delete204_request(body=_body, **kwargs)
+        request = self._delete204_request(body=boolean_value, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

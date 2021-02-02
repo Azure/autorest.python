@@ -248,8 +248,6 @@ _body = {
 }
 {% elif operation.parameters.is_flattened %}
 {{ operation.parameters.build_flattened_object() }}
-{% elif operation.parameters.has_body and not request.parameters.body[0].constant %}
-_body = {{ operation.parameters.body[0].serialized_name }}
 {% endif %}
 request = self.{{ request.name }}({{ "**kwargs)" if not request.parameters.method }}
 {% if request.parameters.method %}

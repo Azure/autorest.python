@@ -50,15 +50,23 @@ class NameConverter:
                 for exception in operation.get('exceptions', []):
                     NameConverter._convert_language_default_python_case(exception)
                 for parameter in operation.get("parameters", []):
+                    NameConverter._add_multipart_information(parameter, operation)
                     NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
                 for request in operation.get("requests", []):
                     NameConverter._convert_language_default_python_case(request)
                     for parameter in request.get("parameters", []):
+                        NameConverter._add_multipart_information(parameter, operation)
                         NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
                 for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
                 if operation.get("extensions"):
                     NameConverter._convert_extensions(operation)
+
+    @staticmethod
+    def _add_multipart_information(parameter: Dict[str, Any], operation: Dict[str, Any]):
+        multipart = operation["requests"][0]["protocol"]["http"].get("multipart", False)
+        if multipart and parameter["protocol"]["http"]["in"] == "body":
+            parameter["language"]["default"]["multipart"] = True
 
     @staticmethod
     def _convert_extensions(operation: Dict[str, Any]) -> None:

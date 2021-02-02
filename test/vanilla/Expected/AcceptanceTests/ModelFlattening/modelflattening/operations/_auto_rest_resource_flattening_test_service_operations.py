@@ -80,8 +80,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = resource_array
-        request = self._put_array_request(body=_body, **kwargs)
+        request = self._put_array_request(body=resource_array, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -205,8 +204,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = resource_array
-        request = self._put_wrapped_array_request(body=_body, **kwargs)
+        request = self._put_wrapped_array_request(body=resource_array, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -330,8 +328,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = resource_dictionary
-        request = self._put_dictionary_request(body=_body, **kwargs)
+        request = self._put_dictionary_request(body=resource_dictionary, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -454,8 +451,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = resource_complex_object
-        request = self._put_resource_collection_request(body=_body, **kwargs)
+        request = self._put_resource_collection_request(body=resource_complex_object, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -578,8 +574,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = simple_body_product
-        request = self._put_simple_product_request(body=_body, **kwargs)
+        request = self._put_simple_product_request(body=simple_body_product, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -663,14 +658,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = _models.SimpleProduct(
+        _simple_body_product = _models.SimpleProduct(
             product_id=product_id,
             description=description,
             max_product_display_name=max_product_display_name,
             generic_value=generic_value,
             odata_value=odata_value,
         )
-        request = self._post_flattened_simple_product_request(body=_body, **kwargs)
+        request = self._post_flattened_simple_product_request(body=_simple_body_product, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -760,14 +755,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             _max_product_display_name = flatten_parameter_group.max_product_display_name
             _generic_value = flatten_parameter_group.generic_value
             _odata_value = flatten_parameter_group.odata_value
-        _body = _models.SimpleProduct(
+        _simple_body_product = _models.SimpleProduct(
             product_id=_product_id,
             description=_description,
             max_product_display_name=_max_product_display_name,
             generic_value=_generic_value,
             odata_value=_odata_value,
         )
-        request = self._put_simple_product_with_grouping_request(name=_name, body=_body, **kwargs)
+        request = self._put_simple_product_with_grouping_request(name=_name, body=_simple_body_product, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

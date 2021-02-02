@@ -28,7 +28,7 @@ class RequestParameter(Parameter):
 
     @property
     def name_in_high_level_operation(self) -> str:
-        if self.location == ParameterLocation.Body:
+        if self.yaml_data["language"]["python"].get("multipart", False):
             return "_body"
         return self.yaml_data["language"]["python"]["name"]
 

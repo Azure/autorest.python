@@ -109,8 +109,8 @@ class AvailabilitySetsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = _models.AvailabilitySetUpdateParameters(tags=tags)
-        request = self._update_request(resource_group_name=resource_group_name, avset=avset, body=_body, **kwargs)
+        _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
+        request = self._update_request(resource_group_name=resource_group_name, avset=avset, body=_tags, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

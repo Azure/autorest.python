@@ -327,8 +327,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = date_body
-        request = self._put_max_date_request(body=_body, **kwargs)
+        request = self._put_max_date_request(body=date_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -448,8 +447,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = date_body
-        request = self._put_min_date_request(body=_body, **kwargs)
+        request = self._put_min_date_request(body=date_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

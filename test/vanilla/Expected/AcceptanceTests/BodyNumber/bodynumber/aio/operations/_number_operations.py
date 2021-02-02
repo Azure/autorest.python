@@ -288,8 +288,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = number_body
-        request = self._put_big_float_request(body=_body, **kwargs)
+        request = self._put_big_float_request(body=number_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -393,8 +392,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = number_body
-        request = self._put_big_double_request(body=_body, **kwargs)
+        request = self._put_big_double_request(body=number_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -706,8 +704,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = number_body
-        request = self._put_big_decimal_request(body=_body, **kwargs)
+        request = self._put_big_decimal_request(body=number_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1019,8 +1016,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = number_body
-        request = self._put_small_float_request(body=_body, **kwargs)
+        request = self._put_small_float_request(body=number_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1124,8 +1120,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = number_body
-        request = self._put_small_double_request(body=_body, **kwargs)
+        request = self._put_small_double_request(body=number_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1229,8 +1224,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _body = number_body
-        request = self._put_small_decimal_request(body=_body, **kwargs)
+        request = self._put_small_decimal_request(body=number_body, **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -118,7 +118,6 @@ class ParameterGroupingOperations(object):
             _query = parameter_grouping_post_required_parameters.query
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
-        _body = _body
         request = self._post_required_request(
             path=_path, body=_body, custom_header=_custom_header, query=_query, **kwargs
         )
