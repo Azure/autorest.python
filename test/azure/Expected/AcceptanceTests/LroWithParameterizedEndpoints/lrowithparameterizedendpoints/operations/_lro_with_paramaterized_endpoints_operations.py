@@ -41,7 +41,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._poll_with_parameterized_endpoints_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._poll_with_parameterized_endpoints_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

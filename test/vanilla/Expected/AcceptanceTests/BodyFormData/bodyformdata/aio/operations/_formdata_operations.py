@@ -52,7 +52,7 @@ class FormdataOperations:
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = self._upload_file_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._upload_file_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -116,7 +116,7 @@ class FormdataOperations:
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = self._upload_file_via_body_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._upload_file_via_body_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ class FormdataOperations:
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = self._upload_files_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._upload_files_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

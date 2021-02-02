@@ -53,7 +53,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_method_local_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_method_local_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -101,7 +101,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_method_local_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_method_local_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -153,7 +153,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_path_local_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_path_local_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -202,7 +202,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_swagger_local_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_swagger_local_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

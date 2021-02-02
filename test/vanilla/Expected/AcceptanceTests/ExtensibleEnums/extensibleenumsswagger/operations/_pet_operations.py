@@ -60,7 +60,7 @@ class PetOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_by_pet_id_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_by_pet_id_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "petId": self._serialize.url("pet_id", pet_id, "str"),
         }
@@ -126,7 +126,7 @@ class PetOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._add_pet_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._add_pet_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

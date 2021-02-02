@@ -60,7 +60,7 @@ class ApiVersionDefaultOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_method_global_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_method_global_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ class ApiVersionDefaultOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_method_global_not_provided_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_method_global_not_provided_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -170,7 +170,7 @@ class ApiVersionDefaultOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_path_global_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_path_global_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -225,7 +225,7 @@ class ApiVersionDefaultOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_swagger_global_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_swagger_global_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

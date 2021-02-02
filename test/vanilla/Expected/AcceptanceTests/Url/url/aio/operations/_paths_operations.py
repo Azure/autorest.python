@@ -53,7 +53,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_boolean_true_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_boolean_true_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "boolPath": self._serialize.url("bool_path", bool_path, "bool"),
         }
@@ -105,7 +105,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_boolean_false_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_boolean_false_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "boolPath": self._serialize.url("bool_path", bool_path, "bool"),
         }
@@ -157,7 +157,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_int_one_million_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_int_one_million_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "intPath": self._serialize.url("int_path", int_path, "int"),
         }
@@ -209,7 +209,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_int_negative_one_million_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_int_negative_one_million_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "intPath": self._serialize.url("int_path", int_path, "int"),
         }
@@ -261,7 +261,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_ten_billion_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_ten_billion_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "longPath": self._serialize.url("long_path", long_path, "long"),
         }
@@ -313,7 +313,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_negative_ten_billion_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_negative_ten_billion_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "longPath": self._serialize.url("long_path", long_path, "long"),
         }
@@ -365,7 +365,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._float_scientific_positive_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._float_scientific_positive_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "floatPath": self._serialize.url("float_path", float_path, "float"),
         }
@@ -417,7 +417,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._float_scientific_negative_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._float_scientific_negative_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "floatPath": self._serialize.url("float_path", float_path, "float"),
         }
@@ -469,7 +469,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._double_decimal_positive_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._double_decimal_positive_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "doublePath": self._serialize.url("double_path", double_path, "float"),
         }
@@ -521,7 +521,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._double_decimal_negative_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._double_decimal_negative_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "doublePath": self._serialize.url("double_path", double_path, "float"),
         }
@@ -573,7 +573,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_unicode_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_unicode_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -625,7 +625,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_url_encoded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_url_encoded_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -677,7 +677,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_url_non_encoded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_url_non_encoded_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str", skip_quote=True),
         }
@@ -731,7 +731,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_empty_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -782,7 +782,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "stringPath": self._serialize.url("string_path", string_path, "str"),
         }
@@ -834,7 +834,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._enum_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._enum_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "enumPath": self._serialize.url("enum_path", enum_path, "str"),
         }
@@ -886,7 +886,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._enum_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._enum_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "enumPath": self._serialize.url("enum_path", enum_path, "str"),
         }
@@ -938,7 +938,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._byte_multi_byte_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._byte_multi_byte_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
         }
@@ -991,7 +991,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._byte_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._byte_empty_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
         }
@@ -1042,7 +1042,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._byte_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._byte_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
         }
@@ -1095,7 +1095,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "datePath": self._serialize.url("date_path", date_path, "date"),
         }
@@ -1146,7 +1146,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "datePath": self._serialize.url("date_path", date_path, "date"),
         }
@@ -1200,7 +1200,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_time_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_time_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "dateTimePath": self._serialize.url("date_time_path", date_time_path, "iso-8601"),
         }
@@ -1251,7 +1251,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_time_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_time_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "dateTimePath": self._serialize.url("date_time_path", date_time_path, "iso-8601"),
         }
@@ -1303,7 +1303,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._base64_url_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._base64_url_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "base64UrlPath": self._serialize.url("base64_url_path", base64_url_path, "base64"),
         }
@@ -1355,7 +1355,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_csv_in_path_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_csv_in_path_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "arrayPath": self._serialize.url("array_path", array_path, "[str]", div=","),
         }
@@ -1409,7 +1409,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._unix_time_url_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._unix_time_url_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "unixTimeUrlPath": self._serialize.url("unix_time_url_path", unix_time_url_path, "unix-time"),
         }

@@ -27,7 +27,7 @@ class MultiapiServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._test_paging_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._test_paging_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ class MultiapiServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._test_different_calls_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._test_different_calls_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

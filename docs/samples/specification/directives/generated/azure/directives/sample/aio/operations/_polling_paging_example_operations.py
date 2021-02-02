@@ -31,7 +31,7 @@ class PollingPagingExampleOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._basic_polling_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._basic_polling_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ class PollingPagingExampleOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._basic_paging_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._basic_paging_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

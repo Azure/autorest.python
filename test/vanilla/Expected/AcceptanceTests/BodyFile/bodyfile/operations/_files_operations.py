@@ -58,7 +58,7 @@ class FilesOperations(object):
         accept = "image/png, application/json"
 
         # Construct URL
-        url = self._get_file_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_file_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ class FilesOperations(object):
         accept = "image/png, application/json"
 
         # Construct URL
-        url = self._get_file_large_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_file_large_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -172,7 +172,7 @@ class FilesOperations(object):
         accept = "image/png, application/json"
 
         # Construct URL
-        url = self._get_empty_file_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_file_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

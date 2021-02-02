@@ -52,7 +52,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_integer_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_integer_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -107,7 +107,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_integer_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_integer_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -164,7 +164,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_integer_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_integer_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -221,7 +221,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_integer_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_integer_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -277,7 +277,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_integer_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_integer_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -329,7 +329,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_integer_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_integer_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -380,7 +380,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_string_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_string_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -435,7 +435,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_string_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_string_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -492,7 +492,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_string_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_string_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -549,7 +549,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_string_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_string_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -605,7 +605,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_string_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_string_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -655,7 +655,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_string_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_string_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -706,7 +706,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_class_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_class_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -763,7 +763,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_class_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_class_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -822,7 +822,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_class_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_class_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -879,7 +879,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_class_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_class_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -936,7 +936,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_array_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_array_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -991,7 +991,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_array_parameter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_array_parameter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1048,7 +1048,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_array_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_array_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1105,7 +1105,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_array_property_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_array_property_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1161,7 +1161,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_required_array_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_required_array_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1215,7 +1215,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_optional_array_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_optional_array_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

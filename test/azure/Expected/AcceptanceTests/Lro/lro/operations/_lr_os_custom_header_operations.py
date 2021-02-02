@@ -64,7 +64,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -173,7 +173,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put201_creating_succeeded200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put201_creating_succeeded200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -268,7 +268,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_retry200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_retry200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -362,7 +362,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

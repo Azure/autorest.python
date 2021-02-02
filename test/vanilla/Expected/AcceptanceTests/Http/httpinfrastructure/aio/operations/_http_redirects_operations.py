@@ -51,7 +51,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head300_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head300_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -102,7 +102,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get300_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get300_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -158,7 +158,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head301_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head301_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -209,7 +209,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get301_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get301_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -261,7 +261,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put301_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put301_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -321,7 +321,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head302_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head302_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -372,7 +372,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get302_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get302_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -424,7 +424,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch302_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch302_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -485,7 +485,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post303_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post303_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -546,7 +546,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head307_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head307_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -597,7 +597,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get307_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get307_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -648,7 +648,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._options307_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._options307_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -700,7 +700,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put307_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put307_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -761,7 +761,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch307_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch307_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -822,7 +822,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post307_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post307_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -883,7 +883,7 @@ class HttpRedirectsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete307_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete307_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

@@ -21,6 +21,7 @@ class {{ operation_group.class_name }}{{ object_base_class }}:
         {% if operation.next_request %}
             {% set request = operation.next_request %}
                 {% include "request.py.jinja2" %}
+
         {% endif %}
     {% include "paging_operation.py.jinja2" %}{% endmacro %}
     {% else %}

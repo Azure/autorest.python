@@ -40,7 +40,7 @@ class HttpSuccessOperations:
     ) -> HttpRequest:
 
         # Construct URL
-        url = self._head200_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._head200_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -91,7 +91,7 @@ class HttpSuccessOperations:
     ) -> HttpRequest:
 
         # Construct URL
-        url = self._head204_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._head204_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -142,7 +142,7 @@ class HttpSuccessOperations:
     ) -> HttpRequest:
 
         # Construct URL
-        url = self._head404_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._head404_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

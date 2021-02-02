@@ -59,7 +59,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_no_model_as_string_no_required_two_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_two_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -118,7 +118,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_no_model_as_string_no_required_two_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_two_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -177,7 +177,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_no_model_as_string_no_required_one_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_one_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -236,7 +236,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_no_model_as_string_no_required_one_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_one_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -295,7 +295,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_no_model_as_string_required_two_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_required_two_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -353,7 +353,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_no_model_as_string_required_two_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_required_two_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -410,7 +410,7 @@ class ContantsOperations(object):
         input = "value1"
 
         # Construct URL
-        url = self._put_no_model_as_string_required_one_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_required_one_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -464,7 +464,7 @@ class ContantsOperations(object):
         input = "value1"
 
         # Construct URL
-        url = self._put_no_model_as_string_required_one_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_model_as_string_required_one_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -519,7 +519,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_no_required_two_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_no_required_two_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -578,7 +578,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_no_required_two_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_no_required_two_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -637,7 +637,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_no_required_one_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_no_required_one_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -696,7 +696,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_no_required_one_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_no_required_one_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -755,7 +755,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_required_two_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_required_two_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -813,7 +813,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_required_two_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_required_two_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -871,7 +871,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_required_one_value_no_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_required_one_value_no_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -929,7 +929,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._put_model_as_string_required_one_value_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_model_as_string_required_one_value_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

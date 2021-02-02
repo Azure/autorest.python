@@ -60,7 +60,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_required_path_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_required_path_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "pathParameter": self._serialize.url("path_parameter", path_parameter, "str"),
         }
@@ -122,7 +122,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_optional_query_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_optional_query_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -182,7 +182,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_optional_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_optional_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -243,7 +243,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_optional_body_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_optional_body_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -307,7 +307,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_required_global_path_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_required_global_path_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "required-global-path": self._serialize.url(
                 "self._config.required_global_path", self._config.required_global_path, "str"
@@ -366,7 +366,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_required_global_query_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_required_global_query_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -422,7 +422,7 @@ class ImplicitOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_optional_global_query_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_optional_global_query_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

@@ -58,7 +58,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -172,7 +172,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_non_ascii_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_non_ascii_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -232,7 +232,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_non_ascii_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_non_ascii_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -293,7 +293,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

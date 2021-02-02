@@ -53,7 +53,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_boolean_true_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_boolean_true_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -102,7 +102,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_boolean_false_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_boolean_false_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -150,7 +150,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_boolean_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_boolean_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -201,7 +201,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_int_one_million_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_int_one_million_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -250,7 +250,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_int_negative_one_million_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_int_negative_one_million_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -298,7 +298,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_int_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_int_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -349,7 +349,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_ten_billion_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_ten_billion_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -398,7 +398,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_negative_ten_billion_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_negative_ten_billion_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -446,7 +446,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_long_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_long_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -497,7 +497,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._float_scientific_positive_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._float_scientific_positive_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -546,7 +546,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._float_scientific_negative_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._float_scientific_negative_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -594,7 +594,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._float_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._float_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -645,7 +645,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._double_decimal_positive_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._double_decimal_positive_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -694,7 +694,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._double_decimal_negative_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._double_decimal_negative_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -742,7 +742,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._double_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._double_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -793,7 +793,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_unicode_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_unicode_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -842,7 +842,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_url_encoded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_url_encoded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -891,7 +891,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_empty_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -939,7 +939,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._string_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._string_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -991,7 +991,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._enum_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._enum_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1043,7 +1043,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._enum_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._enum_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1093,7 +1093,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._byte_multi_byte_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._byte_multi_byte_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1144,7 +1144,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._byte_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._byte_empty_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1192,7 +1192,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._byte_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._byte_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1243,7 +1243,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1291,7 +1291,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1342,7 +1342,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_time_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_time_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1392,7 +1392,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._date_time_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._date_time_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1442,7 +1442,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_string_csv_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_string_csv_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1494,7 +1494,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_string_csv_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_string_csv_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1544,7 +1544,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_string_csv_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_string_csv_empty_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1596,7 +1596,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_string_no_collection_format_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_string_no_collection_format_empty_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1649,7 +1649,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_string_ssv_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_string_ssv_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1701,7 +1701,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_string_tsv_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_string_tsv_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1753,7 +1753,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._array_string_pipes_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._array_string_pipes_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

@@ -51,7 +51,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -188,7 +188,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_dot_syntax_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_dot_syntax_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -239,7 +239,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_composed_with_discriminator_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_composed_with_discriminator_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -292,7 +292,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_composed_without_discriminator_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_composed_without_discriminator_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -345,7 +345,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_complicated_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_complicated_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -398,7 +398,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_complicated_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_complicated_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -453,7 +453,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_missing_discriminator_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_missing_discriminator_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -511,7 +511,7 @@ class PolymorphismOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_valid_missing_required_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_valid_missing_required_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

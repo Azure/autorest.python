@@ -58,7 +58,7 @@ class BoolOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_true_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_true_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -117,7 +117,7 @@ class BoolOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_true_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_true_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ class BoolOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_false_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_false_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -233,7 +233,7 @@ class BoolOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_false_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_false_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -290,7 +290,7 @@ class BoolOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -347,7 +347,7 @@ class BoolOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

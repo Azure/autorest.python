@@ -59,7 +59,7 @@ class SubscriptionInCredentialsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_method_global_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_method_global_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -117,7 +117,7 @@ class SubscriptionInCredentialsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_method_global_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_method_global_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -176,7 +176,7 @@ class SubscriptionInCredentialsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_method_global_not_provided_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_method_global_not_provided_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -235,7 +235,7 @@ class SubscriptionInCredentialsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_path_global_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_path_global_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -293,7 +293,7 @@ class SubscriptionInCredentialsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_swagger_global_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_swagger_global_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }

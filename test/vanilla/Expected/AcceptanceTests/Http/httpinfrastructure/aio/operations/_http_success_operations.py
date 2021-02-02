@@ -51,7 +51,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -98,7 +98,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -149,7 +149,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._options200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._options200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -201,7 +201,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -258,7 +258,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -315,7 +315,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -372,7 +372,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -429,7 +429,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put201_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put201_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -486,7 +486,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post201_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post201_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -543,7 +543,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put202_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put202_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -600,7 +600,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch202_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch202_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -657,7 +657,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -714,7 +714,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete202_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete202_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -770,7 +770,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -818,7 +818,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -875,7 +875,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -932,7 +932,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -989,7 +989,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1045,7 +1045,7 @@ class HttpSuccessOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head404_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head404_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

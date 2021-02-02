@@ -59,7 +59,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -116,7 +116,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -173,7 +173,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_overflow_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_overflow_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -230,7 +230,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_underflow_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_underflow_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -290,7 +290,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_max_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_max_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -351,7 +351,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_max_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_max_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -411,7 +411,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_min_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_min_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -472,7 +472,7 @@ class DateOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_min_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_min_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

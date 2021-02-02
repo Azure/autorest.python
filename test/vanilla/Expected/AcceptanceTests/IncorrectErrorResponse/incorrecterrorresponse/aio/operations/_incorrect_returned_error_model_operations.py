@@ -29,7 +29,7 @@ class IncorrectReturnedErrorModelOperationsMixin:
     def _get_incorrect_error_from_server_request(self, **kwargs: Any) -> HttpRequest:
 
         # Construct URL
-        url = self._get_incorrect_error_from_server_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_incorrect_error_from_server_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

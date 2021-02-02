@@ -58,7 +58,7 @@ class XMsClientRequestIdOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._get_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -112,7 +112,7 @@ class XMsClientRequestIdOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._param_get_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_get_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

@@ -51,7 +51,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_no_item_name_pages_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_no_item_name_pages_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -123,7 +123,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_next_link_name_pages_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_next_link_name_pages_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -195,7 +195,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_single_pages_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_single_pages_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -267,7 +267,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._first_response_empty_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._first_response_empty_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -343,7 +343,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -449,7 +449,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_with_query_params_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_with_query_params_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -471,7 +471,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_with_query_params_next_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_with_query_params_next_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -483,6 +483,7 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
     _get_with_query_params_next_request.metadata = {'url': '/paging/multiple/nextOperationWithQueryParams'}  # type: ignore
+
     def get_with_query_params(
         self,
         required_query_parameter: int,
@@ -550,7 +551,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_odata_multiple_pages_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_odata_multiple_pages_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -658,7 +659,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_with_offset_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_with_offset_request.metadata['url'])  # type: ignore
         path_format_arguments = {
             'offset': self._serialize.url("offset", offset, 'int'),
         }
@@ -775,7 +776,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_retry_first_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_retry_first_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -848,7 +849,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_retry_second_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_retry_second_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -921,7 +922,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_single_pages_failure_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_single_pages_failure_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -993,7 +994,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_failure_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_failure_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1065,7 +1066,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_failure_uri_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_failure_uri_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1139,7 +1140,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_next_link_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_fragment_next_link_request.metadata['url'])  # type: ignore
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", tenant, 'str'),
         }
@@ -1166,7 +1167,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_next_link_next_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_fragment_next_link_next_request.metadata['url'])  # type: ignore
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", tenant, 'str'),
             'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
@@ -1183,6 +1184,7 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
     _get_multiple_pages_fragment_next_link_next_request.metadata = {'url': '/paging/multiple/fragment/{tenant}/{nextLink}'}  # type: ignore
+
     def get_multiple_pages_fragment_next_link(
         self,
         api_version: str,
@@ -1255,7 +1257,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_with_grouping_next_link_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_fragment_with_grouping_next_link_request.metadata['url'])  # type: ignore
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", tenant, 'str'),
         }
@@ -1282,7 +1284,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_fragment_with_grouping_next_link_next_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_fragment_with_grouping_next_link_next_request.metadata['url'])  # type: ignore
         path_format_arguments = {
             'tenant': self._serialize.url("tenant", tenant, 'str'),
             'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
@@ -1299,6 +1301,7 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
     _get_multiple_pages_fragment_with_grouping_next_link_next_request.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'}  # type: ignore
+
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
         custom_parameter_group: "_models.CustomParameterGroup",
@@ -1381,7 +1384,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_multiple_pages_lro_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_lro_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1541,7 +1544,7 @@ class PagingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_paging_model_with_item_name_with_xms_client_name_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._get_paging_model_with_item_name_with_xms_client_name_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

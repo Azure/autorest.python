@@ -35,7 +35,7 @@ class ObjectTypeClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -96,7 +96,7 @@ class ObjectTypeClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

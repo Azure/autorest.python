@@ -52,7 +52,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_existing_key_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_existing_key_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -101,7 +101,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_existing_key_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_existing_key_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -151,7 +151,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_protected_key_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_protected_key_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -200,7 +200,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_protected_key_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_protected_key_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -250,7 +250,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_integer_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_integer_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -303,7 +303,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_integer_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_integer_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -355,7 +355,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_long_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_long_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -408,7 +408,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_long_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_long_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -460,7 +460,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_float_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_float_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -513,7 +513,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_float_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_float_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -565,7 +565,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_double_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_double_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -618,7 +618,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_double_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_double_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -670,7 +670,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_bool_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_bool_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -723,7 +723,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_bool_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_bool_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -775,7 +775,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_string_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_string_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -831,7 +831,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_string_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_string_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -884,7 +884,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -937,7 +937,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_date_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_date_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -989,7 +989,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_datetime_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_datetime_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1043,7 +1043,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_datetime_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_datetime_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1097,7 +1097,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_datetime_rfc1123_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_datetime_rfc1123_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1154,7 +1154,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_datetime_rfc1123_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_datetime_rfc1123_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1207,7 +1207,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_duration_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_duration_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1259,7 +1259,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_duration_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_duration_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1311,7 +1311,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_byte_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_byte_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1363,7 +1363,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_byte_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_byte_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1417,7 +1417,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._param_enum_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._param_enum_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1474,7 +1474,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._response_enum_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._response_enum_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1527,7 +1527,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._custom_request_id_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._custom_request_id_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

@@ -64,7 +64,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_non_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_non_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -156,7 +156,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_non_retry201_creating400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_non_retry201_creating400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -249,7 +249,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_non_retry201_creating400_invalid_json_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_non_retry201_creating400_invalid_json_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -342,7 +342,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_relative_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_relative_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -446,7 +446,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_non_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_non_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -524,7 +524,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete202_non_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete202_non_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -602,7 +602,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_relative_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_relative_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -687,7 +687,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_non_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_non_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -779,7 +779,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_non_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_non_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -871,7 +871,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_relative_retry400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_relative_retry400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -967,7 +967,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_error201_no_provisioning_state_payload_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_error201_no_provisioning_state_payload_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1059,7 +1059,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_relative_retry_no_status_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_relative_retry_no_status_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1167,7 +1167,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_relative_retry_no_status_payload_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_relative_retry_no_status_payload_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1272,7 +1272,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete204_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete204_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1347,7 +1347,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_relative_retry_no_status_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_relative_retry_no_status_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1432,7 +1432,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_no_location_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_no_location_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1525,7 +1525,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_relative_retry_no_payload_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_relative_retry_no_payload_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1622,7 +1622,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put200_invalid_json_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put200_invalid_json_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1715,7 +1715,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_relative_retry_invalid_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_relative_retry_invalid_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1823,7 +1823,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_relative_retry_invalid_json_polling_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_relative_retry_invalid_json_polling_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1928,7 +1928,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete202_retry_invalid_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete202_retry_invalid_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2007,7 +2007,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_relative_retry_invalid_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_relative_retry_invalid_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2089,7 +2089,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_relative_retry_invalid_json_polling_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_relative_retry_invalid_json_polling_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2174,7 +2174,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_retry_invalid_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_retry_invalid_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2267,7 +2267,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_relative_retry_invalid_header_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_relative_retry_invalid_header_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2364,7 +2364,7 @@ class LROSADsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_relative_retry_invalid_json_polling_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_relative_retry_invalid_json_polling_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

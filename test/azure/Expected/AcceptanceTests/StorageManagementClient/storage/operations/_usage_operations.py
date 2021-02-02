@@ -60,7 +60,7 @@ class UsageOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._list_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }

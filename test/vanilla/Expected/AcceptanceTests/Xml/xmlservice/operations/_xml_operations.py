@@ -58,7 +58,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_complex_type_ref_no_meta_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_complex_type_ref_no_meta_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -116,7 +116,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_complex_type_ref_no_meta_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_complex_type_ref_no_meta_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -175,7 +175,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_complex_type_ref_with_meta_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_complex_type_ref_with_meta_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -233,7 +233,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_complex_type_ref_with_meta_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_complex_type_ref_with_meta_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -292,7 +292,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_simple_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_simple_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -352,7 +352,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._put_simple_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_simple_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -413,7 +413,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_wrapped_lists_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_wrapped_lists_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -472,7 +472,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._put_wrapped_lists_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_wrapped_lists_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -532,7 +532,7 @@ class XmlOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = self._get_headers_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_headers_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -586,7 +586,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_empty_list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_list_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -644,7 +644,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_empty_list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_empty_list_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -703,7 +703,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_empty_wrapped_lists_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_wrapped_lists_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -761,7 +761,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_empty_wrapped_lists_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_empty_wrapped_lists_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -820,7 +820,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_root_list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_root_list_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -878,7 +878,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_root_list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_root_list_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -938,7 +938,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_root_list_single_item_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_root_list_single_item_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -996,7 +996,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_root_list_single_item_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_root_list_single_item_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1056,7 +1056,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_empty_root_list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_root_list_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1114,7 +1114,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_empty_root_list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_empty_root_list_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1174,7 +1174,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_empty_child_element_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_child_element_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1232,7 +1232,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_empty_child_element_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_empty_child_element_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1292,7 +1292,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._list_containers_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._list_containers_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1351,7 +1351,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_service_properties_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_service_properties_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1413,7 +1413,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_service_properties_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_service_properties_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1476,7 +1476,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_acls_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_acls_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1538,7 +1538,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self._put_acls_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_acls_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1604,7 +1604,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._list_blobs_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._list_blobs_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1664,7 +1664,7 @@ class XmlOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._json_input_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._json_input_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1724,7 +1724,7 @@ class XmlOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._json_output_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._json_output_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1780,7 +1780,7 @@ class XmlOperations(object):
         accept = "application/xml"
 
         # Construct URL
-        url = self._get_xms_text_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_xms_text_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

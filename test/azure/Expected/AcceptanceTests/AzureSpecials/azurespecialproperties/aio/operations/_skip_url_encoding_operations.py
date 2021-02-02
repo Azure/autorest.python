@@ -52,7 +52,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_method_path_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_method_path_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "unencodedPathParam": self._serialize.url(
                 "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
@@ -106,7 +106,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_path_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_path_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "unencodedPathParam": self._serialize.url(
                 "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
@@ -161,7 +161,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_swagger_path_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_swagger_path_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "unencodedPathParam": self._serialize.url(
                 "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
@@ -214,7 +214,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_method_query_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_method_query_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -263,7 +263,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_method_query_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_method_query_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -313,7 +313,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_path_query_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_path_query_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -363,7 +363,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_swagger_query_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_swagger_query_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

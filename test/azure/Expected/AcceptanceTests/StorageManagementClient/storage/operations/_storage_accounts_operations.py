@@ -66,7 +66,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._check_name_availability_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._check_name_availability_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -143,7 +143,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._create_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._create_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -258,7 +258,7 @@ class StorageAccountsOperations(object):
         api_version = "2015-05-01-preview"
 
         # Construct URL
-        url = self._delete_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -328,7 +328,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._get_properties_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_properties_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -409,7 +409,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._update_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._update_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -501,7 +501,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._list_keys_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._list_keys_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -571,7 +571,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._list_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -656,7 +656,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._list_by_resource_group_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._list_by_resource_group_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
@@ -748,7 +748,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = self._regenerate_key_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._regenerate_key_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),

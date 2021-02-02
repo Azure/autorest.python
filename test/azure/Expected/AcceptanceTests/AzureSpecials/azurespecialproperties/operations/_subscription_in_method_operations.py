@@ -61,7 +61,7 @@ class SubscriptionInMethodOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_method_local_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_method_local_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
         }
@@ -125,7 +125,7 @@ class SubscriptionInMethodOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_method_local_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_method_local_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
         }
@@ -189,7 +189,7 @@ class SubscriptionInMethodOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_path_local_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_path_local_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
         }
@@ -252,7 +252,7 @@ class SubscriptionInMethodOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_swagger_local_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_swagger_local_valid_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
         }

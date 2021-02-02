@@ -53,7 +53,7 @@ class OperationGroupTwoOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._test_four_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._test_four_request.metadata['url'])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

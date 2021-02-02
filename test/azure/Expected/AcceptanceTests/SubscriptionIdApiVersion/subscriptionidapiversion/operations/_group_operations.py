@@ -62,7 +62,7 @@ class GroupOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_sample_resource_group_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_sample_resource_group_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),

@@ -58,7 +58,7 @@ class BasicOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -119,7 +119,7 @@ class BasicOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_valid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_valid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -181,7 +181,7 @@ class BasicOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -238,7 +238,7 @@ class BasicOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -295,7 +295,7 @@ class BasicOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -352,7 +352,7 @@ class BasicOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_not_provided_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_not_provided_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

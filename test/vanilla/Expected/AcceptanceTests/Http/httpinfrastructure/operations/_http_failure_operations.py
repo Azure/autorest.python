@@ -58,7 +58,7 @@ class HttpFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_empty_error_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_error_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ class HttpFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_no_model_error_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_no_model_error_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -171,7 +171,7 @@ class HttpFailureOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_no_model_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_no_model_empty_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

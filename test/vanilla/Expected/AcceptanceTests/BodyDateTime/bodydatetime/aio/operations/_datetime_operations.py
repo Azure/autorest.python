@@ -52,7 +52,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -154,7 +154,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_overflow_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_overflow_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -205,7 +205,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_underflow_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_underflow_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -257,7 +257,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_utc_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_utc_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -311,7 +311,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_utc_max_date_time7_digits_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_utc_max_date_time7_digits_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -367,7 +367,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_utc_lowercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_utc_lowercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -418,7 +418,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_utc_uppercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_utc_uppercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -469,7 +469,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_utc_uppercase_max_date_time7_digits_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_utc_uppercase_max_date_time7_digits_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -524,7 +524,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_local_positive_offset_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_local_positive_offset_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -577,7 +577,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_positive_offset_lowercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_positive_offset_lowercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -628,7 +628,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_positive_offset_uppercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_positive_offset_uppercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -680,7 +680,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_local_negative_offset_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_local_negative_offset_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -733,7 +733,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_negative_offset_uppercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_negative_offset_uppercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -784,7 +784,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_negative_offset_lowercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_negative_offset_lowercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -836,7 +836,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_utc_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_utc_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -889,7 +889,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_utc_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_utc_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -941,7 +941,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_local_positive_offset_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_local_positive_offset_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -994,7 +994,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_positive_offset_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_positive_offset_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1046,7 +1046,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_local_negative_offset_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_local_negative_offset_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1099,7 +1099,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_negative_offset_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_negative_offset_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1150,7 +1150,7 @@ class DatetimeOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_no_offset_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_no_offset_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

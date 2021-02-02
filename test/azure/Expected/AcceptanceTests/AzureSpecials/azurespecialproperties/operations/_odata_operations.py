@@ -63,7 +63,7 @@ class OdataOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_with_filter_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_with_filter_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

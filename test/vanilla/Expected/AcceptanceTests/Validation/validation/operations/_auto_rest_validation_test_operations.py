@@ -41,7 +41,7 @@ class AutoRestValidationTestOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._validation_of_method_parameters_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._validation_of_method_parameters_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "resourceGroupName": self._serialize.url(
@@ -126,7 +126,7 @@ class AutoRestValidationTestOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._validation_of_body_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._validation_of_body_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "resourceGroupName": self._serialize.url(
@@ -209,7 +209,7 @@ class AutoRestValidationTestOperationsMixin(object):
         constant_param = "constant"
 
         # Construct URL
-        url = self._get_with_constant_in_path_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_with_constant_in_path_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "constantParam": self._serialize.url("constant_param", constant_param, "str"),
         }
@@ -268,7 +268,7 @@ class AutoRestValidationTestOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_with_constant_in_body_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_with_constant_in_body_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "constantParam": self._serialize.url("constant_param", constant_param, "str"),
         }

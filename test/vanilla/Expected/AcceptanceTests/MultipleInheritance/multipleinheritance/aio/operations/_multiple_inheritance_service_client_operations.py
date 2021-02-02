@@ -30,7 +30,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_horse_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_horse_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_horse_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_horse_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -138,7 +138,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pet_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_pet_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -190,7 +190,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_pet_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_pet_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -246,7 +246,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_feline_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_feline_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -298,7 +298,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_feline_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_feline_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -354,7 +354,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_cat_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_cat_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -406,7 +406,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_cat_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_cat_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -462,7 +462,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_kitten_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_kitten_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -515,7 +515,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_kitten_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_kitten_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

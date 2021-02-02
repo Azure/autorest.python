@@ -55,7 +55,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put200_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put200_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -140,7 +140,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put201_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put201_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -224,7 +224,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_list_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_list_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -300,7 +300,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put200_succeeded_no_state_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put200_succeeded_no_state_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -385,7 +385,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put202_retry200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put202_retry200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -473,7 +473,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put201_creating_succeeded200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put201_creating_succeeded200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -561,7 +561,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put200_updating_succeeded204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put200_updating_succeeded204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -649,7 +649,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put201_creating_failed200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put201_creating_failed200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -737,7 +737,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put200_acceptedcanceled200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put200_acceptedcanceled200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -823,7 +823,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_no_header_in_retry_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_no_header_in_retry_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -916,7 +916,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1018,7 +1018,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_no_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_no_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1116,7 +1116,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_retry_failed_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_retry_failed_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1218,7 +1218,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_no_retrycanceled_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_no_retrycanceled_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1318,7 +1318,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_no_header_in_retry_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_no_header_in_retry_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1414,7 +1414,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_non_resource_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_non_resource_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1498,7 +1498,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_non_resource_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_non_resource_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1582,7 +1582,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_sub_resource_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_sub_resource_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1668,7 +1668,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_sub_resource_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_sub_resource_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1751,7 +1751,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_provisioning202_accepted200_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_provisioning202_accepted200_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1827,7 +1827,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_provisioning202_deleting_failed200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_provisioning202_deleting_failed200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1901,7 +1901,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_provisioning202_deletingcanceled200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_provisioning202_deletingcanceled200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1977,7 +1977,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete204_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete204_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2046,7 +2046,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete202_retry200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete202_retry200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2119,7 +2119,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete202_no_retry204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete202_no_retry204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2192,7 +2192,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_no_header_in_retry_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_no_header_in_retry_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2264,7 +2264,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_no_header_in_retry_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_no_header_in_retry_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2336,7 +2336,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2412,7 +2412,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_no_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_no_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2488,7 +2488,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_retry_failed_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_retry_failed_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2564,7 +2564,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_retrycanceled_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_retrycanceled_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2640,7 +2640,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post200_with_payload_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post200_with_payload_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2714,7 +2714,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_retry200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_retry200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2799,7 +2799,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_no_retry204_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_no_retry204_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2891,7 +2891,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_double_headers_final_location_get_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_double_headers_final_location_get_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2965,7 +2965,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_double_headers_final_azure_header_get_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_double_headers_final_azure_header_get_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3043,7 +3043,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_double_headers_final_azure_header_get_default_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_double_headers_final_azure_header_get_default_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3122,7 +3122,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3210,7 +3210,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_no_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_no_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3296,7 +3296,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_retry_failed_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_retry_failed_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3385,7 +3385,7 @@ class LROsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_retrycanceled_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_retrycanceled_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

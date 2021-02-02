@@ -58,7 +58,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_float_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_float_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -172,7 +172,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_double_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_double_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -229,7 +229,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -289,7 +289,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_big_float_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_big_float_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -350,7 +350,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_big_float_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_big_float_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -410,7 +410,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_big_double_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_big_double_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -471,7 +471,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_big_double_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_big_double_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -530,7 +530,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_big_double_positive_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_big_double_positive_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -587,7 +587,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_big_double_positive_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_big_double_positive_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -646,7 +646,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_big_double_negative_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_big_double_negative_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -703,7 +703,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_big_double_negative_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_big_double_negative_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -763,7 +763,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_big_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_big_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -824,7 +824,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_big_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_big_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -883,7 +883,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_big_decimal_positive_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_big_decimal_positive_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -940,7 +940,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_big_decimal_positive_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_big_decimal_positive_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -999,7 +999,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_big_decimal_negative_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_big_decimal_negative_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1056,7 +1056,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_big_decimal_negative_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_big_decimal_negative_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1116,7 +1116,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_small_float_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_small_float_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1177,7 +1177,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_small_float_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_small_float_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1237,7 +1237,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_small_double_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_small_double_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1298,7 +1298,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_small_double_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_small_double_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1358,7 +1358,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_small_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_small_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1419,7 +1419,7 @@ class NumberOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_small_decimal_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_small_decimal_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

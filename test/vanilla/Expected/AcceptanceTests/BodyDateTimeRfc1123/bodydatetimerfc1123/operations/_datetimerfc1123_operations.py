@@ -59,7 +59,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -116,7 +116,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -173,7 +173,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_overflow_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_overflow_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -230,7 +230,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_underflow_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_underflow_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -290,7 +290,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_utc_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_utc_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -351,7 +351,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_utc_lowercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_utc_lowercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -408,7 +408,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_utc_uppercase_max_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_utc_uppercase_max_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -468,7 +468,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_utc_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_utc_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -529,7 +529,7 @@ class Datetimerfc1123Operations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_utc_min_date_time_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_utc_min_date_time_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

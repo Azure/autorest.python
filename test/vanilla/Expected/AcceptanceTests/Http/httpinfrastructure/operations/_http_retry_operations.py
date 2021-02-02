@@ -58,7 +58,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._head408_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head408_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -114,7 +114,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put500_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put500_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -181,7 +181,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._patch500_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch500_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -245,7 +245,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get502_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get502_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -298,7 +298,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._options502_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._options502_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -358,7 +358,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post503_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post503_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -425,7 +425,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete503_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete503_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -492,7 +492,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put504_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put504_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -559,7 +559,7 @@ class HttpRetryOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._patch504_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch504_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

@@ -51,7 +51,7 @@ class EnumOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_not_expandable_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_not_expandable_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ class EnumOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_not_expandable_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_not_expandable_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -156,7 +156,7 @@ class EnumOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_referenced_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_referenced_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -208,7 +208,7 @@ class EnumOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_referenced_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_referenced_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -261,7 +261,7 @@ class EnumOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_referenced_constant_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_referenced_constant_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -313,7 +313,7 @@ class EnumOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_referenced_constant_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_referenced_constant_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

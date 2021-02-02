@@ -53,7 +53,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_empty_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),

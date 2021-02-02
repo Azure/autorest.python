@@ -62,7 +62,7 @@ class AvailabilitySetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._update_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._update_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),

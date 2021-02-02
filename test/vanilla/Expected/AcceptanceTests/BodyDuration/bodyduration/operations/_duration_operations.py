@@ -59,7 +59,7 @@ class DurationOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -119,7 +119,7 @@ class DurationOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_positive_duration_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_positive_duration_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -180,7 +180,7 @@ class DurationOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_positive_duration_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_positive_duration_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -237,7 +237,7 @@ class DurationOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_invalid_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

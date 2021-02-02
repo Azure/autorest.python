@@ -31,7 +31,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_array_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_array_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -87,7 +87,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_array_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_array_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -141,7 +141,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_wrapped_array_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_wrapped_array_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -200,7 +200,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_wrapped_array_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_wrapped_array_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -255,7 +255,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_dictionary_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_dictionary_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -313,7 +313,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_dictionary_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_dictionary_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -367,7 +367,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_resource_collection_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_resource_collection_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -425,7 +425,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_resource_collection_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_resource_collection_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -477,7 +477,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_simple_product_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_simple_product_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -542,7 +542,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._post_flattened_simple_product_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_flattened_simple_product_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -629,7 +629,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._put_simple_product_with_grouping_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_simple_product_with_grouping_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "name": self._serialize.url("name", name, "str"),
         }

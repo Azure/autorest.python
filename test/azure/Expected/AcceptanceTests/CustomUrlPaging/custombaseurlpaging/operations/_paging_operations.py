@@ -61,7 +61,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_pages_partial_url_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -146,7 +146,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_operation_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_pages_partial_url_operation_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -174,7 +174,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._get_pages_partial_url_operation_next_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_pages_partial_url_operation_next_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

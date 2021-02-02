@@ -28,7 +28,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = self._test_request.metadata['url']  # type: ignore
+        url = kwargs.pop("template_url", self._test_request.metadata['url'])  # type: ignore
         path_format_arguments = {
             'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }

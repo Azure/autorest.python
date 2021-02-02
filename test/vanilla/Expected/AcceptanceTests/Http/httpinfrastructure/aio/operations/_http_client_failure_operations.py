@@ -51,7 +51,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -98,7 +98,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -145,7 +145,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._options400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._options400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -193,7 +193,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -250,7 +250,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -307,7 +307,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -364,7 +364,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete400_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete400_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -420,7 +420,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head401_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head401_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -467,7 +467,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get402_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get402_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -514,7 +514,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._options403_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._options403_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -561,7 +561,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get403_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get403_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -609,7 +609,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put404_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put404_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -666,7 +666,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch405_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch405_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -723,7 +723,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post406_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post406_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -780,7 +780,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete407_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete407_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -837,7 +837,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put409_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put409_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -893,7 +893,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head410_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head410_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -940,7 +940,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get411_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get411_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -987,7 +987,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._options412_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._options412_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1034,7 +1034,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get412_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get412_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1082,7 +1082,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._put413_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put413_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1139,7 +1139,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._patch414_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._patch414_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1196,7 +1196,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._post415_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post415_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1252,7 +1252,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get416_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get416_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1300,7 +1300,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._delete417_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete417_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1356,7 +1356,7 @@ class HttpClientFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._head429_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._head429_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

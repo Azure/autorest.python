@@ -64,7 +64,7 @@ class LRORetrysOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put201_creating_succeeded200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put201_creating_succeeded200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -158,7 +158,7 @@ class LRORetrysOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._put_async_relative_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_relative_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -263,7 +263,7 @@ class LRORetrysOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_provisioning202_accepted200_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_provisioning202_accepted200_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -343,7 +343,7 @@ class LRORetrysOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete202_retry200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete202_retry200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -422,7 +422,7 @@ class LRORetrysOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._delete_async_relative_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._delete_async_relative_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -507,7 +507,7 @@ class LRORetrysOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post202_retry200_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post202_retry200_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -600,7 +600,7 @@ class LRORetrysOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._post_async_relative_retry_succeeded_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_relative_retry_succeeded_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

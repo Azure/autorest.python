@@ -15,7 +15,7 @@
 {% endif %}
 
     # Construct URL
-    url = self.{{ request.name }}.metadata['url']  # type: ignore
+    url = kwargs.pop("template_url", self.{{ request.name }}.metadata['url'])  # type: ignore
 {% if request.parameters.path %}
     path_format_arguments = {
 {% for path_parameter in request.parameters.path %}

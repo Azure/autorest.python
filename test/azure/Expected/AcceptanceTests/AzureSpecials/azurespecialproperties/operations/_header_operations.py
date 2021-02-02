@@ -61,7 +61,7 @@ class HeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._custom_named_request_id_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._custom_named_request_id_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ class HeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._custom_named_request_id_param_grouping_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._custom_named_request_id_param_grouping_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -195,7 +195,7 @@ class HeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._custom_named_request_id_head_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._custom_named_request_id_head_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

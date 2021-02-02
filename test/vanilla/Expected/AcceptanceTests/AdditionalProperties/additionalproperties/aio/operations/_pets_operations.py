@@ -52,7 +52,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._create_ap_true_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._create_ap_true_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -110,7 +110,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._create_cat_ap_true_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._create_cat_ap_true_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -168,7 +168,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._create_ap_object_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._create_ap_object_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -226,7 +226,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._create_ap_string_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._create_ap_string_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -284,7 +284,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._create_ap_in_properties_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._create_ap_in_properties_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -346,7 +346,7 @@ class PetsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._create_ap_in_properties_with_ap_string_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._create_ap_in_properties_with_ap_string_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

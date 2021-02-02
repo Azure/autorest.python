@@ -40,7 +40,7 @@ class MediaTypesClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._analyze_body_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._analyze_body_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -128,7 +128,7 @@ class MediaTypesClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = self._content_type_with_encoding_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._content_type_with_encoding_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]

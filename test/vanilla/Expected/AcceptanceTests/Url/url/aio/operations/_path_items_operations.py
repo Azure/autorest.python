@@ -58,7 +58,7 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_all_with_values_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_all_with_values_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
@@ -155,7 +155,7 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_global_query_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_global_query_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
@@ -252,7 +252,7 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_global_and_local_query_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_global_and_local_query_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
@@ -349,7 +349,7 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = self._get_local_path_item_query_null_request.metadata["url"]  # type: ignore
+        url = kwargs.pop("template_url", self._get_local_path_item_query_null_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
