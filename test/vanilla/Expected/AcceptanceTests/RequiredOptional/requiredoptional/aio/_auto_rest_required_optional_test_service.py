@@ -56,11 +56,11 @@ class AutoRestRequiredOptionalTestService(object):
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def invoke(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+    async def _request(self, http_request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
-        :param request: The network request you want to make. Required.
-        :type request: ~azure.core.pipeline.transport.HttpRequest
+        :param http_request: The network request you want to make. Required.
+        :type http_request: ~azure.core.pipeline.transport.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.pipeline.transport.HttpResponse
@@ -70,9 +70,9 @@ class AutoRestRequiredOptionalTestService(object):
                 "self._config.required_global_path", self._config.required_global_path, "str"
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        http_request.url = self._client.format_url(http_request.url, **path_format_arguments)
         stream = kwargs.pop("stream", False)
-        pipeline_response = await self._client._pipeline.run(request, stream=stream, **kwargs)
+        pipeline_response = await self._client._pipeline.run(http_request, stream=stream, **kwargs)
         return pipeline_response.http_response
 
     async def close(self) -> None:
