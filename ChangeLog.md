@@ -1,5 +1,14 @@
 # Change Log
 
+### 2021-02-03 - 5.6.2
+
+Autorest core version: 3.0.6318
+
+Modelerfour version: 4.15.456
+
+**Bug Fixes**
+- Bump modelerfour dependency to correctly deal with parameters specified as `'required': false` in swagger
+
 ### 2021-01-27 - 5.6.1
 
 Autorest core version: 3.0.6318

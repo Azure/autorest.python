@@ -95,7 +95,7 @@ class MediaTypesClientOperationsMixin:
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def content_type_with_encoding(self, input: str, **kwargs) -> str:
+    async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs) -> str:
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
         :param input: Input parameter.
@@ -123,7 +123,10 @@ class MediaTypesClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(input, "str")
+        if input is not None:
+            body_content = self._serialize.body(input, "str")
+        else:
+            body_content = None
         body_content_kwargs["content"] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
