@@ -7,7 +7,7 @@ Autorest core version: 3.0.6318
 Modelerfour version: 4.15.456
 
 **Bug Fixes**
-- Bump modelerfour dependency to correctly deal with parameters specified as `'required': false` in swagger
+- Bump `Modelerfour` minimum version to [correctly deal with](https://github.com/Azure/autorest.modelerfour/pull/385) parameters specified as `'required': false` in swagger  #877
 
 ### 2021-01-27 - 5.6.1
 
