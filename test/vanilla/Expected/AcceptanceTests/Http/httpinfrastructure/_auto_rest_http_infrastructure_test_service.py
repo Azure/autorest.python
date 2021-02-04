@@ -84,12 +84,12 @@ class AutoRestHttpInfrastructureTestService(object):
 
         :param http_request: The network request you want to make. Required.
         :type http_request: ~azure.core.pipeline.transport.HttpRequest
-        :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
+        :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
         :rtype: ~azure.core.pipeline.transport.HttpResponse
         """
         http_request.url = self._client.format_url(http_request.url)
-        stream = kwargs.pop("stream", False)
+        stream = kwargs.pop("stream", True)
         pipeline_response = self._client._pipeline.run(http_request, stream=stream, **kwargs)
         return pipeline_response.http_response
 
