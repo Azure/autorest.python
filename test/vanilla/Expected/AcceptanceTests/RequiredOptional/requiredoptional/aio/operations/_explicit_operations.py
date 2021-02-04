@@ -48,7 +48,7 @@ class ExplicitOperations:
         self._config = config
 
     @distributed_trace_async
-    async def put_optional_binary_body(self, body_parameter: IO, **kwargs) -> None:
+    async def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs) -> None:
         """Test explicitly optional body parameter.
 
         :param body_parameter:
@@ -61,7 +61,7 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/json")
+        content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/json"
 
         # Construct URL
@@ -105,7 +105,7 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/json")
+        content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/json"
 
         # Construct URL
