@@ -1445,3 +1445,197 @@ class XmlOperations(object):
         return deserialized
 
     get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
+
+    @distributed_trace
+    def get_bytes(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.ModelWithByteProperty"
+        """Get an XML document with binary property.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ModelWithByteProperty, or the result of cls(response)
+        :rtype: ~xmlservice.models.ModelWithByteProperty
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ModelWithByteProperty"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_bytes.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize("ModelWithByteProperty", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
+
+    @distributed_trace
+    def put_binary(
+        self,
+        bytes=None,  # type: Optional[bytearray]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put an XML document with binary property.
+
+        :param bytes:
+        :type bytes: bytearray
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        _slideshow = _models.ModelWithByteProperty(bytes=bytes)
+        content_type = kwargs.pop("content_type", "application/xml")
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.put_binary.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
+
+    @distributed_trace
+    def get_uri(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.ModelWithUrlProperty"
+        """Get an XML document with uri property.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ModelWithUrlProperty, or the result of cls(response)
+        :rtype: ~xmlservice.models.ModelWithUrlProperty
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ModelWithUrlProperty"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.get_uri.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        request = self._client.get(url, query_parameters, header_parameters)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        deserialized = self._deserialize("ModelWithUrlProperty", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    get_uri.metadata = {"url": "/xml/url"}  # type: ignore
+
+    @distributed_trace
+    def put_uri(
+        self,
+        url=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Put an XML document with uri property.
+
+        :param url:
+        :type url: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        _model = _models.ModelWithUrlProperty(url=url)
+        content_type = kwargs.pop("content_type", "application/xml")
+        accept = "application/xml"
+
+        # Construct URL
+        url = self.put_uri.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
+        body_content_kwargs["content"] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    put_uri.metadata = {"url": "/xml/url"}  # type: ignore
