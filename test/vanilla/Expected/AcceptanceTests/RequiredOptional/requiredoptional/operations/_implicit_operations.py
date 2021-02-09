@@ -250,7 +250,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def put_optional_binary_body(
         self,
-        body_parameter,  # type: IO
+        body_parameter=None,  # type: Optional[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -266,7 +266,7 @@ class ImplicitOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-        content_type = kwargs.pop("content_type", "application/json")
+        content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/json"
 
         # Construct URL

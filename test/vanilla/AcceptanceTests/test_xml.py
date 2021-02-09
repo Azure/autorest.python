@@ -34,7 +34,7 @@ import os
 from os.path import dirname, pardir, join, realpath
 
 from xmlservice import AutoRestSwaggerBATXMLService
-from xmlservice.models import BlobType
+from xmlservice.models import BlobType, ModelWithByteProperty, ModelWithUrlProperty
 
 import pytest
 
@@ -188,3 +188,19 @@ class TestXml(object):
         xml_object = client.xml.get_xms_text()
         assert xml_object.language == "english"
         assert xml_object.content == "I am text"
+
+    def test_get_bytes(self, client):
+        bytes_object = client.xml.get_bytes()
+        assert isinstance(bytes_object, ModelWithByteProperty)
+        assert bytes_object.bytes == b"Hello world"
+
+    def test_put_bytes(self, client):
+        bytes_object = client.xml.put_binary(b"Hello world")
+
+    def test_get_url(self, client):
+        url_object = client.xml.get_uri()
+        assert isinstance(url_object, ModelWithUrlProperty)
+        assert url_object.url == 'https://myaccount.blob.core.windows.net/'
+
+    def test_put_url(self, client):
+        client.xml.put_uri('https://myaccount.blob.core.windows.net/')

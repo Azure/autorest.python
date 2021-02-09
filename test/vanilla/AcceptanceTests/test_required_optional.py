@@ -29,6 +29,7 @@ import subprocess
 import sys
 import isodate
 import os
+import io
 from datetime import date, datetime, timedelta
 from os.path import dirname, pardir, join, realpath
 
@@ -135,3 +136,15 @@ class TestRequiredOptional(object):
         else:
             from requiredoptional.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_explict_put_optional_binary_body(self, client):
+        client.explicit.put_optional_binary_body()
+
+    def test_explict_put_required_binary_body(self, client):
+        test_string = "Upload file test case"
+        test_bytes = bytearray(test_string, encoding='utf-8')
+        with io.BytesIO(test_bytes) as stream_data:
+            client.explicit.put_required_binary_body(stream_data)
+
+    def test_implicit_put_optional_binary_body(self, client):
+        client.implicit.put_optional_binary_body()
