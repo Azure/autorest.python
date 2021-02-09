@@ -191,6 +191,26 @@ class TestRequest(object):
             assert sample_data == hash(file_handle.getvalue())
 
     @pytest.mark.asyncio
+    async def test_request_put_stream(self):
+        from bodyformdata.aio import AutoRestSwaggerBATFormDataService
+
+        client = AutoRestSwaggerBATFormDataService(
+            base_url="http://localhost:3000",
+        )
+
+        test_string = "Upload file test case"
+        test_bytes = bytearray(test_string, encoding='utf-8')
+        with io.BytesIO(test_bytes) as stream_data:
+            request = HttpRequest("PUT", '/formdata/stream/uploadfile',
+                headers={
+                    'Content-Type': 'application/octet-stream'
+                },
+                data=stream_data,
+            )
+            response = await client._request(request)
+            assert response.status_code == 200
+
+    @pytest.mark.asyncio
     async def test_request_with_client_path_format_arguments(self):
         from validation.aio import AutoRestValidationTest
 

@@ -146,7 +146,7 @@ class TestRequest(object):
         response = client._request(request)
         assert response.status_code == 200
 
-    def test_request_with_stream(self):
+    def test_request_get_stream(self):
         from bodyfile import AutoRestSwaggerBATFileService
 
         client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
@@ -182,6 +182,25 @@ class TestRequest(object):
             with open(sample_file, 'rb') as data:
                 sample_data = hash(data.read())
             assert sample_data == hash(file_handle.getvalue())
+
+    def test_request_put_stream(self):
+        from bodyformdata import AutoRestSwaggerBATFormDataService
+
+        client = AutoRestSwaggerBATFormDataService(
+            base_url="http://localhost:3000",
+        )
+
+        test_string = "Upload file test case"
+        test_bytes = bytearray(test_string, encoding='utf-8')
+        with io.BytesIO(test_bytes) as stream_data:
+            request = HttpRequest("PUT", '/formdata/stream/uploadfile',
+                headers={
+                    'Content-Type': 'application/octet-stream'
+                },
+                data=stream_data,
+            )
+            response = client._request(request)
+            assert response.status_code == 200
 
     def test_request_with_client_path_format_arguments(self):
         from validation import AutoRestValidationTest
