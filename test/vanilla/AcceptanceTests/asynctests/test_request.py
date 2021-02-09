@@ -71,12 +71,14 @@ class TestRequest(object):
 
         response = await client._request(request)
 
-        async for data in response.stream_download(None):
-            json_response = json.load(io.BytesIO(data))
-            assert 2 == json_response['id']
-            assert "Siameeee" == json_response['name']
-            assert - 1 == json_response['hates'][1]['id']
-            assert "Tomato" == json_response['hates'][1]['name']
+        data = b''
+        async for chunk in response.stream_download(None):
+            data += chunk
+        json_response = json.load(io.BytesIO(data))
+        assert 2 == json_response['id']
+        assert "Siameeee" == json_response['name']
+        assert - 1 == json_response['hates'][1]['id']
+        assert "Tomato" == json_response['hates'][1]['name']
 
     @pytest.mark.asyncio
     async def test_request_with_body_put_json_dumps(self):
