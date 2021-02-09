@@ -47,7 +47,7 @@ class ExplicitOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_optional_binary_body_request(self, body: IO, **kwargs: Any) -> HttpRequest:
+    def _put_optional_binary_body_request(self, body: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/json"
 
@@ -70,7 +70,7 @@ class ExplicitOperations:
     _put_optional_binary_body_request.metadata = {"url": "/reqopt/explicit/optional/binary-body"}  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_binary_body(self, body_parameter: IO, **kwargs: Any) -> None:
+    async def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs: Any) -> None:
         """Test explicitly optional body parameter.
 
         :param body_parameter:

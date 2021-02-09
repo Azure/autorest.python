@@ -72,7 +72,7 @@ class OperationGroupTwoOperations(object):
 
         elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
             if body is not None:
-                body_content = self._serialize.body(body, 'SourcePath')
+                body_content = self._serialize.body(body, 'IO')
             else:
                 body_content = None
             body_content_kwargs['content'] = body_content
@@ -86,14 +86,14 @@ class OperationGroupTwoOperations(object):
 
     def test_four(
         self,
-        input=None,  # type: Optional["_models.SourcePath"]
+        input=None,  # type: Optional[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: ~multiapiwithsubmodule.submodule.v3.models.SourcePath
+        :type input: IO
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response

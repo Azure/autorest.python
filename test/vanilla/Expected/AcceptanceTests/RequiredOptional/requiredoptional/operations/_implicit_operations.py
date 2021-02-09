@@ -301,7 +301,7 @@ class ImplicitOperations(object):
 
     def _put_optional_binary_body_request(
         self,
-        body,  # type: IO
+        body=None,  # type: Optional[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -329,7 +329,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def put_optional_binary_body(
         self,
-        body_parameter,  # type: IO
+        body_parameter=None,  # type: Optional[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

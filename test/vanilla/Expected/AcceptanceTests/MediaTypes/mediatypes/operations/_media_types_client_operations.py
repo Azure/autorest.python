@@ -61,7 +61,7 @@ class MediaTypesClientOperationsMixin(object):
 
         elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
             if body is not None:
-                body_content = self._serialize.body(body, "SourcePath")
+                body_content = self._serialize.body(body, "IO")
             else:
                 body_content = None
             body_content_kwargs["content"] = body_content
@@ -79,14 +79,14 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional["_models.SourcePath"]
+        input=None,  # type: Optional[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: ~mediatypes.models.SourcePath
+        :type input: IO
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -119,7 +119,7 @@ class MediaTypesClientOperationsMixin(object):
 
     def _content_type_with_encoding_request(
         self,
-        body,  # type: str
+        body=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
@@ -138,7 +138,10 @@ class MediaTypesClientOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "str")
+        if body is not None:
+            body_content = self._serialize.body(body, "str")
+        else:
+            body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -147,7 +150,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def content_type_with_encoding(
         self,
-        input,  # type: str
+        input=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> str

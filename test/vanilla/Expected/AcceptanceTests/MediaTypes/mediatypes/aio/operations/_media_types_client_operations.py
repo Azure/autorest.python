@@ -54,7 +54,7 @@ class MediaTypesClientOperationsMixin:
 
         elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
             if body is not None:
-                body_content = self._serialize.body(body, "SourcePath")
+                body_content = self._serialize.body(body, "IO")
             else:
                 body_content = None
             body_content_kwargs["content"] = body_content
@@ -70,11 +70,11 @@ class MediaTypesClientOperationsMixin:
     _analyze_body_request.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def analyze_body(self, input: Optional["_models.SourcePath"] = None, **kwargs: Any) -> str:
+    async def analyze_body(self, input: Optional[IO] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: ~mediatypes.models.SourcePath
+        :type input: IO
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -105,7 +105,7 @@ class MediaTypesClientOperationsMixin:
 
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
-    def _content_type_with_encoding_request(self, body: str, **kwargs: Any) -> HttpRequest:
+    def _content_type_with_encoding_request(self, body: Optional[str] = None, **kwargs: Any) -> HttpRequest:
         content_type = kwargs.pop("content_type", "text/plain")
         accept = "application/json"
 
@@ -121,14 +121,17 @@ class MediaTypesClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "str")
+        if body is not None:
+            body_content = self._serialize.body(body, "str")
+        else:
+            body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     _content_type_with_encoding_request.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace_async
-    async def content_type_with_encoding(self, input: str, **kwargs: Any) -> str:
+    async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
         """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
 
         :param input: Input parameter.
