@@ -804,6 +804,38 @@ class Metrics(msrest.serialization.Model):
         self.retention_policy = retention_policy
 
 
+class ModelWithByteProperty(msrest.serialization.Model):
+    """ModelWithByteProperty.
+
+    :param bytes:
+    :type bytes: bytearray
+    """
+
+    _attribute_map = {
+        "bytes": {"key": "Bytes", "type": "bytearray"},
+    }
+
+    def __init__(self, *, bytes: Optional[bytearray] = None, **kwargs):
+        super(ModelWithByteProperty, self).__init__(**kwargs)
+        self.bytes = bytes
+
+
+class ModelWithUrlProperty(msrest.serialization.Model):
+    """ModelWithUrlProperty.
+
+    :param url:
+    :type url: str
+    """
+
+    _attribute_map = {
+        "url": {"key": "Url", "type": "str"},
+    }
+
+    def __init__(self, *, url: Optional[str] = None, **kwargs):
+        super(ModelWithUrlProperty, self).__init__(**kwargs)
+        self.url = url
+
+
 class ObjectWithXMsTextProperty(msrest.serialization.Model):
     """Contans property.
 

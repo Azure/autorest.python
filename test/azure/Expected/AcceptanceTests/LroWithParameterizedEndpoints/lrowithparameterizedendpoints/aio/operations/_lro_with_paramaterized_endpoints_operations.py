@@ -28,11 +28,11 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROWithParamaterizedEndpointsOperationsMixin:
-    def _poll_with_parameterized_endpoints_request(self, account_name: str, **kwargs: Any) -> HttpRequest:
+    def _poll_with_parameterized_endpoints_initial_request(self, account_name: str, **kwargs: Any) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._poll_with_parameterized_endpoints_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", self._poll_with_parameterized_endpoints_initial_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -48,7 +48,37 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         return self._client.post(url, query_parameters, header_parameters)
 
-    _poll_with_parameterized_endpoints_request.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
+    _poll_with_parameterized_endpoints_initial_request.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
+
+    async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._poll_with_parameterized_endpoints_initial_request(account_name=account_name, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = self._deserialize("str", pipeline_response)
+
+        if response.status_code == 202:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+
+    _poll_with_parameterized_endpoints_initial.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
     @distributed_trace_async
     async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
@@ -69,18 +99,14 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         polling = kwargs.pop("polling", False)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._poll_with_parameterized_endpoints_request(account_name=account_name, **kwargs)
-            kwargs.pop("content_type", None)
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-            if response.status_code not in [200, 202]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = self._deserialize.failsafe_deserialize(_models.Error, response)
-                raise HttpResponseError(response=response, model=error)
+            raw_result = await self._poll_with_parameterized_endpoints_initial(
+                account_name=account_name, cls=lambda x, y, z: x, **kwargs
+            )
+
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("str", pipeline_response)
@@ -113,6 +139,6 @@ class LROWithParamaterizedEndpointsOperationsMixin:
                 deserialization_callback=get_long_running_output,
             )
         else:
-            return AsyncLROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore

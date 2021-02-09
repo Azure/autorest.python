@@ -1371,7 +1371,7 @@ class PagingOperations(object):
 
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
 
-    def _get_multiple_pages_lro_request(
+    def _get_multiple_pages_lro_initial_request(
         self,
         client_request_id=None,  # type: Optional[str]
         maxresults=None,  # type: Optional[int]
@@ -1382,7 +1382,7 @@ class PagingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_multiple_pages_lro_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", self._get_multiple_pages_lro_initial_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1401,7 +1401,44 @@ class PagingOperations(object):
 
         return self._client.post(url, query_parameters, header_parameters)
 
-    _get_multiple_pages_lro_request.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
+    _get_multiple_pages_lro_initial_request.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
+
+    def _get_multiple_pages_lro_initial(
+        self,
+        client_request_id=None,  # type: Optional[str]
+        paging_get_multiple_pages_lro_options=None,  # type: Optional["_models.PagingGetMultiplePagesLroOptions"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.ProductResult"
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        _maxresults = None
+        _timeout = None
+        if paging_get_multiple_pages_lro_options is not None:
+            _maxresults = paging_get_multiple_pages_lro_options.maxresults
+            _timeout = paging_get_multiple_pages_lro_options.timeout
+        request = self._get_multiple_pages_lro_initial_request(
+            client_request_id=client_request_id, maxresults=_maxresults, timeout=_timeout, **kwargs
+        )
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize("ProductResult", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
 
     @distributed_trace
     def begin_get_multiple_pages_lro(
@@ -1439,7 +1476,7 @@ class PagingOperations(object):
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-                request = self._get_multiple_pages_lro_request(
+                request = self._get_multiple_pages_lro_initial_request(
                     client_request_id=client_request_id, maxresults=_maxresults, timeout=_timeout, **kwargs
                 )
             else:
@@ -1449,7 +1486,7 @@ class PagingOperations(object):
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-                request = self._get_multiple_pages_lro_request(
+                request = self._get_multiple_pages_lro_initial_request(
                     client_request_id=client_request_id, maxresults=_maxresults, timeout=_timeout, **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -1479,25 +1516,17 @@ class PagingOperations(object):
         polling = kwargs.pop("polling", False)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-
-            _maxresults = None
-            _timeout = None
-            if paging_get_multiple_pages_lro_options is not None:
-                _maxresults = paging_get_multiple_pages_lro_options.maxresults
-                _timeout = paging_get_multiple_pages_lro_options.timeout
-            request = self._get_multiple_pages_lro_request(
-                client_request_id=client_request_id, maxresults=_maxresults, timeout=_timeout, **kwargs
+            raw_result = self._get_multiple_pages_lro_initial(
+                client_request_id=client_request_id,
+                paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
+                cls=lambda x, y, z: x,
+                **kwargs
             )
-            kwargs.pop("content_type", None)
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-            if response.status_code not in [202]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             def internal_get_next(next_link=None):
@@ -1522,7 +1551,7 @@ class PagingOperations(object):
                 deserialization_callback=get_long_running_output,
             )
         else:
-            return LROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_get_multiple_pages_lro.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
 

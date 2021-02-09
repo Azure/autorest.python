@@ -120,7 +120,7 @@ class StorageAccountsOperations:
 
     check_name_availability.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"}  # type: ignore
 
-    def _create_request(
+    def _create_initial_request(
         self, resource_group_name: str, account_name: str, body: "_models.StorageAccountCreateParameters", **kwargs: Any
     ) -> HttpRequest:
         api_version = "2015-05-01-preview"
@@ -128,7 +128,7 @@ class StorageAccountsOperations:
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._create_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", self._create_initial_request.metadata["url"])  # type: ignore
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -150,7 +150,41 @@ class StorageAccountsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _create_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
+    _create_initial_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
+
+    async def _creat_initial(
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: "_models.StorageAccountCreateParameters",
+        **kwargs: Any
+    ) -> Optional["_models.StorageAccount"]:
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._create_initial_request(
+            resource_group_name=resource_group_name, account_name=account_name, body=parameters, **kwargs
+        )
+        kwargs.pop("content_type", None)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        deserialized = None
+        if response.status_code == 200:
+            deserialized = self._deserialize("StorageAccount", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    _creat_initial.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
     async def begin_create(
@@ -186,19 +220,18 @@ class StorageAccountsOperations:
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._create_request(
-                resource_group_name=resource_group_name, account_name=account_name, body=parameters, **kwargs
+            raw_result = await self._creat_initial(
+                resource_group_name=resource_group_name,
+                account_name=account_name,
+                parameters=parameters,
+                cls=lambda x, y, z: x,
+                **kwargs
             )
-            kwargs.pop("content_type", None)
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-            if response.status_code not in [200, 202]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("StorageAccount", pipeline_response)
@@ -227,7 +260,7 @@ class StorageAccountsOperations:
                 deserialization_callback=get_long_running_output,
             )
         else:
-            return AsyncLROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 

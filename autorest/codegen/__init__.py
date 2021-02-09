@@ -116,6 +116,7 @@ class CodeGenerator(Plugin):
             code_model.generate_single_parameter_from_multiple_media_types()
 
         # LRO operation
+        code_model.format_lro_operations()
         code_model.remove_next_operation()
 
         if options["credential"]:

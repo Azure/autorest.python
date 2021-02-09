@@ -54,7 +54,7 @@ class LROsCustomHeaderOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _put_async_retry_succeeded_request(
+    def _put_async_retry_succeeded_initial_request(
         self,
         body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -64,7 +64,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_async_retry_succeeded_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", self._put_async_retry_succeeded_initial_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,43 @@ class LROsCustomHeaderOperations(object):
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_async_retry_succeeded_request.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
+    _put_async_retry_succeeded_initial_request.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
+
+    def _put_async_retry_succeeded_initial(
+        self,
+        product=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.Product"
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put_async_retry_succeeded_initial_request(body=product, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers["Azure-AsyncOperation"] = self._deserialize(
+            "str", response.headers.get("Azure-AsyncOperation")
+        )
+        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+        deserialized = self._deserialize("Product", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+
+    _put_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
     def begin_put_async_retry_succeeded(
@@ -111,27 +147,16 @@ class LROsCustomHeaderOperations(object):
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put_async_retry_succeeded_request(body=product, **kwargs)
-            kwargs.pop("content_type", None)
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-            response_headers = {}
-            response_headers["Azure-AsyncOperation"] = self._deserialize(
-                "str", response.headers.get("Azure-AsyncOperation")
-            )
-            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+            raw_result = self._put_async_retry_succeeded_initial(product=product, cls=lambda x, y, z: x, **kwargs)
+
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
             )
@@ -158,11 +183,11 @@ class LROsCustomHeaderOperations(object):
                 deserialization_callback=get_long_running_output,
             )
         else:
-            return LROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
-    def _put201_creating_succeeded200_request(
+    def _put201_creating_succeeded200_initial_request(
         self,
         body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -172,7 +197,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put201_creating_succeeded200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", self._put201_creating_succeeded200_initial_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -190,7 +215,40 @@ class LROsCustomHeaderOperations(object):
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put201_creating_succeeded200_request.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
+    _put201_creating_succeeded200_initial_request.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
+
+    def _put201_creating_succeeded200_initial(
+        self,
+        product=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "_models.Product"
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._put201_creating_succeeded200_initial_request(body=product, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        if response.status_code == 200:
+            deserialized = self._deserialize("Product", pipeline_response)
+
+        if response.status_code == 201:
+            deserialized = self._deserialize("Product", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
@@ -219,17 +277,12 @@ class LROsCustomHeaderOperations(object):
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._put201_creating_succeeded200_request(body=product, **kwargs)
-            kwargs.pop("content_type", None)
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-            if response.status_code not in [200, 201]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+            raw_result = self._put201_creating_succeeded200_initial(product=product, cls=lambda x, y, z: x, **kwargs)
+
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("Product", pipeline_response)
@@ -252,11 +305,11 @@ class LROsCustomHeaderOperations(object):
                 deserialization_callback=get_long_running_output,
             )
         else:
-            return LROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _post202_retry200_request(
+    def _post202_retry200_initial_request(
         self,
         body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -266,7 +319,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post202_retry200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", self._post202_retry200_initial_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -284,7 +337,36 @@ class LROsCustomHeaderOperations(object):
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post202_retry200_request.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
+    _post202_retry200_initial_request.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
+
+    def _post202_retry200_initial(
+        self,
+        product=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post202_retry200_initial_request(body=product, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+        if cls:
+            return cls(pipeline_response, None, response_headers)
+
+    _post202_retry200_initial.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
     def begin_post202_retry200(
@@ -312,20 +394,12 @@ class LROsCustomHeaderOperations(object):
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post202_retry200_request(body=product, **kwargs)
-            kwargs.pop("content_type", None)
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-            if response.status_code not in [202]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-            response_headers = {}
-            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+            raw_result = self._post202_retry200_initial(product=product, cls=lambda x, y, z: x, **kwargs)
+
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             if cls:
@@ -345,11 +419,11 @@ class LROsCustomHeaderOperations(object):
                 deserialization_callback=get_long_running_output,
             )
         else:
-            return LROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
-    def _post_async_retry_succeeded_request(
+    def _post_async_retry_succeeded_initial_request(
         self,
         body=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -359,7 +433,7 @@ class LROsCustomHeaderOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_async_retry_succeeded_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", self._post_async_retry_succeeded_initial_request.metadata["url"])  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -377,7 +451,39 @@ class LROsCustomHeaderOperations(object):
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_async_retry_succeeded_request.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
+    _post_async_retry_succeeded_initial_request.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
+
+    def _post_async_retry_succeeded_initial(
+        self,
+        product=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = self._post_async_retry_succeeded_initial_request(body=product, **kwargs)
+        kwargs.pop("content_type", None)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers["Azure-AsyncOperation"] = self._deserialize(
+            "str", response.headers.get("Azure-AsyncOperation")
+        )
+        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+        if cls:
+            return cls(pipeline_response, None, response_headers)
+
+    _post_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
     def begin_post_async_retry_succeeded(
@@ -406,23 +512,12 @@ class LROsCustomHeaderOperations(object):
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            request = self._post_async_retry_succeeded_request(body=product, **kwargs)
-            kwargs.pop("content_type", None)
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-            response = pipeline_response.http_response
-            if response.status_code not in [202]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-            response_headers = {}
-            response_headers["Azure-AsyncOperation"] = self._deserialize(
-                "str", response.headers.get("Azure-AsyncOperation")
-            )
-            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+            raw_result = self._post_async_retry_succeeded_initial(product=product, cls=lambda x, y, z: x, **kwargs)
+
+        kwargs.pop("error_map", None)
+        kwargs.pop("content_type", None)
 
         def get_long_running_output(pipeline_response):
             if cls:
@@ -442,6 +537,6 @@ class LROsCustomHeaderOperations(object):
                 deserialization_callback=get_long_running_output,
             )
         else:
-            return LROPoller(self._client, pipeline_response, get_long_running_output, polling_method)
+            return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post_async_retry_succeeded.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore

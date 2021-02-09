@@ -41,20 +41,20 @@
         'polling_interval',
         self._config.polling_interval
     )
-    {{ op_tools.error_map(operation, code_model)|indent }}
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
-        {{ op_tools.get_request(operation, request)|indent(8) }}
-        kwargs.pop('content_type', None)
-        {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-        pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
-        response = pipeline_response.http_response
-        {{ op_tools.handle_error_response(code_model, operation)|indent(8) }}
-        {% set response = operation.responses[0] %}
-        {% if response.headers %}
-        response_headers = {}
-        {{ op_tools.response_headers(response)|indent(8) }}
-        {% endif %}
+        raw_result = {{ keywords.await }}self.{{ operation.initial_operation.name }}(
+            {% for parameter in operation.parameters.method %}
+            {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+
+            {% endfor %}
+
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
+
+    kwargs.pop('error_map', None)
+    kwargs.pop('content_type', None)
     {%- endmacro -%}
 
     {% macro lro_operation_return(code_model, operation, async_mode) %}
@@ -82,6 +82,6 @@
             deserialization_callback=get_long_running_output
         )
     else:
-        return {{ operation.get_poller(async_mode) }}(self._client, pipeline_response, get_long_running_output, polling_method)
+        return {{ operation.get_poller(async_mode) }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation.python_name }}.metadata = {'url': '{{ request.url }}'}  # type: ignore
 {%- endmacro -%}

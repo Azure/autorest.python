@@ -48,6 +48,7 @@ class LROOperation(Operation):
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
+        self.request.name = self.request.name[:self.request.name.rfind("_request")] + "_initial" + "_request"
 
     @property
     def lro_response(self) -> Optional[SchemaResponse]:
@@ -77,6 +78,22 @@ class LROOperation(Operation):
         elif num_response_schemas:
             response = responses_with_bodies[0]
         return response
+
+    @property
+    def initial_operation(self) -> Operation:
+        return Operation(
+            yaml_data={},
+            request=self.request,
+            name=self.name.strip("begin") + "_initial",
+            description="",
+            api_versions=self.api_versions,
+            parameters=self.parameters.parameters,
+            multiple_media_type_parameters=self.multiple_media_type_parameters,
+            summary=self.summary,
+            responses=self.responses,
+            want_description_docstring=False,
+            want_tracing=False,
+        )
 
     @property
     def has_optional_return_type(self) -> bool:

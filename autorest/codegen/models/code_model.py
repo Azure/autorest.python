@@ -143,6 +143,20 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         )
         self.global_parameters.insert(0, credential_parameter)
 
+    def format_lro_operations(self) -> None:
+        """Adds operations and attributes needed for LROs.
+        If there are LRO functions in here, will add initial LRO function. Will also set the return
+        type of the LRO operation
+        """
+        for operation_group in self.operation_groups:
+            i = 0
+            while i < len(operation_group.operations):
+                operation = operation_group.operations[i]
+                if isinstance(operation, LROOperation):
+                    operation_group.operations.insert(i, operation.initial_operation)
+                    i += 1
+                i += 1
+
     def remove_next_operation(self) -> None:
         """Linking paging operations together.
         """
