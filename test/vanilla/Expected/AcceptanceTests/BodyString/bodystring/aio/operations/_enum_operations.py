@@ -47,7 +47,7 @@ class EnumOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_not_expandable_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_not_expandable_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class EnumOperations:
     _get_not_expandable_request.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_expandable(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_not_expandable(self, **kwargs) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class EnumOperations:
 
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
-    def _put_not_expandable_request(self, body: Union[str, "_models.Colors"], **kwargs: Any) -> HttpRequest:
+    def _put_not_expandable_request(self, body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -121,7 +121,7 @@ class EnumOperations:
     _put_not_expandable_request.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def put_not_expandable(self, string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
+    async def put_not_expandable(self, string_body: Union[str, "_models.Colors"], **kwargs) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body.
@@ -151,7 +151,7 @@ class EnumOperations:
 
     put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
-    def _get_referenced_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_referenced_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -169,7 +169,7 @@ class EnumOperations:
     _get_referenced_request.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced(self, **kwargs: Any) -> Union[str, "_models.Colors"]:
+    async def get_referenced(self, **kwargs) -> Union[str, "_models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -202,7 +202,7 @@ class EnumOperations:
 
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
-    def _put_referenced_request(self, body: Union[str, "_models.Colors"], **kwargs: Any) -> HttpRequest:
+    def _put_referenced_request(self, body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -225,7 +225,7 @@ class EnumOperations:
     _put_referenced_request.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced(self, enum_string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
+    async def put_referenced(self, enum_string_body: Union[str, "_models.Colors"], **kwargs) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body.
@@ -255,7 +255,7 @@ class EnumOperations:
 
     put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
-    def _get_referenced_constant_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_referenced_constant_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -273,7 +273,7 @@ class EnumOperations:
     _get_referenced_constant_request.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced_constant(self, **kwargs: Any) -> "_models.RefColorConstant":
+    async def get_referenced_constant(self, **kwargs) -> "_models.RefColorConstant":
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -306,7 +306,7 @@ class EnumOperations:
 
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
-    def _put_referenced_constant_request(self, body: "_models.RefColorConstant", **kwargs: Any) -> HttpRequest:
+    def _put_referenced_constant_request(self, body: "_models.RefColorConstant", **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -329,7 +329,7 @@ class EnumOperations:
     _put_referenced_constant_request.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs) -> None:
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.

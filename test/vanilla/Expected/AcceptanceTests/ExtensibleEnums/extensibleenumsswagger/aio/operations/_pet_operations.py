@@ -47,7 +47,7 @@ class PetOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_by_pet_id_request(self, pet_id: str, **kwargs: Any) -> HttpRequest:
+    def _get_by_pet_id_request(self, pet_id: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -69,7 +69,7 @@ class PetOperations:
     _get_by_pet_id_request.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> "_models.Pet":
+    async def get_by_pet_id(self, pet_id: str, **kwargs) -> "_models.Pet":
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -102,7 +102,7 @@ class PetOperations:
 
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
-    def _add_pet_request(self, body: Optional["_models.Pet"] = None, **kwargs: Any) -> HttpRequest:
+    def _add_pet_request(self, body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -128,7 +128,7 @@ class PetOperations:
     _add_pet_request.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> "_models.Pet":
+    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs) -> "_models.Pet":
         """add pet.
 
         :param pet_param: pet param.

@@ -48,7 +48,7 @@ class AvailabilitySetsOperations:
         self._config = config
 
     def _update_request(
-        self, resource_group_name: str, avset: str, body: "_models.AvailabilitySetUpdateParameters", **kwargs: Any
+        self, resource_group_name: str, avset: str, body: "_models.AvailabilitySetUpdateParameters", **kwargs
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
 
@@ -75,7 +75,7 @@ class AvailabilitySetsOperations:
     _update_request.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}  # type: ignore
 
     @distributed_trace_async
-    async def update(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs: Any) -> None:
+    async def update(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs) -> None:
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.

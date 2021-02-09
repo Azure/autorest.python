@@ -48,7 +48,7 @@ class IntOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -66,7 +66,7 @@ class IntOperations:
     _get_null_request.metadata = {"url": "/int/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> Optional[int]:
+    async def get_null(self, **kwargs) -> Optional[int]:
         """Get null Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -99,7 +99,7 @@ class IntOperations:
 
     get_null.metadata = {"url": "/int/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_invalid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -117,7 +117,7 @@ class IntOperations:
     _get_invalid_request.metadata = {"url": "/int/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> int:
+    async def get_invalid(self, **kwargs) -> int:
         """Get invalid Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -150,7 +150,7 @@ class IntOperations:
 
     get_invalid.metadata = {"url": "/int/invalid"}  # type: ignore
 
-    def _get_overflow_int32_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_overflow_int32_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -168,7 +168,7 @@ class IntOperations:
     _get_overflow_int32_request.metadata = {"url": "/int/overflowint32"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow_int32(self, **kwargs: Any) -> int:
+    async def get_overflow_int32(self, **kwargs) -> int:
         """Get overflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -201,7 +201,7 @@ class IntOperations:
 
     get_overflow_int32.metadata = {"url": "/int/overflowint32"}  # type: ignore
 
-    def _get_underflow_int32_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_underflow_int32_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -219,7 +219,7 @@ class IntOperations:
     _get_underflow_int32_request.metadata = {"url": "/int/underflowint32"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow_int32(self, **kwargs: Any) -> int:
+    async def get_underflow_int32(self, **kwargs) -> int:
         """Get underflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -252,7 +252,7 @@ class IntOperations:
 
     get_underflow_int32.metadata = {"url": "/int/underflowint32"}  # type: ignore
 
-    def _get_overflow_int64_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_overflow_int64_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -270,7 +270,7 @@ class IntOperations:
     _get_overflow_int64_request.metadata = {"url": "/int/overflowint64"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow_int64(self, **kwargs: Any) -> int:
+    async def get_overflow_int64(self, **kwargs) -> int:
         """Get overflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -303,7 +303,7 @@ class IntOperations:
 
     get_overflow_int64.metadata = {"url": "/int/overflowint64"}  # type: ignore
 
-    def _get_underflow_int64_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_underflow_int64_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -321,7 +321,7 @@ class IntOperations:
     _get_underflow_int64_request.metadata = {"url": "/int/underflowint64"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow_int64(self, **kwargs: Any) -> int:
+    async def get_underflow_int64(self, **kwargs) -> int:
         """Get underflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -354,7 +354,7 @@ class IntOperations:
 
     get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
 
-    def _put_max32_request(self, body: int, **kwargs: Any) -> HttpRequest:
+    def _put_max32_request(self, body: int, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -377,7 +377,7 @@ class IntOperations:
     _put_max32_request.metadata = {"url": "/int/max/32"}  # type: ignore
 
     @distributed_trace_async
-    async def put_max32(self, int_body: int, **kwargs: Any) -> None:
+    async def put_max32(self, int_body: int, **kwargs) -> None:
         """Put max int32 value.
 
         :param int_body: int body.
@@ -407,7 +407,7 @@ class IntOperations:
 
     put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
 
-    def _put_max64_request(self, body: int, **kwargs: Any) -> HttpRequest:
+    def _put_max64_request(self, body: int, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -430,7 +430,7 @@ class IntOperations:
     _put_max64_request.metadata = {"url": "/int/max/64"}  # type: ignore
 
     @distributed_trace_async
-    async def put_max64(self, int_body: int, **kwargs: Any) -> None:
+    async def put_max64(self, int_body: int, **kwargs) -> None:
         """Put max int64 value.
 
         :param int_body: int body.
@@ -460,7 +460,7 @@ class IntOperations:
 
     put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
 
-    def _put_min32_request(self, body: int, **kwargs: Any) -> HttpRequest:
+    def _put_min32_request(self, body: int, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -483,7 +483,7 @@ class IntOperations:
     _put_min32_request.metadata = {"url": "/int/min/32"}  # type: ignore
 
     @distributed_trace_async
-    async def put_min32(self, int_body: int, **kwargs: Any) -> None:
+    async def put_min32(self, int_body: int, **kwargs) -> None:
         """Put min int32 value.
 
         :param int_body: int body.
@@ -513,7 +513,7 @@ class IntOperations:
 
     put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
 
-    def _put_min64_request(self, body: int, **kwargs: Any) -> HttpRequest:
+    def _put_min64_request(self, body: int, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -536,7 +536,7 @@ class IntOperations:
     _put_min64_request.metadata = {"url": "/int/min/64"}  # type: ignore
 
     @distributed_trace_async
-    async def put_min64(self, int_body: int, **kwargs: Any) -> None:
+    async def put_min64(self, int_body: int, **kwargs) -> None:
         """Put min int64 value.
 
         :param int_body: int body.
@@ -566,7 +566,7 @@ class IntOperations:
 
     put_min64.metadata = {"url": "/int/min/64"}  # type: ignore
 
-    def _get_unix_time_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_unix_time_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -584,7 +584,7 @@ class IntOperations:
     _get_unix_time_request.metadata = {"url": "/int/unixtime"}  # type: ignore
 
     @distributed_trace_async
-    async def get_unix_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_unix_time(self, **kwargs) -> datetime.datetime:
         """Get datetime encoded as Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -617,7 +617,7 @@ class IntOperations:
 
     get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
 
-    def _put_unix_time_date_request(self, body: datetime.datetime, **kwargs: Any) -> HttpRequest:
+    def _put_unix_time_date_request(self, body: datetime.datetime, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -640,7 +640,7 @@ class IntOperations:
     _put_unix_time_date_request.metadata = {"url": "/int/unixtime"}  # type: ignore
 
     @distributed_trace_async
-    async def put_unix_time_date(self, int_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_unix_time_date(self, int_body: datetime.datetime, **kwargs) -> None:
         """Put datetime encoded as Unix time.
 
         :param int_body: int body.
@@ -670,7 +670,7 @@ class IntOperations:
 
     put_unix_time_date.metadata = {"url": "/int/unixtime"}  # type: ignore
 
-    def _get_invalid_unix_time_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_invalid_unix_time_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -688,7 +688,7 @@ class IntOperations:
     _get_invalid_unix_time_request.metadata = {"url": "/int/invalidunixtime"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid_unix_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_invalid_unix_time(self, **kwargs) -> datetime.datetime:
         """Get invalid Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -721,7 +721,7 @@ class IntOperations:
 
     get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}  # type: ignore
 
-    def _get_null_unix_time_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_null_unix_time_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -739,7 +739,7 @@ class IntOperations:
     _get_null_unix_time_request.metadata = {"url": "/int/nullunixtime"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
+    async def get_null_unix_time(self, **kwargs) -> Optional[datetime.datetime]:
         """Get null Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

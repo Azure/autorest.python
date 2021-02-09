@@ -22,7 +22,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
     def _test_request(
         self,
         id: int,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         api_version = "1.0.0"
         accept = "application/json"
@@ -49,7 +49,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
     async def test(
         self,
         id: int,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Should be a mixin operation. Put in 1 for the required parameter and have the correct api
         version of 1.0.0 to pass.

@@ -22,7 +22,7 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_paging_request(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
@@ -41,7 +41,7 @@ class MultiapiServiceClientOperationsMixin:
 
     def test_paging(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> AsyncIterable["_models.PagingResult"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
@@ -97,7 +97,7 @@ class MultiapiServiceClientOperationsMixin:
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
         greeting_in_french: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         api_version = "3.0.0"
         accept = "application/json"
@@ -126,7 +126,7 @@ class MultiapiServiceClientOperationsMixin:
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
         greeting_in_french: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Has added parameters across the API versions.
 

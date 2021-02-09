@@ -22,7 +22,7 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 {% for param_signature in parameters.method_signature(async_mode) %}
     {{ param_signature }}
 {% endfor %}
-    {{ keywords.kwargs_declaration }}
+    {{ "**kwargs" if async_mode else "**kwargs  # type: Any" }}
 ){{ async_return_type_annotation(operation, return_type_wrapper, return_type) if async_mode }}:
 {% endmacro %}
 

@@ -23,7 +23,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         api_version = "2.0.0"
         accept = "application/json"
@@ -49,7 +49,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "_models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
@@ -96,7 +96,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         api_version = "2.0.0"
         accept = "application/json"
@@ -122,7 +122,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Has added parameters across the API versions.
 

@@ -48,7 +48,7 @@ class DateOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -66,7 +66,7 @@ class DateOperations:
     _get_null_request.metadata = {"url": "/date/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> Optional[datetime.date]:
+    async def get_null(self, **kwargs) -> Optional[datetime.date]:
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -99,7 +99,7 @@ class DateOperations:
 
     get_null.metadata = {"url": "/date/null"}  # type: ignore
 
-    def _get_invalid_date_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_invalid_date_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -117,7 +117,7 @@ class DateOperations:
     _get_invalid_date_request.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid_date(self, **kwargs: Any) -> datetime.date:
+    async def get_invalid_date(self, **kwargs) -> datetime.date:
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -150,7 +150,7 @@ class DateOperations:
 
     get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
-    def _get_overflow_date_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_overflow_date_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -168,7 +168,7 @@ class DateOperations:
     _get_overflow_date_request.metadata = {"url": "/date/overflowdate"}  # type: ignore
 
     @distributed_trace_async
-    async def get_overflow_date(self, **kwargs: Any) -> datetime.date:
+    async def get_overflow_date(self, **kwargs) -> datetime.date:
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -201,7 +201,7 @@ class DateOperations:
 
     get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
 
-    def _get_underflow_date_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_underflow_date_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -219,7 +219,7 @@ class DateOperations:
     _get_underflow_date_request.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
     @distributed_trace_async
-    async def get_underflow_date(self, **kwargs: Any) -> datetime.date:
+    async def get_underflow_date(self, **kwargs) -> datetime.date:
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -252,7 +252,7 @@ class DateOperations:
 
     get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
-    def _put_max_date_request(self, body: datetime.date, **kwargs: Any) -> HttpRequest:
+    def _put_max_date_request(self, body: datetime.date, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -275,7 +275,7 @@ class DateOperations:
     _put_max_date_request.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace_async
-    async def put_max_date(self, date_body: datetime.date, **kwargs: Any) -> None:
+    async def put_max_date(self, date_body: datetime.date, **kwargs) -> None:
         """Put max date value 9999-12-31.
 
         :param date_body: date body.
@@ -305,7 +305,7 @@ class DateOperations:
 
     put_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
-    def _get_max_date_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_max_date_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -323,7 +323,7 @@ class DateOperations:
     _get_max_date_request.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace_async
-    async def get_max_date(self, **kwargs: Any) -> datetime.date:
+    async def get_max_date(self, **kwargs) -> datetime.date:
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -356,7 +356,7 @@ class DateOperations:
 
     get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
-    def _put_min_date_request(self, body: datetime.date, **kwargs: Any) -> HttpRequest:
+    def _put_min_date_request(self, body: datetime.date, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -379,7 +379,7 @@ class DateOperations:
     _put_min_date_request.metadata = {"url": "/date/min"}  # type: ignore
 
     @distributed_trace_async
-    async def put_min_date(self, date_body: datetime.date, **kwargs: Any) -> None:
+    async def put_min_date(self, date_body: datetime.date, **kwargs) -> None:
         """Put min date value 0000-01-01.
 
         :param date_body: date body.
@@ -409,7 +409,7 @@ class DateOperations:
 
     put_min_date.metadata = {"url": "/date/min"}  # type: ignore
 
-    def _get_min_date_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_min_date_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -427,7 +427,7 @@ class DateOperations:
     _get_min_date_request.metadata = {"url": "/date/min"}  # type: ignore
 
     @distributed_trace_async
-    async def get_min_date(self, **kwargs: Any) -> datetime.date:
+    async def get_min_date(self, **kwargs) -> datetime.date:
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

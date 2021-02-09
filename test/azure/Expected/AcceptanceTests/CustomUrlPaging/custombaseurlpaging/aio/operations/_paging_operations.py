@@ -49,7 +49,7 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_pages_partial_url_request(self, account_name: str, **kwargs: Any) -> HttpRequest:
+    def _get_pages_partial_url_request(self, account_name: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -72,7 +72,7 @@ class PagingOperations:
     _get_pages_partial_url_request.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -124,7 +124,7 @@ class PagingOperations:
 
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
-    def _get_pages_partial_url_operation_request(self, account_name: str, **kwargs: Any) -> HttpRequest:
+    def _get_pages_partial_url_operation_request(self, account_name: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -146,9 +146,7 @@ class PagingOperations:
 
     _get_pages_partial_url_operation_request.metadata = {"url": "/paging/customurl/partialnextlinkop"}  # type: ignore
 
-    def _get_pages_partial_url_operation_next_request(
-        self, account_name: str, next_link: str, **kwargs: Any
-    ) -> HttpRequest:
+    def _get_pages_partial_url_operation_next_request(self, account_name: str, next_link: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -172,9 +170,7 @@ class PagingOperations:
     _get_pages_partial_url_operation_next_request.metadata = {"url": "/paging/customurl/{nextLink}"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(
-        self, account_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.

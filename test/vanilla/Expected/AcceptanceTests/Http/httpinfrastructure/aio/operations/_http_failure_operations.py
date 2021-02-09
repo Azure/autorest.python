@@ -47,7 +47,7 @@ class HttpFailureOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_error_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_empty_error_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class HttpFailureOperations:
     _get_empty_error_request.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty_error(self, **kwargs: Any) -> bool:
+    async def get_empty_error(self, **kwargs) -> bool:
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class HttpFailureOperations:
 
     get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
-    def _get_no_model_error_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_no_model_error_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -116,7 +116,7 @@ class HttpFailureOperations:
     _get_no_model_error_request.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
     @distributed_trace_async
-    async def get_no_model_error(self, **kwargs: Any) -> bool:
+    async def get_no_model_error(self, **kwargs) -> bool:
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -148,7 +148,7 @@ class HttpFailureOperations:
 
     get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
-    def _get_no_model_empty_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_no_model_empty_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -166,7 +166,7 @@ class HttpFailureOperations:
     _get_no_model_empty_request.metadata = {"url": "/http/failure/nomodel/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_no_model_empty(self, **kwargs: Any) -> bool:
+    async def get_no_model_empty(self, **kwargs) -> bool:
         """Get empty response from server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

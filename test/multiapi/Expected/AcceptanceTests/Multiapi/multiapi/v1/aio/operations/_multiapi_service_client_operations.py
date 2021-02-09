@@ -27,7 +27,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         api_version = "1.0.0"
         accept = "application/json"
@@ -53,7 +53,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
@@ -95,7 +95,7 @@ class MultiapiServiceClientOperationsMixin:
     def _test_lro_initial_request(
         self,
         body: Optional["_models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -123,7 +123,7 @@ class MultiapiServiceClientOperationsMixin:
     async def _test_lro_initial(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Optional["_models.Product"]:
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
         error_map = {
@@ -158,7 +158,7 @@ class MultiapiServiceClientOperationsMixin:
     async def begin_test_lro(
         self,
         product: Optional["_models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> AsyncLROPoller["_models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
@@ -220,7 +220,7 @@ class MultiapiServiceClientOperationsMixin:
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
@@ -247,7 +247,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "_models.PagingResult":
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
@@ -289,7 +289,7 @@ class MultiapiServiceClientOperationsMixin:
         self,
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> AsyncLROPoller[AsyncItemPaged["_models.PagingResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
@@ -412,7 +412,7 @@ class MultiapiServiceClientOperationsMixin:
     def _test_different_calls_request(
         self,
         greeting_in_english: str,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         api_version = "1.0.0"
         accept = "application/json"
@@ -435,7 +435,7 @@ class MultiapiServiceClientOperationsMixin:
     async def test_different_calls(
         self,
         greeting_in_english: str,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Has added parameters across the API versions.
 

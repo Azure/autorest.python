@@ -35,7 +35,7 @@ class HttpSuccessOperations:
 
     def _head200_request(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
 
         # Construct URL
@@ -52,7 +52,7 @@ class HttpSuccessOperations:
 
     async def head200(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Return 200 status code if successful.
 
@@ -85,7 +85,7 @@ class HttpSuccessOperations:
 
     def _head204_request(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
 
         # Construct URL
@@ -102,7 +102,7 @@ class HttpSuccessOperations:
 
     async def head204(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Return 204 status code if successful.
 
@@ -135,7 +135,7 @@ class HttpSuccessOperations:
 
     def _head404_request(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
 
         # Construct URL
@@ -152,7 +152,7 @@ class HttpSuccessOperations:
 
     async def head404(
         self,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Return 404 status code if successful.
 

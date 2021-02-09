@@ -48,7 +48,7 @@ class PathsOperations:
         self._config = config
 
     def _get_empty_request(
-        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
     ) -> HttpRequest:
         accept = "application/json"
 
@@ -80,7 +80,7 @@ class PathsOperations:
 
     @distributed_trace_async
     async def get_empty(
-        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
     ) -> None:
         """Get a 200 to test a valid base uri.
 

@@ -47,7 +47,7 @@ class ByteOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class ByteOperations:
     _get_null_request.metadata = {"url": "/byte/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> bytearray:
+    async def get_null(self, **kwargs) -> bytearray:
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class ByteOperations:
 
     get_null.metadata = {"url": "/byte/null"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_empty_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -116,7 +116,7 @@ class ByteOperations:
     _get_empty_request.metadata = {"url": "/byte/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> bytearray:
+    async def get_empty(self, **kwargs) -> bytearray:
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -149,7 +149,7 @@ class ByteOperations:
 
     get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
 
-    def _get_non_ascii_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_non_ascii_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -167,7 +167,7 @@ class ByteOperations:
     _get_non_ascii_request.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace_async
-    async def get_non_ascii(self, **kwargs: Any) -> bytearray:
+    async def get_non_ascii(self, **kwargs) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -200,7 +200,7 @@ class ByteOperations:
 
     get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
-    def _put_non_ascii_request(self, body: bytearray, **kwargs: Any) -> HttpRequest:
+    def _put_non_ascii_request(self, body: bytearray, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -223,7 +223,7 @@ class ByteOperations:
     _put_non_ascii_request.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace_async
-    async def put_non_ascii(self, byte_body: bytearray, **kwargs: Any) -> None:
+    async def put_non_ascii(self, byte_body: bytearray, **kwargs) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -253,7 +253,7 @@ class ByteOperations:
 
     put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_invalid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -271,7 +271,7 @@ class ByteOperations:
     _get_invalid_request.metadata = {"url": "/byte/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> bytearray:
+    async def get_invalid(self, **kwargs) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

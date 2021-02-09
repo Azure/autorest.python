@@ -53,7 +53,7 @@ class StorageAccountsOperations:
         self._config = config
 
     def _check_name_availability_request(
-        self, body: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs: Any
+        self, body: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs
     ) -> HttpRequest:
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
@@ -84,7 +84,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def check_name_availability(
-        self, account_name: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs: Any
+        self, account_name: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs
     ) -> "_models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
 
@@ -121,7 +121,7 @@ class StorageAccountsOperations:
     check_name_availability.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"}  # type: ignore
 
     def _create_initial_request(
-        self, resource_group_name: str, account_name: str, body: "_models.StorageAccountCreateParameters", **kwargs: Any
+        self, resource_group_name: str, account_name: str, body: "_models.StorageAccountCreateParameters", **kwargs
     ) -> HttpRequest:
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
@@ -157,7 +157,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
-        **kwargs: Any
+        **kwargs
     ) -> Optional["_models.StorageAccount"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -192,7 +192,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
-        **kwargs: Any
+        **kwargs
     ) -> AsyncLROPoller["_models.StorageAccount"]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
@@ -264,7 +264,7 @@ class StorageAccountsOperations:
 
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
-    def _delete_request(self, resource_group_name: str, account_name: str, **kwargs: Any) -> HttpRequest:
+    def _delete_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
         api_version = "2015-05-01-preview"
 
         # Construct URL
@@ -288,7 +288,7 @@ class StorageAccountsOperations:
     _delete_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
+    async def delete(self, resource_group_name: str, account_name: str, **kwargs) -> None:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -321,7 +321,7 @@ class StorageAccountsOperations:
 
     delete.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
-    def _get_properties_request(self, resource_group_name: str, account_name: str, **kwargs: Any) -> HttpRequest:
+    def _get_properties_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -347,9 +347,7 @@ class StorageAccountsOperations:
     _get_properties_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_properties(
-        self, resource_group_name: str, account_name: str, **kwargs: Any
-    ) -> "_models.StorageAccount":
+    async def get_properties(self, resource_group_name: str, account_name: str, **kwargs) -> "_models.StorageAccount":
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -391,7 +389,7 @@ class StorageAccountsOperations:
     get_properties.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     def _update_request(
-        self, resource_group_name: str, account_name: str, body: "_models.StorageAccountUpdateParameters", **kwargs: Any
+        self, resource_group_name: str, account_name: str, body: "_models.StorageAccountUpdateParameters", **kwargs
     ) -> HttpRequest:
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
@@ -428,7 +426,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountUpdateParameters",
-        **kwargs: Any
+        **kwargs
     ) -> "_models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
@@ -477,7 +475,7 @@ class StorageAccountsOperations:
 
     update.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
-    def _list_keys_request(self, resource_group_name: str, account_name: str, **kwargs: Any) -> HttpRequest:
+    def _list_keys_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -503,9 +501,7 @@ class StorageAccountsOperations:
     _list_keys_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace_async
-    async def list_keys(
-        self, resource_group_name: str, account_name: str, **kwargs: Any
-    ) -> "_models.StorageAccountKeys":
+    async def list_keys(self, resource_group_name: str, account_name: str, **kwargs) -> "_models.StorageAccountKeys":
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -540,7 +536,7 @@ class StorageAccountsOperations:
 
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
-    def _list_request(self, **kwargs: Any) -> HttpRequest:
+    def _list_request(self, **kwargs) -> HttpRequest:
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -564,7 +560,7 @@ class StorageAccountsOperations:
     _list_request.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable["_models.StorageAccountListResult"]:
+    def list(self, **kwargs) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -617,7 +613,7 @@ class StorageAccountsOperations:
 
     list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
-    def _list_by_resource_group_request(self, resource_group_name: str, **kwargs: Any) -> HttpRequest:
+    def _list_by_resource_group_request(self, resource_group_name: str, **kwargs) -> HttpRequest:
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -643,7 +639,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list_by_resource_group(
-        self, resource_group_name: str, **kwargs: Any
+        self, resource_group_name: str, **kwargs
     ) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
@@ -703,7 +699,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         body: "_models.StorageAccountRegenerateKeyParameters",
-        **kwargs: Any
+        **kwargs
     ) -> HttpRequest:
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
@@ -740,7 +736,7 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         key_name: Optional[Union[str, "_models.KeyName"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "_models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.
 

@@ -48,7 +48,7 @@ class DurationOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -66,7 +66,7 @@ class DurationOperations:
     _get_null_request.metadata = {"url": "/duration/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> Optional[datetime.timedelta]:
+    async def get_null(self, **kwargs) -> Optional[datetime.timedelta]:
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -99,7 +99,7 @@ class DurationOperations:
 
     get_null.metadata = {"url": "/duration/null"}  # type: ignore
 
-    def _put_positive_duration_request(self, body: datetime.timedelta, **kwargs: Any) -> HttpRequest:
+    def _put_positive_duration_request(self, body: datetime.timedelta, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -122,7 +122,7 @@ class DurationOperations:
     _put_positive_duration_request.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
     @distributed_trace_async
-    async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs: Any) -> None:
+    async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs) -> None:
         """Put a positive duration value.
 
         :param duration_body: duration body.
@@ -152,7 +152,7 @@ class DurationOperations:
 
     put_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
-    def _get_positive_duration_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_positive_duration_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -170,7 +170,7 @@ class DurationOperations:
     _get_positive_duration_request.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
     @distributed_trace_async
-    async def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
+    async def get_positive_duration(self, **kwargs) -> datetime.timedelta:
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -203,7 +203,7 @@ class DurationOperations:
 
     get_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_invalid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -221,7 +221,7 @@ class DurationOperations:
     _get_invalid_request.metadata = {"url": "/duration/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
+    async def get_invalid(self, **kwargs) -> datetime.timedelta:
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

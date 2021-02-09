@@ -48,7 +48,7 @@ class UsageOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _list_request(self, **kwargs: Any) -> HttpRequest:
+    def _list_request(self, **kwargs) -> HttpRequest:
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -72,7 +72,7 @@ class UsageOperations:
     _list_request.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"}  # type: ignore
 
     @distributed_trace_async
-    async def list(self, **kwargs: Any) -> "_models.UsageListResult":
+    async def list(self, **kwargs) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

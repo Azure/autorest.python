@@ -47,7 +47,7 @@ class BoolOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_true_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_true_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class BoolOperations:
     _get_true_request.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def get_true(self, **kwargs: Any) -> bool:
+    async def get_true(self, **kwargs) -> bool:
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class BoolOperations:
 
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
-    def _put_true_request(self, **kwargs: Any) -> HttpRequest:
+    def _put_true_request(self, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         body = True
         accept = "application/json"
@@ -122,7 +122,7 @@ class BoolOperations:
     _put_true_request.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def put_true(self, **kwargs: Any) -> None:
+    async def put_true(self, **kwargs) -> None:
         """Set Boolean value true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -151,7 +151,7 @@ class BoolOperations:
 
     put_true.metadata = {"url": "/bool/true"}  # type: ignore
 
-    def _get_false_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_false_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -169,7 +169,7 @@ class BoolOperations:
     _get_false_request.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def get_false(self, **kwargs: Any) -> bool:
+    async def get_false(self, **kwargs) -> bool:
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -202,7 +202,7 @@ class BoolOperations:
 
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
-    def _put_false_request(self, **kwargs: Any) -> HttpRequest:
+    def _put_false_request(self, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         body = False
         accept = "application/json"
@@ -226,7 +226,7 @@ class BoolOperations:
     _put_false_request.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def put_false(self, **kwargs: Any) -> None:
+    async def put_false(self, **kwargs) -> None:
         """Set Boolean value false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -255,7 +255,7 @@ class BoolOperations:
 
     put_false.metadata = {"url": "/bool/false"}  # type: ignore
 
-    def _get_null_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -273,7 +273,7 @@ class BoolOperations:
     _get_null_request.metadata = {"url": "/bool/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> Optional[bool]:
+    async def get_null(self, **kwargs) -> Optional[bool]:
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -306,7 +306,7 @@ class BoolOperations:
 
     get_null.metadata = {"url": "/bool/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_invalid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -324,7 +324,7 @@ class BoolOperations:
     _get_invalid_request.metadata = {"url": "/bool/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> bool:
+    async def get_invalid(self, **kwargs) -> bool:
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

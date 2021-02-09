@@ -48,7 +48,7 @@ class TimeOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -66,7 +66,7 @@ class TimeOperations:
     _get_request.metadata = {"url": "/time/get"}  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> datetime.time:
+    async def get(self, **kwargs) -> datetime.time:
         """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -99,7 +99,7 @@ class TimeOperations:
 
     get.metadata = {"url": "/time/get"}  # type: ignore
 
-    def _put_request(self, body: datetime.time, **kwargs: Any) -> HttpRequest:
+    def _put_request(self, body: datetime.time, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -122,7 +122,7 @@ class TimeOperations:
     _put_request.metadata = {"url": "/time/put"}  # type: ignore
 
     @distributed_trace_async
-    async def put(self, time_body: datetime.time, **kwargs: Any) -> str:
+    async def put(self, time_body: datetime.time, **kwargs) -> str:
         """Put time value "08:07:56".
 
         :param time_body: Put time value "08:07:56" in parameter to pass testserver.

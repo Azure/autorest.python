@@ -26,7 +26,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class IncorrectReturnedErrorModelOperationsMixin:
-    def _get_incorrect_error_from_server_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_incorrect_error_from_server_request(self, **kwargs) -> HttpRequest:
 
         # Construct URL
         url = kwargs.pop("template_url", self._get_incorrect_error_from_server_request.metadata["url"])  # type: ignore
@@ -42,7 +42,7 @@ class IncorrectReturnedErrorModelOperationsMixin:
     _get_incorrect_error_from_server_request.metadata = {"url": "/incorrectError"}  # type: ignore
 
     @distributed_trace_async
-    async def get_incorrect_error_from_server(self, **kwargs: Any) -> None:
+    async def get_incorrect_error_from_server(self, **kwargs) -> None:
         """Get an error response from the server that is not as described in our Error object. Want to
         swallow the deserialization error and still return an HttpResponseError to the users.
 

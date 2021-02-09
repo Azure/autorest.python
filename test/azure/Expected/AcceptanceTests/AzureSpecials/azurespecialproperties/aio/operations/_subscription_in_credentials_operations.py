@@ -48,7 +48,7 @@ class SubscriptionInCredentialsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _post_method_global_valid_request(self, **kwargs: Any) -> HttpRequest:
+    def _post_method_global_valid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -70,7 +70,7 @@ class SubscriptionInCredentialsOperations:
     _post_method_global_valid_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_global_valid(self, **kwargs: Any) -> None:
+    async def post_method_global_valid(self, **kwargs) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -100,7 +100,7 @@ class SubscriptionInCredentialsOperations:
 
     post_method_global_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_method_global_null_request(self, **kwargs: Any) -> HttpRequest:
+    def _post_method_global_null_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -122,7 +122,7 @@ class SubscriptionInCredentialsOperations:
     _post_method_global_null_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_global_null(self, **kwargs: Any) -> None:
+    async def post_method_global_null(self, **kwargs) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         null, and client-side validation should prevent you from making this call.
 
@@ -152,7 +152,7 @@ class SubscriptionInCredentialsOperations:
 
     post_method_global_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
-    def _post_method_global_not_provided_valid_request(self, **kwargs: Any) -> HttpRequest:
+    def _post_method_global_not_provided_valid_request(self, **kwargs) -> HttpRequest:
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -176,7 +176,7 @@ class SubscriptionInCredentialsOperations:
     _post_method_global_not_provided_valid_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_global_not_provided_valid(self, **kwargs: Any) -> None:
+    async def post_method_global_not_provided_valid(self, **kwargs) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -206,7 +206,7 @@ class SubscriptionInCredentialsOperations:
 
     post_method_global_not_provided_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_path_global_valid_request(self, **kwargs: Any) -> HttpRequest:
+    def _post_path_global_valid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -228,7 +228,7 @@ class SubscriptionInCredentialsOperations:
     _post_path_global_valid_request.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_path_global_valid(self, **kwargs: Any) -> None:
+    async def post_path_global_valid(self, **kwargs) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -258,7 +258,7 @@ class SubscriptionInCredentialsOperations:
 
     post_path_global_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_swagger_global_valid_request(self, **kwargs: Any) -> HttpRequest:
+    def _post_swagger_global_valid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -280,7 +280,7 @@ class SubscriptionInCredentialsOperations:
     _post_swagger_global_valid_request.metadata = {"url": "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_swagger_global_valid(self, **kwargs: Any) -> None:
+    async def post_swagger_global_valid(self, **kwargs) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 

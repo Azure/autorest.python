@@ -47,7 +47,7 @@ class ArrayOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_valid_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -65,7 +65,7 @@ class ArrayOperations:
     _get_valid_request.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> "_models.ArrayWrapper":
+    async def get_valid(self, **kwargs) -> "_models.ArrayWrapper":
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,7 +98,7 @@ class ArrayOperations:
 
     get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
-    def _put_valid_request(self, body: "_models.ArrayWrapper", **kwargs: Any) -> HttpRequest:
+    def _put_valid_request(self, body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -121,7 +121,7 @@ class ArrayOperations:
     _put_valid_request.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, array: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def put_valid(self, array: Optional[List[str]] = None, **kwargs) -> None:
         """Put complex types with array property.
 
         :param array:
@@ -152,7 +152,7 @@ class ArrayOperations:
 
     put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_empty_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -170,7 +170,7 @@ class ArrayOperations:
     _get_empty_request.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> "_models.ArrayWrapper":
+    async def get_empty(self, **kwargs) -> "_models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -203,7 +203,7 @@ class ArrayOperations:
 
     get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
-    def _put_empty_request(self, body: "_models.ArrayWrapper", **kwargs: Any) -> HttpRequest:
+    def _put_empty_request(self, body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -226,7 +226,7 @@ class ArrayOperations:
     _put_empty_request.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, array: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def put_empty(self, array: Optional[List[str]] = None, **kwargs) -> None:
         """Put complex types with array property which is empty.
 
         :param array:
@@ -257,7 +257,7 @@ class ArrayOperations:
 
     put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
-    def _get_not_provided_request(self, **kwargs: Any) -> HttpRequest:
+    def _get_not_provided_request(self, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -275,7 +275,7 @@ class ArrayOperations:
     _get_not_provided_request.metadata = {"url": "/complex/array/notprovided"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> "_models.ArrayWrapper":
+    async def get_not_provided(self, **kwargs) -> "_models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

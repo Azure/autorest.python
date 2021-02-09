@@ -48,7 +48,7 @@ class SubscriptionInMethodOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _post_method_local_valid_request(self, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    def _post_method_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -70,7 +70,7 @@ class SubscriptionInMethodOperations:
     _post_method_local_valid_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_method_local_valid(self, subscription_id: str, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -102,7 +102,7 @@ class SubscriptionInMethodOperations:
 
     post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_method_local_null_request(self, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    def _post_method_local_null_request(self, subscription_id: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -124,7 +124,7 @@ class SubscriptionInMethodOperations:
     _post_method_local_null_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_local_null(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_method_local_null(self, subscription_id: str, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-
         side validation should prevent you from making this call.
 
@@ -156,7 +156,7 @@ class SubscriptionInMethodOperations:
 
     post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
 
-    def _post_path_local_valid_request(self, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    def _post_path_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -178,7 +178,7 @@ class SubscriptionInMethodOperations:
     _post_path_local_valid_request.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_path_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_path_local_valid(self, subscription_id: str, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -209,7 +209,7 @@ class SubscriptionInMethodOperations:
 
     post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_swagger_local_valid_request(self, subscription_id: str, **kwargs: Any) -> HttpRequest:
+    def _post_swagger_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
         accept = "application/json"
 
         # Construct URL
@@ -231,7 +231,7 @@ class SubscriptionInMethodOperations:
     _post_swagger_local_valid_request.metadata = {"url": "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_swagger_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_swagger_local_valid(self, subscription_id: str, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
