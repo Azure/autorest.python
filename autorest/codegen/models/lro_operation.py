@@ -7,7 +7,7 @@ import logging
 from typing import Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation
-from .parameter import Parameter
+from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .request import Request
 from .imports import ImportType, TypingSection
@@ -24,8 +24,8 @@ class LROOperation(Operation):
         name: str,
         description: str,
         api_versions: Set[str],
-        parameters: Optional[List[Parameter]] = None,
-        multiple_media_type_parameters: Optional[List[Parameter]] = None,
+        parameters: ParameterList,
+        multiple_media_type_parameters: ParameterList,
         summary: Optional[str] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -87,7 +87,7 @@ class LROOperation(Operation):
             name=self.name.strip("begin") + "_initial",
             description="",
             api_versions=self.api_versions,
-            parameters=self.parameters.parameters,
+            parameters=self.parameters,
             multiple_media_type_parameters=self.multiple_media_type_parameters,
             summary=self.summary,
             responses=self.responses,

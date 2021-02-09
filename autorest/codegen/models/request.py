@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, cast, Dict, List, Optional, TypeVar
+from typing import Any, cast, Dict, List, TypeVar
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -48,8 +48,8 @@ class Request(BaseModel):
         method: str,
         multipart: bool,
         schema_requests: List[SchemaRequest],
-        parameters: Optional[List[RequestParameter]] = None,
-        multiple_media_type_parameters: Optional[List[RequestParameter]] = None,
+        parameters: RequestParameterList,
+        multiple_media_type_parameters: RequestParameterList,
     ):
         super(Request, self).__init__(yaml_data)
         self.name = name
@@ -57,8 +57,8 @@ class Request(BaseModel):
         self.method = method
         self.multipart = multipart
         self.schema_requests = schema_requests
-        self.parameters = RequestParameterList(parameters)
-        self.multiple_media_type_parameters = RequestParameterList(multiple_media_type_parameters)
+        self.parameters = parameters
+        self.multiple_media_type_parameters = multiple_media_type_parameters
 
     @property
     def content_type(self) -> str:
@@ -141,7 +141,6 @@ class Request(BaseModel):
         first_request = yaml_data["requests"][0]
 
         parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, RequestParameter.from_yaml)
-
         return cls(
             yaml_data=yaml_data,
             name=name,
@@ -149,6 +148,6 @@ class Request(BaseModel):
             method=first_request["protocol"]["http"]["method"],
             multipart=first_request["protocol"]["http"].get("multipart", False),
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
-            parameters=parameters,
-            multiple_media_type_parameters=multiple_media_type_parameters,
+            parameters=RequestParameterList(parameters),
+            multiple_media_type_parameters=RequestParameterList(multiple_media_type_parameters),
         )
