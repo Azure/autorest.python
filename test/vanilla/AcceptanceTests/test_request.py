@@ -70,8 +70,8 @@ class TestRequest(object):
 
         response = client._request(request)
 
-        data = b''.join([chunk for chunk in response.stream_download(None)])
-        json_response = json.load(io.BytesIO(data))
+        data = b''.join([chunk for chunk in response.stream_download(None)]).decode('utf-8')
+        json_response = json.loads(data)
         assert 2 == json_response['id']
         assert "Siameeee" == json_response['name']
         assert - 1 == json_response['hates'][1]['id']
