@@ -85,14 +85,14 @@ class OperationGroupTwoOperations(object):
 
     def test_four(
         self,
-        input=None,  # type: Optional[IO]
+        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: IO
+        :type input: IO or ~multiapidataplane.v3.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response

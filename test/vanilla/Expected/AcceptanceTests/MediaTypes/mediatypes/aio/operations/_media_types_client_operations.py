@@ -70,11 +70,11 @@ class MediaTypesClientOperationsMixin:
     _analyze_body_request.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[IO] = None, **kwargs: Any) -> str:
+    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO
+        :type input: IO or ~mediatypes.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
