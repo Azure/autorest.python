@@ -43,15 +43,10 @@ def get_converted_parameters(yaml_data, parameter_converter):
 
     if multiple_requests:
         parameters = _remove_multiple_m4_header_parameters(parameters)
-        chosen_parameter = multiple_media_type_parameters[0]
-
         # binary body parameters are required, while object
         # ones are not. We default to optional in this case.
         optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
-        if optional_parameters:
-            chosen_parameter = optional_parameters[0]
-        else:
-            chosen_parameter = multiple_media_type_parameters[0]
+        chosen_parameter = optional_parameters[0] if optional_parameters else multiple_media_type_parameters[0]
         chosen_parameter.has_multiple_media_types = True
         parameters.append(chosen_parameter)
 
