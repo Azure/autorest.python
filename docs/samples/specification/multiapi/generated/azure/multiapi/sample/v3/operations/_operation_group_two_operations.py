@@ -29,7 +29,7 @@ class OperationGroupTwoOperations(object):
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azure.multiapi.sample.models
+    :type models: ~azure.multiapi.sample.v3.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -93,7 +93,7 @@ class OperationGroupTwoOperations(object):
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
-        :type input: IO or ~azure.multiapi.sample.models.SourcePath
+        :type input: IO or ~azure.multiapi.sample.v3.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is "application/json".
          Allowed values are: "application/pdf", "image/jpeg", "image/png", "image/tiff", "application/json".
         :keyword callable cls: A custom type or function that will be passed the direct response
