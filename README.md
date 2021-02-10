@@ -4,7 +4,7 @@ See [here](https://github.com/Azure/autorest.python/wiki/Generating-with-autores
 
 # Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
@@ -16,19 +16,18 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-
 ### Autorest plugin configuration
-- Please don't edit this section unless you're re-configuring how the powershell extension plugs in to AutoRest
-AutoRest needs the below config to pick this up as a plug-in - see https://github.com/Azure/autorest/blob/master/docs/developer/architecture/AutoRest-extension.md
 
+- Please don't edit this section unless you're re-configuring how the powershell extension plugs in to AutoRest
+  AutoRest needs the below config to pick this up as a plug-in - see https://github.com/Azure/autorest/blob/master/docs/developer/architecture/AutoRest-extension.md
 
 #### Python code gen
 
-``` yaml !$(multiapiscript)
+```yaml !$(multiapiscript)
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ^3.0.6318
+version: ^3.0.6372
 use-extension:
   "@autorest/modelerfour": ^4.15.456
 
@@ -43,12 +42,12 @@ modelerfour:
     parameter: snakecase
     property: snakecase
     operation: snakecase
-    operationGroup:  pascalcase
-    choice:  pascalcase
-    choiceValue:  uppercase
-    constant:  snakecase
-    constantParameter:  snakecase
-    type:  pascalcase
+    operationGroup: pascalcase
+    choice: pascalcase
+    choiceValue: uppercase
+    constant: snakecase
+    constantParameter: snakecase
+    type: pascalcase
     local: _ + snakecase
     global: snakecase
     preserve-uppercase-max-length: 6
@@ -56,7 +55,6 @@ modelerfour:
       $host: $host
       base64: base64
       IncludeAPIs: include_apis
-
 
 pipeline:
   python:
@@ -85,16 +83,15 @@ pipeline:
     scope: scope-codegen/emitter
 
 scope-codegen/emitter:
-    input-artifact: python-files
-    output-uri-expr: $key
+  input-artifact: python-files
+  output-uri-expr: $key
 
 output-artifact: python-files
 ```
 
 # Multiapi script pipeline
 
-``` yaml $(multiapiscript)
-
+```yaml $(multiapiscript)
 pipeline:
   python/multiapiscript:
     scope: multiapiscript
@@ -105,16 +102,15 @@ pipeline:
     scope: scope-multiapiscript/emitter
 
 scope-multiapiscript/emitter:
-    input-artifact: python-files
-    output-uri-expr: $key
+  input-artifact: python-files
+  output-uri-expr: $key
 
 output-artifact: python-files
 ```
 
 # Black script pipeline
 
-``` yaml $(black)
-
+```yaml $(black)
 pipeline:
   python/black:
     scope: black
@@ -126,12 +122,13 @@ pipeline:
     scope: scope-black/emitter
 
 scope-black/emitter:
-    input-artifact: python-files
-    output-uri-expr: $key
+  input-artifact: python-files
+  output-uri-expr: $key
 
 output-artifact: python-files
 ```
 
 <!-- LINKS -->
+
 [python_docs]: https://github.com/Azure/autorest.python/tree/autorestv3/docs/readme.md
 [main_docs]: https://github.com/Azure/autorest/tree/master/docs
