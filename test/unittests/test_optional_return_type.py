@@ -6,7 +6,7 @@
 
 import pytest
 from autorest.codegen.models import (
-    Operation, LROOperation, PagingOperation, SchemaResponse, CodeModel, Request
+    Operation, LROOperation, PagingOperation, SchemaResponse, CodeModel, Request, ParameterList
 )
 
 @pytest.fixture
@@ -17,7 +17,9 @@ def request_preparer():
         url="http://fakeUrl",
         method="get",
         multipart=False,
-        schema_requests=[]
+        schema_requests=[],
+        parameters=ParameterList(),
+        multiple_media_type_parameters=ParameterList(),
     )
 
 @pytest.fixture
@@ -27,7 +29,9 @@ def operation(request_preparer):
         name="optional_return_type_test",
         description="Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        request=request_preparer
+        request=request_preparer,
+        parameters=ParameterList(),
+        multiple_media_type_parameters=ParameterList(),
     )
 
 @pytest.fixture
@@ -37,7 +41,9 @@ def lro_operation(request_preparer):
         name="lro_optional_return_type_test",
         description="LRO Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        request=request_preparer
+        request=request_preparer,
+        parameters=ParameterList(),
+        multiple_media_type_parameters=ParameterList(),
     )
 
 @pytest.fixture
@@ -47,7 +53,9 @@ def paging_operation(request_preparer):
         name="paging_optional_return_type_test",
         description="Paging Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        request=request_preparer
+        request=request_preparer,
+        parameters=ParameterList(),
+        multiple_media_type_parameters=ParameterList(),
     )
 
 def test_success_with_body_and_fail_no_body(operation):
