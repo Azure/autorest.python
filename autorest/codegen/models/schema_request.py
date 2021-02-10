@@ -3,22 +3,22 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 from .base_model import BaseModel
-from .parameter import Parameter
-from .parameter_list import ParameterList
+from .request_parameter import RequestParameter
+from .request_parameter_list import RequestParameterList
 
 class SchemaRequest(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         media_types: List[str],
-        parameters: List[Parameter]
+        parameters: RequestParameterList,
     ) -> None:
         super().__init__(yaml_data)
         self.media_types = media_types
-        self.parameters = ParameterList(parameters)
+        self.parameters = parameters
 
     @property
     def pre_semicolon_media_types(self) -> List[str]:
@@ -42,15 +42,16 @@ class SchemaRequest(BaseModel):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaRequest":
-        parameters = [
-            Parameter.from_yaml(yaml)
+
+        parameters: Optional[List[RequestParameter]] = [
+            RequestParameter.from_yaml(yaml)
             for yaml in yaml_data.get("parameters", [])
         ]
 
         return cls(
             yaml_data=yaml_data,
             media_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
-            parameters=parameters
+            parameters=RequestParameterList(parameters)
         )
 
     def __repr__(self) -> str:

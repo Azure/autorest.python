@@ -141,8 +141,7 @@ if {{ header_parameter.full_serialized_name }} is not None:
 {% endif %}{% endmacro %}
 
 {# helper for non-stream body params with schema #}
-{% macro non_stream_body_params(request, send_xml, request_as_xml) %}
-{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
+{% macro non_stream_body_params(request, send_xml) %}
 {% set ser_ctxt = request.parameters.body[0].xml_serialization_ctxt if send_xml else None %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% if ser_ctxt %}
@@ -164,7 +163,8 @@ body_content_kwargs['form_content'] = {{ request.parameters.body[0].serialized_n
 {% elif schema_request.is_stream_request %}
 body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-{{ non_stream_body_params(request) }}{% endif %}{% endmacro %}
+{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
+{{ non_stream_body_params(schema_request, send_xml) }}{% endif %}{% endmacro %}
 
 {# write body parameters #}
 {% macro body_parameters(request, http_verb=None, returns_request=True) %}

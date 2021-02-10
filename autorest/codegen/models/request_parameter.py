@@ -33,7 +33,7 @@ class RequestParameter(Parameter):
         return self.yaml_data["language"]["python"]["name"]
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])

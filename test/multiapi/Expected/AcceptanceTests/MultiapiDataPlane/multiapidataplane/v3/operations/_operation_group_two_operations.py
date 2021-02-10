@@ -71,7 +71,7 @@ class OperationGroupTwoOperations(object):
 
         elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
             if body is not None:
-                body_content = self._serialize.body(body, 'IO')
+                body_content = self._serialize.body(body, 'SourcePath')
             else:
                 body_content = None
             body_content_kwargs['content'] = body_content
