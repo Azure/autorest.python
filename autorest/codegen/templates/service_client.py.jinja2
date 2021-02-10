@@ -93,7 +93,7 @@ class {{ code_model.class_name }}({{ base_class }}):
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 
-    {{ keywords.def }} _request(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ " -> HttpResponse" if async_mode else "" }}:
+    {{ keywords.def }} _send(self, http_request{{ ": HttpRequest" if async_mode }}, **kwargs{{ ": Any" if async_mode }}){{ " -> HttpResponse" if async_mode else "" }}:
         {% if not async_mode %}
         # type: (HttpRequest, Any) -> HttpResponse
         {% endif %}

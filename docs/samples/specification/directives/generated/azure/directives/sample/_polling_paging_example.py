@@ -46,7 +46,7 @@ class PollingPagingExample(PollingPagingExampleOperationsMixin):
         self._deserialize = Deserializer(client_models)
 
 
-    def _request(self, http_request, **kwargs):
+    def _send(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
         """Runs the network request through the client's chained policies.
 
