@@ -7,7 +7,7 @@ min Autorest core version: 3.0.6372
 min Modelerfour version: 4.15.456
 
 **Bug Fixes**
-- Bump `Autorest core` minimum version to [correctly deal with](https://github.com/Azure/autorest/pull/3860) overriding configs. Fixes submodule-specific code in our multiapi client  #877
+- Bump `Autorest core` minimum version to [correctly deal with](https://github.com/Azure/autorest/pull/3860) overriding configs. Fixes submodule-specific code in our multiapi client  #880
 
 ### 2021-02-04 - 5.6.2
 
