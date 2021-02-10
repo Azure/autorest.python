@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 import io
 import json
-
+import pytest
 from azure.core.pipeline.transport import HttpRequest
 
 from os.path import dirname, pardir, join, realpath
@@ -33,11 +33,11 @@ import pytest
 
 cwd = dirname(realpath(__file__))
 
+class TestSend(object):
 
-class TestRequest(object):
-
-    def test_request_with_body_get_model_deserialize(self):
-        from bodycomplex import AutoRestComplexTestService
+    @pytest.mark.asyncio
+    async def test_send_with_body_get_model_deserialize(self):
+        from bodycomplex.aio import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
@@ -48,16 +48,17 @@ class TestRequest(object):
             },
         )
 
-        response = client._request(request)
-
+        response = await client._send(request)
+        await response.load_body()
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
         assert "Siameeee" ==  deserialized.name
         assert -1 ==  deserialized.hates[1].id
         assert "Tomato" == deserialized.hates[1].name
 
-    def test_request_with_body_get_direct_json(self):
-        from bodycomplex import AutoRestComplexTestService
+    @pytest.mark.asyncio
+    async def test_send_with_body_get_direct_json(self):
+        from bodycomplex.aio import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
@@ -68,17 +69,20 @@ class TestRequest(object):
             },
         )
 
-        response = client._request(request)
+        response = await client._send(request)
 
-        data = b''.join([chunk for chunk in response.stream_download(None)]).decode('utf-8')
-        json_response = json.loads(data)
+        data = b''
+        async for chunk in response.stream_download(None):
+            data += chunk
+        json_response = json.loads(data.decode('utf-8'))
         assert 2 == json_response['id']
         assert "Siameeee" == json_response['name']
         assert - 1 == json_response['hates'][1]['id']
         assert "Tomato" == json_response['hates'][1]['name']
 
-    def test_request_with_body_put_json_dumps(self):
-        from bodycomplex import AutoRestComplexTestService
+    @pytest.mark.asyncio
+    async def test_send_with_body_put_json_dumps(self):
+        from bodycomplex.aio import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
 
@@ -109,11 +113,12 @@ class TestRequest(object):
         )
         request.set_json_body(siamese_body)
 
-        response = client._request(request)
+        response = await client._send(request)
         assert response.status_code == 200
 
-    def test_request_with_body_serialize(self):
-        from bodycomplex import AutoRestComplexTestService
+    @pytest.mark.asyncio
+    async def test_send_with_body_serialize(self):
+        from bodycomplex.aio import AutoRestComplexTestService
         from bodycomplex.models import Siamese, Dog
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
@@ -143,31 +148,33 @@ class TestRequest(object):
             }
         )
         request.set_json_body(siamese.serialize())
-        response = client._request(request)
+
+        response = await client._send(request)
         assert response.status_code == 200
 
-    def test_request_get_stream(self):
-        from bodyfile import AutoRestSwaggerBATFileService
+    @pytest.mark.asyncio
+    async def test_send_with_stream(self):
+        from bodyfile.aio import AutoRestSwaggerBATFileService
 
         client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
         file_length = 0
         with io.BytesIO() as file_handle:
 
-            request = HttpRequest("GET", "/files/stream/nonempty",
+            request = HttpRequest("GET", "http://localhost:3000/files/stream/nonempty",
                 headers={
                     'Accept': 'image/png, application/json'
                 },
             )
 
-            response = client._request(request, stream=True)
+            response = await client._send(request, stream=True)
             assert response.status_code == 200
 
-            stream = response.stream_download(None)  # want to make pipeline client an optional param in azure-core
+            stream = response.stream_download(None)
 
             total = len(stream)
-            assert not stream.response.internal_response._content_consumed
+            assert not stream.response.internal_response._released
 
-            for data in stream:
+            async for data in stream:
                 assert 0 < len(data) <= stream.block_size
                 file_length += len(data)
                 print("Downloading... {}%".format(int(file_length*100/total)))
@@ -176,15 +183,16 @@ class TestRequest(object):
             assert file_length !=  0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir,
-                    "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+                join(cwd, pardir, pardir, pardir, pardir,
+                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
 
             with open(sample_file, 'rb') as data:
                 sample_data = hash(data.read())
             assert sample_data == hash(file_handle.getvalue())
 
-    def test_request_put_stream(self):
-        from bodyformdata import AutoRestSwaggerBATFormDataService
+    @pytest.mark.asyncio
+    async def test_send_put_stream(self):
+        from bodyformdata.aio import AutoRestSwaggerBATFormDataService
 
         client = AutoRestSwaggerBATFormDataService(
             base_url="http://localhost:3000",
@@ -199,11 +207,12 @@ class TestRequest(object):
                 },
                 data=stream_data,
             )
-            response = client._request(request)
+            response = await client._send(request)
             assert response.status_code == 200
 
-    def test_request_with_client_path_format_arguments(self):
-        from validation import AutoRestValidationTest
+    @pytest.mark.asyncio
+    async def test_send_with_client_path_format_arguments(self):
+        from validation.aio import AutoRestValidationTest
 
         client = AutoRestValidationTest("mySubscriptionId", base_url="http://localhost:3000")
 
@@ -213,10 +222,11 @@ class TestRequest(object):
             },
         )
 
-        response = client._request(request)
+        response = await client._send(request)
         assert response.request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
 
-    def test_request_full_url(self):
+    @pytest.mark.asyncio
+    async def test_send_full_url(self):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -228,7 +238,7 @@ class TestRequest(object):
             },
         )
 
-        response = client._request(request)
+        response = client._send(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
