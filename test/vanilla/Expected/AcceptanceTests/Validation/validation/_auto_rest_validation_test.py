@@ -46,7 +46,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-    def _send(self, http_request, **kwargs):
+    def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
         """Runs the network request through the client's chained policies.
 

@@ -44,7 +44,7 @@ class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-    def _send(self, http_request, **kwargs):
+    def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
         """Runs the network request through the client's chained policies.
 

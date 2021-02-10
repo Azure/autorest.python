@@ -48,7 +48,7 @@ class AutoRestSwaggerBATByteService(object):
 
         self.byte = ByteOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send(self, http_request, **kwargs):
+    def _send_request(self, http_request, **kwargs):
         # type: (HttpRequest, Any) -> HttpResponse
         """Runs the network request through the client's chained policies.
 

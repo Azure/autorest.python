@@ -34,9 +34,9 @@ import pytest
 cwd = dirname(realpath(__file__))
 
 
-class TestSend(object):
+class TestSendRequest(object):
 
-    def test_send_with_body_get_model_deserialize(self):
+    def test_send_request_with_body_get_model_deserialize(self):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -48,7 +48,7 @@ class TestSend(object):
             },
         )
 
-        response = client._send(request)
+        response = client._send_request(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
@@ -56,7 +56,7 @@ class TestSend(object):
         assert -1 ==  deserialized.hates[1].id
         assert "Tomato" == deserialized.hates[1].name
 
-    def test_send_with_body_get_direct_json(self):
+    def test_send_request_with_body_get_direct_json(self):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -68,7 +68,7 @@ class TestSend(object):
             },
         )
 
-        response = client._send(request)
+        response = client._send_request(request)
 
         data = b''.join([chunk for chunk in response.stream_download(None)]).decode('utf-8')
         json_response = json.loads(data)
@@ -77,7 +77,7 @@ class TestSend(object):
         assert - 1 == json_response['hates'][1]['id']
         assert "Tomato" == json_response['hates'][1]['name']
 
-    def test_send_with_body_put_json_dumps(self):
+    def test_send_request_with_body_put_json_dumps(self):
         from bodycomplex import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
@@ -109,10 +109,10 @@ class TestSend(object):
         )
         request.set_json_body(siamese_body)
 
-        response = client._send(request)
+        response = client._send_request(request)
         assert response.status_code == 200
 
-    def test_send_with_body_serialize(self):
+    def test_send_request_with_body_serialize(self):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese, Dog
 
@@ -143,10 +143,10 @@ class TestSend(object):
             }
         )
         request.set_json_body(siamese.serialize())
-        response = client._send(request)
+        response = client._send_request(request)
         assert response.status_code == 200
 
-    def test_send_get_stream(self):
+    def test_send_request_get_stream(self):
         from bodyfile import AutoRestSwaggerBATFileService
 
         client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
@@ -159,7 +159,7 @@ class TestSend(object):
                 },
             )
 
-            response = client._send(request, stream=True)
+            response = client._send_request(request, stream=True)
             assert response.status_code == 200
 
             stream = response.stream_download(None)  # want to make pipeline client an optional param in azure-core
@@ -183,7 +183,7 @@ class TestSend(object):
                 sample_data = hash(data.read())
             assert sample_data == hash(file_handle.getvalue())
 
-    def test_send_put_stream(self):
+    def test_send_request_put_stream(self):
         from bodyformdata import AutoRestSwaggerBATFormDataService
 
         client = AutoRestSwaggerBATFormDataService(
@@ -199,10 +199,10 @@ class TestSend(object):
                 },
                 data=stream_data,
             )
-            response = client._send(request)
+            response = client._send_request(request)
             assert response.status_code == 200
 
-    def test_send_with_client_path_format_arguments(self):
+    def test_send_request_with_client_path_format_arguments(self):
         from validation import AutoRestValidationTest
 
         client = AutoRestValidationTest("mySubscriptionId", base_url="http://localhost:3000")
@@ -213,10 +213,10 @@ class TestSend(object):
             },
         )
 
-        response = client._send(request)
+        response = client._send_request(request)
         assert response.request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
 
-    def test_send_full_url(self):
+    def test_send_request_full_url(self):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -228,7 +228,7 @@ class TestSend(object):
             },
         )
 
-        response = client._send(request)
+        response = client._send_request(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id

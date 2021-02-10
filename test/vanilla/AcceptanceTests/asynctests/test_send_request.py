@@ -33,10 +33,10 @@ import pytest
 
 cwd = dirname(realpath(__file__))
 
-class TestSend(object):
+class TestSendRequest(object):
 
     @pytest.mark.asyncio
-    async def test_send_with_body_get_model_deserialize(self):
+    async def test_send_request_with_body_get_model_deserialize(self):
         from bodycomplex.aio import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -48,7 +48,7 @@ class TestSend(object):
             },
         )
 
-        response = await client._send(request)
+        response = await client._send_request(request)
         await response.load_body()
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id
@@ -57,7 +57,7 @@ class TestSend(object):
         assert "Tomato" == deserialized.hates[1].name
 
     @pytest.mark.asyncio
-    async def test_send_with_body_get_direct_json(self):
+    async def test_send_request_with_body_get_direct_json(self):
         from bodycomplex.aio import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -69,7 +69,7 @@ class TestSend(object):
             },
         )
 
-        response = await client._send(request)
+        response = await client._send_request(request)
 
         data = b''
         async for chunk in response.stream_download(None):
@@ -81,7 +81,7 @@ class TestSend(object):
         assert "Tomato" == json_response['hates'][1]['name']
 
     @pytest.mark.asyncio
-    async def test_send_with_body_put_json_dumps(self):
+    async def test_send_request_with_body_put_json_dumps(self):
         from bodycomplex.aio import AutoRestComplexTestService
 
         client = AutoRestComplexTestService(base_url="http://localhost:3000")
@@ -113,11 +113,11 @@ class TestSend(object):
         )
         request.set_json_body(siamese_body)
 
-        response = await client._send(request)
+        response = await client._send_request(request)
         assert response.status_code == 200
 
     @pytest.mark.asyncio
-    async def test_send_with_body_serialize(self):
+    async def test_send_request_with_body_serialize(self):
         from bodycomplex.aio import AutoRestComplexTestService
         from bodycomplex.models import Siamese, Dog
 
@@ -149,11 +149,11 @@ class TestSend(object):
         )
         request.set_json_body(siamese.serialize())
 
-        response = await client._send(request)
+        response = await client._send_request(request)
         assert response.status_code == 200
 
     @pytest.mark.asyncio
-    async def test_send_with_stream(self):
+    async def test_send_request_with_stream(self):
         from bodyfile.aio import AutoRestSwaggerBATFileService
 
         client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
@@ -166,7 +166,7 @@ class TestSend(object):
                 },
             )
 
-            response = await client._send(request, stream=True)
+            response = await client._send_request(request, stream=True)
             assert response.status_code == 200
 
             stream = response.stream_download(None)
@@ -191,7 +191,7 @@ class TestSend(object):
             assert sample_data == hash(file_handle.getvalue())
 
     @pytest.mark.asyncio
-    async def test_send_put_stream(self):
+    async def test_send_request_put_stream(self):
         from bodyformdata.aio import AutoRestSwaggerBATFormDataService
 
         client = AutoRestSwaggerBATFormDataService(
@@ -207,11 +207,11 @@ class TestSend(object):
                 },
                 data=stream_data,
             )
-            response = await client._send(request)
+            response = await client._send_request(request)
             assert response.status_code == 200
 
     @pytest.mark.asyncio
-    async def test_send_with_client_path_format_arguments(self):
+    async def test_send_request_with_client_path_format_arguments(self):
         from validation.aio import AutoRestValidationTest
 
         client = AutoRestValidationTest("mySubscriptionId", base_url="http://localhost:3000")
@@ -222,11 +222,11 @@ class TestSend(object):
             },
         )
 
-        response = await client._send(request)
+        response = await client._send_request(request)
         assert response.request.url == 'http://localhost:3000/fakepath/mySubscriptionId/123/150'
 
     @pytest.mark.asyncio
-    async def test_send_full_url(self):
+    async def test_send_request_full_url(self):
         from bodycomplex import AutoRestComplexTestService
         from bodycomplex.models import Siamese
 
@@ -238,7 +238,7 @@ class TestSend(object):
             },
         )
 
-        response = client._send(request)
+        response = client._send_request(request)
 
         deserialized = Siamese.deserialize(response)
         assert 2 ==  deserialized.id

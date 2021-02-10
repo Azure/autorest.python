@@ -52,7 +52,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
         self.operation_group_one = OperationGroupOneOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def _send(self, http_request: HttpRequest, **kwargs: Any) -> HttpResponse:
+    async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
