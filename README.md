@@ -30,7 +30,7 @@ pass-thru:
   - subset-reducer
 version: ^3.0.6318
 use-extension:
-  "@autorest/modelerfour": 4.15.456
+  "@autorest/modelerfour": ^4.15.456
 
 modelerfour:
   group-parameters: true
