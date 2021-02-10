@@ -29,9 +29,9 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations
-    :vartype operation_group_one: azure.multiapi.sample.operations.OperationGroupOneOperations
+    :vartype operation_group_one: azure.multiapi.sample.v3.operations.OperationGroupOneOperations
     :ivar operation_group_two: OperationGroupTwoOperations operations
-    :vartype operation_group_two: azure.multiapi.sample.operations.OperationGroupTwoOperations
+    :vartype operation_group_two: azure.multiapi.sample.v3.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
     :param str base_url: Service URL
