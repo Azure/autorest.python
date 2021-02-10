@@ -25,7 +25,7 @@ class OperationGroupOneOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azure.multiapi.sample.models
+    :type models: ~azure.multiapi.sample.v3.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -48,10 +48,10 @@ class OperationGroupOneOperations:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param parameter_one: A ModelThree parameter.
-        :type parameter_one: ~azure.multiapi.sample.models.ModelThree
+        :type parameter_one: ~azure.multiapi.sample.v3.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree, or the result of cls(response)
-        :rtype: ~azure.multiapi.sample.models.ModelThree
+        :rtype: ~azure.multiapi.sample.v3.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelThree"]
