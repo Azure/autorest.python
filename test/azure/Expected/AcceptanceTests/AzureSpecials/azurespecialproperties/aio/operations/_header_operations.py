@@ -52,7 +52,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._custom_named_request_id_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/customNamedRequestId")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -65,8 +65,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _custom_named_request_id_request.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id(self, foo_client_request_id: str, **kwargs) -> None:
@@ -83,7 +81,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._custom_named_request_id_request(foo_client_request_id=foo_client_request_id, **kwargs)
+        request = self._custom_named_request_id_request(
+            foo_client_request_id=foo_client_request_id,
+            template_url=self.custom_named_request_id.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -106,7 +108,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._custom_named_request_id_param_grouping_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdParamGrouping")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -119,8 +121,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _custom_named_request_id_param_grouping_request.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(
@@ -146,7 +146,9 @@ class HeaderOperations:
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
         request = self._custom_named_request_id_param_grouping_request(
-            foo_client_request_id=_foo_client_request_id, **kwargs
+            foo_client_request_id=_foo_client_request_id,
+            template_url=self.custom_named_request_id_param_grouping.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -170,7 +172,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._custom_named_request_id_head_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdHead")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -183,8 +185,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _custom_named_request_id_head_request.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs) -> bool:
@@ -201,7 +201,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._custom_named_request_id_head_request(foo_client_request_id=foo_client_request_id, **kwargs)
+        request = self._custom_named_request_id_head_request(
+            foo_client_request_id=foo_client_request_id,
+            template_url=self.custom_named_request_id_head.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

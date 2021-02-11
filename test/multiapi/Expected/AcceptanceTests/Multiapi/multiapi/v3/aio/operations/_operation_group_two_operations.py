@@ -50,7 +50,7 @@ class OperationGroupTwoOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_four_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -77,7 +77,6 @@ class OperationGroupTwoOperations:
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
             )
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-    _test_four_request.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
 
     async def test_four(
         self,
@@ -103,6 +102,7 @@ class OperationGroupTwoOperations:
 
         request = self._test_four_request(
             body=input,
+            template_url=self.test_four.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)
@@ -128,7 +128,7 @@ class OperationGroupTwoOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_five_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/two/testFiveEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -139,7 +139,6 @@ class OperationGroupTwoOperations:
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.put(url, query_parameters, header_parameters)
-    _test_five_request.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore
 
     async def test_five(
         self,
@@ -158,8 +157,10 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_five_request(**kwargs)
-
+        request = self._test_five_request(
+            template_url=self.test_five.metadata['url'],
+            **kwargs
+        )
         kwargs.pop('content_type', None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

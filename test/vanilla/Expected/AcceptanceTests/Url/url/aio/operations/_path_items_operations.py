@@ -58,7 +58,10 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_all_with_values_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
+        )
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
@@ -88,8 +91,6 @@ class PathItemsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_all_with_values_request.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace_async
     async def get_all_with_values(
@@ -127,6 +128,7 @@ class PathItemsOperations:
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
+            template_url=self.get_all_with_values.metadata["url"],
             **kwargs
         )
         kwargs.pop("content_type", None)
@@ -155,7 +157,10 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_global_query_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
+        )
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
@@ -185,8 +190,6 @@ class PathItemsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_global_query_null_request.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace_async
     async def get_global_query_null(
@@ -224,6 +227,7 @@ class PathItemsOperations:
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
+            template_url=self.get_global_query_null.metadata["url"],
             **kwargs
         )
         kwargs.pop("content_type", None)
@@ -252,7 +256,10 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_global_and_local_query_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
+        )
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
@@ -282,8 +289,6 @@ class PathItemsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_global_and_local_query_null_request.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_global_and_local_query_null(
@@ -321,6 +326,7 @@ class PathItemsOperations:
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
+            template_url=self.get_global_and_local_query_null.metadata["url"],
             **kwargs
         )
         kwargs.pop("content_type", None)
@@ -349,7 +355,10 @@ class PathItemsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_local_path_item_query_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
+        )
         path_format_arguments = {
             "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
             "globalStringPath": self._serialize.url(
@@ -379,8 +388,6 @@ class PathItemsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_local_path_item_query_null_request.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_local_path_item_query_null(
@@ -417,6 +424,7 @@ class PathItemsOperations:
             local_string_path=local_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
+            template_url=self.get_local_path_item_query_null.metadata["url"],
             **kwargs
         )
         kwargs.pop("content_type", None)

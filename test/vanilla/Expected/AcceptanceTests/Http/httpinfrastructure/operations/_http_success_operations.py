@@ -58,7 +58,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/200")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,8 +68,6 @@ class HttpSuccessOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def head200(
@@ -87,8 +85,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head200_request(**kwargs)
-
+        request = self._head200_request(template_url=self.head200.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -111,7 +108,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/200")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -121,8 +118,6 @@ class HttpSuccessOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def get200(
@@ -140,8 +135,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get200_request(**kwargs)
-
+        request = self._get200_request(template_url=self.get200.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -168,7 +162,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._options200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/200")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -178,8 +172,6 @@ class HttpSuccessOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
-
-    _options200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def options200(
@@ -197,8 +189,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options200_request(**kwargs)
-
+        request = self._options200_request(template_url=self.options200.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -228,7 +219,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/200")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -245,8 +236,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def put200(
@@ -268,7 +257,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put200_request(body=boolean_value, **kwargs)
+        request = self._put200_request(body=boolean_value, template_url=self.put200.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -294,7 +283,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._patch200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/200")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -311,8 +300,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _patch200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def patch200(
@@ -334,7 +321,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch200_request(body=boolean_value, **kwargs)
+        request = self._patch200_request(body=boolean_value, template_url=self.patch200.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -360,7 +347,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/200")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -377,8 +364,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def post200(
@@ -400,7 +385,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post200_request(body=boolean_value, **kwargs)
+        request = self._post200_request(body=boolean_value, template_url=self.post200.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -426,7 +411,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete200_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/200")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -443,8 +428,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _delete200_request.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def delete200(
@@ -466,7 +449,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete200_request(body=boolean_value, **kwargs)
+        request = self._delete200_request(body=boolean_value, template_url=self.delete200.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -492,7 +475,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put201_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/201")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -509,8 +492,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put201_request.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
     def put201(
@@ -532,7 +513,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put201_request(body=boolean_value, **kwargs)
+        request = self._put201_request(body=boolean_value, template_url=self.put201.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -558,7 +539,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post201_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/201")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -575,8 +556,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post201_request.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
     def post201(
@@ -598,7 +577,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post201_request(body=boolean_value, **kwargs)
+        request = self._post201_request(body=boolean_value, template_url=self.post201.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -624,7 +603,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put202_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/202")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -641,8 +620,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def put202(
@@ -664,7 +641,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put202_request(body=boolean_value, **kwargs)
+        request = self._put202_request(body=boolean_value, template_url=self.put202.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -690,7 +667,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._patch202_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/202")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -707,8 +684,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _patch202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def patch202(
@@ -730,7 +705,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch202_request(body=boolean_value, **kwargs)
+        request = self._patch202_request(body=boolean_value, template_url=self.patch202.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -756,7 +731,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post202_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/202")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -773,8 +748,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def post202(
@@ -796,7 +769,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post202_request(body=boolean_value, **kwargs)
+        request = self._post202_request(body=boolean_value, template_url=self.post202.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -822,7 +795,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete202_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/202")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -839,8 +812,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _delete202_request.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def delete202(
@@ -862,7 +833,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_request(body=boolean_value, **kwargs)
+        request = self._delete202_request(body=boolean_value, template_url=self.delete202.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -885,7 +856,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head204_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/204")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -895,8 +866,6 @@ class HttpSuccessOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def head204(
@@ -914,8 +883,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head204_request(**kwargs)
-
+        request = self._head204_request(template_url=self.head204.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -941,7 +909,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put204_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/204")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -958,8 +926,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def put204(
@@ -981,7 +947,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put204_request(body=boolean_value, **kwargs)
+        request = self._put204_request(body=boolean_value, template_url=self.put204.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1007,7 +973,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._patch204_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/204")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1024,8 +990,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _patch204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def patch204(
@@ -1047,7 +1011,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch204_request(body=boolean_value, **kwargs)
+        request = self._patch204_request(body=boolean_value, template_url=self.patch204.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1073,7 +1037,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post204_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/204")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1090,8 +1054,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def post204(
@@ -1113,7 +1075,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post204_request(body=boolean_value, **kwargs)
+        request = self._post204_request(body=boolean_value, template_url=self.post204.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1139,7 +1101,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete204_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/204")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1156,8 +1118,6 @@ class HttpSuccessOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _delete204_request.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def delete204(
@@ -1179,7 +1139,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete204_request(body=boolean_value, **kwargs)
+        request = self._delete204_request(body=boolean_value, template_url=self.delete204.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1202,7 +1162,7 @@ class HttpSuccessOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head404_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/success/404")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1212,8 +1172,6 @@ class HttpSuccessOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head404_request.metadata = {"url": "/http/success/404"}  # type: ignore
 
     @distributed_trace
     def head404(
@@ -1231,8 +1189,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head404_request(**kwargs)
-
+        request = self._head404_request(template_url=self.head404.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

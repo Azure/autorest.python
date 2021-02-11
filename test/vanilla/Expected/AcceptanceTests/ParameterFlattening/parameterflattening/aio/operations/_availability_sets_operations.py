@@ -53,7 +53,7 @@ class AvailabilitySetsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = kwargs.pop("template_url", self._update_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/parameterFlattening/{resourceGroupName}/{availabilitySetName}")
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),
@@ -71,8 +71,6 @@ class AvailabilitySetsOperations:
         body_content = self._serialize.body(body, "AvailabilitySetUpdateParameters")
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _update_request.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}  # type: ignore
 
     @distributed_trace_async
     async def update(self, resource_group_name: str, avset: str, tags: Dict[str, str], **kwargs) -> None:
@@ -94,7 +92,13 @@ class AvailabilitySetsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
-        request = self._update_request(resource_group_name=resource_group_name, avset=avset, body=_tags, **kwargs)
+        request = self._update_request(
+            resource_group_name=resource_group_name,
+            avset=avset,
+            body=_tags,
+            template_url=self.update.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

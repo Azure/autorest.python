@@ -51,7 +51,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_multi_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/multi/string/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -65,8 +65,6 @@ class QueriesOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_multi_null_request.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_null(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
@@ -83,7 +81,9 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_multi_null_request(array_query=array_query, **kwargs)
+        request = self._array_string_multi_null_request(
+            array_query=array_query, template_url=self.array_string_multi_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -103,7 +103,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_multi_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/multi/string/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -117,8 +117,6 @@ class QueriesOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_multi_empty_request.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_empty(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
@@ -135,7 +133,9 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_multi_empty_request(array_query=array_query, **kwargs)
+        request = self._array_string_multi_empty_request(
+            array_query=array_query, template_url=self.array_string_multi_empty.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -155,7 +155,7 @@ class QueriesOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_multi_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/multi/string/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -169,8 +169,6 @@ class QueriesOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_multi_valid_request.metadata = {"url": "/queries/array/multi/string/valid"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
@@ -189,7 +187,9 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_multi_valid_request(array_query=array_query, **kwargs)
+        request = self._array_string_multi_valid_request(
+            array_query=array_query, template_url=self.array_string_multi_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

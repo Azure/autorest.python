@@ -51,7 +51,7 @@ class HttpServerFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head501_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/failure/server/501")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,8 +61,6 @@ class HttpServerFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head501_request.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
     async def head501(self, **kwargs) -> None:
@@ -77,8 +75,7 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head501_request(**kwargs)
-
+        request = self._head501_request(template_url=self.head501.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -98,7 +95,7 @@ class HttpServerFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get501_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/failure/server/501")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -108,8 +105,6 @@ class HttpServerFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get501_request.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
     async def get501(self, **kwargs) -> None:
@@ -124,8 +119,7 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get501_request(**kwargs)
-
+        request = self._get501_request(template_url=self.get501.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -146,7 +140,7 @@ class HttpServerFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post505_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/failure/server/505")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -164,8 +158,6 @@ class HttpServerFailureOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post505_request.metadata = {"url": "/http/failure/server/505"}  # type: ignore
-
     @distributed_trace_async
     async def post505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
         """Return 505 status code - should be represented in the client as an error.
@@ -181,7 +173,7 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post505_request(body=boolean_value, **kwargs)
+        request = self._post505_request(body=boolean_value, template_url=self.post505.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -202,7 +194,7 @@ class HttpServerFailureOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete505_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/failure/server/505")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -220,8 +212,6 @@ class HttpServerFailureOperations:
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _delete505_request.metadata = {"url": "/http/failure/server/505"}  # type: ignore
-
     @distributed_trace_async
     async def delete505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
         """Return 505 status code - should be represented in the client as an error.
@@ -237,7 +227,7 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete505_request(body=boolean_value, **kwargs)
+        request = self._delete505_request(body=boolean_value, template_url=self.delete505.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

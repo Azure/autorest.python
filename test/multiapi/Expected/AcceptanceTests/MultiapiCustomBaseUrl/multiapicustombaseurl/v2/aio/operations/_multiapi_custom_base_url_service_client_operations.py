@@ -28,7 +28,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/test')
         path_format_arguments = {
             'Endpoint': self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }
@@ -44,7 +44,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.put(url, query_parameters, header_parameters)
-    _test_request.metadata = {'url': '/test'}  # type: ignore
 
     async def test(
         self,
@@ -69,6 +68,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
 
         request = self._test_request(
             id=id,
+            template_url=self.test.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)

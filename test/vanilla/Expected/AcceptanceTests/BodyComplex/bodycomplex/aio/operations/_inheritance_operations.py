@@ -51,7 +51,7 @@ class InheritanceOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/complex/inheritance/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,8 +61,6 @@ class InheritanceOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_valid_request.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_valid(self, **kwargs) -> "_models.Siamese":
@@ -77,8 +75,7 @@ class InheritanceOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_valid_request(**kwargs)
-
+        request = self._get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -103,7 +100,7 @@ class InheritanceOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/complex/inheritance/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -117,8 +114,6 @@ class InheritanceOperations:
         body_content = self._serialize.body(body, "Siamese")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_valid_request.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: "_models.Siamese", **kwargs) -> None:
@@ -137,7 +132,7 @@ class InheritanceOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_valid_request(body=complex_body, **kwargs)
+        request = self._put_valid_request(body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

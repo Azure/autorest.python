@@ -52,7 +52,7 @@ class FormdataOperations:
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._upload_file_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -66,8 +66,6 @@ class FormdataOperations:
         body_content_kwargs["form_content"] = body
 
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _upload_file_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
     async def upload_file(self, file_content: IO, file_name: str, **kwargs) -> IO:
@@ -91,7 +89,7 @@ class FormdataOperations:
             "fileContent": file_content,
             "fileName": file_name,
         }
-        request = self._upload_file_request(body=_body, **kwargs)
+        request = self._upload_file_request(body=_body, template_url=self.upload_file.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -116,7 +114,7 @@ class FormdataOperations:
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._upload_file_via_body_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -130,8 +128,6 @@ class FormdataOperations:
         body_content_kwargs["stream_content"] = body
 
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _upload_file_via_body_request.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
     async def upload_file_via_body(self, file_content: IO, **kwargs) -> IO:
@@ -148,7 +144,9 @@ class FormdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._upload_file_via_body_request(body=file_content, **kwargs)
+        request = self._upload_file_via_body_request(
+            body=file_content, template_url=self.upload_file_via_body.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -173,7 +171,7 @@ class FormdataOperations:
         accept = "application/octet-stream, application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._upload_files_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -187,8 +185,6 @@ class FormdataOperations:
         body_content_kwargs["form_content"] = body
 
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _upload_files_request.metadata = {"url": "/formdata/stream/uploadfiles"}  # type: ignore
 
     @distributed_trace_async
     async def upload_files(self, file_content: List[IO], **kwargs) -> IO:
@@ -209,7 +205,7 @@ class FormdataOperations:
         _body = {
             "fileContent": file_content,
         }
-        request = self._upload_files_request(body=_body, **kwargs)
+        request = self._upload_files_request(body=_body, template_url=self.upload_files.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)

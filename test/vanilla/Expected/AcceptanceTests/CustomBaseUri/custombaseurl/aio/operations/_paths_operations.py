@@ -51,7 +51,7 @@ class PathsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/customuri")
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -66,8 +66,6 @@ class PathsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_empty_request.metadata = {"url": "/customuri"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, account_name: str, **kwargs) -> None:
@@ -84,7 +82,9 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(account_name=account_name, **kwargs)
+        request = self._get_empty_request(
+            account_name=account_name, template_url=self.get_empty.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

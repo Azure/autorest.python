@@ -51,7 +51,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,8 +61,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_null_request.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs) -> Optional[str]:
@@ -77,8 +75,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(**kwargs)
-
+        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -103,7 +100,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -121,8 +118,6 @@ class StringOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_null_request.metadata = {"url": "/string/null"}  # type: ignore
-
     @distributed_trace_async
     async def put_null(self, string_body: Optional[str] = None, **kwargs) -> None:
         """Set string value null.
@@ -138,7 +133,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_null_request(body=string_body, **kwargs)
+        request = self._put_null_request(body=string_body, template_url=self.put_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -158,7 +153,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -168,8 +163,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_empty_request.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> str:
@@ -184,8 +177,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(**kwargs)
-
+        request = self._get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -211,7 +203,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -226,8 +218,6 @@ class StringOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_empty_request.metadata = {"url": "/string/empty"}  # type: ignore
-
     @distributed_trace_async
     async def put_empty(self, **kwargs) -> None:
         """Set string value empty ''.
@@ -241,8 +231,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_empty_request(**kwargs)
-
+        request = self._put_empty_request(template_url=self.put_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -262,7 +251,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_mbcs_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/mbcs")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -272,8 +261,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_mbcs_request.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace_async
     async def get_mbcs(self, **kwargs) -> str:
@@ -288,8 +275,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_mbcs_request(**kwargs)
-
+        request = self._get_mbcs_request(template_url=self.get_mbcs.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -315,7 +301,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_mbcs_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/mbcs")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -330,8 +316,6 @@ class StringOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_mbcs_request.metadata = {"url": "/string/mbcs"}  # type: ignore
-
     @distributed_trace_async
     async def put_mbcs(self, **kwargs) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -345,8 +329,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_mbcs_request(**kwargs)
-
+        request = self._put_mbcs_request(template_url=self.put_mbcs.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -366,7 +349,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_whitespace_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/whitespace")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -376,8 +359,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_whitespace_request.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace_async
     async def get_whitespace(self, **kwargs) -> str:
@@ -394,8 +375,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_whitespace_request(**kwargs)
-
+        request = self._get_whitespace_request(template_url=self.get_whitespace.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -421,7 +401,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_whitespace_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/whitespace")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -435,8 +415,6 @@ class StringOperations:
         body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_whitespace_request.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace_async
     async def put_whitespace(self, **kwargs) -> None:
@@ -453,8 +431,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_whitespace_request(**kwargs)
-
+        request = self._put_whitespace_request(template_url=self.put_whitespace.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -474,7 +451,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_not_provided_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/notProvided")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -484,8 +461,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_not_provided_request.metadata = {"url": "/string/notProvided"}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs) -> str:
@@ -500,8 +475,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_not_provided_request(**kwargs)
-
+        request = self._get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -525,7 +499,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_base64_encoded_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/base64Encoding")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -535,8 +509,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_base64_encoded_request.metadata = {"url": "/string/base64Encoding"}  # type: ignore
 
     @distributed_trace_async
     async def get_base64_encoded(self, **kwargs) -> bytearray:
@@ -551,8 +523,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_base64_encoded_request(**kwargs)
-
+        request = self._get_base64_encoded_request(template_url=self.get_base64_encoded.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -576,7 +547,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_base64_url_encoded_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -586,8 +557,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_base64_url_encoded_request.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace_async
     async def get_base64_url_encoded(self, **kwargs) -> bytes:
@@ -602,8 +571,9 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_base64_url_encoded_request(**kwargs)
-
+        request = self._get_base64_url_encoded_request(
+            template_url=self.get_base64_url_encoded.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -628,7 +598,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_base64_url_encoded_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -642,8 +612,6 @@ class StringOperations:
         body_content = self._serialize.body(body, "base64")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_base64_url_encoded_request.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace_async
     async def put_base64_url_encoded(self, string_body: bytes, **kwargs) -> None:
@@ -660,7 +628,9 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_base64_url_encoded_request(body=string_body, **kwargs)
+        request = self._put_base64_url_encoded_request(
+            body=string_body, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -680,7 +650,7 @@ class StringOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_null_base64_url_encoded_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/nullBase64UrlEncoding")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -690,8 +660,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_null_base64_url_encoded_request.metadata = {"url": "/string/nullBase64UrlEncoding"}  # type: ignore
 
     @distributed_trace_async
     async def get_null_base64_url_encoded(self, **kwargs) -> Optional[bytes]:
@@ -706,8 +674,9 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_base64_url_encoded_request(**kwargs)
-
+        request = self._get_null_base64_url_encoded_request(
+            template_url=self.get_null_base64_url_encoded.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

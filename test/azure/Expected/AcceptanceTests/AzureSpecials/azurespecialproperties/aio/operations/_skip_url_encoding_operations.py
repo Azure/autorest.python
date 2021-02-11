@@ -52,7 +52,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_method_path_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}")
         path_format_arguments = {
             "unencodedPathParam": self._serialize.url(
                 "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
@@ -69,8 +69,6 @@ class SkipUrlEncodingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _get_method_path_valid_request.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
-
     @distributed_trace_async
     async def get_method_path_valid(self, unencoded_path_param: str, **kwargs) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -86,7 +84,9 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_method_path_valid_request(unencoded_path_param=unencoded_path_param, **kwargs)
+        request = self._get_method_path_valid_request(
+            unencoded_path_param=unencoded_path_param, template_url=self.get_method_path_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -106,7 +106,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_path_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}")
         path_format_arguments = {
             "unencodedPathParam": self._serialize.url(
                 "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
@@ -123,8 +123,6 @@ class SkipUrlEncodingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _get_path_valid_request.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
-
     @distributed_trace_async
     async def get_path_valid(self, unencoded_path_param: str, **kwargs) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -140,7 +138,9 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_path_valid_request(unencoded_path_param=unencoded_path_param, **kwargs)
+        request = self._get_path_valid_request(
+            unencoded_path_param=unencoded_path_param, template_url=self.get_path_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -161,7 +161,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_swagger_path_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}")
         path_format_arguments = {
             "unencodedPathParam": self._serialize.url(
                 "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
@@ -178,8 +178,6 @@ class SkipUrlEncodingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _get_swagger_path_valid_request.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
-
     @distributed_trace_async
     async def get_swagger_path_valid(self, **kwargs) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -193,8 +191,9 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_swagger_path_valid_request(**kwargs)
-
+        request = self._get_swagger_path_valid_request(
+            template_url=self.get_swagger_path_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -214,7 +213,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_method_query_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -225,8 +224,6 @@ class SkipUrlEncodingOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_method_query_valid_request.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_query_valid(self, q1: str, **kwargs) -> None:
@@ -243,7 +240,9 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_method_query_valid_request(q1=q1, **kwargs)
+        request = self._get_method_query_valid_request(
+            q1=q1, template_url=self.get_method_query_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -263,7 +262,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_method_query_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -275,8 +274,6 @@ class SkipUrlEncodingOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_method_query_null_request.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_query_null(self, q1: Optional[str] = None, **kwargs) -> None:
@@ -293,7 +290,9 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_method_query_null_request(q1=q1, **kwargs)
+        request = self._get_method_query_null_request(
+            q1=q1, template_url=self.get_method_query_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -313,7 +312,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_path_query_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/query/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -324,8 +323,6 @@ class SkipUrlEncodingOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_path_query_valid_request.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_path_query_valid(self, q1: str, **kwargs) -> None:
@@ -342,7 +339,9 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_path_query_valid_request(q1=q1, **kwargs)
+        request = self._get_path_query_valid_request(
+            q1=q1, template_url=self.get_path_query_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -363,7 +362,7 @@ class SkipUrlEncodingOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_swagger_query_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/query/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -374,8 +373,6 @@ class SkipUrlEncodingOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_swagger_query_valid_request.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/query/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_query_valid(self, **kwargs) -> None:
@@ -390,8 +387,9 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_swagger_query_valid_request(**kwargs)
-
+        request = self._get_swagger_query_valid_request(
+            template_url=self.get_swagger_query_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

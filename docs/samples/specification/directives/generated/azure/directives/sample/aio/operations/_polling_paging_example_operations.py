@@ -31,7 +31,7 @@ class PollingPagingExampleOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._basic_polling_initial_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/basic/polling')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -48,7 +48,6 @@ class PollingPagingExampleOperationsMixin:
             body_content = None
         body_content_kwargs['content'] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-    _basic_polling_initial_request.metadata = {'url': '/basic/polling'}  # type: ignore
 
     async def _basic_poll_initial(
         self,
@@ -63,6 +62,7 @@ class PollingPagingExampleOperationsMixin:
 
         request = self._basic_polling_initial_request(
             body=product,
+            template_url=self._basic_poll_initial.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)
@@ -152,7 +152,7 @@ class PollingPagingExampleOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._basic_paging_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/basic/paging')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -162,7 +162,6 @@ class PollingPagingExampleOperationsMixin:
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.get(url, query_parameters, header_parameters)
-    _basic_paging_request.metadata = {'url': '/basic/paging'}  # type: ignore
 
     def basic_paging(
         self,
@@ -183,11 +182,15 @@ class PollingPagingExampleOperationsMixin:
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._basic_paging_request(**kwargs)
-
+                request = self._basic_paging_request(
+                    template_url=self.basic_paging.metadata['url'],
+                    **kwargs
+                )
             else:
-                request = self._basic_paging_request(**kwargs)
-
+                request = self._basic_paging_request(
+                    template_url=self.basic_paging.metadata['url'],
+                    **kwargs
+                )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)

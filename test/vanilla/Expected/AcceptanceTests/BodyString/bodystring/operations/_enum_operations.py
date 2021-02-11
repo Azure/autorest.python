@@ -58,7 +58,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_not_expandable_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,8 +68,6 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_not_expandable_request.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
     def get_not_expandable(
@@ -87,8 +85,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_not_expandable_request(**kwargs)
-
+        request = self._get_not_expandable_request(template_url=self.get_not_expandable.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -118,7 +115,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_not_expandable_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -132,8 +129,6 @@ class EnumOperations(object):
         body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_not_expandable_request.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
     def put_not_expandable(
@@ -155,7 +150,9 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_not_expandable_request(body=string_body, **kwargs)
+        request = self._put_not_expandable_request(
+            body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -178,7 +175,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_referenced_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/enum/Referenced")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -188,8 +185,6 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_referenced_request.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
     def get_referenced(
@@ -207,8 +202,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_referenced_request(**kwargs)
-
+        request = self._get_referenced_request(template_url=self.get_referenced.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -238,7 +232,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_referenced_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/enum/Referenced")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -252,8 +246,6 @@ class EnumOperations(object):
         body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_referenced_request.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
     def put_referenced(
@@ -275,7 +267,9 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_referenced_request(body=enum_string_body, **kwargs)
+        request = self._put_referenced_request(
+            body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -298,7 +292,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_referenced_constant_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -308,8 +302,6 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_referenced_constant_request.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
     def get_referenced_constant(
@@ -327,8 +319,9 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_referenced_constant_request(**kwargs)
-
+        request = self._get_referenced_constant_request(
+            template_url=self.get_referenced_constant.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -358,7 +351,7 @@ class EnumOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_referenced_constant_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -372,8 +365,6 @@ class EnumOperations(object):
         body_content = self._serialize.body(body, "RefColorConstant")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_referenced_constant_request.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
     def put_referenced_constant(
@@ -396,7 +387,9 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         _enum_string_body = _models.RefColorConstant(field1=field1)
-        request = self._put_referenced_constant_request(body=_enum_string_body, **kwargs)
+        request = self._put_referenced_constant_request(
+            body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

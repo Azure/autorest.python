@@ -53,7 +53,7 @@ class ApiVersionDefaultOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_method_global_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -64,8 +64,6 @@ class ApiVersionDefaultOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_method_global_valid_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_global_valid(self, **kwargs) -> None:
@@ -80,8 +78,9 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_method_global_valid_request(**kwargs)
-
+        request = self._get_method_global_valid_request(
+            template_url=self.get_method_global_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -102,7 +101,9 @@ class ApiVersionDefaultOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_method_global_not_provided_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url", "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
+        )
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -113,8 +114,6 @@ class ApiVersionDefaultOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_method_global_not_provided_valid_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_global_not_provided_valid(self, **kwargs) -> None:
@@ -129,8 +128,9 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_method_global_not_provided_valid_request(**kwargs)
-
+        request = self._get_method_global_not_provided_valid_request(
+            template_url=self.get_method_global_not_provided_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -151,7 +151,7 @@ class ApiVersionDefaultOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_path_global_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -162,8 +162,6 @@ class ApiVersionDefaultOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_path_global_valid_request.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
     async def get_path_global_valid(self, **kwargs) -> None:
@@ -178,8 +176,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_path_global_valid_request(**kwargs)
-
+        request = self._get_path_global_valid_request(template_url=self.get_path_global_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -200,7 +197,9 @@ class ApiVersionDefaultOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_swagger_global_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url", "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
+        )
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -211,8 +210,6 @@ class ApiVersionDefaultOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_swagger_global_valid_request.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_global_valid(self, **kwargs) -> None:
@@ -227,8 +224,9 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_swagger_global_valid_request(**kwargs)
-
+        request = self._get_swagger_global_valid_request(
+            template_url=self.get_swagger_global_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

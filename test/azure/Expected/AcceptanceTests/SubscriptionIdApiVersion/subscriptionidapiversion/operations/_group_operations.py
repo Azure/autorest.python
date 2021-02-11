@@ -62,7 +62,7 @@ class GroupOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_sample_resource_group_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
@@ -78,8 +78,6 @@ class GroupOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_sample_resource_group_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"}  # type: ignore
 
     @distributed_trace
     def get_sample_resource_group(
@@ -101,7 +99,11 @@ class GroupOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_sample_resource_group_request(resource_group_name=resource_group_name, **kwargs)
+        request = self._get_sample_resource_group_request(
+            resource_group_name=resource_group_name,
+            template_url=self.get_sample_resource_group.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -66,7 +66,9 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._check_name_availability_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
+        )
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -85,8 +87,6 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(body, "StorageAccountCheckNameAvailabilityParameters")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _check_name_availability_request.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"}  # type: ignore
 
     @distributed_trace
     def check_name_availability(
@@ -110,7 +110,9 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._check_name_availability_request(body=account_name, **kwargs)
+        request = self._check_name_availability_request(
+            body=account_name, template_url=self.check_name_availability.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -142,7 +144,10 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._create_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+        )
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -164,8 +169,6 @@ class StorageAccountsOperations(object):
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _create_initial_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
-
     def _creat_initial(
         self,
         resource_group_name,  # type: str
@@ -179,7 +182,11 @@ class StorageAccountsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._create_initial_request(
-            resource_group_name=resource_group_name, account_name=account_name, body=parameters, **kwargs
+            resource_group_name=resource_group_name,
+            account_name=account_name,
+            body=parameters,
+            template_url=self._creat_initial.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -290,7 +297,10 @@ class StorageAccountsOperations(object):
         api_version = "2015-05-01-preview"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+        )
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -306,8 +316,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.delete(url, query_parameters, header_parameters)
-
-    _delete_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace
     def delete(
@@ -334,7 +342,12 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_request(resource_group_name=resource_group_name, account_name=account_name, **kwargs)
+        request = self._delete_request(
+            resource_group_name=resource_group_name,
+            account_name=account_name,
+            template_url=self.delete.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -360,7 +373,10 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_properties_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+        )
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -377,8 +393,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_properties_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace
     def get_properties(
@@ -408,7 +422,10 @@ class StorageAccountsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_properties_request(
-            resource_group_name=resource_group_name, account_name=account_name, **kwargs
+            resource_group_name=resource_group_name,
+            account_name=account_name,
+            template_url=self.get_properties.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -441,7 +458,10 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._update_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+        )
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -462,8 +482,6 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(body, "StorageAccountUpdateParameters")
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _update_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace
     def update(
@@ -501,7 +519,11 @@ class StorageAccountsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._update_request(
-            resource_group_name=resource_group_name, account_name=account_name, body=parameters, **kwargs
+            resource_group_name=resource_group_name,
+            account_name=account_name,
+            body=parameters,
+            template_url=self.update.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -532,7 +554,10 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._list_keys_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
+        )
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -549,8 +574,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _list_keys_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
     def list_keys(
@@ -575,7 +598,12 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._list_keys_request(resource_group_name=resource_group_name, account_name=account_name, **kwargs)
+        request = self._list_keys_request(
+            resource_group_name=resource_group_name,
+            account_name=account_name,
+            template_url=self.list_keys.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -602,7 +630,7 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._list_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts")
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -617,8 +645,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _list_request.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
     @distributed_trace
     def list(
@@ -639,11 +665,9 @@ class StorageAccountsOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._list_request(**kwargs)
-
+                request = self._list_request(template_url=self.list.metadata["url"], **kwargs)
             else:
-                request = self._list_request(**kwargs)
-
+                request = self._list_request(template_url=self.list.metadata["url"], **kwargs)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     "subscriptionId": self._serialize.url(
@@ -687,7 +711,10 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._list_by_resource_group_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
+        )
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
@@ -703,8 +730,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _list_by_resource_group_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
     @distributed_trace
     def list_by_resource_group(
@@ -729,9 +754,17 @@ class StorageAccountsOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                request = self._list_by_resource_group_request(resource_group_name=resource_group_name, **kwargs)
+                request = self._list_by_resource_group_request(
+                    resource_group_name=resource_group_name,
+                    template_url=self.list_by_resource_group.metadata["url"],
+                    **kwargs
+                )
             else:
-                request = self._list_by_resource_group_request(resource_group_name=resource_group_name, **kwargs)
+                request = self._list_by_resource_group_request(
+                    resource_group_name=resource_group_name,
+                    template_url=self.list_by_resource_group.metadata["url"],
+                    **kwargs
+                )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
@@ -779,7 +812,10 @@ class StorageAccountsOperations(object):
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._regenerate_key_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
+        )
         path_format_arguments = {
             "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
             "accountName": self._serialize.url("account_name", account_name, "str"),
@@ -800,8 +836,6 @@ class StorageAccountsOperations(object):
         body_content = self._serialize.body(body, "StorageAccountRegenerateKeyParameters")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _regenerate_key_request.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey"}  # type: ignore
 
     @distributed_trace
     def regenerate_key(
@@ -833,7 +867,11 @@ class StorageAccountsOperations(object):
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         request = self._regenerate_key_request(
-            resource_group_name=resource_group_name, account_name=account_name, body=_regenerate_key, **kwargs
+            resource_group_name=resource_group_name,
+            account_name=account_name,
+            body=_regenerate_key,
+            template_url=self.regenerate_key.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 

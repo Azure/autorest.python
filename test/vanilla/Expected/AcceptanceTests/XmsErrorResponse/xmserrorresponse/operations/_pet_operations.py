@@ -60,7 +60,7 @@ class PetOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_pet_by_id_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
         path_format_arguments = {
             "petId": self._serialize.url("pet_id", pet_id, "str"),
         }
@@ -74,8 +74,6 @@ class PetOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_pet_by_id_request.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace
     def get_pet_by_id(
@@ -105,7 +103,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_pet_by_id_request(pet_id=pet_id, **kwargs)
+        request = self._get_pet_by_id_request(pet_id=pet_id, template_url=self.get_pet_by_id.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -135,7 +133,7 @@ class PetOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._do_something_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
         path_format_arguments = {
             "whatAction": self._serialize.url("what_action", what_action, "str"),
         }
@@ -149,8 +147,6 @@ class PetOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _do_something_request.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
     @distributed_trace
     def do_something(
@@ -179,7 +175,9 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._do_something_request(what_action=what_action, **kwargs)
+        request = self._do_something_request(
+            what_action=what_action, template_url=self.do_something.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -208,7 +206,7 @@ class PetOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._has_models_param_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -220,8 +218,6 @@ class PetOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _has_models_param_request.metadata = {"url": "/errorStatusCodes/Pets/hasModelsParam"}  # type: ignore
 
     @distributed_trace
     def has_models_param(
@@ -252,7 +248,9 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._has_models_param_request(models=models, **kwargs)
+        request = self._has_models_param_request(
+            models=models, template_url=self.has_models_param.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

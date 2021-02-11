@@ -30,7 +30,7 @@ class AutoRestReportServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_report_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/report")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -42,8 +42,6 @@ class AutoRestReportServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_report_request.metadata = {"url": "/report"}  # type: ignore
 
     @distributed_trace_async
     async def get_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
@@ -62,7 +60,7 @@ class AutoRestReportServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_report_request(qualifier=qualifier, **kwargs)
+        request = self._get_report_request(qualifier=qualifier, template_url=self.get_report.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -86,7 +84,7 @@ class AutoRestReportServiceOperationsMixin:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_optional_report_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/report/optional")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -98,8 +96,6 @@ class AutoRestReportServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_optional_report_request.metadata = {"url": "/report/optional"}  # type: ignore
 
     @distributed_trace_async
     async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
@@ -118,7 +114,9 @@ class AutoRestReportServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_optional_report_request(qualifier=qualifier, **kwargs)
+        request = self._get_optional_report_request(
+            qualifier=qualifier, template_url=self.get_optional_report.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

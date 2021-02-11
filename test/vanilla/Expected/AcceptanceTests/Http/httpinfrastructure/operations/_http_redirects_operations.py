@@ -58,7 +58,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head300_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/300")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,8 +68,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head300_request.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
     def head300(
@@ -87,8 +85,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head300_request(**kwargs)
-
+        request = self._head300_request(template_url=self.head300.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,7 +112,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get300_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/300")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,8 +122,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get300_request.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
     def get300(
@@ -144,8 +139,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get300_request(**kwargs)
-
+        request = self._get300_request(template_url=self.get300.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -177,7 +171,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head301_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/301")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -187,8 +181,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head301_request.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def head301(
@@ -206,8 +198,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head301_request(**kwargs)
-
+        request = self._head301_request(template_url=self.head301.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -234,7 +225,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get301_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/301")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -244,8 +235,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get301_request.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def get301(
@@ -263,8 +252,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get301_request(**kwargs)
-
+        request = self._get301_request(template_url=self.get301.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -294,7 +282,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put301_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/301")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -311,8 +299,6 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put301_request.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def put301(
@@ -335,7 +321,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put301_request(body=boolean_value, **kwargs)
+        request = self._put301_request(body=boolean_value, template_url=self.put301.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -361,7 +347,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head302_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/302")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -371,8 +357,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head302_request.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def head302(
@@ -390,8 +374,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head302_request(**kwargs)
-
+        request = self._head302_request(template_url=self.head302.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -418,7 +401,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get302_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/302")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -428,8 +411,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get302_request.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def get302(
@@ -447,8 +428,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get302_request(**kwargs)
-
+        request = self._get302_request(template_url=self.get302.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -478,7 +458,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._patch302_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/302")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -495,8 +475,6 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _patch302_request.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def patch302(
@@ -519,7 +497,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch302_request(body=boolean_value, **kwargs)
+        request = self._patch302_request(body=boolean_value, template_url=self.patch302.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -548,7 +526,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post303_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/303")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -565,8 +543,6 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post303_request.metadata = {"url": "/http/redirect/303"}  # type: ignore
 
     @distributed_trace
     def post303(
@@ -589,7 +565,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post303_request(body=boolean_value, **kwargs)
+        request = self._post303_request(body=boolean_value, template_url=self.post303.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -616,7 +592,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head307_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/307")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -626,8 +602,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.head(url, query_parameters, header_parameters)
-
-    _head307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def head307(
@@ -645,8 +619,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._head307_request(**kwargs)
-
+        request = self._head307_request(template_url=self.head307.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -673,7 +646,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get307_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/307")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -683,8 +656,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def get307(
@@ -702,8 +673,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get307_request(**kwargs)
-
+        request = self._get307_request(template_url=self.get307.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -730,7 +700,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._options307_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/307")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -740,8 +710,6 @@ class HttpRedirectsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.options(url, query_parameters, header_parameters)
-
-    _options307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def options307(
@@ -759,8 +727,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._options307_request(**kwargs)
-
+        request = self._options307_request(template_url=self.options307.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -790,7 +757,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put307_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/307")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -807,8 +774,6 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def put307(
@@ -830,7 +795,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put307_request(body=boolean_value, **kwargs)
+        request = self._put307_request(body=boolean_value, template_url=self.put307.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -860,7 +825,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._patch307_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/307")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -877,8 +842,6 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _patch307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def patch307(
@@ -900,7 +863,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._patch307_request(body=boolean_value, **kwargs)
+        request = self._patch307_request(body=boolean_value, template_url=self.patch307.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -930,7 +893,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post307_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/307")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -947,8 +910,6 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def post307(
@@ -970,7 +931,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post307_request(body=boolean_value, **kwargs)
+        request = self._post307_request(body=boolean_value, template_url=self.post307.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1000,7 +961,7 @@ class HttpRedirectsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete307_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/http/redirect/307")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1017,8 +978,6 @@ class HttpRedirectsOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _delete307_request.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def delete307(
@@ -1040,7 +999,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete307_request(body=boolean_value, **kwargs)
+        request = self._delete307_request(body=boolean_value, template_url=self.delete307.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

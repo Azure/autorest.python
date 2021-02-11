@@ -51,7 +51,7 @@ class ArrayOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/complex/array/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,8 +61,6 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_valid_request.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_valid(self, **kwargs) -> "_models.ArrayWrapper":
@@ -77,8 +75,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_valid_request(**kwargs)
-
+        request = self._get_valid_request(template_url=self.get_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -103,7 +100,7 @@ class ArrayOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/complex/array/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -117,8 +114,6 @@ class ArrayOperations:
         body_content = self._serialize.body(body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_valid_request.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, array: Optional[List[str]] = None, **kwargs) -> None:
@@ -136,7 +131,7 @@ class ArrayOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _complex_body = _models.ArrayWrapper(array=array)
-        request = self._put_valid_request(body=_complex_body, **kwargs)
+        request = self._put_valid_request(body=_complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -156,7 +151,7 @@ class ArrayOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/complex/array/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -166,8 +161,6 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_empty_request.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> "_models.ArrayWrapper":
@@ -182,8 +175,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(**kwargs)
-
+        request = self._get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -208,7 +200,7 @@ class ArrayOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/complex/array/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -222,8 +214,6 @@ class ArrayOperations:
         body_content = self._serialize.body(body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_empty_request.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, array: Optional[List[str]] = None, **kwargs) -> None:
@@ -241,7 +231,7 @@ class ArrayOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _complex_body = _models.ArrayWrapper(array=array)
-        request = self._put_empty_request(body=_complex_body, **kwargs)
+        request = self._put_empty_request(body=_complex_body, template_url=self.put_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -261,7 +251,7 @@ class ArrayOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_not_provided_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/complex/array/notprovided")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -271,8 +261,6 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_not_provided_request.metadata = {"url": "/complex/array/notprovided"}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs) -> "_models.ArrayWrapper":
@@ -287,8 +275,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_not_provided_request(**kwargs)
-
+        request = self._get_not_provided_request(template_url=self.get_not_provided.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

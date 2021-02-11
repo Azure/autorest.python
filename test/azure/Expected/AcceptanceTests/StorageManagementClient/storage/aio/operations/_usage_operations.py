@@ -53,7 +53,7 @@ class UsageOperations:
         accept = "application/json, text/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._list_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages")
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -69,8 +69,6 @@ class UsageOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    _list_request.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"}  # type: ignore
-
     @distributed_trace_async
     async def list(self, **kwargs) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
@@ -84,8 +82,7 @@ class UsageOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._list_request(**kwargs)
-
+        request = self._list_request(template_url=self.list.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

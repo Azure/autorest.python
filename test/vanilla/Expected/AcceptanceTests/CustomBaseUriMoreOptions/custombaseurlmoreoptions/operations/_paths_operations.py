@@ -63,7 +63,7 @@ class PathsOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
@@ -85,8 +85,6 @@ class PathsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_empty_request.metadata = {"url": "/customuri/{subscriptionId}/{keyName}"}  # type: ignore
 
     @distributed_trace
     def get_empty(
@@ -118,7 +116,12 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = self._get_empty_request(
-            vault=vault, secret=secret, key_name=key_name, key_version=key_version, **kwargs
+            vault=vault,
+            secret=secret,
+            key_name=key_name,
+            key_version=key_version,
+            template_url=self.get_empty.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 

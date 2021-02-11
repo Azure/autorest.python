@@ -40,7 +40,7 @@ class MediaTypesClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._analyze_body_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/mediatypes/analyze")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -74,8 +74,6 @@ class MediaTypesClientOperationsMixin(object):
             )
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _analyze_body_request.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
-
     @distributed_trace
     def analyze_body(
         self,
@@ -98,7 +96,7 @@ class MediaTypesClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._analyze_body_request(body=input, **kwargs)
+        request = self._analyze_body_request(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -127,7 +125,7 @@ class MediaTypesClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._content_type_with_encoding_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/mediatypes/contentTypeWithEncoding")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -144,8 +142,6 @@ class MediaTypesClientOperationsMixin(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _content_type_with_encoding_request.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace
     def content_type_with_encoding(
@@ -167,7 +163,9 @@ class MediaTypesClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._content_type_with_encoding_request(body=input, **kwargs)
+        request = self._content_type_with_encoding_request(
+            body=input, template_url=self.content_type_with_encoding.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

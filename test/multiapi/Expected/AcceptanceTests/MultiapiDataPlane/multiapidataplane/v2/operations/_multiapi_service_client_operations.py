@@ -34,7 +34,7 @@ class MultiapiServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_one_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -48,7 +48,6 @@ class MultiapiServiceClientOperationsMixin(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.put(url, query_parameters, header_parameters)
-    _test_one_request.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
     def test_one(
         self,
@@ -77,6 +76,7 @@ class MultiapiServiceClientOperationsMixin(object):
         request = self._test_one_request(
             id=id,
             message=message,
+            template_url=self.test_one.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)
@@ -109,7 +109,7 @@ class MultiapiServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_different_calls_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -123,7 +123,6 @@ class MultiapiServiceClientOperationsMixin(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.get(url, query_parameters, header_parameters)
-    _test_different_calls_request.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
 
     def test_different_calls(
         self,
@@ -152,6 +151,7 @@ class MultiapiServiceClientOperationsMixin(object):
         request = self._test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
+            template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)

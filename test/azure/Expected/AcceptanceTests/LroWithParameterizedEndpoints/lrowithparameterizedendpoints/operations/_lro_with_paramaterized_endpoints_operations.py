@@ -41,7 +41,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._poll_with_parameterized_endpoints_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lroParameterizedEndpoints")
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -57,8 +57,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         return self._client.post(url, query_parameters, header_parameters)
 
-    _poll_with_parameterized_endpoints_initial_request.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
-
     def _poll_with_parameterized_endpoints_initial(
         self,
         account_name,  # type: str
@@ -69,7 +67,11 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._poll_with_parameterized_endpoints_initial_request(account_name=account_name, **kwargs)
+        request = self._poll_with_parameterized_endpoints_initial_request(
+            account_name=account_name,
+            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -55,7 +55,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_non_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/put/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -73,8 +73,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_non_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
-
     async def _put_non_retry400_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -82,7 +80,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_non_retry400_initial_request(body=product, **kwargs)
+        request = self._put_non_retry400_initial_request(
+            body=product, template_url=self._put_non_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -165,7 +165,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_non_retry201_creating400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/put/201/creating/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -183,8 +183,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_non_retry201_creating400_initial_request.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
-
     async def _put_non_retry201_creating400_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -192,7 +190,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_non_retry201_creating400_initial_request(body=product, **kwargs)
+        request = self._put_non_retry201_creating400_initial_request(
+            body=product, template_url=self._put_non_retry201_creating400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -278,7 +278,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_non_retry201_creating400_invalid_json_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/put/201/creating/400/invalidjson")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -296,8 +296,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_non_retry201_creating400_invalid_json_initial_request.metadata = {"url": "/lro/nonretryerror/put/201/creating/400/invalidjson"}  # type: ignore
-
     async def _put_non_retry201_creating400_invalid_jso_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -305,7 +303,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_non_retry201_creating400_invalid_json_initial_request(body=product, **kwargs)
+        request = self._put_non_retry201_creating400_invalid_json_initial_request(
+            body=product, template_url=self._put_non_retry201_creating400_invalid_jso_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -391,7 +391,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_async_relative_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/putasync/retry/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -409,8 +409,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_async_relative_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
-
     async def _put_async_relative_retry400_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -418,7 +416,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_async_relative_retry400_initial_request(body=product, **kwargs)
+        request = self._put_async_relative_retry400_initial_request(
+            body=product, template_url=self._put_async_relative_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -512,7 +512,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete_non_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/delete/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -523,15 +523,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete_non_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
-
     async def _delete_non_retry400_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_non_retry400_initial_request(**kwargs)
-
+        request = self._delete_non_retry400_initial_request(
+            template_url=self._delete_non_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -600,7 +599,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete202_non_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/delete/202/retry/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -611,15 +610,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete202_non_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
-
     async def _delete202_non_retry400_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_non_retry400_initial_request(**kwargs)
-
+        request = self._delete202_non_retry400_initial_request(
+            template_url=self._delete202_non_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -688,7 +686,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete_async_relative_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/deleteasync/retry/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -699,15 +697,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete_async_relative_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
-
     async def _delete_async_relative_retry400_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_relative_retry400_initial_request(**kwargs)
-
+        request = self._delete_async_relative_retry400_initial_request(
+            template_url=self._delete_async_relative_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -781,7 +778,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_non_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/post/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -799,14 +796,14 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_non_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
-
     async def _post_non_retry400_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_non_retry400_initial_request(body=product, **kwargs)
+        request = self._post_non_retry400_initial_request(
+            body=product, template_url=self._post_non_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -880,7 +877,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post202_non_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/post/202/retry/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -898,14 +895,14 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post202_non_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
-
     async def _post202_non_retry400_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post202_non_retry400_initial_request(body=product, **kwargs)
+        request = self._post202_non_retry400_initial_request(
+            body=product, template_url=self._post202_non_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -981,7 +978,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_async_relative_retry400_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/nonretryerror/postasync/retry/400")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -999,8 +996,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_async_relative_retry400_initial_request.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
-
     async def _post_async_relative_retry400_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> None:
@@ -1008,7 +1003,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_async_relative_retry400_initial_request(body=product, **kwargs)
+        request = self._post_async_relative_retry400_initial_request(
+            body=product, template_url=self._post_async_relative_retry400_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1090,7 +1087,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_error201_no_provisioning_state_payload_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/put/201/noprovisioningstatepayload")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1108,8 +1105,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_error201_no_provisioning_state_payload_initial_request.metadata = {"url": "/lro/error/put/201/noprovisioningstatepayload"}  # type: ignore
-
     async def _put_error201_no_provisioning_state_payload_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -1117,7 +1112,11 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_error201_no_provisioning_state_payload_initial_request(body=product, **kwargs)
+        request = self._put_error201_no_provisioning_state_payload_initial_request(
+            body=product,
+            template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1202,7 +1201,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_async_relative_retry_no_status_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/putasync/retry/nostatus")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1220,8 +1219,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_async_relative_retry_no_status_initial_request.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
-
     async def _put_async_relative_retry_no_status_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -1229,7 +1226,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_async_relative_retry_no_status_initial_request(body=product, **kwargs)
+        request = self._put_async_relative_retry_no_status_initial_request(
+            body=product, template_url=self._put_async_relative_retry_no_status_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1327,7 +1326,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_async_relative_retry_no_status_payload_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/putasync/retry/nostatuspayload")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1345,8 +1344,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_async_relative_retry_no_status_payload_initial_request.metadata = {"url": "/lro/error/putasync/retry/nostatuspayload"}  # type: ignore
-
     async def _put_async_relative_retry_no_status_payload_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -1354,7 +1351,11 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_async_relative_retry_no_status_payload_initial_request(body=product, **kwargs)
+        request = self._put_async_relative_retry_no_status_payload_initial_request(
+            body=product,
+            template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1449,7 +1450,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete204_succeeded_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/delete/204/nolocation")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1460,15 +1461,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete204_succeeded_initial_request.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
-
     async def _delete204_succeeded_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete204_succeeded_initial_request(**kwargs)
-
+        request = self._delete204_succeeded_initial_request(
+            template_url=self._delete204_succeeded_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1533,7 +1533,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete_async_relative_retry_no_status_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/nostatus")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1544,15 +1544,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete_async_relative_retry_no_status_initial_request.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
-
     async def _delete_async_relative_retry_no_status_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_relative_retry_no_status_initial_request(**kwargs)
-
+        request = self._delete_async_relative_retry_no_status_initial_request(
+            template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1626,7 +1625,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post202_no_location_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/post/202/nolocation")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1644,14 +1643,14 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post202_no_location_initial_request.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
-
     async def _post202_no_locatio_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post202_no_location_initial_request(body=product, **kwargs)
+        request = self._post202_no_location_initial_request(
+            body=product, template_url=self._post202_no_locatio_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1728,7 +1727,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_async_relative_retry_no_payload_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/postasync/retry/nopayload")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1746,8 +1745,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_async_relative_retry_no_payload_initial_request.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
-
     async def _post_async_relative_retry_no_payload_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> None:
@@ -1755,7 +1752,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_async_relative_retry_no_payload_initial_request(body=product, **kwargs)
+        request = self._post_async_relative_retry_no_payload_initial_request(
+            body=product, template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1836,7 +1835,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put200_invalid_json_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/put/200/invalidjson")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1854,8 +1853,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put200_invalid_json_initial_request.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
-
     async def _put200_invalid_jso_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> Optional["_models.Product"]:
@@ -1863,7 +1860,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put200_invalid_json_initial_request(body=product, **kwargs)
+        request = self._put200_invalid_json_initial_request(
+            body=product, template_url=self._put200_invalid_jso_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1945,7 +1944,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_async_relative_retry_invalid_header_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/putasync/retry/invalidheader")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1963,8 +1962,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_async_relative_retry_invalid_header_initial_request.metadata = {"url": "/lro/error/putasync/retry/invalidheader"}  # type: ignore
-
     async def _put_async_relative_retry_invalid_header_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -1972,7 +1969,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_async_relative_retry_invalid_header_initial_request(body=product, **kwargs)
+        request = self._put_async_relative_retry_invalid_header_initial_request(
+            body=product, template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2070,7 +2069,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_async_relative_retry_invalid_json_polling_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/putasync/retry/invalidjsonpolling")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2088,8 +2087,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_async_relative_retry_invalid_json_polling_initial_request.metadata = {"url": "/lro/error/putasync/retry/invalidjsonpolling"}  # type: ignore
-
     async def _put_async_relative_retry_invalid_json_poll_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -2097,7 +2094,11 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_async_relative_retry_invalid_json_polling_initial_request(body=product, **kwargs)
+        request = self._put_async_relative_retry_invalid_json_polling_initial_request(
+            body=product,
+            template_url=self._put_async_relative_retry_invalid_json_poll_initial.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2192,7 +2193,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete202_retry_invalid_header_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/delete/202/retry/invalidheader")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2203,15 +2204,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete202_retry_invalid_header_initial_request.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
-
     async def _delete202_retry_invalid_header_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete202_retry_invalid_header_initial_request(**kwargs)
-
+        request = self._delete202_retry_invalid_header_initial_request(
+            template_url=self._delete202_retry_invalid_header_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2281,7 +2281,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete_async_relative_retry_invalid_header_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/invalidheader")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2292,15 +2292,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete_async_relative_retry_invalid_header_initial_request.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
-
     async def _delete_async_relative_retry_invalid_header_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_relative_retry_invalid_header_initial_request(**kwargs)
-
+        request = self._delete_async_relative_retry_invalid_header_initial_request(
+            template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2373,7 +2372,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._delete_async_relative_retry_invalid_json_polling_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/invalidjsonpolling")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2384,15 +2383,14 @@ class LROSADsOperations:
 
         return self._client.delete(url, query_parameters, header_parameters)
 
-    _delete_async_relative_retry_invalid_json_polling_initial_request.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
-
     async def _delete_async_relative_retry_invalid_json_poll_initial(self, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._delete_async_relative_retry_invalid_json_polling_initial_request(**kwargs)
-
+        request = self._delete_async_relative_retry_invalid_json_polling_initial_request(
+            template_url=self._delete_async_relative_retry_invalid_json_poll_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2470,7 +2468,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post202_retry_invalid_header_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/post/202/retry/invalidheader")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2488,8 +2486,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post202_retry_invalid_header_initial_request.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
-
     async def _post202_retry_invalid_header_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> None:
@@ -2497,7 +2493,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post202_retry_invalid_header_initial_request(body=product, **kwargs)
+        request = self._post202_retry_invalid_header_initial_request(
+            body=product, template_url=self._post202_retry_invalid_header_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2576,7 +2574,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_async_relative_retry_invalid_header_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/postasync/retry/invalidheader")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2594,8 +2592,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_async_relative_retry_invalid_header_initial_request.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
-
     async def _post_async_relative_retry_invalid_header_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> None:
@@ -2603,7 +2599,9 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_async_relative_retry_invalid_header_initial_request(body=product, **kwargs)
+        request = self._post_async_relative_retry_invalid_header_initial_request(
+            body=product, template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2686,7 +2684,7 @@ class LROSADsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_async_relative_retry_invalid_json_polling_initial_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/lro/error/postasync/retry/invalidjsonpolling")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2704,8 +2702,6 @@ class LROSADsOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_async_relative_retry_invalid_json_polling_initial_request.metadata = {"url": "/lro/error/postasync/retry/invalidjsonpolling"}  # type: ignore
-
     async def _post_async_relative_retry_invalid_json_poll_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> None:
@@ -2713,7 +2709,11 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_async_relative_retry_invalid_json_polling_initial_request(body=product, **kwargs)
+        request = self._post_async_relative_retry_invalid_json_polling_initial_request(
+            body=product,
+            template_url=self._post_async_relative_retry_invalid_json_poll_initial.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

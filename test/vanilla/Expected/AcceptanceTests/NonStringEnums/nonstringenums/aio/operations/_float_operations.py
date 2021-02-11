@@ -48,7 +48,7 @@ class FloatOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/nonStringEnums/float/put")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -66,8 +66,6 @@ class FloatOperations:
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _put_request.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
-
     @distributed_trace_async
     async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> str:
         """Put a float enum.
@@ -83,7 +81,7 @@ class FloatOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_request(body=input, **kwargs)
+        request = self._put_request(body=input, template_url=self.put.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -106,7 +104,7 @@ class FloatOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/nonStringEnums/float/get")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -116,8 +114,6 @@ class FloatOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_request.metadata = {"url": "/nonStringEnums/float/get"}  # type: ignore
 
     @distributed_trace_async
     async def get(self, **kwargs) -> Union[float, "_models.FloatEnum"]:
@@ -132,8 +128,7 @@ class FloatOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_request(**kwargs)
-
+        request = self._get_request(template_url=self.get.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

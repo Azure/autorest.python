@@ -48,7 +48,7 @@ class OperationGroupTwoOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_four_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -60,7 +60,6 @@ class OperationGroupTwoOperations:
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.post(url, query_parameters, header_parameters)
-    _test_four_request.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
 
     async def test_four(
         self,
@@ -84,6 +83,7 @@ class OperationGroupTwoOperations:
 
         request = self._test_four_request(
             parameter_one=parameter_one,
+            template_url=self.test_four.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)

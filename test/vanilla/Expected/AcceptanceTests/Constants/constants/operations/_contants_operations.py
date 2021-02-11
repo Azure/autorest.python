@@ -59,7 +59,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_two_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -70,8 +70,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_no_required_two_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_no_default(
@@ -95,7 +93,11 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_no_required_two_value_no_default_request(input=input, **kwargs)
+        request = self._put_no_model_as_string_no_required_two_value_no_default_request(
+            input=input,
+            template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -118,7 +120,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_two_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -129,8 +131,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_no_required_two_value_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(
@@ -154,7 +154,11 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_no_required_two_value_default_request(input=input, **kwargs)
+        request = self._put_no_model_as_string_no_required_two_value_default_request(
+            input=input,
+            template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -177,7 +181,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_one_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -188,8 +192,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_no_required_one_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(
@@ -213,7 +215,11 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_no_required_one_value_no_default_request(input=input, **kwargs)
+        request = self._put_no_model_as_string_no_required_one_value_no_default_request(
+            input=input,
+            template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -236,7 +242,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_no_required_one_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -247,8 +253,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_no_required_one_value_default_request.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(
@@ -272,7 +276,11 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_no_required_one_value_default_request(input=input, **kwargs)
+        request = self._put_no_model_as_string_no_required_one_value_default_request(
+            input=input,
+            template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -295,7 +303,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_required_two_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -305,8 +313,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_required_two_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_no_default(
@@ -330,7 +336,11 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_required_two_value_no_default_request(input=input, **kwargs)
+        request = self._put_no_model_as_string_required_two_value_no_default_request(
+            input=input,
+            template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -353,7 +363,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_required_two_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -363,8 +373,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_required_two_value_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_default(
@@ -388,7 +396,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_required_two_value_default_request(input=input, **kwargs)
+        request = self._put_no_model_as_string_required_two_value_default_request(
+            input=input, template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -410,7 +420,7 @@ class ContantsOperations(object):
         input = "value1"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_required_one_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -420,8 +430,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_required_one_value_no_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_no_default(
@@ -441,8 +449,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_required_one_value_no_default_request(**kwargs)
-
+        request = self._put_no_model_as_string_required_one_value_no_default_request(
+            template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -464,7 +473,7 @@ class ContantsOperations(object):
         input = "value1"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_no_model_as_string_required_one_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -474,8 +483,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_no_model_as_string_required_one_value_default_request.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_default(
@@ -495,8 +502,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_no_model_as_string_required_one_value_default_request(**kwargs)
-
+        request = self._put_no_model_as_string_required_one_value_default_request(
+            template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -519,7 +527,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_no_required_two_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -530,8 +538,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_no_required_two_value_no_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_no_default(
@@ -555,7 +561,11 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_no_required_two_value_no_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_no_required_two_value_no_default_request(
+            input=input,
+            template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -578,7 +588,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_no_required_two_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -589,8 +599,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_no_required_two_value_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(
@@ -614,7 +622,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_no_required_two_value_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_no_required_two_value_default_request(
+            input=input, template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -637,7 +647,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_no_required_one_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -648,8 +658,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_no_required_one_value_no_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_no_default(
@@ -673,7 +681,11 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_no_required_one_value_no_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_no_required_one_value_no_default_request(
+            input=input,
+            template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
+            **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -696,7 +708,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_no_required_one_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -707,8 +719,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_no_required_one_value_default_request.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(
@@ -732,7 +742,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_no_required_one_value_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_no_required_one_value_default_request(
+            input=input, template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -755,7 +767,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_required_two_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -765,8 +777,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_required_two_value_no_default_request.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_two_value_no_default(
@@ -790,7 +800,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_required_two_value_no_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_required_two_value_no_default_request(
+            input=input, template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -813,7 +825,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_required_two_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -823,8 +835,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_required_two_value_default_request.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_two_value_default(
@@ -848,7 +858,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_required_two_value_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_required_two_value_default_request(
+            input=input, template_url=self.put_model_as_string_required_two_value_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -871,7 +883,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_required_one_value_no_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueNoDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -881,8 +893,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_required_one_value_no_default_request.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_one_value_no_default(
@@ -906,7 +916,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_required_one_value_no_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_required_one_value_no_default_request(
+            input=input, template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -929,7 +941,7 @@ class ContantsOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_model_as_string_required_one_value_default_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueDefault")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -939,8 +951,6 @@ class ContantsOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.put(url, query_parameters, header_parameters)
-
-    _put_model_as_string_required_one_value_default_request.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_one_value_default(
@@ -964,7 +974,9 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_model_as_string_required_one_value_default_request(input=input, **kwargs)
+        request = self._put_model_as_string_required_one_value_default_request(
+            input=input, template_url=self.put_model_as_string_required_one_value_default.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

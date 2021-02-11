@@ -60,7 +60,7 @@ class PetOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_by_pet_id_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/extensibleenums/pet/{petId}")
         path_format_arguments = {
             "petId": self._serialize.url("pet_id", pet_id, "str"),
         }
@@ -74,8 +74,6 @@ class PetOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_by_pet_id_request.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace
     def get_by_pet_id(
@@ -97,7 +95,7 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_by_pet_id_request(pet_id=pet_id, **kwargs)
+        request = self._get_by_pet_id_request(pet_id=pet_id, template_url=self.get_by_pet_id.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -126,7 +124,7 @@ class PetOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._add_pet_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/extensibleenums/pet/addPet")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -143,8 +141,6 @@ class PetOperations(object):
             body_content = None
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _add_pet_request.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore
 
     @distributed_trace
     def add_pet(
@@ -166,7 +162,7 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._add_pet_request(body=pet_param, **kwargs)
+        request = self._add_pet_request(body=pet_param, template_url=self.add_pet.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

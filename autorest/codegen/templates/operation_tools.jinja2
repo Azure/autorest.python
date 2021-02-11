@@ -246,7 +246,8 @@ return deserialized
 return 200 <= response.status_code <= 299
 {% endif %}{% endmacro %}
 
-{% macro get_request(operation, request) %}
+{% macro get_request(operation, request, url=None) %}
+{% set template_url = url or "self." + operation.name + ".metadata['url']" %}
 {% if operation.parameters.grouped %}
 {{ grouped_parameters(operation) }}
 {%- endif -%}
@@ -260,11 +261,12 @@ _body = {
 {% elif operation.parameters.is_flattened %}
 {{ operation.parameters.build_flattened_object() }}
 {% endif %}
-request = self.{{ request.name }}({{ "**kwargs)" if not request.parameters.method }}
+request = self.{{ request.name }}(
 {% if request.parameters.method %}
     {% for parameter in request.parameters.method %}
     {{ parameter.serialized_name }}={{ parameter.name_in_high_level_operation }},
     {% endfor %}
+{% endif %}
+    template_url={{ template_url }},
     **kwargs
-){% endif %}
-{% endmacro %}
+){% endmacro %}

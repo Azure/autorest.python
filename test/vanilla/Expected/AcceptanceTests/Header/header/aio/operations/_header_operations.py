@@ -52,7 +52,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_existing_key_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/existingkey")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -63,8 +63,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_existing_key_request.metadata = {"url": "/header/param/existingkey"}  # type: ignore
 
     @distributed_trace_async
     async def param_existing_key(self, user_agent_parameter: str, **kwargs) -> None:
@@ -81,7 +79,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_existing_key_request(user_agent_parameter=user_agent_parameter, **kwargs)
+        request = self._param_existing_key_request(
+            user_agent_parameter=user_agent_parameter, template_url=self.param_existing_key.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -101,7 +101,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_existing_key_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/existingkey")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -111,8 +111,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_existing_key_request.metadata = {"url": "/header/response/existingkey"}  # type: ignore
 
     @distributed_trace_async
     async def response_existing_key(self, **kwargs) -> None:
@@ -127,8 +125,7 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_existing_key_request(**kwargs)
-
+        request = self._response_existing_key_request(template_url=self.response_existing_key.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -151,7 +148,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_protected_key_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/protectedkey")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -162,8 +159,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_protected_key_request.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
 
     @distributed_trace_async
     async def param_protected_key(self, content_type: str, **kwargs) -> None:
@@ -180,7 +175,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_protected_key_request(content_type=content_type, **kwargs)
+        request = self._param_protected_key_request(
+            content_type=content_type, template_url=self.param_protected_key.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -200,7 +197,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_protected_key_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/protectedkey")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -210,8 +207,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_protected_key_request.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
 
     @distributed_trace_async
     async def response_protected_key(self, **kwargs) -> None:
@@ -226,8 +221,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_protected_key_request(**kwargs)
-
+        request = self._response_protected_key_request(
+            template_url=self.response_protected_key.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -250,7 +246,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_integer_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/integer")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -262,8 +258,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_integer_request.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
 
     @distributed_trace_async
     async def param_integer(self, scenario: str, value: int, **kwargs) -> None:
@@ -283,7 +277,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_integer_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_integer_request(
+            scenario=scenario, value=value, template_url=self.param_integer.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -303,7 +299,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_integer_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/integer")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -314,8 +310,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_integer_request.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
 
     @distributed_trace_async
     async def response_integer(self, scenario: str, **kwargs) -> None:
@@ -332,7 +326,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_integer_request(scenario=scenario, **kwargs)
+        request = self._response_integer_request(
+            scenario=scenario, template_url=self.response_integer.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -355,7 +351,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_long_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/long")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -367,8 +363,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_long_request.metadata = {"url": "/header/param/prim/long"}  # type: ignore
 
     @distributed_trace_async
     async def param_long(self, scenario: str, value: int, **kwargs) -> None:
@@ -388,7 +382,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_long_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_long_request(
+            scenario=scenario, value=value, template_url=self.param_long.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -408,7 +404,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_long_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/long")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -419,8 +415,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_long_request.metadata = {"url": "/header/response/prim/long"}  # type: ignore
 
     @distributed_trace_async
     async def response_long(self, scenario: str, **kwargs) -> None:
@@ -437,7 +431,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_long_request(scenario=scenario, **kwargs)
+        request = self._response_long_request(
+            scenario=scenario, template_url=self.response_long.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -460,7 +456,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_float_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/float")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -472,8 +468,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_float_request.metadata = {"url": "/header/param/prim/float"}  # type: ignore
 
     @distributed_trace_async
     async def param_float(self, scenario: str, value: float, **kwargs) -> None:
@@ -493,7 +487,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_float_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_float_request(
+            scenario=scenario, value=value, template_url=self.param_float.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -513,7 +509,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_float_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/float")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -524,8 +520,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_float_request.metadata = {"url": "/header/response/prim/float"}  # type: ignore
 
     @distributed_trace_async
     async def response_float(self, scenario: str, **kwargs) -> None:
@@ -542,7 +536,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_float_request(scenario=scenario, **kwargs)
+        request = self._response_float_request(
+            scenario=scenario, template_url=self.response_float.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -565,7 +561,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_double_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/double")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -577,8 +573,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_double_request.metadata = {"url": "/header/param/prim/double"}  # type: ignore
 
     @distributed_trace_async
     async def param_double(self, scenario: str, value: float, **kwargs) -> None:
@@ -598,7 +592,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_double_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_double_request(
+            scenario=scenario, value=value, template_url=self.param_double.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -618,7 +614,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_double_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/double")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -629,8 +625,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_double_request.metadata = {"url": "/header/response/prim/double"}  # type: ignore
 
     @distributed_trace_async
     async def response_double(self, scenario: str, **kwargs) -> None:
@@ -647,7 +641,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_double_request(scenario=scenario, **kwargs)
+        request = self._response_double_request(
+            scenario=scenario, template_url=self.response_double.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -670,7 +666,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_bool_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/bool")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -682,8 +678,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_bool_request.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
 
     @distributed_trace_async
     async def param_bool(self, scenario: str, value: bool, **kwargs) -> None:
@@ -703,7 +697,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_bool_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_bool_request(
+            scenario=scenario, value=value, template_url=self.param_bool.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -723,7 +719,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_bool_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/bool")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -734,8 +730,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_bool_request.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
 
     @distributed_trace_async
     async def response_bool(self, scenario: str, **kwargs) -> None:
@@ -752,7 +746,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_bool_request(scenario=scenario, **kwargs)
+        request = self._response_bool_request(
+            scenario=scenario, template_url=self.response_bool.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -775,7 +771,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_string_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/string")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -788,8 +784,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_string_request.metadata = {"url": "/header/param/prim/string"}  # type: ignore
 
     @distributed_trace_async
     async def param_string(self, scenario: str, value: Optional[str] = None, **kwargs) -> None:
@@ -811,7 +805,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_string_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_string_request(
+            scenario=scenario, value=value, template_url=self.param_string.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -831,7 +827,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_string_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/string")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -842,8 +838,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_string_request.metadata = {"url": "/header/response/prim/string"}  # type: ignore
 
     @distributed_trace_async
     async def response_string(self, scenario: str, **kwargs) -> None:
@@ -861,7 +855,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_string_request(scenario=scenario, **kwargs)
+        request = self._response_string_request(
+            scenario=scenario, template_url=self.response_string.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -884,7 +880,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_date_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/date")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -896,8 +892,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_date_request.metadata = {"url": "/header/param/prim/date"}  # type: ignore
 
     @distributed_trace_async
     async def param_date(self, scenario: str, value: datetime.date, **kwargs) -> None:
@@ -917,7 +911,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_date_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_date_request(
+            scenario=scenario, value=value, template_url=self.param_date.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -937,7 +933,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_date_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/date")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -948,8 +944,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_date_request.metadata = {"url": "/header/response/prim/date"}  # type: ignore
 
     @distributed_trace_async
     async def response_date(self, scenario: str, **kwargs) -> None:
@@ -966,7 +960,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_date_request(scenario=scenario, **kwargs)
+        request = self._response_date_request(
+            scenario=scenario, template_url=self.response_date.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -989,7 +985,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_datetime_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/datetime")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1001,8 +997,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_datetime_request.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
 
     @distributed_trace_async
     async def param_datetime(self, scenario: str, value: datetime.datetime, **kwargs) -> None:
@@ -1023,7 +1017,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_datetime_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_datetime_request(
+            scenario=scenario, value=value, template_url=self.param_datetime.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1043,7 +1039,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_datetime_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/datetime")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1054,8 +1050,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_datetime_request.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
 
     @distributed_trace_async
     async def response_datetime(self, scenario: str, **kwargs) -> None:
@@ -1072,7 +1066,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_datetime_request(scenario=scenario, **kwargs)
+        request = self._response_datetime_request(
+            scenario=scenario, template_url=self.response_datetime.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1097,7 +1093,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_datetime_rfc1123_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/datetimerfc1123")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1110,8 +1106,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_datetime_rfc1123_request.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
     async def param_datetime_rfc1123(self, scenario: str, value: Optional[datetime.datetime] = None, **kwargs) -> None:
@@ -1132,7 +1126,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_datetime_rfc1123_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_datetime_rfc1123_request(
+            scenario=scenario, value=value, template_url=self.param_datetime_rfc1123.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1152,7 +1148,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_datetime_rfc1123_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/datetimerfc1123")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1163,8 +1159,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_datetime_rfc1123_request.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
     async def response_datetime_rfc1123(self, scenario: str, **kwargs) -> None:
@@ -1182,7 +1176,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_datetime_rfc1123_request(scenario=scenario, **kwargs)
+        request = self._response_datetime_rfc1123_request(
+            scenario=scenario, template_url=self.response_datetime_rfc1123.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1205,7 +1201,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_duration_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/duration")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1217,8 +1213,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_duration_request.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
 
     @distributed_trace_async
     async def param_duration(self, scenario: str, value: datetime.timedelta, **kwargs) -> None:
@@ -1237,7 +1231,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_duration_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_duration_request(
+            scenario=scenario, value=value, template_url=self.param_duration.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1257,7 +1253,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_duration_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/duration")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1268,8 +1264,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_duration_request.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
 
     @distributed_trace_async
     async def response_duration(self, scenario: str, **kwargs) -> None:
@@ -1286,7 +1280,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_duration_request(scenario=scenario, **kwargs)
+        request = self._response_duration_request(
+            scenario=scenario, template_url=self.response_duration.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1309,7 +1305,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_byte_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/byte")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1321,8 +1317,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_byte_request.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
 
     @distributed_trace_async
     async def param_byte(self, scenario: str, value: bytearray, **kwargs) -> None:
@@ -1341,7 +1335,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_byte_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_byte_request(
+            scenario=scenario, value=value, template_url=self.param_byte.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1361,7 +1357,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_byte_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/byte")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1372,8 +1368,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_byte_request.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
 
     @distributed_trace_async
     async def response_byte(self, scenario: str, **kwargs) -> None:
@@ -1390,7 +1384,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_byte_request(scenario=scenario, **kwargs)
+        request = self._response_byte_request(
+            scenario=scenario, template_url=self.response_byte.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1415,7 +1411,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._param_enum_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/param/prim/enum")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1428,8 +1424,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _param_enum_request.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
 
     @distributed_trace_async
     async def param_enum(
@@ -1452,7 +1446,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._param_enum_request(scenario=scenario, value=value, **kwargs)
+        request = self._param_enum_request(
+            scenario=scenario, value=value, template_url=self.param_enum.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1472,7 +1468,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._response_enum_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/response/prim/enum")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1483,8 +1479,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _response_enum_request.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
 
     @distributed_trace_async
     async def response_enum(self, scenario: str, **kwargs) -> None:
@@ -1502,7 +1496,9 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._response_enum_request(scenario=scenario, **kwargs)
+        request = self._response_enum_request(
+            scenario=scenario, template_url=self.response_enum.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1525,7 +1521,7 @@ class HeaderOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._custom_request_id_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1535,8 +1531,6 @@ class HeaderOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _custom_request_id_request.metadata = {"url": "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}  # type: ignore
 
     @distributed_trace_async
     async def custom_request_id(self, **kwargs) -> None:
@@ -1552,8 +1546,7 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._custom_request_id_request(**kwargs)
-
+        request = self._custom_request_id_request(template_url=self.custom_request_id.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

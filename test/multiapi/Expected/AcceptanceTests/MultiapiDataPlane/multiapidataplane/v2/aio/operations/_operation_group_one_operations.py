@@ -49,7 +49,7 @@ class OperationGroupOneOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_two_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -67,7 +67,6 @@ class OperationGroupOneOperations:
             body_content = None
         body_content_kwargs['content'] = body_content
         return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
-    _test_two_request.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
 
     async def test_two(
         self,
@@ -91,6 +90,7 @@ class OperationGroupOneOperations:
 
         request = self._test_two_request(
             body=parameter_one,
+            template_url=self.test_two.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)
@@ -120,7 +120,7 @@ class OperationGroupOneOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_three_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/one/testThreeEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -131,7 +131,6 @@ class OperationGroupOneOperations:
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.put(url, query_parameters, header_parameters)
-    _test_three_request.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore
 
     async def test_three(
         self,
@@ -150,8 +149,10 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_three_request(**kwargs)
-
+        request = self._test_three_request(
+            template_url=self.test_three.metadata['url'],
+            **kwargs
+        )
         kwargs.pop('content_type', None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

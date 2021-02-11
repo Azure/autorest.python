@@ -58,7 +58,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/byte/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -68,8 +68,6 @@ class ByteOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_null_request.metadata = {"url": "/byte/null"}  # type: ignore
 
     @distributed_trace
     def get_null(
@@ -87,8 +85,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(**kwargs)
-
+        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,7 +112,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/byte/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,8 +122,6 @@ class ByteOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_empty_request.metadata = {"url": "/byte/empty"}  # type: ignore
 
     @distributed_trace
     def get_empty(
@@ -144,8 +139,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(**kwargs)
-
+        request = self._get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -172,7 +166,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_non_ascii_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/byte/nonAscii")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -182,8 +176,6 @@ class ByteOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_non_ascii_request.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace
     def get_non_ascii(
@@ -201,8 +193,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_non_ascii_request(**kwargs)
-
+        request = self._get_non_ascii_request(template_url=self.get_non_ascii.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -232,7 +223,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_non_ascii_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/byte/nonAscii")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -246,8 +237,6 @@ class ByteOperations(object):
         body_content = self._serialize.body(body, "bytearray")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_non_ascii_request.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace
     def put_non_ascii(
@@ -269,7 +258,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_non_ascii_request(body=byte_body, **kwargs)
+        request = self._put_non_ascii_request(body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -292,7 +281,7 @@ class ByteOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/byte/invalid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -302,8 +291,6 @@ class ByteOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_invalid_request.metadata = {"url": "/byte/invalid"}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -321,8 +308,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_invalid_request(**kwargs)
-
+        request = self._get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

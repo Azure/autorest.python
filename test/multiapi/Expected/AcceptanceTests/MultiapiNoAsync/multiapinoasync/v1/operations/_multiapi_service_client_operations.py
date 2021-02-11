@@ -38,7 +38,7 @@ class MultiapiServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_one_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -52,7 +52,6 @@ class MultiapiServiceClientOperationsMixin(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.put(url, query_parameters, header_parameters)
-    _test_one_request.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
     def test_one(
         self,
@@ -81,6 +80,7 @@ class MultiapiServiceClientOperationsMixin(object):
         request = self._test_one_request(
             id=id,
             message=message,
+            template_url=self.test_one.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)
@@ -108,7 +108,7 @@ class MultiapiServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_lro_initial_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/lro')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,7 +125,6 @@ class MultiapiServiceClientOperationsMixin(object):
             body_content = None
         body_content_kwargs['content'] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-    _test_lro_initial_request.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
     def _test_lro_initial(
         self,
@@ -141,6 +140,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         request = self._test_lro_initial_request(
             body=product,
+            template_url=self._test_lro_initial.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)
@@ -235,7 +235,7 @@ class MultiapiServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_lro_and_paging_initial_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/lroAndPaging')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -251,7 +251,6 @@ class MultiapiServiceClientOperationsMixin(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.post(url, query_parameters, header_parameters)
-    _test_lro_and_paging_initial_request.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
     def _test_lro_and_pa_initial(
         self,
@@ -276,6 +275,7 @@ class MultiapiServiceClientOperationsMixin(object):
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
+            template_url=self._test_lro_and_pa_initial.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)
@@ -337,6 +337,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
+                    template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
             else:
@@ -350,6 +351,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
+                    template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
                 # little hacky, but this code will soon be replaced with code that won't need the hack
@@ -431,7 +433,7 @@ class MultiapiServiceClientOperationsMixin(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_different_calls_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -443,7 +445,6 @@ class MultiapiServiceClientOperationsMixin(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.get(url, query_parameters, header_parameters)
-    _test_different_calls_request.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
 
     def test_different_calls(
         self,
@@ -468,6 +469,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         request = self._test_different_calls_request(
             greeting_in_english=greeting_in_english,
+            template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
         kwargs.pop('content_type', None)

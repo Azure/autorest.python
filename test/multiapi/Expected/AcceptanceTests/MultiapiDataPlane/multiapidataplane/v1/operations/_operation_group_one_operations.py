@@ -52,7 +52,7 @@ class OperationGroupOneOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._test_two_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -63,7 +63,6 @@ class OperationGroupOneOperations(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         return self._client.get(url, query_parameters, header_parameters)
-    _test_two_request.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
 
     def test_two(
         self,
@@ -83,8 +82,10 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._test_two_request(**kwargs)
-
+        request = self._test_two_request(
+            template_url=self.test_two.metadata['url'],
+            **kwargs
+        )
         kwargs.pop('content_type', None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

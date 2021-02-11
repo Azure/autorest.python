@@ -52,7 +52,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_optional_binary_body_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/explicit/optional/binary-body")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -66,8 +66,6 @@ class ExplicitOperations:
         body_content_kwargs["stream_content"] = body
 
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_optional_binary_body_request.metadata = {"url": "/reqopt/explicit/optional/binary-body"}  # type: ignore
 
     @distributed_trace_async
     async def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs) -> None:
@@ -84,7 +82,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_optional_binary_body_request(body=body_parameter, **kwargs)
+        request = self._put_optional_binary_body_request(
+            body=body_parameter, template_url=self.put_optional_binary_body.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -105,7 +105,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_required_binary_body_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/explicit/required/binary-body")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -119,8 +119,6 @@ class ExplicitOperations:
         body_content_kwargs["stream_content"] = body
 
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_required_binary_body_request.metadata = {"url": "/reqopt/explicit/required/binary-body"}  # type: ignore
 
     @distributed_trace_async
     async def put_required_binary_body(self, body_parameter: IO, **kwargs) -> None:
@@ -137,7 +135,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_required_binary_body_request(body=body_parameter, **kwargs)
+        request = self._put_required_binary_body_request(
+            body=body_parameter, template_url=self.put_required_binary_body.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -158,7 +158,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_integer_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/integer/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -172,8 +172,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "int")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_integer_parameter_request.metadata = {"url": "/reqopt/requied/integer/parameter"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_parameter(self, body_parameter: int, **kwargs) -> None:
@@ -191,7 +189,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_integer_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_required_integer_parameter_request(
+            body=body_parameter, template_url=self.post_required_integer_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -212,7 +212,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_integer_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/integer/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -230,8 +230,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_integer_parameter_request.metadata = {"url": "/reqopt/optional/integer/parameter"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_integer_parameter(self, body_parameter: Optional[int] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put null.
@@ -247,7 +245,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_integer_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_optional_integer_parameter_request(
+            body=body_parameter, template_url=self.post_optional_integer_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -268,7 +268,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_integer_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/integer/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -282,8 +282,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "IntWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_integer_property_request.metadata = {"url": "/reqopt/requied/integer/property"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_property(self, value: int, **kwargs) -> None:
@@ -302,7 +300,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.IntWrapper(value=value)
-        request = self._post_required_integer_property_request(body=_body_parameter, **kwargs)
+        request = self._post_required_integer_property_request(
+            body=_body_parameter, template_url=self.post_required_integer_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -325,7 +325,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_integer_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/integer/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -343,8 +343,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_integer_property_request.metadata = {"url": "/reqopt/optional/integer/property"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_integer_property(self, value: Optional[int] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -361,7 +359,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.IntOptionalWrapper(value=value)
-        request = self._post_optional_integer_property_request(body=_body_parameter, **kwargs)
+        request = self._post_optional_integer_property_request(
+            body=_body_parameter, template_url=self.post_optional_integer_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -381,7 +381,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_integer_header_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/integer/header")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -392,8 +392,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_required_integer_header_request.metadata = {"url": "/reqopt/requied/integer/header"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_header(self, header_parameter: int, **kwargs) -> None:
@@ -411,7 +409,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_integer_header_request(header_parameter=header_parameter, **kwargs)
+        request = self._post_required_integer_header_request(
+            header_parameter=header_parameter, template_url=self.post_required_integer_header.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -431,7 +431,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_integer_header_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/integer/header")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -443,8 +443,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_optional_integer_header_request.metadata = {"url": "/reqopt/optional/integer/header"}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_header(self, header_parameter: Optional[int] = None, **kwargs) -> None:
@@ -461,7 +459,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_integer_header_request(header_parameter=header_parameter, **kwargs)
+        request = self._post_optional_integer_header_request(
+            header_parameter=header_parameter, template_url=self.post_optional_integer_header.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -482,7 +482,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_string_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/string/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -496,8 +496,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "str")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_string_parameter_request.metadata = {"url": "/reqopt/requied/string/parameter"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_parameter(self, body_parameter: str, **kwargs) -> None:
@@ -515,7 +513,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_string_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_required_string_parameter_request(
+            body=body_parameter, template_url=self.post_required_string_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -536,7 +536,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_string_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/string/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -554,8 +554,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_string_parameter_request.metadata = {"url": "/reqopt/optional/string/parameter"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_string_parameter(self, body_parameter: Optional[str] = None, **kwargs) -> None:
         """Test explicitly optional string. Please put null.
@@ -571,7 +569,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_string_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_optional_string_parameter_request(
+            body=body_parameter, template_url=self.post_optional_string_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -592,7 +592,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_string_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/string/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -606,8 +606,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "StringWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_string_property_request.metadata = {"url": "/reqopt/requied/string/property"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_property(self, value: str, **kwargs) -> None:
@@ -626,7 +624,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.StringWrapper(value=value)
-        request = self._post_required_string_property_request(body=_body_parameter, **kwargs)
+        request = self._post_required_string_property_request(
+            body=_body_parameter, template_url=self.post_required_string_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -649,7 +649,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_string_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/string/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -667,8 +667,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_string_property_request.metadata = {"url": "/reqopt/optional/string/property"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_string_property(self, value: Optional[str] = None, **kwargs) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -685,7 +683,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.StringOptionalWrapper(value=value)
-        request = self._post_optional_string_property_request(body=_body_parameter, **kwargs)
+        request = self._post_optional_string_property_request(
+            body=_body_parameter, template_url=self.post_optional_string_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -705,7 +705,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_string_header_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/string/header")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -716,8 +716,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_required_string_header_request.metadata = {"url": "/reqopt/requied/string/header"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_header(self, header_parameter: str, **kwargs) -> None:
@@ -735,7 +733,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_string_header_request(header_parameter=header_parameter, **kwargs)
+        request = self._post_required_string_header_request(
+            header_parameter=header_parameter, template_url=self.post_required_string_header.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -755,7 +755,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_string_header_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/string/header")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -767,8 +767,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_optional_string_header_request.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_header(self, body_parameter: Optional[str] = None, **kwargs) -> None:
@@ -785,7 +783,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_string_header_request(body_parameter=body_parameter, **kwargs)
+        request = self._post_optional_string_header_request(
+            body_parameter=body_parameter, template_url=self.post_optional_string_header.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -806,7 +806,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_class_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/class/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -820,8 +820,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "Product")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_class_parameter_request.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_class_parameter(self, body_parameter: "_models.Product", **kwargs) -> None:
@@ -839,7 +837,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_class_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_required_class_parameter_request(
+            body=body_parameter, template_url=self.post_required_class_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -860,7 +860,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_class_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/class/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -878,8 +878,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_class_parameter_request.metadata = {"url": "/reqopt/optional/class/parameter"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_class_parameter(self, body_parameter: Optional["_models.Product"] = None, **kwargs) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -895,7 +893,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_class_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_optional_class_parameter_request(
+            body=body_parameter, template_url=self.post_optional_class_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -916,7 +916,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_class_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/class/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -930,8 +930,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "ClassWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_class_property_request.metadata = {"url": "/reqopt/requied/class/property"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_class_property(self, value: "_models.Product", **kwargs) -> None:
@@ -950,7 +948,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ClassWrapper(value=value)
-        request = self._post_required_class_property_request(body=_body_parameter, **kwargs)
+        request = self._post_required_class_property_request(
+            body=_body_parameter, template_url=self.post_required_class_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -973,7 +973,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_class_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/class/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -991,8 +991,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_class_property_request.metadata = {"url": "/reqopt/optional/class/property"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_class_property(self, value: Optional["_models.Product"] = None, **kwargs) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -1009,7 +1007,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ClassOptionalWrapper(value=value)
-        request = self._post_optional_class_property_request(body=_body_parameter, **kwargs)
+        request = self._post_optional_class_property_request(
+            body=_body_parameter, template_url=self.post_optional_class_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1030,7 +1030,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_array_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/array/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1044,8 +1044,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "[str]")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_array_parameter_request.metadata = {"url": "/reqopt/requied/array/parameter"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_parameter(self, body_parameter: List[str], **kwargs) -> None:
@@ -1063,7 +1061,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_array_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_required_array_parameter_request(
+            body=body_parameter, template_url=self.post_required_array_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1084,7 +1084,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_array_parameter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/array/parameter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1102,8 +1102,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_array_parameter_request.metadata = {"url": "/reqopt/optional/array/parameter"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_array_parameter(self, body_parameter: Optional[List[str]] = None, **kwargs) -> None:
         """Test explicitly optional array. Please put null.
@@ -1119,7 +1117,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_array_parameter_request(body=body_parameter, **kwargs)
+        request = self._post_optional_array_parameter_request(
+            body=body_parameter, template_url=self.post_optional_array_parameter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1140,7 +1140,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_array_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/array/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1154,8 +1154,6 @@ class ExplicitOperations:
         body_content = self._serialize.body(body, "ArrayWrapper")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_array_property_request.metadata = {"url": "/reqopt/requied/array/property"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_property(self, value: List[str], **kwargs) -> None:
@@ -1174,7 +1172,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ArrayWrapper(value=value)
-        request = self._post_required_array_property_request(body=_body_parameter, **kwargs)
+        request = self._post_required_array_property_request(
+            body=_body_parameter, template_url=self.post_required_array_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1197,7 +1197,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_array_property_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/array/property")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1215,8 +1215,6 @@ class ExplicitOperations:
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-    _post_optional_array_property_request.metadata = {"url": "/reqopt/optional/array/property"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional_array_property(self, value: Optional[List[str]] = None, **kwargs) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -1233,7 +1231,9 @@ class ExplicitOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         _body_parameter = _models.ArrayOptionalWrapper(value=value)
-        request = self._post_optional_array_property_request(body=_body_parameter, **kwargs)
+        request = self._post_optional_array_property_request(
+            body=_body_parameter, template_url=self.post_optional_array_property.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1253,7 +1253,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_array_header_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/requied/array/header")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1266,8 +1266,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_required_array_header_request.metadata = {"url": "/reqopt/requied/array/header"}  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_header(self, header_parameter: List[str], **kwargs) -> None:
@@ -1285,7 +1283,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_required_array_header_request(header_parameter=header_parameter, **kwargs)
+        request = self._post_required_array_header_request(
+            header_parameter=header_parameter, template_url=self.post_required_array_header.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1307,7 +1307,7 @@ class ExplicitOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_array_header_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/reqopt/optional/array/header")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1321,8 +1321,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_optional_array_header_request.metadata = {"url": "/reqopt/optional/array/header"}  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_header(self, header_parameter: Optional[List[str]] = None, **kwargs) -> None:
@@ -1339,7 +1337,9 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_optional_array_header_request(header_parameter=header_parameter, **kwargs)
+        request = self._post_optional_array_header_request(
+            header_parameter=header_parameter, template_url=self.post_optional_array_header.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

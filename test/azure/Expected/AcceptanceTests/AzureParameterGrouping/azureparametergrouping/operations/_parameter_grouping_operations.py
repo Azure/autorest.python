@@ -64,7 +64,7 @@ class ParameterGroupingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_required_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/parameterGrouping/postRequired/{path}")
         path_format_arguments = {
             "path": self._serialize.url("path", path, "str"),
         }
@@ -86,8 +86,6 @@ class ParameterGroupingOperations(object):
         body_content = self._serialize.body(body, "int")
         body_content_kwargs["content"] = body_content
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _post_required_request.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
 
     @distributed_trace
     def post_required(
@@ -119,7 +117,12 @@ class ParameterGroupingOperations(object):
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
         request = self._post_required_request(
-            path=_path, body=_body, custom_header=_custom_header, query=_query, **kwargs
+            path=_path,
+            body=_body,
+            custom_header=_custom_header,
+            query=_query,
+            template_url=self.post_required.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -146,7 +149,7 @@ class ParameterGroupingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_optional_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/parameterGrouping/postOptional")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -160,8 +163,6 @@ class ParameterGroupingOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_optional_request.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
 
     @distributed_trace
     def post_optional(
@@ -188,7 +189,9 @@ class ParameterGroupingOperations(object):
         if parameter_grouping_post_optional_parameters is not None:
             _custom_header = parameter_grouping_post_optional_parameters.custom_header
             _query = parameter_grouping_post_optional_parameters.query
-        request = self._post_optional_request(custom_header=_custom_header, query=_query, **kwargs)
+        request = self._post_optional_request(
+            custom_header=_custom_header, query=_query, template_url=self.post_optional.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -216,7 +219,7 @@ class ParameterGroupingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_multi_param_groups_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/parameterGrouping/postMultipleParameterGroups")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -234,8 +237,6 @@ class ParameterGroupingOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_multi_param_groups_request.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
     @distributed_trace
     def post_multi_param_groups(
@@ -271,7 +272,12 @@ class ParameterGroupingOperations(object):
             _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
         request = self._post_multi_param_groups_request(
-            header_one=_header_one, query_one=_query_one, header_two=_header_two, query_two=_query_two, **kwargs
+            header_one=_header_one,
+            query_one=_query_one,
+            header_two=_header_two,
+            query_two=_query_two,
+            template_url=self.post_multi_param_groups.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -298,7 +304,7 @@ class ParameterGroupingOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_shared_parameter_group_object_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/parameterGrouping/sharedParameterGroupObject")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -312,8 +318,6 @@ class ParameterGroupingOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_shared_parameter_group_object_request.metadata = {"url": "/parameterGrouping/sharedParameterGroupObject"}  # type: ignore
 
     @distributed_trace
     def post_shared_parameter_group_object(
@@ -341,7 +345,10 @@ class ParameterGroupingOperations(object):
             _header_one = first_parameter_group.header_one
             _query_one = first_parameter_group.query_one
         request = self._post_shared_parameter_group_object_request(
-            header_one=_header_one, query_one=_query_one, **kwargs
+            header_one=_header_one,
+            query_one=_query_one,
+            template_url=self.post_shared_parameter_group_object.metadata["url"],
+            **kwargs
         )
         kwargs.pop("content_type", None)
 

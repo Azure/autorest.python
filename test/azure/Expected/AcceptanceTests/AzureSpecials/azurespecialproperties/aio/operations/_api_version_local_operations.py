@@ -53,7 +53,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_method_local_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/2.0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -64,8 +64,6 @@ class ApiVersionLocalOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_method_local_valid_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_local_valid(self, **kwargs) -> None:
@@ -80,8 +78,9 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_method_local_valid_request(**kwargs)
-
+        request = self._get_method_local_valid_request(
+            template_url=self.get_method_local_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -101,7 +100,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_method_local_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -113,8 +112,6 @@ class ApiVersionLocalOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_method_local_null_request.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_local_null(self, api_version: Optional[str] = None, **kwargs) -> None:
@@ -132,7 +129,9 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_method_local_null_request(api_version=api_version, **kwargs)
+        request = self._get_method_local_null_request(
+            api_version=api_version, template_url=self.get_method_local_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -153,7 +152,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_path_local_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/local/2.0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -164,8 +163,6 @@ class ApiVersionLocalOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_path_local_valid_request.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_path_local_valid(self, **kwargs) -> None:
@@ -180,8 +177,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_path_local_valid_request(**kwargs)
-
+        request = self._get_path_local_valid_request(template_url=self.get_path_local_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -202,7 +198,7 @@ class ApiVersionLocalOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_swagger_local_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/apiVersion/swagger/string/none/query/local/2.0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -213,8 +209,6 @@ class ApiVersionLocalOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_swagger_local_valid_request.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_local_valid(self, **kwargs) -> None:
@@ -229,8 +223,9 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_swagger_local_valid_request(**kwargs)
-
+        request = self._get_swagger_local_valid_request(
+            template_url=self.get_swagger_local_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

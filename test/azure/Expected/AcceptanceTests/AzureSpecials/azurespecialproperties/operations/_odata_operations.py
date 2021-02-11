@@ -63,7 +63,7 @@ class OdataOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_with_filter_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/azurespecials/odata/filter")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -79,8 +79,6 @@ class OdataOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_with_filter_request.metadata = {"url": "/azurespecials/odata/filter"}  # type: ignore
 
     @distributed_trace
     def get_with_filter(
@@ -108,7 +106,9 @@ class OdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_with_filter_request(filter=filter, top=top, orderby=orderby, **kwargs)
+        request = self._get_with_filter_request(
+            filter=filter, top=top, orderby=orderby, template_url=self.get_with_filter.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

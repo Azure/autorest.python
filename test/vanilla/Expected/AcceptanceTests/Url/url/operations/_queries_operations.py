@@ -60,7 +60,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_boolean_true_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/bool/true")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -71,8 +71,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_boolean_true_request.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
     @distributed_trace
     def get_boolean_true(
@@ -90,8 +88,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_true_request(**kwargs)
-
+        request = self._get_boolean_true_request(template_url=self.get_boolean_true.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,7 +112,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_boolean_false_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/bool/false")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -126,8 +123,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_boolean_false_request.metadata = {"url": "/queries/bool/false"}  # type: ignore
 
     @distributed_trace
     def get_boolean_false(
@@ -145,8 +140,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_false_request(**kwargs)
-
+        request = self._get_boolean_false_request(template_url=self.get_boolean_false.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -171,7 +165,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_boolean_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/bool/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -183,8 +177,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_boolean_null_request.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
     @distributed_trace
     def get_boolean_null(
@@ -206,7 +198,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_null_request(bool_query=bool_query, **kwargs)
+        request = self._get_boolean_null_request(
+            bool_query=bool_query, template_url=self.get_boolean_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -230,7 +224,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_int_one_million_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/int/1000000")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -241,8 +235,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_int_one_million_request.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
     @distributed_trace
     def get_int_one_million(
@@ -260,8 +252,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_one_million_request(**kwargs)
-
+        request = self._get_int_one_million_request(template_url=self.get_int_one_million.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -285,7 +276,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_int_negative_one_million_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/int/-1000000")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -296,8 +287,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_int_negative_one_million_request.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
 
     @distributed_trace
     def get_int_negative_one_million(
@@ -315,8 +304,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_negative_one_million_request(**kwargs)
-
+        request = self._get_int_negative_one_million_request(
+            template_url=self.get_int_negative_one_million.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -341,7 +331,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_int_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/int/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -353,8 +343,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_int_null_request.metadata = {"url": "/queries/int/null"}  # type: ignore
 
     @distributed_trace
     def get_int_null(
@@ -376,7 +364,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_null_request(int_query=int_query, **kwargs)
+        request = self._get_int_null_request(
+            int_query=int_query, template_url=self.get_int_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -400,7 +390,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_ten_billion_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/long/10000000000")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -411,8 +401,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_ten_billion_request.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
     @distributed_trace
     def get_ten_billion(
@@ -430,8 +418,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_ten_billion_request(**kwargs)
-
+        request = self._get_ten_billion_request(template_url=self.get_ten_billion.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -455,7 +442,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_negative_ten_billion_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/long/-10000000000")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -466,8 +453,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_negative_ten_billion_request.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
 
     @distributed_trace
     def get_negative_ten_billion(
@@ -485,8 +470,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_negative_ten_billion_request(**kwargs)
-
+        request = self._get_negative_ten_billion_request(
+            template_url=self.get_negative_ten_billion.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -511,7 +497,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_long_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/long/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -523,8 +509,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_long_null_request.metadata = {"url": "/queries/long/null"}  # type: ignore
 
     @distributed_trace
     def get_long_null(
@@ -546,7 +530,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_null_request(long_query=long_query, **kwargs)
+        request = self._get_long_null_request(
+            long_query=long_query, template_url=self.get_long_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -570,7 +556,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._float_scientific_positive_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/float/1.034E+20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -581,8 +567,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _float_scientific_positive_request.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
     @distributed_trace
     def float_scientific_positive(
@@ -600,8 +584,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._float_scientific_positive_request(**kwargs)
-
+        request = self._float_scientific_positive_request(
+            template_url=self.float_scientific_positive.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -625,7 +610,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._float_scientific_negative_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/float/-1.034E-20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -636,8 +621,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _float_scientific_negative_request.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
 
     @distributed_trace
     def float_scientific_negative(
@@ -655,8 +638,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._float_scientific_negative_request(**kwargs)
-
+        request = self._float_scientific_negative_request(
+            template_url=self.float_scientific_negative.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -681,7 +665,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._float_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/float/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -693,8 +677,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _float_null_request.metadata = {"url": "/queries/float/null"}  # type: ignore
 
     @distributed_trace
     def float_null(
@@ -716,7 +698,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._float_null_request(float_query=float_query, **kwargs)
+        request = self._float_null_request(
+            float_query=float_query, template_url=self.float_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -740,7 +724,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._double_decimal_positive_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/double/9999999.999")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -751,8 +735,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _double_decimal_positive_request.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
     @distributed_trace
     def double_decimal_positive(
@@ -770,8 +752,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._double_decimal_positive_request(**kwargs)
-
+        request = self._double_decimal_positive_request(
+            template_url=self.double_decimal_positive.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -795,7 +778,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._double_decimal_negative_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/double/-9999999.999")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -806,8 +789,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _double_decimal_negative_request.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
 
     @distributed_trace
     def double_decimal_negative(
@@ -825,8 +806,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._double_decimal_negative_request(**kwargs)
-
+        request = self._double_decimal_negative_request(
+            template_url=self.double_decimal_negative.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -851,7 +833,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._double_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/double/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -863,8 +845,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _double_null_request.metadata = {"url": "/queries/double/null"}  # type: ignore
 
     @distributed_trace
     def double_null(
@@ -886,7 +866,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._double_null_request(double_query=double_query, **kwargs)
+        request = self._double_null_request(
+            double_query=double_query, template_url=self.double_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -910,7 +892,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._string_unicode_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/string/unicode/")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -921,8 +903,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _string_unicode_request.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
     @distributed_trace
     def string_unicode(
@@ -940,8 +920,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._string_unicode_request(**kwargs)
-
+        request = self._string_unicode_request(template_url=self.string_unicode.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -965,7 +944,9 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._string_url_encoded_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url", "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
+        )
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -976,8 +957,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _string_url_encoded_request.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
     @distributed_trace
     def string_url_encoded(
@@ -995,8 +974,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._string_url_encoded_request(**kwargs)
-
+        request = self._string_url_encoded_request(template_url=self.string_url_encoded.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1020,7 +998,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._string_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/string/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1031,8 +1009,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _string_empty_request.metadata = {"url": "/queries/string/empty"}  # type: ignore
 
     @distributed_trace
     def string_empty(
@@ -1050,8 +1026,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._string_empty_request(**kwargs)
-
+        request = self._string_empty_request(template_url=self.string_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1076,7 +1051,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._string_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/string/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1088,8 +1063,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _string_null_request.metadata = {"url": "/queries/string/null"}  # type: ignore
 
     @distributed_trace
     def string_null(
@@ -1111,7 +1084,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._string_null_request(string_query=string_query, **kwargs)
+        request = self._string_null_request(
+            string_query=string_query, template_url=self.string_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1136,7 +1111,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._enum_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/enum/green%20color")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1148,8 +1123,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _enum_valid_request.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
 
     @distributed_trace
     def enum_valid(
@@ -1171,7 +1144,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._enum_valid_request(enum_query=enum_query, **kwargs)
+        request = self._enum_valid_request(
+            enum_query=enum_query, template_url=self.enum_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1196,7 +1171,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._enum_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/enum/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1208,8 +1183,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _enum_null_request.metadata = {"url": "/queries/enum/null"}  # type: ignore
 
     @distributed_trace
     def enum_null(
@@ -1231,7 +1204,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._enum_null_request(enum_query=enum_query, **kwargs)
+        request = self._enum_null_request(enum_query=enum_query, template_url=self.enum_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1256,7 +1229,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._byte_multi_byte_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/byte/multibyte")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1268,8 +1241,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _byte_multi_byte_request.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
     @distributed_trace
     def byte_multi_byte(
@@ -1291,7 +1262,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._byte_multi_byte_request(byte_query=byte_query, **kwargs)
+        request = self._byte_multi_byte_request(
+            byte_query=byte_query, template_url=self.byte_multi_byte.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1315,7 +1288,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._byte_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/byte/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1326,8 +1299,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _byte_empty_request.metadata = {"url": "/queries/byte/empty"}  # type: ignore
 
     @distributed_trace
     def byte_empty(
@@ -1345,8 +1316,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._byte_empty_request(**kwargs)
-
+        request = self._byte_empty_request(template_url=self.byte_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1371,7 +1341,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._byte_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/byte/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1383,8 +1353,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _byte_null_request.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
     @distributed_trace
     def byte_null(
@@ -1406,7 +1374,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._byte_null_request(byte_query=byte_query, **kwargs)
+        request = self._byte_null_request(byte_query=byte_query, template_url=self.byte_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1430,7 +1398,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._date_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/date/2012-01-01")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1441,8 +1409,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _date_valid_request.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
 
     @distributed_trace
     def date_valid(
@@ -1460,8 +1426,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._date_valid_request(**kwargs)
-
+        request = self._date_valid_request(template_url=self.date_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1486,7 +1451,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._date_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/date/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1498,8 +1463,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _date_null_request.metadata = {"url": "/queries/date/null"}  # type: ignore
 
     @distributed_trace
     def date_null(
@@ -1521,7 +1484,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._date_null_request(date_query=date_query, **kwargs)
+        request = self._date_null_request(date_query=date_query, template_url=self.date_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1545,7 +1508,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._date_time_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/datetime/2012-01-01T01%3A01%3A01Z")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1556,8 +1519,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _date_time_valid_request.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
 
     @distributed_trace
     def date_time_valid(
@@ -1575,8 +1536,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._date_time_valid_request(**kwargs)
-
+        request = self._date_time_valid_request(template_url=self.date_time_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1601,7 +1561,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._date_time_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/datetime/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1613,8 +1573,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _date_time_null_request.metadata = {"url": "/queries/datetime/null"}  # type: ignore
 
     @distributed_trace
     def date_time_null(
@@ -1636,7 +1594,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._date_time_null_request(date_time_query=date_time_query, **kwargs)
+        request = self._date_time_null_request(
+            date_time_query=date_time_query, template_url=self.date_time_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1661,7 +1621,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_csv_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/csv/string/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1673,8 +1633,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_csv_valid_request.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_csv_valid(
@@ -1698,7 +1656,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_csv_valid_request(array_query=array_query, **kwargs)
+        request = self._array_string_csv_valid_request(
+            array_query=array_query, template_url=self.array_string_csv_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1723,7 +1683,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_csv_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/csv/string/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1735,8 +1695,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_csv_null_request.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
 
     @distributed_trace
     def array_string_csv_null(
@@ -1758,7 +1716,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_csv_null_request(array_query=array_query, **kwargs)
+        request = self._array_string_csv_null_request(
+            array_query=array_query, template_url=self.array_string_csv_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1783,7 +1743,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_csv_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/csv/string/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1795,8 +1755,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_csv_empty_request.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
 
     @distributed_trace
     def array_string_csv_empty(
@@ -1818,7 +1776,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_csv_empty_request(array_query=array_query, **kwargs)
+        request = self._array_string_csv_empty_request(
+            array_query=array_query, template_url=self.array_string_csv_empty.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1843,7 +1803,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_no_collection_format_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/none/string/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1855,8 +1815,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_no_collection_format_empty_request.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
 
     @distributed_trace
     def array_string_no_collection_format_empty(
@@ -1879,7 +1837,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_no_collection_format_empty_request(array_query=array_query, **kwargs)
+        request = self._array_string_no_collection_format_empty_request(
+            array_query=array_query, template_url=self.array_string_no_collection_format_empty.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1904,7 +1864,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_ssv_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/ssv/string/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1916,8 +1876,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_ssv_valid_request.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_ssv_valid(
@@ -1941,7 +1899,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_ssv_valid_request(array_query=array_query, **kwargs)
+        request = self._array_string_ssv_valid_request(
+            array_query=array_query, template_url=self.array_string_ssv_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1966,7 +1926,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_tsv_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/tsv/string/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1978,8 +1938,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_tsv_valid_request.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_tsv_valid(
@@ -2003,7 +1961,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_tsv_valid_request(array_query=array_query, **kwargs)
+        request = self._array_string_tsv_valid_request(
+            array_query=array_query, template_url=self.array_string_tsv_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2028,7 +1988,7 @@ class QueriesOperations(object):
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._array_string_pipes_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/queries/array/pipes/string/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2040,8 +2000,6 @@ class QueriesOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _array_string_pipes_valid_request.metadata = {"url": "/queries/array/pipes/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_pipes_valid(
@@ -2065,7 +2023,9 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._array_string_pipes_valid_request(array_query=array_query, **kwargs)
+        request = self._array_string_pipes_valid_request(
+            array_query=array_query, template_url=self.array_string_pipes_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

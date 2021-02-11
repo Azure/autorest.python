@@ -15,7 +15,7 @@
 {% endif %}
 
     # Construct URL
-    url = kwargs.pop("template_url", self.{{ request.name }}.metadata['url'])  # type: ignore
+    url = kwargs.pop("template_url", {{ keywords.escape_str(request.url) }})
 {% if request.parameters.path %}
     {{ op_tools.path_format_arguments(request.parameters.path)|indent }}
     {{ op_tools.format_path_format_arguments()|indent }}
@@ -24,4 +24,3 @@
     {{ op_tools.query_parameters(request, async_mode)|indent }}
     {{ op_tools.header_parameters(code_model, request, async_mode)|indent }}
     {{ op_tools.body_parameters(request)|indent }}
-{{ request.name }}.metadata = {'url': {{ keywords.escape_str(request.url) }}}  # type: ignore

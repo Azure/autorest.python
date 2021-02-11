@@ -52,7 +52,10 @@ class SubscriptionInCredentialsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_method_global_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+        )
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -66,8 +69,6 @@ class SubscriptionInCredentialsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_method_global_valid_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_method_global_valid(self, **kwargs) -> None:
@@ -83,8 +84,9 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_method_global_valid_request(**kwargs)
-
+        request = self._post_method_global_valid_request(
+            template_url=self.post_method_global_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -104,7 +106,9 @@ class SubscriptionInCredentialsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_method_global_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url", "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
+        )
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -118,8 +122,6 @@ class SubscriptionInCredentialsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_method_global_null_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_method_global_null(self, **kwargs) -> None:
@@ -135,8 +137,9 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_method_global_null_request(**kwargs)
-
+        request = self._post_method_global_null_request(
+            template_url=self.post_method_global_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -157,7 +160,10 @@ class SubscriptionInCredentialsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_method_global_not_provided_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
+        )
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -173,8 +179,6 @@ class SubscriptionInCredentialsOperations:
 
         return self._client.post(url, query_parameters, header_parameters)
 
-    _post_method_global_not_provided_valid_request.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
-
     @distributed_trace_async
     async def post_method_global_not_provided_valid(self, **kwargs) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
@@ -189,8 +193,9 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_method_global_not_provided_valid_request(**kwargs)
-
+        request = self._post_method_global_not_provided_valid_request(
+            template_url=self.post_method_global_not_provided_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -210,7 +215,10 @@ class SubscriptionInCredentialsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_path_global_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+        )
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -224,8 +232,6 @@ class SubscriptionInCredentialsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_path_global_valid_request.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_path_global_valid(self, **kwargs) -> None:
@@ -241,8 +247,9 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_path_global_valid_request(**kwargs)
-
+        request = self._post_path_global_valid_request(
+            template_url=self.post_path_global_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -262,7 +269,10 @@ class SubscriptionInCredentialsOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._post_swagger_global_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop(
+            "template_url",
+            "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+        )
         path_format_arguments = {
             "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
@@ -276,8 +286,6 @@ class SubscriptionInCredentialsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.post(url, query_parameters, header_parameters)
-
-    _post_swagger_global_valid_request.metadata = {"url": "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_swagger_global_valid(self, **kwargs) -> None:
@@ -293,8 +301,9 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._post_swagger_global_valid_request(**kwargs)
-
+        request = self._post_swagger_global_valid_request(
+            template_url=self.post_swagger_global_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

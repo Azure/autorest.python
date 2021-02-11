@@ -44,7 +44,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head200_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/http/success/200')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -53,7 +53,6 @@ class HttpSuccessOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.head(url, query_parameters, header_parameters)
-    _head200_request.metadata = {'url': '/http/success/200'}  # type: ignore
 
     def head200(
         self,
@@ -73,8 +72,10 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head200_request(**kwargs)
-
+        request = self._head200_request(
+            template_url=self.head200.metadata['url'],
+            **kwargs
+        )
         kwargs.pop('content_type', None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -96,7 +97,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head204_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/http/success/204')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -105,7 +106,6 @@ class HttpSuccessOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.head(url, query_parameters, header_parameters)
-    _head204_request.metadata = {'url': '/http/success/204'}  # type: ignore
 
     def head204(
         self,
@@ -125,8 +125,10 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head204_request(**kwargs)
-
+        request = self._head204_request(
+            template_url=self.head204.metadata['url'],
+            **kwargs
+        )
         kwargs.pop('content_type', None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -148,7 +150,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> HttpRequest
 
         # Construct URL
-        url = kwargs.pop("template_url", self._head404_request.metadata['url'])  # type: ignore
+        url = kwargs.pop("template_url", '/http/success/404')
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -157,7 +159,6 @@ class HttpSuccessOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.head(url, query_parameters, header_parameters)
-    _head404_request.metadata = {'url': '/http/success/404'}  # type: ignore
 
     def head404(
         self,
@@ -177,8 +178,10 @@ class HttpSuccessOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        request = self._head404_request(**kwargs)
-
+        request = self._head404_request(
+            template_url=self.head404.metadata['url'],
+            **kwargs
+        )
         kwargs.pop('content_type', None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

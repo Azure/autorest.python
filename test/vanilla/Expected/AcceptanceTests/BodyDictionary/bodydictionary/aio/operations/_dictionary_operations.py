@@ -52,7 +52,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -62,8 +62,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_null_request.metadata = {"url": "/dictionary/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs) -> Dict[str, int]:
@@ -78,8 +76,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_request(**kwargs)
-
+        request = self._get_null_request(template_url=self.get_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -103,7 +100,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -113,8 +110,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_empty_request.metadata = {"url": "/dictionary/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> Dict[str, int]:
@@ -129,8 +124,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_request(**kwargs)
-
+        request = self._get_empty_request(template_url=self.get_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -155,7 +149,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -169,8 +163,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{str}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_empty_request.metadata = {"url": "/dictionary/empty"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, array_body: Dict[str, str], **kwargs) -> None:
@@ -187,7 +179,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_empty_request(body=array_body, **kwargs)
+        request = self._put_empty_request(body=array_body, template_url=self.put_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -207,7 +199,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_null_value_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/nullvalue")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -217,8 +209,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_null_value_request.metadata = {"url": "/dictionary/nullvalue"}  # type: ignore
 
     @distributed_trace_async
     async def get_null_value(self, **kwargs) -> Dict[str, str]:
@@ -233,8 +223,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_value_request(**kwargs)
-
+        request = self._get_null_value_request(template_url=self.get_null_value.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -258,7 +247,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_null_key_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/nullkey")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -268,8 +257,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_null_key_request.metadata = {"url": "/dictionary/nullkey"}  # type: ignore
 
     @distributed_trace_async
     async def get_null_key(self, **kwargs) -> Dict[str, str]:
@@ -284,8 +271,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_null_key_request(**kwargs)
-
+        request = self._get_null_key_request(template_url=self.get_null_key.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -309,7 +295,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_empty_string_key_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/keyemptystring")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -319,8 +305,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_empty_string_key_request.metadata = {"url": "/dictionary/keyemptystring"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_string_key(self, **kwargs) -> Dict[str, str]:
@@ -335,8 +319,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_empty_string_key_request(**kwargs)
-
+        request = self._get_empty_string_key_request(template_url=self.get_empty_string_key.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -360,7 +343,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_invalid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/invalid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -370,8 +353,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_invalid_request.metadata = {"url": "/dictionary/invalid"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs) -> Dict[str, str]:
@@ -386,8 +367,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_invalid_request(**kwargs)
-
+        request = self._get_invalid_request(template_url=self.get_invalid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -411,7 +391,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_boolean_tfft_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/boolean/tfft")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -421,8 +401,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_boolean_tfft_request.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_tfft(self, **kwargs) -> Dict[str, bool]:
@@ -437,8 +415,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_tfft_request(**kwargs)
-
+        request = self._get_boolean_tfft_request(template_url=self.get_boolean_tfft.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -463,7 +440,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_boolean_tfft_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/boolean/tfft")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -477,8 +454,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{bool}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_boolean_tfft_request.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace_async
     async def put_boolean_tfft(self, array_body: Dict[str, bool], **kwargs) -> None:
@@ -495,7 +470,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_boolean_tfft_request(body=array_body, **kwargs)
+        request = self._put_boolean_tfft_request(
+            body=array_body, template_url=self.put_boolean_tfft.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -515,7 +492,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_boolean_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/boolean/true.null.false")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -525,8 +502,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_boolean_invalid_null_request.metadata = {"url": "/dictionary/prim/boolean/true.null.false"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_invalid_null(self, **kwargs) -> Dict[str, bool]:
@@ -541,8 +516,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_invalid_null_request(**kwargs)
-
+        request = self._get_boolean_invalid_null_request(
+            template_url=self.get_boolean_invalid_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -566,7 +542,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_boolean_invalid_string_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/boolean/true.boolean.false")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -576,8 +552,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_boolean_invalid_string_request.metadata = {"url": "/dictionary/prim/boolean/true.boolean.false"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_invalid_string(self, **kwargs) -> Dict[str, bool]:
@@ -592,8 +566,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_boolean_invalid_string_request(**kwargs)
-
+        request = self._get_boolean_invalid_string_request(
+            template_url=self.get_boolean_invalid_string.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -617,7 +592,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_integer_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/integer/1.-1.3.300")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -627,8 +602,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_integer_valid_request.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def get_integer_valid(self, **kwargs) -> Dict[str, int]:
@@ -643,8 +616,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_integer_valid_request(**kwargs)
-
+        request = self._get_integer_valid_request(template_url=self.get_integer_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -669,7 +641,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_integer_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/integer/1.-1.3.300")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -683,8 +655,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{int}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_integer_valid_request.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def put_integer_valid(self, array_body: Dict[str, int], **kwargs) -> None:
@@ -701,7 +671,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_integer_valid_request(body=array_body, **kwargs)
+        request = self._put_integer_valid_request(
+            body=array_body, template_url=self.put_integer_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -721,7 +693,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_int_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/integer/1.null.zero")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -731,8 +703,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_int_invalid_null_request.metadata = {"url": "/dictionary/prim/integer/1.null.zero"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_invalid_null(self, **kwargs) -> Dict[str, int]:
@@ -747,8 +717,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_invalid_null_request(**kwargs)
-
+        request = self._get_int_invalid_null_request(template_url=self.get_int_invalid_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -772,7 +741,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_int_invalid_string_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/integer/1.integer.0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -782,8 +751,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_int_invalid_string_request.metadata = {"url": "/dictionary/prim/integer/1.integer.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_invalid_string(self, **kwargs) -> Dict[str, int]:
@@ -798,8 +765,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_int_invalid_string_request(**kwargs)
-
+        request = self._get_int_invalid_string_request(
+            template_url=self.get_int_invalid_string.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -823,7 +791,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_long_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/long/1.-1.3.300")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -833,8 +801,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_long_valid_request.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def get_long_valid(self, **kwargs) -> Dict[str, int]:
@@ -849,8 +815,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_valid_request(**kwargs)
-
+        request = self._get_long_valid_request(template_url=self.get_long_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -875,7 +840,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_long_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/long/1.-1.3.300")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -889,8 +854,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{long}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_long_valid_request.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def put_long_valid(self, array_body: Dict[str, int], **kwargs) -> None:
@@ -907,7 +870,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_long_valid_request(body=array_body, **kwargs)
+        request = self._put_long_valid_request(
+            body=array_body, template_url=self.put_long_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -927,7 +892,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_long_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/long/1.null.zero")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -937,8 +902,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_long_invalid_null_request.metadata = {"url": "/dictionary/prim/long/1.null.zero"}  # type: ignore
 
     @distributed_trace_async
     async def get_long_invalid_null(self, **kwargs) -> Dict[str, int]:
@@ -953,8 +916,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_invalid_null_request(**kwargs)
-
+        request = self._get_long_invalid_null_request(template_url=self.get_long_invalid_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -978,7 +940,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_long_invalid_string_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/long/1.integer.0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -988,8 +950,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_long_invalid_string_request.metadata = {"url": "/dictionary/prim/long/1.integer.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_long_invalid_string(self, **kwargs) -> Dict[str, int]:
@@ -1004,8 +964,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_long_invalid_string_request(**kwargs)
-
+        request = self._get_long_invalid_string_request(
+            template_url=self.get_long_invalid_string.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1029,7 +990,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_float_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/float/0--0.01-1.2e20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1039,8 +1000,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_float_valid_request.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_float_valid(self, **kwargs) -> Dict[str, float]:
@@ -1055,8 +1014,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_float_valid_request(**kwargs)
-
+        request = self._get_float_valid_request(template_url=self.get_float_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1081,7 +1039,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_float_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/float/0--0.01-1.2e20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1095,8 +1053,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{float}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_float_valid_request.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def put_float_valid(self, array_body: Dict[str, float], **kwargs) -> None:
@@ -1113,7 +1069,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_float_valid_request(body=array_body, **kwargs)
+        request = self._put_float_valid_request(
+            body=array_body, template_url=self.put_float_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1133,7 +1091,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_float_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/float/0.0-null-1.2e20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1143,8 +1101,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_float_invalid_null_request.metadata = {"url": "/dictionary/prim/float/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_float_invalid_null(self, **kwargs) -> Dict[str, float]:
@@ -1159,8 +1115,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_float_invalid_null_request(**kwargs)
-
+        request = self._get_float_invalid_null_request(
+            template_url=self.get_float_invalid_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1184,7 +1141,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_float_invalid_string_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/float/1.number.0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1194,8 +1151,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_float_invalid_string_request.metadata = {"url": "/dictionary/prim/float/1.number.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_float_invalid_string(self, **kwargs) -> Dict[str, float]:
@@ -1210,8 +1165,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_float_invalid_string_request(**kwargs)
-
+        request = self._get_float_invalid_string_request(
+            template_url=self.get_float_invalid_string.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1235,7 +1191,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_double_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/double/0--0.01-1.2e20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1245,8 +1201,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_double_valid_request.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_double_valid(self, **kwargs) -> Dict[str, float]:
@@ -1261,8 +1215,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_double_valid_request(**kwargs)
-
+        request = self._get_double_valid_request(template_url=self.get_double_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1287,7 +1240,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_double_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/double/0--0.01-1.2e20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1301,8 +1254,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{float}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_double_valid_request.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def put_double_valid(self, array_body: Dict[str, float], **kwargs) -> None:
@@ -1319,7 +1270,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_double_valid_request(body=array_body, **kwargs)
+        request = self._put_double_valid_request(
+            body=array_body, template_url=self.put_double_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1339,7 +1292,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_double_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/double/0.0-null-1.2e20")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1349,8 +1302,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_double_invalid_null_request.metadata = {"url": "/dictionary/prim/double/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_double_invalid_null(self, **kwargs) -> Dict[str, float]:
@@ -1365,8 +1316,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_double_invalid_null_request(**kwargs)
-
+        request = self._get_double_invalid_null_request(
+            template_url=self.get_double_invalid_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1390,7 +1342,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_double_invalid_string_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/double/1.number.0")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1400,8 +1352,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_double_invalid_string_request.metadata = {"url": "/dictionary/prim/double/1.number.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_double_invalid_string(self, **kwargs) -> Dict[str, float]:
@@ -1416,8 +1366,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_double_invalid_string_request(**kwargs)
-
+        request = self._get_double_invalid_string_request(
+            template_url=self.get_double_invalid_string.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1441,7 +1392,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_string_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/string/foo1.foo2.foo3")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1451,8 +1402,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_string_valid_request.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def get_string_valid(self, **kwargs) -> Dict[str, str]:
@@ -1467,8 +1416,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_valid_request(**kwargs)
-
+        request = self._get_string_valid_request(template_url=self.get_string_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1493,7 +1441,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_string_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/string/foo1.foo2.foo3")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1507,8 +1455,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{str}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_string_valid_request.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def put_string_valid(self, array_body: Dict[str, str], **kwargs) -> None:
@@ -1525,7 +1471,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_string_valid_request(body=array_body, **kwargs)
+        request = self._put_string_valid_request(
+            body=array_body, template_url=self.put_string_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1545,7 +1493,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_string_with_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/string/foo.null.foo2")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1555,8 +1503,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_string_with_null_request.metadata = {"url": "/dictionary/prim/string/foo.null.foo2"}  # type: ignore
 
     @distributed_trace_async
     async def get_string_with_null(self, **kwargs) -> Dict[str, str]:
@@ -1571,8 +1517,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_with_null_request(**kwargs)
-
+        request = self._get_string_with_null_request(template_url=self.get_string_with_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1596,7 +1541,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_string_with_invalid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/string/foo.123.foo2")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1606,8 +1551,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_string_with_invalid_request.metadata = {"url": "/dictionary/prim/string/foo.123.foo2"}  # type: ignore
 
     @distributed_trace_async
     async def get_string_with_invalid(self, **kwargs) -> Dict[str, str]:
@@ -1622,8 +1565,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_string_with_invalid_request(**kwargs)
-
+        request = self._get_string_with_invalid_request(
+            template_url=self.get_string_with_invalid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1647,7 +1591,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_date_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1657,8 +1601,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_date_valid_request.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_valid(self, **kwargs) -> Dict[str, datetime.date]:
@@ -1673,8 +1615,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_valid_request(**kwargs)
-
+        request = self._get_date_valid_request(template_url=self.get_date_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1699,7 +1640,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_date_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1713,8 +1654,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{date}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_date_valid_request.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_valid(self, array_body: Dict[str, datetime.date], **kwargs) -> None:
@@ -1731,7 +1670,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_valid_request(body=array_body, **kwargs)
+        request = self._put_date_valid_request(
+            body=array_body, template_url=self.put_date_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1751,7 +1692,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_date_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date/invalidnull")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1761,8 +1702,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_date_invalid_null_request.metadata = {"url": "/dictionary/prim/date/invalidnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_invalid_null(self, **kwargs) -> Dict[str, datetime.date]:
@@ -1777,8 +1716,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_invalid_null_request(**kwargs)
-
+        request = self._get_date_invalid_null_request(template_url=self.get_date_invalid_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1802,7 +1740,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_date_invalid_chars_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date/invalidchars")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1812,8 +1750,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_date_invalid_chars_request.metadata = {"url": "/dictionary/prim/date/invalidchars"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_invalid_chars(self, **kwargs) -> Dict[str, datetime.date]:
@@ -1828,8 +1764,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_invalid_chars_request(**kwargs)
-
+        request = self._get_date_invalid_chars_request(
+            template_url=self.get_date_invalid_chars.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1853,7 +1790,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_date_time_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date-time/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1863,8 +1800,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_date_time_valid_request.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_valid(self, **kwargs) -> Dict[str, datetime.datetime]:
@@ -1880,8 +1815,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_valid_request(**kwargs)
-
+        request = self._get_date_time_valid_request(template_url=self.get_date_time_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1906,7 +1840,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_date_time_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date-time/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1920,8 +1854,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{iso-8601}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_date_time_valid_request.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time_valid(self, array_body: Dict[str, datetime.datetime], **kwargs) -> None:
@@ -1939,7 +1871,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_time_valid_request(body=array_body, **kwargs)
+        request = self._put_date_time_valid_request(
+            body=array_body, template_url=self.put_date_time_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1959,7 +1893,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_date_time_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date-time/invalidnull")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1969,8 +1903,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_date_time_invalid_null_request.metadata = {"url": "/dictionary/prim/date-time/invalidnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_invalid_null(self, **kwargs) -> Dict[str, datetime.datetime]:
@@ -1985,8 +1917,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_invalid_null_request(**kwargs)
-
+        request = self._get_date_time_invalid_null_request(
+            template_url=self.get_date_time_invalid_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2010,7 +1943,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_date_time_invalid_chars_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date-time/invalidchars")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2020,8 +1953,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_date_time_invalid_chars_request.metadata = {"url": "/dictionary/prim/date-time/invalidchars"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_invalid_chars(self, **kwargs) -> Dict[str, datetime.datetime]:
@@ -2036,8 +1967,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_invalid_chars_request(**kwargs)
-
+        request = self._get_date_time_invalid_chars_request(
+            template_url=self.get_date_time_invalid_chars.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2061,7 +1993,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_date_time_rfc1123_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date-time-rfc1123/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2071,8 +2003,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_date_time_rfc1123_valid_request.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_rfc1123_valid(self, **kwargs) -> Dict[str, datetime.datetime]:
@@ -2088,8 +2018,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_date_time_rfc1123_valid_request(**kwargs)
-
+        request = self._get_date_time_rfc1123_valid_request(
+            template_url=self.get_date_time_rfc1123_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2114,7 +2045,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_date_time_rfc1123_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/date-time-rfc1123/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2128,8 +2059,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{rfc-1123}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_date_time_rfc1123_valid_request.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(self, array_body: Dict[str, datetime.datetime], **kwargs) -> None:
@@ -2147,7 +2076,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_date_time_rfc1123_valid_request(body=array_body, **kwargs)
+        request = self._put_date_time_rfc1123_valid_request(
+            body=array_body, template_url=self.put_date_time_rfc1123_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2167,7 +2098,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_duration_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/duration/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2177,8 +2108,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_duration_valid_request.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_duration_valid(self, **kwargs) -> Dict[str, datetime.timedelta]:
@@ -2193,8 +2122,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_duration_valid_request(**kwargs)
-
+        request = self._get_duration_valid_request(template_url=self.get_duration_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2219,7 +2147,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_duration_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/duration/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2233,8 +2161,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{duration}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_duration_valid_request.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_duration_valid(self, array_body: Dict[str, datetime.timedelta], **kwargs) -> None:
@@ -2251,7 +2177,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_duration_valid_request(body=array_body, **kwargs)
+        request = self._put_duration_valid_request(
+            body=array_body, template_url=self.put_duration_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2271,7 +2199,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_byte_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/byte/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2281,8 +2209,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_byte_valid_request.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_byte_valid(self, **kwargs) -> Dict[str, bytearray]:
@@ -2298,8 +2224,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_byte_valid_request(**kwargs)
-
+        request = self._get_byte_valid_request(template_url=self.get_byte_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2324,7 +2249,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_byte_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/byte/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2338,8 +2263,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{bytearray}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_byte_valid_request.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_byte_valid(self, array_body: Dict[str, bytearray], **kwargs) -> None:
@@ -2357,7 +2280,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_byte_valid_request(body=array_body, **kwargs)
+        request = self._put_byte_valid_request(
+            body=array_body, template_url=self.put_byte_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2377,7 +2302,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_byte_invalid_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/byte/invalidnull")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2387,8 +2312,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_byte_invalid_null_request.metadata = {"url": "/dictionary/prim/byte/invalidnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_byte_invalid_null(self, **kwargs) -> Dict[str, bytearray]:
@@ -2404,8 +2327,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_byte_invalid_null_request(**kwargs)
-
+        request = self._get_byte_invalid_null_request(template_url=self.get_byte_invalid_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2429,7 +2351,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_base64_url_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/prim/base64url/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2439,8 +2361,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_base64_url_request.metadata = {"url": "/dictionary/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_base64_url(self, **kwargs) -> Dict[str, bytes]:
@@ -2456,8 +2376,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_base64_url_request(**kwargs)
-
+        request = self._get_base64_url_request(template_url=self.get_base64_url.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2481,7 +2400,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_complex_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/complex/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2491,8 +2410,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_complex_null_request.metadata = {"url": "/dictionary/complex/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_null(self, **kwargs) -> Optional[Dict[str, "_models.Widget"]]:
@@ -2507,8 +2424,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_null_request(**kwargs)
-
+        request = self._get_complex_null_request(template_url=self.get_complex_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2532,7 +2448,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_complex_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/complex/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2542,8 +2458,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_complex_empty_request.metadata = {"url": "/dictionary/complex/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_empty(self, **kwargs) -> Dict[str, "_models.Widget"]:
@@ -2558,8 +2472,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_empty_request(**kwargs)
-
+        request = self._get_complex_empty_request(template_url=self.get_complex_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2583,7 +2496,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_complex_item_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/complex/itemnull")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2593,8 +2506,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_complex_item_null_request.metadata = {"url": "/dictionary/complex/itemnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_item_null(self, **kwargs) -> Dict[str, "_models.Widget"]:
@@ -2610,8 +2521,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_item_null_request(**kwargs)
-
+        request = self._get_complex_item_null_request(template_url=self.get_complex_item_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2635,7 +2545,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_complex_item_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/complex/itemempty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2645,8 +2555,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_complex_item_empty_request.metadata = {"url": "/dictionary/complex/itemempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_item_empty(self, **kwargs) -> Dict[str, "_models.Widget"]:
@@ -2662,8 +2570,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_item_empty_request(**kwargs)
-
+        request = self._get_complex_item_empty_request(
+            template_url=self.get_complex_item_empty.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2687,7 +2596,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_complex_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/complex/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2697,8 +2606,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_complex_valid_request.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_valid(self, **kwargs) -> Dict[str, "_models.Widget"]:
@@ -2714,8 +2621,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_complex_valid_request(**kwargs)
-
+        request = self._get_complex_valid_request(template_url=self.get_complex_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2740,7 +2646,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_complex_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/complex/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2754,8 +2660,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{Widget}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_complex_valid_request.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_valid(self, array_body: Dict[str, "_models.Widget"], **kwargs) -> None:
@@ -2773,7 +2677,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_complex_valid_request(body=array_body, **kwargs)
+        request = self._put_complex_valid_request(
+            body=array_body, template_url=self.put_complex_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2793,7 +2699,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_array_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/array/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2803,8 +2709,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_array_null_request.metadata = {"url": "/dictionary/array/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_null(self, **kwargs) -> Optional[Dict[str, List[str]]]:
@@ -2819,8 +2723,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_null_request(**kwargs)
-
+        request = self._get_array_null_request(template_url=self.get_array_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2844,7 +2747,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_array_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/array/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2854,8 +2757,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_array_empty_request.metadata = {"url": "/dictionary/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_empty(self, **kwargs) -> Dict[str, List[str]]:
@@ -2870,8 +2771,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_empty_request(**kwargs)
-
+        request = self._get_array_empty_request(template_url=self.get_array_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2895,7 +2795,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_array_item_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/array/itemnull")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2905,8 +2805,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_array_item_null_request.metadata = {"url": "/dictionary/array/itemnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_item_null(self, **kwargs) -> Dict[str, List[str]]:
@@ -2921,8 +2819,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_item_null_request(**kwargs)
-
+        request = self._get_array_item_null_request(template_url=self.get_array_item_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2946,7 +2843,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_array_item_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/array/itemempty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2956,8 +2853,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_array_item_empty_request.metadata = {"url": "/dictionary/array/itemempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_item_empty(self, **kwargs) -> Dict[str, List[str]]:
@@ -2972,8 +2867,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_item_empty_request(**kwargs)
-
+        request = self._get_array_item_empty_request(template_url=self.get_array_item_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2997,7 +2891,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_array_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/array/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3007,8 +2901,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_array_valid_request.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_valid(self, **kwargs) -> Dict[str, List[str]]:
@@ -3024,8 +2916,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_array_valid_request(**kwargs)
-
+        request = self._get_array_valid_request(template_url=self.get_array_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3050,7 +2941,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_array_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/array/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3064,8 +2955,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{[str]}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_array_valid_request.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_array_valid(self, array_body: Dict[str, List[str]], **kwargs) -> None:
@@ -3083,7 +2972,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_array_valid_request(body=array_body, **kwargs)
+        request = self._put_array_valid_request(
+            body=array_body, template_url=self.put_array_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3103,7 +2994,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_dictionary_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/dictionary/null")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3113,8 +3004,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_dictionary_null_request.metadata = {"url": "/dictionary/dictionary/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_null(self, **kwargs) -> Dict[str, Dict[str, str]]:
@@ -3129,8 +3018,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_null_request(**kwargs)
-
+        request = self._get_dictionary_null_request(template_url=self.get_dictionary_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3154,7 +3042,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_dictionary_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/dictionary/empty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3164,8 +3052,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_dictionary_empty_request.metadata = {"url": "/dictionary/dictionary/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_empty(self, **kwargs) -> Dict[str, Dict[str, str]]:
@@ -3180,8 +3066,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_empty_request(**kwargs)
-
+        request = self._get_dictionary_empty_request(template_url=self.get_dictionary_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3205,7 +3090,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_dictionary_item_null_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/dictionary/itemnull")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3215,8 +3100,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_dictionary_item_null_request.metadata = {"url": "/dictionary/dictionary/itemnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_item_null(self, **kwargs) -> Dict[str, Dict[str, str]]:
@@ -3232,8 +3115,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_item_null_request(**kwargs)
-
+        request = self._get_dictionary_item_null_request(
+            template_url=self.get_dictionary_item_null.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3257,7 +3141,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_dictionary_item_empty_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/dictionary/itemempty")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3267,8 +3151,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_dictionary_item_empty_request.metadata = {"url": "/dictionary/dictionary/itemempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_item_empty(self, **kwargs) -> Dict[str, Dict[str, str]]:
@@ -3284,8 +3166,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_item_empty_request(**kwargs)
-
+        request = self._get_dictionary_item_empty_request(
+            template_url=self.get_dictionary_item_empty.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3309,7 +3192,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_dictionary_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/dictionary/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3319,8 +3202,6 @@ class DictionaryOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_dictionary_valid_request.metadata = {"url": "/dictionary/dictionary/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_valid(self, **kwargs) -> Dict[str, Dict[str, str]]:
@@ -3337,8 +3218,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_dictionary_valid_request(**kwargs)
-
+        request = self._get_dictionary_valid_request(template_url=self.get_dictionary_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3363,7 +3243,7 @@ class DictionaryOperations:
         accept = "application/json"
 
         # Construct URL
-        url = kwargs.pop("template_url", self._put_dictionary_valid_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/dictionary/dictionary/valid")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -3377,8 +3257,6 @@ class DictionaryOperations:
         body_content = self._serialize.body(body, "{{str}}")
         body_content_kwargs["content"] = body_content
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
-    _put_dictionary_valid_request.metadata = {"url": "/dictionary/dictionary/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_dictionary_valid(self, array_body: Dict[str, Dict[str, str]], **kwargs) -> None:
@@ -3397,7 +3275,9 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_dictionary_valid_request(body=array_body, **kwargs)
+        request = self._put_dictionary_valid_request(
+            body=array_body, template_url=self.put_dictionary_valid.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

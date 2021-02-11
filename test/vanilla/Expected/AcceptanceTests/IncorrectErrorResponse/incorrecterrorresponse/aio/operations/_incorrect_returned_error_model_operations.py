@@ -29,7 +29,7 @@ class IncorrectReturnedErrorModelOperationsMixin:
     def _get_incorrect_error_from_server_request(self, **kwargs) -> HttpRequest:
 
         # Construct URL
-        url = kwargs.pop("template_url", self._get_incorrect_error_from_server_request.metadata["url"])  # type: ignore
+        url = kwargs.pop("template_url", "/incorrectError")
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -38,8 +38,6 @@ class IncorrectReturnedErrorModelOperationsMixin:
         header_parameters = {}  # type: Dict[str, Any]
 
         return self._client.get(url, query_parameters, header_parameters)
-
-    _get_incorrect_error_from_server_request.metadata = {"url": "/incorrectError"}  # type: ignore
 
     @distributed_trace_async
     async def get_incorrect_error_from_server(self, **kwargs) -> None:
@@ -55,8 +53,9 @@ class IncorrectReturnedErrorModelOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._get_incorrect_error_from_server_request(**kwargs)
-
+        request = self._get_incorrect_error_from_server_request(
+            template_url=self.get_incorrect_error_from_server.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
