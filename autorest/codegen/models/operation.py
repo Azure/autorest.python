@@ -12,7 +12,6 @@ from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 from .parameter import Parameter
 from .parameter_list import ParameterList
-from .schema_response import SchemaResponse
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .request import Request
