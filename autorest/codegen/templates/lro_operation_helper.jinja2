@@ -64,11 +64,7 @@
     {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
     {% if request.parameters.path %}
     {% set path_format_arguments = ", path_format_arguments=path_format_arguments" %}
-    path_format_arguments = {
-        {% for path_parameter in request.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
-        {% endfor %}
-    }
+    {{ op_tools.path_format_arguments(request.parameters.path)|indent }}
 
     {% endif %}
     if polling is True: polling_method = {{ operation.get_default_polling_method(async_mode, code_model.options["azure_arm"]) }}(lro_delay{{ lro_options }}{{ path_format_arguments }},  **kwargs)

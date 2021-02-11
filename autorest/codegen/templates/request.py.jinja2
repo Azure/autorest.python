@@ -17,12 +17,8 @@
     # Construct URL
     url = kwargs.pop("template_url", self.{{ request.name }}.metadata['url'])  # type: ignore
 {% if request.parameters.path %}
-    path_format_arguments = {
-{% for path_parameter in request.parameters.path %}
-        '{{ path_parameter.rest_api_name }}': {{ request.build_serialize_data_call(path_parameter, "url") }},
-{% endfor %}
-    }
-    url = self._client.format_url(url, **path_format_arguments)
+    {{ op_tools.path_format_arguments(request.parameters.path)|indent }}
+    {{ op_tools.format_path_format_arguments()|indent }}
 {% endif %}
 
     {{ op_tools.query_parameters(request, async_mode)|indent }}
