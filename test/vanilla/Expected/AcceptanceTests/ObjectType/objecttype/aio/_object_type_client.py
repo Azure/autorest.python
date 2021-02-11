@@ -9,7 +9,7 @@
 from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
-from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 if TYPE_CHECKING:
@@ -37,14 +37,14 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._serialize.client_side_validation = False
         self._deserialize = Deserializer(client_models)
 
-    async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> HttpResponse:
+    async def _send_request(self, http_request: HttpRequest, **kwargs: Any) -> AsyncHttpResponse:
         """Runs the network request through the client's chained policies.
 
         :param http_request: The network request you want to make. Required.
         :type http_request: ~azure.core.pipeline.transport.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to True.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.pipeline.transport.HttpResponse
+        :rtype: ~azure.core.pipeline.transport.AsyncHttpResponse
         """
         http_request.url = self._client.format_url(http_request.url)
         stream = kwargs.pop("stream", True)
