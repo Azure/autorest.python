@@ -364,8 +364,6 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "RefColorConstant")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -389,7 +387,10 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.get("content_type", "application/json")
         _enum_string_body = _models.RefColorConstant(field1=field1)
+        _enum_string_body = self._serialize.body(_enum_string_body, "RefColorConstant")
+
         request = self._put_referenced_constant_request(
             body=_enum_string_body, template_url=self.put_referenced_constant.metadata["url"], **kwargs
         )

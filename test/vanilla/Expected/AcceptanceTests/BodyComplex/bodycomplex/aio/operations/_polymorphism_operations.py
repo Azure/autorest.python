@@ -111,8 +111,6 @@ class PolymorphismOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Fish")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -162,6 +160,9 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        complex_body = self._serialize.body(complex_body, "Fish")
 
         request = self._put_valid_request(body=complex_body, template_url=self.put_valid.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -396,8 +397,6 @@ class PolymorphismOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Salmon")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -416,6 +415,9 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        complex_body = self._serialize.body(complex_body, "Salmon")
 
         request = self._put_complicated_request(
             body=complex_body, template_url=self.put_complicated.metadata["url"], **kwargs
@@ -451,8 +453,6 @@ class PolymorphismOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Salmon")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -470,6 +470,9 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Salmon"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        complex_body = self._serialize.body(complex_body, "Salmon")
 
         request = self._put_missing_discriminator_request(
             body=complex_body, template_url=self.put_missing_discriminator.metadata["url"], **kwargs
@@ -509,8 +512,6 @@ class PolymorphismOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Fish")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -555,6 +556,9 @@ class PolymorphismOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        complex_body = self._serialize.body(complex_body, "Fish")
 
         request = self._put_valid_missing_required_request(
             body=complex_body, template_url=self.put_valid_missing_required.metadata["url"], **kwargs

@@ -90,8 +90,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Horse")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -109,6 +107,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        horse = self._serialize.body(horse, "Horse")
 
         request = self._put_horse_request(body=horse, template_url=self.put_horse.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -193,8 +194,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Pet")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -213,7 +212,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.get("content_type", "application/json")
         _pet = _models.Pet(name=name)
+        _pet = self._serialize.body(_pet, "Pet")
+
         request = self._put_pet_request(body=_pet, template_url=self.put_pet.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
@@ -297,8 +299,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Feline")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -316,6 +316,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        feline = self._serialize.body(feline, "Feline")
 
         request = self._put_feline_request(body=feline, template_url=self.put_feline.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -400,8 +403,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Cat")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -419,6 +420,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        cat = self._serialize.body(cat, "Cat")
 
         request = self._put_cat_request(body=cat, template_url=self.put_cat.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -504,8 +508,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "Kitten")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -525,6 +527,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        kitten = self._serialize.body(kitten, "Kitten")
 
         request = self._put_kitten_request(body=kitten, template_url=self.put_kitten.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)

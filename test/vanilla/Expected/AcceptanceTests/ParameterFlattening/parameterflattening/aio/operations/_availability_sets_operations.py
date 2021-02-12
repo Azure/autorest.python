@@ -68,8 +68,6 @@ class AvailabilitySetsOperations:
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "AvailabilitySetUpdateParameters")
-
         body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -92,7 +90,10 @@ class AvailabilitySetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.get("content_type", "application/json")
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
+        _tags = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
+
         request = self._update_request(
             resource_group_name=resource_group_name,
             avset=avset,

@@ -63,8 +63,6 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "PetAPTrue")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -82,6 +80,9 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPTrue"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        create_parameters = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = self._create_ap_true_request(
             body=create_parameters, template_url=self.create_ap_true.metadata["url"], **kwargs
@@ -121,8 +122,6 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "CatAPTrue")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -140,6 +139,9 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CatAPTrue"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        create_parameters = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = self._create_cat_ap_true_request(
             body=create_parameters, template_url=self.create_cat_ap_true.metadata["url"], **kwargs
@@ -179,8 +181,6 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "PetAPObject")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -198,6 +198,9 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPObject"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        create_parameters = self._serialize.body(create_parameters, "PetAPObject")
 
         request = self._create_ap_object_request(
             body=create_parameters, template_url=self.create_ap_object.metadata["url"], **kwargs
@@ -237,8 +240,6 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "PetAPString")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -256,6 +257,9 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPString"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        create_parameters = self._serialize.body(create_parameters, "PetAPString")
 
         request = self._create_ap_string_request(
             body=create_parameters, template_url=self.create_ap_string.metadata["url"], **kwargs
@@ -295,8 +299,6 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "PetAPInProperties")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -316,6 +318,9 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInProperties"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        create_parameters = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = self._create_ap_in_properties_request(
             body=create_parameters, template_url=self.create_ap_in_properties.metadata["url"], **kwargs
@@ -357,8 +362,6 @@ class PetsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "PetAPInPropertiesWithAPString")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -378,6 +381,9 @@ class PetsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        create_parameters = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = self._create_ap_in_properties_with_ap_string_request(
             body=create_parameters, template_url=self.create_ap_in_properties_with_ap_string.metadata["url"], **kwargs

@@ -361,9 +361,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "ResourceCollection")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -383,6 +380,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        if resource_complex_object is not None:
+            resource_complex_object = self._serialize.body(resource_complex_object, "ResourceCollection")
 
         request = self._put_resource_collection_request(
             body=resource_complex_object, template_url=self.put_resource_collection.metadata["url"], **kwargs
@@ -468,9 +469,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "SimpleProduct")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -490,6 +488,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        if simple_body_product is not None:
+            simple_body_product = self._serialize.body(simple_body_product, "SimpleProduct")
 
         request = self._put_simple_product_request(
             body=simple_body_product, template_url=self.put_simple_product.metadata["url"], **kwargs
@@ -531,9 +533,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "SimpleProduct")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -570,6 +569,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.get("content_type", "application/json")
         _simple_body_product = _models.SimpleProduct(
             product_id=product_id,
             description=description,
@@ -577,6 +577,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             generic_value=generic_value,
             odata_value=odata_value,
         )
+        if _simple_body_product is not None:
+            _simple_body_product = self._serialize.body(_simple_body_product, "SimpleProduct")
+
         request = self._post_flattened_simple_product_request(
             body=_simple_body_product, template_url=self.post_flattened_simple_product.metadata["url"], **kwargs
         )
@@ -621,9 +624,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "SimpleProduct")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -643,6 +643,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
 
         _name = None
         _simple_body_product = None
@@ -666,6 +668,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             generic_value=_generic_value,
             odata_value=_odata_value,
         )
+        if _simple_body_product is not None:
+            _simple_body_product = self._serialize.body(_simple_body_product, "SimpleProduct")
+
         request = self._put_simple_product_with_grouping_request(
             name=_name,
             body=_simple_body_product,

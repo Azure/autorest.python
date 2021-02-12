@@ -126,9 +126,6 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "Product")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -152,6 +149,10 @@ class AutoRestValidationTestOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        if body is not None:
+            body = self._serialize.body(body, "Product")
 
         request = self._validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -248,9 +249,6 @@ class AutoRestValidationTestOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "Product")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -268,6 +266,10 @@ class AutoRestValidationTestOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        if body is not None:
+            body = self._serialize.body(body, "Product")
 
         request = self._post_with_constant_in_body_request(
             body=body, template_url=self.post_with_constant_in_body.metadata["url"], **kwargs

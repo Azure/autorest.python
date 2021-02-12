@@ -84,8 +84,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "StorageAccountCheckNameAvailabilityParameters")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -110,6 +108,9 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CheckNameAvailabilityResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        account_name = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = self._check_name_availability_request(
             body=account_name, template_url=self.check_name_availability.metadata["url"], **kwargs
@@ -166,8 +167,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "StorageAccountCreateParameters")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -182,6 +181,9 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        parameters = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
         request = self._create_initial_request(
             resource_group_name=resource_group_name,
@@ -481,8 +483,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "StorageAccountUpdateParameters")
-
         body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -520,6 +520,9 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        parameters = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
         request = self._update_request(
             resource_group_name=resource_group_name,
@@ -840,8 +843,6 @@ class StorageAccountsOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "StorageAccountRegenerateKeyParameters")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -873,7 +874,10 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        content_type = kwargs.get("content_type", "application/json")
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        _regenerate_key = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
+
         request = self._regenerate_key_request(
             resource_group_name=resource_group_name,
             account_name=account_name,

@@ -46,9 +46,6 @@ class PollingPagingExampleOperationsMixin(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, 'Product')
-
         body_content_kwargs['content'] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -63,6 +60,10 @@ class PollingPagingExampleOperationsMixin(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        if product is not None:
+            product = self._serialize.body(product, 'Product')
 
         request = self._basic_polling_initial_request(
             body=product,

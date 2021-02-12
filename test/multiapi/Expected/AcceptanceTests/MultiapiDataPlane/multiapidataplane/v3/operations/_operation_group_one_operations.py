@@ -66,9 +66,6 @@ class OperationGroupOneOperations(object):
         header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, 'ModelThree')
-
         body_content_kwargs['content'] = body
         return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -92,6 +89,10 @@ class OperationGroupOneOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        if parameter_one is not None:
+            parameter_one = self._serialize.body(parameter_one, 'ModelThree')
 
         request = self._test_two_request(
             body=parameter_one,

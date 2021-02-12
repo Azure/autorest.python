@@ -81,7 +81,9 @@ class Request(BaseModel):
     @property
     def has_body_param_with_object_schema(self) -> bool:
         try:
-            parameters = self.parameters.body + self.multiple_media_type_parameters.body
+            parameters = self.parameters.body
+            if self.multiple_media_type_parameters and self.multiple_media_type_parameters.has_body:
+                parameters += self.multiple_media_type_parameters.body
             return any([p for p in parameters if p.has_object_schema])
         except ValueError:
             return False
