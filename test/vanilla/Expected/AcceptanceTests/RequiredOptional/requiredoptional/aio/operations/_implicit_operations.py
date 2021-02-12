@@ -216,10 +216,9 @@ class ImplicitOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "str")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "str")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async

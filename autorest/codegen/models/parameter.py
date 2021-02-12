@@ -12,6 +12,7 @@ from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .list_schema import ListSchema
 from .constant_schema import ConstantSchema
+from .object_schema import ObjectSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -170,6 +171,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             # If I'm a kwarg, don't include in the signature
             or self.is_kwarg
         )
+
+    @property
+    def has_object_schema(self) -> bool:
+        return isinstance(self.schema, ObjectSchema)
 
     @property
     def in_method_code(self) -> bool:

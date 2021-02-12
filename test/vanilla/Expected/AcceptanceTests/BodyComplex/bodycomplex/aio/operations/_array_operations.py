@@ -111,8 +111,9 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "ArrayWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "ArrayWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -211,8 +212,9 @@ class ArrayOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "ArrayWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "ArrayWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async

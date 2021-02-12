@@ -86,7 +86,7 @@ class OperationGroupTwoOperations:
             template_url=self.test_four.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

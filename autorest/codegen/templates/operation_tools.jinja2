@@ -159,14 +159,11 @@ path_format_arguments = {
 serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
 {% endif %}
 {% if request.parameters.body[0].required %}
-body_content = self._serialize.body({{ request.parameters.body[0].serialized_name }}, '{{ request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+{{ request.parameters.body[0].serialized_name }} = self._serialize.body({{ request.parameters.body[0].serialized_name }}, '{{ request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
 {% else %}
 if {{ request.parameters.body[0].serialized_name }} is not None:
-    body_content = self._serialize.body({{ request.parameters.body[0].serialized_name }}, '{{ request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
-else:
-    body_content = None
-{% endif %}
-body_content_kwargs['content'] = body_content{% endmacro %}
+    {{ request.parameters.body[0].serialized_name }} = self._serialize.body({{ request.parameters.body[0].serialized_name }}, '{{ request.parameters.body[0].serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+{% endif %}{% endmacro %}
 
 {% macro set_body_content_kwarg(request, schema_request) %}
 {% if request.multipart %}
@@ -174,8 +171,11 @@ body_content_kwargs['form_content'] = {{ request.parameters.body[0].serialized_n
 {% elif schema_request.is_stream_request %}
 body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
-{{ non_stream_body_params(schema_request, send_xml) }}{% endif %}{% endmacro %}
+    {% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
+    {% if not request.has_body_param_with_object_schema %}
+{{ non_stream_body_params(request, send_xml) }}
+    {% endif %}
+body_content_kwargs['content'] = body{% endif %}{% endmacro %}
 
 {# write body parameters #}
 {% macro body_parameters(request, http_verb=None, returns_request=True) %}
@@ -248,6 +248,9 @@ return 200 <= response.status_code <= 299
 
 {% macro get_request(operation, request, url=None) %}
 {% set template_url = url or "self." + operation.name + ".metadata['url']" %}
+{% if request.has_body_param_with_object_schema %}
+content_type = kwargs.get("content_type", {{ request.default_content_type }})
+{% endif %}
 {% if operation.parameters.grouped %}
 {{ grouped_parameters(operation) }}
 {%- endif -%}
@@ -258,8 +261,20 @@ _body = {
     '{{ param.rest_api_name }}': {{ param.serialized_name }},
     {% endfor %}
 }
-{% elif operation.parameters.is_flattened %}
+{% endif %}
+{% if operation.parameters.is_flattened %}
 {{ operation.parameters.build_flattened_object() }}
+{% endif %}
+{% if request.has_body_param_with_object_schema %}
+{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
+    {% if (request.schema_requests | length) == 1 %}
+{{ non_stream_body_params(request.schema_requests[0], send_xml) }}
+    {% else %}
+        {% for schema_request in request.schema_requests | rejectattr('is_stream_request') %}
+{{ "el" if not loop.first }}if content_type.split(";")[0] in {{ schema_request.pre_semicolon_media_types }}:
+    {{ non_stream_body_params(schema_request, send_xml)|indent }}
+        {% endfor %}
+    {% endif %}
 {% endif %}
 request = self.{{ request.name }}(
 {% if request.parameters.method %}
@@ -269,4 +284,5 @@ request = self.{{ request.name }}(
 {% endif %}
     template_url={{ template_url }},
     **kwargs
-){% endmacro %}
+)
+kwargs.pop("content_type", None){% endmacro %}

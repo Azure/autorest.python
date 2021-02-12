@@ -7,8 +7,6 @@ from typing import Any, cast, Dict, List, TypeVar
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
-from .list_schema import ListSchema
-from .parameter import ParameterStyle
 from .request_parameter import RequestParameter
 from .request_parameter_list import RequestParameterList
 from .schema_request import SchemaRequest
@@ -74,53 +72,19 @@ class Request(BaseModel):
         """Is the request is a stream, like an upload."""
         return any(request.is_stream_request for request in self.schema_requests)
 
-    @staticmethod
-    def build_serialize_data_call(parameter: RequestParameter, function_name: str) -> str:
+    @property
+    def default_content_type(self) -> str:
+        return next(
+            p for p in self.parameters.constant if p.serialized_name == "content_type"
+        ).constant_declaration
 
-        optional_parameters = []
-
-        if parameter.skip_url_encoding:
-            optional_parameters.append("skip_quote=True")
-
-        if parameter.style and not parameter.explode:
-            if parameter.style in [ParameterStyle.simple, ParameterStyle.form]:
-                div_char = ","
-            elif parameter.style in [ParameterStyle.spaceDelimited]:
-                div_char = " "
-            elif parameter.style in [ParameterStyle.pipeDelimited]:
-                div_char = "|"
-            elif parameter.style in [ParameterStyle.tabDelimited]:
-                div_char = "\t"
-            else:
-                raise ValueError(f"Do not support {parameter.style} yet")
-            optional_parameters.append(f"div='{div_char}'")
-
-        if parameter.explode:
-            if not isinstance(parameter.schema, ListSchema):
-                raise ValueError("Got a explode boolean on a non-array schema")
-            serialization_schema = parameter.schema.element_type
-        else:
-            serialization_schema = parameter.schema
-
-        serialization_constraints = serialization_schema.serialization_constraints
-        if serialization_constraints:
-            optional_parameters += serialization_constraints
-
-        origin_name = parameter.full_serialized_name
-
-        parameters = [
-            f'"{origin_name.lstrip("_")}"',
-            "q" if parameter.explode else origin_name,
-            f"'{serialization_schema.serialization_type}'",
-            *optional_parameters
-        ]
-        parameters_line = ', '.join(parameters)
-
-        serialize_line = f'self._serialize.{function_name}({parameters_line})'
-
-        if parameter.explode:
-            return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
-        return serialize_line
+    @property
+    def has_body_param_with_object_schema(self) -> bool:
+        try:
+            parameters = self.parameters.body + self.multiple_media_type_parameters.body
+            return any([p for p in parameters if p.has_object_schema])
+        except ValueError:
+            return False
 
     @property
     def imports(self) -> FileImport:

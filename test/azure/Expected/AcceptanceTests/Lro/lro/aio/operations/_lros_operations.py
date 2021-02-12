@@ -67,10 +67,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put200_succeeded_initial(
@@ -174,10 +173,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put201_succeeded_initial(
@@ -379,10 +377,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put200_succeeded_no_stat_initial(
@@ -484,10 +481,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put202_retry200_initial(
@@ -592,10 +588,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put201_creating_succeeded200_initial(
@@ -706,10 +701,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put200_updating_succeeded204_initial(
@@ -816,10 +810,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put201_creating_failed200_initial(
@@ -928,10 +921,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put200_acceptedcanceled200_initial(
@@ -1038,10 +1030,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_no_header_in_retry_initial(
@@ -1152,10 +1143,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_async_retry_succeeded_initial(
@@ -1275,10 +1265,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_async_no_retry_succeeded_initial(
@@ -1398,10 +1387,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_async_retry_failed_initial(
@@ -1521,10 +1509,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_async_no_retrycanceled_initial(
@@ -1644,10 +1631,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_async_no_header_in_retry_initial(
@@ -1763,10 +1749,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Sku")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Sku")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_non_resourc_initial(self, sku: Optional["_models.Sku"] = None, **kwargs) -> "_models.Sku":
@@ -1865,10 +1850,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Sku")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Sku")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_async_non_resourc_initial(self, sku: Optional["_models.Sku"] = None, **kwargs) -> "_models.Sku":
@@ -1967,10 +1951,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "SubProduct")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "SubProduct")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_sub_resourc_initial(
@@ -2076,10 +2059,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "SubProduct")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "SubProduct")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _put_async_sub_resourc_initial(
@@ -3399,10 +3381,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
@@ -3499,10 +3480,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _post202_no_retry204_initial(
@@ -3897,10 +3877,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _post_async_retry_succeeded_initial(
@@ -4017,10 +3996,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _post_async_no_retry_succeeded_initial(
@@ -4137,10 +4115,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _post_async_retry_failed_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
@@ -4243,10 +4220,9 @@ class LROsOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _post_async_retrycanceled_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:

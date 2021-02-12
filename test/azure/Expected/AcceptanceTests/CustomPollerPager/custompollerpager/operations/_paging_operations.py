@@ -91,11 +91,13 @@ class PagingOperations(object):
                     template_url=self.get_no_item_name_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -168,11 +170,13 @@ class PagingOperations(object):
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -245,11 +249,13 @@ class PagingOperations(object):
                     template_url=self.get_single_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -323,11 +329,13 @@ class PagingOperations(object):
                     template_url=self.first_response_empty.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -424,6 +432,7 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 
                 _maxresults = None
@@ -438,6 +447,7 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -541,11 +551,13 @@ class PagingOperations(object):
                     template_url=self.get_with_query_params.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_with_query_params_next_request(
                     template_url='/paging/multiple/nextOperationWithQueryParams',
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             return request
 
         def extract_data(pipeline_response):
@@ -639,6 +651,7 @@ class PagingOperations(object):
                     template_url=self.get_odata_multiple_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 
                 _maxresults = None
@@ -653,6 +666,7 @@ class PagingOperations(object):
                     template_url=self.get_odata_multiple_pages.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -757,6 +771,7 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_with_offset.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 
                 _maxresults = None
@@ -774,6 +789,7 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_with_offset.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     'offset': self._serialize.url("offset", _offset, 'int'),
@@ -850,11 +866,13 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -928,11 +946,13 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -1005,11 +1025,13 @@ class PagingOperations(object):
                     template_url=self.get_single_pages_failure.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -1082,11 +1104,13 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_failure.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -1159,11 +1183,13 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -1279,6 +1305,7 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_multiple_pages_fragment_next_link_next_request(
                     api_version=api_version,
@@ -1287,6 +1314,7 @@ class PagingOperations(object):
                     template_url='/paging/multiple/fragment/{tenant}/{nextLink}',
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             return request
 
         def extract_data(pipeline_response):
@@ -1402,6 +1430,7 @@ class PagingOperations(object):
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 
                 _api_version = None
@@ -1416,6 +1445,7 @@ class PagingOperations(object):
                     template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             return request
 
         def extract_data(pipeline_response):
@@ -1496,7 +1526,7 @@ class PagingOperations(object):
             template_url=self._get_multiple_pages_lro_initial.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1558,6 +1588,7 @@ class PagingOperations(object):
                     template_url=self.begin_get_multiple_pages_lro.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 
                 _maxresults = None
@@ -1572,6 +1603,7 @@ class PagingOperations(object):
                     template_url=self.begin_get_multiple_pages_lro.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -1685,11 +1717,13 @@ class PagingOperations(object):
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)

@@ -108,10 +108,9 @@ class HttpRetryOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "bool")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "bool")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -162,10 +161,9 @@ class HttpRetryOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "bool")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "bool")
+
+        body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -308,10 +306,9 @@ class HttpRetryOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "bool")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "bool")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -362,10 +359,9 @@ class HttpRetryOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "bool")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "bool")
+
+        body_content_kwargs["content"] = body
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -416,10 +412,9 @@ class HttpRetryOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "bool")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "bool")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -470,10 +465,9 @@ class HttpRetryOperations:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "bool")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "bool")
+
+        body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async

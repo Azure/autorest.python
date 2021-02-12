@@ -90,10 +90,12 @@ class PagingOperations:
                 request = self._get_pages_partial_url_request(
                     account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_pages_partial_url_request(
                     account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -189,6 +191,7 @@ class PagingOperations:
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._get_pages_partial_url_operation_next_request(
                     account_name=account_name,
@@ -196,6 +199,7 @@ class PagingOperations:
                     template_url="/paging/customurl/{nextLink}",
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             return request
 
         async def extract_data(pipeline_response):

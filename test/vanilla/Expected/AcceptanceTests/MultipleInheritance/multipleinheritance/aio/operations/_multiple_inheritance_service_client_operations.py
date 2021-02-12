@@ -90,8 +90,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Horse")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "Horse")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -192,8 +193,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Pet")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "Pet")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -295,8 +297,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Feline")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "Feline")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -397,8 +400,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Cat")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "Cat")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -500,8 +504,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Kitten")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "Kitten")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async

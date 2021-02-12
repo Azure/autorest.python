@@ -67,11 +67,13 @@ class MultiapiServiceClientOperationsMixin(object):
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._test_paging_request(
                     template_url=self.test_paging.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -164,7 +166,7 @@ class MultiapiServiceClientOperationsMixin(object):
             template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

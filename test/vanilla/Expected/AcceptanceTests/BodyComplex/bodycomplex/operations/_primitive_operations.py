@@ -127,8 +127,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "IntWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "IntWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -242,8 +243,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "LongWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "LongWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -357,8 +359,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "FloatWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "FloatWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -472,8 +475,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "DoubleWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "DoubleWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -588,8 +592,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "BooleanWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "BooleanWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -703,8 +708,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "StringWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "StringWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -818,8 +824,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "DateWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "DateWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -933,8 +940,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "DatetimeWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "DatetimeWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1050,8 +1058,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Datetimerfc1123Wrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "Datetimerfc1123Wrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1168,8 +1177,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "DurationWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "DurationWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1286,8 +1296,9 @@ class PrimitiveOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "ByteWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "ByteWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace

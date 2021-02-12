@@ -6,15 +6,15 @@
 from typing import Dict, List, Any, Optional
 
 from .base_model import BaseModel
-from .request_parameter import RequestParameter
-from .request_parameter_list import RequestParameterList
+from .parameter import Parameter
+from .parameter_list import ParameterList
 
 class SchemaRequest(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         media_types: List[str],
-        parameters: RequestParameterList,
+        parameters: ParameterList,
     ) -> None:
         super().__init__(yaml_data)
         self.media_types = media_types
@@ -43,15 +43,15 @@ class SchemaRequest(BaseModel):
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaRequest":
 
-        parameters: Optional[List[RequestParameter]] = [
-            RequestParameter.from_yaml(yaml)
+        parameters: Optional[List[Parameter]] = [
+            Parameter.from_yaml(yaml)
             for yaml in yaml_data.get("parameters", [])
         ]
 
         return cls(
             yaml_data=yaml_data,
             media_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
-            parameters=RequestParameterList(parameters)
+            parameters=ParameterList(parameters)
         )
 
     def __repr__(self) -> str:

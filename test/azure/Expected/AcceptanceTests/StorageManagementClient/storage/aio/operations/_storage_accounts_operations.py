@@ -78,8 +78,9 @@ class StorageAccountsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "StorageAccountCheckNameAvailabilityParameters")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "StorageAccountCheckNameAvailabilityParameters")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -151,8 +152,9 @@ class StorageAccountsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "StorageAccountCreateParameters")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "StorageAccountCreateParameters")
+
+        body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _creat_initial(
@@ -434,8 +436,9 @@ class StorageAccountsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "StorageAccountUpdateParameters")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "StorageAccountUpdateParameters")
+
+        body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
@@ -602,8 +605,10 @@ class StorageAccountsOperations:
         def prepare_request(next_link=None):
             if not next_link:
                 request = self._list_request(template_url=self.list.metadata["url"], **kwargs)
+                kwargs.pop("content_type", None)
             else:
                 request = self._list_request(template_url=self.list.metadata["url"], **kwargs)
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     "subscriptionId": self._serialize.url(
@@ -687,12 +692,14 @@ class StorageAccountsOperations:
                     template_url=self.list_by_resource_group.metadata["url"],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 request = self._list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     template_url=self.list_by_resource_group.metadata["url"],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
                     "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
@@ -760,8 +767,9 @@ class StorageAccountsOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "StorageAccountRegenerateKeyParameters")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "StorageAccountRegenerateKeyParameters")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async

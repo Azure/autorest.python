@@ -198,8 +198,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "int")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "int")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -263,10 +264,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "int")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "int")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -328,8 +328,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "IntWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "IntWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -394,10 +395,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "IntOptionalWrapper")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "IntOptionalWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -580,8 +580,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "str")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "str")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -645,10 +646,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "str")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "str")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -710,8 +710,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "StringWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "StringWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -776,10 +777,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "StringOptionalWrapper")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "StringOptionalWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -962,8 +962,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "Product")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1027,10 +1028,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "Product")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "Product")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1092,8 +1092,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "ClassWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "ClassWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1158,10 +1159,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "ClassOptionalWrapper")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "ClassOptionalWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1224,8 +1224,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "[str]")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "[str]")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1289,10 +1290,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "[str]")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "[str]")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1354,8 +1354,9 @@ class ExplicitOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(body, "ArrayWrapper")
-        body_content_kwargs["content"] = body_content
+        body = self._serialize.body(body, "ArrayWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
@@ -1420,10 +1421,9 @@ class ExplicitOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "ArrayOptionalWrapper")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "ArrayOptionalWrapper")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace

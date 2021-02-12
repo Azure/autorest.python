@@ -68,10 +68,9 @@ class OperationGroupOneOperations(object):
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, 'ModelTwo')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
+            body = self._serialize.body(body, 'ModelTwo')
+
+        body_content_kwargs['content'] = body
         return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def test_two(
@@ -100,7 +99,7 @@ class OperationGroupOneOperations(object):
             template_url=self.test_two.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -162,7 +161,7 @@ class OperationGroupOneOperations(object):
             template_url=self.test_three.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

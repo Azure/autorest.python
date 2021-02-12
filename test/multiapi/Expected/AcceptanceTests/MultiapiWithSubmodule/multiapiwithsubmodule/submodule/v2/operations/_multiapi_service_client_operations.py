@@ -80,7 +80,7 @@ class MultiapiServiceClientOperationsMixin(object):
             template_url=self.test_one.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -155,7 +155,7 @@ class MultiapiServiceClientOperationsMixin(object):
             template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -51,11 +51,7 @@ class MediaTypesClientOperationsMixin:
             body_content_kwargs["stream_content"] = body
 
         elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
-            if body is not None:
-                body_content = self._serialize.body(body, "SourcePath")
-            else:
-                body_content = None
-            body_content_kwargs["content"] = body_content
+            body_content_kwargs["content"] = body
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -81,6 +77,11 @@ class MediaTypesClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.get("content_type", "application/json")
+        if content_type.split(";")[0] in ["application/json"]:
+            if input is not None:
+                input = self._serialize.body(input, "SourcePath")
 
         request = self._analyze_body_request(body=input, template_url=self.analyze_body.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -118,10 +119,9 @@ class MediaTypesClientOperationsMixin:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, "str")
-        else:
-            body_content = None
-        body_content_kwargs["content"] = body_content
+            body = self._serialize.body(body, "str")
+
+        body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async

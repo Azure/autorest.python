@@ -77,7 +77,7 @@ class MultiapiServiceClientOperationsMixin:
             template_url=self.test_one.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -113,10 +113,9 @@ class MultiapiServiceClientOperationsMixin:
 
         body_content_kwargs = {}  # type: Dict[str, Any]
         if body is not None:
-            body_content = self._serialize.body(body, 'Product')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
+            body = self._serialize.body(body, 'Product')
+
+        body_content_kwargs['content'] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _test_lro_initial(
@@ -135,7 +134,7 @@ class MultiapiServiceClientOperationsMixin:
             template_url=self._test_lro_initial.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -267,7 +266,7 @@ class MultiapiServiceClientOperationsMixin:
             template_url=self._test_lro_and_pa_initial.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -328,6 +327,7 @@ class MultiapiServiceClientOperationsMixin:
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
             else:
                 
                 _maxresults = None
@@ -342,6 +342,7 @@ class MultiapiServiceClientOperationsMixin:
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
                     **kwargs
                 )
+                kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 request.method = "get"
                 request.url = self._client.format_url(next_link)
@@ -458,7 +459,7 @@ class MultiapiServiceClientOperationsMixin:
             template_url=self.test_different_calls.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

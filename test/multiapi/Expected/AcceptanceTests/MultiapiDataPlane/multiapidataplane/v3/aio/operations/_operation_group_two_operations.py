@@ -65,11 +65,7 @@ class OperationGroupTwoOperations:
             body_content_kwargs['stream_content'] = body
 
         elif header_parameters['Content-Type'].split(";")[0] in ['application/json']:
-            if body is not None:
-                body_content = self._serialize.body(body, 'SourcePath')
-            else:
-                body_content = None
-            body_content_kwargs['content'] = body_content
+            body_content_kwargs['content'] = body
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -99,12 +95,17 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        content_type = kwargs.get("content_type", "application/json")
+        if content_type.split(";")[0] in ['application/json']:
+            if input is not None:
+                input = self._serialize.body(input, 'SourcePath')
+
         request = self._test_four_request(
             body=input,
             template_url=self.test_four.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -160,7 +161,7 @@ class OperationGroupTwoOperations:
             template_url=self.test_five.metadata['url'],
             **kwargs
         )
-        kwargs.pop('content_type', None)
+        kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
