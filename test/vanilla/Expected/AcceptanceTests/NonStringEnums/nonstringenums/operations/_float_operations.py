@@ -68,9 +68,6 @@ class FloatOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "float")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -93,6 +90,9 @@ class FloatOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if input is not None:
+            input = self._serialize.body(input, "float")
 
         request = self._put_request(body=input, template_url=self.put.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)

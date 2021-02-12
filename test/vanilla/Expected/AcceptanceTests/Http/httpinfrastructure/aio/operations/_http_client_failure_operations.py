@@ -195,9 +195,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -215,6 +212,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._put400_request(body=boolean_value, template_url=self.put400.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -248,9 +248,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -268,6 +265,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._patch400_request(body=boolean_value, template_url=self.patch400.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -301,9 +301,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -321,6 +318,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._post400_request(body=boolean_value, template_url=self.post400.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -354,9 +354,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -374,6 +371,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._delete400_request(body=boolean_value, template_url=self.delete400.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -583,9 +583,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -603,6 +600,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._put404_request(body=boolean_value, template_url=self.put404.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -636,9 +636,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -656,6 +653,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._patch405_request(body=boolean_value, template_url=self.patch405.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -689,9 +689,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -709,6 +706,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._post406_request(body=boolean_value, template_url=self.post406.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -742,9 +742,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -762,6 +759,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._delete407_request(body=boolean_value, template_url=self.delete407.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -795,9 +795,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -815,6 +812,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._put409_request(body=boolean_value, template_url=self.put409.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -1024,9 +1024,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1044,6 +1041,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._put413_request(body=boolean_value, template_url=self.put413.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -1077,9 +1077,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1097,6 +1094,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._patch414_request(body=boolean_value, template_url=self.patch414.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -1130,9 +1130,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1150,6 +1147,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._post415_request(body=boolean_value, template_url=self.post415.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -1227,9 +1227,6 @@ class HttpClientFailureOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "bool")
-
         body_content_kwargs["content"] = body
         return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1247,6 +1244,9 @@ class HttpClientFailureOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if boolean_value is not None:
+            boolean_value = self._serialize.body(boolean_value, "bool")
 
         request = self._delete417_request(body=boolean_value, template_url=self.delete417.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)

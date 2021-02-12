@@ -171,8 +171,8 @@ body_content_kwargs['form_content'] = {{ request.parameters.body[0].serialized_n
 {% elif schema_request.is_stream_request %}
 body_content_kwargs['stream_content'] = {{ request.parameters.body[0].serialized_name }}
 {% elif schema_request.body_parameter_has_schema %}
-    {% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
-    {% if not request.has_body_param_with_object_schema %}
+    {% if request.parameters.has_body and request.parameters.body[0].constant %}
+{% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
 {{ non_stream_body_params(request, send_xml) }}
     {% endif %}
 body_content_kwargs['content'] = body{% endif %}{% endmacro %}
@@ -265,7 +265,7 @@ _body = {
 {% if operation.parameters.is_flattened %}
 {{ operation.parameters.build_flattened_object() }}
 {% endif %}
-{% if request.has_body_param_with_object_schema %}
+{% if request.parameters.has_body and not (request.parameters.body[0].constant or request.is_stream or request.multipart) %}
 {% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
     {% if (request.schema_requests | length) == 1 %}
 {{ non_stream_body_params(request.schema_requests[0], send_xml) }}

@@ -127,8 +127,6 @@ class DurationOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "duration")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -151,6 +149,8 @@ class DurationOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        duration_body = self._serialize.body(duration_body, "duration")
 
         request = self._put_positive_duration_request(
             body=duration_body, template_url=self.put_positive_duration.metadata["url"], **kwargs

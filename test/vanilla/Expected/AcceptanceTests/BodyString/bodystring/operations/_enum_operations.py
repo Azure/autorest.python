@@ -126,8 +126,6 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "str")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -150,6 +148,8 @@ class EnumOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        string_body = self._serialize.body(string_body, "str")
 
         request = self._put_not_expandable_request(
             body=string_body, template_url=self.put_not_expandable.metadata["url"], **kwargs
@@ -244,8 +244,6 @@ class EnumOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "str")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -268,6 +266,8 @@ class EnumOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        enum_string_body = self._serialize.body(enum_string_body, "str")
 
         request = self._put_referenced_request(
             body=enum_string_body, template_url=self.put_referenced.metadata["url"], **kwargs

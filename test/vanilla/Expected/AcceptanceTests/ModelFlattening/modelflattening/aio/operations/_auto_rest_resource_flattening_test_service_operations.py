@@ -42,9 +42,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "[Resource]")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -62,6 +59,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if resource_array is not None:
+            resource_array = self._serialize.body(resource_array, "[Resource]")
 
         request = self._put_array_request(body=resource_array, template_url=self.put_array.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -145,9 +145,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "[WrappedProduct]")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -168,6 +165,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if resource_array is not None:
+            resource_array = self._serialize.body(resource_array, "[WrappedProduct]")
 
         request = self._put_wrapped_array_request(
             body=resource_array, template_url=self.put_wrapped_array.metadata["url"], **kwargs
@@ -254,9 +254,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "{FlattenedProduct}")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -276,6 +273,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if resource_dictionary is not None:
+            resource_dictionary = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
 
         request = self._put_dictionary_request(
             body=resource_dictionary, template_url=self.put_dictionary.metadata["url"], **kwargs

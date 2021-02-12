@@ -83,8 +83,6 @@ class ParameterGroupingOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "int")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -117,6 +115,8 @@ class ParameterGroupingOperations(object):
             _query = parameter_grouping_post_required_parameters.query
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
+        _body = self._serialize.body(_body, "int")
+
         request = self._post_required_request(
             path=_path,
             body=_body,

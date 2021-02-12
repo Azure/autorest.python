@@ -97,10 +97,6 @@ class OperationGroupTwoOperations:
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.get("content_type", "application/json")
-        if content_type.split(";")[0] in ['application/json']:
-            if input is not None:
-                input = self._serialize.body(input, 'SourcePath')
-
         request = self._test_four_request(
             body=input,
             template_url=self.test_four.metadata['url'],

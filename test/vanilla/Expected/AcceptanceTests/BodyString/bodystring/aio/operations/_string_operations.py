@@ -111,9 +111,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "str")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -131,6 +128,9 @@ class StringOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if string_body is not None:
+            string_body = self._serialize.body(string_body, "str")
 
         request = self._put_null_request(body=string_body, template_url=self.put_null.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -611,8 +611,6 @@ class StringOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "base64")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -630,6 +628,8 @@ class StringOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        string_body = self._serialize.body(string_body, "base64")
 
         request = self._put_base64_url_encoded_request(
             body=string_body, template_url=self.put_base64_url_encoded.metadata["url"], **kwargs

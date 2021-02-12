@@ -288,8 +288,6 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -312,6 +310,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        number_body = self._serialize.body(number_body, "float")
 
         request = self._put_big_float_request(
             body=number_body, template_url=self.put_big_float.metadata["url"], **kwargs
@@ -406,8 +406,6 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -430,6 +428,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        number_body = self._serialize.body(number_body, "float")
 
         request = self._put_big_double_request(
             body=number_body, template_url=self.put_big_double.metadata["url"], **kwargs
@@ -754,8 +754,6 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -778,6 +776,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        number_body = self._serialize.body(number_body, "float")
 
         request = self._put_big_decimal_request(
             body=number_body, template_url=self.put_big_decimal.metadata["url"], **kwargs
@@ -1102,8 +1102,6 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1126,6 +1124,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        number_body = self._serialize.body(number_body, "float")
 
         request = self._put_small_float_request(
             body=number_body, template_url=self.put_small_float.metadata["url"], **kwargs
@@ -1220,8 +1220,6 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1244,6 +1242,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        number_body = self._serialize.body(number_body, "float")
 
         request = self._put_small_double_request(
             body=number_body, template_url=self.put_small_double.metadata["url"], **kwargs
@@ -1338,8 +1338,6 @@ class NumberOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1362,6 +1360,8 @@ class NumberOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        number_body = self._serialize.body(number_body, "float")
 
         request = self._put_small_decimal_request(
             body=number_body, template_url=self.put_small_decimal.metadata["url"], **kwargs

@@ -104,8 +104,6 @@ class ObjectTypeClientOperationsMixin(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "object")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -129,6 +127,8 @@ class ObjectTypeClientOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        put_object = self._serialize.body(put_object, "object")
 
         request = self._put_request(body=put_object, template_url=self.put.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)

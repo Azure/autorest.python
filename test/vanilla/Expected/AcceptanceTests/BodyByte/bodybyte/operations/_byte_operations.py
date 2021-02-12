@@ -234,8 +234,6 @@ class ByteOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "bytearray")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -258,6 +256,8 @@ class ByteOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        byte_body = self._serialize.body(byte_body, "bytearray")
 
         request = self._put_non_ascii_request(body=byte_body, template_url=self.put_non_ascii.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)

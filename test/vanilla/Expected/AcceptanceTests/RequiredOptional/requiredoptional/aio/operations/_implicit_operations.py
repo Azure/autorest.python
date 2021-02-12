@@ -215,9 +215,6 @@ class ImplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "str")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -235,6 +232,9 @@ class ImplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if body_parameter is not None:
+            body_parameter = self._serialize.body(body_parameter, "str")
 
         request = self._put_optional_body_request(
             body=body_parameter, template_url=self.put_optional_body.metadata["url"], **kwargs

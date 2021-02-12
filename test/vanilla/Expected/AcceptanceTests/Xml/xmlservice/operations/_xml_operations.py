@@ -868,9 +868,6 @@ class XmlOperations(object):
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        body = self._serialize.body(body, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -893,6 +890,9 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = self._put_root_list_request(body=bananas, template_url=self.put_root_list.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -983,9 +983,6 @@ class XmlOperations(object):
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        body = self._serialize.body(body, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1008,6 +1005,9 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = self._put_root_list_single_item_request(
             body=bananas, template_url=self.put_root_list_single_item.metadata["url"], **kwargs
@@ -1098,9 +1098,6 @@ class XmlOperations(object):
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        body = self._serialize.body(body, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1123,6 +1120,9 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
+        bananas = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = self._put_empty_root_list_request(
             body=bananas, template_url=self.put_empty_root_list.metadata["url"], **kwargs
@@ -1516,9 +1516,6 @@ class XmlOperations(object):
         header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
-        body = self._serialize.body(body, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt)
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1541,6 +1538,11 @@ class XmlOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
+        properties = self._serialize.body(
+            properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
+        )
 
         request = self._put_acls_request(body=properties, template_url=self.put_acls.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)

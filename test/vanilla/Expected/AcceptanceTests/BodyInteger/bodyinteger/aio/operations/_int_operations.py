@@ -352,8 +352,6 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "int")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -371,6 +369,8 @@ class IntOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        int_body = self._serialize.body(int_body, "int")
 
         request = self._put_max32_request(body=int_body, template_url=self.put_max32.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -404,8 +404,6 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "long")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -423,6 +421,8 @@ class IntOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        int_body = self._serialize.body(int_body, "long")
 
         request = self._put_max64_request(body=int_body, template_url=self.put_max64.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -456,8 +456,6 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "int")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -475,6 +473,8 @@ class IntOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        int_body = self._serialize.body(int_body, "int")
 
         request = self._put_min32_request(body=int_body, template_url=self.put_min32.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -508,8 +508,6 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "long")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -527,6 +525,8 @@ class IntOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        int_body = self._serialize.body(int_body, "long")
 
         request = self._put_min64_request(body=int_body, template_url=self.put_min64.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
@@ -608,8 +608,6 @@ class IntOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "unix-time")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -627,6 +625,8 @@ class IntOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        int_body = self._serialize.body(int_body, "unix-time")
 
         request = self._put_unix_time_date_request(
             body=int_body, template_url=self.put_unix_time_date.metadata["url"], **kwargs

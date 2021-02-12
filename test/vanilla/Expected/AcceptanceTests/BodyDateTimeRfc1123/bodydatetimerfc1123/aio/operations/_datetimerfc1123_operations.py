@@ -256,8 +256,6 @@ class Datetimerfc1123Operations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "rfc-1123")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -275,6 +273,8 @@ class Datetimerfc1123Operations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "rfc-1123")
 
         request = self._put_utc_max_date_time_request(
             body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
@@ -410,8 +410,6 @@ class Datetimerfc1123Operations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "rfc-1123")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -429,6 +427,8 @@ class Datetimerfc1123Operations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "rfc-1123")
 
         request = self._put_utc_min_date_time_request(
             body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs

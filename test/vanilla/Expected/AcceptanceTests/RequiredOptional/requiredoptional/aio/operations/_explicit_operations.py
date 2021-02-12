@@ -169,8 +169,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "int")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -189,6 +187,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        body_parameter = self._serialize.body(body_parameter, "int")
 
         request = self._post_required_integer_parameter_request(
             body=body_parameter, template_url=self.post_required_integer_parameter.metadata["url"], **kwargs
@@ -224,9 +224,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "int")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -244,6 +241,9 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if body_parameter is not None:
+            body_parameter = self._serialize.body(body_parameter, "int")
 
         request = self._post_optional_integer_parameter_request(
             body=body_parameter, template_url=self.post_optional_integer_parameter.metadata["url"], **kwargs
@@ -493,8 +493,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "str")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -513,6 +511,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        body_parameter = self._serialize.body(body_parameter, "str")
 
         request = self._post_required_string_parameter_request(
             body=body_parameter, template_url=self.post_required_string_parameter.metadata["url"], **kwargs
@@ -548,9 +548,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "str")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -568,6 +565,9 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if body_parameter is not None:
+            body_parameter = self._serialize.body(body_parameter, "str")
 
         request = self._post_optional_string_parameter_request(
             body=body_parameter, template_url=self.post_optional_string_parameter.metadata["url"], **kwargs
@@ -1041,8 +1041,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "[str]")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1061,6 +1059,8 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        body_parameter = self._serialize.body(body_parameter, "[str]")
 
         request = self._post_required_array_parameter_request(
             body=body_parameter, template_url=self.post_required_array_parameter.metadata["url"], **kwargs
@@ -1096,9 +1096,6 @@ class ExplicitOperations:
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if body is not None:
-            body = self._serialize.body(body, "[str]")
-
         body_content_kwargs["content"] = body
         return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1116,6 +1113,9 @@ class ExplicitOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        if body_parameter is not None:
+            body_parameter = self._serialize.body(body_parameter, "[str]")
 
         request = self._post_optional_array_parameter_request(
             body=body_parameter, template_url=self.post_optional_array_parameter.metadata["url"], **kwargs

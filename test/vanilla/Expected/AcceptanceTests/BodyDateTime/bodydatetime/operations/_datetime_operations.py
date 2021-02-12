@@ -289,8 +289,6 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "iso-8601")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -313,6 +311,8 @@ class DatetimeOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = self._put_utc_max_date_time_request(
             body=datetime_body, template_url=self.put_utc_max_date_time.metadata["url"], **kwargs
@@ -353,8 +353,6 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "iso-8601")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -380,6 +378,8 @@ class DatetimeOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = self._put_utc_max_date_time7_digits_request(
             body=datetime_body, template_url=self.put_utc_max_date_time7_digits.metadata["url"], **kwargs
@@ -591,8 +591,6 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "iso-8601")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -615,6 +613,8 @@ class DatetimeOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = self._put_local_positive_offset_max_date_time_request(
             body=datetime_body, template_url=self.put_local_positive_offset_max_date_time.metadata["url"], **kwargs
@@ -767,8 +767,6 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "iso-8601")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -791,6 +789,8 @@ class DatetimeOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = self._put_local_negative_offset_max_date_time_request(
             body=datetime_body, template_url=self.put_local_negative_offset_max_date_time.metadata["url"], **kwargs
@@ -943,8 +943,6 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "iso-8601")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -967,6 +965,8 @@ class DatetimeOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = self._put_utc_min_date_time_request(
             body=datetime_body, template_url=self.put_utc_min_date_time.metadata["url"], **kwargs
@@ -1061,8 +1061,6 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "iso-8601")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1085,6 +1083,8 @@ class DatetimeOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = self._put_local_positive_offset_min_date_time_request(
             body=datetime_body, template_url=self.put_local_positive_offset_min_date_time.metadata["url"], **kwargs
@@ -1181,8 +1181,6 @@ class DatetimeOperations(object):
         header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
 
         body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "iso-8601")
-
         body_content_kwargs["content"] = body
         return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
@@ -1205,6 +1203,8 @@ class DatetimeOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        datetime_body = self._serialize.body(datetime_body, "iso-8601")
 
         request = self._put_local_negative_offset_min_date_time_request(
             body=datetime_body, template_url=self.put_local_negative_offset_min_date_time.metadata["url"], **kwargs
