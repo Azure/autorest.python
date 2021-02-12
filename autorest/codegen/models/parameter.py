@@ -216,6 +216,30 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self._default_value()[0]
 
     @property
+    def default_to_sentinel(self) -> bool:
+        """Parameter defaults to sentinel in the method signature if it has a default
+        value but is a mutable object
+        """
+        return self.method_signature_default_value_declaration != self.method_code_default_value_declaration
+
+    @property
+    def method_signature_default_value_declaration(self) -> Optional[str]:
+        sentinel = "None" if self.required else "SENTINEL"
+        return sentinel if self.schema.mutable else self._default_value()[1]
+
+    @property
+    def method_code_default_value_declaration(self) -> Optional[str]:
+        """Differs in method_signature_default_value_declaration
+        in that mutable types are defaulted to None on the method signature,
+        and we set the actual default value in the method code.
+        """
+        return self._default_value()[1]
+
+    @property
+    def type_annotation(self) -> str:
+        return self._default_value()[2]
+
+    @property
     def serialization_type(self) -> str:
         return self.schema.serialization_type
 
@@ -225,17 +249,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def sync_method_signature(self) -> str:
-        default_value, default_value_declaration, type_annot = self._default_value()
-        if default_value is not None or not self.required:
-            return f"{self.serialized_name}={default_value_declaration},  # type: {type_annot}"
-        return f"{self.serialized_name},  # type: {type_annot}"
+        if self.default_value is not None or not self.required:
+            return (
+                f"{self.serialized_name}={self.method_signature_default_value_declaration},  " +
+                f"# type: {self.type_annotation}"
+            )
+        return f"{self.serialized_name},  # type: {self.type_annotation}"
 
     @property
     def async_method_signature(self) -> str:
-        default_value, default_value_declaration, type_annot = self._default_value()
-        if default_value is not None or not self.required:
-            return f"{self.serialized_name}: {type_annot} = {default_value_declaration}"
-        return f"{self.serialized_name}: {type_annot}"
+        if self.default_value is not None or not self.required:
+            return f"{self.serialized_name}: {self.type_annotation} = {self.method_signature_default_value_declaration}"
+        return f"{self.serialized_name}: {self.type_annotation}"
 
     @property
     def full_serialized_name(self) -> str:

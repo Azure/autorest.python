@@ -30,6 +30,10 @@ class ListSchema(BaseSchema):
         return f"[{self.element_type.serialization_type}]"
 
     @property
+    def mutable(self) -> bool:
+        return True
+
+    @property
     def type_annotation(self) -> str:
         return f"List[{self.element_type.type_annotation}]"
 

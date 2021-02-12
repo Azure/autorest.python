@@ -25,6 +25,8 @@ from ... import models as _models
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
+SENTINEL = object()
+
 
 class ArrayOperations:
     """ArrayOperations async operations.
@@ -3016,3 +3018,62 @@ class ArrayOperations:
             return cls(pipeline_response, None, {})
 
     put_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
+
+    @distributed_trace_async
+    async def put_default_array(
+        self,
+        required_greetings: List[Union[str, "_models.GreetingsFromAroundTheWorld"]] = None,
+        optional_greetings: Optional[List[Union[str, "_models.GreetingsFromAroundTheWorld"]]] = SENTINEL,
+        **kwargs
+    ) -> None:
+        """Pass in the default array value of enums ['Hello', 'Nihao'].
+
+        :param required_greetings: Pass in required ['Hello', 'Nihao'] to testserver.
+        :type required_greetings: list[str or ~bodyarray.models.GreetingsFromAroundTheWorld]
+        :param optional_greetings: Pass in required ['Hello', 'Nihao'] to testserver.
+        :type optional_greetings: list[str or ~bodyarray.models.GreetingsFromAroundTheWorld]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        if required_greetings is None:
+            required_greetings = ["Hello", "Nihao"]
+        if optional_greetings is SENTINEL:
+            optional_greetings = ["Hello", "Nihao"]
+
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+        accept = "application/json"
+
+        # Construct URL
+        url = self.put_default_array.metadata["url"]  # type: ignore
+
+        # Construct parameters
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters["requiredGreetings"] = self._serialize.query(
+            "required_greetings", required_greetings, "[str]", div=","
+        )
+        if optional_greetings is not None:
+            query_parameters["optionalGreetings"] = self._serialize.query(
+                "optional_greetings", optional_greetings, "[str]", div=","
+            )
+
+        # Construct headers
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+
+        request = self._client.put(url, query_parameters, header_parameters)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, response)
+            raise HttpResponseError(response=response, model=error)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    put_default_array.metadata = {"url": "/array/default/enums"}  # type: ignore

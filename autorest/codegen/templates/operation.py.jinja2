@@ -59,6 +59,9 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
+{% if operation.any_param_default_to_sentinel %}
+    {{ op_tools.set_mutable_default_params(operation) | indent }}
+{% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}

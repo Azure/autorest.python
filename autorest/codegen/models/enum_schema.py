@@ -72,6 +72,10 @@ class EnumSchema(BaseSchema):
         return self.name.lower() < other.name.lower()
 
     @property
+    def mutable(self) -> bool:
+        return False
+
+    @property
     def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 

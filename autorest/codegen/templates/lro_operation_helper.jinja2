@@ -41,6 +41,9 @@
         'polling_interval',
         self._config.polling_interval
     )
+    {% if operation.any_param_default_to_sentinel %}
+        {{ op_tools.set_mutable_default_params(operation) | indent }}
+    {% endif %}
     cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
     if cont_token is None:
         raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(

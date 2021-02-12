@@ -5,6 +5,10 @@
 
 {{ "    " if not async_mode }}T = TypeVar('T')
 {{ "    " if not async_mode }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
+{% if operation_group.any_operation_has_param_default_to_sentinel %}
+
+SENTINEL = object()
+{% endif %}
 
 class {{ operation_group.class_name }}{{ object_base_class }}:
 {% for operation in operation_group.operations %}

@@ -38,6 +38,14 @@ else ((return_type_wrapper | join("[") + "[") if return_type_wrapper else "") ~ 
 :keyword str content_type: Media type of the body sent to the API. Default value is {{ content_type_constant.constant_declaration }}.
  Allowed values are: "{{ operation.requests | map(attribute="media_types") | sum(start = []) | unique | list | join ('", "')  }}".{% endmacro %}
 
+{# set mutable method params to default if necessary #}
+{% macro set_mutable_default_params(operation) %}
+    {% for param in operation.parameters.method | selectattr("default_to_sentinel") %}
+if {{ param.serialized_name }} is {{ param.method_signature_default_value_declaration }}:
+    {{ param.serialized_name }} = {{ param.method_code_default_value_declaration }}
+    {% endfor %}
+{% endmacro %}
+
 {# error map handling #}
 {% macro error_map(operation, code_model) %}
 {%if operation.status_code_exceptions %}

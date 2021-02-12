@@ -117,6 +117,10 @@ class ParameterList(MutableSequence):
         return signature_parameters
 
     @property
+    def any_param_default_to_sentinel(self) -> bool:
+        return any([p for p in self.parameters if p.default_to_sentinel])
+
+    @property
     def sync_method_signature(self) -> List[str]:
         return [parameter.sync_method_signature for parameter in self.method]
 

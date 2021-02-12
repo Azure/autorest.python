@@ -39,6 +39,10 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return self.name
 
     @property
+    def mutable(self) -> bool:
+        return True
+
+    @property
     def type_annotation(self) -> str:
         return f'"{self.name}"'
 

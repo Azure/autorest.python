@@ -76,6 +76,10 @@ class OperationGroup(BaseModel):
         """
         return not self.yaml_data["language"]["default"]["name"]
 
+    @property
+    def any_operation_has_param_default_to_sentinel(self) -> bool:
+        return any([op for op in self.operations if op.any_param_default_to_sentinel])
+
     @classmethod
     def from_yaml(cls, code_model, yaml_data: Dict[str, Any]) -> "OperationGroup":
         name = yaml_data["language"]["python"]["name"]

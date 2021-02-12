@@ -4,6 +4,9 @@
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
+{% if operation.any_param_default_to_sentinel %}
+    {{ op_tools.set_mutable_default_params(operation) | indent }}
+{% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}

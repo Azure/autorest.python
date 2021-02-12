@@ -95,7 +95,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.requests = requests
         self.summary = summary
         self.parameters = ParameterList(parameters)
-        self.multiple_media_type_parameters = multiple_media_type_parameters
+        self.multiple_media_type_parameters = ParameterList(multiple_media_type_parameters)
         self.responses = responses or []
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
@@ -123,6 +123,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
         return any(response.is_stream_response for response in self.responses)
+
+    @property
+    def any_param_default_to_sentinel(self) -> bool:
+        return (
+            self.parameters.any_param_default_to_sentinel or
+            self.multiple_media_type_parameters.any_param_default_to_sentinel
+        )
 
     @property
     def has_optional_return_type(self) -> bool:

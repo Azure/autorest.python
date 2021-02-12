@@ -46,6 +46,10 @@ class PrimitiveSchema(BaseSchema):
     def docstring_text(self) -> str:
         return self.docstring_type
 
+    @property
+    def mutable(self) -> bool:
+        return False
+
 class IOSchema(PrimitiveSchema):
 
     def __init__(self, namespace, yaml_data) -> None:

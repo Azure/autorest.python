@@ -58,6 +58,14 @@ class BaseSchema(BaseModel, ABC):
 
     @property
     @abstractmethod
+    def mutable(self) -> bool:
+        """Whether the schema is of a mutable type or not. Used to determine whether
+        we will include the default value in the method signature
+        """
+        ...
+
+    @property
+    @abstractmethod
     def serialization_type(self) -> str:
         """The tag recognized by 'msrest' as a serialization/deserialization.
 

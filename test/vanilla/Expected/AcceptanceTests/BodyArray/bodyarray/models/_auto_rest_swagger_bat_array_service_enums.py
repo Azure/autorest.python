@@ -46,3 +46,10 @@ class FooEnum(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
     FOO1 = "foo1"
     FOO2 = "foo2"
     FOO3 = "foo3"
+
+
+class GreetingsFromAroundTheWorld(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+
+    HELLO = "Hello"
+    NIHAO = "Nihao"
+    BONJOUR = "Bonjour"

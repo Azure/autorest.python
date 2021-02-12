@@ -17,6 +17,7 @@ from ._auto_rest_swagger_bat_array_service_enums import (
     Enum0,
     Enum1,
     FooEnum,
+    GreetingsFromAroundTheWorld,
 )
 
 __all__ = [
@@ -25,4 +26,5 @@ __all__ = [
     "Enum0",
     "Enum1",
     "FooEnum",
+    "GreetingsFromAroundTheWorld",
 ]

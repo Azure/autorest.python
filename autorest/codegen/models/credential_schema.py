@@ -24,6 +24,10 @@ class CredentialSchema(BaseSchema):
         # abstract serialization_type in BaseSchema is not overridden
         pass
 
+    @property
+    def mutable(self) -> bool:
+        return True
+
 
 class AzureKeyCredentialSchema(CredentialSchema):
 

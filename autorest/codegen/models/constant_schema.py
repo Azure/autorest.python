@@ -53,6 +53,10 @@ class ConstantSchema(BaseSchema):
         return "constant"
 
     @property
+    def mutable(self) -> bool:
+        return False
+
+    @property
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
 
