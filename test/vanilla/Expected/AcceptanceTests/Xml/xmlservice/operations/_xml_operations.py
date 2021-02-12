@@ -148,7 +148,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         model = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
         request = self._put_complex_type_ref_no_meta_request(
@@ -265,7 +264,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         model = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
         request = self._put_complex_type_ref_with_meta_request(
@@ -383,7 +381,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = self._put_simple_request(body=slideshow, template_url=self.put_simple.metadata["url"], **kwargs)
@@ -499,7 +496,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         wrapped_lists = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = self._put_wrapped_lists_request(
@@ -665,7 +661,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         slideshow = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = self._put_empty_list_request(
@@ -782,7 +777,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         apple_barrel = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
         request = self._put_empty_wrapped_lists_request(
@@ -1244,7 +1238,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         banana = self._serialize.body(banana, "Banana", is_xml=True)
 
         request = self._put_empty_child_element_request(
@@ -1424,7 +1417,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         properties = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = self._put_service_properties_request(
@@ -1665,7 +1657,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _properties = _models.JSONInput(id=id)
         _properties = self._serialize.body(_properties, "JSONInput")
 
@@ -1889,7 +1880,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
         _slideshow = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
@@ -2007,7 +1997,6 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/xml")
         _model = _models.ModelWithUrlProperty(url=url)
         _model = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 

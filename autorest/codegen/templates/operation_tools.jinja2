@@ -248,7 +248,7 @@ return 200 <= response.status_code <= 299
 
 {% macro get_request(operation, request, url=None) %}
 {% set template_url = url or "self." + operation.name + ".metadata['url']" %}
-{% if request.has_body_param_with_object_schema %}
+{% if request.has_body_param_with_object_schema and request.schema_requests | length > 1 %}
 content_type = kwargs.get("content_type", {{ request.default_content_type }})
 {% endif %}
 {% if operation.parameters.grouped %}

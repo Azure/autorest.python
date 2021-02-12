@@ -130,7 +130,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "IntWrapper")
 
         request = self._put_int_request(body=complex_body, template_url=self.put_int.metadata["url"], **kwargs)
@@ -231,7 +230,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "LongWrapper")
 
         request = self._put_long_request(body=complex_body, template_url=self.put_long.metadata["url"], **kwargs)
@@ -332,7 +330,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "FloatWrapper")
 
         request = self._put_float_request(body=complex_body, template_url=self.put_float.metadata["url"], **kwargs)
@@ -434,7 +431,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "DoubleWrapper")
 
         request = self._put_double_request(body=complex_body, template_url=self.put_double.metadata["url"], **kwargs)
@@ -535,7 +531,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "BooleanWrapper")
 
         request = self._put_bool_request(body=complex_body, template_url=self.put_bool.metadata["url"], **kwargs)
@@ -636,7 +631,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "StringWrapper")
 
         request = self._put_string_request(body=complex_body, template_url=self.put_string.metadata["url"], **kwargs)
@@ -737,7 +731,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "DateWrapper")
 
         request = self._put_date_request(body=complex_body, template_url=self.put_date.metadata["url"], **kwargs)
@@ -838,7 +831,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "DatetimeWrapper")
 
         request = self._put_date_time_request(
@@ -942,7 +934,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         complex_body = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
         request = self._put_date_time_rfc1123_request(
@@ -1045,7 +1036,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _complex_body = _models.DurationWrapper(field=field)
         _complex_body = self._serialize.body(_complex_body, "DurationWrapper")
 
@@ -1149,7 +1139,6 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _complex_body = _models.ByteWrapper(field=field)
         _complex_body = self._serialize.body(_complex_body, "ByteWrapper")
 

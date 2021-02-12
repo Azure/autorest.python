@@ -81,7 +81,6 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         create_parameters = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = self._create_ap_true_request(
@@ -140,7 +139,6 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         create_parameters = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = self._create_cat_ap_true_request(
@@ -199,7 +197,6 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         create_parameters = self._serialize.body(create_parameters, "PetAPObject")
 
         request = self._create_ap_object_request(
@@ -258,7 +255,6 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         create_parameters = self._serialize.body(create_parameters, "PetAPString")
 
         request = self._create_ap_string_request(
@@ -319,7 +315,6 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         create_parameters = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = self._create_ap_in_properties_request(
@@ -382,7 +377,6 @@ class PetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         create_parameters = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = self._create_ap_in_properties_with_ap_string_request(

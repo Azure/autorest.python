@@ -298,7 +298,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.IntWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "IntWrapper")
 
@@ -356,7 +355,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.IntOptionalWrapper(value=value)
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "IntOptionalWrapper")
@@ -624,7 +622,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.StringWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "StringWrapper")
 
@@ -682,7 +679,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.StringOptionalWrapper(value=value)
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "StringOptionalWrapper")
@@ -840,7 +836,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         body_parameter = self._serialize.body(body_parameter, "Product")
 
         request = self._post_required_class_parameter_request(
@@ -895,7 +890,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if body_parameter is not None:
             body_parameter = self._serialize.body(body_parameter, "Product")
 
@@ -952,7 +946,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.ClassWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "ClassWrapper")
 
@@ -1010,7 +1003,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.ClassOptionalWrapper(value=value)
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "ClassOptionalWrapper")
@@ -1178,7 +1170,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.ArrayWrapper(value=value)
         _body_parameter = self._serialize.body(_body_parameter, "ArrayWrapper")
 
@@ -1236,7 +1227,6 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _body_parameter = _models.ArrayOptionalWrapper(value=value)
         if _body_parameter is not None:
             _body_parameter = self._serialize.body(_body_parameter, "ArrayOptionalWrapper")

@@ -100,7 +100,6 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         account_name = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = self._check_name_availability_request(
@@ -167,7 +166,6 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         parameters = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
         request = self._create_initial_request(
@@ -475,7 +473,6 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         parameters = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
         request = self._update_request(
@@ -800,7 +797,6 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         _regenerate_key = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
 

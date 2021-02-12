@@ -134,7 +134,6 @@ class PetOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if pet_param is not None:
             pet_param = self._serialize.body(pet_param, "Pet")
 

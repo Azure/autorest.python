@@ -76,7 +76,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -183,7 +182,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -388,7 +386,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -493,7 +490,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -601,7 +597,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -715,7 +710,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -825,7 +819,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -937,7 +930,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -1047,7 +1039,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -1161,7 +1152,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -1284,7 +1274,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -1407,7 +1396,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -1530,7 +1518,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -1653,7 +1640,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -1770,7 +1756,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if sku is not None:
             sku = self._serialize.body(sku, "Sku")
 
@@ -1872,7 +1857,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if sku is not None:
             sku = self._serialize.body(sku, "Sku")
 
@@ -1976,7 +1960,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _product = _models.SubProduct(provisioning_state=provisioning_state)
         if _product is not None:
             _product = self._serialize.body(_product, "SubProduct")
@@ -2085,7 +2068,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _product = _models.SubProduct(provisioning_state=provisioning_state)
         if _product is not None:
             _product = self._serialize.body(_product, "SubProduct")
@@ -3406,7 +3388,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -3508,7 +3489,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -3906,7 +3886,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -4026,7 +4005,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -4144,7 +4122,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 
@@ -4250,7 +4227,6 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, "Product")
 

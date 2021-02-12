@@ -61,7 +61,6 @@ class PollingPagingExampleOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if product is not None:
             product = self._serialize.body(product, 'Product')
 

@@ -129,7 +129,6 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 
@@ -231,7 +230,6 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _complex_body = self._serialize.body(_complex_body, "DictionaryWrapper")
 

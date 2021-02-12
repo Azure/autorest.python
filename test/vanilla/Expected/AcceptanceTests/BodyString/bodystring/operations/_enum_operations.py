@@ -387,7 +387,6 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _enum_string_body = _models.RefColorConstant(field1=field1)
         _enum_string_body = self._serialize.body(_enum_string_body, "RefColorConstant")
 

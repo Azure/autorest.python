@@ -84,7 +84,6 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         if parameter_one is not None:
             parameter_one = self._serialize.body(parameter_one, 'ModelThree')
 

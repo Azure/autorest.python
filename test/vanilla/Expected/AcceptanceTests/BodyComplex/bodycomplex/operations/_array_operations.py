@@ -149,7 +149,6 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
@@ -267,7 +266,6 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.get("content_type", "application/json")
         _complex_body = _models.ArrayWrapper(array=array)
         _complex_body = self._serialize.body(_complex_body, "ArrayWrapper")
 
