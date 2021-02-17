@@ -504,11 +504,12 @@ class NumberOperations(object):
     get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     def _put_big_double_positive_decimal_request(
-        self, **kwargs  # type: Any
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        body = 99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -544,8 +545,11 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        number_body = 99999999.99
+        number_body = self._serialize.body(number_body, "float")
+
         request = self._put_big_double_positive_decimal_request(
-            template_url=self.put_big_double_positive_decimal.metadata["url"], **kwargs
+            body=number_body, template_url=self.put_big_double_positive_decimal.metadata["url"], **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -619,11 +623,12 @@ class NumberOperations(object):
     get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     def _put_big_double_negative_decimal_request(
-        self, **kwargs  # type: Any
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        body = -99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -659,8 +664,11 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        number_body = -99999999.99
+        number_body = self._serialize.body(number_body, "float")
+
         request = self._put_big_double_negative_decimal_request(
-            template_url=self.put_big_double_negative_decimal.metadata["url"], **kwargs
+            body=number_body, template_url=self.put_big_double_negative_decimal.metadata["url"], **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -852,11 +860,12 @@ class NumberOperations(object):
     get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     def _put_big_decimal_positive_decimal_request(
-        self, **kwargs  # type: Any
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        body = 99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -892,8 +901,11 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        number_body = 99999999.99
+        number_body = self._serialize.body(number_body, "float")
+
         request = self._put_big_decimal_positive_decimal_request(
-            template_url=self.put_big_decimal_positive_decimal.metadata["url"], **kwargs
+            body=number_body, template_url=self.put_big_decimal_positive_decimal.metadata["url"], **kwargs
         )
         kwargs.pop("content_type", None)
 
@@ -967,11 +979,12 @@ class NumberOperations(object):
     get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     def _put_big_decimal_negative_decimal_request(
-        self, **kwargs  # type: Any
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        body = -99999999.99
         accept = "application/json"
 
         # Construct URL
@@ -1007,8 +1020,11 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        number_body = -99999999.99
+        number_body = self._serialize.body(number_body, "float")
+
         request = self._put_big_decimal_negative_decimal_request(
-            template_url=self.put_big_decimal_negative_decimal.metadata["url"], **kwargs
+            body=number_body, template_url=self.put_big_decimal_negative_decimal.metadata["url"], **kwargs
         )
         kwargs.pop("content_type", None)
 

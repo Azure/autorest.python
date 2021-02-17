@@ -107,6 +107,11 @@ class ParameterList(MutableSequence):
         )
 
     @property
+    def constant_bodies(self) -> List[Parameter]:
+        constants = self.constant
+        return [c for c in constants if c.location == ParameterLocation.Body]
+
+    @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """

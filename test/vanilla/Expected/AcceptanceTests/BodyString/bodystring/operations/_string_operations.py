@@ -223,11 +223,12 @@ class StringOperations(object):
     get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     def _put_empty_request(
-        self, **kwargs  # type: Any
+        self,
+        body,  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        body = ""
         accept = "application/json"
 
         # Construct URL
@@ -263,7 +264,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_empty_request(template_url=self.put_empty.metadata["url"], **kwargs)
+        string_body = ""
+        string_body = self._serialize.body(string_body, "str")
+
+        request = self._put_empty_request(body=string_body, template_url=self.put_empty.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -334,11 +338,12 @@ class StringOperations(object):
     get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     def _put_mbcs_request(
-        self, **kwargs  # type: Any
+        self,
+        body,  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         accept = "application/json"
 
         # Construct URL
@@ -374,7 +379,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_mbcs_request(template_url=self.put_mbcs.metadata["url"], **kwargs)
+        string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        string_body = self._serialize.body(string_body, "str")
+
+        request = self._put_mbcs_request(body=string_body, template_url=self.put_mbcs.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -447,11 +455,12 @@ class StringOperations(object):
     get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     def _put_whitespace_request(
-        self, **kwargs  # type: Any
+        self,
+        body,  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
-        body = "    Now is the time for all good men to come to the aid of their country    "
         accept = "application/json"
 
         # Construct URL
@@ -489,7 +498,12 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_whitespace_request(template_url=self.put_whitespace.metadata["url"], **kwargs)
+        string_body = "    Now is the time for all good men to come to the aid of their country    "
+        string_body = self._serialize.body(string_body, "str")
+
+        request = self._put_whitespace_request(
+            body=string_body, template_url=self.put_whitespace.metadata["url"], **kwargs
+        )
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -95,9 +95,8 @@ class BoolOperations:
 
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
-    def _put_true_request(self, **kwargs) -> HttpRequest:
+    def _put_true_request(self, body: bool, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
-        body = True
         accept = "application/json"
 
         # Construct URL
@@ -130,7 +129,10 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_true_request(template_url=self.put_true.metadata["url"], **kwargs)
+        bool_body = True
+        bool_body = self._serialize.body(bool_body, "bool")
+
+        request = self._put_true_request(body=bool_body, template_url=self.put_true.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -194,9 +196,8 @@ class BoolOperations:
 
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
-    def _put_false_request(self, **kwargs) -> HttpRequest:
+    def _put_false_request(self, body: bool, **kwargs) -> HttpRequest:
         content_type = kwargs.pop("content_type", "application/json")
-        body = False
         accept = "application/json"
 
         # Construct URL
@@ -229,7 +230,10 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = self._put_false_request(template_url=self.put_false.metadata["url"], **kwargs)
+        bool_body = False
+        bool_body = self._serialize.body(bool_body, "bool")
+
+        request = self._put_false_request(body=bool_body, template_url=self.put_false.metadata["url"], **kwargs)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

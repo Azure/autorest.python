@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from .parameter import Parameter, ParameterLocation, ParameterStyle
 
 def _make_public(name):
@@ -17,7 +17,8 @@ class RequestParameter(Parameter):
     def in_method_signature(self) -> bool:
         return not(
             # If I only have one value, I can't be set, so no point being in signature
-            self.constant
+            # constant bodies still go in method signature bc we don't support that in request
+            (self.constant and not self.location == ParameterLocation.Body)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
@@ -31,6 +32,13 @@ class RequestParameter(Parameter):
         if self.yaml_data["language"]["python"].get("multipart", False):
             return "_body"
         return self.yaml_data["language"]["python"]["name"]
+
+    @property
+    def default_value(self) -> Optional[Any]:
+        if self.location == ParameterLocation.Body:
+            return None
+        return super(RequestParameter, self).default_value
+
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestParameter":

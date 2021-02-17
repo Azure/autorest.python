@@ -20,6 +20,15 @@ class RequestParameterList(ParameterList):
         )
 
     @property
+    def constant(self) -> List[Parameter]:
+        """We don't do constant bodys in request
+        """
+        all_constants = super(RequestParameterList, self).constant
+        if self.has_body:
+            return [c for c in all_constants if not c.location == ParameterLocation.Body]
+        return all_constants
+
+    @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """

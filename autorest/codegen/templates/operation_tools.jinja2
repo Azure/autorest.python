@@ -265,7 +265,10 @@ _body = {
 {% if operation.parameters.is_flattened %}
 {{ operation.parameters.build_flattened_object() }}
 {% endif %}
-{% if request.parameters.has_body and not (request.parameters.body[0].constant or request.is_stream or request.multipart) %}
+{% for constant_body in operation.parameters.constant_bodies %}
+{{ constant_body.serialized_name }} = {{ constant_body.constant_declaration }}
+{% endfor %}
+{% if request.parameters.has_body and not (request.is_stream or request.multipart) %}
 {% set send_xml = "xml" if request.parameters.has_body and "xml" in request.content_type %}
     {% if (request.schema_requests | length) == 1 %}
 {{ non_stream_body_params(request.schema_requests[0], send_xml) }}

@@ -221,6 +221,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self._default_value()[0]
 
     @property
+    def default_value_declaration(self) -> Optional[Any]:
+        return self._default_value()[1]
+
+    @property
+    def type_annotation(self) -> str:
+        return self._default_value()[2]
+
+    @property
     def serialization_type(self) -> str:
         return self.schema.serialization_type
 
@@ -229,15 +237,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.multiple_media_types_docstring_type or self.schema.docstring_type
 
     def method_signature(self, async_mode: bool) -> str:
-        default_value, default_value_declaration, type_annot = self._default_value()
-        has_default_value = default_value is not None or not self.required
+        has_default_value = self.default_value is not None or not self.required
         if async_mode:
             if has_default_value:
-                return f"{self.serialized_name}: {type_annot} = {default_value_declaration},"
-            return f"{self.serialized_name}: {type_annot},"
+                return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
+            return f"{self.serialized_name}: {self.type_annotation},"
         if has_default_value:
-            return f"{self.serialized_name}={default_value_declaration},  # type: {type_annot}"
-        return f"{self.serialized_name},  # type: {type_annot}"
+            return f"{self.serialized_name}={self.default_value_declaration},  # type: {self.type_annotation}"
+        return f"{self.serialized_name},  # type: {self.type_annotation}"
 
 
     @property
