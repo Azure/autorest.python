@@ -141,7 +141,6 @@ def _build_flags(
         "trace": True,
         "output-artifact": "code-model-v4-no-tags",
         "input-file": f"{testserver_dir}/{swagger_name}",
-        "debug": debug,
         "add-credential": False,
         "vanilla": swagger_group == _SwaggerGroup.VANILLA,
         "azure-arm": swagger_group == _SwaggerGroup.AZURE_ARM,
@@ -166,7 +165,8 @@ def _build_command_line(
     flag_strings = [
         f"--{flag}={value}" for flag, value in flags.items()
     ]
-    return "autorest " + " ".join(flag_strings)
+    debug_str = " --python.debugger" if debug else ""
+    return "autorest " + " ".join(flag_strings) + debug_str
 
 def _run_autorest(cmds, debug):
     if len(cmds) == 1:
