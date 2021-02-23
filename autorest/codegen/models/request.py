@@ -88,7 +88,6 @@ class Request(BaseModel):
         except ValueError:
             return False
 
-    @property
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
@@ -100,14 +99,15 @@ class Request(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Request":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Request":
         operation_name = yaml_data["language"]["python"]["name"]
         name = f"_{operation_name}_request"
 
         first_request = yaml_data["requests"][0]
 
         parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, RequestParameter.from_yaml)
-        return cls(
+
+        request_class = cls(
             yaml_data=yaml_data,
             name=name,
             url=first_request["protocol"]["http"]["path"],
@@ -117,3 +117,5 @@ class Request(BaseModel):
             parameters=RequestParameterList(parameters),
             multiple_media_type_parameters=RequestParameterList(multiple_media_type_parameters),
         )
+        code_model.request_ids[id(yaml_data)] = request_class
+        return request_class

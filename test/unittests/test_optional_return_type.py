@@ -6,54 +6,39 @@
 
 import pytest
 from autorest.codegen.models import (
-    Operation, LROOperation, PagingOperation, SchemaResponse, CodeModel, Request, ParameterList
+    Operation, LROOperation, PagingOperation, SchemaResponse, ParameterList
 )
 
-@pytest.fixture
-def request_preparer():
-    return Request(
-        yaml_data={},
-        name="_optional_return_type_test_request",
-        url="http://fakeUrl",
-        method="get",
-        multipart=False,
-        schema_requests=[],
-        parameters=ParameterList(),
-        multiple_media_type_parameters=ParameterList(),
-    )
 
 @pytest.fixture
-def operation(request_preparer):
+def operation():
     return Operation(
         yaml_data={},
         name="optional_return_type_test",
         description="Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        request=request_preparer,
         parameters=ParameterList(),
         multiple_media_type_parameters=ParameterList(),
     )
 
 @pytest.fixture
-def lro_operation(request_preparer):
+def lro_operation():
     return LROOperation(
         yaml_data={},
         name="lro_optional_return_type_test",
         description="LRO Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        request=request_preparer,
         parameters=ParameterList(),
         multiple_media_type_parameters=ParameterList(),
     )
 
 @pytest.fixture
-def paging_operation(request_preparer):
+def paging_operation():
     return PagingOperation(
         yaml_data={"extensions": {"x-ms-pageable": {}}},
         name="paging_optional_return_type_test",
         description="Paging Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        request=request_preparer,
         parameters=ParameterList(),
         multiple_media_type_parameters=ParameterList(),
     )

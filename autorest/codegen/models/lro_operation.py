@@ -20,7 +20,6 @@ class LROOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        request: Request,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -34,7 +33,6 @@ class LROOperation(Operation):
     ) -> None:
         super(LROOperation, self).__init__(
             yaml_data,
-            request,
             name,
             description,
             api_versions,
@@ -48,7 +46,6 @@ class LROOperation(Operation):
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
-        self.request.name = self.request.name[:self.request.name.rfind("_request")] + "_initial" + "_request"
 
     @property
     def lro_response(self) -> Optional[SchemaResponse]:
@@ -81,9 +78,8 @@ class LROOperation(Operation):
 
     @property
     def initial_operation(self) -> Operation:
-        return Operation(
+        operation = Operation(
             yaml_data={},
-            request=self.request,
             name=self.name.strip("begin") + "_initial",
             description="",
             api_versions=self.api_versions,
@@ -94,6 +90,8 @@ class LROOperation(Operation):
             want_description_docstring=False,
             want_tracing=False,
         )
+        operation.request = self.request
+        return operation
 
     @property
     def has_optional_return_type(self) -> bool:

@@ -20,7 +20,6 @@ class PagingOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        request: Request,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -34,7 +33,6 @@ class PagingOperation(Operation):
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
-            request,
             name,
             description,
             api_versions,

@@ -27,7 +27,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        request: Request,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -41,7 +40,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
-        self.request = request
         self.description = description
         self.api_versions = api_versions
         self.parameters = parameters
@@ -51,10 +49,23 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
+        self._request: Optional[Request] = None
 
     @property
     def python_name(self) -> str:
         return self.name
+
+    @property
+    def request(self) -> Request:
+        if not self._request:
+            raise ValueError(
+                "You're calling request when you haven't linked up operation to request through the code model"
+            )
+        return self._request
+
+    @request.setter
+    def request(self, r: Request) -> None:
+        self._request = r
 
     @property
     def is_stream_response(self) -> bool:
@@ -142,7 +153,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if code_model.options["azure_arm"]:
             file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-        file_import.merge(self.request.imports)
+        file_import.merge(self.request.imports())
 
         for response in [r for r in self.responses if r.has_body]:
             file_import.merge(cast(BaseSchema, response.schema).imports())
@@ -179,7 +190,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         return cls(
             yaml_data=yaml_data,
-            request=Request.from_yaml(yaml_data),
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
