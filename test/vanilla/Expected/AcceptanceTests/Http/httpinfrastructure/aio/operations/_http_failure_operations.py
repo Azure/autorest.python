@@ -47,24 +47,6 @@ class HttpFailureOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_error_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/emptybody/error")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_empty_error(self, **kwargs) -> bool:
         """Get empty error form server.
@@ -98,24 +80,6 @@ class HttpFailureOperations:
 
     get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
-    def _get_no_model_error_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/nomodel/error")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_no_model_error(self, **kwargs) -> bool:
         """Get empty error form server.
@@ -147,24 +111,6 @@ class HttpFailureOperations:
         return deserialized
 
     get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
-
-    def _get_no_model_empty_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/nomodel/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_no_model_empty(self, **kwargs) -> bool:

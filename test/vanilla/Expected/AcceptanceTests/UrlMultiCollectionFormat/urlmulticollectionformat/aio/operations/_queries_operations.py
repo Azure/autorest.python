@@ -47,30 +47,6 @@ class QueriesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _array_string_multi_null_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/multi/string/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = [
-                self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
-            ]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def array_string_multi_null(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get a null array of string using the multi-array format.
@@ -104,30 +80,6 @@ class QueriesOperations:
 
     array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
 
-    def _array_string_multi_empty_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/multi/string/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = [
-                self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
-            ]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def array_string_multi_empty(self, array_query: Optional[List[str]] = None, **kwargs) -> None:
         """Get an empty array [] of string using the multi-array format.
@@ -160,30 +112,6 @@ class QueriesOperations:
             return cls(pipeline_response, None, {})
 
     array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
-
-    def _array_string_multi_valid_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/multi/string/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = [
-                self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
-            ]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def array_string_multi_valid(self, array_query: Optional[List[str]] = None, **kwargs) -> None:

@@ -53,30 +53,6 @@ class PetOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_by_pet_id_request(
-        self,
-        pet_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/extensibleenums/pet/{petId}")
-        path_format_arguments = {
-            "petId": self._serialize.url("pet_id", pet_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_by_pet_id(
         self,
@@ -115,30 +91,6 @@ class PetOperations(object):
         return deserialized
 
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
-
-    def _add_pet_request(
-        self,
-        body=None,  # type: Optional["_models.Pet"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/extensibleenums/pet/addPet")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def add_pet(

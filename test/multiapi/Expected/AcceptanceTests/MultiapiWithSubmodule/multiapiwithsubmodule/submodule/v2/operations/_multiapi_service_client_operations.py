@@ -26,32 +26,6 @@ if TYPE_CHECKING:
 
 class MultiapiServiceClientOperationsMixin(object):
 
-    def _test_one_request(
-        self,
-        id,  # type: int
-        message=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['id'] = self._serialize.query("id", id, 'int')
-        if message is not None:
-            query_parameters['message'] = self._serialize.query("message", message, 'str')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     def test_one(
         self,
         id,  # type: int
@@ -100,32 +74,6 @@ class MultiapiServiceClientOperationsMixin(object):
         return deserialized
 
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
-
-    def _test_different_calls_request(
-        self,
-        greeting_in_english,  # type: str
-        greeting_in_chinese=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
-        if greeting_in_chinese is not None:
-            header_parameters['greetingInChinese'] = self._serialize.header("greeting_in_chinese", greeting_in_chinese, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     def test_different_calls(
         self,

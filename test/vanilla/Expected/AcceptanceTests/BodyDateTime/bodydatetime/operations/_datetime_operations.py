@@ -54,24 +54,6 @@ class DatetimeOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_null(
         self, **kwargs  # type: Any
@@ -107,24 +89,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_null.metadata = {"url": "/datetime/null"}  # type: ignore
-
-    def _get_invalid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_invalid(
@@ -162,24 +126,6 @@ class DatetimeOperations(object):
 
     get_invalid.metadata = {"url": "/datetime/invalid"}  # type: ignore
 
-    def _get_overflow_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/overflow")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_overflow(
         self, **kwargs  # type: Any
@@ -216,24 +162,6 @@ class DatetimeOperations(object):
 
     get_overflow.metadata = {"url": "/datetime/overflow"}  # type: ignore
 
-    def _get_underflow_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/underflow")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_underflow(
         self, **kwargs  # type: Any
@@ -269,30 +197,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_underflow.metadata = {"url": "/datetime/underflow"}  # type: ignore
-
-    def _put_utc_max_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/utc")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_utc_max_date_time(
@@ -333,30 +237,6 @@ class DatetimeOperations(object):
             return cls(pipeline_response, None, {})
 
     put_utc_max_date_time.metadata = {"url": "/datetime/max/utc"}  # type: ignore
-
-    def _put_utc_max_date_time7_digits_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/utc7ms")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_utc_max_date_time7_digits(
@@ -401,24 +281,6 @@ class DatetimeOperations(object):
 
     put_utc_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms"}  # type: ignore
 
-    def _get_utc_lowercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/utc/lowercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_utc_lowercase_max_date_time(
         self, **kwargs  # type: Any
@@ -457,24 +319,6 @@ class DatetimeOperations(object):
 
     get_utc_lowercase_max_date_time.metadata = {"url": "/datetime/max/utc/lowercase"}  # type: ignore
 
-    def _get_utc_uppercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/utc/uppercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_utc_uppercase_max_date_time(
         self, **kwargs  # type: Any
@@ -512,24 +356,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_utc_uppercase_max_date_time.metadata = {"url": "/datetime/max/utc/uppercase"}  # type: ignore
-
-    def _get_utc_uppercase_max_date_time7_digits_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/utc7ms/uppercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(
@@ -572,30 +398,6 @@ class DatetimeOperations(object):
 
     get_utc_uppercase_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms/uppercase"}  # type: ignore
 
-    def _put_local_positive_offset_max_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/localpositiveoffset")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def put_local_positive_offset_max_date_time(
         self,
@@ -636,24 +438,6 @@ class DatetimeOperations(object):
 
     put_local_positive_offset_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset"}  # type: ignore
 
-    def _get_local_positive_offset_lowercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/localpositiveoffset/lowercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(
         self, **kwargs  # type: Any
@@ -692,24 +476,6 @@ class DatetimeOperations(object):
 
     get_local_positive_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/lowercase"}  # type: ignore
 
-    def _get_local_positive_offset_uppercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/localpositiveoffset/uppercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(
         self, **kwargs  # type: Any
@@ -747,30 +513,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_local_positive_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/uppercase"}  # type: ignore
-
-    def _put_local_negative_offset_max_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/localnegativeoffset")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_local_negative_offset_max_date_time(
@@ -812,24 +554,6 @@ class DatetimeOperations(object):
 
     put_local_negative_offset_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset"}  # type: ignore
 
-    def _get_local_negative_offset_uppercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/localnegativeoffset/uppercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(
         self, **kwargs  # type: Any
@@ -868,24 +592,6 @@ class DatetimeOperations(object):
 
     get_local_negative_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/uppercase"}  # type: ignore
 
-    def _get_local_negative_offset_lowercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/max/localnegativeoffset/lowercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(
         self, **kwargs  # type: Any
@@ -923,30 +629,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_local_negative_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/lowercase"}  # type: ignore
-
-    def _put_utc_min_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/min/utc")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_utc_min_date_time(
@@ -988,24 +670,6 @@ class DatetimeOperations(object):
 
     put_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
-    def _get_utc_min_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/min/utc")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_utc_min_date_time(
         self, **kwargs  # type: Any
@@ -1041,30 +705,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
-
-    def _put_local_positive_offset_min_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/min/localpositiveoffset")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_local_positive_offset_min_date_time(
@@ -1106,24 +746,6 @@ class DatetimeOperations(object):
 
     put_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
-    def _get_local_positive_offset_min_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/min/localpositiveoffset")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_local_positive_offset_min_date_time(
         self, **kwargs  # type: Any
@@ -1161,30 +783,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
-
-    def _put_local_negative_offset_min_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/min/localnegativeoffset")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_local_negative_offset_min_date_time(
@@ -1226,24 +824,6 @@ class DatetimeOperations(object):
 
     put_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
 
-    def _get_local_negative_offset_min_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/min/localnegativeoffset")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_local_negative_offset_min_date_time(
         self, **kwargs  # type: Any
@@ -1281,24 +861,6 @@ class DatetimeOperations(object):
         return deserialized
 
     get_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
-
-    def _get_local_no_offset_min_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetime/min/localnooffset")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_local_no_offset_min_date_time(

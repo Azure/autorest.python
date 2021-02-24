@@ -11,7 +11,7 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _check_name_availability_request(
-    self, body: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs
+    body: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
@@ -41,7 +41,7 @@ def _check_name_availability_request(
 
 
 def _create_initial_request(
-    self, resource_group_name: str, account_name: str, body: "_models.StorageAccountCreateParameters", **kwargs
+    resource_group_name: str, account_name: str, body: "_models.StorageAccountCreateParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
@@ -73,7 +73,7 @@ def _create_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+def _delete_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
 
     # Construct URL
@@ -98,7 +98,7 @@ def _delete_request(self, resource_group_name: str, account_name: str, **kwargs)
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _get_properties_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+def _get_properties_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -126,7 +126,7 @@ def _get_properties_request(self, resource_group_name: str, account_name: str, *
 
 
 def _update_request(
-    self, resource_group_name: str, account_name: str, body: "_models.StorageAccountUpdateParameters", **kwargs
+    resource_group_name: str, account_name: str, body: "_models.StorageAccountUpdateParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
@@ -158,7 +158,7 @@ def _update_request(
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _list_keys_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+def _list_keys_request(resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -185,7 +185,7 @@ def _list_keys_request(self, resource_group_name: str, account_name: str, **kwar
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _list_request(self, **kwargs) -> HttpRequest:
+def _list_request(**kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -207,7 +207,7 @@ def _list_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _list_by_resource_group_request(self, resource_group_name: str, **kwargs) -> HttpRequest:
+def _list_by_resource_group_request(resource_group_name: str, **kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 
@@ -234,7 +234,7 @@ def _list_by_resource_group_request(self, resource_group_name: str, **kwargs) ->
 
 
 def _regenerate_key_request(
-    self, resource_group_name: str, account_name: str, body: "_models.StorageAccountRegenerateKeyParameters", **kwargs
+    resource_group_name: str, account_name: str, body: "_models.StorageAccountRegenerateKeyParameters", **kwargs
 ) -> HttpRequest:
     api_version = "2015-05-01-preview"
     content_type = kwargs.pop("content_type", "application/json")
@@ -266,7 +266,7 @@ def _regenerate_key_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _list_request(self, **kwargs) -> HttpRequest:
+def _list_request(**kwargs) -> HttpRequest:
     api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
 

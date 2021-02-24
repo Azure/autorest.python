@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _check_name_availability_request(
-    self,
     body,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
     **kwargs  # type: Any
 ):
@@ -48,7 +47,6 @@ def _check_name_availability_request(
 
 
 def _create_initial_request(
-    self,
     resource_group_name,  # type: str
     account_name,  # type: str
     body,  # type: "_models.StorageAccountCreateParameters"
@@ -86,7 +84,6 @@ def _create_initial_request(
 
 
 def _delete_request(
-    self,
     resource_group_name,  # type: str
     account_name,  # type: str
     **kwargs  # type: Any
@@ -117,7 +114,6 @@ def _delete_request(
 
 
 def _get_properties_request(
-    self,
     resource_group_name,  # type: str
     account_name,  # type: str
     **kwargs  # type: Any
@@ -150,7 +146,6 @@ def _get_properties_request(
 
 
 def _update_request(
-    self,
     resource_group_name,  # type: str
     account_name,  # type: str
     body,  # type: "_models.StorageAccountUpdateParameters"
@@ -188,7 +183,6 @@ def _update_request(
 
 
 def _list_keys_request(
-    self,
     resource_group_name,  # type: str
     account_name,  # type: str
     **kwargs  # type: Any
@@ -221,7 +215,7 @@ def _list_keys_request(
 
 
 def _list_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-05-01-preview"
@@ -246,7 +240,6 @@ def _list_request(
 
 
 def _list_by_resource_group_request(
-    self,
     resource_group_name,  # type: str
     **kwargs  # type: Any
 ):
@@ -277,7 +270,6 @@ def _list_by_resource_group_request(
 
 
 def _regenerate_key_request(
-    self,
     resource_group_name,  # type: str
     account_name,  # type: str
     body,  # type: "_models.StorageAccountRegenerateKeyParameters"
@@ -315,7 +307,7 @@ def _regenerate_key_request(
 
 
 def _list_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-05-01-preview"

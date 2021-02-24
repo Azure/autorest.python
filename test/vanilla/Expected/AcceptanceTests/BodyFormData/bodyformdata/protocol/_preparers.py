@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _upload_file_request(
-    self,
     body,  # type: IO
     **kwargs  # type: Any
 ):
@@ -41,7 +40,6 @@ def _upload_file_request(
 
 
 def _upload_file_via_body_request(
-    self,
     body,  # type: IO
     **kwargs  # type: Any
 ):
@@ -67,7 +65,6 @@ def _upload_file_via_body_request(
 
 
 def _upload_files_request(
-    self,
     body,  # type: List[IO]
     **kwargs  # type: Any
 ):

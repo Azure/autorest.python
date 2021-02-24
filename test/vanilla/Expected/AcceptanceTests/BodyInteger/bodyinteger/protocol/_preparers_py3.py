@@ -10,7 +10,7 @@ import datetime
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_null_request(self, **kwargs) -> HttpRequest:
+def _get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -26,7 +26,7 @@ def _get_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_invalid_request(self, **kwargs) -> HttpRequest:
+def _get_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -42,7 +42,7 @@ def _get_invalid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_overflow_int32_request(self, **kwargs) -> HttpRequest:
+def _get_overflow_int32_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -58,7 +58,7 @@ def _get_overflow_int32_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_underflow_int32_request(self, **kwargs) -> HttpRequest:
+def _get_underflow_int32_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -74,7 +74,7 @@ def _get_underflow_int32_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_overflow_int64_request(self, **kwargs) -> HttpRequest:
+def _get_overflow_int64_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -90,7 +90,7 @@ def _get_overflow_int64_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_underflow_int64_request(self, **kwargs) -> HttpRequest:
+def _get_underflow_int64_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -106,7 +106,7 @@ def _get_underflow_int64_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_max32_request(self, body: int, **kwargs) -> HttpRequest:
+def _put_max32_request(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -126,7 +126,7 @@ def _put_max32_request(self, body: int, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_max64_request(self, body: int, **kwargs) -> HttpRequest:
+def _put_max64_request(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -146,7 +146,7 @@ def _put_max64_request(self, body: int, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_min32_request(self, body: int, **kwargs) -> HttpRequest:
+def _put_min32_request(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -166,7 +166,7 @@ def _put_min32_request(self, body: int, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_min64_request(self, body: int, **kwargs) -> HttpRequest:
+def _put_min64_request(body: int, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -186,7 +186,7 @@ def _put_min64_request(self, body: int, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_unix_time_request(self, **kwargs) -> HttpRequest:
+def _get_unix_time_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -202,7 +202,7 @@ def _get_unix_time_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_unix_time_date_request(self, body: datetime.datetime, **kwargs) -> HttpRequest:
+def _put_unix_time_date_request(body: datetime.datetime, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -222,7 +222,7 @@ def _put_unix_time_date_request(self, body: datetime.datetime, **kwargs) -> Http
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_invalid_unix_time_request(self, **kwargs) -> HttpRequest:
+def _get_invalid_unix_time_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -238,7 +238,7 @@ def _get_invalid_unix_time_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_null_unix_time_request(self, **kwargs) -> HttpRequest:
+def _get_null_unix_time_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

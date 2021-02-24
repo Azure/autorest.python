@@ -9,7 +9,6 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _head200_request(
-    self,
     **kwargs
 ) -> HttpRequest:
 
@@ -25,7 +24,6 @@ def _head200_request(
     return self._client.head(url, query_parameters, header_parameters)
 
 def _head204_request(
-    self,
     **kwargs
 ) -> HttpRequest:
 
@@ -41,7 +39,6 @@ def _head204_request(
     return self._client.head(url, query_parameters, header_parameters)
 
 def _head404_request(
-    self,
     **kwargs
 ) -> HttpRequest:
 

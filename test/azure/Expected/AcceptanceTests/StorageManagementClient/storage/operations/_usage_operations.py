@@ -54,30 +54,6 @@ class UsageOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _list_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2015-05-01-preview"
-        accept = "application/json, text/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages")
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def list(
         self, **kwargs  # type: Any

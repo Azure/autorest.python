@@ -53,24 +53,6 @@ class HttpRetryOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _head408_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/408")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace
     def head408(
         self, **kwargs  # type: Any
@@ -102,30 +84,6 @@ class HttpRetryOperations(object):
             return cls(pipeline_response, None, {})
 
     head408.metadata = {"url": "/http/retry/408"}  # type: ignore
-
-    def _put500_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/500")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put500(
@@ -166,30 +124,6 @@ class HttpRetryOperations(object):
 
     put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
-    def _patch500_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/500")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def patch500(
         self,
@@ -229,24 +163,6 @@ class HttpRetryOperations(object):
 
     patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
-    def _get502_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/502")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get502(
         self, **kwargs  # type: Any
@@ -278,24 +194,6 @@ class HttpRetryOperations(object):
             return cls(pipeline_response, None, {})
 
     get502.metadata = {"url": "/http/retry/502"}  # type: ignore
-
-    def _options502_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/502")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.options(url, query_parameters, header_parameters)
 
     @distributed_trace
     def options502(
@@ -332,30 +230,6 @@ class HttpRetryOperations(object):
         return deserialized
 
     options502.metadata = {"url": "/http/retry/502"}  # type: ignore
-
-    def _post503_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/503")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def post503(
@@ -396,30 +270,6 @@ class HttpRetryOperations(object):
 
     post503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
-    def _delete503_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/503")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def delete503(
         self,
@@ -459,30 +309,6 @@ class HttpRetryOperations(object):
 
     delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
-    def _put504_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/504")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def put504(
         self,
@@ -521,30 +347,6 @@ class HttpRetryOperations(object):
             return cls(pipeline_response, None, {})
 
     put504.metadata = {"url": "/http/retry/504"}  # type: ignore
-
-    def _patch504_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/retry/504")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def patch504(

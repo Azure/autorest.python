@@ -53,35 +53,6 @@ class AvailabilitySetsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _update_request(
-        self,
-        resource_group_name,  # type: str
-        avset,  # type: str
-        body,  # type: "_models.AvailabilitySetUpdateParameters"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/parameterFlattening/{resourceGroupName}/{availabilitySetName}")
-        path_format_arguments = {
-            "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-            "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def update(
         self,

@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 
 
 def _test_request(
-    self,
     id,  # type: int
     **kwargs  # type: Any
 ):

@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -35,7 +35,7 @@ def _get_null_request(
 
 
 def _get_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -54,7 +54,6 @@ def _get_empty_request(
 
 
 def _put_empty_request(
-    self,
     body,  # type: Dict[str, str]
     **kwargs  # type: Any
 ):
@@ -79,7 +78,7 @@ def _put_empty_request(
 
 
 def _get_null_value_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -98,7 +97,7 @@ def _get_null_value_request(
 
 
 def _get_null_key_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -117,7 +116,7 @@ def _get_null_key_request(
 
 
 def _get_empty_string_key_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -136,7 +135,7 @@ def _get_empty_string_key_request(
 
 
 def _get_invalid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -155,7 +154,7 @@ def _get_invalid_request(
 
 
 def _get_boolean_tfft_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -174,7 +173,6 @@ def _get_boolean_tfft_request(
 
 
 def _put_boolean_tfft_request(
-    self,
     body,  # type: Dict[str, bool]
     **kwargs  # type: Any
 ):
@@ -199,7 +197,7 @@ def _put_boolean_tfft_request(
 
 
 def _get_boolean_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -218,7 +216,7 @@ def _get_boolean_invalid_null_request(
 
 
 def _get_boolean_invalid_string_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -237,7 +235,7 @@ def _get_boolean_invalid_string_request(
 
 
 def _get_integer_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -256,7 +254,6 @@ def _get_integer_valid_request(
 
 
 def _put_integer_valid_request(
-    self,
     body,  # type: Dict[str, int]
     **kwargs  # type: Any
 ):
@@ -281,7 +278,7 @@ def _put_integer_valid_request(
 
 
 def _get_int_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -300,7 +297,7 @@ def _get_int_invalid_null_request(
 
 
 def _get_int_invalid_string_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -319,7 +316,7 @@ def _get_int_invalid_string_request(
 
 
 def _get_long_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -338,7 +335,6 @@ def _get_long_valid_request(
 
 
 def _put_long_valid_request(
-    self,
     body,  # type: Dict[str, int]
     **kwargs  # type: Any
 ):
@@ -363,7 +359,7 @@ def _put_long_valid_request(
 
 
 def _get_long_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -382,7 +378,7 @@ def _get_long_invalid_null_request(
 
 
 def _get_long_invalid_string_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -401,7 +397,7 @@ def _get_long_invalid_string_request(
 
 
 def _get_float_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -420,7 +416,6 @@ def _get_float_valid_request(
 
 
 def _put_float_valid_request(
-    self,
     body,  # type: Dict[str, float]
     **kwargs  # type: Any
 ):
@@ -445,7 +440,7 @@ def _put_float_valid_request(
 
 
 def _get_float_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -464,7 +459,7 @@ def _get_float_invalid_null_request(
 
 
 def _get_float_invalid_string_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -483,7 +478,7 @@ def _get_float_invalid_string_request(
 
 
 def _get_double_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -502,7 +497,6 @@ def _get_double_valid_request(
 
 
 def _put_double_valid_request(
-    self,
     body,  # type: Dict[str, float]
     **kwargs  # type: Any
 ):
@@ -527,7 +521,7 @@ def _put_double_valid_request(
 
 
 def _get_double_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -546,7 +540,7 @@ def _get_double_invalid_null_request(
 
 
 def _get_double_invalid_string_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -565,7 +559,7 @@ def _get_double_invalid_string_request(
 
 
 def _get_string_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -584,7 +578,6 @@ def _get_string_valid_request(
 
 
 def _put_string_valid_request(
-    self,
     body,  # type: Dict[str, str]
     **kwargs  # type: Any
 ):
@@ -609,7 +602,7 @@ def _put_string_valid_request(
 
 
 def _get_string_with_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -628,7 +621,7 @@ def _get_string_with_null_request(
 
 
 def _get_string_with_invalid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -647,7 +640,7 @@ def _get_string_with_invalid_request(
 
 
 def _get_date_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -666,7 +659,6 @@ def _get_date_valid_request(
 
 
 def _put_date_valid_request(
-    self,
     body,  # type: Dict[str, datetime.date]
     **kwargs  # type: Any
 ):
@@ -691,7 +683,7 @@ def _put_date_valid_request(
 
 
 def _get_date_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -710,7 +702,7 @@ def _get_date_invalid_null_request(
 
 
 def _get_date_invalid_chars_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -729,7 +721,7 @@ def _get_date_invalid_chars_request(
 
 
 def _get_date_time_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -748,7 +740,6 @@ def _get_date_time_valid_request(
 
 
 def _put_date_time_valid_request(
-    self,
     body,  # type: Dict[str, datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -773,7 +764,7 @@ def _put_date_time_valid_request(
 
 
 def _get_date_time_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -792,7 +783,7 @@ def _get_date_time_invalid_null_request(
 
 
 def _get_date_time_invalid_chars_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -811,7 +802,7 @@ def _get_date_time_invalid_chars_request(
 
 
 def _get_date_time_rfc1123_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -830,7 +821,6 @@ def _get_date_time_rfc1123_valid_request(
 
 
 def _put_date_time_rfc1123_valid_request(
-    self,
     body,  # type: Dict[str, datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -855,7 +845,7 @@ def _put_date_time_rfc1123_valid_request(
 
 
 def _get_duration_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -874,7 +864,6 @@ def _get_duration_valid_request(
 
 
 def _put_duration_valid_request(
-    self,
     body,  # type: Dict[str, datetime.timedelta]
     **kwargs  # type: Any
 ):
@@ -899,7 +888,7 @@ def _put_duration_valid_request(
 
 
 def _get_byte_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -918,7 +907,6 @@ def _get_byte_valid_request(
 
 
 def _put_byte_valid_request(
-    self,
     body,  # type: Dict[str, bytearray]
     **kwargs  # type: Any
 ):
@@ -943,7 +931,7 @@ def _put_byte_valid_request(
 
 
 def _get_byte_invalid_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -962,7 +950,7 @@ def _get_byte_invalid_null_request(
 
 
 def _get_base64_url_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -981,7 +969,7 @@ def _get_base64_url_request(
 
 
 def _get_complex_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1000,7 +988,7 @@ def _get_complex_null_request(
 
 
 def _get_complex_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1019,7 +1007,7 @@ def _get_complex_empty_request(
 
 
 def _get_complex_item_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1038,7 +1026,7 @@ def _get_complex_item_null_request(
 
 
 def _get_complex_item_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1057,7 +1045,7 @@ def _get_complex_item_empty_request(
 
 
 def _get_complex_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1076,7 +1064,6 @@ def _get_complex_valid_request(
 
 
 def _put_complex_valid_request(
-    self,
     body,  # type: Dict[str, "_models.Widget"]
     **kwargs  # type: Any
 ):
@@ -1101,7 +1088,7 @@ def _put_complex_valid_request(
 
 
 def _get_array_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1120,7 +1107,7 @@ def _get_array_null_request(
 
 
 def _get_array_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1139,7 +1126,7 @@ def _get_array_empty_request(
 
 
 def _get_array_item_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1158,7 +1145,7 @@ def _get_array_item_null_request(
 
 
 def _get_array_item_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1177,7 +1164,7 @@ def _get_array_item_empty_request(
 
 
 def _get_array_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1196,7 +1183,6 @@ def _get_array_valid_request(
 
 
 def _put_array_valid_request(
-    self,
     body,  # type: Dict[str, List[str]]
     **kwargs  # type: Any
 ):
@@ -1221,7 +1207,7 @@ def _put_array_valid_request(
 
 
 def _get_dictionary_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1240,7 +1226,7 @@ def _get_dictionary_null_request(
 
 
 def _get_dictionary_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1259,7 +1245,7 @@ def _get_dictionary_empty_request(
 
 
 def _get_dictionary_item_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1278,7 +1264,7 @@ def _get_dictionary_item_null_request(
 
 
 def _get_dictionary_item_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1297,7 +1283,7 @@ def _get_dictionary_item_empty_request(
 
 
 def _get_dictionary_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1316,7 +1302,6 @@ def _get_dictionary_valid_request(
 
 
 def _put_dictionary_valid_request(
-    self,
     body,  # type: Dict[str, Dict[str, str]]
     **kwargs  # type: Any
 ):

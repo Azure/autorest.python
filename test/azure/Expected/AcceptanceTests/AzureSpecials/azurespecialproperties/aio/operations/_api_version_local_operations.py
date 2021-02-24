@@ -48,26 +48,6 @@ class ApiVersionLocalOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_method_local_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/2.0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_method_local_valid(self, **kwargs) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
@@ -98,28 +78,6 @@ class ApiVersionLocalOperations:
             return cls(pipeline_response, None, {})
 
     get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
-
-    def _get_method_local_null_request(
-        self,
-        api_version=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if api_version is not None:
-            query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_method_local_null(self, api_version: Optional[str] = None, **kwargs) -> None:
@@ -155,26 +113,6 @@ class ApiVersionLocalOperations:
 
     get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
-    def _get_path_local_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/local/2.0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_path_local_valid(self, **kwargs) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
@@ -203,26 +141,6 @@ class ApiVersionLocalOperations:
             return cls(pipeline_response, None, {})
 
     get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
-
-    def _get_swagger_local_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/apiVersion/swagger/string/none/query/local/2.0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_swagger_local_valid(self, **kwargs) -> None:

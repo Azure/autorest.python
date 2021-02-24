@@ -54,24 +54,6 @@ class IntOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_null(
         self, **kwargs  # type: Any
@@ -107,24 +89,6 @@ class IntOperations(object):
         return deserialized
 
     get_null.metadata = {"url": "/int/null"}  # type: ignore
-
-    def _get_invalid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_invalid(
@@ -162,24 +126,6 @@ class IntOperations(object):
 
     get_invalid.metadata = {"url": "/int/invalid"}  # type: ignore
 
-    def _get_overflow_int32_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/overflowint32")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_overflow_int32(
         self, **kwargs  # type: Any
@@ -215,24 +161,6 @@ class IntOperations(object):
         return deserialized
 
     get_overflow_int32.metadata = {"url": "/int/overflowint32"}  # type: ignore
-
-    def _get_underflow_int32_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/underflowint32")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_underflow_int32(
@@ -270,24 +198,6 @@ class IntOperations(object):
 
     get_underflow_int32.metadata = {"url": "/int/underflowint32"}  # type: ignore
 
-    def _get_overflow_int64_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/overflowint64")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_overflow_int64(
         self, **kwargs  # type: Any
@@ -324,24 +234,6 @@ class IntOperations(object):
 
     get_overflow_int64.metadata = {"url": "/int/overflowint64"}  # type: ignore
 
-    def _get_underflow_int64_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/underflowint64")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_underflow_int64(
         self, **kwargs  # type: Any
@@ -377,30 +269,6 @@ class IntOperations(object):
         return deserialized
 
     get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
-
-    def _put_max32_request(
-        self,
-        body,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/max/32")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_max32(
@@ -440,30 +308,6 @@ class IntOperations(object):
 
     put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
 
-    def _put_max64_request(
-        self,
-        body,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/max/64")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def put_max64(
         self,
@@ -501,30 +345,6 @@ class IntOperations(object):
             return cls(pipeline_response, None, {})
 
     put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
-
-    def _put_min32_request(
-        self,
-        body,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/min/32")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_min32(
@@ -564,30 +384,6 @@ class IntOperations(object):
 
     put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
 
-    def _put_min64_request(
-        self,
-        body,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/min/64")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def put_min64(
         self,
@@ -626,24 +422,6 @@ class IntOperations(object):
 
     put_min64.metadata = {"url": "/int/min/64"}  # type: ignore
 
-    def _get_unix_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/unixtime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_unix_time(
         self, **kwargs  # type: Any
@@ -679,30 +457,6 @@ class IntOperations(object):
         return deserialized
 
     get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
-
-    def _put_unix_time_date_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/unixtime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_unix_time_date(
@@ -744,24 +498,6 @@ class IntOperations(object):
 
     put_unix_time_date.metadata = {"url": "/int/unixtime"}  # type: ignore
 
-    def _get_invalid_unix_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/invalidunixtime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_invalid_unix_time(
         self, **kwargs  # type: Any
@@ -797,24 +533,6 @@ class IntOperations(object):
         return deserialized
 
     get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}  # type: ignore
-
-    def _get_null_unix_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/int/nullunixtime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_null_unix_time(

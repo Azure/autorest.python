@@ -32,42 +32,6 @@ if TYPE_CHECKING:
 
 
 class AutoRestValidationTestOperationsMixin(object):
-    def _validation_of_method_parameters_request(
-        self,
-        resource_group_name,  # type: str
-        id,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "1.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-            "resourceGroupName": self._serialize.url(
-                "resource_group_name",
-                resource_group_name,
-                "str",
-                max_length=10,
-                min_length=3,
-                pattern=r"[a-zA-Z0-9\']+",
-            ),
-            "id": self._serialize.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["apiVersion"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def validation_of_method_parameters(
         self,
@@ -115,42 +79,6 @@ class AutoRestValidationTestOperationsMixin(object):
         return deserialized
 
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
-
-    def _validation_of_body_request(
-        self,
-        resource_group_name,  # type: str
-        id,  # type: int
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "1.0.0"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-            "resourceGroupName": self._serialize.url(
-                "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9]+"
-            ),
-            "id": self._serialize.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["apiVersion"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def validation_of_body(
@@ -207,27 +135,6 @@ class AutoRestValidationTestOperationsMixin(object):
 
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
-    def _get_with_constant_in_path_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        constant_param = "constant"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
-        path_format_arguments = {
-            "constantParam": self._serialize.url("constant_param", constant_param, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_with_constant_in_path(
         self, **kwargs  # type: Any
@@ -260,35 +167,6 @@ class AutoRestValidationTestOperationsMixin(object):
             return cls(pipeline_response, None, {})
 
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
-
-    def _post_with_constant_in_body_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        constant_param = "constant"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
-        path_format_arguments = {
-            "constantParam": self._serialize.url("constant_param", constant_param, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def post_with_constant_in_body(

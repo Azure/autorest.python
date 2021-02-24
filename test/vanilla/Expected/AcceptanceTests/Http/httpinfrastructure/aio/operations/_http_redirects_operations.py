@@ -47,24 +47,6 @@ class HttpRedirectsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head300_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/300")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head300(self, **kwargs) -> None:
         """Return 300 status code and redirect to /http/success/200.
@@ -97,24 +79,6 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)
 
     head300.metadata = {"url": "/http/redirect/300"}  # type: ignore
-
-    def _get300_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/300")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get300(self, **kwargs) -> Optional[List[str]]:
@@ -154,24 +118,6 @@ class HttpRedirectsOperations:
 
     get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
-    def _head301_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/301")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head301(self, **kwargs) -> None:
         """Return 301 status code and redirect to /http/success/200.
@@ -205,24 +151,6 @@ class HttpRedirectsOperations:
 
     head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
-    def _get301_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/301")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get301(self, **kwargs) -> None:
         """Return 301 status code and redirect to /http/success/200.
@@ -255,30 +183,6 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)
 
     get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
-
-    def _put301_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/301")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put301(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -318,24 +222,6 @@ class HttpRedirectsOperations:
 
     put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
-    def _head302_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/302")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head302(self, **kwargs) -> None:
         """Return 302 status code and redirect to /http/success/200.
@@ -369,24 +255,6 @@ class HttpRedirectsOperations:
 
     head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
-    def _get302_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/302")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get302(self, **kwargs) -> None:
         """Return 302 status code and redirect to /http/success/200.
@@ -419,30 +287,6 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)
 
     get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
-
-    def _patch302_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/302")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def patch302(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -481,30 +325,6 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)
 
     patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
-
-    def _post303_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/303")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def post303(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -545,24 +365,6 @@ class HttpRedirectsOperations:
 
     post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
 
-    def _head307_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/307")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head307(self, **kwargs) -> None:
         """Redirect with 307, resulting in a 200 success.
@@ -595,24 +397,6 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)
 
     head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
-
-    def _get307_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/307")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get307(self, **kwargs) -> None:
@@ -647,24 +431,6 @@ class HttpRedirectsOperations:
 
     get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _options307_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/307")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.options(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def options307(self, **kwargs) -> None:
         """options redirected with 307, resulting in a 200 after redirect.
@@ -697,30 +463,6 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)
 
     options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
-
-    def _put307_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/307")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put307(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -760,30 +502,6 @@ class HttpRedirectsOperations:
 
     put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _patch307_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/307")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def patch307(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
@@ -822,30 +540,6 @@ class HttpRedirectsOperations:
 
     patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _post307_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/307")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def post307(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
@@ -883,30 +577,6 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)
 
     post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
-
-    def _delete307_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/redirect/307")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def delete307(self, boolean_value: Optional[bool] = True, **kwargs) -> None:

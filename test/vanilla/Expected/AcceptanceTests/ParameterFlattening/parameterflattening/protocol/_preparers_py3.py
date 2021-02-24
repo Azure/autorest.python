@@ -11,7 +11,7 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _update_request(
-    self, resource_group_name: str, avset: str, body: "_models.AvailabilitySetUpdateParameters", **kwargs
+    resource_group_name: str, avset: str, body: "_models.AvailabilitySetUpdateParameters", **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
 

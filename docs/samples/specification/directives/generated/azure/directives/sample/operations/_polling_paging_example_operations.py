@@ -27,30 +27,6 @@ if TYPE_CHECKING:
 
 class PollingPagingExampleOperationsMixin(object):
 
-    def _basic_polling_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/basic/polling')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _basic_poll_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -151,25 +127,6 @@ class PollingPagingExampleOperationsMixin(object):
             return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
 
-
-    def _basic_paging_request(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/basic/paging')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     def basic_paging(
         self,

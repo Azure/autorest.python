@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _put_request(
-    self,
     body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
     **kwargs  # type: Any
 ):
@@ -40,7 +39,7 @@ def _put_request(
 
 
 def _get_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -59,7 +58,6 @@ def _get_request(
 
 
 def _put_request(
-    self,
     body=None,  # type: Optional[Union[float, "_models.FloatEnum"]]
     **kwargs  # type: Any
 ):
@@ -84,7 +82,7 @@ def _put_request(
 
 
 def _get_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

@@ -53,24 +53,6 @@ class NumberOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_null(
         self, **kwargs  # type: Any
@@ -106,24 +88,6 @@ class NumberOperations(object):
         return deserialized
 
     get_null.metadata = {"url": "/number/null"}  # type: ignore
-
-    def _get_invalid_float_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/invalidfloat")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_invalid_float(
@@ -161,24 +125,6 @@ class NumberOperations(object):
 
     get_invalid_float.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
-    def _get_invalid_double_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/invaliddouble")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_invalid_double(
         self, **kwargs  # type: Any
@@ -215,24 +161,6 @@ class NumberOperations(object):
 
     get_invalid_double.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
-    def _get_invalid_decimal_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/invaliddecimal")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_invalid_decimal(
         self, **kwargs  # type: Any
@@ -268,30 +196,6 @@ class NumberOperations(object):
         return deserialized
 
     get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
-
-    def _put_big_float_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/float/3.402823e+20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_big_float(
@@ -333,24 +237,6 @@ class NumberOperations(object):
 
     put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
-    def _get_big_float_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/float/3.402823e+20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_big_float(
         self, **kwargs  # type: Any
@@ -386,30 +272,6 @@ class NumberOperations(object):
         return deserialized
 
     get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
-
-    def _put_big_double_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/double/2.5976931e+101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_big_double(
@@ -451,24 +313,6 @@ class NumberOperations(object):
 
     put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
-    def _get_big_double_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/double/2.5976931e+101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_big_double(
         self, **kwargs  # type: Any
@@ -504,32 +348,6 @@ class NumberOperations(object):
         return deserialized
 
     get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
-
-    def _put_big_double_positive_decimal_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/double/99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_big_double_positive_decimal(
@@ -567,24 +385,6 @@ class NumberOperations(object):
             return cls(pipeline_response, None, {})
 
     put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
-
-    def _get_big_double_positive_decimal_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/double/99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_big_double_positive_decimal(
@@ -624,32 +424,6 @@ class NumberOperations(object):
 
     get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
-    def _put_big_double_negative_decimal_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/double/-99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def put_big_double_negative_decimal(
         self, **kwargs  # type: Any
@@ -686,24 +460,6 @@ class NumberOperations(object):
             return cls(pipeline_response, None, {})
 
     put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
-
-    def _get_big_double_negative_decimal_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/double/-99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_big_double_negative_decimal(
@@ -742,30 +498,6 @@ class NumberOperations(object):
         return deserialized
 
     get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
-
-    def _put_big_decimal_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/decimal/2.5976931e+101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_big_decimal(
@@ -807,24 +539,6 @@ class NumberOperations(object):
 
     put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
-    def _get_big_decimal_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/decimal/2.5976931e+101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_big_decimal(
         self, **kwargs  # type: Any
@@ -860,32 +574,6 @@ class NumberOperations(object):
         return deserialized
 
     get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
-
-    def _put_big_decimal_positive_decimal_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/decimal/99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_big_decimal_positive_decimal(
@@ -923,24 +611,6 @@ class NumberOperations(object):
             return cls(pipeline_response, None, {})
 
     put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
-
-    def _get_big_decimal_positive_decimal_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/decimal/99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_big_decimal_positive_decimal(
@@ -980,32 +650,6 @@ class NumberOperations(object):
 
     get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
-    def _put_big_decimal_negative_decimal_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/decimal/-99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "float")
-
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def put_big_decimal_negative_decimal(
         self, **kwargs  # type: Any
@@ -1042,24 +686,6 @@ class NumberOperations(object):
             return cls(pipeline_response, None, {})
 
     put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
-
-    def _get_big_decimal_negative_decimal_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/big/decimal/-99999999.99")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_big_decimal_negative_decimal(
@@ -1098,30 +724,6 @@ class NumberOperations(object):
         return deserialized
 
     get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
-
-    def _put_small_float_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/small/float/3.402823e-20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_small_float(
@@ -1163,24 +765,6 @@ class NumberOperations(object):
 
     put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
-    def _get_small_float_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/small/float/3.402823e-20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_small_float(
         self, **kwargs  # type: Any
@@ -1216,30 +800,6 @@ class NumberOperations(object):
         return deserialized
 
     get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
-
-    def _put_small_double_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/small/double/2.5976931e-101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_small_double(
@@ -1281,24 +841,6 @@ class NumberOperations(object):
 
     put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
-    def _get_small_double_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/small/double/2.5976931e-101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_small_double(
         self, **kwargs  # type: Any
@@ -1334,30 +876,6 @@ class NumberOperations(object):
         return deserialized
 
     get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
-
-    def _put_small_decimal_request(
-        self,
-        body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/small/decimal/2.5976931e-101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_small_decimal(
@@ -1398,24 +916,6 @@ class NumberOperations(object):
             return cls(pipeline_response, None, {})
 
     put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
-
-    def _get_small_decimal_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/number/small/decimal/2.5976931e-101")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_small_decimal(

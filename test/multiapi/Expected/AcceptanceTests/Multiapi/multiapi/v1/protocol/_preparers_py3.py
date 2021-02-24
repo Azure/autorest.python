@@ -11,7 +11,6 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _test_one_request(
-    self,
     id: int,
     message: Optional[str] = None,
     **kwargs
@@ -36,7 +35,6 @@ def _test_one_request(
     return self._client.put(url, query_parameters, header_parameters)
 
 def _test_lro_initial_request(
-    self,
     body: Optional["_models.Product"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -59,7 +57,6 @@ def _test_lro_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_lro_and_paging_initial_request(
-    self,
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
     timeout: Optional[int] = 30,
@@ -86,7 +83,6 @@ def _test_lro_and_paging_initial_request(
     return self._client.post(url, query_parameters, header_parameters)
 
 def _test_different_calls_request(
-    self,
     greeting_in_english: str,
     **kwargs
 ) -> HttpRequest:
@@ -108,7 +104,6 @@ def _test_different_calls_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_two_request(
-    self,
     **kwargs
 ) -> HttpRequest:
     api_version = "1.0.0"

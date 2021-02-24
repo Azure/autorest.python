@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _get_report_request(
-    self,
     qualifier=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -38,7 +37,6 @@ def _get_report_request(
 
 
 def _get_optional_report_request(
-    self,
     qualifier=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):

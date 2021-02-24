@@ -11,7 +11,7 @@ from typing import Dict, List, Union
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_null_request(self, **kwargs) -> HttpRequest:
+def _get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -27,7 +27,7 @@ def _get_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_invalid_request(self, **kwargs) -> HttpRequest:
+def _get_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -43,7 +43,7 @@ def _get_invalid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_empty_request(self, **kwargs) -> HttpRequest:
+def _get_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -59,7 +59,7 @@ def _get_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_empty_request(self, body: List[str], **kwargs) -> HttpRequest:
+def _put_empty_request(body: List[str], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -79,7 +79,7 @@ def _put_empty_request(self, body: List[str], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_boolean_tfft_request(self, **kwargs) -> HttpRequest:
+def _get_boolean_tfft_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -95,7 +95,7 @@ def _get_boolean_tfft_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_boolean_tfft_request(self, body: List[bool], **kwargs) -> HttpRequest:
+def _put_boolean_tfft_request(body: List[bool], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -115,7 +115,7 @@ def _put_boolean_tfft_request(self, body: List[bool], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_boolean_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_boolean_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -131,7 +131,7 @@ def _get_boolean_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_boolean_invalid_string_request(self, **kwargs) -> HttpRequest:
+def _get_boolean_invalid_string_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -147,7 +147,7 @@ def _get_boolean_invalid_string_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_integer_valid_request(self, **kwargs) -> HttpRequest:
+def _get_integer_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -163,7 +163,7 @@ def _get_integer_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_integer_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
+def _put_integer_valid_request(body: List[int], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -183,7 +183,7 @@ def _put_integer_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_int_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_int_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -199,7 +199,7 @@ def _get_int_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_int_invalid_string_request(self, **kwargs) -> HttpRequest:
+def _get_int_invalid_string_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -215,7 +215,7 @@ def _get_int_invalid_string_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_long_valid_request(self, **kwargs) -> HttpRequest:
+def _get_long_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -231,7 +231,7 @@ def _get_long_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_long_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
+def _put_long_valid_request(body: List[int], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -251,7 +251,7 @@ def _put_long_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_long_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_long_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -267,7 +267,7 @@ def _get_long_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_long_invalid_string_request(self, **kwargs) -> HttpRequest:
+def _get_long_invalid_string_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -283,7 +283,7 @@ def _get_long_invalid_string_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_float_valid_request(self, **kwargs) -> HttpRequest:
+def _get_float_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -299,7 +299,7 @@ def _get_float_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_float_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
+def _put_float_valid_request(body: List[float], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -319,7 +319,7 @@ def _put_float_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_float_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_float_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -335,7 +335,7 @@ def _get_float_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_float_invalid_string_request(self, **kwargs) -> HttpRequest:
+def _get_float_invalid_string_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -351,7 +351,7 @@ def _get_float_invalid_string_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_double_valid_request(self, **kwargs) -> HttpRequest:
+def _get_double_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -367,7 +367,7 @@ def _get_double_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_double_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
+def _put_double_valid_request(body: List[float], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -387,7 +387,7 @@ def _put_double_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_double_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_double_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -403,7 +403,7 @@ def _get_double_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_double_invalid_string_request(self, **kwargs) -> HttpRequest:
+def _get_double_invalid_string_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -419,7 +419,7 @@ def _get_double_invalid_string_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_string_valid_request(self, **kwargs) -> HttpRequest:
+def _get_string_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -435,7 +435,7 @@ def _get_string_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_string_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
+def _put_string_valid_request(body: List[str], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -455,7 +455,7 @@ def _put_string_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_enum_valid_request(self, **kwargs) -> HttpRequest:
+def _get_enum_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -471,7 +471,7 @@ def _get_enum_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_enum_valid_request(self, body: List[Union[str, "_models.FooEnum"]], **kwargs) -> HttpRequest:
+def _put_enum_valid_request(body: List[Union[str, "_models.FooEnum"]], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -491,7 +491,7 @@ def _put_enum_valid_request(self, body: List[Union[str, "_models.FooEnum"]], **k
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_string_enum_valid_request(self, **kwargs) -> HttpRequest:
+def _get_string_enum_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -507,7 +507,7 @@ def _get_string_enum_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_string_enum_valid_request(self, body: List[Union[str, "_models.Enum1"]], **kwargs) -> HttpRequest:
+def _put_string_enum_valid_request(body: List[Union[str, "_models.Enum1"]], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -527,7 +527,7 @@ def _put_string_enum_valid_request(self, body: List[Union[str, "_models.Enum1"]]
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_string_with_null_request(self, **kwargs) -> HttpRequest:
+def _get_string_with_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -543,7 +543,7 @@ def _get_string_with_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_string_with_invalid_request(self, **kwargs) -> HttpRequest:
+def _get_string_with_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -559,7 +559,7 @@ def _get_string_with_invalid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_uuid_valid_request(self, **kwargs) -> HttpRequest:
+def _get_uuid_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -575,7 +575,7 @@ def _get_uuid_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_uuid_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
+def _put_uuid_valid_request(body: List[str], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -595,7 +595,7 @@ def _put_uuid_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_uuid_invalid_chars_request(self, **kwargs) -> HttpRequest:
+def _get_uuid_invalid_chars_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -611,7 +611,7 @@ def _get_uuid_invalid_chars_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_date_valid_request(self, **kwargs) -> HttpRequest:
+def _get_date_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -627,7 +627,7 @@ def _get_date_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_date_valid_request(self, body: List[datetime.date], **kwargs) -> HttpRequest:
+def _put_date_valid_request(body: List[datetime.date], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -647,7 +647,7 @@ def _put_date_valid_request(self, body: List[datetime.date], **kwargs) -> HttpRe
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_date_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_date_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -663,7 +663,7 @@ def _get_date_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_date_invalid_chars_request(self, **kwargs) -> HttpRequest:
+def _get_date_invalid_chars_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -679,7 +679,7 @@ def _get_date_invalid_chars_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_date_time_valid_request(self, **kwargs) -> HttpRequest:
+def _get_date_time_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -695,7 +695,7 @@ def _get_date_time_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_date_time_valid_request(self, body: List[datetime.datetime], **kwargs) -> HttpRequest:
+def _put_date_time_valid_request(body: List[datetime.datetime], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -715,7 +715,7 @@ def _put_date_time_valid_request(self, body: List[datetime.datetime], **kwargs) 
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_date_time_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_date_time_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -731,7 +731,7 @@ def _get_date_time_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_date_time_invalid_chars_request(self, **kwargs) -> HttpRequest:
+def _get_date_time_invalid_chars_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -747,7 +747,7 @@ def _get_date_time_invalid_chars_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_date_time_rfc1123_valid_request(self, **kwargs) -> HttpRequest:
+def _get_date_time_rfc1123_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -763,7 +763,7 @@ def _get_date_time_rfc1123_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_date_time_rfc1123_valid_request(self, body: List[datetime.datetime], **kwargs) -> HttpRequest:
+def _put_date_time_rfc1123_valid_request(body: List[datetime.datetime], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -783,7 +783,7 @@ def _put_date_time_rfc1123_valid_request(self, body: List[datetime.datetime], **
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_duration_valid_request(self, **kwargs) -> HttpRequest:
+def _get_duration_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -799,7 +799,7 @@ def _get_duration_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_duration_valid_request(self, body: List[datetime.timedelta], **kwargs) -> HttpRequest:
+def _put_duration_valid_request(body: List[datetime.timedelta], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -819,7 +819,7 @@ def _put_duration_valid_request(self, body: List[datetime.timedelta], **kwargs) 
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_byte_valid_request(self, **kwargs) -> HttpRequest:
+def _get_byte_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -835,7 +835,7 @@ def _get_byte_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_byte_valid_request(self, body: List[bytearray], **kwargs) -> HttpRequest:
+def _put_byte_valid_request(body: List[bytearray], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -855,7 +855,7 @@ def _put_byte_valid_request(self, body: List[bytearray], **kwargs) -> HttpReques
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_byte_invalid_null_request(self, **kwargs) -> HttpRequest:
+def _get_byte_invalid_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -871,7 +871,7 @@ def _get_byte_invalid_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_base64_url_request(self, **kwargs) -> HttpRequest:
+def _get_base64_url_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -887,7 +887,7 @@ def _get_base64_url_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_complex_null_request(self, **kwargs) -> HttpRequest:
+def _get_complex_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -903,7 +903,7 @@ def _get_complex_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_complex_empty_request(self, **kwargs) -> HttpRequest:
+def _get_complex_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -919,7 +919,7 @@ def _get_complex_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_complex_item_null_request(self, **kwargs) -> HttpRequest:
+def _get_complex_item_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -935,7 +935,7 @@ def _get_complex_item_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_complex_item_empty_request(self, **kwargs) -> HttpRequest:
+def _get_complex_item_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -951,7 +951,7 @@ def _get_complex_item_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_complex_valid_request(self, **kwargs) -> HttpRequest:
+def _get_complex_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -967,7 +967,7 @@ def _get_complex_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_complex_valid_request(self, body: List["_models.Product"], **kwargs) -> HttpRequest:
+def _put_complex_valid_request(body: List["_models.Product"], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -987,7 +987,7 @@ def _put_complex_valid_request(self, body: List["_models.Product"], **kwargs) ->
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_array_null_request(self, **kwargs) -> HttpRequest:
+def _get_array_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1003,7 +1003,7 @@ def _get_array_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_array_empty_request(self, **kwargs) -> HttpRequest:
+def _get_array_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1019,7 +1019,7 @@ def _get_array_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_array_item_null_request(self, **kwargs) -> HttpRequest:
+def _get_array_item_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1035,7 +1035,7 @@ def _get_array_item_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_array_item_empty_request(self, **kwargs) -> HttpRequest:
+def _get_array_item_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1051,7 +1051,7 @@ def _get_array_item_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_array_valid_request(self, **kwargs) -> HttpRequest:
+def _get_array_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1067,7 +1067,7 @@ def _get_array_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_array_valid_request(self, body: List[List[str]], **kwargs) -> HttpRequest:
+def _put_array_valid_request(body: List[List[str]], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1087,7 +1087,7 @@ def _put_array_valid_request(self, body: List[List[str]], **kwargs) -> HttpReque
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_dictionary_null_request(self, **kwargs) -> HttpRequest:
+def _get_dictionary_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1103,7 +1103,7 @@ def _get_dictionary_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_dictionary_empty_request(self, **kwargs) -> HttpRequest:
+def _get_dictionary_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1119,7 +1119,7 @@ def _get_dictionary_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_dictionary_item_null_request(self, **kwargs) -> HttpRequest:
+def _get_dictionary_item_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1135,7 +1135,7 @@ def _get_dictionary_item_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_dictionary_item_empty_request(self, **kwargs) -> HttpRequest:
+def _get_dictionary_item_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1151,7 +1151,7 @@ def _get_dictionary_item_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_dictionary_valid_request(self, **kwargs) -> HttpRequest:
+def _get_dictionary_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1167,7 +1167,7 @@ def _get_dictionary_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_dictionary_valid_request(self, body: List[Dict[str, str]], **kwargs) -> HttpRequest:
+def _put_dictionary_valid_request(body: List[Dict[str, str]], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

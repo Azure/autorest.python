@@ -54,26 +54,6 @@ class QueriesOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_boolean_true_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        bool_query = True
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/bool/true")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_boolean_true(
         self, **kwargs  # type: Any
@@ -106,26 +86,6 @@ class QueriesOperations(object):
 
     get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
-    def _get_boolean_false_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        bool_query = False
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/bool/false")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_boolean_false(
         self, **kwargs  # type: Any
@@ -157,28 +117,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
-
-    def _get_boolean_null_request(
-        self,
-        bool_query=None,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/bool/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if bool_query is not None:
-            query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_boolean_null(
@@ -218,26 +156,6 @@ class QueriesOperations(object):
 
     get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
-    def _get_int_one_million_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        int_query = 1000000
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/int/1000000")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_int_one_million(
         self, **kwargs  # type: Any
@@ -269,26 +187,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
-
-    def _get_int_negative_one_million_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        int_query = -1000000
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/int/-1000000")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_int_negative_one_million(
@@ -323,28 +221,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
-
-    def _get_int_null_request(
-        self,
-        int_query=None,  # type: Optional[int]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/int/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if int_query is not None:
-            query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_int_null(
@@ -384,26 +260,6 @@ class QueriesOperations(object):
 
     get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
-    def _get_ten_billion_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        long_query = 10000000000
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/long/10000000000")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_ten_billion(
         self, **kwargs  # type: Any
@@ -435,26 +291,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
-
-    def _get_negative_ten_billion_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        long_query = -10000000000
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/long/-10000000000")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_negative_ten_billion(
@@ -489,28 +325,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
-
-    def _get_long_null_request(
-        self,
-        long_query=None,  # type: Optional[int]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/long/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if long_query is not None:
-            query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_long_null(
@@ -550,26 +364,6 @@ class QueriesOperations(object):
 
     get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
-    def _float_scientific_positive_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        float_query = 103400000000000000000
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/float/1.034E+20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def float_scientific_positive(
         self, **kwargs  # type: Any
@@ -604,26 +398,6 @@ class QueriesOperations(object):
 
     float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
-    def _float_scientific_negative_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        float_query = -1.034e-20
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/float/-1.034E-20")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def float_scientific_negative(
         self, **kwargs  # type: Any
@@ -657,28 +431,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
-
-    def _float_null_request(
-        self,
-        float_query=None,  # type: Optional[float]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/float/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if float_query is not None:
-            query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def float_null(
@@ -718,26 +470,6 @@ class QueriesOperations(object):
 
     float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
-    def _double_decimal_positive_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        double_query = 9999999.999
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/double/9999999.999")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def double_decimal_positive(
         self, **kwargs  # type: Any
@@ -772,26 +504,6 @@ class QueriesOperations(object):
 
     double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
-    def _double_decimal_negative_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        double_query = -9999999.999
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/double/-9999999.999")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def double_decimal_negative(
         self, **kwargs  # type: Any
@@ -825,28 +537,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
-
-    def _double_null_request(
-        self,
-        double_query=None,  # type: Optional[float]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/double/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if double_query is not None:
-            query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def double_null(
@@ -886,26 +576,6 @@ class QueriesOperations(object):
 
     double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
-    def _string_unicode_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        string_query = "啊齄丂狛狜隣郎隣兀﨩"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/string/unicode/")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def string_unicode(
         self, **kwargs  # type: Any
@@ -937,28 +607,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
-
-    def _string_url_encoded_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        string_query = "begin!*'();:@ &=+$,/?#[]end"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url", "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
-        )
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def string_url_encoded(
@@ -992,26 +640,6 @@ class QueriesOperations(object):
 
     string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
-    def _string_empty_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        string_query = ""
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/string/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def string_empty(
         self, **kwargs  # type: Any
@@ -1043,28 +671,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
-
-    def _string_null_request(
-        self,
-        string_query=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/string/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if string_query is not None:
-            query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def string_null(
@@ -1104,28 +710,6 @@ class QueriesOperations(object):
 
     string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
 
-    def _enum_valid_request(
-        self,
-        enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/enum/green%20color")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if enum_query is not None:
-            query_parameters["enumQuery"] = self._serialize.query("enum_query", enum_query, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def enum_valid(
         self,
@@ -1164,28 +748,6 @@ class QueriesOperations(object):
 
     enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
 
-    def _enum_null_request(
-        self,
-        enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/enum/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if enum_query is not None:
-            query_parameters["enumQuery"] = self._serialize.query("enum_query", enum_query, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def enum_null(
         self,
@@ -1221,28 +783,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
-
-    def _byte_multi_byte_request(
-        self,
-        byte_query=None,  # type: Optional[bytearray]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/byte/multibyte")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if byte_query is not None:
-            query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def byte_multi_byte(
@@ -1282,26 +822,6 @@ class QueriesOperations(object):
 
     byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
-    def _byte_empty_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        byte_query = bytearray("", encoding="utf-8")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/byte/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def byte_empty(
         self, **kwargs  # type: Any
@@ -1333,28 +853,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
-
-    def _byte_null_request(
-        self,
-        byte_query=None,  # type: Optional[bytearray]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/byte/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if byte_query is not None:
-            query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def byte_null(
@@ -1392,26 +890,6 @@ class QueriesOperations(object):
 
     byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
-    def _date_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        date_query = "2012-01-01"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/date/2012-01-01")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["dateQuery"] = self._serialize.query("date_query", date_query, "date")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def date_valid(
         self, **kwargs  # type: Any
@@ -1443,28 +921,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
-
-    def _date_null_request(
-        self,
-        date_query=None,  # type: Optional[datetime.date]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/date/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if date_query is not None:
-            query_parameters["dateQuery"] = self._serialize.query("date_query", date_query, "date")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def date_null(
@@ -1502,26 +958,6 @@ class QueriesOperations(object):
 
     date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
-    def _date_time_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        date_time_query = "2012-01-01T01:01:01Z"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/datetime/2012-01-01T01%3A01%3A01Z")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["dateTimeQuery"] = self._serialize.query("date_time_query", date_time_query, "iso-8601")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def date_time_valid(
         self, **kwargs  # type: Any
@@ -1553,28 +989,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
-
-    def _date_time_null_request(
-        self,
-        date_time_query=None,  # type: Optional[datetime.datetime]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/datetime/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if date_time_query is not None:
-            query_parameters["dateTimeQuery"] = self._serialize.query("date_time_query", date_time_query, "iso-8601")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def date_time_null(
@@ -1613,28 +1027,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
-
-    def _array_string_csv_valid_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/csv/string/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def array_string_csv_valid(
@@ -1676,28 +1068,6 @@ class QueriesOperations(object):
 
     array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
 
-    def _array_string_csv_null_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/csv/string/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def array_string_csv_null(
         self,
@@ -1735,28 +1105,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
-
-    def _array_string_csv_empty_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/csv/string/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def array_string_csv_empty(
@@ -1796,28 +1144,6 @@ class QueriesOperations(object):
 
     array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
 
-    def _array_string_no_collection_format_empty_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/none/string/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def array_string_no_collection_format_empty(
         self,
@@ -1856,28 +1182,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
-
-    def _array_string_ssv_valid_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/ssv/string/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=" ")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def array_string_ssv_valid(
@@ -1919,28 +1223,6 @@ class QueriesOperations(object):
 
     array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
 
-    def _array_string_tsv_valid_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/tsv/string/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div="	")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def array_string_tsv_valid(
         self,
@@ -1980,28 +1262,6 @@ class QueriesOperations(object):
             return cls(pipeline_response, None, {})
 
     array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
-
-    def _array_string_pipes_valid_request(
-        self,
-        array_query=None,  # type: Optional[List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/queries/array/pipes/string/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if array_query is not None:
-            query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div="|")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def array_string_pipes_valid(

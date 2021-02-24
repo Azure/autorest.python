@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 def _get_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -33,7 +33,6 @@ def _get_request(
 
 
 def _put_request(
-    self,
     body,  # type: datetime.time
     **kwargs  # type: Any
 ):

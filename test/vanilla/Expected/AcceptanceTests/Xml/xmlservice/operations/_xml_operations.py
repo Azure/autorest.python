@@ -53,24 +53,6 @@ class XmlOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_complex_type_ref_no_meta_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_complex_type_ref_no_meta(
         self, **kwargs  # type: Any
@@ -107,28 +89,6 @@ class XmlOperations(object):
         return deserialized
 
     get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
-
-    def _put_complex_type_ref_no_meta_request(
-        self,
-        body,  # type: "_models.RootWithRefAndNoMeta"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_complex_type_ref_no_meta(
@@ -169,24 +129,6 @@ class XmlOperations(object):
 
     put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
-    def _get_complex_type_ref_with_meta_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_complex_type_ref_with_meta(
         self, **kwargs  # type: Any
@@ -223,28 +165,6 @@ class XmlOperations(object):
         return deserialized
 
     get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
-
-    def _put_complex_type_ref_with_meta_request(
-        self,
-        body,  # type: "_models.RootWithRefAndMeta"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_complex_type_ref_with_meta(
@@ -285,24 +205,6 @@ class XmlOperations(object):
 
     put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
-    def _get_simple_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/simple")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_simple(
         self, **kwargs  # type: Any
@@ -338,30 +240,6 @@ class XmlOperations(object):
         return deserialized
 
     get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
-
-    def _put_simple_request(
-        self,
-        body,  # type: "_models.Slideshow"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/simple")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_simple(
@@ -401,24 +279,6 @@ class XmlOperations(object):
 
     put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
-    def _get_wrapped_lists_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/wrapped-lists")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_wrapped_lists(
         self, **kwargs  # type: Any
@@ -453,30 +313,6 @@ class XmlOperations(object):
         return deserialized
 
     get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
-
-    def _put_wrapped_lists_request(
-        self,
-        body,  # type: "_models.AppleBarrel"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/wrapped-lists")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_wrapped_lists(
@@ -518,22 +354,6 @@ class XmlOperations(object):
 
     put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
-    def _get_headers_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/headers")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_headers(
         self, **kwargs  # type: Any
@@ -567,24 +387,6 @@ class XmlOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
-
-    def _get_empty_list_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-list")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_empty_list(
@@ -620,28 +422,6 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
-
-    def _put_empty_list_request(
-        self,
-        body,  # type: "_models.Slideshow"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-list")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_list(
@@ -682,24 +462,6 @@ class XmlOperations(object):
 
     put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
-    def _get_empty_wrapped_lists_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_empty_wrapped_lists(
         self, **kwargs  # type: Any
@@ -736,28 +498,6 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
-
-    def _put_empty_wrapped_lists_request(
-        self,
-        body,  # type: "_models.AppleBarrel"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_wrapped_lists(
@@ -798,24 +538,6 @@ class XmlOperations(object):
 
     put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
-    def _get_root_list_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/root-list")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_root_list(
         self, **kwargs  # type: Any
@@ -850,28 +572,6 @@ class XmlOperations(object):
         return deserialized
 
     get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
-
-    def _put_root_list_request(
-        self,
-        body,  # type: List["_models.Banana"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/root-list")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_root_list(
@@ -911,24 +611,6 @@ class XmlOperations(object):
 
     put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
-    def _get_root_list_single_item_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/root-list-single-item")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_root_list_single_item(
         self, **kwargs  # type: Any
@@ -965,28 +647,6 @@ class XmlOperations(object):
         return deserialized
 
     get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
-
-    def _put_root_list_single_item_request(
-        self,
-        body,  # type: List["_models.Banana"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/root-list-single-item")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_root_list_single_item(
@@ -1028,24 +688,6 @@ class XmlOperations(object):
 
     put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
-    def _get_empty_root_list_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-root-list")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_empty_root_list(
         self, **kwargs  # type: Any
@@ -1080,28 +722,6 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
-
-    def _put_empty_root_list_request(
-        self,
-        body,  # type: List["_models.Banana"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-root-list")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_root_list(
@@ -1143,24 +763,6 @@ class XmlOperations(object):
 
     put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
-    def _get_empty_child_element_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-child-element")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_empty_child_element(
         self, **kwargs  # type: Any
@@ -1197,28 +799,6 @@ class XmlOperations(object):
         return deserialized
 
     get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
-
-    def _put_empty_child_element_request(
-        self,
-        body,  # type: "_models.Banana"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/empty-child-element")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_empty_child_element(
@@ -1259,26 +839,6 @@ class XmlOperations(object):
 
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
-    def _list_containers_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        comp = "list"
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def list_containers(
         self, **kwargs  # type: Any
@@ -1313,28 +873,6 @@ class XmlOperations(object):
         return deserialized
 
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
-
-    def _get_service_properties_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        comp = "properties"
-        restype = "service"
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-        query_parameters["restype"] = self._serialize.query("restype", restype, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_service_properties(
@@ -1372,32 +910,6 @@ class XmlOperations(object):
         return deserialized
 
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
-
-    def _put_service_properties_request(
-        self,
-        body,  # type: "_models.StorageServiceProperties"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        comp = "properties"
-        restype = "service"
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-        query_parameters["restype"] = self._serialize.query("restype", restype, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_service_properties(
@@ -1438,28 +950,6 @@ class XmlOperations(object):
 
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
-    def _get_acls_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        comp = "acl"
-        restype = "container"
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/mycontainer")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-        query_parameters["restype"] = self._serialize.query("restype", restype, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_acls(
         self, **kwargs  # type: Any
@@ -1494,32 +984,6 @@ class XmlOperations(object):
         return deserialized
 
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
-
-    def _put_acls_request(
-        self,
-        body,  # type: List["_models.SignedIdentifier"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        comp = "acl"
-        restype = "container"
-        content_type = kwargs.pop("content_type", "application/xml")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/mycontainer")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-        query_parameters["restype"] = self._serialize.query("restype", restype, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_acls(
@@ -1561,28 +1025,6 @@ class XmlOperations(object):
 
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
-    def _list_blobs_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        comp = "list"
-        restype = "container"
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/mycontainer")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["comp"] = self._serialize.query("comp", comp, "str")
-        query_parameters["restype"] = self._serialize.query("restype", restype, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def list_blobs(
         self, **kwargs  # type: Any
@@ -1617,28 +1059,6 @@ class XmlOperations(object):
         return deserialized
 
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
-
-    def _json_input_request(
-        self,
-        body,  # type: "_models.JSONInput"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/jsoninput")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def json_input(
@@ -1679,24 +1099,6 @@ class XmlOperations(object):
 
     json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
 
-    def _json_output_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/jsonoutput")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def json_output(
         self, **kwargs  # type: Any
@@ -1731,24 +1133,6 @@ class XmlOperations(object):
         return deserialized
 
     json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
-
-    def _get_xms_text_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/x-ms-text")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_xms_text(
@@ -1786,24 +1170,6 @@ class XmlOperations(object):
 
     get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
 
-    def _get_bytes_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/bytes")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_bytes(
         self, **kwargs  # type: Any
@@ -1839,30 +1205,6 @@ class XmlOperations(object):
         return deserialized
 
     get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
-
-    def _put_binary_request(
-        self,
-        body,  # type: "_models.ModelWithByteProperty"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/bytes")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_binary(
@@ -1903,24 +1245,6 @@ class XmlOperations(object):
 
     put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
 
-    def _get_uri_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/url")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_uri(
         self, **kwargs  # type: Any
@@ -1956,30 +1280,6 @@ class XmlOperations(object):
         return deserialized
 
     get_uri.metadata = {"url": "/xml/url"}  # type: ignore
-
-    def _put_uri_request(
-        self,
-        body,  # type: "_models.ModelWithUrlProperty"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/xml")
-        accept = "application/xml"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/xml/url")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_uri(

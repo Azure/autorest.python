@@ -11,7 +11,7 @@ from typing import Optional, Union
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _param_existing_key_request(self, user_agent_parameter: str, **kwargs) -> HttpRequest:
+def _param_existing_key_request(user_agent_parameter: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -28,7 +28,7 @@ def _param_existing_key_request(self, user_agent_parameter: str, **kwargs) -> Ht
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_existing_key_request(self, **kwargs) -> HttpRequest:
+def _response_existing_key_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -44,7 +44,7 @@ def _response_existing_key_request(self, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_protected_key_request(self, content_type: str, **kwargs) -> HttpRequest:
+def _param_protected_key_request(content_type: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -61,7 +61,7 @@ def _param_protected_key_request(self, content_type: str, **kwargs) -> HttpReque
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_protected_key_request(self, **kwargs) -> HttpRequest:
+def _response_protected_key_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -77,7 +77,7 @@ def _response_protected_key_request(self, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_integer_request(self, scenario: str, value: int, **kwargs) -> HttpRequest:
+def _param_integer_request(scenario: str, value: int, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -95,7 +95,7 @@ def _param_integer_request(self, scenario: str, value: int, **kwargs) -> HttpReq
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_integer_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_integer_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -112,7 +112,7 @@ def _response_integer_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_long_request(self, scenario: str, value: int, **kwargs) -> HttpRequest:
+def _param_long_request(scenario: str, value: int, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -130,7 +130,7 @@ def _param_long_request(self, scenario: str, value: int, **kwargs) -> HttpReques
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_long_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_long_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -147,7 +147,7 @@ def _response_long_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_float_request(self, scenario: str, value: float, **kwargs) -> HttpRequest:
+def _param_float_request(scenario: str, value: float, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -165,7 +165,7 @@ def _param_float_request(self, scenario: str, value: float, **kwargs) -> HttpReq
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_float_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_float_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -182,7 +182,7 @@ def _response_float_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_double_request(self, scenario: str, value: float, **kwargs) -> HttpRequest:
+def _param_double_request(scenario: str, value: float, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -200,7 +200,7 @@ def _param_double_request(self, scenario: str, value: float, **kwargs) -> HttpRe
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_double_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_double_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -217,7 +217,7 @@ def _response_double_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_bool_request(self, scenario: str, value: bool, **kwargs) -> HttpRequest:
+def _param_bool_request(scenario: str, value: bool, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -235,7 +235,7 @@ def _param_bool_request(self, scenario: str, value: bool, **kwargs) -> HttpReque
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_bool_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_bool_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -252,7 +252,7 @@ def _response_bool_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_string_request(self, scenario: str, value: Optional[str] = None, **kwargs) -> HttpRequest:
+def _param_string_request(scenario: str, value: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -271,7 +271,7 @@ def _param_string_request(self, scenario: str, value: Optional[str] = None, **kw
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_string_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_string_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -288,7 +288,7 @@ def _response_string_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_date_request(self, scenario: str, value: datetime.date, **kwargs) -> HttpRequest:
+def _param_date_request(scenario: str, value: datetime.date, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -306,7 +306,7 @@ def _param_date_request(self, scenario: str, value: datetime.date, **kwargs) -> 
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_date_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_date_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -323,7 +323,7 @@ def _response_date_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_datetime_request(self, scenario: str, value: datetime.datetime, **kwargs) -> HttpRequest:
+def _param_datetime_request(scenario: str, value: datetime.datetime, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -341,7 +341,7 @@ def _param_datetime_request(self, scenario: str, value: datetime.datetime, **kwa
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_datetime_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_datetime_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -358,9 +358,7 @@ def _response_datetime_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_datetime_rfc1123_request(
-    self, scenario: str, value: Optional[datetime.datetime] = None, **kwargs
-) -> HttpRequest:
+def _param_datetime_rfc1123_request(scenario: str, value: Optional[datetime.datetime] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -379,7 +377,7 @@ def _param_datetime_rfc1123_request(
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_datetime_rfc1123_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_datetime_rfc1123_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -396,7 +394,7 @@ def _response_datetime_rfc1123_request(self, scenario: str, **kwargs) -> HttpReq
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_duration_request(self, scenario: str, value: datetime.timedelta, **kwargs) -> HttpRequest:
+def _param_duration_request(scenario: str, value: datetime.timedelta, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -414,7 +412,7 @@ def _param_duration_request(self, scenario: str, value: datetime.timedelta, **kw
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_duration_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_duration_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -431,7 +429,7 @@ def _response_duration_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _param_byte_request(self, scenario: str, value: bytearray, **kwargs) -> HttpRequest:
+def _param_byte_request(scenario: str, value: bytearray, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -449,7 +447,7 @@ def _param_byte_request(self, scenario: str, value: bytearray, **kwargs) -> Http
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_byte_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_byte_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -467,7 +465,7 @@ def _response_byte_request(self, scenario: str, **kwargs) -> HttpRequest:
 
 
 def _param_enum_request(
-    self, scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs
+    scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -487,7 +485,7 @@ def _param_enum_request(
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _response_enum_request(self, scenario: str, **kwargs) -> HttpRequest:
+def _response_enum_request(scenario: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -504,7 +502,7 @@ def _response_enum_request(self, scenario: str, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _custom_request_id_request(self, **kwargs) -> HttpRequest:
+def _custom_request_id_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

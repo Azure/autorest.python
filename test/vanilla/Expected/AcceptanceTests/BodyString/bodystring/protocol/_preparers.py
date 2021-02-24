@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -34,7 +34,6 @@ def _get_null_request(
 
 
 def _put_null_request(
-    self,
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -59,7 +58,7 @@ def _put_null_request(
 
 
 def _get_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -78,7 +77,6 @@ def _get_empty_request(
 
 
 def _put_empty_request(
-    self,
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -105,7 +103,7 @@ def _put_empty_request(
 
 
 def _get_mbcs_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -124,7 +122,6 @@ def _get_mbcs_request(
 
 
 def _put_mbcs_request(
-    self,
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -151,7 +148,7 @@ def _put_mbcs_request(
 
 
 def _get_whitespace_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -170,7 +167,6 @@ def _get_whitespace_request(
 
 
 def _put_whitespace_request(
-    self,
     body,  # type: str
     **kwargs  # type: Any
 ):
@@ -197,7 +193,7 @@ def _put_whitespace_request(
 
 
 def _get_not_provided_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -216,7 +212,7 @@ def _get_not_provided_request(
 
 
 def _get_base64_encoded_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -235,7 +231,7 @@ def _get_base64_encoded_request(
 
 
 def _get_base64_url_encoded_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -254,7 +250,6 @@ def _get_base64_url_encoded_request(
 
 
 def _put_base64_url_encoded_request(
-    self,
     body,  # type: bytes
     **kwargs  # type: Any
 ):
@@ -279,7 +274,7 @@ def _put_base64_url_encoded_request(
 
 
 def _get_null_base64_url_encoded_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -298,7 +293,7 @@ def _get_null_base64_url_encoded_request(
 
 
 def _get_not_expandable_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -317,7 +312,6 @@ def _get_not_expandable_request(
 
 
 def _put_not_expandable_request(
-    self,
     body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
@@ -342,7 +336,7 @@ def _put_not_expandable_request(
 
 
 def _get_referenced_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -361,7 +355,6 @@ def _get_referenced_request(
 
 
 def _put_referenced_request(
-    self,
     body,  # type: Union[str, "_models.Colors"]
     **kwargs  # type: Any
 ):
@@ -386,7 +379,7 @@ def _put_referenced_request(
 
 
 def _get_referenced_constant_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -405,7 +398,6 @@ def _get_referenced_constant_request(
 
 
 def _put_referenced_constant_request(
-    self,
     body,  # type: "_models.RefColorConstant"
     **kwargs  # type: Any
 ):

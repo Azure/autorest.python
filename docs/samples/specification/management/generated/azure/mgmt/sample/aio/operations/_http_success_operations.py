@@ -34,23 +34,6 @@ class HttpSuccessOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head200_request(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/http/success/200')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     async def head200(
         self,
         **kwargs
@@ -87,23 +70,6 @@ class HttpSuccessOperations:
 
     head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
-    def _head204_request(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/http/success/204')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     async def head204(
         self,
         **kwargs
@@ -139,23 +105,6 @@ class HttpSuccessOperations:
         return 200 <= response.status_code <= 299
 
     head204.metadata = {'url': '/http/success/204'}  # type: ignore
-
-    def _head404_request(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/http/success/404')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.head(url, query_parameters, header_parameters)
 
     async def head404(
         self,

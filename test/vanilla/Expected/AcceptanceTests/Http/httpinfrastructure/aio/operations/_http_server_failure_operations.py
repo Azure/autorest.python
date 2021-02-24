@@ -47,24 +47,6 @@ class HttpServerFailureOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head501_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/server/501")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def head501(self, **kwargs) -> None:
         """Return 501 status code - should be represented in the client as an error.
@@ -94,24 +76,6 @@ class HttpServerFailureOperations:
 
     head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
-    def _get501_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/server/501")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get501(self, **kwargs) -> None:
         """Return 501 status code - should be represented in the client as an error.
@@ -140,30 +104,6 @@ class HttpServerFailureOperations:
             return cls(pipeline_response, None, {})
 
     get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
-
-    def _post505_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/server/505")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def post505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:
@@ -198,30 +138,6 @@ class HttpServerFailureOperations:
             return cls(pipeline_response, None, {})
 
     post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
-
-    def _delete505_request(
-        self,
-        body=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/http/failure/server/505")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def delete505(self, boolean_value: Optional[bool] = True, **kwargs) -> None:

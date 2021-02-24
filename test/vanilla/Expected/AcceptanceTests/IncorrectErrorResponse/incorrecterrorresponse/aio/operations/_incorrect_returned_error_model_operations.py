@@ -26,22 +26,6 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class IncorrectReturnedErrorModelOperationsMixin:
-    def _get_incorrect_error_from_server_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/incorrectError")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_incorrect_error_from_server(self, **kwargs) -> None:
         """Get an error response from the server that is not as described in our Error object. Want to

@@ -10,7 +10,7 @@ from typing import IO, List
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _upload_file_request(self, body: IO, **kwargs) -> HttpRequest:
+def _upload_file_request(body: IO, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 
@@ -31,7 +31,7 @@ def _upload_file_request(self, body: IO, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _upload_file_via_body_request(self, body: IO, **kwargs) -> HttpRequest:
+def _upload_file_via_body_request(body: IO, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/octet-stream")
     accept = "application/octet-stream, application/json"
 
@@ -52,7 +52,7 @@ def _upload_file_via_body_request(self, body: IO, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _upload_files_request(self, body: List[IO], **kwargs) -> HttpRequest:
+def _upload_files_request(body: List[IO], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "multipart/form-data")
     accept = "application/octet-stream, application/json"
 

@@ -48,34 +48,6 @@ class OdataOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_with_filter_request(
-        self,
-        filter=None,  # type: Optional[str]
-        top=None,  # type: Optional[int]
-        orderby=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/odata/filter")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if filter is not None:
-            query_parameters["$filter"] = self._serialize.query("filter", filter, "str")
-        if top is not None:
-            query_parameters["$top"] = self._serialize.query("top", top, "int")
-        if orderby is not None:
-            query_parameters["$orderby"] = self._serialize.query("orderby", orderby, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_with_filter(
         self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs

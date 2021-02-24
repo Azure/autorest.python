@@ -46,32 +46,6 @@ class OperationGroupOneOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _test_two_request(
-        self,
-        body=None,  # type: Optional["_models.ModelTwo"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2.0.0"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
-        return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def test_two(
         self,
         parameter_one=None,  # type: Optional["_models.ModelTwo"]
@@ -119,27 +93,6 @@ class OperationGroupOneOperations(object):
         return deserialized
 
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
-
-    def _test_three_request(
-        self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/one/testThreeEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     def test_three(
         self,

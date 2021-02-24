@@ -48,29 +48,6 @@ class HeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _custom_named_request_id_request(
-        self,
-        foo_client_request_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/customNamedRequestId")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["foo-client-request-id"] = self._serialize.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def custom_named_request_id(self, foo_client_request_id: str, **kwargs) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
@@ -108,29 +85,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
-
-    def _custom_named_request_id_param_grouping_request(
-        self,
-        foo_client_request_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdParamGrouping")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["foo-client-request-id"] = self._serialize.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(
@@ -177,29 +131,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
-
-    def _custom_named_request_id_head_request(
-        self,
-        foo_client_request_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdHead")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["foo-client-request-id"] = self._serialize.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.head(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs) -> bool:

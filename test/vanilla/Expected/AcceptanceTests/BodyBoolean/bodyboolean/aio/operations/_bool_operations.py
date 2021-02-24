@@ -47,24 +47,6 @@ class BoolOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_true_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/bool/true")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_true(self, **kwargs) -> bool:
         """Get true Boolean value.
@@ -98,32 +80,6 @@ class BoolOperations:
 
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
-    def _put_true_request(
-        self,
-        body,  # type: bool
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/bool/true")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "bool")
-
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_true(self, **kwargs) -> None:
         """Set Boolean value true.
@@ -155,24 +111,6 @@ class BoolOperations:
             return cls(pipeline_response, None, {})
 
     put_true.metadata = {"url": "/bool/true"}  # type: ignore
-
-    def _get_false_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/bool/false")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_false(self, **kwargs) -> bool:
@@ -207,32 +145,6 @@ class BoolOperations:
 
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
-    def _put_false_request(
-        self,
-        body,  # type: bool
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/bool/false")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body = self._serialize.body(body, "bool")
-
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_false(self, **kwargs) -> None:
         """Set Boolean value false.
@@ -264,24 +176,6 @@ class BoolOperations:
             return cls(pipeline_response, None, {})
 
     put_false.metadata = {"url": "/bool/false"}  # type: ignore
-
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/bool/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_null(self, **kwargs) -> Optional[bool]:
@@ -315,24 +209,6 @@ class BoolOperations:
         return deserialized
 
     get_null.metadata = {"url": "/bool/null"}  # type: ignore
-
-    def _get_invalid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/bool/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs) -> bool:

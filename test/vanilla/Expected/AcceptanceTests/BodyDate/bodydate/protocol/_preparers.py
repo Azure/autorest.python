@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -33,7 +33,7 @@ def _get_null_request(
 
 
 def _get_invalid_date_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -52,7 +52,7 @@ def _get_invalid_date_request(
 
 
 def _get_overflow_date_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -71,7 +71,7 @@ def _get_overflow_date_request(
 
 
 def _get_underflow_date_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -90,7 +90,6 @@ def _get_underflow_date_request(
 
 
 def _put_max_date_request(
-    self,
     body,  # type: datetime.date
     **kwargs  # type: Any
 ):
@@ -115,7 +114,7 @@ def _put_max_date_request(
 
 
 def _get_max_date_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -134,7 +133,6 @@ def _get_max_date_request(
 
 
 def _put_min_date_request(
-    self,
     body,  # type: datetime.date
     **kwargs  # type: Any
 ):
@@ -159,7 +157,7 @@ def _put_min_date_request(
 
 
 def _get_min_date_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

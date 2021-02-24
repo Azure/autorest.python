@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _analyze_body_request(
-    self,
     body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
     **kwargs  # type: Any
 ):
@@ -51,7 +50,6 @@ def _analyze_body_request(
 
 
 def _content_type_with_encoding_request(
-    self,
     body=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):

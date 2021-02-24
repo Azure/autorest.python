@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 def _get_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
 
@@ -32,7 +32,6 @@ def _get_request(
 
 
 def _param_get_request(
-    self,
     x_ms_client_request_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -56,7 +55,7 @@ def _param_get_request(
 
 
 def _post_method_global_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -82,7 +81,7 @@ def _post_method_global_valid_request(
 
 
 def _post_method_global_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -107,7 +106,7 @@ def _post_method_global_null_request(
 
 
 def _post_method_global_not_provided_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -135,7 +134,7 @@ def _post_method_global_not_provided_valid_request(
 
 
 def _post_path_global_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -161,7 +160,7 @@ def _post_path_global_valid_request(
 
 
 def _post_swagger_global_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -187,7 +186,6 @@ def _post_swagger_global_valid_request(
 
 
 def _post_method_local_valid_request(
-    self,
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -215,7 +213,6 @@ def _post_method_local_valid_request(
 
 
 def _post_method_local_null_request(
-    self,
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -242,7 +239,6 @@ def _post_method_local_null_request(
 
 
 def _post_path_local_valid_request(
-    self,
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -269,7 +265,6 @@ def _post_path_local_valid_request(
 
 
 def _post_swagger_local_valid_request(
-    self,
     subscription_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -297,7 +292,7 @@ def _post_swagger_local_valid_request(
 
 
 def _get_method_global_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -318,7 +313,7 @@ def _get_method_global_valid_request(
 
 
 def _get_method_global_not_provided_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -341,7 +336,7 @@ def _get_method_global_not_provided_valid_request(
 
 
 def _get_path_global_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -362,7 +357,7 @@ def _get_path_global_valid_request(
 
 
 def _get_swagger_global_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2015-07-01-preview"
@@ -383,7 +378,7 @@ def _get_swagger_global_valid_request(
 
 
 def _get_method_local_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2.0"
@@ -404,7 +399,6 @@ def _get_method_local_valid_request(
 
 
 def _get_method_local_null_request(
-    self,
     api_version=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -427,7 +421,7 @@ def _get_method_local_null_request(
 
 
 def _get_path_local_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2.0"
@@ -448,7 +442,7 @@ def _get_path_local_valid_request(
 
 
 def _get_swagger_local_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     api_version = "2.0"
@@ -469,7 +463,6 @@ def _get_swagger_local_valid_request(
 
 
 def _get_method_path_valid_request(
-    self,
     unencoded_path_param,  # type: str
     **kwargs  # type: Any
 ):
@@ -494,7 +487,6 @@ def _get_method_path_valid_request(
 
 
 def _get_path_valid_request(
-    self,
     unencoded_path_param,  # type: str
     **kwargs  # type: Any
 ):
@@ -519,7 +511,7 @@ def _get_path_valid_request(
 
 
 def _get_swagger_path_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     unencoded_path_param = "path1/path2/path3"
@@ -543,7 +535,6 @@ def _get_swagger_path_valid_request(
 
 
 def _get_method_query_valid_request(
-    self,
     q1,  # type: str
     **kwargs  # type: Any
 ):
@@ -565,7 +556,6 @@ def _get_method_query_valid_request(
 
 
 def _get_method_query_null_request(
-    self,
     q1=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -588,7 +578,6 @@ def _get_method_query_null_request(
 
 
 def _get_path_query_valid_request(
-    self,
     q1,  # type: str
     **kwargs  # type: Any
 ):
@@ -610,7 +599,7 @@ def _get_path_query_valid_request(
 
 
 def _get_swagger_query_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     q1 = "value1&q2=value2&q3=value3"
@@ -631,7 +620,6 @@ def _get_swagger_query_valid_request(
 
 
 def _get_with_filter_request(
-    self,
     filter=None,  # type: Optional[str]
     top=None,  # type: Optional[int]
     orderby=None,  # type: Optional[str]
@@ -660,7 +648,6 @@ def _get_with_filter_request(
 
 
 def _custom_named_request_id_request(
-    self,
     foo_client_request_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -684,7 +671,6 @@ def _custom_named_request_id_request(
 
 
 def _custom_named_request_id_param_grouping_request(
-    self,
     foo_client_request_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -708,7 +694,6 @@ def _custom_named_request_id_param_grouping_request(
 
 
 def _custom_named_request_id_head_request(
-    self,
     foo_client_request_id,  # type: str
     **kwargs  # type: Any
 ):

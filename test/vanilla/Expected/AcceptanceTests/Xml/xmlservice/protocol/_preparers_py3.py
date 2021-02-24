@@ -10,7 +10,7 @@ from typing import List, Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_complex_type_ref_no_meta_request(self, **kwargs) -> HttpRequest:
+def _get_complex_type_ref_no_meta_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -26,7 +26,7 @@ def _get_complex_type_ref_no_meta_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_complex_type_ref_no_meta_request(self, body: "_models.RootWithRefAndNoMeta", **kwargs) -> HttpRequest:
+def _put_complex_type_ref_no_meta_request(body: "_models.RootWithRefAndNoMeta", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -44,7 +44,7 @@ def _put_complex_type_ref_no_meta_request(self, body: "_models.RootWithRefAndNoM
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_complex_type_ref_with_meta_request(self, **kwargs) -> HttpRequest:
+def _get_complex_type_ref_with_meta_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -60,7 +60,7 @@ def _get_complex_type_ref_with_meta_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_complex_type_ref_with_meta_request(self, body: "_models.RootWithRefAndMeta", **kwargs) -> HttpRequest:
+def _put_complex_type_ref_with_meta_request(body: "_models.RootWithRefAndMeta", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -78,7 +78,7 @@ def _put_complex_type_ref_with_meta_request(self, body: "_models.RootWithRefAndM
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_simple_request(self, **kwargs) -> HttpRequest:
+def _get_simple_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -94,7 +94,7 @@ def _get_simple_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_simple_request(self, body: "_models.Slideshow", **kwargs) -> HttpRequest:
+def _put_simple_request(body: "_models.Slideshow", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 
@@ -114,7 +114,7 @@ def _put_simple_request(self, body: "_models.Slideshow", **kwargs) -> HttpReques
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_wrapped_lists_request(self, **kwargs) -> HttpRequest:
+def _get_wrapped_lists_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -130,7 +130,7 @@ def _get_wrapped_lists_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_wrapped_lists_request(self, body: "_models.AppleBarrel", **kwargs) -> HttpRequest:
+def _put_wrapped_lists_request(body: "_models.AppleBarrel", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 
@@ -150,7 +150,7 @@ def _put_wrapped_lists_request(self, body: "_models.AppleBarrel", **kwargs) -> H
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_headers_request(self, **kwargs) -> HttpRequest:
+def _get_headers_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/xml/headers")
@@ -164,7 +164,7 @@ def _get_headers_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_empty_list_request(self, **kwargs) -> HttpRequest:
+def _get_empty_list_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -180,7 +180,7 @@ def _get_empty_list_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_empty_list_request(self, body: "_models.Slideshow", **kwargs) -> HttpRequest:
+def _put_empty_list_request(body: "_models.Slideshow", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -198,7 +198,7 @@ def _put_empty_list_request(self, body: "_models.Slideshow", **kwargs) -> HttpRe
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_empty_wrapped_lists_request(self, **kwargs) -> HttpRequest:
+def _get_empty_wrapped_lists_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -214,7 +214,7 @@ def _get_empty_wrapped_lists_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_empty_wrapped_lists_request(self, body: "_models.AppleBarrel", **kwargs) -> HttpRequest:
+def _put_empty_wrapped_lists_request(body: "_models.AppleBarrel", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -232,7 +232,7 @@ def _put_empty_wrapped_lists_request(self, body: "_models.AppleBarrel", **kwargs
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_root_list_request(self, **kwargs) -> HttpRequest:
+def _get_root_list_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -248,7 +248,7 @@ def _get_root_list_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_root_list_request(self, body: List["_models.Banana"], **kwargs) -> HttpRequest:
+def _put_root_list_request(body: List["_models.Banana"], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -266,7 +266,7 @@ def _put_root_list_request(self, body: List["_models.Banana"], **kwargs) -> Http
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_root_list_single_item_request(self, **kwargs) -> HttpRequest:
+def _get_root_list_single_item_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -282,7 +282,7 @@ def _get_root_list_single_item_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_root_list_single_item_request(self, body: List["_models.Banana"], **kwargs) -> HttpRequest:
+def _put_root_list_single_item_request(body: List["_models.Banana"], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -300,7 +300,7 @@ def _put_root_list_single_item_request(self, body: List["_models.Banana"], **kwa
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_empty_root_list_request(self, **kwargs) -> HttpRequest:
+def _get_empty_root_list_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -316,7 +316,7 @@ def _get_empty_root_list_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_empty_root_list_request(self, body: List["_models.Banana"], **kwargs) -> HttpRequest:
+def _put_empty_root_list_request(body: List["_models.Banana"], **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -334,7 +334,7 @@ def _put_empty_root_list_request(self, body: List["_models.Banana"], **kwargs) -
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_empty_child_element_request(self, **kwargs) -> HttpRequest:
+def _get_empty_child_element_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -350,7 +350,7 @@ def _get_empty_child_element_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_empty_child_element_request(self, body: "_models.Banana", **kwargs) -> HttpRequest:
+def _put_empty_child_element_request(body: "_models.Banana", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
 
     # Construct URL
@@ -368,7 +368,7 @@ def _put_empty_child_element_request(self, body: "_models.Banana", **kwargs) -> 
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _list_containers_request(self, **kwargs) -> HttpRequest:
+def _list_containers_request(**kwargs) -> HttpRequest:
     comp = "list"
     accept = "application/xml"
 
@@ -386,7 +386,7 @@ def _list_containers_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_service_properties_request(self, **kwargs) -> HttpRequest:
+def _get_service_properties_request(**kwargs) -> HttpRequest:
     comp = "properties"
     restype = "service"
     accept = "application/xml"
@@ -406,7 +406,7 @@ def _get_service_properties_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_service_properties_request(self, body: "_models.StorageServiceProperties", **kwargs) -> HttpRequest:
+def _put_service_properties_request(body: "_models.StorageServiceProperties", **kwargs) -> HttpRequest:
     comp = "properties"
     restype = "service"
     content_type = kwargs.pop("content_type", "application/xml")
@@ -428,7 +428,7 @@ def _put_service_properties_request(self, body: "_models.StorageServicePropertie
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_acls_request(self, **kwargs) -> HttpRequest:
+def _get_acls_request(**kwargs) -> HttpRequest:
     comp = "acl"
     restype = "container"
     accept = "application/xml"
@@ -448,7 +448,7 @@ def _get_acls_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_acls_request(self, body: List["_models.SignedIdentifier"], **kwargs) -> HttpRequest:
+def _put_acls_request(body: List["_models.SignedIdentifier"], **kwargs) -> HttpRequest:
     comp = "acl"
     restype = "container"
     content_type = kwargs.pop("content_type", "application/xml")
@@ -470,7 +470,7 @@ def _put_acls_request(self, body: List["_models.SignedIdentifier"], **kwargs) ->
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _list_blobs_request(self, **kwargs) -> HttpRequest:
+def _list_blobs_request(**kwargs) -> HttpRequest:
     comp = "list"
     restype = "container"
     accept = "application/xml"
@@ -490,7 +490,7 @@ def _list_blobs_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _json_input_request(self, body: "_models.JSONInput", **kwargs) -> HttpRequest:
+def _json_input_request(body: "_models.JSONInput", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
 
     # Construct URL
@@ -508,7 +508,7 @@ def _json_input_request(self, body: "_models.JSONInput", **kwargs) -> HttpReques
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _json_output_request(self, **kwargs) -> HttpRequest:
+def _json_output_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -524,7 +524,7 @@ def _json_output_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_xms_text_request(self, **kwargs) -> HttpRequest:
+def _get_xms_text_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -540,7 +540,7 @@ def _get_xms_text_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_bytes_request(self, **kwargs) -> HttpRequest:
+def _get_bytes_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -556,7 +556,7 @@ def _get_bytes_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_binary_request(self, body: "_models.ModelWithByteProperty", **kwargs) -> HttpRequest:
+def _put_binary_request(body: "_models.ModelWithByteProperty", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 
@@ -576,7 +576,7 @@ def _put_binary_request(self, body: "_models.ModelWithByteProperty", **kwargs) -
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_uri_request(self, **kwargs) -> HttpRequest:
+def _get_uri_request(**kwargs) -> HttpRequest:
     accept = "application/xml"
 
     # Construct URL
@@ -592,7 +592,7 @@ def _get_uri_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_uri_request(self, body: "_models.ModelWithUrlProperty", **kwargs) -> HttpRequest:
+def _put_uri_request(body: "_models.ModelWithUrlProperty", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/xml")
     accept = "application/xml"
 

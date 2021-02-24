@@ -48,27 +48,6 @@ class HeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _param_existing_key_request(
-        self,
-        user_agent_parameter,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/existingkey")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["User-Agent"] = self._serialize.header("user_agent_parameter", user_agent_parameter, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def param_existing_key(self, user_agent_parameter: str, **kwargs) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
@@ -102,24 +81,6 @@ class HeaderOperations:
 
     param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
 
-    def _response_existing_key_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/existingkey")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_existing_key(self, **kwargs) -> None:
         """Get a response with header value "User-Agent": "overwrite".
@@ -151,27 +112,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
-
-    def _param_protected_key_request(
-        self,
-        content_type,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/protectedkey")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_protected_key(self, content_type: str, **kwargs) -> None:
@@ -206,24 +146,6 @@ class HeaderOperations:
 
     param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
 
-    def _response_protected_key_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/protectedkey")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_protected_key(self, **kwargs) -> None:
         """Get a response with header value "Content-Type": "text/html".
@@ -257,29 +179,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
-
-    def _param_integer_request(
-        self,
-        scenario,  # type: str
-        value,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/integer")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "int")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_integer(self, scenario: str, value: int, **kwargs) -> None:
@@ -317,27 +216,6 @@ class HeaderOperations:
 
     param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
 
-    def _response_integer_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/integer")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_integer(self, scenario: str, **kwargs) -> None:
         """Get a response with header value "value": 1 or -2.
@@ -373,29 +251,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
-
-    def _param_long_request(
-        self,
-        scenario,  # type: str
-        value,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/long")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "long")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_long(self, scenario: str, value: int, **kwargs) -> None:
@@ -433,27 +288,6 @@ class HeaderOperations:
 
     param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
 
-    def _response_long_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/long")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_long(self, scenario: str, **kwargs) -> None:
         """Get a response with header value "value": 105 or -2.
@@ -489,29 +323,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
-
-    def _param_float_request(
-        self,
-        scenario,  # type: str
-        value,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/float")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "float")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_float(self, scenario: str, value: float, **kwargs) -> None:
@@ -549,27 +360,6 @@ class HeaderOperations:
 
     param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
 
-    def _response_float_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/float")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_float(self, scenario: str, **kwargs) -> None:
         """Get a response with header value "value": 0.07 or -3.0.
@@ -605,29 +395,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
-
-    def _param_double_request(
-        self,
-        scenario,  # type: str
-        value,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/double")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "float")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_double(self, scenario: str, value: float, **kwargs) -> None:
@@ -665,27 +432,6 @@ class HeaderOperations:
 
     param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
 
-    def _response_double_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/double")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_double(self, scenario: str, **kwargs) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
@@ -721,29 +467,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
-
-    def _param_bool_request(
-        self,
-        scenario,  # type: str
-        value,  # type: bool
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/bool")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "bool")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_bool(self, scenario: str, value: bool, **kwargs) -> None:
@@ -781,27 +504,6 @@ class HeaderOperations:
 
     param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
 
-    def _response_bool_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/bool")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_bool(self, scenario: str, **kwargs) -> None:
         """Get a response with header value "value": true or false.
@@ -837,30 +539,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
-
-    def _param_string_request(
-        self,
-        scenario,  # type: str
-        value=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/string")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        if value is not None:
-            header_parameters["value"] = self._serialize.header("value", value, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_string(self, scenario: str, value: Optional[str] = None, **kwargs) -> None:
@@ -900,27 +578,6 @@ class HeaderOperations:
 
     param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
 
-    def _response_string_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/string")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_string(self, scenario: str, **kwargs) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
@@ -958,29 +615,6 @@ class HeaderOperations:
 
     response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
 
-    def _param_date_request(
-        self,
-        scenario,  # type: str
-        value,  # type: datetime.date
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/date")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "date")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def param_date(self, scenario: str, value: datetime.date, **kwargs) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
@@ -1017,27 +651,6 @@ class HeaderOperations:
 
     param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
 
-    def _response_date_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/date")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_date(self, scenario: str, **kwargs) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
@@ -1073,29 +686,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
-
-    def _param_datetime_request(
-        self,
-        scenario,  # type: str
-        value,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/datetime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "iso-8601")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_datetime(self, scenario: str, value: datetime.datetime, **kwargs) -> None:
@@ -1134,27 +724,6 @@ class HeaderOperations:
 
     param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
 
-    def _response_datetime_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/datetime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_datetime(self, scenario: str, **kwargs) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
@@ -1190,30 +759,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
-
-    def _param_datetime_rfc1123_request(
-        self,
-        scenario,  # type: str
-        value=None,  # type: Optional[datetime.datetime]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/datetimerfc1123")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        if value is not None:
-            header_parameters["value"] = self._serialize.header("value", value, "rfc-1123")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_datetime_rfc1123(self, scenario: str, value: Optional[datetime.datetime] = None, **kwargs) -> None:
@@ -1252,27 +797,6 @@ class HeaderOperations:
 
     param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
 
-    def _response_datetime_rfc1123_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/datetimerfc1123")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_datetime_rfc1123(self, scenario: str, **kwargs) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
@@ -1310,29 +834,6 @@ class HeaderOperations:
 
     response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
 
-    def _param_duration_request(
-        self,
-        scenario,  # type: str
-        value,  # type: datetime.timedelta
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/duration")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "duration")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def param_duration(self, scenario: str, value: datetime.timedelta, **kwargs) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
@@ -1367,27 +868,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})
 
     param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
-
-    def _response_duration_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/duration")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def response_duration(self, scenario: str, **kwargs) -> None:
@@ -1425,29 +905,6 @@ class HeaderOperations:
 
     response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
 
-    def _param_byte_request(
-        self,
-        scenario,  # type: str
-        value,  # type: bytearray
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/byte")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["value"] = self._serialize.header("value", value, "bytearray")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def param_byte(self, scenario: str, value: bytearray, **kwargs) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
@@ -1482,27 +939,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})
 
     param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
-
-    def _response_byte_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/byte")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def response_byte(self, scenario: str, **kwargs) -> None:
@@ -1539,30 +975,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
-
-    def _param_enum_request(
-        self,
-        scenario,  # type: str
-        value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/param/prim/enum")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        if value is not None:
-            header_parameters["value"] = self._serialize.header("value", value, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def param_enum(
@@ -1603,27 +1015,6 @@ class HeaderOperations:
 
     param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
 
-    def _response_enum_request(
-        self,
-        scenario,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/response/prim/enum")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def response_enum(self, scenario: str, **kwargs) -> None:
         """Get a response with header values "GREY" or null.
@@ -1660,24 +1051,6 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
-
-    def _custom_request_id_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def custom_request_id(self, **kwargs) -> None:

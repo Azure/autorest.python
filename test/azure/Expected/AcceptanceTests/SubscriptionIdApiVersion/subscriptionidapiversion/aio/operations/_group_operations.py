@@ -48,33 +48,6 @@ class GroupOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_sample_resource_group_request(
-        self,
-        resource_group_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2014-04-01-preview"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-            "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_sample_resource_group(self, resource_group_name: str, **kwargs) -> "_models.SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'.

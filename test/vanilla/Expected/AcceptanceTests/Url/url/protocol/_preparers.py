@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 def _get_boolean_true_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     bool_path = True
@@ -40,7 +40,7 @@ def _get_boolean_true_request(
 
 
 def _get_boolean_false_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     bool_path = False
@@ -64,7 +64,7 @@ def _get_boolean_false_request(
 
 
 def _get_int_one_million_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     int_path = 1000000
@@ -88,7 +88,7 @@ def _get_int_one_million_request(
 
 
 def _get_int_negative_one_million_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     int_path = -1000000
@@ -112,7 +112,7 @@ def _get_int_negative_one_million_request(
 
 
 def _get_ten_billion_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     long_path = 10000000000
@@ -136,7 +136,7 @@ def _get_ten_billion_request(
 
 
 def _get_negative_ten_billion_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     long_path = -10000000000
@@ -160,7 +160,7 @@ def _get_negative_ten_billion_request(
 
 
 def _float_scientific_positive_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     float_path = 103400000000000000000
@@ -184,7 +184,7 @@ def _float_scientific_positive_request(
 
 
 def _float_scientific_negative_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     float_path = -1.034e-20
@@ -208,7 +208,7 @@ def _float_scientific_negative_request(
 
 
 def _double_decimal_positive_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     double_path = 9999999.999
@@ -232,7 +232,7 @@ def _double_decimal_positive_request(
 
 
 def _double_decimal_negative_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     double_path = -9999999.999
@@ -256,7 +256,7 @@ def _double_decimal_negative_request(
 
 
 def _string_unicode_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_path = "啊齄丂狛狜隣郎隣兀﨩"
@@ -280,7 +280,7 @@ def _string_unicode_request(
 
 
 def _string_url_encoded_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_path = "begin!*'();:@ &=+$,/?#[]end"
@@ -306,7 +306,7 @@ def _string_url_encoded_request(
 
 
 def _string_url_non_encoded_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_path = "begin!*'();:@&=+$,end"
@@ -330,7 +330,7 @@ def _string_url_non_encoded_request(
 
 
 def _string_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_path = ""
@@ -354,7 +354,6 @@ def _string_empty_request(
 
 
 def _string_null_request(
-    self,
     string_path,  # type: str
     **kwargs  # type: Any
 ):
@@ -379,7 +378,6 @@ def _string_null_request(
 
 
 def _enum_valid_request(
-    self,
     enum_path,  # type: Union[str, "_models.UriColor"]
     **kwargs  # type: Any
 ):
@@ -404,7 +402,6 @@ def _enum_valid_request(
 
 
 def _enum_null_request(
-    self,
     enum_path,  # type: Union[str, "_models.UriColor"]
     **kwargs  # type: Any
 ):
@@ -429,7 +426,6 @@ def _enum_null_request(
 
 
 def _byte_multi_byte_request(
-    self,
     byte_path,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -454,7 +450,7 @@ def _byte_multi_byte_request(
 
 
 def _byte_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     byte_path = bytearray("", encoding="utf-8")
@@ -478,7 +474,6 @@ def _byte_empty_request(
 
 
 def _byte_null_request(
-    self,
     byte_path,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -503,7 +498,7 @@ def _byte_null_request(
 
 
 def _date_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     date_path = "2012-01-01"
@@ -527,7 +522,6 @@ def _date_valid_request(
 
 
 def _date_null_request(
-    self,
     date_path,  # type: datetime.date
     **kwargs  # type: Any
 ):
@@ -552,7 +546,7 @@ def _date_null_request(
 
 
 def _date_time_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     date_time_path = "2012-01-01T01:01:01Z"
@@ -576,7 +570,6 @@ def _date_time_valid_request(
 
 
 def _date_time_null_request(
-    self,
     date_time_path,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -601,7 +594,6 @@ def _date_time_null_request(
 
 
 def _base64_url_request(
-    self,
     base64_url_path,  # type: bytes
     **kwargs  # type: Any
 ):
@@ -626,7 +618,6 @@ def _base64_url_request(
 
 
 def _array_csv_in_path_request(
-    self,
     array_path,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -654,7 +645,6 @@ def _array_csv_in_path_request(
 
 
 def _unix_time_url_request(
-    self,
     unix_time_url_path,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -679,7 +669,7 @@ def _unix_time_url_request(
 
 
 def _get_boolean_true_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     bool_query = True
@@ -700,7 +690,7 @@ def _get_boolean_true_request(
 
 
 def _get_boolean_false_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     bool_query = False
@@ -721,7 +711,6 @@ def _get_boolean_false_request(
 
 
 def _get_boolean_null_request(
-    self,
     bool_query=None,  # type: Optional[bool]
     **kwargs  # type: Any
 ):
@@ -744,7 +733,7 @@ def _get_boolean_null_request(
 
 
 def _get_int_one_million_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     int_query = 1000000
@@ -765,7 +754,7 @@ def _get_int_one_million_request(
 
 
 def _get_int_negative_one_million_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     int_query = -1000000
@@ -786,7 +775,6 @@ def _get_int_negative_one_million_request(
 
 
 def _get_int_null_request(
-    self,
     int_query=None,  # type: Optional[int]
     **kwargs  # type: Any
 ):
@@ -809,7 +797,7 @@ def _get_int_null_request(
 
 
 def _get_ten_billion_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     long_query = 10000000000
@@ -830,7 +818,7 @@ def _get_ten_billion_request(
 
 
 def _get_negative_ten_billion_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     long_query = -10000000000
@@ -851,7 +839,6 @@ def _get_negative_ten_billion_request(
 
 
 def _get_long_null_request(
-    self,
     long_query=None,  # type: Optional[int]
     **kwargs  # type: Any
 ):
@@ -874,7 +861,7 @@ def _get_long_null_request(
 
 
 def _float_scientific_positive_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     float_query = 103400000000000000000
@@ -895,7 +882,7 @@ def _float_scientific_positive_request(
 
 
 def _float_scientific_negative_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     float_query = -1.034e-20
@@ -916,7 +903,6 @@ def _float_scientific_negative_request(
 
 
 def _float_null_request(
-    self,
     float_query=None,  # type: Optional[float]
     **kwargs  # type: Any
 ):
@@ -939,7 +925,7 @@ def _float_null_request(
 
 
 def _double_decimal_positive_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     double_query = 9999999.999
@@ -960,7 +946,7 @@ def _double_decimal_positive_request(
 
 
 def _double_decimal_negative_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     double_query = -9999999.999
@@ -981,7 +967,6 @@ def _double_decimal_negative_request(
 
 
 def _double_null_request(
-    self,
     double_query=None,  # type: Optional[float]
     **kwargs  # type: Any
 ):
@@ -1004,7 +989,7 @@ def _double_null_request(
 
 
 def _string_unicode_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_query = "啊齄丂狛狜隣郎隣兀﨩"
@@ -1025,7 +1010,7 @@ def _string_unicode_request(
 
 
 def _string_url_encoded_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_query = "begin!*'();:@ &=+$,/?#[]end"
@@ -1048,7 +1033,7 @@ def _string_url_encoded_request(
 
 
 def _string_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     string_query = ""
@@ -1069,7 +1054,6 @@ def _string_empty_request(
 
 
 def _string_null_request(
-    self,
     string_query=None,  # type: Optional[str]
     **kwargs  # type: Any
 ):
@@ -1092,7 +1076,6 @@ def _string_null_request(
 
 
 def _enum_valid_request(
-    self,
     enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
     **kwargs  # type: Any
 ):
@@ -1115,7 +1098,6 @@ def _enum_valid_request(
 
 
 def _enum_null_request(
-    self,
     enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
     **kwargs  # type: Any
 ):
@@ -1138,7 +1120,6 @@ def _enum_null_request(
 
 
 def _byte_multi_byte_request(
-    self,
     byte_query=None,  # type: Optional[bytearray]
     **kwargs  # type: Any
 ):
@@ -1161,7 +1142,7 @@ def _byte_multi_byte_request(
 
 
 def _byte_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     byte_query = bytearray("", encoding="utf-8")
@@ -1182,7 +1163,6 @@ def _byte_empty_request(
 
 
 def _byte_null_request(
-    self,
     byte_query=None,  # type: Optional[bytearray]
     **kwargs  # type: Any
 ):
@@ -1205,7 +1185,7 @@ def _byte_null_request(
 
 
 def _date_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     date_query = "2012-01-01"
@@ -1226,7 +1206,6 @@ def _date_valid_request(
 
 
 def _date_null_request(
-    self,
     date_query=None,  # type: Optional[datetime.date]
     **kwargs  # type: Any
 ):
@@ -1249,7 +1228,7 @@ def _date_null_request(
 
 
 def _date_time_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     date_time_query = "2012-01-01T01:01:01Z"
@@ -1270,7 +1249,6 @@ def _date_time_valid_request(
 
 
 def _date_time_null_request(
-    self,
     date_time_query=None,  # type: Optional[datetime.datetime]
     **kwargs  # type: Any
 ):
@@ -1293,7 +1271,6 @@ def _date_time_null_request(
 
 
 def _array_string_csv_valid_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1316,7 +1293,6 @@ def _array_string_csv_valid_request(
 
 
 def _array_string_csv_null_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1339,7 +1315,6 @@ def _array_string_csv_null_request(
 
 
 def _array_string_csv_empty_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1362,7 +1337,6 @@ def _array_string_csv_empty_request(
 
 
 def _array_string_no_collection_format_empty_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1385,7 +1359,6 @@ def _array_string_no_collection_format_empty_request(
 
 
 def _array_string_ssv_valid_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1408,7 +1381,6 @@ def _array_string_ssv_valid_request(
 
 
 def _array_string_tsv_valid_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1431,7 +1403,6 @@ def _array_string_tsv_valid_request(
 
 
 def _array_string_pipes_valid_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -1454,7 +1425,6 @@ def _array_string_pipes_valid_request(
 
 
 def _get_all_with_values_request(
-    self,
     path_item_string_path,  # type: str
     local_string_path,  # type: str
     path_item_string_query=None,  # type: Optional[str]
@@ -1499,7 +1469,6 @@ def _get_all_with_values_request(
 
 
 def _get_global_query_null_request(
-    self,
     path_item_string_path,  # type: str
     local_string_path,  # type: str
     path_item_string_query=None,  # type: Optional[str]
@@ -1544,7 +1513,6 @@ def _get_global_query_null_request(
 
 
 def _get_global_and_local_query_null_request(
-    self,
     path_item_string_path,  # type: str
     local_string_path,  # type: str
     path_item_string_query=None,  # type: Optional[str]
@@ -1589,7 +1557,6 @@ def _get_global_and_local_query_null_request(
 
 
 def _get_local_path_item_query_null_request(
-    self,
     path_item_string_path,  # type: str
     local_string_path,  # type: str
     path_item_string_query=None,  # type: Optional[str]

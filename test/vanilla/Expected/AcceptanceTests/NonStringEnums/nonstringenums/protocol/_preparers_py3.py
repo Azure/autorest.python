@@ -10,7 +10,7 @@ from typing import Optional, Union
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _put_request(self, body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
+def _put_request(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -30,7 +30,7 @@ def _put_request(self, body: Optional[Union[int, "_models.IntEnum"]] = None, **k
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_request(self, **kwargs) -> HttpRequest:
+def _get_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -46,7 +46,7 @@ def _get_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_request(self, body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
+def _put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -66,7 +66,7 @@ def _put_request(self, body: Optional[Union[float, "_models.FloatEnum"]] = None,
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_request(self, **kwargs) -> HttpRequest:
+def _get_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

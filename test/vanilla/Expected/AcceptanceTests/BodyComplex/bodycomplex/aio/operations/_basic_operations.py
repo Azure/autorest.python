@@ -47,24 +47,6 @@ class BasicOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/basic/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_valid(self, **kwargs) -> "_models.Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
@@ -97,32 +79,6 @@ class BasicOperations:
         return deserialized
 
     get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
-
-    def _put_valid_request(
-        self,
-        body,  # type: "_models.Basic"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2016-02-29"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/basic/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_valid(self, complex_body: "_models.Basic", **kwargs) -> None:
@@ -157,24 +113,6 @@ class BasicOperations:
 
     put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
-    def _get_invalid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/basic/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_invalid(self, **kwargs) -> "_models.Basic":
         """Get a basic complex type that is invalid for the local strong type.
@@ -207,24 +145,6 @@ class BasicOperations:
         return deserialized
 
     get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
-
-    def _get_empty_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/basic/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> "_models.Basic":
@@ -259,24 +179,6 @@ class BasicOperations:
 
     get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/basic/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_null(self, **kwargs) -> "_models.Basic":
         """Get a basic complex type whose properties are null.
@@ -309,24 +211,6 @@ class BasicOperations:
         return deserialized
 
     get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
-
-    def _get_not_provided_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/basic/notprovided")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs) -> "_models.Basic":

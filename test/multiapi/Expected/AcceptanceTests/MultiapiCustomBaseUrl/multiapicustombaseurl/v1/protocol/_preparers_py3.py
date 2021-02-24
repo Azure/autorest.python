@@ -9,7 +9,6 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _test_request(
-    self,
     id: int,
     **kwargs
 ) -> HttpRequest:

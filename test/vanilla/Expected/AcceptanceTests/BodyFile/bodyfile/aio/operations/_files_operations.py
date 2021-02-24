@@ -47,24 +47,6 @@ class FilesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_file_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "image/png, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/files/stream/nonempty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_file(self, **kwargs) -> IO:
         """Get file.
@@ -98,24 +80,6 @@ class FilesOperations:
 
     get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
-    def _get_file_large_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "image/png, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/files/stream/verylarge")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_file_large(self, **kwargs) -> IO:
         """Get a large file.
@@ -148,24 +112,6 @@ class FilesOperations:
         return deserialized
 
     get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
-
-    def _get_empty_file_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "image/png, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/files/stream/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_empty_file(self, **kwargs) -> IO:

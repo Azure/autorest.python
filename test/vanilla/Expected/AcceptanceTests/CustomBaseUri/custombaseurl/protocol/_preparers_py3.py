@@ -8,7 +8,7 @@
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_empty_request(self, account_name: str, **kwargs) -> HttpRequest:
+def _get_empty_request(account_name: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

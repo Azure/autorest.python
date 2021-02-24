@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _get_pet_by_id_request(
-    self,
     pet_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -40,7 +39,6 @@ def _get_pet_by_id_request(
 
 
 def _do_something_request(
-    self,
     what_action,  # type: str
     **kwargs  # type: Any
 ):
@@ -65,7 +63,6 @@ def _do_something_request(
 
 
 def _has_models_param_request(
-    self,
     models="value1",  # type: Optional[str]
     **kwargs  # type: Any
 ):

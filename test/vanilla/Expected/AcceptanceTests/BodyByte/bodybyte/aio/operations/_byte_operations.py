@@ -47,24 +47,6 @@ class ByteOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/byte/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_null(self, **kwargs) -> bytearray:
         """Get null byte value.
@@ -97,24 +79,6 @@ class ByteOperations:
         return deserialized
 
     get_null.metadata = {"url": "/byte/null"}  # type: ignore
-
-    def _get_empty_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/byte/empty")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_empty(self, **kwargs) -> bytearray:
@@ -149,24 +113,6 @@ class ByteOperations:
 
     get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
 
-    def _get_non_ascii_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/byte/nonAscii")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_non_ascii(self, **kwargs) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -200,30 +146,6 @@ class ByteOperations:
 
     get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
-    def _put_non_ascii_request(
-        self,
-        body,  # type: bytearray
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/byte/nonAscii")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_non_ascii(self, byte_body: bytearray, **kwargs) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -256,24 +178,6 @@ class ByteOperations:
             return cls(pipeline_response, None, {})
 
     put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
-
-    def _get_invalid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/byte/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs) -> bytearray:

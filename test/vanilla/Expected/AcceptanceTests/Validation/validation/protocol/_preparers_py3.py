@@ -10,7 +10,7 @@ from typing import Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _validation_of_method_parameters_request(self, resource_group_name: str, id: int, **kwargs) -> HttpRequest:
+def _validation_of_method_parameters_request(resource_group_name: str, id: int, **kwargs) -> HttpRequest:
     api_version = "1.0.0"
     accept = "application/json"
 
@@ -37,7 +37,7 @@ def _validation_of_method_parameters_request(self, resource_group_name: str, id:
 
 
 def _validation_of_body_request(
-    self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
+    resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     api_version = "1.0.0"
     content_type = kwargs.pop("content_type", "application/json")
@@ -68,7 +68,7 @@ def _validation_of_body_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_with_constant_in_path_request(self, **kwargs) -> HttpRequest:
+def _get_with_constant_in_path_request(**kwargs) -> HttpRequest:
     constant_param = "constant"
 
     # Construct URL
@@ -87,7 +87,7 @@ def _get_with_constant_in_path_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _post_with_constant_in_body_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post_with_constant_in_body_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     constant_param = "constant"
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"

@@ -11,7 +11,6 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _test_one_request(
-    self,
     id: int,
     message: Optional[str] = None,
     **kwargs
@@ -36,7 +35,6 @@ def _test_one_request(
     return self._client.put(url, query_parameters, header_parameters)
 
 def _test_different_calls_request(
-    self,
     greeting_in_english: str,
     greeting_in_chinese: Optional[str] = None,
     **kwargs
@@ -61,7 +59,6 @@ def _test_different_calls_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_two_request(
-    self,
     body: Optional["_models.ModelTwo"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -86,7 +83,6 @@ def _test_two_request(
     return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_three_request(
-    self,
     **kwargs
 ) -> HttpRequest:
     api_version = "2.0.0"
@@ -106,7 +102,6 @@ def _test_three_request(
     return self._client.put(url, query_parameters, header_parameters)
 
 def _test_four_request(
-    self,
     parameter_one: bool,
     **kwargs
 ) -> HttpRequest:

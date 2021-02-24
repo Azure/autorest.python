@@ -8,7 +8,7 @@
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _create_ap_true_request(self, body: "_models.PetAPTrue", **kwargs) -> HttpRequest:
+def _create_ap_true_request(body: "_models.PetAPTrue", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -28,7 +28,7 @@ def _create_ap_true_request(self, body: "_models.PetAPTrue", **kwargs) -> HttpRe
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _create_cat_ap_true_request(self, body: "_models.CatAPTrue", **kwargs) -> HttpRequest:
+def _create_cat_ap_true_request(body: "_models.CatAPTrue", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -48,7 +48,7 @@ def _create_cat_ap_true_request(self, body: "_models.CatAPTrue", **kwargs) -> Ht
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _create_ap_object_request(self, body: "_models.PetAPObject", **kwargs) -> HttpRequest:
+def _create_ap_object_request(body: "_models.PetAPObject", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -68,7 +68,7 @@ def _create_ap_object_request(self, body: "_models.PetAPObject", **kwargs) -> Ht
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _create_ap_string_request(self, body: "_models.PetAPString", **kwargs) -> HttpRequest:
+def _create_ap_string_request(body: "_models.PetAPString", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -88,7 +88,7 @@ def _create_ap_string_request(self, body: "_models.PetAPString", **kwargs) -> Ht
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _create_ap_in_properties_request(self, body: "_models.PetAPInProperties", **kwargs) -> HttpRequest:
+def _create_ap_in_properties_request(body: "_models.PetAPInProperties", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -109,7 +109,7 @@ def _create_ap_in_properties_request(self, body: "_models.PetAPInProperties", **
 
 
 def _create_ap_in_properties_with_ap_string_request(
-    self, body: "_models.PetAPInPropertiesWithAPString", **kwargs
+    body: "_models.PetAPInPropertiesWithAPString", **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"

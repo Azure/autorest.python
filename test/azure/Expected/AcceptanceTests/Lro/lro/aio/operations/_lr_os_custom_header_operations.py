@@ -50,30 +50,6 @@ class LROsCustomHeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_async_retry_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/customheader/putasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _put_async_retry_succeeded_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -176,30 +152,6 @@ class LROsCustomHeaderOperations:
 
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
-    def _put201_creating_succeeded200_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/customheader/put/201/creating/succeeded/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _put201_creating_succeeded200_initial(
         self, product: Optional["_models.Product"] = None, **kwargs
     ) -> "_models.Product":
@@ -293,30 +245,6 @@ class LROsCustomHeaderOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _post202_retry200_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/customheader/post/202/retry/200")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -397,30 +325,6 @@ class LROsCustomHeaderOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
-
-    def _post_async_retry_succeeded_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/customheader/postasync/retry/succeeded")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     async def _post_async_retry_succeeded_initial(self, product: Optional["_models.Product"] = None, **kwargs) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

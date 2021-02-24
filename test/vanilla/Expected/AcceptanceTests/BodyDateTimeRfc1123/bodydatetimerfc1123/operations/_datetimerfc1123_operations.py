@@ -54,24 +54,6 @@ class Datetimerfc1123Operations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_null(
         self, **kwargs  # type: Any
@@ -107,24 +89,6 @@ class Datetimerfc1123Operations(object):
         return deserialized
 
     get_null.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
-
-    def _get_invalid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/invalid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_invalid(
@@ -162,24 +126,6 @@ class Datetimerfc1123Operations(object):
 
     get_invalid.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
 
-    def _get_overflow_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/overflow")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_overflow(
         self, **kwargs  # type: Any
@@ -216,24 +162,6 @@ class Datetimerfc1123Operations(object):
 
     get_overflow.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
 
-    def _get_underflow_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/underflow")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_underflow(
         self, **kwargs  # type: Any
@@ -269,30 +197,6 @@ class Datetimerfc1123Operations(object):
         return deserialized
 
     get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
-
-    def _put_utc_max_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/max")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_utc_max_date_time(
@@ -334,24 +238,6 @@ class Datetimerfc1123Operations(object):
 
     put_utc_max_date_time.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
 
-    def _get_utc_lowercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/max/lowercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_utc_lowercase_max_date_time(
         self, **kwargs  # type: Any
@@ -390,24 +276,6 @@ class Datetimerfc1123Operations(object):
 
     get_utc_lowercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
 
-    def _get_utc_uppercase_max_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/max/uppercase")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_utc_uppercase_max_date_time(
         self, **kwargs  # type: Any
@@ -445,30 +313,6 @@ class Datetimerfc1123Operations(object):
         return deserialized
 
     get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
-
-    def _put_utc_min_date_time_request(
-        self,
-        body,  # type: datetime.datetime
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/min")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_utc_min_date_time(
@@ -509,24 +353,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, None, {})
 
     put_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
-
-    def _get_utc_min_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/datetimerfc1123/min")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_utc_min_date_time(

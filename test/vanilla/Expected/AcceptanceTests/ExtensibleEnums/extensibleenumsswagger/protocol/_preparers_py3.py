@@ -10,7 +10,7 @@ from typing import Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_by_pet_id_request(self, pet_id: str, **kwargs) -> HttpRequest:
+def _get_by_pet_id_request(pet_id: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -30,7 +30,7 @@ def _get_by_pet_id_request(self, pet_id: str, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _add_pet_request(self, body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
+def _add_pet_request(body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

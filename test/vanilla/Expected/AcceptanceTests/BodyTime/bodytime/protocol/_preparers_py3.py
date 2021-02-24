@@ -10,7 +10,7 @@ import datetime
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_request(self, **kwargs) -> HttpRequest:
+def _get_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -26,7 +26,7 @@ def _get_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_request(self, body: datetime.time, **kwargs) -> HttpRequest:
+def _put_request(body: datetime.time, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

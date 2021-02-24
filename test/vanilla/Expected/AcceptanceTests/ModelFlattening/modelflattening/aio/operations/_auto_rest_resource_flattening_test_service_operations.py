@@ -26,30 +26,6 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
-    def _put_array_request(
-        self,
-        body=None,  # type: Optional[List["_models.Resource"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/array")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put_array(self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs) -> None:
         """Put External Resource as an Array.
@@ -84,24 +60,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
-    def _get_array_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/array")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_array(self, **kwargs) -> List["_models.FlattenedProduct"]:
         """Get External Resource as an Array.
@@ -134,30 +92,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
-
-    def _put_wrapped_array_request(
-        self,
-        body=None,  # type: Optional[List["_models.WrappedProduct"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_wrapped_array(
@@ -198,24 +132,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
-    def _get_wrapped_array_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_wrapped_array(self, **kwargs) -> List["_models.ProductWrapper"]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
@@ -249,30 +165,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
-
-    def _put_dictionary_request(
-        self,
-        body=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/dictionary")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_dictionary(
@@ -312,24 +204,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
-    def _get_dictionary_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/dictionary")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_dictionary(self, **kwargs) -> Dict[str, "_models.FlattenedProduct"]:
         """Get External Resource as a Dictionary.
@@ -362,30 +236,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
-
-    def _put_resource_collection_request(
-        self,
-        body=None,  # type: Optional["_models.ResourceCollection"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_resource_collection(
@@ -425,24 +275,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
-    def _get_resource_collection_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs) -> "_models.ResourceCollection":
         """Get External Resource as a ResourceCollection.
@@ -477,30 +309,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
-
-    def _put_simple_product_request(
-        self,
-        body=None,  # type: Optional["_models.SimpleProduct"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/customFlattening")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_simple_product(
@@ -543,30 +351,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
-
-    def _post_flattened_simple_product_request(
-        self,
-        body=None,  # type: Optional["_models.SimpleProduct"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/customFlattening")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def post_flattened_simple_product(
@@ -632,35 +416,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
-
-    def _put_simple_product_with_grouping_request(
-        self,
-        name,  # type: str
-        body=None,  # type: Optional["_models.SimpleProduct"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/model-flatten/customFlattening/parametergrouping/{name}/")
-        path_format_arguments = {
-            "name": self._serialize.url("name", name, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(

@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 
 
 def _get_pages_partial_url_request(
-    self,
     account_name,  # type: str
     **kwargs  # type: Any
 ):
@@ -39,7 +38,6 @@ def _get_pages_partial_url_request(
 
 
 def _get_pages_partial_url_operation_request(
-    self,
     account_name,  # type: str
     **kwargs  # type: Any
 ):
@@ -65,7 +63,6 @@ def _get_pages_partial_url_operation_request(
 
 
 def _get_pages_partial_url_operation_next_request(
-    self,
     account_name,  # type: str
     next_link,  # type: str
     **kwargs  # type: Any

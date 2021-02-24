@@ -8,7 +8,7 @@
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_horse_request(self, **kwargs) -> HttpRequest:
+def _get_horse_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -24,7 +24,7 @@ def _get_horse_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_horse_request(self, body: "_models.Horse", **kwargs) -> HttpRequest:
+def _put_horse_request(body: "_models.Horse", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -44,7 +44,7 @@ def _put_horse_request(self, body: "_models.Horse", **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_pet_request(self, **kwargs) -> HttpRequest:
+def _get_pet_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -60,7 +60,7 @@ def _get_pet_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_pet_request(self, body: "_models.Pet", **kwargs) -> HttpRequest:
+def _put_pet_request(body: "_models.Pet", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -80,7 +80,7 @@ def _put_pet_request(self, body: "_models.Pet", **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_feline_request(self, **kwargs) -> HttpRequest:
+def _get_feline_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -96,7 +96,7 @@ def _get_feline_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_feline_request(self, body: "_models.Feline", **kwargs) -> HttpRequest:
+def _put_feline_request(body: "_models.Feline", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -116,7 +116,7 @@ def _put_feline_request(self, body: "_models.Feline", **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_cat_request(self, **kwargs) -> HttpRequest:
+def _get_cat_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -132,7 +132,7 @@ def _get_cat_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_cat_request(self, body: "_models.Cat", **kwargs) -> HttpRequest:
+def _put_cat_request(body: "_models.Cat", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -152,7 +152,7 @@ def _put_cat_request(self, body: "_models.Cat", **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_kitten_request(self, **kwargs) -> HttpRequest:
+def _get_kitten_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -168,7 +168,7 @@ def _get_kitten_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_kitten_request(self, body: "_models.Kitten", **kwargs) -> HttpRequest:
+def _put_kitten_request(body: "_models.Kitten", **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

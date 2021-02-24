@@ -8,7 +8,7 @@
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_file_request(self, **kwargs) -> HttpRequest:
+def _get_file_request(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL
@@ -24,7 +24,7 @@ def _get_file_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_file_large_request(self, **kwargs) -> HttpRequest:
+def _get_file_large_request(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL
@@ -40,7 +40,7 @@ def _get_file_large_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_empty_file_request(self, **kwargs) -> HttpRequest:
+def _get_empty_file_request(**kwargs) -> HttpRequest:
     accept = "image/png, application/json"
 
     # Construct URL

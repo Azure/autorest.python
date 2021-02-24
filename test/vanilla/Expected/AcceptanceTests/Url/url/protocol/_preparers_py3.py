@@ -11,7 +11,7 @@ from typing import List, Optional, Union
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_boolean_true_request(self, **kwargs) -> HttpRequest:
+def _get_boolean_true_request(**kwargs) -> HttpRequest:
     bool_path = True
     accept = "application/json"
 
@@ -32,7 +32,7 @@ def _get_boolean_true_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_boolean_false_request(self, **kwargs) -> HttpRequest:
+def _get_boolean_false_request(**kwargs) -> HttpRequest:
     bool_path = False
     accept = "application/json"
 
@@ -53,7 +53,7 @@ def _get_boolean_false_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_int_one_million_request(self, **kwargs) -> HttpRequest:
+def _get_int_one_million_request(**kwargs) -> HttpRequest:
     int_path = 1000000
     accept = "application/json"
 
@@ -74,7 +74,7 @@ def _get_int_one_million_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_int_negative_one_million_request(self, **kwargs) -> HttpRequest:
+def _get_int_negative_one_million_request(**kwargs) -> HttpRequest:
     int_path = -1000000
     accept = "application/json"
 
@@ -95,7 +95,7 @@ def _get_int_negative_one_million_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_ten_billion_request(self, **kwargs) -> HttpRequest:
+def _get_ten_billion_request(**kwargs) -> HttpRequest:
     long_path = 10000000000
     accept = "application/json"
 
@@ -116,7 +116,7 @@ def _get_ten_billion_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_negative_ten_billion_request(self, **kwargs) -> HttpRequest:
+def _get_negative_ten_billion_request(**kwargs) -> HttpRequest:
     long_path = -10000000000
     accept = "application/json"
 
@@ -137,7 +137,7 @@ def _get_negative_ten_billion_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _float_scientific_positive_request(self, **kwargs) -> HttpRequest:
+def _float_scientific_positive_request(**kwargs) -> HttpRequest:
     float_path = 103400000000000000000
     accept = "application/json"
 
@@ -158,7 +158,7 @@ def _float_scientific_positive_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _float_scientific_negative_request(self, **kwargs) -> HttpRequest:
+def _float_scientific_negative_request(**kwargs) -> HttpRequest:
     float_path = -1.034e-20
     accept = "application/json"
 
@@ -179,7 +179,7 @@ def _float_scientific_negative_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _double_decimal_positive_request(self, **kwargs) -> HttpRequest:
+def _double_decimal_positive_request(**kwargs) -> HttpRequest:
     double_path = 9999999.999
     accept = "application/json"
 
@@ -200,7 +200,7 @@ def _double_decimal_positive_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _double_decimal_negative_request(self, **kwargs) -> HttpRequest:
+def _double_decimal_negative_request(**kwargs) -> HttpRequest:
     double_path = -9999999.999
     accept = "application/json"
 
@@ -221,7 +221,7 @@ def _double_decimal_negative_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_unicode_request(self, **kwargs) -> HttpRequest:
+def _string_unicode_request(**kwargs) -> HttpRequest:
     string_path = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
 
@@ -242,7 +242,7 @@ def _string_unicode_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_url_encoded_request(self, **kwargs) -> HttpRequest:
+def _string_url_encoded_request(**kwargs) -> HttpRequest:
     string_path = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
 
@@ -265,7 +265,7 @@ def _string_url_encoded_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_url_non_encoded_request(self, **kwargs) -> HttpRequest:
+def _string_url_non_encoded_request(**kwargs) -> HttpRequest:
     string_path = "begin!*'();:@&=+$,end"
     accept = "application/json"
 
@@ -286,7 +286,7 @@ def _string_url_non_encoded_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_empty_request(self, **kwargs) -> HttpRequest:
+def _string_empty_request(**kwargs) -> HttpRequest:
     string_path = ""
     accept = "application/json"
 
@@ -307,7 +307,7 @@ def _string_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_null_request(self, string_path: str, **kwargs) -> HttpRequest:
+def _string_null_request(string_path: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -327,7 +327,7 @@ def _string_null_request(self, string_path: str, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _enum_valid_request(self, enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
+def _enum_valid_request(enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -347,7 +347,7 @@ def _enum_valid_request(self, enum_path: Union[str, "_models.UriColor"], **kwarg
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _enum_null_request(self, enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
+def _enum_null_request(enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -367,7 +367,7 @@ def _enum_null_request(self, enum_path: Union[str, "_models.UriColor"], **kwargs
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _byte_multi_byte_request(self, byte_path: bytearray, **kwargs) -> HttpRequest:
+def _byte_multi_byte_request(byte_path: bytearray, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -387,7 +387,7 @@ def _byte_multi_byte_request(self, byte_path: bytearray, **kwargs) -> HttpReques
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _byte_empty_request(self, **kwargs) -> HttpRequest:
+def _byte_empty_request(**kwargs) -> HttpRequest:
     byte_path = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -408,7 +408,7 @@ def _byte_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _byte_null_request(self, byte_path: bytearray, **kwargs) -> HttpRequest:
+def _byte_null_request(byte_path: bytearray, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -428,7 +428,7 @@ def _byte_null_request(self, byte_path: bytearray, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_valid_request(self, **kwargs) -> HttpRequest:
+def _date_valid_request(**kwargs) -> HttpRequest:
     date_path = "2012-01-01"
     accept = "application/json"
 
@@ -449,7 +449,7 @@ def _date_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_null_request(self, date_path: datetime.date, **kwargs) -> HttpRequest:
+def _date_null_request(date_path: datetime.date, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -469,7 +469,7 @@ def _date_null_request(self, date_path: datetime.date, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_time_valid_request(self, **kwargs) -> HttpRequest:
+def _date_time_valid_request(**kwargs) -> HttpRequest:
     date_time_path = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -490,7 +490,7 @@ def _date_time_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_time_null_request(self, date_time_path: datetime.datetime, **kwargs) -> HttpRequest:
+def _date_time_null_request(date_time_path: datetime.datetime, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -510,7 +510,7 @@ def _date_time_null_request(self, date_time_path: datetime.datetime, **kwargs) -
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _base64_url_request(self, base64_url_path: bytes, **kwargs) -> HttpRequest:
+def _base64_url_request(base64_url_path: bytes, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -530,7 +530,7 @@ def _base64_url_request(self, base64_url_path: bytes, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_csv_in_path_request(self, array_path: List[str], **kwargs) -> HttpRequest:
+def _array_csv_in_path_request(array_path: List[str], **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -553,7 +553,7 @@ def _array_csv_in_path_request(self, array_path: List[str], **kwargs) -> HttpReq
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _unix_time_url_request(self, unix_time_url_path: datetime.datetime, **kwargs) -> HttpRequest:
+def _unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -573,7 +573,7 @@ def _unix_time_url_request(self, unix_time_url_path: datetime.datetime, **kwargs
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_boolean_true_request(self, **kwargs) -> HttpRequest:
+def _get_boolean_true_request(**kwargs) -> HttpRequest:
     bool_query = True
     accept = "application/json"
 
@@ -591,7 +591,7 @@ def _get_boolean_true_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_boolean_false_request(self, **kwargs) -> HttpRequest:
+def _get_boolean_false_request(**kwargs) -> HttpRequest:
     bool_query = False
     accept = "application/json"
 
@@ -609,7 +609,7 @@ def _get_boolean_false_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_boolean_null_request(self, bool_query: Optional[bool] = None, **kwargs) -> HttpRequest:
+def _get_boolean_null_request(bool_query: Optional[bool] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -627,7 +627,7 @@ def _get_boolean_null_request(self, bool_query: Optional[bool] = None, **kwargs)
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_int_one_million_request(self, **kwargs) -> HttpRequest:
+def _get_int_one_million_request(**kwargs) -> HttpRequest:
     int_query = 1000000
     accept = "application/json"
 
@@ -645,7 +645,7 @@ def _get_int_one_million_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_int_negative_one_million_request(self, **kwargs) -> HttpRequest:
+def _get_int_negative_one_million_request(**kwargs) -> HttpRequest:
     int_query = -1000000
     accept = "application/json"
 
@@ -663,7 +663,7 @@ def _get_int_negative_one_million_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_int_null_request(self, int_query: Optional[int] = None, **kwargs) -> HttpRequest:
+def _get_int_null_request(int_query: Optional[int] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -681,7 +681,7 @@ def _get_int_null_request(self, int_query: Optional[int] = None, **kwargs) -> Ht
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_ten_billion_request(self, **kwargs) -> HttpRequest:
+def _get_ten_billion_request(**kwargs) -> HttpRequest:
     long_query = 10000000000
     accept = "application/json"
 
@@ -699,7 +699,7 @@ def _get_ten_billion_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_negative_ten_billion_request(self, **kwargs) -> HttpRequest:
+def _get_negative_ten_billion_request(**kwargs) -> HttpRequest:
     long_query = -10000000000
     accept = "application/json"
 
@@ -717,7 +717,7 @@ def _get_negative_ten_billion_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_long_null_request(self, long_query: Optional[int] = None, **kwargs) -> HttpRequest:
+def _get_long_null_request(long_query: Optional[int] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -735,7 +735,7 @@ def _get_long_null_request(self, long_query: Optional[int] = None, **kwargs) -> 
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _float_scientific_positive_request(self, **kwargs) -> HttpRequest:
+def _float_scientific_positive_request(**kwargs) -> HttpRequest:
     float_query = 103400000000000000000
     accept = "application/json"
 
@@ -753,7 +753,7 @@ def _float_scientific_positive_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _float_scientific_negative_request(self, **kwargs) -> HttpRequest:
+def _float_scientific_negative_request(**kwargs) -> HttpRequest:
     float_query = -1.034e-20
     accept = "application/json"
 
@@ -771,7 +771,7 @@ def _float_scientific_negative_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _float_null_request(self, float_query: Optional[float] = None, **kwargs) -> HttpRequest:
+def _float_null_request(float_query: Optional[float] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -789,7 +789,7 @@ def _float_null_request(self, float_query: Optional[float] = None, **kwargs) -> 
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _double_decimal_positive_request(self, **kwargs) -> HttpRequest:
+def _double_decimal_positive_request(**kwargs) -> HttpRequest:
     double_query = 9999999.999
     accept = "application/json"
 
@@ -807,7 +807,7 @@ def _double_decimal_positive_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _double_decimal_negative_request(self, **kwargs) -> HttpRequest:
+def _double_decimal_negative_request(**kwargs) -> HttpRequest:
     double_query = -9999999.999
     accept = "application/json"
 
@@ -825,7 +825,7 @@ def _double_decimal_negative_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _double_null_request(self, double_query: Optional[float] = None, **kwargs) -> HttpRequest:
+def _double_null_request(double_query: Optional[float] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -843,7 +843,7 @@ def _double_null_request(self, double_query: Optional[float] = None, **kwargs) -
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_unicode_request(self, **kwargs) -> HttpRequest:
+def _string_unicode_request(**kwargs) -> HttpRequest:
     string_query = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
 
@@ -861,7 +861,7 @@ def _string_unicode_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_url_encoded_request(self, **kwargs) -> HttpRequest:
+def _string_url_encoded_request(**kwargs) -> HttpRequest:
     string_query = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
 
@@ -881,7 +881,7 @@ def _string_url_encoded_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_empty_request(self, **kwargs) -> HttpRequest:
+def _string_empty_request(**kwargs) -> HttpRequest:
     string_query = ""
     accept = "application/json"
 
@@ -899,7 +899,7 @@ def _string_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _string_null_request(self, string_query: Optional[str] = None, **kwargs) -> HttpRequest:
+def _string_null_request(string_query: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -917,7 +917,7 @@ def _string_null_request(self, string_query: Optional[str] = None, **kwargs) -> 
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _enum_valid_request(self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
+def _enum_valid_request(enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -935,7 +935,7 @@ def _enum_valid_request(self, enum_query: Optional[Union[str, "_models.UriColor"
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _enum_null_request(self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
+def _enum_null_request(enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -953,7 +953,7 @@ def _enum_null_request(self, enum_query: Optional[Union[str, "_models.UriColor"]
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _byte_multi_byte_request(self, byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
+def _byte_multi_byte_request(byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -971,7 +971,7 @@ def _byte_multi_byte_request(self, byte_query: Optional[bytearray] = None, **kwa
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _byte_empty_request(self, **kwargs) -> HttpRequest:
+def _byte_empty_request(**kwargs) -> HttpRequest:
     byte_query = bytearray("", encoding="utf-8")
     accept = "application/json"
 
@@ -989,7 +989,7 @@ def _byte_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _byte_null_request(self, byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
+def _byte_null_request(byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1007,7 +1007,7 @@ def _byte_null_request(self, byte_query: Optional[bytearray] = None, **kwargs) -
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_valid_request(self, **kwargs) -> HttpRequest:
+def _date_valid_request(**kwargs) -> HttpRequest:
     date_query = "2012-01-01"
     accept = "application/json"
 
@@ -1025,7 +1025,7 @@ def _date_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_null_request(self, date_query: Optional[datetime.date] = None, **kwargs) -> HttpRequest:
+def _date_null_request(date_query: Optional[datetime.date] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1043,7 +1043,7 @@ def _date_null_request(self, date_query: Optional[datetime.date] = None, **kwarg
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_time_valid_request(self, **kwargs) -> HttpRequest:
+def _date_time_valid_request(**kwargs) -> HttpRequest:
     date_time_query = "2012-01-01T01:01:01Z"
     accept = "application/json"
 
@@ -1061,7 +1061,7 @@ def _date_time_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _date_time_null_request(self, date_time_query: Optional[datetime.datetime] = None, **kwargs) -> HttpRequest:
+def _date_time_null_request(date_time_query: Optional[datetime.datetime] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1079,7 +1079,7 @@ def _date_time_null_request(self, date_time_query: Optional[datetime.datetime] =
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_csv_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_csv_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1097,7 +1097,7 @@ def _array_string_csv_valid_request(self, array_query: Optional[List[str]] = Non
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_csv_null_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_csv_null_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1115,7 +1115,7 @@ def _array_string_csv_null_request(self, array_query: Optional[List[str]] = None
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_csv_empty_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_csv_empty_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1133,9 +1133,7 @@ def _array_string_csv_empty_request(self, array_query: Optional[List[str]] = Non
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_no_collection_format_empty_request(
-    self, array_query: Optional[List[str]] = None, **kwargs
-) -> HttpRequest:
+def _array_string_no_collection_format_empty_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1153,7 +1151,7 @@ def _array_string_no_collection_format_empty_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_ssv_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_ssv_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1171,7 +1169,7 @@ def _array_string_ssv_valid_request(self, array_query: Optional[List[str]] = Non
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_tsv_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_tsv_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1189,7 +1187,7 @@ def _array_string_tsv_valid_request(self, array_query: Optional[List[str]] = Non
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_pipes_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_pipes_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1208,7 +1206,6 @@ def _array_string_pipes_valid_request(self, array_query: Optional[List[str]] = N
 
 
 def _get_all_with_values_request(
-    self,
     path_item_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,
@@ -1252,7 +1249,6 @@ def _get_all_with_values_request(
 
 
 def _get_global_query_null_request(
-    self,
     path_item_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,
@@ -1296,7 +1292,6 @@ def _get_global_query_null_request(
 
 
 def _get_global_and_local_query_null_request(
-    self,
     path_item_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,
@@ -1340,7 +1335,6 @@ def _get_global_and_local_query_null_request(
 
 
 def _get_local_path_item_query_null_request(
-    self,
     path_item_string_path: str,
     local_string_path: str,
     path_item_string_query: Optional[str] = None,

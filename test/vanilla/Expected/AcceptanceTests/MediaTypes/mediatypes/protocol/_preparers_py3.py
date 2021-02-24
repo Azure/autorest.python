@@ -10,7 +10,7 @@ from typing import IO, Optional, Union
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _analyze_body_request(self, body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
+def _analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -41,7 +41,7 @@ def _analyze_body_request(self, body: Optional[Union[IO, "_models.SourcePath"]] 
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _content_type_with_encoding_request(self, body: Optional[str] = None, **kwargs) -> HttpRequest:
+def _content_type_with_encoding_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "text/plain")
     accept = "application/json"
 

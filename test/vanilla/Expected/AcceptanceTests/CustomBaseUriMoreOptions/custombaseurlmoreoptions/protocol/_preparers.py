@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _get_empty_request(
-    self,
     vault,  # type: str
     secret,  # type: str
     key_name,  # type: str

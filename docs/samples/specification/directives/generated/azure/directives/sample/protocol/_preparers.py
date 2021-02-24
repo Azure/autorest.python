@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _basic_polling_initial_request(
-    self,
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -39,7 +38,6 @@ def _basic_polling_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _basic_paging_request(
-    self,
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

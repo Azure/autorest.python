@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -33,7 +33,6 @@ def _get_null_request(
 
 
 def _put_positive_duration_request(
-    self,
     body,  # type: datetime.timedelta
     **kwargs  # type: Any
 ):
@@ -58,7 +57,7 @@ def _put_positive_duration_request(
 
 
 def _get_positive_duration_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -77,7 +76,7 @@ def _get_positive_duration_request(
 
 
 def _get_invalid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

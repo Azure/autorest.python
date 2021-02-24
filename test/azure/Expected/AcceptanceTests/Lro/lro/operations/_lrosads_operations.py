@@ -56,30 +56,6 @@ class LROSADsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _put_non_retry400_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/put/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put_non_retry400_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -173,30 +149,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put_non_retry400.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
-
-    def _put_non_retry201_creating400_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/put/201/creating/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_non_retry201_creating400_initial(
         self,
@@ -292,30 +244,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put_non_retry201_creating400.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
-
-    def _put_non_retry201_creating400_invalid_json_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/put/201/creating/400/invalidjson")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_non_retry201_creating400_invalid_jso_initial(
         self,
@@ -413,30 +341,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put_non_retry201_creating400_invalid_json.metadata = {"url": "/lro/nonretryerror/put/201/creating/400/invalidjson"}  # type: ignore
-
-    def _put_async_relative_retry400_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/putasync/retry/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_async_relative_retry400_initial(
         self,
@@ -544,24 +448,6 @@ class LROSADsOperations(object):
 
     begin_put_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
 
-    def _delete_non_retry400_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/delete/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_non_retry400_initial(
         self, **kwargs  # type: Any
     ):
@@ -640,24 +526,6 @@ class LROSADsOperations(object):
 
     begin_delete_non_retry400.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
 
-    def _delete202_non_retry400_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/delete/202/retry/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete202_non_retry400_initial(
         self, **kwargs  # type: Any
     ):
@@ -735,24 +603,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_delete202_non_retry400.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
-
-    def _delete_async_relative_retry400_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/deleteasync/retry/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
 
     def _delete_async_relative_retry400_initial(
         self, **kwargs  # type: Any
@@ -835,30 +685,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_delete_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
-
-    def _post_non_retry400_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/post/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _post_non_retry400_initial(
         self,
@@ -947,30 +773,6 @@ class LROSADsOperations(object):
 
     begin_post_non_retry400.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
 
-    def _post202_non_retry400_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/post/202/retry/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _post202_non_retry400_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -1057,30 +859,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post202_non_retry400.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
-
-    def _post_async_relative_retry400_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/nonretryerror/postasync/retry/400")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _post_async_relative_retry400_initial(
         self,
@@ -1172,30 +950,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
-
-    def _put_error201_no_provisioning_state_payload_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/put/201/noprovisioningstatepayload")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_error201_no_provisioning_state_payload_initial(
         self,
@@ -1294,30 +1048,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put_error201_no_provisioning_state_payload.metadata = {"url": "/lro/error/put/201/noprovisioningstatepayload"}  # type: ignore
-
-    def _put_async_relative_retry_no_status_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/putasync/retry/nostatus")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_async_relative_retry_no_status_initial(
         self,
@@ -1427,30 +1157,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put_async_relative_retry_no_status.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
-
-    def _put_async_relative_retry_no_status_payload_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/putasync/retry/nostatuspayload")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_async_relative_retry_no_status_payload_initial(
         self,
@@ -1563,24 +1269,6 @@ class LROSADsOperations(object):
 
     begin_put_async_relative_retry_no_status_payload.metadata = {"url": "/lro/error/putasync/retry/nostatuspayload"}  # type: ignore
 
-    def _delete204_succeeded_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/delete/204/nolocation")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete204_succeeded_initial(
         self, **kwargs  # type: Any
     ):
@@ -1654,24 +1342,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_delete204_succeeded.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
-
-    def _delete_async_relative_retry_no_status_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/nostatus")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
 
     def _delete_async_relative_retry_no_status_initial(
         self, **kwargs  # type: Any
@@ -1754,30 +1424,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_delete_async_relative_retry_no_status.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
-
-    def _post202_no_location_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/post/202/nolocation")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _post202_no_locatio_initial(
         self,
@@ -1866,30 +1512,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post202_no_location.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
-
-    def _post_async_relative_retry_no_payload_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/postasync/retry/nopayload")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _post_async_relative_retry_no_payload_initial(
         self,
@@ -1985,30 +1607,6 @@ class LROSADsOperations(object):
 
     begin_post_async_relative_retry_no_payload.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
-    def _put200_invalid_json_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/put/200/invalidjson")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     def _put200_invalid_jso_initial(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -2101,30 +1699,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put200_invalid_json.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
-
-    def _put_async_relative_retry_invalid_header_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/putasync/retry/invalidheader")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_async_relative_retry_invalid_header_initial(
         self,
@@ -2234,30 +1808,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/putasync/retry/invalidheader"}  # type: ignore
-
-    def _put_async_relative_retry_invalid_json_polling_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/putasync/retry/invalidjsonpolling")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _put_async_relative_retry_invalid_json_poll_initial(
         self,
@@ -2370,24 +1920,6 @@ class LROSADsOperations(object):
 
     begin_put_async_relative_retry_invalid_json_polling.metadata = {"url": "/lro/error/putasync/retry/invalidjsonpolling"}  # type: ignore
 
-    def _delete202_retry_invalid_header_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/delete/202/retry/invalidheader")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete202_retry_invalid_header_initial(
         self, **kwargs  # type: Any
     ):
@@ -2466,24 +1998,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_delete202_retry_invalid_header.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
-
-    def _delete_async_relative_retry_invalid_header_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/invalidheader")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
 
     def _delete_async_relative_retry_invalid_header_initial(
         self, **kwargs  # type: Any
@@ -2567,24 +2081,6 @@ class LROSADsOperations(object):
 
     begin_delete_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
 
-    def _delete_async_relative_retry_invalid_json_polling_initial_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/invalidjsonpolling")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.delete(url, query_parameters, header_parameters)
-
     def _delete_async_relative_retry_invalid_json_poll_initial(
         self, **kwargs  # type: Any
     ):
@@ -2666,30 +2162,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_delete_async_relative_retry_invalid_json_polling.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
-
-    def _post202_retry_invalid_header_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/post/202/retry/invalidheader")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _post202_retry_invalid_header_initial(
         self,
@@ -2778,30 +2250,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post202_retry_invalid_header.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
-
-    def _post_async_relative_retry_invalid_header_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/postasync/retry/invalidheader")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _post_async_relative_retry_invalid_header_initial(
         self,
@@ -2896,30 +2344,6 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_post_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
-
-    def _post_async_relative_retry_invalid_json_polling_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/lro/error/postasync/retry/invalidjsonpolling")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _post_async_relative_retry_invalid_json_poll_initial(
         self,

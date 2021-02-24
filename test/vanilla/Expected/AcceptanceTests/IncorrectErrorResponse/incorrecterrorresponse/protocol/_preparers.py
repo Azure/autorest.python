@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 def _get_incorrect_error_from_server_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
 

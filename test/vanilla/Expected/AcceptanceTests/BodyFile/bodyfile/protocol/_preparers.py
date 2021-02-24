@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 def _get_file_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "image/png, application/json"
@@ -32,7 +32,7 @@ def _get_file_request(
 
 
 def _get_file_large_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "image/png, application/json"
@@ -51,7 +51,7 @@ def _get_file_large_request(
 
 
 def _get_empty_file_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "image/png, application/json"

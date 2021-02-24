@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 def _get_true_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -32,7 +32,6 @@ def _get_true_request(
 
 
 def _put_true_request(
-    self,
     body,  # type: bool
     **kwargs  # type: Any
 ):
@@ -59,7 +58,7 @@ def _put_true_request(
 
 
 def _get_false_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -78,7 +77,6 @@ def _get_false_request(
 
 
 def _put_false_request(
-    self,
     body,  # type: bool
     **kwargs  # type: Any
 ):
@@ -105,7 +103,7 @@ def _put_false_request(
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -124,7 +122,7 @@ def _get_null_request(
 
 
 def _get_invalid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

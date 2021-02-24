@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 
 
 def _poll_with_parameterized_endpoints_initial_request(
-    self,
     account_name,  # type: str
     **kwargs  # type: Any
 ):

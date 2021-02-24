@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -32,7 +32,7 @@ def _get_null_request(
 
 
 def _get_invalid_float_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -51,7 +51,7 @@ def _get_invalid_float_request(
 
 
 def _get_invalid_double_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -70,7 +70,7 @@ def _get_invalid_double_request(
 
 
 def _get_invalid_decimal_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -89,7 +89,6 @@ def _get_invalid_decimal_request(
 
 
 def _put_big_float_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -114,7 +113,7 @@ def _put_big_float_request(
 
 
 def _get_big_float_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -133,7 +132,6 @@ def _get_big_float_request(
 
 
 def _put_big_double_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -158,7 +156,7 @@ def _put_big_double_request(
 
 
 def _get_big_double_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -177,7 +175,6 @@ def _get_big_double_request(
 
 
 def _put_big_double_positive_decimal_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -204,7 +201,7 @@ def _put_big_double_positive_decimal_request(
 
 
 def _get_big_double_positive_decimal_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -223,7 +220,6 @@ def _get_big_double_positive_decimal_request(
 
 
 def _put_big_double_negative_decimal_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -250,7 +246,7 @@ def _put_big_double_negative_decimal_request(
 
 
 def _get_big_double_negative_decimal_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -269,7 +265,6 @@ def _get_big_double_negative_decimal_request(
 
 
 def _put_big_decimal_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -294,7 +289,7 @@ def _put_big_decimal_request(
 
 
 def _get_big_decimal_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -313,7 +308,6 @@ def _get_big_decimal_request(
 
 
 def _put_big_decimal_positive_decimal_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -340,7 +334,7 @@ def _put_big_decimal_positive_decimal_request(
 
 
 def _get_big_decimal_positive_decimal_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -359,7 +353,6 @@ def _get_big_decimal_positive_decimal_request(
 
 
 def _put_big_decimal_negative_decimal_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -386,7 +379,7 @@ def _put_big_decimal_negative_decimal_request(
 
 
 def _get_big_decimal_negative_decimal_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -405,7 +398,6 @@ def _get_big_decimal_negative_decimal_request(
 
 
 def _put_small_float_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -430,7 +422,7 @@ def _put_small_float_request(
 
 
 def _get_small_float_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -449,7 +441,6 @@ def _get_small_float_request(
 
 
 def _put_small_double_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -474,7 +465,7 @@ def _put_small_double_request(
 
 
 def _get_small_double_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -493,7 +484,6 @@ def _get_small_double_request(
 
 
 def _put_small_decimal_request(
-    self,
     body,  # type: float
     **kwargs  # type: Any
 ):
@@ -518,7 +508,7 @@ def _put_small_decimal_request(
 
 
 def _get_small_decimal_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

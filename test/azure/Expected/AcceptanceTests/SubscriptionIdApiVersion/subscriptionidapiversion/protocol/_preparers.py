@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 
 
 def _get_sample_resource_group_request(
-    self,
     resource_group_name,  # type: str
     **kwargs  # type: Any
 ):

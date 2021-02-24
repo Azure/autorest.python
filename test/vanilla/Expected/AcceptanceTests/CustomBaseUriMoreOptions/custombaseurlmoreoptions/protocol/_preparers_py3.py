@@ -11,7 +11,7 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _get_empty_request(
-    self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
+    vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 

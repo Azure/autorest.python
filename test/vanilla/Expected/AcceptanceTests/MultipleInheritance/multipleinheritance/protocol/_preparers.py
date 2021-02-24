@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 def _get_horse_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -32,7 +32,6 @@ def _get_horse_request(
 
 
 def _put_horse_request(
-    self,
     body,  # type: "_models.Horse"
     **kwargs  # type: Any
 ):
@@ -57,7 +56,7 @@ def _put_horse_request(
 
 
 def _get_pet_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -76,7 +75,6 @@ def _get_pet_request(
 
 
 def _put_pet_request(
-    self,
     body,  # type: "_models.Pet"
     **kwargs  # type: Any
 ):
@@ -101,7 +99,7 @@ def _put_pet_request(
 
 
 def _get_feline_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -120,7 +118,6 @@ def _get_feline_request(
 
 
 def _put_feline_request(
-    self,
     body,  # type: "_models.Feline"
     **kwargs  # type: Any
 ):
@@ -145,7 +142,7 @@ def _put_feline_request(
 
 
 def _get_cat_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -164,7 +161,6 @@ def _get_cat_request(
 
 
 def _put_cat_request(
-    self,
     body,  # type: "_models.Cat"
     **kwargs  # type: Any
 ):
@@ -189,7 +185,7 @@ def _put_cat_request(
 
 
 def _get_kitten_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -208,7 +204,6 @@ def _get_kitten_request(
 
 
 def _put_kitten_request(
-    self,
     body,  # type: "_models.Kitten"
     **kwargs  # type: Any
 ):

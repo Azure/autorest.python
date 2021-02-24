@@ -43,30 +43,6 @@ class IntOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_request(
-        self,
-        body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/nonStringEnums/int/put")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> str:
         """Put an int enum.
@@ -103,24 +79,6 @@ class IntOperations:
         return deserialized
 
     put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
-
-    def _get_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/nonStringEnums/int/get")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get(self, **kwargs) -> Union[int, "_models.IntEnum"]:

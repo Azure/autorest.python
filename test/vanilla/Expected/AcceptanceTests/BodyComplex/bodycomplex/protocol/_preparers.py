@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -35,7 +35,6 @@ def _get_valid_request(
 
 
 def _put_valid_request(
-    self,
     body,  # type: "_models.Basic"
     **kwargs  # type: Any
 ):
@@ -62,7 +61,7 @@ def _put_valid_request(
 
 
 def _get_invalid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -81,7 +80,7 @@ def _get_invalid_request(
 
 
 def _get_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -100,7 +99,7 @@ def _get_empty_request(
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -119,7 +118,7 @@ def _get_null_request(
 
 
 def _get_not_provided_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -138,7 +137,7 @@ def _get_not_provided_request(
 
 
 def _get_int_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -157,7 +156,6 @@ def _get_int_request(
 
 
 def _put_int_request(
-    self,
     body,  # type: "_models.IntWrapper"
     **kwargs  # type: Any
 ):
@@ -182,7 +180,7 @@ def _put_int_request(
 
 
 def _get_long_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -201,7 +199,6 @@ def _get_long_request(
 
 
 def _put_long_request(
-    self,
     body,  # type: "_models.LongWrapper"
     **kwargs  # type: Any
 ):
@@ -226,7 +223,7 @@ def _put_long_request(
 
 
 def _get_float_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -245,7 +242,6 @@ def _get_float_request(
 
 
 def _put_float_request(
-    self,
     body,  # type: "_models.FloatWrapper"
     **kwargs  # type: Any
 ):
@@ -270,7 +266,7 @@ def _put_float_request(
 
 
 def _get_double_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -289,7 +285,6 @@ def _get_double_request(
 
 
 def _put_double_request(
-    self,
     body,  # type: "_models.DoubleWrapper"
     **kwargs  # type: Any
 ):
@@ -314,7 +309,7 @@ def _put_double_request(
 
 
 def _get_bool_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -333,7 +328,6 @@ def _get_bool_request(
 
 
 def _put_bool_request(
-    self,
     body,  # type: "_models.BooleanWrapper"
     **kwargs  # type: Any
 ):
@@ -358,7 +352,7 @@ def _put_bool_request(
 
 
 def _get_string_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -377,7 +371,6 @@ def _get_string_request(
 
 
 def _put_string_request(
-    self,
     body,  # type: "_models.StringWrapper"
     **kwargs  # type: Any
 ):
@@ -402,7 +395,7 @@ def _put_string_request(
 
 
 def _get_date_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -421,7 +414,6 @@ def _get_date_request(
 
 
 def _put_date_request(
-    self,
     body,  # type: "_models.DateWrapper"
     **kwargs  # type: Any
 ):
@@ -446,7 +438,7 @@ def _put_date_request(
 
 
 def _get_date_time_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -465,7 +457,6 @@ def _get_date_time_request(
 
 
 def _put_date_time_request(
-    self,
     body,  # type: "_models.DatetimeWrapper"
     **kwargs  # type: Any
 ):
@@ -490,7 +481,7 @@ def _put_date_time_request(
 
 
 def _get_date_time_rfc1123_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -509,7 +500,6 @@ def _get_date_time_rfc1123_request(
 
 
 def _put_date_time_rfc1123_request(
-    self,
     body,  # type: "_models.Datetimerfc1123Wrapper"
     **kwargs  # type: Any
 ):
@@ -534,7 +524,7 @@ def _put_date_time_rfc1123_request(
 
 
 def _get_duration_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -553,7 +543,6 @@ def _get_duration_request(
 
 
 def _put_duration_request(
-    self,
     body,  # type: "_models.DurationWrapper"
     **kwargs  # type: Any
 ):
@@ -578,7 +567,7 @@ def _put_duration_request(
 
 
 def _get_byte_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -597,7 +586,6 @@ def _get_byte_request(
 
 
 def _put_byte_request(
-    self,
     body,  # type: "_models.ByteWrapper"
     **kwargs  # type: Any
 ):
@@ -622,7 +610,7 @@ def _put_byte_request(
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -641,7 +629,6 @@ def _get_valid_request(
 
 
 def _put_valid_request(
-    self,
     body,  # type: "_models.ArrayWrapper"
     **kwargs  # type: Any
 ):
@@ -666,7 +653,7 @@ def _put_valid_request(
 
 
 def _get_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -685,7 +672,6 @@ def _get_empty_request(
 
 
 def _put_empty_request(
-    self,
     body,  # type: "_models.ArrayWrapper"
     **kwargs  # type: Any
 ):
@@ -710,7 +696,7 @@ def _put_empty_request(
 
 
 def _get_not_provided_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -729,7 +715,7 @@ def _get_not_provided_request(
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -748,7 +734,6 @@ def _get_valid_request(
 
 
 def _put_valid_request(
-    self,
     body,  # type: "_models.DictionaryWrapper"
     **kwargs  # type: Any
 ):
@@ -773,7 +758,7 @@ def _put_valid_request(
 
 
 def _get_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -792,7 +777,6 @@ def _get_empty_request(
 
 
 def _put_empty_request(
-    self,
     body,  # type: "_models.DictionaryWrapper"
     **kwargs  # type: Any
 ):
@@ -817,7 +801,7 @@ def _put_empty_request(
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -836,7 +820,7 @@ def _get_null_request(
 
 
 def _get_not_provided_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -855,7 +839,7 @@ def _get_not_provided_request(
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -874,7 +858,6 @@ def _get_valid_request(
 
 
 def _put_valid_request(
-    self,
     body,  # type: "_models.Siamese"
     **kwargs  # type: Any
 ):
@@ -899,7 +882,7 @@ def _put_valid_request(
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -918,7 +901,6 @@ def _get_valid_request(
 
 
 def _put_valid_request(
-    self,
     body,  # type: "_models.Fish"
     **kwargs  # type: Any
 ):
@@ -943,7 +925,7 @@ def _put_valid_request(
 
 
 def _get_dot_syntax_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -962,7 +944,7 @@ def _get_dot_syntax_request(
 
 
 def _get_composed_with_discriminator_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -981,7 +963,7 @@ def _get_composed_with_discriminator_request(
 
 
 def _get_composed_without_discriminator_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1000,7 +982,7 @@ def _get_composed_without_discriminator_request(
 
 
 def _get_complicated_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1019,7 +1001,6 @@ def _get_complicated_request(
 
 
 def _put_complicated_request(
-    self,
     body,  # type: "_models.Salmon"
     **kwargs  # type: Any
 ):
@@ -1044,7 +1025,6 @@ def _put_complicated_request(
 
 
 def _put_missing_discriminator_request(
-    self,
     body,  # type: "_models.Salmon"
     **kwargs  # type: Any
 ):
@@ -1069,7 +1049,6 @@ def _put_missing_discriminator_request(
 
 
 def _put_valid_missing_required_request(
-    self,
     body,  # type: "_models.Fish"
     **kwargs  # type: Any
 ):
@@ -1094,7 +1073,7 @@ def _put_valid_missing_required_request(
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1113,7 +1092,6 @@ def _get_valid_request(
 
 
 def _put_valid_request(
-    self,
     body,  # type: "_models.Fish"
     **kwargs  # type: Any
 ):
@@ -1138,7 +1116,7 @@ def _put_valid_request(
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -1157,7 +1135,6 @@ def _get_valid_request(
 
 
 def _put_valid_request(
-    self,
     body,  # type: "_models.ReadonlyObj"
     **kwargs  # type: Any
 ):
@@ -1182,7 +1159,7 @@ def _put_valid_request(
 
 
 def _get_valid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

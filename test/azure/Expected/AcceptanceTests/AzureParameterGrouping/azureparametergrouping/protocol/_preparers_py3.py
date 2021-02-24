@@ -11,7 +11,7 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _post_required_request(
-    self, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
+    path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -40,9 +40,7 @@ def _post_required_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post_optional_request(
-    self, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
-) -> HttpRequest:
+def _post_optional_request(custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -63,7 +61,6 @@ def _post_optional_request(
 
 
 def _post_multi_param_groups_request(
-    self,
     header_one: Optional[str] = None,
     query_one: Optional[int] = 30,
     header_two: Optional[str] = None,
@@ -94,7 +91,7 @@ def _post_multi_param_groups_request(
 
 
 def _post_shared_parameter_group_object_request(
-    self, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs
+    header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 

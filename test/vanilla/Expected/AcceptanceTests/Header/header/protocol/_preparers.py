@@ -16,7 +16,6 @@ if TYPE_CHECKING:
 
 
 def _param_existing_key_request(
-    self,
     user_agent_parameter,  # type: str
     **kwargs  # type: Any
 ):
@@ -38,7 +37,7 @@ def _param_existing_key_request(
 
 
 def _response_existing_key_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -57,7 +56,6 @@ def _response_existing_key_request(
 
 
 def _param_protected_key_request(
-    self,
     content_type,  # type: str
     **kwargs  # type: Any
 ):
@@ -79,7 +77,7 @@ def _param_protected_key_request(
 
 
 def _response_protected_key_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -98,7 +96,6 @@ def _response_protected_key_request(
 
 
 def _param_integer_request(
-    self,
     scenario,  # type: str
     value,  # type: int
     **kwargs  # type: Any
@@ -122,7 +119,6 @@ def _param_integer_request(
 
 
 def _response_integer_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -144,7 +140,6 @@ def _response_integer_request(
 
 
 def _param_long_request(
-    self,
     scenario,  # type: str
     value,  # type: int
     **kwargs  # type: Any
@@ -168,7 +163,6 @@ def _param_long_request(
 
 
 def _response_long_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -190,7 +184,6 @@ def _response_long_request(
 
 
 def _param_float_request(
-    self,
     scenario,  # type: str
     value,  # type: float
     **kwargs  # type: Any
@@ -214,7 +207,6 @@ def _param_float_request(
 
 
 def _response_float_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -236,7 +228,6 @@ def _response_float_request(
 
 
 def _param_double_request(
-    self,
     scenario,  # type: str
     value,  # type: float
     **kwargs  # type: Any
@@ -260,7 +251,6 @@ def _param_double_request(
 
 
 def _response_double_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -282,7 +272,6 @@ def _response_double_request(
 
 
 def _param_bool_request(
-    self,
     scenario,  # type: str
     value,  # type: bool
     **kwargs  # type: Any
@@ -306,7 +295,6 @@ def _param_bool_request(
 
 
 def _response_bool_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -328,7 +316,6 @@ def _response_bool_request(
 
 
 def _param_string_request(
-    self,
     scenario,  # type: str
     value=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -353,7 +340,6 @@ def _param_string_request(
 
 
 def _response_string_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -375,7 +361,6 @@ def _response_string_request(
 
 
 def _param_date_request(
-    self,
     scenario,  # type: str
     value,  # type: datetime.date
     **kwargs  # type: Any
@@ -399,7 +384,6 @@ def _param_date_request(
 
 
 def _response_date_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -421,7 +405,6 @@ def _response_date_request(
 
 
 def _param_datetime_request(
-    self,
     scenario,  # type: str
     value,  # type: datetime.datetime
     **kwargs  # type: Any
@@ -445,7 +428,6 @@ def _param_datetime_request(
 
 
 def _response_datetime_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -467,7 +449,6 @@ def _response_datetime_request(
 
 
 def _param_datetime_rfc1123_request(
-    self,
     scenario,  # type: str
     value=None,  # type: Optional[datetime.datetime]
     **kwargs  # type: Any
@@ -492,7 +473,6 @@ def _param_datetime_rfc1123_request(
 
 
 def _response_datetime_rfc1123_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -514,7 +494,6 @@ def _response_datetime_rfc1123_request(
 
 
 def _param_duration_request(
-    self,
     scenario,  # type: str
     value,  # type: datetime.timedelta
     **kwargs  # type: Any
@@ -538,7 +517,6 @@ def _param_duration_request(
 
 
 def _response_duration_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -560,7 +538,6 @@ def _response_duration_request(
 
 
 def _param_byte_request(
-    self,
     scenario,  # type: str
     value,  # type: bytearray
     **kwargs  # type: Any
@@ -584,7 +561,6 @@ def _param_byte_request(
 
 
 def _response_byte_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -606,7 +582,6 @@ def _response_byte_request(
 
 
 def _param_enum_request(
-    self,
     scenario,  # type: str
     value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
     **kwargs  # type: Any
@@ -631,7 +606,6 @@ def _param_enum_request(
 
 
 def _response_enum_request(
-    self,
     scenario,  # type: str
     **kwargs  # type: Any
 ):
@@ -653,7 +627,7 @@ def _response_enum_request(
 
 
 def _custom_request_id_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

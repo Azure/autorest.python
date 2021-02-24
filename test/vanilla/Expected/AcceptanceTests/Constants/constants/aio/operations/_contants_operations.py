@@ -47,26 +47,6 @@ class ContantsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_no_model_as_string_no_required_two_value_no_default_request(
-        self,
-        input=None,  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(
         self, input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
@@ -104,26 +84,6 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     put_no_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
-
-    def _put_no_model_as_string_no_required_two_value_default_request(
-        self,
-        input="value1",  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(
@@ -163,26 +123,6 @@ class ContantsOperations:
 
     put_no_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
-    def _put_no_model_as_string_no_required_one_value_no_default_request(
-        self,
-        input="value1",  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(
         self, input: Optional[str] = "value1", **kwargs
@@ -220,26 +160,6 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     put_no_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
-
-    def _put_no_model_as_string_no_required_one_value_default_request(
-        self,
-        input="value1",  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(
@@ -279,25 +199,6 @@ class ContantsOperations:
 
     put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
-    def _put_no_model_as_string_required_two_value_no_default_request(
-        self,
-        input,  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_no_default(
         self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
@@ -336,25 +237,6 @@ class ContantsOperations:
 
     put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
-    def _put_no_model_as_string_required_two_value_default_request(
-        self,
-        input="value1",  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(
         self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
@@ -391,24 +273,6 @@ class ContantsOperations:
 
     put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
-    def _put_no_model_as_string_required_one_value_no_default_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        input = "value1"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_no_default(self, **kwargs) -> None:
         """Puts constants to the testserver.
@@ -441,24 +305,6 @@ class ContantsOperations:
 
     put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
-    def _put_no_model_as_string_required_one_value_default_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        input = "value1"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_default(self, **kwargs) -> None:
         """Puts constants to the testserver.
@@ -490,26 +336,6 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     put_no_model_as_string_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
-
-    def _put_model_as_string_no_required_two_value_no_default_request(
-        self,
-        input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(
@@ -549,26 +375,6 @@ class ContantsOperations:
 
     put_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
-    def _put_model_as_string_no_required_two_value_default_request(
-        self,
-        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(
         self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
@@ -604,26 +410,6 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     put_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
-
-    def _put_model_as_string_no_required_one_value_no_default_request(
-        self,
-        input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(
@@ -663,26 +449,6 @@ class ContantsOperations:
 
     put_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
-    def _put_model_as_string_no_required_one_value_default_request(
-        self,
-        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if input is not None:
-            query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(
         self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1", **kwargs
@@ -718,25 +484,6 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
-
-    def _put_model_as_string_required_two_value_no_default_request(
-        self,
-        input,  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_no_default(
@@ -774,25 +521,6 @@ class ContantsOperations:
 
     put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
-    def _put_model_as_string_required_two_value_default_request(
-        self,
-        input="value1",  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(
         self, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
@@ -829,25 +557,6 @@ class ContantsOperations:
 
     put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
-    def _put_model_as_string_required_one_value_no_default_request(
-        self,
-        input,  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueNoDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def put_model_as_string_required_one_value_no_default(
         self, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs
@@ -883,25 +592,6 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
-
-    def _put_model_as_string_required_one_value_default_request(
-        self,
-        input="value1",  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueDefault")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["input"] = self._serialize.query("input", input, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(

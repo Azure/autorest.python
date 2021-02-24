@@ -54,32 +54,6 @@ class SkipUrlEncodingOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_method_path_valid_request(
-        self,
-        unencoded_path_param,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}")
-        path_format_arguments = {
-            "unencodedPathParam": self._serialize.url(
-                "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
-            ),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_method_path_valid(
         self,
@@ -117,32 +91,6 @@ class SkipUrlEncodingOperations(object):
             return cls(pipeline_response, None, {})
 
     get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
-
-    def _get_path_valid_request(
-        self,
-        unencoded_path_param,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}")
-        path_format_arguments = {
-            "unencodedPathParam": self._serialize.url(
-                "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
-            ),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_path_valid(
@@ -182,31 +130,6 @@ class SkipUrlEncodingOperations(object):
 
     get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
-    def _get_swagger_path_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        unencoded_path_param = "path1/path2/path3"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}")
-        path_format_arguments = {
-            "unencodedPathParam": self._serialize.url(
-                "unencoded_path_param", unencoded_path_param, "str", skip_quote=True
-            ),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_swagger_path_valid(
         self, **kwargs  # type: Any
@@ -240,27 +163,6 @@ class SkipUrlEncodingOperations(object):
             return cls(pipeline_response, None, {})
 
     get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
-
-    def _get_method_query_valid_request(
-        self,
-        q1,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_method_query_valid(
@@ -300,28 +202,6 @@ class SkipUrlEncodingOperations(object):
 
     get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
 
-    def _get_method_query_null_request(
-        self,
-        q1=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/null")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if q1 is not None:
-            query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_method_query_null(
         self,
@@ -360,27 +240,6 @@ class SkipUrlEncodingOperations(object):
 
     get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
 
-    def _get_path_query_valid_request(
-        self,
-        q1,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/query/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_path_query_valid(
         self,
@@ -418,26 +277,6 @@ class SkipUrlEncodingOperations(object):
             return cls(pipeline_response, None, {})
 
     get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
-
-    def _get_swagger_query_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        q1 = "value1&q2=value2&q3=value3"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/query/valid")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_swagger_query_valid(

@@ -53,52 +53,6 @@ class PathItemsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_all_with_values_request(
-        self,
-        path_item_string_path,  # type: str
-        local_string_path,  # type: str
-        path_item_string_query=None,  # type: Optional[str]
-        local_string_query=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
-        )
-        path_format_arguments = {
-            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-            "globalStringPath": self._serialize.url(
-                "self._config.global_string_path", self._config.global_string_path, "str"
-            ),
-            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if path_item_string_query is not None:
-            query_parameters["pathItemStringQuery"] = self._serialize.query(
-                "path_item_string_query", path_item_string_query, "str"
-            )
-        if self._config.global_string_query is not None:
-            query_parameters["globalStringQuery"] = self._serialize.query(
-                "self._config.global_string_query", self._config.global_string_query, "str"
-            )
-        if local_string_query is not None:
-            query_parameters["localStringQuery"] = self._serialize.query(
-                "local_string_query", local_string_query, "str"
-            )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_all_with_values(
         self,
@@ -153,52 +107,6 @@ class PathItemsOperations(object):
             return cls(pipeline_response, None, {})
 
     get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
-
-    def _get_global_query_null_request(
-        self,
-        path_item_string_path,  # type: str
-        local_string_path,  # type: str
-        path_item_string_query=None,  # type: Optional[str]
-        local_string_query=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
-        )
-        path_format_arguments = {
-            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-            "globalStringPath": self._serialize.url(
-                "self._config.global_string_path", self._config.global_string_path, "str"
-            ),
-            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if path_item_string_query is not None:
-            query_parameters["pathItemStringQuery"] = self._serialize.query(
-                "path_item_string_query", path_item_string_query, "str"
-            )
-        if self._config.global_string_query is not None:
-            query_parameters["globalStringQuery"] = self._serialize.query(
-                "self._config.global_string_query", self._config.global_string_query, "str"
-            )
-        if local_string_query is not None:
-            query_parameters["localStringQuery"] = self._serialize.query(
-                "local_string_query", local_string_query, "str"
-            )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_global_query_null(
@@ -255,52 +163,6 @@ class PathItemsOperations(object):
 
     get_global_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
 
-    def _get_global_and_local_query_null_request(
-        self,
-        path_item_string_path,  # type: str
-        local_string_path,  # type: str
-        path_item_string_query=None,  # type: Optional[str]
-        local_string_query=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
-        )
-        path_format_arguments = {
-            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-            "globalStringPath": self._serialize.url(
-                "self._config.global_string_path", self._config.global_string_path, "str"
-            ),
-            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if path_item_string_query is not None:
-            query_parameters["pathItemStringQuery"] = self._serialize.query(
-                "path_item_string_query", path_item_string_query, "str"
-            )
-        if self._config.global_string_query is not None:
-            query_parameters["globalStringQuery"] = self._serialize.query(
-                "self._config.global_string_query", self._config.global_string_query, "str"
-            )
-        if local_string_query is not None:
-            query_parameters["localStringQuery"] = self._serialize.query(
-                "local_string_query", local_string_query, "str"
-            )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_global_and_local_query_null(
         self,
@@ -355,52 +217,6 @@ class PathItemsOperations(object):
             return cls(pipeline_response, None, {})
 
     get_global_and_local_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
-
-    def _get_local_path_item_query_null_request(
-        self,
-        path_item_string_path,  # type: str
-        local_string_path,  # type: str
-        path_item_string_query=None,  # type: Optional[str]
-        local_string_query=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
-        )
-        path_format_arguments = {
-            "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-            "globalStringPath": self._serialize.url(
-                "self._config.global_string_path", self._config.global_string_path, "str"
-            ),
-            "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if path_item_string_query is not None:
-            query_parameters["pathItemStringQuery"] = self._serialize.query(
-                "path_item_string_query", path_item_string_query, "str"
-            )
-        if self._config.global_string_query is not None:
-            query_parameters["globalStringQuery"] = self._serialize.query(
-                "self._config.global_string_query", self._config.global_string_query, "str"
-            )
-        if local_string_query is not None:
-            query_parameters["localStringQuery"] = self._serialize.query(
-                "local_string_query", local_string_query, "str"
-            )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_local_path_item_query_null(

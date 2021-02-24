@@ -11,7 +11,7 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _put_no_model_as_string_no_required_two_value_no_default_request(
-    self, input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
+    input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -29,7 +29,7 @@ def _put_no_model_as_string_no_required_two_value_no_default_request(
 
 
 def _put_no_model_as_string_no_required_two_value_default_request(
-    self, input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
+    input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -47,7 +47,7 @@ def _put_no_model_as_string_no_required_two_value_default_request(
 
 
 def _put_no_model_as_string_no_required_one_value_no_default_request(
-    self, input: Optional[str] = "value1", **kwargs
+    input: Optional[str] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -65,7 +65,7 @@ def _put_no_model_as_string_no_required_one_value_no_default_request(
 
 
 def _put_no_model_as_string_no_required_one_value_default_request(
-    self, input: Optional[str] = "value1", **kwargs
+    input: Optional[str] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -83,7 +83,7 @@ def _put_no_model_as_string_no_required_one_value_default_request(
 
 
 def _put_no_model_as_string_required_two_value_no_default_request(
-    self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
+    input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -100,7 +100,7 @@ def _put_no_model_as_string_required_two_value_no_default_request(
 
 
 def _put_no_model_as_string_required_two_value_default_request(
-    self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
+    input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -116,7 +116,7 @@ def _put_no_model_as_string_required_two_value_default_request(
     return self._client.put(url, query_parameters, header_parameters)
 
 
-def _put_no_model_as_string_required_one_value_no_default_request(self, **kwargs) -> HttpRequest:
+def _put_no_model_as_string_required_one_value_no_default_request(**kwargs) -> HttpRequest:
     input = "value1"
 
     # Construct URL
@@ -132,7 +132,7 @@ def _put_no_model_as_string_required_one_value_no_default_request(self, **kwargs
     return self._client.put(url, query_parameters, header_parameters)
 
 
-def _put_no_model_as_string_required_one_value_default_request(self, **kwargs) -> HttpRequest:
+def _put_no_model_as_string_required_one_value_default_request(**kwargs) -> HttpRequest:
     input = "value1"
 
     # Construct URL
@@ -149,7 +149,7 @@ def _put_no_model_as_string_required_one_value_default_request(self, **kwargs) -
 
 
 def _put_model_as_string_no_required_two_value_no_default_request(
-    self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
+    input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -167,7 +167,7 @@ def _put_model_as_string_no_required_two_value_no_default_request(
 
 
 def _put_model_as_string_no_required_two_value_default_request(
-    self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
+    input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -185,7 +185,7 @@ def _put_model_as_string_no_required_two_value_default_request(
 
 
 def _put_model_as_string_no_required_one_value_no_default_request(
-    self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None, **kwargs
+    input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None, **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -203,7 +203,7 @@ def _put_model_as_string_no_required_one_value_no_default_request(
 
 
 def _put_model_as_string_no_required_one_value_default_request(
-    self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1", **kwargs
+    input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -221,7 +221,7 @@ def _put_model_as_string_no_required_one_value_default_request(
 
 
 def _put_model_as_string_required_two_value_no_default_request(
-    self, input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
+    input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -238,7 +238,7 @@ def _put_model_as_string_required_two_value_no_default_request(
 
 
 def _put_model_as_string_required_two_value_default_request(
-    self, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
+    input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -255,7 +255,7 @@ def _put_model_as_string_required_two_value_default_request(
 
 
 def _put_model_as_string_required_one_value_no_default_request(
-    self, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs
+    input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs
 ) -> HttpRequest:
 
     # Construct URL
@@ -272,7 +272,7 @@ def _put_model_as_string_required_one_value_no_default_request(
 
 
 def _put_model_as_string_required_one_value_default_request(
-    self, input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs
+    input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs
 ) -> HttpRequest:
 
     # Construct URL

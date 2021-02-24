@@ -11,7 +11,6 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _test_paging_request(
-    self,
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"
@@ -29,7 +28,6 @@ def _test_paging_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_different_calls_request(
-    self,
     greeting_in_english: str,
     greeting_in_chinese: Optional[str] = None,
     greeting_in_french: Optional[str] = None,
@@ -57,7 +55,6 @@ def _test_different_calls_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_two_request(
-    self,
     body: Optional["_models.ModelThree"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -82,7 +79,6 @@ def _test_two_request(
     return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_four_request(
-    self,
     body: Optional[Union[IO, "_models.SourcePath"]] = None,
     **kwargs
 ) -> HttpRequest:
@@ -116,7 +112,6 @@ def _test_four_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_five_request(
-    self,
     **kwargs
 ) -> HttpRequest:
     api_version = "3.0.0"

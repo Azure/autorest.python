@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _test_one_request(
-    self,
     id,  # type: int
     message=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -41,7 +40,6 @@ def _test_one_request(
     return self._client.put(url, query_parameters, header_parameters)
 
 def _test_different_calls_request(
-    self,
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -67,7 +65,6 @@ def _test_different_calls_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_two_request(
-    self,
     body=None,  # type: Optional["_models.ModelTwo"]
     **kwargs  # type: Any
 ):
@@ -93,7 +90,6 @@ def _test_two_request(
     return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_three_request(
-    self,
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -114,7 +110,6 @@ def _test_three_request(
     return self._client.put(url, query_parameters, header_parameters)
 
 def _test_four_request(
-    self,
     parameter_one,  # type: bool
     **kwargs  # type: Any
 ):

@@ -10,7 +10,7 @@ from typing import Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_no_item_name_pages_request(self, **kwargs) -> HttpRequest:
+def _get_no_item_name_pages_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -26,7 +26,7 @@ def _get_no_item_name_pages_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_null_next_link_name_pages_request(self, **kwargs) -> HttpRequest:
+def _get_null_next_link_name_pages_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -42,7 +42,7 @@ def _get_null_next_link_name_pages_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_single_pages_request(self, **kwargs) -> HttpRequest:
+def _get_single_pages_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -58,7 +58,7 @@ def _get_single_pages_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _first_response_empty_request(self, **kwargs) -> HttpRequest:
+def _first_response_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -75,11 +75,7 @@ def _first_response_empty_request(self, **kwargs) -> HttpRequest:
 
 
 def _get_multiple_pages_request(
-    self,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs
+    client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -102,7 +98,7 @@ def _get_multiple_pages_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_with_query_params_request(self, required_query_parameter: int, **kwargs) -> HttpRequest:
+def _get_with_query_params_request(required_query_parameter: int, **kwargs) -> HttpRequest:
     query_constant = True
     accept = "application/json"
 
@@ -123,7 +119,7 @@ def _get_with_query_params_request(self, required_query_parameter: int, **kwargs
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_with_query_params_next_request(self, **kwargs) -> HttpRequest:
+def _get_with_query_params_next_request(**kwargs) -> HttpRequest:
     query_constant = True
     accept = "application/json"
 
@@ -142,11 +138,7 @@ def _get_with_query_params_next_request(self, **kwargs) -> HttpRequest:
 
 
 def _get_odata_multiple_pages_request(
-    self,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs
+    client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -170,7 +162,6 @@ def _get_odata_multiple_pages_request(
 
 
 def _get_multiple_pages_with_offset_request(
-    self,
     offset: int,
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -202,7 +193,7 @@ def _get_multiple_pages_with_offset_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_multiple_pages_retry_first_request(self, **kwargs) -> HttpRequest:
+def _get_multiple_pages_retry_first_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -218,7 +209,7 @@ def _get_multiple_pages_retry_first_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_multiple_pages_retry_second_request(self, **kwargs) -> HttpRequest:
+def _get_multiple_pages_retry_second_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -234,7 +225,7 @@ def _get_multiple_pages_retry_second_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_single_pages_failure_request(self, **kwargs) -> HttpRequest:
+def _get_single_pages_failure_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -250,7 +241,7 @@ def _get_single_pages_failure_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_multiple_pages_failure_request(self, **kwargs) -> HttpRequest:
+def _get_multiple_pages_failure_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -266,7 +257,7 @@ def _get_multiple_pages_failure_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_multiple_pages_failure_uri_request(self, **kwargs) -> HttpRequest:
+def _get_multiple_pages_failure_uri_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -282,7 +273,7 @@ def _get_multiple_pages_failure_uri_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_multiple_pages_fragment_next_link_request(self, api_version: str, tenant: str, **kwargs) -> HttpRequest:
+def _get_multiple_pages_fragment_next_link_request(api_version: str, tenant: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -304,7 +295,7 @@ def _get_multiple_pages_fragment_next_link_request(self, api_version: str, tenan
 
 
 def _get_multiple_pages_fragment_with_grouping_next_link_request(
-    self, api_version: str, tenant: str, **kwargs
+    api_version: str, tenant: str, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -327,11 +318,7 @@ def _get_multiple_pages_fragment_with_grouping_next_link_request(
 
 
 def _get_multiple_pages_lro_initial_request(
-    self,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs
+    client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -355,7 +342,7 @@ def _get_multiple_pages_lro_initial_request(
 
 
 def _get_multiple_pages_fragment_next_link_next_request(
-    self, api_version: str, tenant: str, next_link: str, **kwargs
+    api_version: str, tenant: str, next_link: str, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -379,7 +366,7 @@ def _get_multiple_pages_fragment_next_link_next_request(
 
 
 def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
-    self, api_version: str, tenant: str, next_link: str, **kwargs
+    api_version: str, tenant: str, next_link: str, **kwargs
 ) -> HttpRequest:
     accept = "application/json"
 
@@ -402,7 +389,7 @@ def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_paging_model_with_item_name_with_xms_client_name_request(self, **kwargs) -> HttpRequest:
+def _get_paging_model_with_item_name_with_xms_client_name_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

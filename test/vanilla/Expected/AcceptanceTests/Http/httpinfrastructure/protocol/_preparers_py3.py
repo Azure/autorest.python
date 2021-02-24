@@ -10,7 +10,7 @@ from typing import Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_empty_error_request(self, **kwargs) -> HttpRequest:
+def _get_empty_error_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -26,7 +26,7 @@ def _get_empty_error_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_no_model_error_request(self, **kwargs) -> HttpRequest:
+def _get_no_model_error_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -42,7 +42,7 @@ def _get_no_model_error_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_no_model_empty_request(self, **kwargs) -> HttpRequest:
+def _get_no_model_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -58,7 +58,7 @@ def _get_no_model_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _head200_request(self, **kwargs) -> HttpRequest:
+def _head200_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -74,7 +74,7 @@ def _head200_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get200_request(self, **kwargs) -> HttpRequest:
+def _get200_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -90,7 +90,7 @@ def _get200_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _options200_request(self, **kwargs) -> HttpRequest:
+def _options200_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -106,7 +106,7 @@ def _options200_request(self, **kwargs) -> HttpRequest:
     return self._client.options(url, query_parameters, header_parameters)
 
 
-def _put200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -126,7 +126,7 @@ def _put200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -146,7 +146,7 @@ def _patch200_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -166,7 +166,7 @@ def _post200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete200_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -186,7 +186,7 @@ def _delete200_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put201_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -206,7 +206,7 @@ def _put201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post201_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -226,7 +226,7 @@ def _post201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -246,7 +246,7 @@ def _put202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -266,7 +266,7 @@ def _patch202_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -286,7 +286,7 @@ def _post202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete202_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -306,7 +306,7 @@ def _delete202_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head204_request(self, **kwargs) -> HttpRequest:
+def _head204_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -322,7 +322,7 @@ def _head204_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _put204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -342,7 +342,7 @@ def _put204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -362,7 +362,7 @@ def _patch204_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -382,7 +382,7 @@ def _post204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete204_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -402,7 +402,7 @@ def _delete204_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head404_request(self, **kwargs) -> HttpRequest:
+def _head404_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -418,7 +418,7 @@ def _head404_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _head300_request(self, **kwargs) -> HttpRequest:
+def _head300_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -434,7 +434,7 @@ def _head300_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get300_request(self, **kwargs) -> HttpRequest:
+def _get300_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -450,7 +450,7 @@ def _get300_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _head301_request(self, **kwargs) -> HttpRequest:
+def _head301_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -466,7 +466,7 @@ def _head301_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get301_request(self, **kwargs) -> HttpRequest:
+def _get301_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -482,7 +482,7 @@ def _get301_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put301_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put301_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -502,7 +502,7 @@ def _put301_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head302_request(self, **kwargs) -> HttpRequest:
+def _head302_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -518,7 +518,7 @@ def _head302_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get302_request(self, **kwargs) -> HttpRequest:
+def _get302_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -534,7 +534,7 @@ def _get302_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _patch302_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch302_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -554,7 +554,7 @@ def _patch302_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post303_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post303_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -574,7 +574,7 @@ def _post303_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head307_request(self, **kwargs) -> HttpRequest:
+def _head307_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -590,7 +590,7 @@ def _head307_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get307_request(self, **kwargs) -> HttpRequest:
+def _get307_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -606,7 +606,7 @@ def _get307_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _options307_request(self, **kwargs) -> HttpRequest:
+def _options307_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -622,7 +622,7 @@ def _options307_request(self, **kwargs) -> HttpRequest:
     return self._client.options(url, query_parameters, header_parameters)
 
 
-def _put307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -642,7 +642,7 @@ def _put307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -662,7 +662,7 @@ def _patch307_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -682,7 +682,7 @@ def _post307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete307_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -702,7 +702,7 @@ def _delete307_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head400_request(self, **kwargs) -> HttpRequest:
+def _head400_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -718,7 +718,7 @@ def _head400_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get400_request(self, **kwargs) -> HttpRequest:
+def _get400_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -734,7 +734,7 @@ def _get400_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _options400_request(self, **kwargs) -> HttpRequest:
+def _options400_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -750,7 +750,7 @@ def _options400_request(self, **kwargs) -> HttpRequest:
     return self._client.options(url, query_parameters, header_parameters)
 
 
-def _put400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -770,7 +770,7 @@ def _put400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -790,7 +790,7 @@ def _patch400_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -810,7 +810,7 @@ def _post400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete400_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -830,7 +830,7 @@ def _delete400_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head401_request(self, **kwargs) -> HttpRequest:
+def _head401_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -846,7 +846,7 @@ def _head401_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get402_request(self, **kwargs) -> HttpRequest:
+def _get402_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -862,7 +862,7 @@ def _get402_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _options403_request(self, **kwargs) -> HttpRequest:
+def _options403_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -878,7 +878,7 @@ def _options403_request(self, **kwargs) -> HttpRequest:
     return self._client.options(url, query_parameters, header_parameters)
 
 
-def _get403_request(self, **kwargs) -> HttpRequest:
+def _get403_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -894,7 +894,7 @@ def _get403_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put404_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put404_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -914,7 +914,7 @@ def _put404_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch405_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch405_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -934,7 +934,7 @@ def _patch405_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post406_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post406_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -954,7 +954,7 @@ def _post406_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete407_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete407_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -974,7 +974,7 @@ def _delete407_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put409_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put409_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -994,7 +994,7 @@ def _put409_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head410_request(self, **kwargs) -> HttpRequest:
+def _head410_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1010,7 +1010,7 @@ def _head410_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get411_request(self, **kwargs) -> HttpRequest:
+def _get411_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1026,7 +1026,7 @@ def _get411_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _options412_request(self, **kwargs) -> HttpRequest:
+def _options412_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1042,7 +1042,7 @@ def _options412_request(self, **kwargs) -> HttpRequest:
     return self._client.options(url, query_parameters, header_parameters)
 
 
-def _get412_request(self, **kwargs) -> HttpRequest:
+def _get412_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1058,7 +1058,7 @@ def _get412_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put413_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put413_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1078,7 +1078,7 @@ def _put413_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch414_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch414_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1098,7 +1098,7 @@ def _patch414_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post415_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post415_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1118,7 +1118,7 @@ def _post415_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get416_request(self, **kwargs) -> HttpRequest:
+def _get416_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1134,7 +1134,7 @@ def _get416_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _delete417_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete417_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1154,7 +1154,7 @@ def _delete417_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head429_request(self, **kwargs) -> HttpRequest:
+def _head429_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1170,7 +1170,7 @@ def _head429_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _head501_request(self, **kwargs) -> HttpRequest:
+def _head501_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1186,7 +1186,7 @@ def _head501_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _get501_request(self, **kwargs) -> HttpRequest:
+def _get501_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1202,7 +1202,7 @@ def _get501_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _post505_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post505_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1222,7 +1222,7 @@ def _post505_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete505_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete505_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1242,7 +1242,7 @@ def _delete505_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _head408_request(self, **kwargs) -> HttpRequest:
+def _head408_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1258,7 +1258,7 @@ def _head408_request(self, **kwargs) -> HttpRequest:
     return self._client.head(url, query_parameters, header_parameters)
 
 
-def _put500_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put500_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1278,7 +1278,7 @@ def _put500_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch500_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch500_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1298,7 +1298,7 @@ def _patch500_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get502_request(self, **kwargs) -> HttpRequest:
+def _get502_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1314,7 +1314,7 @@ def _get502_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _options502_request(self, **kwargs) -> HttpRequest:
+def _options502_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1330,7 +1330,7 @@ def _options502_request(self, **kwargs) -> HttpRequest:
     return self._client.options(url, query_parameters, header_parameters)
 
 
-def _post503_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _post503_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1350,7 +1350,7 @@ def _post503_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete503_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _delete503_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1370,7 +1370,7 @@ def _delete503_request(self, body: Optional[bool] = True, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put504_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _put504_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1390,7 +1390,7 @@ def _put504_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _patch504_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+def _patch504_request(body: Optional[bool] = True, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1410,7 +1410,7 @@ def _patch504_request(self, body: Optional[bool] = True, **kwargs) -> HttpReques
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get200_model204_no_model_default_error200_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model204_no_model_default_error200_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1426,7 +1426,7 @@ def _get200_model204_no_model_default_error200_valid_request(self, **kwargs) -> 
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model204_no_model_default_error204_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model204_no_model_default_error204_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1442,7 +1442,7 @@ def _get200_model204_no_model_default_error204_valid_request(self, **kwargs) -> 
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model204_no_model_default_error201_invalid_request(self, **kwargs) -> HttpRequest:
+def _get200_model204_no_model_default_error201_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1458,7 +1458,7 @@ def _get200_model204_no_model_default_error201_invalid_request(self, **kwargs) -
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model204_no_model_default_error202_none_request(self, **kwargs) -> HttpRequest:
+def _get200_model204_no_model_default_error202_none_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1474,7 +1474,7 @@ def _get200_model204_no_model_default_error202_none_request(self, **kwargs) -> H
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model204_no_model_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model204_no_model_default_error400_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1490,7 +1490,7 @@ def _get200_model204_no_model_default_error400_valid_request(self, **kwargs) -> 
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model201_model_default_error200_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model201_model_default_error200_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1506,7 +1506,7 @@ def _get200_model201_model_default_error200_valid_request(self, **kwargs) -> Htt
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model201_model_default_error201_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model201_model_default_error201_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1522,7 +1522,7 @@ def _get200_model201_model_default_error201_valid_request(self, **kwargs) -> Htt
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model201_model_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model201_model_default_error400_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1538,7 +1538,7 @@ def _get200_model201_model_default_error400_valid_request(self, **kwargs) -> Htt
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a201_model_c404_model_d_default_error200_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a201_model_c404_model_d_default_error200_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1554,7 +1554,7 @@ def _get200_model_a201_model_c404_model_d_default_error200_valid_request(self, *
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a201_model_c404_model_d_default_error201_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a201_model_c404_model_d_default_error201_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1570,7 +1570,7 @@ def _get200_model_a201_model_c404_model_d_default_error201_valid_request(self, *
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a201_model_c404_model_d_default_error404_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a201_model_c404_model_d_default_error404_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1586,7 +1586,7 @@ def _get200_model_a201_model_c404_model_d_default_error404_valid_request(self, *
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a201_model_c404_model_d_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a201_model_c404_model_d_default_error400_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1602,7 +1602,7 @@ def _get200_model_a201_model_c404_model_d_default_error400_valid_request(self, *
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get202_none204_none_default_error202_none_request(self, **kwargs) -> HttpRequest:
+def _get202_none204_none_default_error202_none_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1618,7 +1618,7 @@ def _get202_none204_none_default_error202_none_request(self, **kwargs) -> HttpRe
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get202_none204_none_default_error204_none_request(self, **kwargs) -> HttpRequest:
+def _get202_none204_none_default_error204_none_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1634,7 +1634,7 @@ def _get202_none204_none_default_error204_none_request(self, **kwargs) -> HttpRe
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get202_none204_none_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+def _get202_none204_none_default_error400_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1650,7 +1650,7 @@ def _get202_none204_none_default_error400_valid_request(self, **kwargs) -> HttpR
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get202_none204_none_default_none202_invalid_request(self, **kwargs) -> HttpRequest:
+def _get202_none204_none_default_none202_invalid_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/202/invalid")
@@ -1664,7 +1664,7 @@ def _get202_none204_none_default_none202_invalid_request(self, **kwargs) -> Http
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get202_none204_none_default_none204_none_request(self, **kwargs) -> HttpRequest:
+def _get202_none204_none_default_none204_none_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/204/none")
@@ -1678,7 +1678,7 @@ def _get202_none204_none_default_none204_none_request(self, **kwargs) -> HttpReq
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get202_none204_none_default_none400_none_request(self, **kwargs) -> HttpRequest:
+def _get202_none204_none_default_none400_none_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/none")
@@ -1692,7 +1692,7 @@ def _get202_none204_none_default_none400_none_request(self, **kwargs) -> HttpReq
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get202_none204_none_default_none400_invalid_request(self, **kwargs) -> HttpRequest:
+def _get202_none204_none_default_none400_invalid_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/invalid")
@@ -1706,7 +1706,7 @@ def _get202_none204_none_default_none400_invalid_request(self, **kwargs) -> Http
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_model_a200_valid_request(self, **kwargs) -> HttpRequest:
+def _get_default_model_a200_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1722,7 +1722,7 @@ def _get_default_model_a200_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_model_a200_none_request(self, **kwargs) -> HttpRequest:
+def _get_default_model_a200_none_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1738,7 +1738,7 @@ def _get_default_model_a200_none_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_model_a400_valid_request(self, **kwargs) -> HttpRequest:
+def _get_default_model_a400_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1754,7 +1754,7 @@ def _get_default_model_a400_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_model_a400_none_request(self, **kwargs) -> HttpRequest:
+def _get_default_model_a400_none_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1770,7 +1770,7 @@ def _get_default_model_a400_none_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_none200_invalid_request(self, **kwargs) -> HttpRequest:
+def _get_default_none200_invalid_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/invalid")
@@ -1784,7 +1784,7 @@ def _get_default_none200_invalid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_none200_none_request(self, **kwargs) -> HttpRequest:
+def _get_default_none200_none_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/none")
@@ -1798,7 +1798,7 @@ def _get_default_none200_none_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_none400_invalid_request(self, **kwargs) -> HttpRequest:
+def _get_default_none400_invalid_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/invalid")
@@ -1812,7 +1812,7 @@ def _get_default_none400_invalid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_default_none400_none_request(self, **kwargs) -> HttpRequest:
+def _get_default_none400_none_request(**kwargs) -> HttpRequest:
 
     # Construct URL
     url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/none")
@@ -1826,7 +1826,7 @@ def _get_default_none400_none_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a200_none_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a200_none_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1842,7 +1842,7 @@ def _get200_model_a200_none_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a200_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a200_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1858,7 +1858,7 @@ def _get200_model_a200_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a200_invalid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a200_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1874,7 +1874,7 @@ def _get200_model_a200_invalid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a400_none_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a400_none_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1890,7 +1890,7 @@ def _get200_model_a400_none_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a400_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a400_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1906,7 +1906,7 @@ def _get200_model_a400_valid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a400_invalid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a400_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1922,7 +1922,7 @@ def _get200_model_a400_invalid_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get200_model_a202_valid_request(self, **kwargs) -> HttpRequest:
+def _get200_model_a202_valid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

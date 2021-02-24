@@ -10,7 +10,7 @@ from typing import Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _put200_succeeded_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put200_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -30,7 +30,7 @@ def _put200_succeeded_initial_request(self, body: Optional["_models.Product"] = 
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put201_succeeded_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put201_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -50,7 +50,7 @@ def _put201_succeeded_initial_request(self, body: Optional["_models.Product"] = 
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post202_list_initial_request(self, **kwargs) -> HttpRequest:
+def _post202_list_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -66,7 +66,7 @@ def _post202_list_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _put200_succeeded_no_state_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put200_succeeded_no_state_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -86,7 +86,7 @@ def _put200_succeeded_no_state_initial_request(self, body: Optional["_models.Pro
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put202_retry200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put202_retry200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -106,9 +106,7 @@ def _put202_retry200_initial_request(self, body: Optional["_models.Product"] = N
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put201_creating_succeeded200_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put201_creating_succeeded200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -128,9 +126,7 @@ def _put201_creating_succeeded200_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put200_updating_succeeded204_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put200_updating_succeeded204_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -150,7 +146,7 @@ def _put200_updating_succeeded204_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put201_creating_failed200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put201_creating_failed200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -170,9 +166,7 @@ def _put201_creating_failed200_initial_request(self, body: Optional["_models.Pro
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put200_acceptedcanceled200_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put200_acceptedcanceled200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -192,7 +186,7 @@ def _put200_acceptedcanceled200_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_no_header_in_retry_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put_no_header_in_retry_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -212,7 +206,7 @@ def _put_no_header_in_retry_initial_request(self, body: Optional["_models.Produc
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_retry_succeeded_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put_async_retry_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -232,9 +226,7 @@ def _put_async_retry_succeeded_initial_request(self, body: Optional["_models.Pro
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_no_retry_succeeded_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put_async_no_retry_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -254,7 +246,7 @@ def _put_async_no_retry_succeeded_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_retry_failed_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put_async_retry_failed_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -274,9 +266,7 @@ def _put_async_retry_failed_initial_request(self, body: Optional["_models.Produc
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_no_retrycanceled_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put_async_no_retrycanceled_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -296,9 +286,7 @@ def _put_async_no_retrycanceled_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_no_header_in_retry_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put_async_no_header_in_retry_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -318,7 +306,7 @@ def _put_async_no_header_in_retry_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_non_resource_initial_request(self, body: Optional["_models.Sku"] = None, **kwargs) -> HttpRequest:
+def _put_non_resource_initial_request(body: Optional["_models.Sku"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -338,7 +326,7 @@ def _put_non_resource_initial_request(self, body: Optional["_models.Sku"] = None
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_non_resource_initial_request(self, body: Optional["_models.Sku"] = None, **kwargs) -> HttpRequest:
+def _put_async_non_resource_initial_request(body: Optional["_models.Sku"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -358,7 +346,7 @@ def _put_async_non_resource_initial_request(self, body: Optional["_models.Sku"] 
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_sub_resource_initial_request(self, body: Optional["_models.SubProduct"] = None, **kwargs) -> HttpRequest:
+def _put_sub_resource_initial_request(body: Optional["_models.SubProduct"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -378,7 +366,7 @@ def _put_sub_resource_initial_request(self, body: Optional["_models.SubProduct"]
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_sub_resource_initial_request(self, body: Optional["_models.SubProduct"] = None, **kwargs) -> HttpRequest:
+def _put_async_sub_resource_initial_request(body: Optional["_models.SubProduct"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -398,7 +386,7 @@ def _put_async_sub_resource_initial_request(self, body: Optional["_models.SubPro
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete_provisioning202_accepted200_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_provisioning202_accepted200_succeeded_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -414,7 +402,7 @@ def _delete_provisioning202_accepted200_succeeded_initial_request(self, **kwargs
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_provisioning202_deleting_failed200_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_provisioning202_deleting_failed200_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -430,7 +418,7 @@ def _delete_provisioning202_deleting_failed200_initial_request(self, **kwargs) -
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_provisioning202_deletingcanceled200_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_provisioning202_deletingcanceled200_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -446,7 +434,7 @@ def _delete_provisioning202_deletingcanceled200_initial_request(self, **kwargs) 
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete204_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+def _delete204_succeeded_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -462,7 +450,7 @@ def _delete204_succeeded_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete202_retry200_initial_request(self, **kwargs) -> HttpRequest:
+def _delete202_retry200_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -478,7 +466,7 @@ def _delete202_retry200_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete202_no_retry204_initial_request(self, **kwargs) -> HttpRequest:
+def _delete202_no_retry204_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -494,7 +482,7 @@ def _delete202_no_retry204_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_no_header_in_retry_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_no_header_in_retry_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -510,7 +498,7 @@ def _delete_no_header_in_retry_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_no_header_in_retry_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_no_header_in_retry_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -526,7 +514,7 @@ def _delete_async_no_header_in_retry_initial_request(self, **kwargs) -> HttpRequ
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_retry_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_retry_succeeded_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -542,7 +530,7 @@ def _delete_async_retry_succeeded_initial_request(self, **kwargs) -> HttpRequest
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_no_retry_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_no_retry_succeeded_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -558,7 +546,7 @@ def _delete_async_no_retry_succeeded_initial_request(self, **kwargs) -> HttpRequ
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_retry_failed_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_retry_failed_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -574,7 +562,7 @@ def _delete_async_retry_failed_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_retrycanceled_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_retrycanceled_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -590,7 +578,7 @@ def _delete_async_retrycanceled_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _post200_with_payload_initial_request(self, **kwargs) -> HttpRequest:
+def _post200_with_payload_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -606,7 +594,7 @@ def _post200_with_payload_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -626,7 +614,7 @@ def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = 
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post202_no_retry204_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post202_no_retry204_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -646,7 +634,7 @@ def _post202_no_retry204_initial_request(self, body: Optional["_models.Product"]
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post_double_headers_final_location_get_initial_request(self, **kwargs) -> HttpRequest:
+def _post_double_headers_final_location_get_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -662,7 +650,7 @@ def _post_double_headers_final_location_get_initial_request(self, **kwargs) -> H
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _post_double_headers_final_azure_header_get_initial_request(self, **kwargs) -> HttpRequest:
+def _post_double_headers_final_azure_header_get_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -678,7 +666,7 @@ def _post_double_headers_final_azure_header_get_initial_request(self, **kwargs) 
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _post_double_headers_final_azure_header_get_default_initial_request(self, **kwargs) -> HttpRequest:
+def _post_double_headers_final_azure_header_get_default_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -694,9 +682,7 @@ def _post_double_headers_final_azure_header_get_default_initial_request(self, **
     return self._client.post(url, query_parameters, header_parameters)
 
 
-def _post_async_retry_succeeded_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _post_async_retry_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -716,9 +702,7 @@ def _post_async_retry_succeeded_initial_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post_async_no_retry_succeeded_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _post_async_no_retry_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -738,7 +722,7 @@ def _post_async_no_retry_succeeded_initial_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post_async_retry_failed_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post_async_retry_failed_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -758,7 +742,7 @@ def _post_async_retry_failed_initial_request(self, body: Optional["_models.Produ
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post_async_retrycanceled_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post_async_retrycanceled_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -778,9 +762,7 @@ def _post_async_retrycanceled_initial_request(self, body: Optional["_models.Prod
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put201_creating_succeeded200_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put201_creating_succeeded200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -801,7 +783,7 @@ def _put201_creating_succeeded200_initial_request(
 
 
 def _put_async_relative_retry_succeeded_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -822,7 +804,7 @@ def _put_async_relative_retry_succeeded_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete_provisioning202_accepted200_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_provisioning202_accepted200_succeeded_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -838,7 +820,7 @@ def _delete_provisioning202_accepted200_succeeded_initial_request(self, **kwargs
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete202_retry200_initial_request(self, **kwargs) -> HttpRequest:
+def _delete202_retry200_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -854,7 +836,7 @@ def _delete202_retry200_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_relative_retry_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_relative_retry_succeeded_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -870,7 +852,7 @@ def _delete_async_relative_retry_succeeded_initial_request(self, **kwargs) -> Ht
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -891,7 +873,7 @@ def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = 
 
 
 def _post_async_relative_retry_succeeded_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -912,7 +894,7 @@ def _post_async_relative_retry_succeeded_initial_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_non_retry400_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put_non_retry400_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -932,9 +914,7 @@ def _put_non_retry400_initial_request(self, body: Optional["_models.Product"] = 
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_non_retry201_creating400_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put_non_retry201_creating400_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -955,7 +935,7 @@ def _put_non_retry201_creating400_initial_request(
 
 
 def _put_non_retry201_creating400_invalid_json_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -976,9 +956,7 @@ def _put_non_retry201_creating400_invalid_json_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_relative_retry400_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put_async_relative_retry400_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -998,7 +976,7 @@ def _put_async_relative_retry400_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete_non_retry400_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_non_retry400_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1014,7 +992,7 @@ def _delete_non_retry400_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete202_non_retry400_initial_request(self, **kwargs) -> HttpRequest:
+def _delete202_non_retry400_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1030,7 +1008,7 @@ def _delete202_non_retry400_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_relative_retry400_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_relative_retry400_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1046,7 +1024,7 @@ def _delete_async_relative_retry400_initial_request(self, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _post_non_retry400_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post_non_retry400_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1066,7 +1044,7 @@ def _post_non_retry400_initial_request(self, body: Optional["_models.Product"] =
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post202_non_retry400_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post202_non_retry400_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1086,9 +1064,7 @@ def _post202_non_retry400_initial_request(self, body: Optional["_models.Product"
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post_async_relative_retry400_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _post_async_relative_retry400_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1109,7 +1085,7 @@ def _post_async_relative_retry400_initial_request(
 
 
 def _put_error201_no_provisioning_state_payload_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1131,7 +1107,7 @@ def _put_error201_no_provisioning_state_payload_initial_request(
 
 
 def _put_async_relative_retry_no_status_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1153,7 +1129,7 @@ def _put_async_relative_retry_no_status_initial_request(
 
 
 def _put_async_relative_retry_no_status_payload_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1174,7 +1150,7 @@ def _put_async_relative_retry_no_status_payload_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete204_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+def _delete204_succeeded_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1190,7 +1166,7 @@ def _delete204_succeeded_initial_request(self, **kwargs) -> HttpRequest:
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_relative_retry_no_status_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_relative_retry_no_status_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1206,7 +1182,7 @@ def _delete_async_relative_retry_no_status_initial_request(self, **kwargs) -> Ht
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _post202_no_location_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post202_no_location_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1227,7 +1203,7 @@ def _post202_no_location_initial_request(self, body: Optional["_models.Product"]
 
 
 def _post_async_relative_retry_no_payload_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1248,7 +1224,7 @@ def _post_async_relative_retry_no_payload_initial_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put200_invalid_json_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put200_invalid_json_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1269,7 +1245,7 @@ def _put200_invalid_json_initial_request(self, body: Optional["_models.Product"]
 
 
 def _put_async_relative_retry_invalid_header_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1291,7 +1267,7 @@ def _put_async_relative_retry_invalid_header_initial_request(
 
 
 def _put_async_relative_retry_invalid_json_polling_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1312,7 +1288,7 @@ def _put_async_relative_retry_invalid_json_polling_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _delete202_retry_invalid_header_initial_request(self, **kwargs) -> HttpRequest:
+def _delete202_retry_invalid_header_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1328,7 +1304,7 @@ def _delete202_retry_invalid_header_initial_request(self, **kwargs) -> HttpReque
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_relative_retry_invalid_header_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_relative_retry_invalid_header_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1344,7 +1320,7 @@ def _delete_async_relative_retry_invalid_header_initial_request(self, **kwargs) 
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _delete_async_relative_retry_invalid_json_polling_initial_request(self, **kwargs) -> HttpRequest:
+def _delete_async_relative_retry_invalid_json_polling_initial_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -1360,9 +1336,7 @@ def _delete_async_relative_retry_invalid_json_polling_initial_request(self, **kw
     return self._client.delete(url, query_parameters, header_parameters)
 
 
-def _post202_retry_invalid_header_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _post202_retry_invalid_header_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1383,7 +1357,7 @@ def _post202_retry_invalid_header_initial_request(
 
 
 def _post_async_relative_retry_invalid_header_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1405,7 +1379,7 @@ def _post_async_relative_retry_invalid_header_initial_request(
 
 
 def _post_async_relative_retry_invalid_json_polling_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
+    body: Optional["_models.Product"] = None, **kwargs
 ) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
@@ -1426,7 +1400,7 @@ def _post_async_relative_retry_invalid_json_polling_initial_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put_async_retry_succeeded_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _put_async_retry_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1446,9 +1420,7 @@ def _put_async_retry_succeeded_initial_request(self, body: Optional["_models.Pro
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _put201_creating_succeeded200_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _put201_creating_succeeded200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1468,7 +1440,7 @@ def _put201_creating_succeeded200_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -1488,9 +1460,7 @@ def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = 
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _post_async_retry_succeeded_initial_request(
-    self, body: Optional["_models.Product"] = None, **kwargs
-) -> HttpRequest:
+def _post_async_retry_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 

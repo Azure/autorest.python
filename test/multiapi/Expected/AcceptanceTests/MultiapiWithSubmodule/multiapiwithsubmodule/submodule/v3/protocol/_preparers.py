@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _test_paging_request(
-    self,
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -34,7 +33,6 @@ def _test_paging_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_different_calls_request(
-    self,
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
     greeting_in_french=None,  # type: Optional[str]
@@ -63,7 +61,6 @@ def _test_different_calls_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_two_request(
-    self,
     body=None,  # type: Optional["_models.ModelThree"]
     **kwargs  # type: Any
 ):
@@ -89,7 +86,6 @@ def _test_two_request(
     return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_four_request(
-    self,
     body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
     **kwargs  # type: Any
 ):
@@ -124,7 +120,6 @@ def _test_four_request(
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_five_request(
-    self,
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

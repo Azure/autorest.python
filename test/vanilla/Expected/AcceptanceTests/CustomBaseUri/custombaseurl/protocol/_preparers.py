@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 
 
 def _get_empty_request(
-    self,
     account_name,  # type: str
     **kwargs  # type: Any
 ):

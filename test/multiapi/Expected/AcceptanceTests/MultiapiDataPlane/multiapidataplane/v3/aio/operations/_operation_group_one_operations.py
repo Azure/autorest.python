@@ -39,32 +39,6 @@ class OperationGroupOneOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _test_two_request(
-        self,
-        body=None,  # type: Optional["_models.ModelThree"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "3.0.0"
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
-        return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
-
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelThree"] = None,

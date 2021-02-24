@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _test_one_request(
-    self,
     id,  # type: int
     message=None,  # type: Optional[str]
     **kwargs  # type: Any
@@ -41,7 +40,6 @@ def _test_one_request(
     return self._client.put(url, query_parameters, header_parameters)
 
 def _test_lro_initial_request(
-    self,
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
 ):
@@ -65,7 +63,6 @@ def _test_lro_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _test_lro_and_paging_initial_request(
-    self,
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
     timeout=30,  # type: Optional[int]
@@ -93,7 +90,6 @@ def _test_lro_and_paging_initial_request(
     return self._client.post(url, query_parameters, header_parameters)
 
 def _test_different_calls_request(
-    self,
     greeting_in_english,  # type: str
     **kwargs  # type: Any
 ):
@@ -116,7 +112,6 @@ def _test_different_calls_request(
     return self._client.get(url, query_parameters, header_parameters)
 
 def _test_two_request(
-    self,
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest

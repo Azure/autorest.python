@@ -48,24 +48,6 @@ class PrimitiveOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_int_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/integer")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_int(self, **kwargs) -> "_models.IntWrapper":
         """Get complex types with integer properties.
@@ -98,30 +80,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
-
-    def _put_int_request(
-        self,
-        body,  # type: "_models.IntWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/integer")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_int(self, complex_body: "_models.IntWrapper", **kwargs) -> None:
@@ -156,24 +114,6 @@ class PrimitiveOperations:
 
     put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
-    def _get_long_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/long")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_long(self, **kwargs) -> "_models.LongWrapper":
         """Get complex types with long properties.
@@ -206,30 +146,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
-
-    def _put_long_request(
-        self,
-        body,  # type: "_models.LongWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/long")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_long(self, complex_body: "_models.LongWrapper", **kwargs) -> None:
@@ -264,24 +180,6 @@ class PrimitiveOperations:
 
     put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
-    def _get_float_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/float")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_float(self, **kwargs) -> "_models.FloatWrapper":
         """Get complex types with float properties.
@@ -314,30 +212,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
-
-    def _put_float_request(
-        self,
-        body,  # type: "_models.FloatWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/float")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_float(self, complex_body: "_models.FloatWrapper", **kwargs) -> None:
@@ -372,24 +246,6 @@ class PrimitiveOperations:
 
     put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
-    def _get_double_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/double")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_double(self, **kwargs) -> "_models.DoubleWrapper":
         """Get complex types with double properties.
@@ -422,30 +278,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
-
-    def _put_double_request(
-        self,
-        body,  # type: "_models.DoubleWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/double")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_double(self, complex_body: "_models.DoubleWrapper", **kwargs) -> None:
@@ -481,24 +313,6 @@ class PrimitiveOperations:
 
     put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
-    def _get_bool_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/bool")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_bool(self, **kwargs) -> "_models.BooleanWrapper":
         """Get complex types with bool properties.
@@ -531,30 +345,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
-
-    def _put_bool_request(
-        self,
-        body,  # type: "_models.BooleanWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/bool")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_bool(self, complex_body: "_models.BooleanWrapper", **kwargs) -> None:
@@ -589,24 +379,6 @@ class PrimitiveOperations:
 
     put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
-    def _get_string_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/string")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_string(self, **kwargs) -> "_models.StringWrapper":
         """Get complex types with string properties.
@@ -639,30 +411,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
-
-    def _put_string_request(
-        self,
-        body,  # type: "_models.StringWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/string")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_string(self, complex_body: "_models.StringWrapper", **kwargs) -> None:
@@ -697,24 +445,6 @@ class PrimitiveOperations:
 
     put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
-    def _get_date_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/date")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date(self, **kwargs) -> "_models.DateWrapper":
         """Get complex types with date properties.
@@ -747,30 +477,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
-
-    def _put_date_request(
-        self,
-        body,  # type: "_models.DateWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/date")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_date(self, complex_body: "_models.DateWrapper", **kwargs) -> None:
@@ -805,24 +511,6 @@ class PrimitiveOperations:
 
     put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
-    def _get_date_time_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/datetime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_time(self, **kwargs) -> "_models.DatetimeWrapper":
         """Get complex types with datetime properties.
@@ -855,30 +543,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
-
-    def _put_date_time_request(
-        self,
-        body,  # type: "_models.DatetimeWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/datetime")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_date_time(self, complex_body: "_models.DatetimeWrapper", **kwargs) -> None:
@@ -915,24 +579,6 @@ class PrimitiveOperations:
 
     put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
-    def _get_date_time_rfc1123_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_date_time_rfc1123(self, **kwargs) -> "_models.Datetimerfc1123Wrapper":
         """Get complex types with datetimeRfc1123 properties.
@@ -965,30 +611,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
-
-    def _put_date_time_rfc1123_request(
-        self,
-        body,  # type: "_models.Datetimerfc1123Wrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_date_time_rfc1123(self, complex_body: "_models.Datetimerfc1123Wrapper", **kwargs) -> None:
@@ -1026,24 +648,6 @@ class PrimitiveOperations:
 
     put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
-    def _get_duration_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/duration")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_duration(self, **kwargs) -> "_models.DurationWrapper":
         """Get complex types with duration properties.
@@ -1076,30 +680,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
-
-    def _put_duration_request(
-        self,
-        body,  # type: "_models.DurationWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/duration")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_duration(self, field: Optional[datetime.timedelta] = None, **kwargs) -> None:
@@ -1137,24 +717,6 @@ class PrimitiveOperations:
 
     put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
-    def _get_byte_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/byte")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_byte(self, **kwargs) -> "_models.ByteWrapper":
         """Get complex types with byte properties.
@@ -1187,30 +749,6 @@ class PrimitiveOperations:
         return deserialized
 
     get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
-
-    def _put_byte_request(
-        self,
-        body,  # type: "_models.ByteWrapper"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/complex/primitive/byte")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def put_byte(self, field: Optional[bytearray] = None, **kwargs) -> None:

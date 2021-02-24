@@ -53,30 +53,6 @@ class ImplicitOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_required_path_request(
-        self,
-        path_parameter,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/required/path/{pathParameter}")
-        path_format_arguments = {
-            "pathParameter": self._serialize.url("path_parameter", path_parameter, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_required_path(
         self,
@@ -114,28 +90,6 @@ class ImplicitOperations(object):
             return cls(pipeline_response, None, {})
 
     get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
-
-    def _put_optional_query_request(
-        self,
-        query_parameter=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/query")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if query_parameter is not None:
-            query_parameters["queryParameter"] = self._serialize.query("query_parameter", query_parameter, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.put(url, query_parameters, header_parameters)
 
     @distributed_trace
     def put_optional_query(
@@ -175,28 +129,6 @@ class ImplicitOperations(object):
 
     put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
 
-    def _put_optional_header_request(
-        self,
-        query_parameter=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/header")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        if query_parameter is not None:
-            header_parameters["queryParameter"] = self._serialize.header("query_parameter", query_parameter, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     @distributed_trace
     def put_optional_header(
         self,
@@ -234,30 +166,6 @@ class ImplicitOperations(object):
             return cls(pipeline_response, None, {})
 
     put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
-
-    def _put_optional_body_request(
-        self,
-        body=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/body")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace
     def put_optional_body(
@@ -300,31 +208,6 @@ class ImplicitOperations(object):
 
     put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
 
-    def _put_optional_binary_body_request(
-        self,
-        body=None,  # type: Optional[IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/octet-stream")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/implicit/optional/binary-body")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["stream_content"] = body
-
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace
     def put_optional_binary_body(
         self,
@@ -363,30 +246,6 @@ class ImplicitOperations(object):
 
     put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}  # type: ignore
 
-    def _get_required_global_path_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
-        path_format_arguments = {
-            "required-global-path": self._serialize.url(
-                "self._config.required_global_path", self._config.required_global_path, "str"
-            ),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_required_global_path(
         self, **kwargs  # type: Any
@@ -421,27 +280,6 @@ class ImplicitOperations(object):
 
     get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
 
-    def _get_required_global_query_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/global/required/query")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["required-global-query"] = self._serialize.query(
-            "self._config.required_global_query", self._config.required_global_query, "str"
-        )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_required_global_query(
         self, **kwargs  # type: Any
@@ -475,28 +313,6 @@ class ImplicitOperations(object):
             return cls(pipeline_response, None, {})
 
     get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
-
-    def _get_optional_global_query_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/reqopt/global/optional/query")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if self._config.optional_global_query is not None:
-            query_parameters["optional-global-query"] = self._serialize.query(
-                "self._config.optional_global_query", self._config.optional_global_query, "int"
-            )
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_optional_global_query(

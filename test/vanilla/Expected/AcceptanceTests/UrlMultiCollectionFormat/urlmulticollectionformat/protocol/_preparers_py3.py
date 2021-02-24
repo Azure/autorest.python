@@ -10,7 +10,7 @@ from typing import List, Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _array_string_multi_null_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_multi_null_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -30,7 +30,7 @@ def _array_string_multi_null_request(self, array_query: Optional[List[str]] = No
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_multi_empty_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_multi_empty_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -50,7 +50,7 @@ def _array_string_multi_empty_request(self, array_query: Optional[List[str]] = N
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _array_string_multi_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+def _array_string_multi_valid_request(array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

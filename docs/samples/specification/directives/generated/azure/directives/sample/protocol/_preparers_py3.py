@@ -11,7 +11,6 @@ from azure.core.pipeline.transport import HttpRequest
 
 
 def _basic_polling_initial_request(
-    self,
     body: Optional["_models.Product"] = None,
     **kwargs
 ) -> HttpRequest:
@@ -34,7 +33,6 @@ def _basic_polling_initial_request(
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 def _basic_paging_request(
-    self,
     **kwargs
 ) -> HttpRequest:
     accept = "application/json"

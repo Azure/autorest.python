@@ -26,28 +26,6 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestReportServiceOperationsMixin:
-    def _get_report_request(
-        self,
-        qualifier=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/report")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if qualifier is not None:
-            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace_async
     async def get_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:
         """Get test coverage report.
@@ -84,28 +62,6 @@ class AutoRestReportServiceOperationsMixin:
         return deserialized
 
     get_report.metadata = {"url": "/report"}  # type: ignore
-
-    def _get_optional_report_request(
-        self,
-        qualifier=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/report/optional")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        if qualifier is not None:
-            query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace_async
     async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs) -> Dict[str, int]:

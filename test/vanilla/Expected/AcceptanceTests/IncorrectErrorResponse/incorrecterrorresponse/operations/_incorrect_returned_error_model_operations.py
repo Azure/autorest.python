@@ -32,22 +32,6 @@ if TYPE_CHECKING:
 
 
 class IncorrectReturnedErrorModelOperationsMixin(object):
-    def _get_incorrect_error_from_server_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/incorrectError")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_incorrect_error_from_server(
         self, **kwargs  # type: Any

@@ -29,32 +29,6 @@ if TYPE_CHECKING:
 
 class MultiapiServiceClientOperationsMixin(object):
 
-    def _test_one_request(
-        self,
-        id,  # type: int
-        message=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "1.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['id'] = self._serialize.query("id", id, 'int')
-        if message is not None:
-            query_parameters['message'] = self._serialize.query("message", message, 'str')
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.put(url, query_parameters, header_parameters)
-
     def test_one(
         self,
         id,  # type: int
@@ -99,30 +73,6 @@ class MultiapiServiceClientOperationsMixin(object):
             return cls(pipeline_response, None, {})
 
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
-
-    def _test_lro_initial_request(
-        self,
-        body=None,  # type: Optional["_models.Product"]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/lro')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs['content'] = body
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
     def _test_lro_initial(
         self,
@@ -224,34 +174,6 @@ class MultiapiServiceClientOperationsMixin(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
-
-    def _test_lro_and_paging_initial_request(
-        self,
-        client_request_id=None,  # type: Optional[str]
-        maxresults=None,  # type: Optional[int]
-        timeout=30,  # type: Optional[int]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/lroAndPaging')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        if client_request_id is not None:
-            header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-        if maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
-        if timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     def _test_lro_and_pa_initial(
         self,
@@ -425,29 +347,6 @@ class MultiapiServiceClientOperationsMixin(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
-
-    def _test_different_calls_request(
-        self,
-        greeting_in_english,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "1.0.0"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
-        header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     def test_different_calls(
         self,

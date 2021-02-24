@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 def _get_null_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -32,7 +32,7 @@ def _get_null_request(
 
 
 def _get_empty_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -51,7 +51,7 @@ def _get_empty_request(
 
 
 def _get_non_ascii_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -70,7 +70,6 @@ def _get_non_ascii_request(
 
 
 def _put_non_ascii_request(
-    self,
     body,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -95,7 +94,7 @@ def _put_non_ascii_request(
 
 
 def _get_invalid_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"

@@ -8,7 +8,7 @@
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_null_request(self, **kwargs) -> HttpRequest:
+def _get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -24,7 +24,7 @@ def _get_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_invalid_float_request(self, **kwargs) -> HttpRequest:
+def _get_invalid_float_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -40,7 +40,7 @@ def _get_invalid_float_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_invalid_double_request(self, **kwargs) -> HttpRequest:
+def _get_invalid_double_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -56,7 +56,7 @@ def _get_invalid_double_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_invalid_decimal_request(self, **kwargs) -> HttpRequest:
+def _get_invalid_decimal_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -72,7 +72,7 @@ def _get_invalid_decimal_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_big_float_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_big_float_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -92,7 +92,7 @@ def _put_big_float_request(self, body: float, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_big_float_request(self, **kwargs) -> HttpRequest:
+def _get_big_float_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -108,7 +108,7 @@ def _get_big_float_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_big_double_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_big_double_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -128,7 +128,7 @@ def _put_big_double_request(self, body: float, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_big_double_request(self, **kwargs) -> HttpRequest:
+def _get_big_double_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -144,7 +144,7 @@ def _get_big_double_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_big_double_positive_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_big_double_positive_decimal_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -166,7 +166,7 @@ def _put_big_double_positive_decimal_request(self, body: float, **kwargs) -> Htt
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_big_double_positive_decimal_request(self, **kwargs) -> HttpRequest:
+def _get_big_double_positive_decimal_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -182,7 +182,7 @@ def _get_big_double_positive_decimal_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_big_double_negative_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_big_double_negative_decimal_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -204,7 +204,7 @@ def _put_big_double_negative_decimal_request(self, body: float, **kwargs) -> Htt
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_big_double_negative_decimal_request(self, **kwargs) -> HttpRequest:
+def _get_big_double_negative_decimal_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -220,7 +220,7 @@ def _get_big_double_negative_decimal_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_big_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_big_decimal_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -240,7 +240,7 @@ def _put_big_decimal_request(self, body: float, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_big_decimal_request(self, **kwargs) -> HttpRequest:
+def _get_big_decimal_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -256,7 +256,7 @@ def _get_big_decimal_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_big_decimal_positive_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_big_decimal_positive_decimal_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -278,7 +278,7 @@ def _put_big_decimal_positive_decimal_request(self, body: float, **kwargs) -> Ht
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_big_decimal_positive_decimal_request(self, **kwargs) -> HttpRequest:
+def _get_big_decimal_positive_decimal_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -294,7 +294,7 @@ def _get_big_decimal_positive_decimal_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_big_decimal_negative_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_big_decimal_negative_decimal_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -316,7 +316,7 @@ def _put_big_decimal_negative_decimal_request(self, body: float, **kwargs) -> Ht
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_big_decimal_negative_decimal_request(self, **kwargs) -> HttpRequest:
+def _get_big_decimal_negative_decimal_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -332,7 +332,7 @@ def _get_big_decimal_negative_decimal_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_small_float_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_small_float_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -352,7 +352,7 @@ def _put_small_float_request(self, body: float, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_small_float_request(self, **kwargs) -> HttpRequest:
+def _get_small_float_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -368,7 +368,7 @@ def _get_small_float_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_small_double_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_small_double_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -388,7 +388,7 @@ def _put_small_double_request(self, body: float, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_small_double_request(self, **kwargs) -> HttpRequest:
+def _get_small_double_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -404,7 +404,7 @@ def _get_small_double_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_small_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+def _put_small_decimal_request(body: float, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -424,7 +424,7 @@ def _put_small_decimal_request(self, body: float, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_small_decimal_request(self, **kwargs) -> HttpRequest:
+def _get_small_decimal_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

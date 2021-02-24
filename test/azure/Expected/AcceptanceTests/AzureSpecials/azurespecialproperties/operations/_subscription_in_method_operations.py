@@ -54,33 +54,6 @@ class SubscriptionInMethodOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _post_method_local_valid_request(
-        self,
-        subscription_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace
     def post_method_local_valid(
         self,
@@ -120,32 +93,6 @@ class SubscriptionInMethodOperations(object):
             return cls(pipeline_response, None, {})
 
     post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
-
-    def _post_method_local_null_request(
-        self,
-        subscription_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url", "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace
     def post_method_local_null(
@@ -187,33 +134,6 @@ class SubscriptionInMethodOperations(object):
 
     post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
 
-    def _post_path_local_valid_request(
-        self,
-        subscription_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
-
     @distributed_trace
     def post_path_local_valid(
         self,
@@ -252,33 +172,6 @@ class SubscriptionInMethodOperations(object):
             return cls(pipeline_response, None, {})
 
     post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
-
-    def _post_swagger_local_valid_request(
-        self,
-        subscription_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url",
-            "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-        )
-        path_format_arguments = {
-            "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.post(url, query_parameters, header_parameters)
 
     @distributed_trace
     def post_swagger_local_valid(

@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _array_string_multi_null_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -40,7 +39,6 @@ def _array_string_multi_null_request(
 
 
 def _array_string_multi_empty_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):
@@ -65,7 +63,6 @@ def _array_string_multi_empty_request(
 
 
 def _array_string_multi_valid_request(
-    self,
     array_query=None,  # type: Optional[List[str]]
     **kwargs  # type: Any
 ):

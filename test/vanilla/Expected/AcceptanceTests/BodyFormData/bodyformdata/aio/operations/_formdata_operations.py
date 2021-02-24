@@ -47,31 +47,6 @@ class FormdataOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _upload_file_request(
-        self,
-        body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "multipart/form-data")
-        accept = "application/octet-stream, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["form_content"] = body
-
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def upload_file(self, file_content: IO, file_name: str, **kwargs) -> IO:
         """Upload file.
@@ -114,31 +89,6 @@ class FormdataOperations:
 
     upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
-    def _upload_file_via_body_request(
-        self,
-        body,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/octet-stream")
-        accept = "application/octet-stream, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["stream_content"] = body
-
-        return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def upload_file_via_body(self, file_content: IO, **kwargs) -> IO:
         """Upload file.
@@ -175,31 +125,6 @@ class FormdataOperations:
         return deserialized
 
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
-
-    def _upload_files_request(
-        self,
-        body,  # type: List[IO]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "multipart/form-data")
-        accept = "application/octet-stream, application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["form_content"] = body
-
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def upload_files(self, file_content: List[IO], **kwargs) -> IO:

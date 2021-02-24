@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _put_array_request(
-    self,
     body=None,  # type: Optional[List["_models.Resource"]]
     **kwargs  # type: Any
 ):
@@ -40,7 +39,7 @@ def _put_array_request(
 
 
 def _get_array_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -59,7 +58,6 @@ def _get_array_request(
 
 
 def _put_wrapped_array_request(
-    self,
     body=None,  # type: Optional[List["_models.WrappedProduct"]]
     **kwargs  # type: Any
 ):
@@ -84,7 +82,7 @@ def _put_wrapped_array_request(
 
 
 def _get_wrapped_array_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -103,7 +101,6 @@ def _get_wrapped_array_request(
 
 
 def _put_dictionary_request(
-    self,
     body=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
     **kwargs  # type: Any
 ):
@@ -128,7 +125,7 @@ def _put_dictionary_request(
 
 
 def _get_dictionary_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -147,7 +144,6 @@ def _get_dictionary_request(
 
 
 def _put_resource_collection_request(
-    self,
     body=None,  # type: Optional["_models.ResourceCollection"]
     **kwargs  # type: Any
 ):
@@ -172,7 +168,7 @@ def _put_resource_collection_request(
 
 
 def _get_resource_collection_request(
-    self, **kwargs  # type: Any
+    **kwargs,  # type: Any
 ):
     # type: (...) -> HttpRequest
     accept = "application/json"
@@ -191,7 +187,6 @@ def _get_resource_collection_request(
 
 
 def _put_simple_product_request(
-    self,
     body=None,  # type: Optional["_models.SimpleProduct"]
     **kwargs  # type: Any
 ):
@@ -216,7 +211,6 @@ def _put_simple_product_request(
 
 
 def _post_flattened_simple_product_request(
-    self,
     body=None,  # type: Optional["_models.SimpleProduct"]
     **kwargs  # type: Any
 ):
@@ -241,7 +235,6 @@ def _post_flattened_simple_product_request(
 
 
 def _put_simple_product_with_grouping_request(
-    self,
     name,  # type: str
     body=None,  # type: Optional["_models.SimpleProduct"]
     **kwargs  # type: Any

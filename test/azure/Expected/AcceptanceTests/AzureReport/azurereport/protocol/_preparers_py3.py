@@ -10,7 +10,7 @@ from typing import Optional
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_report_request(self, qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
+def _get_report_request(qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

@@ -8,7 +8,7 @@
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_null_request(self, **kwargs) -> HttpRequest:
+def _get_null_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -24,7 +24,7 @@ def _get_null_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_empty_request(self, **kwargs) -> HttpRequest:
+def _get_empty_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -40,7 +40,7 @@ def _get_empty_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_non_ascii_request(self, **kwargs) -> HttpRequest:
+def _get_non_ascii_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -56,7 +56,7 @@ def _get_non_ascii_request(self, **kwargs) -> HttpRequest:
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _put_non_ascii_request(self, body: bytearray, **kwargs) -> HttpRequest:
+def _put_non_ascii_request(body: bytearray, **kwargs) -> HttpRequest:
     content_type = kwargs.pop("content_type", "application/json")
     accept = "application/json"
 
@@ -76,7 +76,7 @@ def _put_non_ascii_request(self, body: bytearray, **kwargs) -> HttpRequest:
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
-def _get_invalid_request(self, **kwargs) -> HttpRequest:
+def _get_invalid_request(**kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

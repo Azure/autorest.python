@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 
 def _update_request(
-    self,
     resource_group_name,  # type: str
     avset,  # type: str
     body,  # type: "_models.AvailabilitySetUpdateParameters"

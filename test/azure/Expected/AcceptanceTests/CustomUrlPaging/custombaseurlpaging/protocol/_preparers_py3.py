@@ -8,7 +8,7 @@
 from azure.core.pipeline.transport import HttpRequest
 
 
-def _get_pages_partial_url_request(self, account_name: str, **kwargs) -> HttpRequest:
+def _get_pages_partial_url_request(account_name: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -29,7 +29,7 @@ def _get_pages_partial_url_request(self, account_name: str, **kwargs) -> HttpReq
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_pages_partial_url_operation_request(self, account_name: str, **kwargs) -> HttpRequest:
+def _get_pages_partial_url_operation_request(account_name: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL
@@ -50,7 +50,7 @@ def _get_pages_partial_url_operation_request(self, account_name: str, **kwargs) 
     return self._client.get(url, query_parameters, header_parameters)
 
 
-def _get_pages_partial_url_operation_next_request(self, account_name: str, next_link: str, **kwargs) -> HttpRequest:
+def _get_pages_partial_url_operation_next_request(account_name: str, next_link: str, **kwargs) -> HttpRequest:
     accept = "application/json"
 
     # Construct URL

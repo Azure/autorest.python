@@ -26,46 +26,6 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MediaTypesClientOperationsMixin:
-    def _analyze_body_request(
-        self,
-        body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "application/json")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/mediatypes/analyze")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if header_parameters["Content-Type"].split(";")[0] in [
-            "application/pdf",
-            "image/jpeg",
-            "image/png",
-            "image/tiff",
-        ]:
-            body_content_kwargs["stream_content"] = body
-
-        elif header_parameters["Content-Type"].split(";")[0] in ["application/json"]:
-            body_content_kwargs["content"] = body
-        else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(
-                    header_parameters["Content-Type"]
-                )
-            )
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
-
     @distributed_trace_async
     async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> str:
         """Analyze body, that could be different media types.
@@ -102,30 +62,6 @@ class MediaTypesClientOperationsMixin:
         return deserialized
 
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
-
-    def _content_type_with_encoding_request(
-        self,
-        body=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        content_type = kwargs.pop("content_type", "text/plain")
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/mediatypes/contentTypeWithEncoding")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content_kwargs["content"] = body
-        return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
     @distributed_trace_async
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs) -> str:

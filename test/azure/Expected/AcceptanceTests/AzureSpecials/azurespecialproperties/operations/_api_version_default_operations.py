@@ -54,26 +54,6 @@ class ApiVersionDefaultOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _get_method_global_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2015-07-01-preview"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_method_global_valid(
         self, **kwargs  # type: Any
@@ -107,28 +87,6 @@ class ApiVersionDefaultOperations(object):
             return cls(pipeline_response, None, {})
 
     get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
-
-    def _get_method_global_not_provided_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2015-07-01-preview"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url", "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
-        )
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_method_global_not_provided_valid(
@@ -164,26 +122,6 @@ class ApiVersionDefaultOperations(object):
 
     get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
-    def _get_path_global_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2015-07-01-preview"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview")
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
-
     @distributed_trace
     def get_path_global_valid(
         self, **kwargs  # type: Any
@@ -215,28 +153,6 @@ class ApiVersionDefaultOperations(object):
             return cls(pipeline_response, None, {})
 
     get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
-
-    def _get_swagger_global_valid_request(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpRequest
-        api_version = "2015-07-01-preview"
-        accept = "application/json"
-
-        # Construct URL
-        url = kwargs.pop(
-            "template_url", "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
-        )
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-        header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
-
-        return self._client.get(url, query_parameters, header_parameters)
 
     @distributed_trace
     def get_swagger_global_valid(
