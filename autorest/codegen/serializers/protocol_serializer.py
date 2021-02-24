@@ -24,7 +24,7 @@ class ProtocolSerializer:
         return template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(
-                self.code_model.preparers.imports(),
+                self.code_model.protocol.imports(),
                 is_python_3_file=is_python_3_file
             ),
             is_python_3_file=is_python_3_file,

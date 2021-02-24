@@ -2,7 +2,7 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
-{% for request in code_model.preparers.requests %}
+{% for preparer in code_model.protocol.preparers %}
 
-{% include "request.py.jinja2" %}
+{% include "preparer.py.jinja2" %}
 {% endfor %}

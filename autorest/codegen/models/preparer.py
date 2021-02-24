@@ -113,7 +113,7 @@ class Preparer(BaseModel):
 
         parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, PreparerParameter.from_yaml)
 
-        request_class = cls(
+        preparer_class = cls(
             yaml_data=yaml_data,
             name=name,
             url=first_request["protocol"]["http"]["path"],
@@ -123,5 +123,5 @@ class Preparer(BaseModel):
             parameters=PreparerParameterList(parameters),
             multiple_media_type_parameters=PreparerParameterList(multiple_media_type_parameters),
         )
-        code_model.request_ids[id(yaml_data)] = request_class
-        return request_class
+        code_model.preparer_ids[id(yaml_data)] = preparer_class
+        return preparer_class

@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.codegen.models.request import Request
-from autorest.codegen.models.preparers import Preparers
+from autorest.codegen.models.preparer import Preparer
+from autorest.codegen.models.protocol import Protocol
 from itertools import chain
 import logging
 from typing import cast, List, Dict, Optional, Any, Set, Union
@@ -86,8 +86,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.custom_base_url: Optional[str] = None
         self.base_url: Optional[str] = None
         self.service_client: Client = Client()
-        self.preparers: Optional[Preparers] = None
-        self.request_ids: Dict[int, Request] = {}
+        self.protocol: Optional[Protocol] = None
+        self.preparer_ids: Dict[int, Preparer] = {}
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.
@@ -337,23 +337,23 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             return "base_url: Optional[str] = None,"
         return "base_url=None,  # type: Optional[str]"
 
-    def _lookup_request(self, schema_id: int) -> Request:
+    def _lookup_preparer(self, schema_id: int) -> Preparer:
         """Looks to see if the schema has already been created.
 
         :param int schema_id: The yaml id of the schema
         :return: If created, we return the created schema, otherwise, we throw.
-        :rtype: ~autorest.models.BaseSchema
+        :rtype: ~autorest.models.Preparer
         :raises: KeyError if schema is not found
         """
-        for elt_key, elt_value in self.request_ids.items():  # type: ignore
+        for elt_key, elt_value in self.preparer_ids.items():  # type: ignore
             if schema_id == elt_key:
                 return elt_value
         raise KeyError("Didn't find it!!!!!")
 
-    def link_operation_to_request(self) -> None:
+    def link_operation_to_preparer(self) -> None:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
-                request = self._lookup_request(id(operation.yaml_data))
+                preparer = self._lookup_preparer(id(operation.yaml_data))
                 if isinstance(operation, LROOperation):
-                    request.name = request.name[:request.name.rfind("_request")] + "_initial" + "_request"
-                operation.request = request
+                    preparer.name = preparer.name[:preparer.name.rfind("_request")] + "_initial" + "_request"
+                operation.preparer = preparer

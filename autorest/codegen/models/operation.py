@@ -49,23 +49,23 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
-        self._request: Optional[Request] = None
+        self._preparer: Optional[Preparer] = None
 
     @property
     def python_name(self) -> str:
         return self.name
 
     @property
-    def request(self) -> Request:
-        if not self._request:
+    def preparer(self) -> Preparer:
+        if not self._preparer:
             raise ValueError(
-                "You're calling request when you haven't linked up operation to request through the code model"
+                "You're calling preparer when you haven't linked up operation to its request preparer through the code model"
             )
-        return self._request
+        return self._preparer
 
-    @request.setter
-    def request(self, r: Request) -> None:
-        self._request = r
+    @preparer.setter
+    def preparer(self, r: Preparer) -> None:
+        self._preparer = r
 
     @property
     def is_stream_response(self) -> bool:
