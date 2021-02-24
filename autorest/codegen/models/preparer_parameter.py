@@ -11,7 +11,7 @@ def _make_public(name):
         return name[1:]
     return name
 
-class RequestParameter(Parameter):
+class PreparerParameter(Parameter):
 
     @property
     def in_method_signature(self) -> bool:
@@ -37,11 +37,11 @@ class RequestParameter(Parameter):
     def default_value(self) -> Optional[Any]:
         if self.location == ParameterLocation.Body:
             return None
-        return super(RequestParameter, self).default_value
+        return super(PreparerParameter, self).default_value
 
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestParameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "PreparerParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])

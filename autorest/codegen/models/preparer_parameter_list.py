@@ -4,18 +4,18 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List, Optional
-from .request_parameter import RequestParameter
+from .preparer_parameter import PreparerParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
 
-class RequestParameterList(ParameterList):
+class PreparerParameterList(ParameterList):
     def __init__(
-        self, parameters: Optional[List[RequestParameter]] = None, implementation: str = "Method"
+        self, parameters: Optional[List[PreparerParameter]] = None, implementation: str = "Method"
     ) -> None:
         # need to include init to override type failure.
-        # RequestParameterList takes in a list of RequestParameter,
+        # PreparerParameterList takes in a list of PreparerParameter,
         # while ParameterList takes in a list of Parameter
-        super(RequestParameterList, self).__init__(
+        super(PreparerParameterList, self).__init__(
             parameters, implementation  # type: ignore
         )
 
@@ -23,7 +23,7 @@ class RequestParameterList(ParameterList):
     def constant(self) -> List[Parameter]:
         """We don't do constant bodys in the preparer
         """
-        all_constants = super(RequestParameterList, self).constant
+        all_constants = super(PreparerParameterList, self).constant
         if self.has_body:
             return [c for c in all_constants if not c.location == ParameterLocation.Body]
         return all_constants

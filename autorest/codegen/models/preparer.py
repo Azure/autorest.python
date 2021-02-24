@@ -7,8 +7,8 @@ from typing import Any, cast, Dict, List, TypeVar
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
-from .request_parameter import RequestParameter
-from .request_parameter_list import RequestParameterList
+from .preparer_parameter import PreparerParameter
+from .preparer_parameter_list import PreparerParameterList
 from .schema_request import SchemaRequest
 from .imports import FileImport
 from .utils import get_converted_parameters
@@ -46,8 +46,8 @@ class Preparer(BaseModel):
         method: str,
         multipart: bool,
         schema_requests: List[SchemaRequest],
-        parameters: RequestParameterList,
-        multiple_media_type_parameters: RequestParameterList,
+        parameters: PreparerParameterList,
+        multiple_media_type_parameters: PreparerParameterList,
     ):
         super(Preparer, self).__init__(yaml_data)
         self.name = name
@@ -106,7 +106,7 @@ class Preparer(BaseModel):
 
         first_request = yaml_data["requests"][0]
 
-        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, RequestParameter.from_yaml)
+        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, PreparerParameter.from_yaml)
         return cls(
             yaml_data=yaml_data,
             name=name,
@@ -114,6 +114,6 @@ class Preparer(BaseModel):
             method=first_request["protocol"]["http"]["method"],
             multipart=first_request["protocol"]["http"].get("multipart", False),
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
-            parameters=RequestParameterList(parameters),
-            multiple_media_type_parameters=RequestParameterList(multiple_media_type_parameters),
+            parameters=PreparerParameterList(parameters),
+            multiple_media_type_parameters=PreparerParameterList(multiple_media_type_parameters),
         )
