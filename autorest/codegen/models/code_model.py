@@ -299,12 +299,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 for obj in chain(
                     operation.parameters,
                     operation.multiple_media_type_parameters or [],
-                    operation.request.parameters,
-                    operation.request.multiple_media_type_parameters or [],
+                    operation.preparer.parameters,
+                    operation.preparer.multiple_media_type_parameters or [],
                     operation.responses,
                     operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses),
-                    chain.from_iterable(request.parameters for request in operation.request.schema_requests)
+                    chain.from_iterable(request.parameters for request in operation.preparer.schema_requests)
                 ):
                     self._populate_schema(obj)
 
@@ -317,7 +317,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation in operation_group.operations:
                 if operation.multiple_media_type_parameters:
                     _convert_multiple_media_type_parameters(operation)
-                    _convert_multiple_media_type_parameters(operation.request)
+                    _convert_multiple_media_type_parameters(operation.preparer)
 
     @property
     def has_lro_operations(self) -> bool:

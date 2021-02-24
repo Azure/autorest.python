@@ -3,7 +3,7 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {# return_type is a variable that holds the return type if we already know what it is #}
-{% set return_type = "bool" if request.method == 'head' and code_model.options['head_as_boolean'] else None %}
+{% set return_type = "bool" if preparer.method == 'head' and code_model.options['head_as_boolean'] else None %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro return_docstring(async_mode, return_type=None) %}
 {%- if return_type -%}
@@ -37,8 +37,8 @@
 {% endfor %}
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
-{% if (request.schema_requests | length) > 1 %}
-{{ op_tools.content_type_docstring(request) }}
+{% if (preparer.schema_requests | length) > 1 %}
+{{ op_tools.content_type_docstring(preparer) }}
 {% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(async_mode, return_type=return_type) }}
@@ -61,8 +61,8 @@
 {% endif %}
     {{ op_tools.error_map(operation, code_model)|indent }}
 
-    {{ op_tools.get_request(operation, request)|indent }}
+    {{ op_tools.get_preparer(operation, preparer)|indent }}
 
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     {{ op_tools.handle_response(code_model, operation) | indent }}
-{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(request.url) }}}  # type: ignore
+{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(preparer.url) }}}  # type: ignore

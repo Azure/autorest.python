@@ -17,7 +17,7 @@ class RequestParameter(Parameter):
     def in_method_signature(self) -> bool:
         return not(
             # If I only have one value, I can't be set, so no point being in signature
-            # constant bodies still go in method signature bc we don't support that in request
+            # constant bodies still go in method signature bc we don't support that in our preparer
             (self.constant and not self.location == ParameterLocation.Body)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code

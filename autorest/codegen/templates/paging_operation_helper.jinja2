@@ -3,23 +3,23 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% set request = operation.request %}
+{% set preparer = operation.preparer %}
 cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     {{ op_tools.error_map(operation, code_model)|indent }}
 
     def prepare_request(next_link=None):
         if not next_link:
-            {{ op_tools.get_request(operation, request)|indent(12) }}
+            {{ op_tools.get_preparer(operation, preparer)|indent(12) }}
         else:
-            {% set url = keywords.escape_str(operation.next_request.url) if operation.next_request else None %}
-            {{ op_tools.get_request(operation, operation.next_request if operation.next_request else request, url=url)|indent(12) }}
-            {% if not operation.next_request %}
+            {% set url = keywords.escape_str(operation.next_preparer.url) if operation.next_preparer else None %}
+            {{ op_tools.get_preparer(operation, operation.next_preparer if operation.next_preparer else preparer, url=url)|indent(12) }}
+            {% if not operation.next_preparer %}
             # little hacky, but this code will soon be replaced with code that won't need the hack
                 {% if operation.parameters.path %}
             {{ op_tools.path_format_arguments(operation.parameters.path)|indent(12) }}
                 {% endif %}
             request.method = "get"
-            request.url = self._client.format_url(next_link{{", **path_format_arguments" if request.parameters.path}})
+            request.url = self._client.format_url(next_link{{", **path_format_arguments" if preparer.parameters.path}})
             {% endif %}
         return request
 

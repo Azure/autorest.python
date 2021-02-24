@@ -14,7 +14,7 @@ from .parameter import Parameter
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
-from .request import Request
+from .preparer import Preparer
 from .utils import get_converted_parameters
 
 
@@ -27,7 +27,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        request: Request,
+        preparer: Preparer,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -41,7 +41,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
-        self.request = request
+        self.preparer = preparer
         self.description = description
         self.api_versions = api_versions
         self.parameters = parameters
@@ -142,7 +142,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if code_model.options["azure_arm"]:
             file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-        file_import.merge(self.request.imports)
+        file_import.merge(self.preparer.imports)
 
         for response in [r for r in self.responses if r.has_body]:
             file_import.merge(cast(BaseSchema, response.schema).imports())
@@ -179,7 +179,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         return cls(
             yaml_data=yaml_data,
-            request=Request.from_yaml(yaml_data),
+            preparer=Preparer.from_yaml(yaml_data),
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),

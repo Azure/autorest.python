@@ -9,7 +9,7 @@ from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
-from .request import Request
+from .preparer import Preparer
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 
@@ -20,7 +20,7 @@ class LROOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        request: Request,
+        preparer: Preparer,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -34,7 +34,7 @@ class LROOperation(Operation):
     ) -> None:
         super(LROOperation, self).__init__(
             yaml_data,
-            request,
+            preparer,
             name,
             description,
             api_versions,
@@ -48,7 +48,7 @@ class LROOperation(Operation):
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
-        self.request.name = self.request.name[:self.request.name.rfind("_request")] + "_initial" + "_request"
+        self.preparer.name = self.preparer.name[:self.preparer.name.rfind("_request")] + "_initial" + "_request"
 
     @property
     def lro_response(self) -> Optional[SchemaResponse]:
@@ -83,7 +83,7 @@ class LROOperation(Operation):
     def initial_operation(self) -> Operation:
         return Operation(
             yaml_data={},
-            request=self.request,
+            preparer=self.preparer,
             name=self.name.strip("begin") + "_initial",
             description="",
             api_versions=self.api_versions,

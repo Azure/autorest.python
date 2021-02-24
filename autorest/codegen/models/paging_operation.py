@@ -8,7 +8,7 @@ from typing import cast, Dict, List, Any, Optional, Set
 
 from .operation import Operation
 from .schema_response import SchemaResponse
-from .request import Request
+from .preparer import Preparer
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
 from .parameter_list import ParameterList
@@ -20,7 +20,7 @@ class PagingOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        request: Request,
+        preparer: Preparer,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -34,7 +34,7 @@ class PagingOperation(Operation):
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
-            request,
+            preparer,
             name,
             description,
             api_versions,
@@ -109,12 +109,12 @@ class PagingOperation(Operation):
         return self.get_pager_path(async_mode).split(".")[-1]
 
     @property
-    def next_request(self) -> Optional[Request]:
+    def next_preparer(self) -> Optional[Preparer]:
         if not self.next_operation:
             return None
-        next_request = self.next_operation.request
-        next_request.name = f"_{self.python_name}_next_request"
-        return next_request
+        next_preparer = self.next_operation.preparer
+        next_preparer.name = f"_{self.python_name}_next_request"
+        return next_preparer
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(code_model, async_mode)

@@ -21,7 +21,7 @@ class RequestParameterList(ParameterList):
 
     @property
     def constant(self) -> List[Parameter]:
-        """We don't do constant bodys in request
+        """We don't do constant bodys in the preparer
         """
         all_constants = super(RequestParameterList, self).constant
         if self.has_body:

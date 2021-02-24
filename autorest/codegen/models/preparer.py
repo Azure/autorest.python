@@ -37,7 +37,7 @@ def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
             response_media_types[xml_media_types[0]] = None
     return response_media_types
 
-class Request(BaseModel):
+class Preparer(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -49,7 +49,7 @@ class Request(BaseModel):
         parameters: RequestParameterList,
         multiple_media_type_parameters: RequestParameterList,
     ):
-        super(Request, self).__init__(yaml_data)
+        super(Preparer, self).__init__(yaml_data)
         self.name = name
         self.url = url
         self.method = method
@@ -69,7 +69,7 @@ class Request(BaseModel):
 
     @property
     def is_stream(self) -> bool:
-        """Is the request is a stream, like an upload."""
+        """Is the request we're preparing a stream, like an upload."""
         return any(request.is_stream_request for request in self.schema_requests)
 
     @property
@@ -100,7 +100,7 @@ class Request(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Request":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Preparer":
         operation_name = yaml_data["language"]["python"]["name"]
         name = f"_{operation_name}_request"
 
