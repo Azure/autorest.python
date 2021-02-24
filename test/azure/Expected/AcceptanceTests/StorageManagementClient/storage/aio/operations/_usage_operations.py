@@ -48,7 +48,10 @@ class UsageOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _list_request(self, **kwargs) -> HttpRequest:
+    def _list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 

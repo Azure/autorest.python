@@ -47,7 +47,10 @@ class XmlOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_complex_type_ref_no_meta_request(self, **kwargs) -> HttpRequest:
+    def _get_complex_type_ref_no_meta_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -96,7 +99,12 @@ class XmlOperations:
 
     get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
-    def _put_complex_type_ref_no_meta_request(self, body: "_models.RootWithRefAndNoMeta", **kwargs) -> HttpRequest:
+    def _put_complex_type_ref_no_meta_request(
+        self,
+        body,  # type: "_models.RootWithRefAndNoMeta"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -147,7 +155,10 @@ class XmlOperations:
 
     put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
-    def _get_complex_type_ref_with_meta_request(self, **kwargs) -> HttpRequest:
+    def _get_complex_type_ref_with_meta_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -196,7 +207,12 @@ class XmlOperations:
 
     get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
-    def _put_complex_type_ref_with_meta_request(self, body: "_models.RootWithRefAndMeta", **kwargs) -> HttpRequest:
+    def _put_complex_type_ref_with_meta_request(
+        self,
+        body,  # type: "_models.RootWithRefAndMeta"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -247,7 +263,10 @@ class XmlOperations:
 
     put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
-    def _get_simple_request(self, **kwargs) -> HttpRequest:
+    def _get_simple_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -295,7 +314,12 @@ class XmlOperations:
 
     get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
-    def _put_simple_request(self, body: "_models.Slideshow", **kwargs) -> HttpRequest:
+    def _put_simple_request(
+        self,
+        body,  # type: "_models.Slideshow"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
         accept = "application/xml"
 
@@ -347,7 +371,10 @@ class XmlOperations:
 
     put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
-    def _get_wrapped_lists_request(self, **kwargs) -> HttpRequest:
+    def _get_wrapped_lists_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -394,7 +421,12 @@ class XmlOperations:
 
     get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
-    def _put_wrapped_lists_request(self, body: "_models.AppleBarrel", **kwargs) -> HttpRequest:
+    def _put_wrapped_lists_request(
+        self,
+        body,  # type: "_models.AppleBarrel"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
         accept = "application/xml"
 
@@ -448,7 +480,10 @@ class XmlOperations:
 
     put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
-    def _get_headers_request(self, **kwargs) -> HttpRequest:
+    def _get_headers_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/xml/headers")
@@ -492,7 +527,10 @@ class XmlOperations:
 
     get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
 
-    def _get_empty_list_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -539,7 +577,12 @@ class XmlOperations:
 
     get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
-    def _put_empty_list_request(self, body: "_models.Slideshow", **kwargs) -> HttpRequest:
+    def _put_empty_list_request(
+        self,
+        body,  # type: "_models.Slideshow"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -590,7 +633,10 @@ class XmlOperations:
 
     put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
-    def _get_empty_wrapped_lists_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_wrapped_lists_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -639,7 +685,12 @@ class XmlOperations:
 
     get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
-    def _put_empty_wrapped_lists_request(self, body: "_models.AppleBarrel", **kwargs) -> HttpRequest:
+    def _put_empty_wrapped_lists_request(
+        self,
+        body,  # type: "_models.AppleBarrel"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -690,7 +741,10 @@ class XmlOperations:
 
     put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
-    def _get_root_list_request(self, **kwargs) -> HttpRequest:
+    def _get_root_list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -737,7 +791,12 @@ class XmlOperations:
 
     get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
-    def _put_root_list_request(self, body: List["_models.Banana"], **kwargs) -> HttpRequest:
+    def _put_root_list_request(
+        self,
+        body,  # type: List["_models.Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -787,7 +846,10 @@ class XmlOperations:
 
     put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
-    def _get_root_list_single_item_request(self, **kwargs) -> HttpRequest:
+    def _get_root_list_single_item_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -836,7 +898,12 @@ class XmlOperations:
 
     get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
-    def _put_root_list_single_item_request(self, body: List["_models.Banana"], **kwargs) -> HttpRequest:
+    def _put_root_list_single_item_request(
+        self,
+        body,  # type: List["_models.Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -888,7 +955,10 @@ class XmlOperations:
 
     put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
-    def _get_empty_root_list_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_root_list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -935,7 +1005,12 @@ class XmlOperations:
 
     get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
-    def _put_empty_root_list_request(self, body: List["_models.Banana"], **kwargs) -> HttpRequest:
+    def _put_empty_root_list_request(
+        self,
+        body,  # type: List["_models.Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -987,7 +1062,10 @@ class XmlOperations:
 
     put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
-    def _get_empty_child_element_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_child_element_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -1036,7 +1114,12 @@ class XmlOperations:
 
     get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
-    def _put_empty_child_element_request(self, body: "_models.Banana", **kwargs) -> HttpRequest:
+    def _put_empty_child_element_request(
+        self,
+        body,  # type: "_models.Banana"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
@@ -1087,7 +1170,10 @@ class XmlOperations:
 
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
-    def _list_containers_request(self, **kwargs) -> HttpRequest:
+    def _list_containers_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         comp = "list"
         accept = "application/xml"
 
@@ -1136,7 +1222,10 @@ class XmlOperations:
 
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
-    def _get_service_properties_request(self, **kwargs) -> HttpRequest:
+    def _get_service_properties_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         comp = "properties"
         restype = "service"
         accept = "application/xml"
@@ -1189,7 +1278,12 @@ class XmlOperations:
 
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
-    def _put_service_properties_request(self, body: "_models.StorageServiceProperties", **kwargs) -> HttpRequest:
+    def _put_service_properties_request(
+        self,
+        body,  # type: "_models.StorageServiceProperties"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         comp = "properties"
         restype = "service"
         content_type = kwargs.pop("content_type", "application/xml")
@@ -1244,7 +1338,10 @@ class XmlOperations:
 
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
-    def _get_acls_request(self, **kwargs) -> HttpRequest:
+    def _get_acls_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         comp = "acl"
         restype = "container"
         accept = "application/xml"
@@ -1295,7 +1392,12 @@ class XmlOperations:
 
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
-    def _put_acls_request(self, body: List["_models.SignedIdentifier"], **kwargs) -> HttpRequest:
+    def _put_acls_request(
+        self,
+        body,  # type: List["_models.SignedIdentifier"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         comp = "acl"
         restype = "container"
         content_type = kwargs.pop("content_type", "application/xml")
@@ -1351,7 +1453,10 @@ class XmlOperations:
 
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
-    def _list_blobs_request(self, **kwargs) -> HttpRequest:
+    def _list_blobs_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         comp = "list"
         restype = "container"
         accept = "application/xml"
@@ -1402,7 +1507,12 @@ class XmlOperations:
 
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
-    def _json_input_request(self, body: "_models.JSONInput", **kwargs) -> HttpRequest:
+    def _json_input_request(
+        self,
+        body,  # type: "_models.JSONInput"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -1453,7 +1563,10 @@ class XmlOperations:
 
     json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
 
-    def _json_output_request(self, **kwargs) -> HttpRequest:
+    def _json_output_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1500,7 +1613,10 @@ class XmlOperations:
 
     json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
 
-    def _get_xms_text_request(self, **kwargs) -> HttpRequest:
+    def _get_xms_text_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -1548,7 +1664,10 @@ class XmlOperations:
 
     get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
 
-    def _get_bytes_request(self, **kwargs) -> HttpRequest:
+    def _get_bytes_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -1596,7 +1715,12 @@ class XmlOperations:
 
     get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
-    def _put_binary_request(self, body: "_models.ModelWithByteProperty", **kwargs) -> HttpRequest:
+    def _put_binary_request(
+        self,
+        body,  # type: "_models.ModelWithByteProperty"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
         accept = "application/xml"
 
@@ -1649,7 +1773,10 @@ class XmlOperations:
 
     put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
 
-    def _get_uri_request(self, **kwargs) -> HttpRequest:
+    def _get_uri_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/xml"
 
         # Construct URL
@@ -1697,7 +1824,12 @@ class XmlOperations:
 
     get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
-    def _put_uri_request(self, body: "_models.ModelWithUrlProperty", **kwargs) -> HttpRequest:
+    def _put_uri_request(
+        self,
+        body,  # type: "_models.ModelWithUrlProperty"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/xml")
         accept = "application/xml"
 

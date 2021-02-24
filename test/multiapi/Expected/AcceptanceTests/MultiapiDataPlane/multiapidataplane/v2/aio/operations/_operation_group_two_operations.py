@@ -41,9 +41,10 @@ class OperationGroupTwoOperations:
 
     def _test_four_request(
         self,
-        parameter_one: bool,
-        **kwargs
-    ) -> HttpRequest:
+        parameter_one,  # type: bool
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         accept = "application/json"
 

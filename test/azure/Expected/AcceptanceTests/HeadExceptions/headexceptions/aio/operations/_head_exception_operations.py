@@ -42,7 +42,10 @@ class HeadExceptionOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head200_request(self, **kwargs) -> HttpRequest:
+    def _head200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/success/200")
@@ -84,7 +87,10 @@ class HeadExceptionOperations:
 
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _head204_request(self, **kwargs) -> HttpRequest:
+    def _head204_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/success/204")
@@ -126,7 +132,10 @@ class HeadExceptionOperations:
 
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _head404_request(self, **kwargs) -> HttpRequest:
+    def _head404_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/success/404")

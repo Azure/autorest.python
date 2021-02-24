@@ -26,7 +26,13 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestValidationTestOperationsMixin:
-    def _validation_of_method_parameters_request(self, resource_group_name: str, id: int, **kwargs) -> HttpRequest:
+    def _validation_of_method_parameters_request(
+        self,
+        resource_group_name,  # type: str
+        id,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         accept = "application/json"
 
@@ -99,8 +105,13 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     def _validation_of_body_request(
-        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        resource_group_name,  # type: str
+        id,  # type: int
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -179,7 +190,10 @@ class AutoRestValidationTestOperationsMixin:
 
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
-    def _get_with_constant_in_path_request(self, **kwargs) -> HttpRequest:
+    def _get_with_constant_in_path_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         constant_param = "constant"
 
         # Construct URL
@@ -227,7 +241,12 @@ class AutoRestValidationTestOperationsMixin:
 
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
-    def _post_with_constant_in_body_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post_with_constant_in_body_request(
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         constant_param = "constant"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"

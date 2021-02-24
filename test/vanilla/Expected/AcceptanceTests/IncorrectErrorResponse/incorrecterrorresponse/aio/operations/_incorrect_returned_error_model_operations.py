@@ -26,7 +26,10 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class IncorrectReturnedErrorModelOperationsMixin:
-    def _get_incorrect_error_from_server_request(self, **kwargs) -> HttpRequest:
+    def _get_incorrect_error_from_server_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/incorrectError")

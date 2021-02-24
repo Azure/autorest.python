@@ -26,7 +26,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
-    def _put_array_request(self, body: Optional[List["_models.Resource"]] = None, **kwargs) -> HttpRequest:
+    def _put_array_request(
+        self,
+        body=None,  # type: Optional[List["_models.Resource"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -79,7 +84,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
-    def _get_array_request(self, **kwargs) -> HttpRequest:
+    def _get_array_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -128,8 +136,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     def _put_wrapped_array_request(
-        self, body: Optional[List["_models.WrappedProduct"]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional[List["_models.WrappedProduct"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -187,7 +198,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
-    def _get_wrapped_array_request(self, **kwargs) -> HttpRequest:
+    def _get_wrapped_array_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -237,8 +251,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     def _put_dictionary_request(
-        self, body: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -295,7 +312,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
-    def _get_dictionary_request(self, **kwargs) -> HttpRequest:
+    def _get_dictionary_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -344,8 +364,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     def _put_resource_collection_request(
-        self, body: Optional["_models.ResourceCollection"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.ResourceCollection"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -402,7 +425,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
-    def _get_resource_collection_request(self, **kwargs) -> HttpRequest:
+    def _get_resource_collection_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -452,7 +478,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
-    def _put_simple_product_request(self, body: Optional["_models.SimpleProduct"] = None, **kwargs) -> HttpRequest:
+    def _put_simple_product_request(
+        self,
+        body=None,  # type: Optional["_models.SimpleProduct"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -514,8 +545,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     def _post_flattened_simple_product_request(
-        self, body: Optional["_models.SimpleProduct"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.SimpleProduct"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -600,8 +634,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     def _put_simple_product_with_grouping_request(
-        self, name: str, body: Optional["_models.SimpleProduct"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        name,  # type: str
+        body=None,  # type: Optional["_models.SimpleProduct"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

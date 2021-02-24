@@ -41,9 +41,10 @@ class OperationGroupOneOperations:
 
     def _test_two_request(
         self,
-        body: Optional["_models.ModelThree"] = None,
-        **kwargs
-    ) -> HttpRequest:
+        body=None,  # type: Optional["_models.ModelThree"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"

@@ -47,7 +47,10 @@ class PolymorphismOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,12 @@ class PolymorphismOperations:
 
     get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
-    def _put_valid_request(self, body: "_models.Fish", **kwargs) -> HttpRequest:
+    def _put_valid_request(
+        self,
+        body,  # type: "_models.Fish"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -179,7 +187,10 @@ class PolymorphismOperations:
 
     put_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
-    def _get_dot_syntax_request(self, **kwargs) -> HttpRequest:
+    def _get_dot_syntax_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -227,7 +238,10 @@ class PolymorphismOperations:
 
     get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}  # type: ignore
 
-    def _get_composed_with_discriminator_request(self, **kwargs) -> HttpRequest:
+    def _get_composed_with_discriminator_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -279,7 +293,10 @@ class PolymorphismOperations:
 
     get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
 
-    def _get_composed_without_discriminator_request(self, **kwargs) -> HttpRequest:
+    def _get_composed_without_discriminator_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -331,7 +348,10 @@ class PolymorphismOperations:
 
     get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
 
-    def _get_complicated_request(self, **kwargs) -> HttpRequest:
+    def _get_complicated_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -380,7 +400,12 @@ class PolymorphismOperations:
 
     get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
-    def _put_complicated_request(self, body: "_models.Salmon", **kwargs) -> HttpRequest:
+    def _put_complicated_request(
+        self,
+        body,  # type: "_models.Salmon"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -435,7 +460,12 @@ class PolymorphismOperations:
 
     put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
-    def _put_missing_discriminator_request(self, body: "_models.Salmon", **kwargs) -> HttpRequest:
+    def _put_missing_discriminator_request(
+        self,
+        body,  # type: "_models.Salmon"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -493,7 +523,12 @@ class PolymorphismOperations:
 
     put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
 
-    def _put_valid_missing_required_request(self, body: "_models.Fish", **kwargs) -> HttpRequest:
+    def _put_valid_missing_required_request(
+        self,
+        body,  # type: "_models.Fish"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

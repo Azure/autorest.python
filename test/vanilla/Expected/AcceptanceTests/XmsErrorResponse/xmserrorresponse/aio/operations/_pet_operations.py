@@ -47,7 +47,12 @@ class PetOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_pet_by_id_request(self, pet_id: str, **kwargs) -> HttpRequest:
+    def _get_pet_by_id_request(
+        self,
+        pet_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -110,7 +115,12 @@ class PetOperations:
 
     get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
-    def _do_something_request(self, what_action: str, **kwargs) -> HttpRequest:
+    def _do_something_request(
+        self,
+        what_action,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -173,7 +183,12 @@ class PetOperations:
 
     do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
-    def _has_models_param_request(self, models: Optional[str] = "value1", **kwargs) -> HttpRequest:
+    def _has_models_param_request(
+        self,
+        models="value1",  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

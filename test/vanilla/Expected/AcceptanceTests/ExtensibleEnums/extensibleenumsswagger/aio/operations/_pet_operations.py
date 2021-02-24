@@ -47,7 +47,12 @@ class PetOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_by_pet_id_request(self, pet_id: str, **kwargs) -> HttpRequest:
+    def _get_by_pet_id_request(
+        self,
+        pet_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -100,7 +105,12 @@ class PetOperations:
 
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
-    def _add_pet_request(self, body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequest:
+    def _add_pet_request(
+        self,
+        body=None,  # type: Optional["_models.Pet"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

@@ -47,7 +47,10 @@ class MultipleResponsesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get200_model204_no_model_default_error200_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model204_no_model_default_error200_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -99,7 +102,10 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
 
-    def _get200_model204_no_model_default_error204_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model204_no_model_default_error204_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -151,7 +157,10 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error204_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
 
-    def _get200_model204_no_model_default_error201_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model204_no_model_default_error201_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -203,7 +212,10 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error201_invalid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
 
-    def _get200_model204_no_model_default_error202_none_request(self, **kwargs) -> HttpRequest:
+    def _get200_model204_no_model_default_error202_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -255,7 +267,10 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error202_none.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
 
-    def _get200_model204_no_model_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model204_no_model_default_error400_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -307,7 +322,10 @@ class MultipleResponsesOperations:
 
     get200_model204_no_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
 
-    def _get200_model201_model_default_error200_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model201_model_default_error200_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -361,7 +379,10 @@ class MultipleResponsesOperations:
 
     get200_model201_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
 
-    def _get200_model201_model_default_error201_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model201_model_default_error201_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -415,7 +436,10 @@ class MultipleResponsesOperations:
 
     get200_model201_model_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
 
-    def _get200_model201_model_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model201_model_default_error400_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -469,7 +493,10 @@ class MultipleResponsesOperations:
 
     get200_model201_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/400/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error200_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a201_model_c404_model_d_default_error200_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -528,7 +555,10 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error201_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a201_model_c404_model_d_default_error201_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -587,7 +617,10 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error404_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a201_model_c404_model_d_default_error404_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -646,7 +679,10 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"}  # type: ignore
 
-    def _get200_model_a201_model_c404_model_d_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a201_model_c404_model_d_default_error400_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -705,7 +741,10 @@ class MultipleResponsesOperations:
 
     get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
 
-    def _get202_none204_none_default_error202_none_request(self, **kwargs) -> HttpRequest:
+    def _get202_none204_none_default_error202_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -751,7 +790,10 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
-    def _get202_none204_none_default_error204_none_request(self, **kwargs) -> HttpRequest:
+    def _get202_none204_none_default_error204_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -797,7 +839,10 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
 
-    def _get202_none204_none_default_error400_valid_request(self, **kwargs) -> HttpRequest:
+    def _get202_none204_none_default_error400_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -843,7 +888,10 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
-    def _get202_none204_none_default_none202_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get202_none204_none_default_none202_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/202/invalid")
@@ -886,7 +934,10 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
 
-    def _get202_none204_none_default_none204_none_request(self, **kwargs) -> HttpRequest:
+    def _get202_none204_none_default_none204_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/204/none")
@@ -929,7 +980,10 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
-    def _get202_none204_none_default_none400_none_request(self, **kwargs) -> HttpRequest:
+    def _get202_none204_none_default_none400_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/none")
@@ -972,7 +1026,10 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
 
-    def _get202_none204_none_default_none400_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get202_none204_none_default_none400_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/invalid")
@@ -1015,7 +1072,10 @@ class MultipleResponsesOperations:
 
     get202_none204_none_default_none400_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
 
-    def _get_default_model_a200_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_default_model_a200_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1064,7 +1124,10 @@ class MultipleResponsesOperations:
 
     get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}  # type: ignore
 
-    def _get_default_model_a200_none_request(self, **kwargs) -> HttpRequest:
+    def _get_default_model_a200_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1113,7 +1176,10 @@ class MultipleResponsesOperations:
 
     get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
 
-    def _get_default_model_a400_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_default_model_a400_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1159,7 +1225,10 @@ class MultipleResponsesOperations:
 
     get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
-    def _get_default_model_a400_none_request(self, **kwargs) -> HttpRequest:
+    def _get_default_model_a400_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1205,7 +1274,10 @@ class MultipleResponsesOperations:
 
     get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
 
-    def _get_default_none200_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_default_none200_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/invalid")
@@ -1248,7 +1320,10 @@ class MultipleResponsesOperations:
 
     get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
-    def _get_default_none200_none_request(self, **kwargs) -> HttpRequest:
+    def _get_default_none200_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/none")
@@ -1291,7 +1366,10 @@ class MultipleResponsesOperations:
 
     get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
 
-    def _get_default_none400_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_default_none400_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/invalid")
@@ -1334,7 +1412,10 @@ class MultipleResponsesOperations:
 
     get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
 
-    def _get_default_none400_none_request(self, **kwargs) -> HttpRequest:
+    def _get_default_none400_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/none")
@@ -1377,7 +1458,10 @@ class MultipleResponsesOperations:
 
     get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}  # type: ignore
 
-    def _get200_model_a200_none_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a200_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1427,7 +1511,10 @@ class MultipleResponsesOperations:
 
     get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}  # type: ignore
 
-    def _get200_model_a200_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a200_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1476,7 +1563,10 @@ class MultipleResponsesOperations:
 
     get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}  # type: ignore
 
-    def _get200_model_a200_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a200_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1525,7 +1615,10 @@ class MultipleResponsesOperations:
 
     get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}  # type: ignore
 
-    def _get200_model_a400_none_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a400_none_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1574,7 +1667,10 @@ class MultipleResponsesOperations:
 
     get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}  # type: ignore
 
-    def _get200_model_a400_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a400_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1623,7 +1719,10 @@ class MultipleResponsesOperations:
 
     get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}  # type: ignore
 
-    def _get200_model_a400_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a400_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1672,7 +1771,10 @@ class MultipleResponsesOperations:
 
     get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}  # type: ignore
 
-    def _get200_model_a202_valid_request(self, **kwargs) -> HttpRequest:
+    def _get200_model_a202_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

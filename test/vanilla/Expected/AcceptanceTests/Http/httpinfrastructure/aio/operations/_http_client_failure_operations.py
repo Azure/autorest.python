@@ -47,7 +47,10 @@ class HttpClientFailureOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head400_request(self, **kwargs) -> HttpRequest:
+    def _head400_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -91,7 +94,10 @@ class HttpClientFailureOperations:
 
     head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
-    def _get400_request(self, **kwargs) -> HttpRequest:
+    def _get400_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -135,7 +141,10 @@ class HttpClientFailureOperations:
 
     get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
-    def _options400_request(self, **kwargs) -> HttpRequest:
+    def _options400_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -179,7 +188,12 @@ class HttpClientFailureOperations:
 
     options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
-    def _put400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put400_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -232,7 +246,12 @@ class HttpClientFailureOperations:
 
     put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
-    def _patch400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch400_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -285,7 +304,12 @@ class HttpClientFailureOperations:
 
     patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
-    def _post400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post400_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -338,7 +362,12 @@ class HttpClientFailureOperations:
 
     post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
-    def _delete400_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete400_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -391,7 +420,10 @@ class HttpClientFailureOperations:
 
     delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
-    def _head401_request(self, **kwargs) -> HttpRequest:
+    def _head401_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -435,7 +467,10 @@ class HttpClientFailureOperations:
 
     head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
-    def _get402_request(self, **kwargs) -> HttpRequest:
+    def _get402_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -479,7 +514,10 @@ class HttpClientFailureOperations:
 
     get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
 
-    def _options403_request(self, **kwargs) -> HttpRequest:
+    def _options403_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -523,7 +561,10 @@ class HttpClientFailureOperations:
 
     options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
-    def _get403_request(self, **kwargs) -> HttpRequest:
+    def _get403_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -567,7 +608,12 @@ class HttpClientFailureOperations:
 
     get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
-    def _put404_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put404_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -620,7 +666,12 @@ class HttpClientFailureOperations:
 
     put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
 
-    def _patch405_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch405_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -673,7 +724,12 @@ class HttpClientFailureOperations:
 
     patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
-    def _post406_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post406_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -726,7 +782,12 @@ class HttpClientFailureOperations:
 
     post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
 
-    def _delete407_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete407_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -779,7 +840,12 @@ class HttpClientFailureOperations:
 
     delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
-    def _put409_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put409_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -832,7 +898,10 @@ class HttpClientFailureOperations:
 
     put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
 
-    def _head410_request(self, **kwargs) -> HttpRequest:
+    def _head410_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -876,7 +945,10 @@ class HttpClientFailureOperations:
 
     head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
-    def _get411_request(self, **kwargs) -> HttpRequest:
+    def _get411_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -920,7 +992,10 @@ class HttpClientFailureOperations:
 
     get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
 
-    def _options412_request(self, **kwargs) -> HttpRequest:
+    def _options412_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -964,7 +1039,10 @@ class HttpClientFailureOperations:
 
     options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
-    def _get412_request(self, **kwargs) -> HttpRequest:
+    def _get412_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1008,7 +1086,12 @@ class HttpClientFailureOperations:
 
     get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
-    def _put413_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put413_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1061,7 +1144,12 @@ class HttpClientFailureOperations:
 
     put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
 
-    def _patch414_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch414_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1114,7 +1202,12 @@ class HttpClientFailureOperations:
 
     patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
-    def _post415_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post415_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1167,7 +1260,10 @@ class HttpClientFailureOperations:
 
     post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
 
-    def _get416_request(self, **kwargs) -> HttpRequest:
+    def _get416_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1211,7 +1307,12 @@ class HttpClientFailureOperations:
 
     get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
-    def _delete417_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete417_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1264,7 +1365,10 @@ class HttpClientFailureOperations:
 
     delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
 
-    def _head429_request(self, **kwargs) -> HttpRequest:
+    def _head429_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

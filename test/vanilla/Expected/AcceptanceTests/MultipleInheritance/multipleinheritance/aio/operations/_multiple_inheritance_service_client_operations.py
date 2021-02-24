@@ -26,7 +26,10 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MultipleInheritanceServiceClientOperationsMixin:
-    def _get_horse_request(self, **kwargs) -> HttpRequest:
+    def _get_horse_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -74,7 +77,12 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
-    def _put_horse_request(self, body: "_models.Horse", **kwargs) -> HttpRequest:
+    def _put_horse_request(
+        self,
+        body,  # type: "_models.Horse"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -129,7 +137,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
-    def _get_pet_request(self, **kwargs) -> HttpRequest:
+    def _get_pet_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -177,7 +188,12 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     get_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
-    def _put_pet_request(self, body: "_models.Pet", **kwargs) -> HttpRequest:
+    def _put_pet_request(
+        self,
+        body,  # type: "_models.Pet"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -233,7 +249,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
-    def _get_feline_request(self, **kwargs) -> HttpRequest:
+    def _get_feline_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -281,7 +300,12 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
-    def _put_feline_request(self, body: "_models.Feline", **kwargs) -> HttpRequest:
+    def _put_feline_request(
+        self,
+        body,  # type: "_models.Feline"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -336,7 +360,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
-    def _get_cat_request(self, **kwargs) -> HttpRequest:
+    def _get_cat_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -384,7 +411,12 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
-    def _put_cat_request(self, body: "_models.Cat", **kwargs) -> HttpRequest:
+    def _put_cat_request(
+        self,
+        body,  # type: "_models.Cat"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -439,7 +471,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
-    def _get_kitten_request(self, **kwargs) -> HttpRequest:
+    def _get_kitten_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -488,7 +523,12 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
     get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
-    def _put_kitten_request(self, body: "_models.Kitten", **kwargs) -> HttpRequest:
+    def _put_kitten_request(
+        self,
+        body,  # type: "_models.Kitten"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

@@ -26,7 +26,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestReportServiceOperationsMixin:
-    def _get_report_request(self, qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _get_report_request(
+        self,
+        qualifier=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -80,7 +85,12 @@ class AutoRestReportServiceOperationsMixin:
 
     get_report.metadata = {"url": "/report"}  # type: ignore
 
-    def _get_optional_report_request(self, qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _get_optional_report_request(
+        self,
+        qualifier=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

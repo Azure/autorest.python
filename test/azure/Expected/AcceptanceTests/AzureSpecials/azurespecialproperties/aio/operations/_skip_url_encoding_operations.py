@@ -48,7 +48,12 @@ class SkipUrlEncodingOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_method_path_valid_request(self, unencoded_path_param: str, **kwargs) -> HttpRequest:
+    def _get_method_path_valid_request(
+        self,
+        unencoded_path_param,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -102,7 +107,12 @@ class SkipUrlEncodingOperations:
 
     get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
 
-    def _get_path_valid_request(self, unencoded_path_param: str, **kwargs) -> HttpRequest:
+    def _get_path_valid_request(
+        self,
+        unencoded_path_param,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -156,7 +166,10 @@ class SkipUrlEncodingOperations:
 
     get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
-    def _get_swagger_path_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_swagger_path_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         unencoded_path_param = "path1/path2/path3"
         accept = "application/json"
 
@@ -209,7 +222,12 @@ class SkipUrlEncodingOperations:
 
     get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
 
-    def _get_method_query_valid_request(self, q1: str, **kwargs) -> HttpRequest:
+    def _get_method_query_valid_request(
+        self,
+        q1,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -258,7 +276,12 @@ class SkipUrlEncodingOperations:
 
     get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
 
-    def _get_method_query_null_request(self, q1: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _get_method_query_null_request(
+        self,
+        q1=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -308,7 +331,12 @@ class SkipUrlEncodingOperations:
 
     get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
 
-    def _get_path_query_valid_request(self, q1: str, **kwargs) -> HttpRequest:
+    def _get_path_query_valid_request(
+        self,
+        q1,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -357,7 +385,10 @@ class SkipUrlEncodingOperations:
 
     get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
-    def _get_swagger_query_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_swagger_query_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         q1 = "value1&q2=value2&q3=value3"
         accept = "application/json"
 

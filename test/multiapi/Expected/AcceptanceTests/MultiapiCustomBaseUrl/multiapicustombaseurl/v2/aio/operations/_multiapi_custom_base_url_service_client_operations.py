@@ -21,9 +21,10 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
 
     def _test_request(
         self,
-        id: int,
-        **kwargs
-    ) -> HttpRequest:
+        id,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         accept = "application/json"
 

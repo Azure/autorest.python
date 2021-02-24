@@ -47,7 +47,10 @@ class HttpFailureOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_error_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_error_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,10 @@ class HttpFailureOperations:
 
     get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
-    def _get_no_model_error_request(self, **kwargs) -> HttpRequest:
+    def _get_no_model_error_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -142,7 +148,10 @@ class HttpFailureOperations:
 
     get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
-    def _get_no_model_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_no_model_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

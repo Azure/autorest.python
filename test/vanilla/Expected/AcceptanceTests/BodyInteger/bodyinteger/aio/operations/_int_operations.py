@@ -48,7 +48,10 @@ class IntOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -96,7 +99,10 @@ class IntOperations:
 
     get_null.metadata = {"url": "/int/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -144,7 +150,10 @@ class IntOperations:
 
     get_invalid.metadata = {"url": "/int/invalid"}  # type: ignore
 
-    def _get_overflow_int32_request(self, **kwargs) -> HttpRequest:
+    def _get_overflow_int32_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -192,7 +201,10 @@ class IntOperations:
 
     get_overflow_int32.metadata = {"url": "/int/overflowint32"}  # type: ignore
 
-    def _get_underflow_int32_request(self, **kwargs) -> HttpRequest:
+    def _get_underflow_int32_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -240,7 +252,10 @@ class IntOperations:
 
     get_underflow_int32.metadata = {"url": "/int/underflowint32"}  # type: ignore
 
-    def _get_overflow_int64_request(self, **kwargs) -> HttpRequest:
+    def _get_overflow_int64_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -288,7 +303,10 @@ class IntOperations:
 
     get_overflow_int64.metadata = {"url": "/int/overflowint64"}  # type: ignore
 
-    def _get_underflow_int64_request(self, **kwargs) -> HttpRequest:
+    def _get_underflow_int64_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -336,7 +354,12 @@ class IntOperations:
 
     get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
 
-    def _put_max32_request(self, body: int, **kwargs) -> HttpRequest:
+    def _put_max32_request(
+        self,
+        body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -388,7 +411,12 @@ class IntOperations:
 
     put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
 
-    def _put_max64_request(self, body: int, **kwargs) -> HttpRequest:
+    def _put_max64_request(
+        self,
+        body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -440,7 +468,12 @@ class IntOperations:
 
     put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
 
-    def _put_min32_request(self, body: int, **kwargs) -> HttpRequest:
+    def _put_min32_request(
+        self,
+        body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -492,7 +525,12 @@ class IntOperations:
 
     put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
 
-    def _put_min64_request(self, body: int, **kwargs) -> HttpRequest:
+    def _put_min64_request(
+        self,
+        body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -544,7 +582,10 @@ class IntOperations:
 
     put_min64.metadata = {"url": "/int/min/64"}  # type: ignore
 
-    def _get_unix_time_request(self, **kwargs) -> HttpRequest:
+    def _get_unix_time_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -592,7 +633,12 @@ class IntOperations:
 
     get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
 
-    def _put_unix_time_date_request(self, body: datetime.datetime, **kwargs) -> HttpRequest:
+    def _put_unix_time_date_request(
+        self,
+        body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -646,7 +692,10 @@ class IntOperations:
 
     put_unix_time_date.metadata = {"url": "/int/unixtime"}  # type: ignore
 
-    def _get_invalid_unix_time_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_unix_time_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -694,7 +743,10 @@ class IntOperations:
 
     get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}  # type: ignore
 
-    def _get_null_unix_time_request(self, **kwargs) -> HttpRequest:
+    def _get_null_unix_time_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

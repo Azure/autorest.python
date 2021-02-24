@@ -48,8 +48,13 @@ class AvailabilitySetsOperations:
         self._config = config
 
     def _update_request(
-        self, resource_group_name: str, avset: str, body: "_models.AvailabilitySetUpdateParameters", **kwargs
-    ) -> HttpRequest:
+        self,
+        resource_group_name,  # type: str
+        avset,  # type: str
+        body,  # type: "_models.AvailabilitySetUpdateParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL

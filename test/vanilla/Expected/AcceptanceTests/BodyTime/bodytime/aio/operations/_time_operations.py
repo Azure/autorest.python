@@ -48,7 +48,10 @@ class TimeOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_request(self, **kwargs) -> HttpRequest:
+    def _get_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -96,7 +99,12 @@ class TimeOperations:
 
     get.metadata = {"url": "/time/get"}  # type: ignore
 
-    def _put_request(self, body: datetime.time, **kwargs) -> HttpRequest:
+    def _put_request(
+        self,
+        body,  # type: datetime.time
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

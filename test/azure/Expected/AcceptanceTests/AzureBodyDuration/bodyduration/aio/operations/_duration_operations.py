@@ -48,7 +48,10 @@ class DurationOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -96,7 +99,12 @@ class DurationOperations:
 
     get_null.metadata = {"url": "/duration/null"}  # type: ignore
 
-    def _put_positive_duration_request(self, body: datetime.timedelta, **kwargs) -> HttpRequest:
+    def _put_positive_duration_request(
+        self,
+        body,  # type: datetime.timedelta
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -150,7 +158,10 @@ class DurationOperations:
 
     put_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
-    def _get_positive_duration_request(self, **kwargs) -> HttpRequest:
+    def _get_positive_duration_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -198,7 +209,10 @@ class DurationOperations:
 
     get_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

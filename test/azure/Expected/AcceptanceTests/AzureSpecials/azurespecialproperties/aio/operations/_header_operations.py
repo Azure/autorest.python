@@ -48,7 +48,12 @@ class HeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _custom_named_request_id_request(self, foo_client_request_id: str, **kwargs) -> HttpRequest:
+    def _custom_named_request_id_request(
+        self,
+        foo_client_request_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -104,7 +109,12 @@ class HeaderOperations:
 
     custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
-    def _custom_named_request_id_param_grouping_request(self, foo_client_request_id: str, **kwargs) -> HttpRequest:
+    def _custom_named_request_id_param_grouping_request(
+        self,
+        foo_client_request_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -168,7 +178,12 @@ class HeaderOperations:
 
     custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
 
-    def _custom_named_request_id_head_request(self, foo_client_request_id: str, **kwargs) -> HttpRequest:
+    def _custom_named_request_id_head_request(
+        self,
+        foo_client_request_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

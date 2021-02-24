@@ -48,7 +48,10 @@ class DateOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -96,7 +99,10 @@ class DateOperations:
 
     get_null.metadata = {"url": "/date/null"}  # type: ignore
 
-    def _get_invalid_date_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_date_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -144,7 +150,10 @@ class DateOperations:
 
     get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
-    def _get_overflow_date_request(self, **kwargs) -> HttpRequest:
+    def _get_overflow_date_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -192,7 +201,10 @@ class DateOperations:
 
     get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
 
-    def _get_underflow_date_request(self, **kwargs) -> HttpRequest:
+    def _get_underflow_date_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -240,7 +252,12 @@ class DateOperations:
 
     get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
-    def _put_max_date_request(self, body: datetime.date, **kwargs) -> HttpRequest:
+    def _put_max_date_request(
+        self,
+        body,  # type: datetime.date
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -292,7 +309,10 @@ class DateOperations:
 
     put_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
-    def _get_max_date_request(self, **kwargs) -> HttpRequest:
+    def _get_max_date_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -340,7 +360,12 @@ class DateOperations:
 
     get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
-    def _put_min_date_request(self, body: datetime.date, **kwargs) -> HttpRequest:
+    def _put_min_date_request(
+        self,
+        body,  # type: datetime.date
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -392,7 +417,10 @@ class DateOperations:
 
     put_min_date.metadata = {"url": "/date/min"}  # type: ignore
 
-    def _get_min_date_request(self, **kwargs) -> HttpRequest:
+    def _get_min_date_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

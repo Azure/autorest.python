@@ -48,7 +48,10 @@ class SubscriptionInCredentialsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _post_method_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _post_method_global_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -102,7 +105,10 @@ class SubscriptionInCredentialsOperations:
 
     post_method_global_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_method_global_null_request(self, **kwargs) -> HttpRequest:
+    def _post_method_global_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -155,7 +161,10 @@ class SubscriptionInCredentialsOperations:
 
     post_method_global_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
-    def _post_method_global_not_provided_valid_request(self, **kwargs) -> HttpRequest:
+    def _post_method_global_not_provided_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -211,7 +220,10 @@ class SubscriptionInCredentialsOperations:
 
     post_method_global_not_provided_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_path_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _post_path_global_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -265,7 +277,10 @@ class SubscriptionInCredentialsOperations:
 
     post_path_global_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_swagger_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _post_swagger_global_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

@@ -53,8 +53,11 @@ class StorageAccountsOperations:
         self._config = config
 
     def _check_name_availability_request(
-        self, body: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs
-    ) -> HttpRequest:
+        self,
+        body,  # type: "_models.StorageAccountCheckNameAvailabilityParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json, text/json"
@@ -124,8 +127,13 @@ class StorageAccountsOperations:
     check_name_availability.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"}  # type: ignore
 
     def _create_initial_request(
-        self, resource_group_name: str, account_name: str, body: "_models.StorageAccountCreateParameters", **kwargs
-    ) -> HttpRequest:
+        self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        body,  # type: "_models.StorageAccountCreateParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json, text/json"
@@ -273,7 +281,13 @@ class StorageAccountsOperations:
 
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
-    def _delete_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+    def _delete_request(
+        self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
 
         # Construct URL
@@ -336,7 +350,13 @@ class StorageAccountsOperations:
 
     delete.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
-    def _get_properties_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+    def _get_properties_request(
+        self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -408,8 +428,13 @@ class StorageAccountsOperations:
     get_properties.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     def _update_request(
-        self, resource_group_name: str, account_name: str, body: "_models.StorageAccountUpdateParameters", **kwargs
-    ) -> HttpRequest:
+        self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        body,  # type: "_models.StorageAccountUpdateParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json, text/json"
@@ -500,7 +525,13 @@ class StorageAccountsOperations:
 
     update.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
-    def _list_keys_request(self, resource_group_name: str, account_name: str, **kwargs) -> HttpRequest:
+    def _list_keys_request(
+        self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -567,7 +598,10 @@ class StorageAccountsOperations:
 
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
-    def _list_request(self, **kwargs) -> HttpRequest:
+    def _list_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -642,7 +676,12 @@ class StorageAccountsOperations:
 
     list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
-    def _list_by_resource_group_request(self, resource_group_name: str, **kwargs) -> HttpRequest:
+    def _list_by_resource_group_request(
+        self,
+        resource_group_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         accept = "application/json, text/json"
 
@@ -736,11 +775,12 @@ class StorageAccountsOperations:
 
     def _regenerate_key_request(
         self,
-        resource_group_name: str,
-        account_name: str,
-        body: "_models.StorageAccountRegenerateKeyParameters",
-        **kwargs
-    ) -> HttpRequest:
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        body,  # type: "_models.StorageAccountRegenerateKeyParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-05-01-preview"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json, text/json"

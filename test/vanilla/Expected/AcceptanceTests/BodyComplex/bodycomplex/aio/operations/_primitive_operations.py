@@ -48,7 +48,10 @@ class PrimitiveOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_int_request(self, **kwargs) -> HttpRequest:
+    def _get_int_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -96,7 +99,12 @@ class PrimitiveOperations:
 
     get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
-    def _put_int_request(self, body: "_models.IntWrapper", **kwargs) -> HttpRequest:
+    def _put_int_request(
+        self,
+        body,  # type: "_models.IntWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -148,7 +156,10 @@ class PrimitiveOperations:
 
     put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
-    def _get_long_request(self, **kwargs) -> HttpRequest:
+    def _get_long_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -196,7 +207,12 @@ class PrimitiveOperations:
 
     get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
-    def _put_long_request(self, body: "_models.LongWrapper", **kwargs) -> HttpRequest:
+    def _put_long_request(
+        self,
+        body,  # type: "_models.LongWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -248,7 +264,10 @@ class PrimitiveOperations:
 
     put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
-    def _get_float_request(self, **kwargs) -> HttpRequest:
+    def _get_float_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -296,7 +315,12 @@ class PrimitiveOperations:
 
     get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
-    def _put_float_request(self, body: "_models.FloatWrapper", **kwargs) -> HttpRequest:
+    def _put_float_request(
+        self,
+        body,  # type: "_models.FloatWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -348,7 +372,10 @@ class PrimitiveOperations:
 
     put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
-    def _get_double_request(self, **kwargs) -> HttpRequest:
+    def _get_double_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -396,7 +423,12 @@ class PrimitiveOperations:
 
     get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
-    def _put_double_request(self, body: "_models.DoubleWrapper", **kwargs) -> HttpRequest:
+    def _put_double_request(
+        self,
+        body,  # type: "_models.DoubleWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -449,7 +481,10 @@ class PrimitiveOperations:
 
     put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
-    def _get_bool_request(self, **kwargs) -> HttpRequest:
+    def _get_bool_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -497,7 +532,12 @@ class PrimitiveOperations:
 
     get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
-    def _put_bool_request(self, body: "_models.BooleanWrapper", **kwargs) -> HttpRequest:
+    def _put_bool_request(
+        self,
+        body,  # type: "_models.BooleanWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -549,7 +589,10 @@ class PrimitiveOperations:
 
     put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
-    def _get_string_request(self, **kwargs) -> HttpRequest:
+    def _get_string_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -597,7 +640,12 @@ class PrimitiveOperations:
 
     get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
-    def _put_string_request(self, body: "_models.StringWrapper", **kwargs) -> HttpRequest:
+    def _put_string_request(
+        self,
+        body,  # type: "_models.StringWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -649,7 +697,10 @@ class PrimitiveOperations:
 
     put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
-    def _get_date_request(self, **kwargs) -> HttpRequest:
+    def _get_date_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -697,7 +748,12 @@ class PrimitiveOperations:
 
     get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
-    def _put_date_request(self, body: "_models.DateWrapper", **kwargs) -> HttpRequest:
+    def _put_date_request(
+        self,
+        body,  # type: "_models.DateWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -749,7 +805,10 @@ class PrimitiveOperations:
 
     put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
-    def _get_date_time_request(self, **kwargs) -> HttpRequest:
+    def _get_date_time_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -797,7 +856,12 @@ class PrimitiveOperations:
 
     get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
-    def _put_date_time_request(self, body: "_models.DatetimeWrapper", **kwargs) -> HttpRequest:
+    def _put_date_time_request(
+        self,
+        body,  # type: "_models.DatetimeWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -851,7 +915,10 @@ class PrimitiveOperations:
 
     put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
-    def _get_date_time_rfc1123_request(self, **kwargs) -> HttpRequest:
+    def _get_date_time_rfc1123_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -899,7 +966,12 @@ class PrimitiveOperations:
 
     get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
-    def _put_date_time_rfc1123_request(self, body: "_models.Datetimerfc1123Wrapper", **kwargs) -> HttpRequest:
+    def _put_date_time_rfc1123_request(
+        self,
+        body,  # type: "_models.Datetimerfc1123Wrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -954,7 +1026,10 @@ class PrimitiveOperations:
 
     put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
-    def _get_duration_request(self, **kwargs) -> HttpRequest:
+    def _get_duration_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1002,7 +1077,12 @@ class PrimitiveOperations:
 
     get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
-    def _put_duration_request(self, body: "_models.DurationWrapper", **kwargs) -> HttpRequest:
+    def _put_duration_request(
+        self,
+        body,  # type: "_models.DurationWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1057,7 +1137,10 @@ class PrimitiveOperations:
 
     put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
-    def _get_byte_request(self, **kwargs) -> HttpRequest:
+    def _get_byte_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1105,7 +1188,12 @@ class PrimitiveOperations:
 
     get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
-    def _put_byte_request(self, body: "_models.ByteWrapper", **kwargs) -> HttpRequest:
+    def _put_byte_request(
+        self,
+        body,  # type: "_models.ByteWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

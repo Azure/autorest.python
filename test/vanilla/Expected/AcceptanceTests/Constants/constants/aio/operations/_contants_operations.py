@@ -48,8 +48,11 @@ class ContantsOperations:
         self._config = config
 
     def _put_no_model_as_string_no_required_two_value_no_default_request(
-        self, input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        input=None,  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault")
@@ -103,8 +106,11 @@ class ContantsOperations:
     put_no_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     def _put_no_model_as_string_no_required_two_value_default_request(
-        self, input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueDefault")
@@ -158,8 +164,11 @@ class ContantsOperations:
     put_no_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     def _put_no_model_as_string_no_required_one_value_no_default_request(
-        self, input: Optional[str] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueNoDefault")
@@ -213,8 +222,11 @@ class ContantsOperations:
     put_no_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     def _put_no_model_as_string_no_required_one_value_default_request(
-        self, input: Optional[str] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueDefault")
@@ -268,8 +280,11 @@ class ContantsOperations:
     put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     def _put_no_model_as_string_required_two_value_no_default_request(
-        self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
-    ) -> HttpRequest:
+        self,
+        input,  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueNoDefault")
@@ -322,8 +337,11 @@ class ContantsOperations:
     put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     def _put_no_model_as_string_required_two_value_default_request(
-        self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueDefault")
@@ -373,7 +391,10 @@ class ContantsOperations:
 
     put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
-    def _put_no_model_as_string_required_one_value_no_default_request(self, **kwargs) -> HttpRequest:
+    def _put_no_model_as_string_required_one_value_no_default_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         input = "value1"
 
         # Construct URL
@@ -420,7 +441,10 @@ class ContantsOperations:
 
     put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
-    def _put_no_model_as_string_required_one_value_default_request(self, **kwargs) -> HttpRequest:
+    def _put_no_model_as_string_required_one_value_default_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         input = "value1"
 
         # Construct URL
@@ -468,8 +492,11 @@ class ContantsOperations:
     put_no_model_as_string_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     def _put_model_as_string_no_required_two_value_no_default_request(
-        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueNoDefault")
@@ -523,8 +550,11 @@ class ContantsOperations:
     put_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     def _put_model_as_string_no_required_two_value_default_request(
-        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueDefault")
@@ -576,8 +606,11 @@ class ContantsOperations:
     put_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     def _put_model_as_string_no_required_one_value_no_default_request(
-        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        input=None,  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueNoDefault")
@@ -631,8 +664,11 @@ class ContantsOperations:
     put_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     def _put_model_as_string_no_required_one_value_default_request(
-        self, input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueDefault")
@@ -684,8 +720,11 @@ class ContantsOperations:
     put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     def _put_model_as_string_required_two_value_no_default_request(
-        self, input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs
-    ) -> HttpRequest:
+        self,
+        input,  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueNoDefault")
@@ -736,8 +775,11 @@ class ContantsOperations:
     put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     def _put_model_as_string_required_two_value_default_request(
-        self, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueDefault")
@@ -788,8 +830,11 @@ class ContantsOperations:
     put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     def _put_model_as_string_required_one_value_no_default_request(
-        self, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs
-    ) -> HttpRequest:
+        self,
+        input,  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueNoDefault")
@@ -840,8 +885,11 @@ class ContantsOperations:
     put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     def _put_model_as_string_required_one_value_default_request(
-        self, input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs
-    ) -> HttpRequest:
+        self,
+        input="value1",  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueDefault")

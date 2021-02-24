@@ -47,7 +47,12 @@ class ExplicitOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_optional_binary_body_request(self, body: Optional[IO] = None, **kwargs) -> HttpRequest:
+    def _put_optional_binary_body_request(
+        self,
+        body=None,  # type: Optional[IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/json"
 
@@ -100,7 +105,12 @@ class ExplicitOperations:
 
     put_optional_binary_body.metadata = {"url": "/reqopt/explicit/optional/binary-body"}  # type: ignore
 
-    def _put_required_binary_body_request(self, body: IO, **kwargs) -> HttpRequest:
+    def _put_required_binary_body_request(
+        self,
+        body,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/json"
 
@@ -153,7 +163,12 @@ class ExplicitOperations:
 
     put_required_binary_body.metadata = {"url": "/reqopt/explicit/required/binary-body"}  # type: ignore
 
-    def _post_required_integer_parameter_request(self, body: int, **kwargs) -> HttpRequest:
+    def _post_required_integer_parameter_request(
+        self,
+        body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -208,7 +223,12 @@ class ExplicitOperations:
 
     post_required_integer_parameter.metadata = {"url": "/reqopt/requied/integer/parameter"}  # type: ignore
 
-    def _post_optional_integer_parameter_request(self, body: Optional[int] = None, **kwargs) -> HttpRequest:
+    def _post_optional_integer_parameter_request(
+        self,
+        body=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -263,7 +283,12 @@ class ExplicitOperations:
 
     post_optional_integer_parameter.metadata = {"url": "/reqopt/optional/integer/parameter"}  # type: ignore
 
-    def _post_required_integer_property_request(self, body: "_models.IntWrapper", **kwargs) -> HttpRequest:
+    def _post_required_integer_property_request(
+        self,
+        body,  # type: "_models.IntWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -320,8 +345,11 @@ class ExplicitOperations:
     post_required_integer_property.metadata = {"url": "/reqopt/requied/integer/property"}  # type: ignore
 
     def _post_optional_integer_property_request(
-        self, body: Optional["_models.IntOptionalWrapper"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.IntOptionalWrapper"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -377,7 +405,12 @@ class ExplicitOperations:
 
     post_optional_integer_property.metadata = {"url": "/reqopt/optional/integer/property"}  # type: ignore
 
-    def _post_required_integer_header_request(self, header_parameter: int, **kwargs) -> HttpRequest:
+    def _post_required_integer_header_request(
+        self,
+        header_parameter,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -427,7 +460,12 @@ class ExplicitOperations:
 
     post_required_integer_header.metadata = {"url": "/reqopt/requied/integer/header"}  # type: ignore
 
-    def _post_optional_integer_header_request(self, header_parameter: Optional[int] = None, **kwargs) -> HttpRequest:
+    def _post_optional_integer_header_request(
+        self,
+        header_parameter=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -477,7 +515,12 @@ class ExplicitOperations:
 
     post_optional_integer_header.metadata = {"url": "/reqopt/optional/integer/header"}  # type: ignore
 
-    def _post_required_string_parameter_request(self, body: str, **kwargs) -> HttpRequest:
+    def _post_required_string_parameter_request(
+        self,
+        body,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -532,7 +575,12 @@ class ExplicitOperations:
 
     post_required_string_parameter.metadata = {"url": "/reqopt/requied/string/parameter"}  # type: ignore
 
-    def _post_optional_string_parameter_request(self, body: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _post_optional_string_parameter_request(
+        self,
+        body=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -587,7 +635,12 @@ class ExplicitOperations:
 
     post_optional_string_parameter.metadata = {"url": "/reqopt/optional/string/parameter"}  # type: ignore
 
-    def _post_required_string_property_request(self, body: "_models.StringWrapper", **kwargs) -> HttpRequest:
+    def _post_required_string_property_request(
+        self,
+        body,  # type: "_models.StringWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -644,8 +697,11 @@ class ExplicitOperations:
     post_required_string_property.metadata = {"url": "/reqopt/requied/string/property"}  # type: ignore
 
     def _post_optional_string_property_request(
-        self, body: Optional["_models.StringOptionalWrapper"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.StringOptionalWrapper"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -701,7 +757,12 @@ class ExplicitOperations:
 
     post_optional_string_property.metadata = {"url": "/reqopt/optional/string/property"}  # type: ignore
 
-    def _post_required_string_header_request(self, header_parameter: str, **kwargs) -> HttpRequest:
+    def _post_required_string_header_request(
+        self,
+        header_parameter,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -751,7 +812,12 @@ class ExplicitOperations:
 
     post_required_string_header.metadata = {"url": "/reqopt/requied/string/header"}  # type: ignore
 
-    def _post_optional_string_header_request(self, body_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _post_optional_string_header_request(
+        self,
+        body_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -801,7 +867,12 @@ class ExplicitOperations:
 
     post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
-    def _post_required_class_parameter_request(self, body: "_models.Product", **kwargs) -> HttpRequest:
+    def _post_required_class_parameter_request(
+        self,
+        body,  # type: "_models.Product"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -856,7 +927,12 @@ class ExplicitOperations:
 
     post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
-    def _post_optional_class_parameter_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post_optional_class_parameter_request(
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -911,7 +987,12 @@ class ExplicitOperations:
 
     post_optional_class_parameter.metadata = {"url": "/reqopt/optional/class/parameter"}  # type: ignore
 
-    def _post_required_class_property_request(self, body: "_models.ClassWrapper", **kwargs) -> HttpRequest:
+    def _post_required_class_property_request(
+        self,
+        body,  # type: "_models.ClassWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -968,8 +1049,11 @@ class ExplicitOperations:
     post_required_class_property.metadata = {"url": "/reqopt/requied/class/property"}  # type: ignore
 
     def _post_optional_class_property_request(
-        self, body: Optional["_models.ClassOptionalWrapper"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.ClassOptionalWrapper"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1025,7 +1109,12 @@ class ExplicitOperations:
 
     post_optional_class_property.metadata = {"url": "/reqopt/optional/class/property"}  # type: ignore
 
-    def _post_required_array_parameter_request(self, body: List[str], **kwargs) -> HttpRequest:
+    def _post_required_array_parameter_request(
+        self,
+        body,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1080,7 +1169,12 @@ class ExplicitOperations:
 
     post_required_array_parameter.metadata = {"url": "/reqopt/requied/array/parameter"}  # type: ignore
 
-    def _post_optional_array_parameter_request(self, body: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _post_optional_array_parameter_request(
+        self,
+        body=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1135,7 +1229,12 @@ class ExplicitOperations:
 
     post_optional_array_parameter.metadata = {"url": "/reqopt/optional/array/parameter"}  # type: ignore
 
-    def _post_required_array_property_request(self, body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
+    def _post_required_array_property_request(
+        self,
+        body,  # type: "_models.ArrayWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1192,8 +1291,11 @@ class ExplicitOperations:
     post_required_array_property.metadata = {"url": "/reqopt/requied/array/property"}  # type: ignore
 
     def _post_optional_array_property_request(
-        self, body: Optional["_models.ArrayOptionalWrapper"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.ArrayOptionalWrapper"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1249,7 +1351,12 @@ class ExplicitOperations:
 
     post_optional_array_property.metadata = {"url": "/reqopt/optional/array/property"}  # type: ignore
 
-    def _post_required_array_header_request(self, header_parameter: List[str], **kwargs) -> HttpRequest:
+    def _post_required_array_header_request(
+        self,
+        header_parameter,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1302,8 +1409,11 @@ class ExplicitOperations:
     post_required_array_header.metadata = {"url": "/reqopt/requied/array/header"}  # type: ignore
 
     def _post_optional_array_header_request(
-        self, header_parameter: Optional[List[str]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        header_parameter=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

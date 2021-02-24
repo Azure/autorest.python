@@ -47,7 +47,10 @@ class HttpRetryOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head408_request(self, **kwargs) -> HttpRequest:
+    def _head408_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -91,7 +94,12 @@ class HttpRetryOperations:
 
     head408.metadata = {"url": "/http/retry/408"}  # type: ignore
 
-    def _put500_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put500_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -144,7 +152,12 @@ class HttpRetryOperations:
 
     put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
-    def _patch500_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch500_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -197,7 +210,10 @@ class HttpRetryOperations:
 
     patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
-    def _get502_request(self, **kwargs) -> HttpRequest:
+    def _get502_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -241,7 +257,10 @@ class HttpRetryOperations:
 
     get502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
-    def _options502_request(self, **kwargs) -> HttpRequest:
+    def _options502_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -289,7 +308,12 @@ class HttpRetryOperations:
 
     options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
-    def _post503_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post503_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -342,7 +366,12 @@ class HttpRetryOperations:
 
     post503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
-    def _delete503_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete503_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -395,7 +424,12 @@ class HttpRetryOperations:
 
     delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
-    def _put504_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put504_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -448,7 +482,12 @@ class HttpRetryOperations:
 
     put504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
-    def _patch504_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch504_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

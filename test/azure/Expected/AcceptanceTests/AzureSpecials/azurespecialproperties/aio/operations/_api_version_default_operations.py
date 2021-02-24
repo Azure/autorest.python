@@ -48,7 +48,10 @@ class ApiVersionDefaultOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_method_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_method_global_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -96,7 +99,10 @@ class ApiVersionDefaultOperations:
 
     get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
-    def _get_method_global_not_provided_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_method_global_not_provided_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -146,7 +152,10 @@ class ApiVersionDefaultOperations:
 
     get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
-    def _get_path_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_path_global_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-07-01-preview"
         accept = "application/json"
 
@@ -192,7 +201,10 @@ class ApiVersionDefaultOperations:
 
     get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
-    def _get_swagger_global_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_swagger_global_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2015-07-01-preview"
         accept = "application/json"
 

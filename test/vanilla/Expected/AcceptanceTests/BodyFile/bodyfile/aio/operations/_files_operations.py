@@ -47,7 +47,10 @@ class FilesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_file_request(self, **kwargs) -> HttpRequest:
+    def _get_file_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "image/png, application/json"
 
         # Construct URL
@@ -95,7 +98,10 @@ class FilesOperations:
 
     get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
-    def _get_file_large_request(self, **kwargs) -> HttpRequest:
+    def _get_file_large_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "image/png, application/json"
 
         # Construct URL
@@ -143,7 +149,10 @@ class FilesOperations:
 
     get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
-    def _get_empty_file_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_file_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "image/png, application/json"
 
         # Construct URL

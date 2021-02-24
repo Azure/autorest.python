@@ -20,6 +20,8 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
+    from azure.core.pipeline.transport import HttpRequest
+
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 

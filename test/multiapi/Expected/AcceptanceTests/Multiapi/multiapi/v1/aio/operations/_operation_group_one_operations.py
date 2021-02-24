@@ -42,8 +42,9 @@ class OperationGroupOneOperations:
 
     def _test_two_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         accept = "application/json"
 

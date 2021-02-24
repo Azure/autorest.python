@@ -47,7 +47,10 @@ class HttpServerFailureOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head501_request(self, **kwargs) -> HttpRequest:
+    def _head501_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -91,7 +94,10 @@ class HttpServerFailureOperations:
 
     head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
-    def _get501_request(self, **kwargs) -> HttpRequest:
+    def _get501_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -135,7 +141,12 @@ class HttpServerFailureOperations:
 
     get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
-    def _post505_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post505_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -188,7 +199,12 @@ class HttpServerFailureOperations:
 
     post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
-    def _delete505_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete505_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

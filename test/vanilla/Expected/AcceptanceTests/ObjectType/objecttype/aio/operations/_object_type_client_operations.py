@@ -24,7 +24,10 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ObjectTypeClientOperationsMixin:
-    def _get_request(self, **kwargs) -> HttpRequest:
+    def _get_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -73,7 +76,12 @@ class ObjectTypeClientOperationsMixin:
 
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
-    def _put_request(self, body: object, **kwargs) -> HttpRequest:
+    def _put_request(
+        self,
+        body,  # type: object
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

@@ -51,8 +51,11 @@ class LROsCustomHeaderOperations:
         self._config = config
 
     def _put_async_retry_succeeded_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -174,8 +177,11 @@ class LROsCustomHeaderOperations:
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     def _put201_creating_succeeded200_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -287,7 +293,12 @@ class LROsCustomHeaderOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post202_retry200_initial_request(
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -388,8 +399,11 @@ class LROsCustomHeaderOperations:
     begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     def _post_async_retry_succeeded_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

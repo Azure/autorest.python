@@ -48,7 +48,12 @@ class SubscriptionInMethodOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _post_method_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
+    def _post_method_local_valid_request(
+        self,
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -105,7 +110,12 @@ class SubscriptionInMethodOperations:
 
     post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_method_local_null_request(self, subscription_id: str, **kwargs) -> HttpRequest:
+    def _post_method_local_null_request(
+        self,
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -161,7 +171,12 @@ class SubscriptionInMethodOperations:
 
     post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
 
-    def _post_path_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
+    def _post_path_local_valid_request(
+        self,
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -217,7 +232,12 @@ class SubscriptionInMethodOperations:
 
     post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
-    def _post_swagger_local_valid_request(self, subscription_id: str, **kwargs) -> HttpRequest:
+    def _post_swagger_local_valid_request(
+        self,
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

@@ -47,7 +47,12 @@ class PathsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_empty_request(self, account_name: str, **kwargs) -> HttpRequest:
+    def _get_empty_request(
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

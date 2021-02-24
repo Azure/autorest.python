@@ -48,7 +48,10 @@ class Datetimerfc1123Operations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -96,7 +99,10 @@ class Datetimerfc1123Operations:
 
     get_null.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -144,7 +150,10 @@ class Datetimerfc1123Operations:
 
     get_invalid.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
 
-    def _get_overflow_request(self, **kwargs) -> HttpRequest:
+    def _get_overflow_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -192,7 +201,10 @@ class Datetimerfc1123Operations:
 
     get_overflow.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
 
-    def _get_underflow_request(self, **kwargs) -> HttpRequest:
+    def _get_underflow_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -240,7 +252,12 @@ class Datetimerfc1123Operations:
 
     get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
 
-    def _put_utc_max_date_time_request(self, body: datetime.datetime, **kwargs) -> HttpRequest:
+    def _put_utc_max_date_time_request(
+        self,
+        body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -294,7 +311,10 @@ class Datetimerfc1123Operations:
 
     put_utc_max_date_time.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
 
-    def _get_utc_lowercase_max_date_time_request(self, **kwargs) -> HttpRequest:
+    def _get_utc_lowercase_max_date_time_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -344,7 +364,10 @@ class Datetimerfc1123Operations:
 
     get_utc_lowercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
 
-    def _get_utc_uppercase_max_date_time_request(self, **kwargs) -> HttpRequest:
+    def _get_utc_uppercase_max_date_time_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -394,7 +417,12 @@ class Datetimerfc1123Operations:
 
     get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
 
-    def _put_utc_min_date_time_request(self, body: datetime.datetime, **kwargs) -> HttpRequest:
+    def _put_utc_min_date_time_request(
+        self,
+        body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -448,7 +476,10 @@ class Datetimerfc1123Operations:
 
     put_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
 
-    def _get_utc_min_date_time_request(self, **kwargs) -> HttpRequest:
+    def _get_utc_min_date_time_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

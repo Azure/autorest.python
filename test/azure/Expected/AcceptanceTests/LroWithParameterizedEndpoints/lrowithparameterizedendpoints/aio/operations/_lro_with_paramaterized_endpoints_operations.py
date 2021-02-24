@@ -28,7 +28,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROWithParamaterizedEndpointsOperationsMixin:
-    def _poll_with_parameterized_endpoints_initial_request(self, account_name: str, **kwargs) -> HttpRequest:
+    def _poll_with_parameterized_endpoints_initial_request(
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

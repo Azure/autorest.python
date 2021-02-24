@@ -47,7 +47,10 @@ class EnumOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_not_expandable_request(self, **kwargs) -> HttpRequest:
+    def _get_not_expandable_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,12 @@ class EnumOperations:
 
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
-    def _put_not_expandable_request(self, body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
+    def _put_not_expandable_request(
+        self,
+        body,  # type: Union[str, "_models.Colors"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -149,7 +157,10 @@ class EnumOperations:
 
     put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
-    def _get_referenced_request(self, **kwargs) -> HttpRequest:
+    def _get_referenced_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -197,7 +208,12 @@ class EnumOperations:
 
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
-    def _put_referenced_request(self, body: Union[str, "_models.Colors"], **kwargs) -> HttpRequest:
+    def _put_referenced_request(
+        self,
+        body,  # type: Union[str, "_models.Colors"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -251,7 +267,10 @@ class EnumOperations:
 
     put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
-    def _get_referenced_constant_request(self, **kwargs) -> HttpRequest:
+    def _get_referenced_constant_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -301,7 +320,12 @@ class EnumOperations:
 
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
-    def _put_referenced_constant_request(self, body: "_models.RefColorConstant", **kwargs) -> HttpRequest:
+    def _put_referenced_constant_request(
+        self,
+        body,  # type: "_models.RefColorConstant"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

@@ -49,8 +49,13 @@ class OdataOperations:
         self._config = config
 
     def _get_with_filter_request(
-        self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        filter=None,  # type: Optional[str]
+        top=None,  # type: Optional[int]
+        orderby=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

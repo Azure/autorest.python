@@ -47,7 +47,10 @@ class ReadonlypropertyOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,12 @@ class ReadonlypropertyOperations:
 
     get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
-    def _put_valid_request(self, body: "_models.ReadonlyObj", **kwargs) -> HttpRequest:
+    def _put_valid_request(
+        self,
+        body,  # type: "_models.ReadonlyObj"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

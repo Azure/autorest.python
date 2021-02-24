@@ -51,8 +51,11 @@ class LRORetrysOperations:
         self._config = config
 
     def _put201_creating_succeeded200_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -164,8 +167,11 @@ class LRORetrysOperations:
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
 
     def _put_async_relative_retry_succeeded_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -287,7 +293,10 @@ class LRORetrysOperations:
 
     begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
 
-    def _delete_provisioning202_accepted200_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+    def _delete_provisioning202_accepted200_succeeded_initial_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -389,7 +398,10 @@ class LRORetrysOperations:
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    def _delete202_retry200_initial_request(self, **kwargs) -> HttpRequest:
+    def _delete202_retry200_initial_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -477,7 +489,10 @@ class LRORetrysOperations:
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
-    def _delete_async_relative_retry_succeeded_initial_request(self, **kwargs) -> HttpRequest:
+    def _delete_async_relative_retry_succeeded_initial_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -568,7 +583,12 @@ class LRORetrysOperations:
 
     begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
-    def _post202_retry200_initial_request(self, body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
+    def _post202_retry200_initial_request(
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -668,8 +688,11 @@ class LRORetrysOperations:
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
     def _post_async_relative_retry_succeeded_initial_request(
-        self, body: Optional["_models.Product"] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

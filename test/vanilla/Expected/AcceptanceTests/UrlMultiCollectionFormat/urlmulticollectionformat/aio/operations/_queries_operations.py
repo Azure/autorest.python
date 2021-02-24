@@ -47,7 +47,12 @@ class QueriesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _array_string_multi_null_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_multi_null_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -99,7 +104,12 @@ class QueriesOperations:
 
     array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
 
-    def _array_string_multi_empty_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_multi_empty_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -151,7 +161,12 @@ class QueriesOperations:
 
     array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
 
-    def _array_string_multi_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_multi_valid_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

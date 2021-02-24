@@ -25,10 +25,11 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_one_request(
         self,
-        id: int,
-        message: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        id,  # type: int
+        message=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         accept = "application/json"
 
@@ -94,9 +95,10 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_lro_initial_request(
         self,
-        body: Optional["_models.Product"] = None,
-        **kwargs
-    ) -> HttpRequest:
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -216,11 +218,12 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_lro_and_paging_initial_request(
         self,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
-        **kwargs
-    ) -> HttpRequest:
+        client_request_id=None,  # type: Optional[str]
+        maxresults=None,  # type: Optional[int]
+        timeout=30,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -414,9 +417,10 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_different_calls_request(
         self,
-        greeting_in_english: str,
-        **kwargs
-    ) -> HttpRequest:
+        greeting_in_english,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         accept = "application/json"
 

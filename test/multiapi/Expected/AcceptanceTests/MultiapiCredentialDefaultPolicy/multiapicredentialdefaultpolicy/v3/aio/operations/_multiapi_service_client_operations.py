@@ -23,8 +23,9 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_paging_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -100,11 +101,12 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_different_calls_request(
         self,
-        greeting_in_english: str,
-        greeting_in_chinese: Optional[str] = None,
-        greeting_in_french: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        greeting_in_english,  # type: str
+        greeting_in_chinese=None,  # type: Optional[str]
+        greeting_in_french=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "3.0.0"
         accept = "application/json"
 

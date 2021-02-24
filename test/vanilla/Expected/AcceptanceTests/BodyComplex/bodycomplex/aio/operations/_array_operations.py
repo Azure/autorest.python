@@ -47,7 +47,10 @@ class ArrayOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,12 @@ class ArrayOperations:
 
     get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
-    def _put_valid_request(self, body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
+    def _put_valid_request(
+        self,
+        body,  # type: "_models.ArrayWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -148,7 +156,10 @@ class ArrayOperations:
 
     put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -196,7 +207,12 @@ class ArrayOperations:
 
     get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
-    def _put_empty_request(self, body: "_models.ArrayWrapper", **kwargs) -> HttpRequest:
+    def _put_empty_request(
+        self,
+        body,  # type: "_models.ArrayWrapper"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -249,7 +265,10 @@ class ArrayOperations:
 
     put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
-    def _get_not_provided_request(self, **kwargs) -> HttpRequest:
+    def _get_not_provided_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

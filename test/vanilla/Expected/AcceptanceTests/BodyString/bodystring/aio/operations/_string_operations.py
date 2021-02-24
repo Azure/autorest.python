@@ -47,7 +47,10 @@ class StringOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,12 @@ class StringOperations:
 
     get_null.metadata = {"url": "/string/null"}  # type: ignore
 
-    def _put_null_request(self, body: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _put_null_request(
+        self,
+        body=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -148,7 +156,10 @@ class StringOperations:
 
     put_null.metadata = {"url": "/string/null"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -196,7 +207,12 @@ class StringOperations:
 
     get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
-    def _put_empty_request(self, body: str, **kwargs) -> HttpRequest:
+    def _put_empty_request(
+        self,
+        body,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -249,7 +265,10 @@ class StringOperations:
 
     put_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
-    def _get_mbcs_request(self, **kwargs) -> HttpRequest:
+    def _get_mbcs_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -297,7 +316,12 @@ class StringOperations:
 
     get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
-    def _put_mbcs_request(self, body: str, **kwargs) -> HttpRequest:
+    def _put_mbcs_request(
+        self,
+        body,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -350,7 +374,10 @@ class StringOperations:
 
     put_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
-    def _get_whitespace_request(self, **kwargs) -> HttpRequest:
+    def _get_whitespace_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -400,7 +427,12 @@ class StringOperations:
 
     get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
-    def _put_whitespace_request(self, body: str, **kwargs) -> HttpRequest:
+    def _put_whitespace_request(
+        self,
+        body,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -457,7 +489,10 @@ class StringOperations:
 
     put_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
-    def _get_not_provided_request(self, **kwargs) -> HttpRequest:
+    def _get_not_provided_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -505,7 +540,10 @@ class StringOperations:
 
     get_not_provided.metadata = {"url": "/string/notProvided"}  # type: ignore
 
-    def _get_base64_encoded_request(self, **kwargs) -> HttpRequest:
+    def _get_base64_encoded_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -553,7 +591,10 @@ class StringOperations:
 
     get_base64_encoded.metadata = {"url": "/string/base64Encoding"}  # type: ignore
 
-    def _get_base64_url_encoded_request(self, **kwargs) -> HttpRequest:
+    def _get_base64_url_encoded_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -603,7 +644,12 @@ class StringOperations:
 
     get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
-    def _put_base64_url_encoded_request(self, body: bytes, **kwargs) -> HttpRequest:
+    def _put_base64_url_encoded_request(
+        self,
+        body,  # type: bytes
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -657,7 +703,10 @@ class StringOperations:
 
     put_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
-    def _get_null_base64_url_encoded_request(self, **kwargs) -> HttpRequest:
+    def _get_null_base64_url_encoded_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

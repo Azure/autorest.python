@@ -47,7 +47,12 @@ class ImplicitOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_required_path_request(self, path_parameter: str, **kwargs) -> HttpRequest:
+    def _get_required_path_request(
+        self,
+        path_parameter,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -99,7 +104,12 @@ class ImplicitOperations:
 
     get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
 
-    def _put_optional_query_request(self, query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _put_optional_query_request(
+        self,
+        query_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -149,7 +159,12 @@ class ImplicitOperations:
 
     put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
 
-    def _put_optional_header_request(self, query_parameter: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _put_optional_header_request(
+        self,
+        query_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -199,7 +214,12 @@ class ImplicitOperations:
 
     put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
 
-    def _put_optional_body_request(self, body: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _put_optional_body_request(
+        self,
+        body=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -254,7 +274,12 @@ class ImplicitOperations:
 
     put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
 
-    def _put_optional_binary_body_request(self, body: Optional[IO] = None, **kwargs) -> HttpRequest:
+    def _put_optional_binary_body_request(
+        self,
+        body=None,  # type: Optional[IO]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/octet-stream")
         accept = "application/json"
 
@@ -307,7 +332,10 @@ class ImplicitOperations:
 
     put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}  # type: ignore
 
-    def _get_required_global_path_request(self, **kwargs) -> HttpRequest:
+    def _get_required_global_path_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -359,7 +387,10 @@ class ImplicitOperations:
 
     get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
 
-    def _get_required_global_query_request(self, **kwargs) -> HttpRequest:
+    def _get_required_global_query_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -408,7 +439,10 @@ class ImplicitOperations:
 
     get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
 
-    def _get_optional_global_query_request(self, **kwargs) -> HttpRequest:
+    def _get_optional_global_query_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

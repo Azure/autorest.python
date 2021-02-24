@@ -21,10 +21,11 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_one_request(
         self,
-        id: int,
-        message: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        id,  # type: int
+        message=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         accept = "application/json"
 
@@ -94,10 +95,11 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_different_calls_request(
         self,
-        greeting_in_english: str,
-        greeting_in_chinese: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        greeting_in_english,  # type: str
+        greeting_in_chinese=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         accept = "application/json"
 

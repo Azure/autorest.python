@@ -47,7 +47,10 @@ class HttpRedirectsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head300_request(self, **kwargs) -> HttpRequest:
+    def _head300_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,10 @@ class HttpRedirectsOperations:
 
     head300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
-    def _get300_request(self, **kwargs) -> HttpRequest:
+    def _get300_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -148,7 +154,10 @@ class HttpRedirectsOperations:
 
     get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
-    def _head301_request(self, **kwargs) -> HttpRequest:
+    def _head301_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -196,7 +205,10 @@ class HttpRedirectsOperations:
 
     head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
-    def _get301_request(self, **kwargs) -> HttpRequest:
+    def _get301_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -244,7 +256,12 @@ class HttpRedirectsOperations:
 
     get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
-    def _put301_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put301_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -301,7 +318,10 @@ class HttpRedirectsOperations:
 
     put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
-    def _head302_request(self, **kwargs) -> HttpRequest:
+    def _head302_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -349,7 +369,10 @@ class HttpRedirectsOperations:
 
     head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
-    def _get302_request(self, **kwargs) -> HttpRequest:
+    def _get302_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -397,7 +420,12 @@ class HttpRedirectsOperations:
 
     get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
-    def _patch302_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch302_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -454,7 +482,12 @@ class HttpRedirectsOperations:
 
     patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
-    def _post303_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post303_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -512,7 +545,10 @@ class HttpRedirectsOperations:
 
     post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
 
-    def _head307_request(self, **kwargs) -> HttpRequest:
+    def _head307_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -560,7 +596,10 @@ class HttpRedirectsOperations:
 
     head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _get307_request(self, **kwargs) -> HttpRequest:
+    def _get307_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -608,7 +647,10 @@ class HttpRedirectsOperations:
 
     get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _options307_request(self, **kwargs) -> HttpRequest:
+    def _options307_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -656,7 +698,12 @@ class HttpRedirectsOperations:
 
     options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _put307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put307_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -713,7 +760,12 @@ class HttpRedirectsOperations:
 
     put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _patch307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch307_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -770,7 +822,12 @@ class HttpRedirectsOperations:
 
     patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _post307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post307_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -827,7 +884,12 @@ class HttpRedirectsOperations:
 
     post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
-    def _delete307_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete307_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

@@ -48,7 +48,10 @@ class ArrayOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -96,7 +99,10 @@ class ArrayOperations:
 
     get_null.metadata = {"url": "/array/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -144,7 +150,10 @@ class ArrayOperations:
 
     get_invalid.metadata = {"url": "/array/invalid"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -192,7 +201,12 @@ class ArrayOperations:
 
     get_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
-    def _put_empty_request(self, body: List[str], **kwargs) -> HttpRequest:
+    def _put_empty_request(
+        self,
+        body,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -244,7 +258,10 @@ class ArrayOperations:
 
     put_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
-    def _get_boolean_tfft_request(self, **kwargs) -> HttpRequest:
+    def _get_boolean_tfft_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -292,7 +309,12 @@ class ArrayOperations:
 
     get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
-    def _put_boolean_tfft_request(self, body: List[bool], **kwargs) -> HttpRequest:
+    def _put_boolean_tfft_request(
+        self,
+        body,  # type: List[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -346,7 +368,10 @@ class ArrayOperations:
 
     put_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
-    def _get_boolean_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_boolean_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -396,7 +421,10 @@ class ArrayOperations:
 
     get_boolean_invalid_null.metadata = {"url": "/array/prim/boolean/true.null.false"}  # type: ignore
 
-    def _get_boolean_invalid_string_request(self, **kwargs) -> HttpRequest:
+    def _get_boolean_invalid_string_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -446,7 +474,10 @@ class ArrayOperations:
 
     get_boolean_invalid_string.metadata = {"url": "/array/prim/boolean/true.boolean.false"}  # type: ignore
 
-    def _get_integer_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_integer_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -494,7 +525,12 @@ class ArrayOperations:
 
     get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
-    def _put_integer_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
+    def _put_integer_valid_request(
+        self,
+        body,  # type: List[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -548,7 +584,10 @@ class ArrayOperations:
 
     put_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
-    def _get_int_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_int_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -596,7 +635,10 @@ class ArrayOperations:
 
     get_int_invalid_null.metadata = {"url": "/array/prim/integer/1.null.zero"}  # type: ignore
 
-    def _get_int_invalid_string_request(self, **kwargs) -> HttpRequest:
+    def _get_int_invalid_string_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -646,7 +688,10 @@ class ArrayOperations:
 
     get_int_invalid_string.metadata = {"url": "/array/prim/integer/1.integer.0"}  # type: ignore
 
-    def _get_long_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_long_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -694,7 +739,12 @@ class ArrayOperations:
 
     get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
-    def _put_long_valid_request(self, body: List[int], **kwargs) -> HttpRequest:
+    def _put_long_valid_request(
+        self,
+        body,  # type: List[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -748,7 +798,10 @@ class ArrayOperations:
 
     put_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
-    def _get_long_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_long_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -796,7 +849,10 @@ class ArrayOperations:
 
     get_long_invalid_null.metadata = {"url": "/array/prim/long/1.null.zero"}  # type: ignore
 
-    def _get_long_invalid_string_request(self, **kwargs) -> HttpRequest:
+    def _get_long_invalid_string_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -846,7 +902,10 @@ class ArrayOperations:
 
     get_long_invalid_string.metadata = {"url": "/array/prim/long/1.integer.0"}  # type: ignore
 
-    def _get_float_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_float_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -894,7 +953,12 @@ class ArrayOperations:
 
     get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
-    def _put_float_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
+    def _put_float_valid_request(
+        self,
+        body,  # type: List[float]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -948,7 +1012,10 @@ class ArrayOperations:
 
     put_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
-    def _get_float_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_float_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -998,7 +1065,10 @@ class ArrayOperations:
 
     get_float_invalid_null.metadata = {"url": "/array/prim/float/0.0-null-1.2e20"}  # type: ignore
 
-    def _get_float_invalid_string_request(self, **kwargs) -> HttpRequest:
+    def _get_float_invalid_string_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1048,7 +1118,10 @@ class ArrayOperations:
 
     get_float_invalid_string.metadata = {"url": "/array/prim/float/1.number.0"}  # type: ignore
 
-    def _get_double_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_double_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1096,7 +1169,12 @@ class ArrayOperations:
 
     get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
-    def _put_double_valid_request(self, body: List[float], **kwargs) -> HttpRequest:
+    def _put_double_valid_request(
+        self,
+        body,  # type: List[float]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1150,7 +1228,10 @@ class ArrayOperations:
 
     put_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
-    def _get_double_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_double_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1200,7 +1281,10 @@ class ArrayOperations:
 
     get_double_invalid_null.metadata = {"url": "/array/prim/double/0.0-null-1.2e20"}  # type: ignore
 
-    def _get_double_invalid_string_request(self, **kwargs) -> HttpRequest:
+    def _get_double_invalid_string_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1250,7 +1334,10 @@ class ArrayOperations:
 
     get_double_invalid_string.metadata = {"url": "/array/prim/double/1.number.0"}  # type: ignore
 
-    def _get_string_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_string_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1298,7 +1385,12 @@ class ArrayOperations:
 
     get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_string_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
+    def _put_string_valid_request(
+        self,
+        body,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1352,7 +1444,10 @@ class ArrayOperations:
 
     put_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
-    def _get_enum_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_enum_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1400,7 +1495,12 @@ class ArrayOperations:
 
     get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_enum_valid_request(self, body: List[Union[str, "_models.FooEnum"]], **kwargs) -> HttpRequest:
+    def _put_enum_valid_request(
+        self,
+        body,  # type: List[Union[str, "_models.FooEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1454,7 +1554,10 @@ class ArrayOperations:
 
     put_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _get_string_enum_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_string_enum_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1502,7 +1605,12 @@ class ArrayOperations:
 
     get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _put_string_enum_valid_request(self, body: List[Union[str, "_models.Enum1"]], **kwargs) -> HttpRequest:
+    def _put_string_enum_valid_request(
+        self,
+        body,  # type: List[Union[str, "_models.Enum1"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1556,7 +1664,10 @@ class ArrayOperations:
 
     put_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
-    def _get_string_with_null_request(self, **kwargs) -> HttpRequest:
+    def _get_string_with_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1604,7 +1715,10 @@ class ArrayOperations:
 
     get_string_with_null.metadata = {"url": "/array/prim/string/foo.null.foo2"}  # type: ignore
 
-    def _get_string_with_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_string_with_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1654,7 +1768,10 @@ class ArrayOperations:
 
     get_string_with_invalid.metadata = {"url": "/array/prim/string/foo.123.foo2"}  # type: ignore
 
-    def _get_uuid_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_uuid_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1703,7 +1820,12 @@ class ArrayOperations:
 
     get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
-    def _put_uuid_valid_request(self, body: List[str], **kwargs) -> HttpRequest:
+    def _put_uuid_valid_request(
+        self,
+        body,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1758,7 +1880,10 @@ class ArrayOperations:
 
     put_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
-    def _get_uuid_invalid_chars_request(self, **kwargs) -> HttpRequest:
+    def _get_uuid_invalid_chars_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1808,7 +1933,10 @@ class ArrayOperations:
 
     get_uuid_invalid_chars.metadata = {"url": "/array/prim/uuid/invalidchars"}  # type: ignore
 
-    def _get_date_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_date_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1856,7 +1984,12 @@ class ArrayOperations:
 
     get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
-    def _put_date_valid_request(self, body: List[datetime.date], **kwargs) -> HttpRequest:
+    def _put_date_valid_request(
+        self,
+        body,  # type: List[datetime.date]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1910,7 +2043,10 @@ class ArrayOperations:
 
     put_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
-    def _get_date_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_date_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1958,7 +2094,10 @@ class ArrayOperations:
 
     get_date_invalid_null.metadata = {"url": "/array/prim/date/invalidnull"}  # type: ignore
 
-    def _get_date_invalid_chars_request(self, **kwargs) -> HttpRequest:
+    def _get_date_invalid_chars_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2008,7 +2147,10 @@ class ArrayOperations:
 
     get_date_invalid_chars.metadata = {"url": "/array/prim/date/invalidchars"}  # type: ignore
 
-    def _get_date_time_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_date_time_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2057,7 +2199,12 @@ class ArrayOperations:
 
     get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
-    def _put_date_time_valid_request(self, body: List[datetime.datetime], **kwargs) -> HttpRequest:
+    def _put_date_time_valid_request(
+        self,
+        body,  # type: List[datetime.datetime]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2112,7 +2259,10 @@ class ArrayOperations:
 
     put_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
-    def _get_date_time_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_date_time_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2162,7 +2312,10 @@ class ArrayOperations:
 
     get_date_time_invalid_null.metadata = {"url": "/array/prim/date-time/invalidnull"}  # type: ignore
 
-    def _get_date_time_invalid_chars_request(self, **kwargs) -> HttpRequest:
+    def _get_date_time_invalid_chars_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2212,7 +2365,10 @@ class ArrayOperations:
 
     get_date_time_invalid_chars.metadata = {"url": "/array/prim/date-time/invalidchars"}  # type: ignore
 
-    def _get_date_time_rfc1123_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_date_time_rfc1123_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2263,7 +2419,12 @@ class ArrayOperations:
 
     get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
-    def _put_date_time_rfc1123_valid_request(self, body: List[datetime.datetime], **kwargs) -> HttpRequest:
+    def _put_date_time_rfc1123_valid_request(
+        self,
+        body,  # type: List[datetime.datetime]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2318,7 +2479,10 @@ class ArrayOperations:
 
     put_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
-    def _get_duration_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_duration_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2366,7 +2530,12 @@ class ArrayOperations:
 
     get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
-    def _put_duration_valid_request(self, body: List[datetime.timedelta], **kwargs) -> HttpRequest:
+    def _put_duration_valid_request(
+        self,
+        body,  # type: List[datetime.timedelta]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2420,7 +2589,10 @@ class ArrayOperations:
 
     put_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
-    def _get_byte_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_byte_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2469,7 +2641,12 @@ class ArrayOperations:
 
     get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
-    def _put_byte_valid_request(self, body: List[bytearray], **kwargs) -> HttpRequest:
+    def _put_byte_valid_request(
+        self,
+        body,  # type: List[bytearray]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2524,7 +2701,10 @@ class ArrayOperations:
 
     put_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
-    def _get_byte_invalid_null_request(self, **kwargs) -> HttpRequest:
+    def _get_byte_invalid_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2572,7 +2752,10 @@ class ArrayOperations:
 
     get_byte_invalid_null.metadata = {"url": "/array/prim/byte/invalidnull"}  # type: ignore
 
-    def _get_base64_url_request(self, **kwargs) -> HttpRequest:
+    def _get_base64_url_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2621,7 +2804,10 @@ class ArrayOperations:
 
     get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
 
-    def _get_complex_null_request(self, **kwargs) -> HttpRequest:
+    def _get_complex_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2669,7 +2855,10 @@ class ArrayOperations:
 
     get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
 
-    def _get_complex_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_complex_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2717,7 +2906,10 @@ class ArrayOperations:
 
     get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
 
-    def _get_complex_item_null_request(self, **kwargs) -> HttpRequest:
+    def _get_complex_item_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2766,7 +2958,10 @@ class ArrayOperations:
 
     get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
 
-    def _get_complex_item_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_complex_item_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2817,7 +3012,10 @@ class ArrayOperations:
 
     get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
 
-    def _get_complex_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_complex_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2866,7 +3064,12 @@ class ArrayOperations:
 
     get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
-    def _put_complex_valid_request(self, body: List["_models.Product"], **kwargs) -> HttpRequest:
+    def _put_complex_valid_request(
+        self,
+        body,  # type: List["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -2921,7 +3124,10 @@ class ArrayOperations:
 
     put_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
-    def _get_array_null_request(self, **kwargs) -> HttpRequest:
+    def _get_array_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -2969,7 +3175,10 @@ class ArrayOperations:
 
     get_array_null.metadata = {"url": "/array/array/null"}  # type: ignore
 
-    def _get_array_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_array_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3017,7 +3226,10 @@ class ArrayOperations:
 
     get_array_empty.metadata = {"url": "/array/array/empty"}  # type: ignore
 
-    def _get_array_item_null_request(self, **kwargs) -> HttpRequest:
+    def _get_array_item_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3065,7 +3277,10 @@ class ArrayOperations:
 
     get_array_item_null.metadata = {"url": "/array/array/itemnull"}  # type: ignore
 
-    def _get_array_item_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_array_item_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3113,7 +3328,10 @@ class ArrayOperations:
 
     get_array_item_empty.metadata = {"url": "/array/array/itemempty"}  # type: ignore
 
-    def _get_array_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_array_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3161,7 +3379,12 @@ class ArrayOperations:
 
     get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
-    def _put_array_valid_request(self, body: List[List[str]], **kwargs) -> HttpRequest:
+    def _put_array_valid_request(
+        self,
+        body,  # type: List[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -3215,7 +3438,10 @@ class ArrayOperations:
 
     put_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
-    def _get_dictionary_null_request(self, **kwargs) -> HttpRequest:
+    def _get_dictionary_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3263,7 +3489,10 @@ class ArrayOperations:
 
     get_dictionary_null.metadata = {"url": "/array/dictionary/null"}  # type: ignore
 
-    def _get_dictionary_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_dictionary_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3311,7 +3540,10 @@ class ArrayOperations:
 
     get_dictionary_empty.metadata = {"url": "/array/dictionary/empty"}  # type: ignore
 
-    def _get_dictionary_item_null_request(self, **kwargs) -> HttpRequest:
+    def _get_dictionary_item_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3362,7 +3594,10 @@ class ArrayOperations:
 
     get_dictionary_item_null.metadata = {"url": "/array/dictionary/itemnull"}  # type: ignore
 
-    def _get_dictionary_item_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_dictionary_item_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3413,7 +3648,10 @@ class ArrayOperations:
 
     get_dictionary_item_empty.metadata = {"url": "/array/dictionary/itemempty"}  # type: ignore
 
-    def _get_dictionary_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_dictionary_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -3462,7 +3700,12 @@ class ArrayOperations:
 
     get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
 
-    def _put_dictionary_valid_request(self, body: List[Dict[str, str]], **kwargs) -> HttpRequest:
+    def _put_dictionary_valid_request(
+        self,
+        body,  # type: List[Dict[str, str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

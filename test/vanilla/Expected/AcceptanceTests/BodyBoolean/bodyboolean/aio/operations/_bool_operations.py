@@ -47,7 +47,10 @@ class BoolOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_true_request(self, **kwargs) -> HttpRequest:
+    def _get_true_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,12 @@ class BoolOperations:
 
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
-    def _put_true_request(self, body: bool, **kwargs) -> HttpRequest:
+    def _put_true_request(
+        self,
+        body,  # type: bool
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -148,7 +156,10 @@ class BoolOperations:
 
     put_true.metadata = {"url": "/bool/true"}  # type: ignore
 
-    def _get_false_request(self, **kwargs) -> HttpRequest:
+    def _get_false_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -196,7 +207,12 @@ class BoolOperations:
 
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
-    def _put_false_request(self, body: bool, **kwargs) -> HttpRequest:
+    def _put_false_request(
+        self,
+        body,  # type: bool
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -249,7 +265,10 @@ class BoolOperations:
 
     put_false.metadata = {"url": "/bool/false"}  # type: ignore
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -297,7 +316,10 @@ class BoolOperations:
 
     get_null.metadata = {"url": "/bool/null"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

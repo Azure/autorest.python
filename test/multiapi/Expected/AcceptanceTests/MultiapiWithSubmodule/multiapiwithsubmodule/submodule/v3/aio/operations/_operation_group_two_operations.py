@@ -42,9 +42,10 @@ class OperationGroupTwoOperations:
 
     def _test_four_request(
         self,
-        body: Optional[Union[IO, "_models.SourcePath"]] = None,
-        **kwargs
-    ) -> HttpRequest:
+        body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "3.0.0"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -119,8 +120,9 @@ class OperationGroupTwoOperations:
 
     def _test_five_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "3.0.0"
         accept = "application/json"
 

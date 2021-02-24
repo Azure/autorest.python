@@ -43,7 +43,12 @@ class IntOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _put_request(self, body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs) -> HttpRequest:
+    def _put_request(
+        self,
+        body=None,  # type: Optional[Union[int, "_models.IntEnum"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -99,7 +104,10 @@ class IntOperations:
 
     put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
-    def _get_request(self, **kwargs) -> HttpRequest:
+    def _get_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

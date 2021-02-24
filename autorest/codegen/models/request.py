@@ -10,7 +10,7 @@ from .constant_schema import ConstantSchema
 from .request_parameter import RequestParameter
 from .request_parameter_list import RequestParameterList
 from .schema_request import SchemaRequest
-from .imports import FileImport
+from .imports import FileImport, ImportType, TypingSection
 from .utils import get_converted_parameters
 
 
@@ -96,6 +96,12 @@ class Request(BaseModel):
         if self.multiple_media_type_parameters:
             for parameter in self.multiple_media_type_parameters:
                 file_import.merge(parameter.imports())
+        file_import.add_from_import(
+            "azure.core.pipeline.transport",
+            "HttpRequest",
+            ImportType.AZURECORE,
+            TypingSection.CONDITIONAL,
+        )
         return file_import
 
     @classmethod

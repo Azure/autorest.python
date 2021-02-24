@@ -47,7 +47,12 @@ class PetsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _create_ap_true_request(self, body: "_models.PetAPTrue", **kwargs) -> HttpRequest:
+    def _create_ap_true_request(
+        self,
+        body,  # type: "_models.PetAPTrue"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -105,7 +110,12 @@ class PetsOperations:
 
     create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
-    def _create_cat_ap_true_request(self, body: "_models.CatAPTrue", **kwargs) -> HttpRequest:
+    def _create_cat_ap_true_request(
+        self,
+        body,  # type: "_models.CatAPTrue"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -163,7 +173,12 @@ class PetsOperations:
 
     create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
-    def _create_ap_object_request(self, body: "_models.PetAPObject", **kwargs) -> HttpRequest:
+    def _create_ap_object_request(
+        self,
+        body,  # type: "_models.PetAPObject"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -221,7 +236,12 @@ class PetsOperations:
 
     create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
-    def _create_ap_string_request(self, body: "_models.PetAPString", **kwargs) -> HttpRequest:
+    def _create_ap_string_request(
+        self,
+        body,  # type: "_models.PetAPString"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -279,7 +299,12 @@ class PetsOperations:
 
     create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
-    def _create_ap_in_properties_request(self, body: "_models.PetAPInProperties", **kwargs) -> HttpRequest:
+    def _create_ap_in_properties_request(
+        self,
+        body,  # type: "_models.PetAPInProperties"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -340,8 +365,11 @@ class PetsOperations:
     create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     def _create_ap_in_properties_with_ap_string_request(
-        self, body: "_models.PetAPInPropertiesWithAPString", **kwargs
-    ) -> HttpRequest:
+        self,
+        body,  # type: "_models.PetAPInPropertiesWithAPString"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 

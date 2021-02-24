@@ -48,8 +48,14 @@ class ParameterGroupingOperations:
         self._config = config
 
     def _post_required_request(
-        self, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
-    ) -> HttpRequest:
+        self,
+        path,  # type: str
+        body,  # type: int
+        custom_header=None,  # type: Optional[str]
+        query=30,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -128,8 +134,12 @@ class ParameterGroupingOperations:
     post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
 
     def _post_optional_request(
-        self, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
-    ) -> HttpRequest:
+        self,
+        custom_header=None,  # type: Optional[str]
+        query=30,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -192,12 +202,13 @@ class ParameterGroupingOperations:
 
     def _post_multi_param_groups_request(
         self,
-        header_one: Optional[str] = None,
-        query_one: Optional[int] = 30,
-        header_two: Optional[str] = None,
-        query_two: Optional[int] = 30,
-        **kwargs
-    ) -> HttpRequest:
+        header_one=None,  # type: Optional[str]
+        query_one=30,  # type: Optional[int]
+        header_two=None,  # type: Optional[str]
+        query_two=30,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -278,8 +289,12 @@ class ParameterGroupingOperations:
     post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
     def _post_shared_parameter_group_object_request(
-        self, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs
-    ) -> HttpRequest:
+        self,
+        header_one=None,  # type: Optional[str]
+        query_one=30,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

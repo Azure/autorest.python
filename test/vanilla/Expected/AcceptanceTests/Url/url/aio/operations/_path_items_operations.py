@@ -49,12 +49,13 @@ class PathItemsOperations:
 
     def _get_all_with_values_request(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -148,12 +149,13 @@ class PathItemsOperations:
 
     def _get_global_query_null_request(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -247,12 +249,13 @@ class PathItemsOperations:
 
     def _get_global_and_local_query_null_request(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -346,12 +349,13 @@ class PathItemsOperations:
 
     def _get_local_path_item_query_null_request(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

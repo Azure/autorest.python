@@ -47,7 +47,10 @@ class NumberOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,10 @@ class NumberOperations:
 
     get_null.metadata = {"url": "/number/null"}  # type: ignore
 
-    def _get_invalid_float_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_float_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -143,7 +149,10 @@ class NumberOperations:
 
     get_invalid_float.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
-    def _get_invalid_double_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_double_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -191,7 +200,10 @@ class NumberOperations:
 
     get_invalid_double.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
-    def _get_invalid_decimal_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_decimal_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -239,7 +251,12 @@ class NumberOperations:
 
     get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
-    def _put_big_float_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_big_float_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -293,7 +310,10 @@ class NumberOperations:
 
     put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
-    def _get_big_float_request(self, **kwargs) -> HttpRequest:
+    def _get_big_float_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -341,7 +361,12 @@ class NumberOperations:
 
     get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
-    def _put_big_double_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_big_double_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -395,7 +420,10 @@ class NumberOperations:
 
     put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
-    def _get_big_double_request(self, **kwargs) -> HttpRequest:
+    def _get_big_double_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -443,7 +471,12 @@ class NumberOperations:
 
     get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
-    def _put_big_double_positive_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_big_double_positive_decimal_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -498,7 +531,10 @@ class NumberOperations:
 
     put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
-    def _get_big_double_positive_decimal_request(self, **kwargs) -> HttpRequest:
+    def _get_big_double_positive_decimal_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -548,7 +584,12 @@ class NumberOperations:
 
     get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
-    def _put_big_double_negative_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_big_double_negative_decimal_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -603,7 +644,10 @@ class NumberOperations:
 
     put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
-    def _get_big_double_negative_decimal_request(self, **kwargs) -> HttpRequest:
+    def _get_big_double_negative_decimal_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -653,7 +697,12 @@ class NumberOperations:
 
     get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
-    def _put_big_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_big_decimal_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -707,7 +756,10 @@ class NumberOperations:
 
     put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
-    def _get_big_decimal_request(self, **kwargs) -> HttpRequest:
+    def _get_big_decimal_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -755,7 +807,12 @@ class NumberOperations:
 
     get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
-    def _put_big_decimal_positive_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_big_decimal_positive_decimal_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -810,7 +867,10 @@ class NumberOperations:
 
     put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
-    def _get_big_decimal_positive_decimal_request(self, **kwargs) -> HttpRequest:
+    def _get_big_decimal_positive_decimal_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -860,7 +920,12 @@ class NumberOperations:
 
     get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
-    def _put_big_decimal_negative_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_big_decimal_negative_decimal_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -915,7 +980,10 @@ class NumberOperations:
 
     put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
-    def _get_big_decimal_negative_decimal_request(self, **kwargs) -> HttpRequest:
+    def _get_big_decimal_negative_decimal_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -965,7 +1033,12 @@ class NumberOperations:
 
     get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
-    def _put_small_float_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_small_float_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1019,7 +1092,10 @@ class NumberOperations:
 
     put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
-    def _get_small_float_request(self, **kwargs) -> HttpRequest:
+    def _get_small_float_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1067,7 +1143,12 @@ class NumberOperations:
 
     get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
-    def _put_small_double_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_small_double_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1121,7 +1202,10 @@ class NumberOperations:
 
     put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
-    def _get_small_double_request(self, **kwargs) -> HttpRequest:
+    def _get_small_double_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1169,7 +1253,12 @@ class NumberOperations:
 
     get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
-    def _put_small_decimal_request(self, body: float, **kwargs) -> HttpRequest:
+    def _put_small_decimal_request(
+        self,
+        body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -1223,7 +1312,10 @@ class NumberOperations:
 
     put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
 
-    def _get_small_decimal_request(self, **kwargs) -> HttpRequest:
+    def _get_small_decimal_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

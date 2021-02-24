@@ -49,7 +49,12 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_pages_partial_url_request(self, account_name: str, **kwargs) -> HttpRequest:
+    def _get_pages_partial_url_request(
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -128,7 +133,12 @@ class PagingOperations:
 
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
-    def _get_pages_partial_url_operation_request(self, account_name: str, **kwargs) -> HttpRequest:
+    def _get_pages_partial_url_operation_request(
+        self,
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -148,7 +158,13 @@ class PagingOperations:
 
         return self._client.get(url, query_parameters, header_parameters)
 
-    def _get_pages_partial_url_operation_next_request(self, account_name: str, next_link: str, **kwargs) -> HttpRequest:
+    def _get_pages_partial_url_operation_next_request(
+        self,
+        account_name,  # type: str
+        next_link,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

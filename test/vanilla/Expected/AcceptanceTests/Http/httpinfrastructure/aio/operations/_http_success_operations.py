@@ -47,7 +47,10 @@ class HttpSuccessOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _head200_request(self, **kwargs) -> HttpRequest:
+    def _head200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -91,7 +94,10 @@ class HttpSuccessOperations:
 
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _get200_request(self, **kwargs) -> HttpRequest:
+    def _get200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -139,7 +145,10 @@ class HttpSuccessOperations:
 
     get200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _options200_request(self, **kwargs) -> HttpRequest:
+    def _options200_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -187,7 +196,12 @@ class HttpSuccessOperations:
 
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _put200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put200_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -240,7 +254,12 @@ class HttpSuccessOperations:
 
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _patch200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch200_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -293,7 +312,12 @@ class HttpSuccessOperations:
 
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _post200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post200_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -346,7 +370,12 @@ class HttpSuccessOperations:
 
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _delete200_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete200_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -399,7 +428,12 @@ class HttpSuccessOperations:
 
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
-    def _put201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put201_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -452,7 +486,12 @@ class HttpSuccessOperations:
 
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
-    def _post201_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post201_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -505,7 +544,12 @@ class HttpSuccessOperations:
 
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
-    def _put202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put202_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -558,7 +602,12 @@ class HttpSuccessOperations:
 
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _patch202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch202_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -611,7 +660,12 @@ class HttpSuccessOperations:
 
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _post202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post202_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -664,7 +718,12 @@ class HttpSuccessOperations:
 
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _delete202_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete202_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -717,7 +776,10 @@ class HttpSuccessOperations:
 
     delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
-    def _head204_request(self, **kwargs) -> HttpRequest:
+    def _head204_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -761,7 +823,12 @@ class HttpSuccessOperations:
 
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _put204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _put204_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -814,7 +881,12 @@ class HttpSuccessOperations:
 
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _patch204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _patch204_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -867,7 +939,12 @@ class HttpSuccessOperations:
 
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _post204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _post204_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -920,7 +997,12 @@ class HttpSuccessOperations:
 
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _delete204_request(self, body: Optional[bool] = True, **kwargs) -> HttpRequest:
+    def _delete204_request(
+        self,
+        body=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -973,7 +1055,10 @@ class HttpSuccessOperations:
 
     delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
-    def _head404_request(self, **kwargs) -> HttpRequest:
+    def _head404_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

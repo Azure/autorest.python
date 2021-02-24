@@ -48,7 +48,10 @@ class QueriesOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_boolean_true_request(self, **kwargs) -> HttpRequest:
+    def _get_boolean_true_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         bool_query = True
         accept = "application/json"
 
@@ -94,7 +97,10 @@ class QueriesOperations:
 
     get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
-    def _get_boolean_false_request(self, **kwargs) -> HttpRequest:
+    def _get_boolean_false_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         bool_query = False
         accept = "application/json"
 
@@ -140,7 +146,12 @@ class QueriesOperations:
 
     get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
 
-    def _get_boolean_null_request(self, bool_query: Optional[bool] = None, **kwargs) -> HttpRequest:
+    def _get_boolean_null_request(
+        self,
+        bool_query=None,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -190,7 +201,10 @@ class QueriesOperations:
 
     get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
-    def _get_int_one_million_request(self, **kwargs) -> HttpRequest:
+    def _get_int_one_million_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         int_query = 1000000
         accept = "application/json"
 
@@ -236,7 +250,10 @@ class QueriesOperations:
 
     get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
-    def _get_int_negative_one_million_request(self, **kwargs) -> HttpRequest:
+    def _get_int_negative_one_million_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         int_query = -1000000
         accept = "application/json"
 
@@ -284,7 +301,12 @@ class QueriesOperations:
 
     get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
 
-    def _get_int_null_request(self, int_query: Optional[int] = None, **kwargs) -> HttpRequest:
+    def _get_int_null_request(
+        self,
+        int_query=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -334,7 +356,10 @@ class QueriesOperations:
 
     get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
-    def _get_ten_billion_request(self, **kwargs) -> HttpRequest:
+    def _get_ten_billion_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         long_query = 10000000000
         accept = "application/json"
 
@@ -380,7 +405,10 @@ class QueriesOperations:
 
     get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
-    def _get_negative_ten_billion_request(self, **kwargs) -> HttpRequest:
+    def _get_negative_ten_billion_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         long_query = -10000000000
         accept = "application/json"
 
@@ -428,7 +456,12 @@ class QueriesOperations:
 
     get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
 
-    def _get_long_null_request(self, long_query: Optional[int] = None, **kwargs) -> HttpRequest:
+    def _get_long_null_request(
+        self,
+        long_query=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -478,7 +511,10 @@ class QueriesOperations:
 
     get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
-    def _float_scientific_positive_request(self, **kwargs) -> HttpRequest:
+    def _float_scientific_positive_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         float_query = 103400000000000000000
         accept = "application/json"
 
@@ -526,7 +562,10 @@ class QueriesOperations:
 
     float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
-    def _float_scientific_negative_request(self, **kwargs) -> HttpRequest:
+    def _float_scientific_negative_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         float_query = -1.034e-20
         accept = "application/json"
 
@@ -574,7 +613,12 @@ class QueriesOperations:
 
     float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
 
-    def _float_null_request(self, float_query: Optional[float] = None, **kwargs) -> HttpRequest:
+    def _float_null_request(
+        self,
+        float_query=None,  # type: Optional[float]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -624,7 +668,10 @@ class QueriesOperations:
 
     float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
-    def _double_decimal_positive_request(self, **kwargs) -> HttpRequest:
+    def _double_decimal_positive_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         double_query = 9999999.999
         accept = "application/json"
 
@@ -672,7 +719,10 @@ class QueriesOperations:
 
     double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
-    def _double_decimal_negative_request(self, **kwargs) -> HttpRequest:
+    def _double_decimal_negative_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         double_query = -9999999.999
         accept = "application/json"
 
@@ -720,7 +770,12 @@ class QueriesOperations:
 
     double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
 
-    def _double_null_request(self, double_query: Optional[float] = None, **kwargs) -> HttpRequest:
+    def _double_null_request(
+        self,
+        double_query=None,  # type: Optional[float]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -770,7 +825,10 @@ class QueriesOperations:
 
     double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
-    def _string_unicode_request(self, **kwargs) -> HttpRequest:
+    def _string_unicode_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
         accept = "application/json"
 
@@ -816,7 +874,10 @@ class QueriesOperations:
 
     string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
-    def _string_url_encoded_request(self, **kwargs) -> HttpRequest:
+    def _string_url_encoded_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         string_query = "begin!*'();:@ &=+$,/?#[]end"
         accept = "application/json"
 
@@ -864,7 +925,10 @@ class QueriesOperations:
 
     string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
-    def _string_empty_request(self, **kwargs) -> HttpRequest:
+    def _string_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         string_query = ""
         accept = "application/json"
 
@@ -910,7 +974,12 @@ class QueriesOperations:
 
     string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
 
-    def _string_null_request(self, string_query: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _string_null_request(
+        self,
+        string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -960,7 +1029,12 @@ class QueriesOperations:
 
     string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
 
-    def _enum_valid_request(self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
+    def _enum_valid_request(
+        self,
+        enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1010,7 +1084,12 @@ class QueriesOperations:
 
     enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
 
-    def _enum_null_request(self, enum_query: Optional[Union[str, "_models.UriColor"]] = None, **kwargs) -> HttpRequest:
+    def _enum_null_request(
+        self,
+        enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1058,7 +1137,12 @@ class QueriesOperations:
 
     enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
 
-    def _byte_multi_byte_request(self, byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
+    def _byte_multi_byte_request(
+        self,
+        byte_query=None,  # type: Optional[bytearray]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1108,7 +1192,10 @@ class QueriesOperations:
 
     byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
-    def _byte_empty_request(self, **kwargs) -> HttpRequest:
+    def _byte_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         byte_query = bytearray("", encoding="utf-8")
         accept = "application/json"
 
@@ -1154,7 +1241,12 @@ class QueriesOperations:
 
     byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
 
-    def _byte_null_request(self, byte_query: Optional[bytearray] = None, **kwargs) -> HttpRequest:
+    def _byte_null_request(
+        self,
+        byte_query=None,  # type: Optional[bytearray]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1202,7 +1294,10 @@ class QueriesOperations:
 
     byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
-    def _date_valid_request(self, **kwargs) -> HttpRequest:
+    def _date_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         date_query = "2012-01-01"
         accept = "application/json"
 
@@ -1248,7 +1343,12 @@ class QueriesOperations:
 
     date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
 
-    def _date_null_request(self, date_query: Optional[datetime.date] = None, **kwargs) -> HttpRequest:
+    def _date_null_request(
+        self,
+        date_query=None,  # type: Optional[datetime.date]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1296,7 +1396,10 @@ class QueriesOperations:
 
     date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
-    def _date_time_valid_request(self, **kwargs) -> HttpRequest:
+    def _date_time_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         date_time_query = "2012-01-01T01:01:01Z"
         accept = "application/json"
 
@@ -1342,7 +1445,12 @@ class QueriesOperations:
 
     date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
 
-    def _date_time_null_request(self, date_time_query: Optional[datetime.datetime] = None, **kwargs) -> HttpRequest:
+    def _date_time_null_request(
+        self,
+        date_time_query=None,  # type: Optional[datetime.datetime]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1392,7 +1500,12 @@ class QueriesOperations:
 
     date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
 
-    def _array_string_csv_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_csv_valid_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1444,7 +1557,12 @@ class QueriesOperations:
 
     array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
 
-    def _array_string_csv_null_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_csv_null_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1494,7 +1612,12 @@ class QueriesOperations:
 
     array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
 
-    def _array_string_csv_empty_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_csv_empty_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1545,8 +1668,11 @@ class QueriesOperations:
     array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
 
     def _array_string_no_collection_format_empty_request(
-        self, array_query: Optional[List[str]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1597,7 +1723,12 @@ class QueriesOperations:
 
     array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
 
-    def _array_string_ssv_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_ssv_valid_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1649,7 +1780,12 @@ class QueriesOperations:
 
     array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
 
-    def _array_string_tsv_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_tsv_valid_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1701,7 +1837,12 @@ class QueriesOperations:
 
     array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
 
-    def _array_string_pipes_valid_request(self, array_query: Optional[List[str]] = None, **kwargs) -> HttpRequest:
+    def _array_string_pipes_valid_request(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

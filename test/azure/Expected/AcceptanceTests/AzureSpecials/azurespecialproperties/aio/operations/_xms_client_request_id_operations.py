@@ -48,7 +48,10 @@ class XMsClientRequestIdOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_request(self, **kwargs) -> HttpRequest:
+    def _get_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/method/")
@@ -90,7 +93,12 @@ class XMsClientRequestIdOperations:
 
     get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}  # type: ignore
 
-    def _param_get_request(self, x_ms_client_request_id: str, **kwargs) -> HttpRequest:
+    def _param_get_request(
+        self,
+        x_ms_client_request_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

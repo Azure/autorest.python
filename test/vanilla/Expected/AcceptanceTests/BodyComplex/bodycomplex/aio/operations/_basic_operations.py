@@ -47,7 +47,10 @@ class BasicOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_valid_request(self, **kwargs) -> HttpRequest:
+    def _get_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,12 @@ class BasicOperations:
 
     get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
-    def _put_valid_request(self, body: "_models.Basic", **kwargs) -> HttpRequest:
+    def _put_valid_request(
+        self,
+        body,  # type: "_models.Basic"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2016-02-29"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -149,7 +157,10 @@ class BasicOperations:
 
     put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -197,7 +208,10 @@ class BasicOperations:
 
     get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -245,7 +259,10 @@ class BasicOperations:
 
     get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -293,7 +310,10 @@ class BasicOperations:
 
     get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
 
-    def _get_not_provided_request(self, **kwargs) -> HttpRequest:
+    def _get_not_provided_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

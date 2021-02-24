@@ -26,7 +26,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MediaTypesClientOperationsMixin:
-    def _analyze_body_request(self, body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
+    def _analyze_body_request(
+        self,
+        body=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -98,7 +103,12 @@ class MediaTypesClientOperationsMixin:
 
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
-    def _content_type_with_encoding_request(self, body: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _content_type_with_encoding_request(
+        self,
+        body=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "text/plain")
         accept = "application/json"
 

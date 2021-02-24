@@ -48,7 +48,10 @@ class PathsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_boolean_true_request(self, **kwargs) -> HttpRequest:
+    def _get_boolean_true_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         bool_path = True
         accept = "application/json"
 
@@ -97,7 +100,10 @@ class PathsOperations:
 
     get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
 
-    def _get_boolean_false_request(self, **kwargs) -> HttpRequest:
+    def _get_boolean_false_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         bool_path = False
         accept = "application/json"
 
@@ -146,7 +152,10 @@ class PathsOperations:
 
     get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
 
-    def _get_int_one_million_request(self, **kwargs) -> HttpRequest:
+    def _get_int_one_million_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         int_path = 1000000
         accept = "application/json"
 
@@ -195,7 +204,10 @@ class PathsOperations:
 
     get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
 
-    def _get_int_negative_one_million_request(self, **kwargs) -> HttpRequest:
+    def _get_int_negative_one_million_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         int_path = -1000000
         accept = "application/json"
 
@@ -246,7 +258,10 @@ class PathsOperations:
 
     get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
 
-    def _get_ten_billion_request(self, **kwargs) -> HttpRequest:
+    def _get_ten_billion_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         long_path = 10000000000
         accept = "application/json"
 
@@ -295,7 +310,10 @@ class PathsOperations:
 
     get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
 
-    def _get_negative_ten_billion_request(self, **kwargs) -> HttpRequest:
+    def _get_negative_ten_billion_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         long_path = -10000000000
         accept = "application/json"
 
@@ -346,7 +364,10 @@ class PathsOperations:
 
     get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
 
-    def _float_scientific_positive_request(self, **kwargs) -> HttpRequest:
+    def _float_scientific_positive_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         float_path = 103400000000000000000
         accept = "application/json"
 
@@ -397,7 +418,10 @@ class PathsOperations:
 
     float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
 
-    def _float_scientific_negative_request(self, **kwargs) -> HttpRequest:
+    def _float_scientific_negative_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         float_path = -1.034e-20
         accept = "application/json"
 
@@ -448,7 +472,10 @@ class PathsOperations:
 
     float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
 
-    def _double_decimal_positive_request(self, **kwargs) -> HttpRequest:
+    def _double_decimal_positive_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         double_path = 9999999.999
         accept = "application/json"
 
@@ -499,7 +526,10 @@ class PathsOperations:
 
     double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
 
-    def _double_decimal_negative_request(self, **kwargs) -> HttpRequest:
+    def _double_decimal_negative_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         double_path = -9999999.999
         accept = "application/json"
 
@@ -550,7 +580,10 @@ class PathsOperations:
 
     double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
 
-    def _string_unicode_request(self, **kwargs) -> HttpRequest:
+    def _string_unicode_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
         accept = "application/json"
 
@@ -599,7 +632,10 @@ class PathsOperations:
 
     string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
 
-    def _string_url_encoded_request(self, **kwargs) -> HttpRequest:
+    def _string_url_encoded_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         string_path = "begin!*'();:@ &=+$,/?#[]end"
         accept = "application/json"
 
@@ -651,7 +687,10 @@ class PathsOperations:
 
     string_url_encoded.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
 
-    def _string_url_non_encoded_request(self, **kwargs) -> HttpRequest:
+    def _string_url_non_encoded_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         string_path = "begin!*'();:@&=+$,end"
         accept = "application/json"
 
@@ -704,7 +743,10 @@ class PathsOperations:
 
     string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
 
-    def _string_empty_request(self, **kwargs) -> HttpRequest:
+    def _string_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         string_path = ""
         accept = "application/json"
 
@@ -753,7 +795,12 @@ class PathsOperations:
 
     string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
 
-    def _string_null_request(self, string_path: str, **kwargs) -> HttpRequest:
+    def _string_null_request(
+        self,
+        string_path,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -805,7 +852,12 @@ class PathsOperations:
 
     string_null.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
 
-    def _enum_valid_request(self, enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
+    def _enum_valid_request(
+        self,
+        enum_path,  # type: Union[str, "_models.UriColor"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -855,7 +907,12 @@ class PathsOperations:
 
     enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
 
-    def _enum_null_request(self, enum_path: Union[str, "_models.UriColor"], **kwargs) -> HttpRequest:
+    def _enum_null_request(
+        self,
+        enum_path,  # type: Union[str, "_models.UriColor"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -905,7 +962,12 @@ class PathsOperations:
 
     enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
 
-    def _byte_multi_byte_request(self, byte_path: bytearray, **kwargs) -> HttpRequest:
+    def _byte_multi_byte_request(
+        self,
+        byte_path,  # type: bytearray
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -957,7 +1019,10 @@ class PathsOperations:
 
     byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
 
-    def _byte_empty_request(self, **kwargs) -> HttpRequest:
+    def _byte_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         byte_path = bytearray("", encoding="utf-8")
         accept = "application/json"
 
@@ -1006,7 +1071,12 @@ class PathsOperations:
 
     byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
 
-    def _byte_null_request(self, byte_path: bytearray, **kwargs) -> HttpRequest:
+    def _byte_null_request(
+        self,
+        byte_path,  # type: bytearray
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1056,7 +1126,10 @@ class PathsOperations:
 
     byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
 
-    def _date_valid_request(self, **kwargs) -> HttpRequest:
+    def _date_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         date_path = "2012-01-01"
         accept = "application/json"
 
@@ -1105,7 +1178,12 @@ class PathsOperations:
 
     date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
 
-    def _date_null_request(self, date_path: datetime.date, **kwargs) -> HttpRequest:
+    def _date_null_request(
+        self,
+        date_path,  # type: datetime.date
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1156,7 +1234,10 @@ class PathsOperations:
 
     date_null.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
 
-    def _date_time_valid_request(self, **kwargs) -> HttpRequest:
+    def _date_time_valid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         date_time_path = "2012-01-01T01:01:01Z"
         accept = "application/json"
 
@@ -1205,7 +1286,12 @@ class PathsOperations:
 
     date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
 
-    def _date_time_null_request(self, date_time_path: datetime.datetime, **kwargs) -> HttpRequest:
+    def _date_time_null_request(
+        self,
+        date_time_path,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1257,7 +1343,12 @@ class PathsOperations:
 
     date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
 
-    def _base64_url_request(self, base64_url_path: bytes, **kwargs) -> HttpRequest:
+    def _base64_url_request(
+        self,
+        base64_url_path,  # type: bytes
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1309,7 +1400,12 @@ class PathsOperations:
 
     base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
 
-    def _array_csv_in_path_request(self, array_path: List[str], **kwargs) -> HttpRequest:
+    def _array_csv_in_path_request(
+        self,
+        array_path,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1366,7 +1462,12 @@ class PathsOperations:
 
     array_csv_in_path.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
 
-    def _unix_time_url_request(self, unix_time_url_path: datetime.datetime, **kwargs) -> HttpRequest:
+    def _unix_time_url_request(
+        self,
+        unix_time_url_path,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

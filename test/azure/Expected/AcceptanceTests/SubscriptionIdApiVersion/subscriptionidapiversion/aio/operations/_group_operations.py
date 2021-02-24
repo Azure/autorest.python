@@ -48,7 +48,12 @@ class GroupOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_sample_resource_group_request(self, resource_group_name: str, **kwargs) -> HttpRequest:
+    def _get_sample_resource_group_request(
+        self,
+        resource_group_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2014-04-01-preview"
         accept = "application/json"
 

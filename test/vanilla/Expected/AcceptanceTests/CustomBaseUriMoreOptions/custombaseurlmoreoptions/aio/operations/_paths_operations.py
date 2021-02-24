@@ -48,8 +48,14 @@ class PathsOperations:
         self._config = config
 
     def _get_empty_request(
-        self, vault: str, secret: str, key_name: str, key_version: Optional[str] = "v1", **kwargs
-    ) -> HttpRequest:
+        self,
+        vault,  # type: str
+        secret,  # type: str
+        key_name,  # type: str
+        key_version="v1",  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

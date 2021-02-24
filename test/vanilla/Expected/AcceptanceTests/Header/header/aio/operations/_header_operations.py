@@ -48,7 +48,12 @@ class HeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _param_existing_key_request(self, user_agent_parameter: str, **kwargs) -> HttpRequest:
+    def _param_existing_key_request(
+        self,
+        user_agent_parameter,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -97,7 +102,10 @@ class HeaderOperations:
 
     param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
 
-    def _response_existing_key_request(self, **kwargs) -> HttpRequest:
+    def _response_existing_key_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -144,7 +152,12 @@ class HeaderOperations:
 
     response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
 
-    def _param_protected_key_request(self, content_type: str, **kwargs) -> HttpRequest:
+    def _param_protected_key_request(
+        self,
+        content_type,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -193,7 +206,10 @@ class HeaderOperations:
 
     param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
 
-    def _response_protected_key_request(self, **kwargs) -> HttpRequest:
+    def _response_protected_key_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -242,7 +258,13 @@ class HeaderOperations:
 
     response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
 
-    def _param_integer_request(self, scenario: str, value: int, **kwargs) -> HttpRequest:
+    def _param_integer_request(
+        self,
+        scenario,  # type: str
+        value,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -295,7 +317,12 @@ class HeaderOperations:
 
     param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
 
-    def _response_integer_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_integer_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -347,7 +374,13 @@ class HeaderOperations:
 
     response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
 
-    def _param_long_request(self, scenario: str, value: int, **kwargs) -> HttpRequest:
+    def _param_long_request(
+        self,
+        scenario,  # type: str
+        value,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -400,7 +433,12 @@ class HeaderOperations:
 
     param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
 
-    def _response_long_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_long_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -452,7 +490,13 @@ class HeaderOperations:
 
     response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
 
-    def _param_float_request(self, scenario: str, value: float, **kwargs) -> HttpRequest:
+    def _param_float_request(
+        self,
+        scenario,  # type: str
+        value,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -505,7 +549,12 @@ class HeaderOperations:
 
     param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
 
-    def _response_float_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_float_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -557,7 +606,13 @@ class HeaderOperations:
 
     response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
 
-    def _param_double_request(self, scenario: str, value: float, **kwargs) -> HttpRequest:
+    def _param_double_request(
+        self,
+        scenario,  # type: str
+        value,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -610,7 +665,12 @@ class HeaderOperations:
 
     param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
 
-    def _response_double_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_double_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -662,7 +722,13 @@ class HeaderOperations:
 
     response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
 
-    def _param_bool_request(self, scenario: str, value: bool, **kwargs) -> HttpRequest:
+    def _param_bool_request(
+        self,
+        scenario,  # type: str
+        value,  # type: bool
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -715,7 +781,12 @@ class HeaderOperations:
 
     param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
 
-    def _response_bool_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_bool_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -767,7 +838,13 @@ class HeaderOperations:
 
     response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
 
-    def _param_string_request(self, scenario: str, value: Optional[str] = None, **kwargs) -> HttpRequest:
+    def _param_string_request(
+        self,
+        scenario,  # type: str
+        value=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -823,7 +900,12 @@ class HeaderOperations:
 
     param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
 
-    def _response_string_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_string_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -876,7 +958,13 @@ class HeaderOperations:
 
     response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
 
-    def _param_date_request(self, scenario: str, value: datetime.date, **kwargs) -> HttpRequest:
+    def _param_date_request(
+        self,
+        scenario,  # type: str
+        value,  # type: datetime.date
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -929,7 +1017,12 @@ class HeaderOperations:
 
     param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
 
-    def _response_date_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_date_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -981,7 +1074,13 @@ class HeaderOperations:
 
     response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
 
-    def _param_datetime_request(self, scenario: str, value: datetime.datetime, **kwargs) -> HttpRequest:
+    def _param_datetime_request(
+        self,
+        scenario,  # type: str
+        value,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1035,7 +1134,12 @@ class HeaderOperations:
 
     param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
 
-    def _response_datetime_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_datetime_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1088,8 +1192,12 @@ class HeaderOperations:
     response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
 
     def _param_datetime_rfc1123_request(
-        self, scenario: str, value: Optional[datetime.datetime] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        scenario,  # type: str
+        value=None,  # type: Optional[datetime.datetime]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1144,7 +1252,12 @@ class HeaderOperations:
 
     param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
 
-    def _response_datetime_rfc1123_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_datetime_rfc1123_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1197,7 +1310,13 @@ class HeaderOperations:
 
     response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
 
-    def _param_duration_request(self, scenario: str, value: datetime.timedelta, **kwargs) -> HttpRequest:
+    def _param_duration_request(
+        self,
+        scenario,  # type: str
+        value,  # type: datetime.timedelta
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1249,7 +1368,12 @@ class HeaderOperations:
 
     param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
 
-    def _response_duration_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_duration_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1301,7 +1425,13 @@ class HeaderOperations:
 
     response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
 
-    def _param_byte_request(self, scenario: str, value: bytearray, **kwargs) -> HttpRequest:
+    def _param_byte_request(
+        self,
+        scenario,  # type: str
+        value,  # type: bytearray
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1353,7 +1483,12 @@ class HeaderOperations:
 
     param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
 
-    def _response_byte_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_byte_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1406,8 +1541,12 @@ class HeaderOperations:
     response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
 
     def _param_enum_request(
-        self, scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs
-    ) -> HttpRequest:
+        self,
+        scenario,  # type: str
+        value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1464,7 +1603,12 @@ class HeaderOperations:
 
     param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
 
-    def _response_enum_request(self, scenario: str, **kwargs) -> HttpRequest:
+    def _response_enum_request(
+        self,
+        scenario,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -1517,7 +1661,10 @@ class HeaderOperations:
 
     response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
 
-    def _custom_request_id_request(self, **kwargs) -> HttpRequest:
+    def _custom_request_id_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
