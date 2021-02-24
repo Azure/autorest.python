@@ -25,7 +25,7 @@ class OperationGroupOneOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azure.multiapi.sample.v2.models
+    :type models: ~azure.multiapi.sample.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -42,9 +42,10 @@ class OperationGroupOneOperations:
 
     def _test_two_request(
         self,
-        body: Optional["_models.ModelTwo"] = None,
-        **kwargs
-    ) -> HttpRequest:
+        body=None,  # type: Optional["_models.ModelTwo"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
@@ -73,10 +74,10 @@ class OperationGroupOneOperations:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter.
-        :type parameter_one: ~azure.multiapi.sample.v2.models.ModelTwo
+        :type parameter_one: ~azure.multiapi.sample.models.ModelTwo
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
-        :rtype: ~azure.multiapi.sample.v2.models.ModelTwo
+        :rtype: ~azure.multiapi.sample.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
@@ -114,8 +115,9 @@ class OperationGroupOneOperations:
 
     def _test_three_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         accept = "application/json"
 

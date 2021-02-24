@@ -36,8 +36,9 @@ class HttpSuccessOperations:
 
     def _head200_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", '/http/success/200')
@@ -88,8 +89,9 @@ class HttpSuccessOperations:
 
     def _head204_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", '/http/success/204')
@@ -140,8 +142,9 @@ class HttpSuccessOperations:
 
     def _head404_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
 
         # Construct URL
         url = kwargs.pop("template_url", '/http/success/404')

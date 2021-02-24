@@ -22,10 +22,11 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_one_request(
         self,
-        id: int,
-        message: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        id,  # type: int
+        message=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         accept = "application/json"
 
@@ -59,7 +60,7 @@ class MultiapiServiceClientOperationsMixin:
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
-        :rtype: ~azure.multiapi.sample.v2.models.ModelTwo
+        :rtype: ~azure.multiapi.sample.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
@@ -95,10 +96,11 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_different_calls_request(
         self,
-        greeting_in_english: str,
-        greeting_in_chinese: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        greeting_in_english,  # type: str
+        greeting_in_chinese=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "2.0.0"
         accept = "application/json"
 

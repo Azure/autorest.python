@@ -19,6 +19,8 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
+    from azure.core.pipeline.transport import HttpRequest
+
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -29,7 +31,7 @@ class OperationGroupOneOperations(object):
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azure.multiapi.sample.v3.models
+    :type models: ~azure.multiapi.sample.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -79,10 +81,10 @@ class OperationGroupOneOperations(object):
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param parameter_one: A ModelThree parameter.
-        :type parameter_one: ~azure.multiapi.sample.v3.models.ModelThree
+        :type parameter_one: ~azure.multiapi.sample.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree, or the result of cls(response)
-        :rtype: ~azure.multiapi.sample.v3.models.ModelThree
+        :rtype: ~azure.multiapi.sample.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelThree"]

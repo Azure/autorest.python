@@ -24,9 +24,10 @@ class PollingPagingExampleOperationsMixin:
 
     def _basic_polling_initial_request(
         self,
-        body: Optional["_models.Product"] = None,
-        **kwargs
-    ) -> HttpRequest:
+        body=None,  # type: Optional["_models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -146,8 +147,9 @@ class PollingPagingExampleOperationsMixin:
 
     def _basic_paging_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL

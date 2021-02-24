@@ -23,8 +23,9 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_paging_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -47,7 +48,7 @@ class MultiapiServiceClientOperationsMixin:
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either PagingResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.multiapi.sample.v3.models.PagingResult]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.multiapi.sample.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
@@ -100,11 +101,12 @@ class MultiapiServiceClientOperationsMixin:
 
     def _test_different_calls_request(
         self,
-        greeting_in_english: str,
-        greeting_in_chinese: Optional[str] = None,
-        greeting_in_french: Optional[str] = None,
-        **kwargs
-    ) -> HttpRequest:
+        greeting_in_english,  # type: str
+        greeting_in_chinese=None,  # type: Optional[str]
+        greeting_in_french=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "3.0.0"
         accept = "application/json"
 

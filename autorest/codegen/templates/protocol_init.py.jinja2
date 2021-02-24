@@ -1,0 +1,17 @@
+# coding=utf-8
+{{ code_model.options['license_header'] }}
+
+try:
+    {% for request in code_model.preparers.requests %}
+    from ._preparers_py3 import {{ request.name }}
+    {% endfor %}
+except (SyntaxError, ImportError):
+    {% for request in code_model.preparers.requests %}
+    from ._preparers import {{ request.name }}  # type: ignore
+    {% endfor %}
+
+__all__ = [
+    {% for request in code_model.preparers.requests %}
+    '{{ request.name }}',
+    {% endfor %}
+]

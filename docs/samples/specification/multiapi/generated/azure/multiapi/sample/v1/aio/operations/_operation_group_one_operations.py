@@ -25,7 +25,7 @@ class OperationGroupOneOperations:
     instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azure.multiapi.sample.v1.models
+    :type models: ~azure.multiapi.sample.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
@@ -42,8 +42,9 @@ class OperationGroupOneOperations:
 
     def _test_two_request(
         self,
-        **kwargs
-    ) -> HttpRequest:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         api_version = "1.0.0"
         accept = "application/json"
 

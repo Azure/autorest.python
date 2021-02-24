@@ -47,7 +47,10 @@ class ByteOperations:
         self._deserialize = deserializer
         self._config = config
 
-    def _get_null_request(self, **kwargs) -> HttpRequest:
+    def _get_null_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -95,7 +98,10 @@ class ByteOperations:
 
     get_null.metadata = {"url": "/byte/null"}  # type: ignore
 
-    def _get_empty_request(self, **kwargs) -> HttpRequest:
+    def _get_empty_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -143,7 +149,10 @@ class ByteOperations:
 
     get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
 
-    def _get_non_ascii_request(self, **kwargs) -> HttpRequest:
+    def _get_non_ascii_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
@@ -191,7 +200,12 @@ class ByteOperations:
 
     get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
-    def _put_non_ascii_request(self, body: bytearray, **kwargs) -> HttpRequest:
+    def _put_non_ascii_request(
+        self,
+        body,  # type: bytearray
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         content_type = kwargs.pop("content_type", "application/json")
         accept = "application/json"
 
@@ -243,7 +257,10 @@ class ByteOperations:
 
     put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
-    def _get_invalid_request(self, **kwargs) -> HttpRequest:
+    def _get_invalid_request(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> HttpRequest
         accept = "application/json"
 
         # Construct URL
