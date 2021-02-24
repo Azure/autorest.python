@@ -6,6 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _create_ap_true_request(body: "_models.PetAPTrue", **kwargs) -> HttpRequest:
@@ -20,8 +23,8 @@ def _create_ap_true_request(body: "_models.PetAPTrue", **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -40,8 +43,8 @@ def _create_cat_ap_true_request(body: "_models.CatAPTrue", **kwargs) -> HttpRequ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -60,8 +63,8 @@ def _create_ap_object_request(body: "_models.PetAPObject", **kwargs) -> HttpRequ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -80,8 +83,8 @@ def _create_ap_string_request(body: "_models.PetAPString", **kwargs) -> HttpRequ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -100,8 +103,8 @@ def _create_ap_in_properties_request(body: "_models.PetAPInProperties", **kwargs
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -122,8 +125,8 @@ def _create_ap_in_properties_with_ap_string_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body

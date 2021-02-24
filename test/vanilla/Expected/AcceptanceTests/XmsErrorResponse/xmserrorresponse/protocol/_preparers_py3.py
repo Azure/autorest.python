@@ -8,6 +8,9 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _get_pet_by_id_request(pet_id: str, **kwargs) -> HttpRequest:
@@ -16,7 +19,7 @@ def _get_pet_by_id_request(pet_id: str, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
     path_format_arguments = {
-        "petId": self._serialize.url("pet_id", pet_id, "str"),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -25,7 +28,7 @@ def _get_pet_by_id_request(pet_id: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -36,7 +39,7 @@ def _do_something_request(what_action: str, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
     path_format_arguments = {
-        "whatAction": self._serialize.url("what_action", what_action, "str"),
+        "whatAction": _SERIALIZER.url("what_action", what_action, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -45,7 +48,7 @@ def _do_something_request(what_action: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -59,10 +62,10 @@ def _has_models_param_request(models: Optional[str] = "value1", **kwargs) -> Htt
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if models is not None:
-        query_parameters["models"] = self._serialize.query("models", models, "str")
+        query_parameters["models"] = _SERIALIZER.query("models", models, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)

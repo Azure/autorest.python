@@ -8,6 +8,9 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _get_by_pet_id_request(pet_id: str, **kwargs) -> HttpRequest:
@@ -16,7 +19,7 @@ def _get_by_pet_id_request(pet_id: str, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/extensibleenums/pet/{petId}")
     path_format_arguments = {
-        "petId": self._serialize.url("pet_id", pet_id, "str"),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -25,7 +28,7 @@ def _get_by_pet_id_request(pet_id: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -42,8 +45,8 @@ def _add_pet_request(body: Optional["_models.Pet"] = None, **kwargs) -> HttpRequ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body

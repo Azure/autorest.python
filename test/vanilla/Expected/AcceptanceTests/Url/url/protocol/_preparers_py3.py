@@ -9,6 +9,9 @@ import datetime
 from typing import List, Optional, Union
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _get_boolean_true_request(**kwargs) -> HttpRequest:
@@ -18,7 +21,7 @@ def _get_boolean_true_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/bool/true/{boolPath}")
     path_format_arguments = {
-        "boolPath": self._serialize.url("bool_path", bool_path, "bool"),
+        "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -27,7 +30,7 @@ def _get_boolean_true_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -39,7 +42,7 @@ def _get_boolean_false_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/bool/false/{boolPath}")
     path_format_arguments = {
-        "boolPath": self._serialize.url("bool_path", bool_path, "bool"),
+        "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -48,7 +51,7 @@ def _get_boolean_false_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -60,7 +63,7 @@ def _get_int_one_million_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/int/1000000/{intPath}")
     path_format_arguments = {
-        "intPath": self._serialize.url("int_path", int_path, "int"),
+        "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -69,7 +72,7 @@ def _get_int_one_million_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -81,7 +84,7 @@ def _get_int_negative_one_million_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/int/-1000000/{intPath}")
     path_format_arguments = {
-        "intPath": self._serialize.url("int_path", int_path, "int"),
+        "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -90,7 +93,7 @@ def _get_int_negative_one_million_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -102,7 +105,7 @@ def _get_ten_billion_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/long/10000000000/{longPath}")
     path_format_arguments = {
-        "longPath": self._serialize.url("long_path", long_path, "long"),
+        "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -111,7 +114,7 @@ def _get_ten_billion_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -123,7 +126,7 @@ def _get_negative_ten_billion_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/long/-10000000000/{longPath}")
     path_format_arguments = {
-        "longPath": self._serialize.url("long_path", long_path, "long"),
+        "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -132,7 +135,7 @@ def _get_negative_ten_billion_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -144,7 +147,7 @@ def _float_scientific_positive_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/float/1.034E+20/{floatPath}")
     path_format_arguments = {
-        "floatPath": self._serialize.url("float_path", float_path, "float"),
+        "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -153,7 +156,7 @@ def _float_scientific_positive_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -165,7 +168,7 @@ def _float_scientific_negative_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/float/-1.034E-20/{floatPath}")
     path_format_arguments = {
-        "floatPath": self._serialize.url("float_path", float_path, "float"),
+        "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -174,7 +177,7 @@ def _float_scientific_negative_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -186,7 +189,7 @@ def _double_decimal_positive_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/double/9999999.999/{doublePath}")
     path_format_arguments = {
-        "doublePath": self._serialize.url("double_path", double_path, "float"),
+        "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -195,7 +198,7 @@ def _double_decimal_positive_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -207,7 +210,7 @@ def _double_decimal_negative_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/double/-9999999.999/{doublePath}")
     path_format_arguments = {
-        "doublePath": self._serialize.url("double_path", double_path, "float"),
+        "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -216,7 +219,7 @@ def _double_decimal_negative_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -228,7 +231,7 @@ def _string_unicode_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/unicode/{stringPath}")
     path_format_arguments = {
-        "stringPath": self._serialize.url("string_path", string_path, "str"),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -237,7 +240,7 @@ def _string_unicode_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -251,7 +254,7 @@ def _string_url_encoded_request(**kwargs) -> HttpRequest:
         "template_url", "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
     )
     path_format_arguments = {
-        "stringPath": self._serialize.url("string_path", string_path, "str"),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -260,7 +263,7 @@ def _string_url_encoded_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -272,7 +275,7 @@ def _string_url_non_encoded_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/begin!*'();:@&=+$,end/{stringPath}")
     path_format_arguments = {
-        "stringPath": self._serialize.url("string_path", string_path, "str", skip_quote=True),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -281,7 +284,7 @@ def _string_url_non_encoded_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -293,7 +296,7 @@ def _string_empty_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/empty/{stringPath}")
     path_format_arguments = {
-        "stringPath": self._serialize.url("string_path", string_path, "str"),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -302,7 +305,7 @@ def _string_empty_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -313,7 +316,7 @@ def _string_null_request(string_path: str, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/null/{stringPath}")
     path_format_arguments = {
-        "stringPath": self._serialize.url("string_path", string_path, "str"),
+        "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -322,7 +325,7 @@ def _string_null_request(string_path: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -333,7 +336,7 @@ def _enum_valid_request(enum_path: Union[str, "_models.UriColor"], **kwargs) -> 
     # Construct URL
     url = kwargs.pop("template_url", "/paths/enum/green%20color/{enumPath}")
     path_format_arguments = {
-        "enumPath": self._serialize.url("enum_path", enum_path, "str"),
+        "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -342,7 +345,7 @@ def _enum_valid_request(enum_path: Union[str, "_models.UriColor"], **kwargs) -> 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -353,7 +356,7 @@ def _enum_null_request(enum_path: Union[str, "_models.UriColor"], **kwargs) -> H
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/null/{enumPath}")
     path_format_arguments = {
-        "enumPath": self._serialize.url("enum_path", enum_path, "str"),
+        "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -362,7 +365,7 @@ def _enum_null_request(enum_path: Union[str, "_models.UriColor"], **kwargs) -> H
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -373,7 +376,7 @@ def _byte_multi_byte_request(byte_path: bytearray, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/byte/multibyte/{bytePath}")
     path_format_arguments = {
-        "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -382,7 +385,7 @@ def _byte_multi_byte_request(byte_path: bytearray, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -394,7 +397,7 @@ def _byte_empty_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/byte/empty/{bytePath}")
     path_format_arguments = {
-        "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -403,7 +406,7 @@ def _byte_empty_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -414,7 +417,7 @@ def _byte_null_request(byte_path: bytearray, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/byte/null/{bytePath}")
     path_format_arguments = {
-        "bytePath": self._serialize.url("byte_path", byte_path, "bytearray"),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -423,7 +426,7 @@ def _byte_null_request(byte_path: bytearray, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -435,7 +438,7 @@ def _date_valid_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/date/2012-01-01/{datePath}")
     path_format_arguments = {
-        "datePath": self._serialize.url("date_path", date_path, "date"),
+        "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -444,7 +447,7 @@ def _date_valid_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -455,7 +458,7 @@ def _date_null_request(date_path: datetime.date, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/date/null/{datePath}")
     path_format_arguments = {
-        "datePath": self._serialize.url("date_path", date_path, "date"),
+        "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -464,7 +467,7 @@ def _date_null_request(date_path: datetime.date, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -476,7 +479,7 @@ def _date_time_valid_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}")
     path_format_arguments = {
-        "dateTimePath": self._serialize.url("date_time_path", date_time_path, "iso-8601"),
+        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -485,7 +488,7 @@ def _date_time_valid_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -496,7 +499,7 @@ def _date_time_null_request(date_time_path: datetime.datetime, **kwargs) -> Http
     # Construct URL
     url = kwargs.pop("template_url", "/paths/datetime/null/{dateTimePath}")
     path_format_arguments = {
-        "dateTimePath": self._serialize.url("date_time_path", date_time_path, "iso-8601"),
+        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -505,7 +508,7 @@ def _date_time_null_request(date_time_path: datetime.datetime, **kwargs) -> Http
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -516,7 +519,7 @@ def _base64_url_request(base64_url_path: bytes, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/bG9yZW0/{base64UrlPath}")
     path_format_arguments = {
-        "base64UrlPath": self._serialize.url("base64_url_path", base64_url_path, "base64"),
+        "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, "base64"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -525,7 +528,7 @@ def _base64_url_request(base64_url_path: bytes, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -539,7 +542,7 @@ def _array_csv_in_path_request(array_path: List[str], **kwargs) -> HttpRequest:
         "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
     )
     path_format_arguments = {
-        "arrayPath": self._serialize.url("array_path", array_path, "[str]", div=","),
+        "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -548,7 +551,7 @@ def _array_csv_in_path_request(array_path: List[str], **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -559,7 +562,7 @@ def _unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs) -> H
     # Construct URL
     url = kwargs.pop("template_url", "/paths/int/1460505600/{unixTimeUrlPath}")
     path_format_arguments = {
-        "unixTimeUrlPath": self._serialize.url("unix_time_url_path", unix_time_url_path, "unix-time"),
+        "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, "unix-time"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -568,7 +571,7 @@ def _unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs) -> H
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -582,11 +585,11 @@ def _get_boolean_true_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
+    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -600,11 +603,11 @@ def _get_boolean_false_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
+    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -618,11 +621,11 @@ def _get_boolean_null_request(bool_query: Optional[bool] = None, **kwargs) -> Ht
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if bool_query is not None:
-        query_parameters["boolQuery"] = self._serialize.query("bool_query", bool_query, "bool")
+        query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -636,11 +639,11 @@ def _get_int_one_million_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
+    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -654,11 +657,11 @@ def _get_int_negative_one_million_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
+    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -672,11 +675,11 @@ def _get_int_null_request(int_query: Optional[int] = None, **kwargs) -> HttpRequ
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if int_query is not None:
-        query_parameters["intQuery"] = self._serialize.query("int_query", int_query, "int")
+        query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -690,11 +693,11 @@ def _get_ten_billion_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
+    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -708,11 +711,11 @@ def _get_negative_ten_billion_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
+    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -726,11 +729,11 @@ def _get_long_null_request(long_query: Optional[int] = None, **kwargs) -> HttpRe
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if long_query is not None:
-        query_parameters["longQuery"] = self._serialize.query("long_query", long_query, "long")
+        query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -744,11 +747,11 @@ def _float_scientific_positive_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
+    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -762,11 +765,11 @@ def _float_scientific_negative_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
+    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -780,11 +783,11 @@ def _float_null_request(float_query: Optional[float] = None, **kwargs) -> HttpRe
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if float_query is not None:
-        query_parameters["floatQuery"] = self._serialize.query("float_query", float_query, "float")
+        query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -798,11 +801,11 @@ def _double_decimal_positive_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
+    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -816,11 +819,11 @@ def _double_decimal_negative_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
+    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -834,11 +837,11 @@ def _double_null_request(double_query: Optional[float] = None, **kwargs) -> Http
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if double_query is not None:
-        query_parameters["doubleQuery"] = self._serialize.query("double_query", double_query, "float")
+        query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -852,11 +855,11 @@ def _string_unicode_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
+    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -872,11 +875,11 @@ def _string_url_encoded_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
+    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -890,11 +893,11 @@ def _string_empty_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
+    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -908,11 +911,11 @@ def _string_null_request(string_query: Optional[str] = None, **kwargs) -> HttpRe
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if string_query is not None:
-        query_parameters["stringQuery"] = self._serialize.query("string_query", string_query, "str")
+        query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -926,11 +929,11 @@ def _enum_valid_request(enum_query: Optional[Union[str, "_models.UriColor"]] = N
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = self._serialize.query("enum_query", enum_query, "str")
+        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -944,11 +947,11 @@ def _enum_null_request(enum_query: Optional[Union[str, "_models.UriColor"]] = No
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = self._serialize.query("enum_query", enum_query, "str")
+        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -962,11 +965,11 @@ def _byte_multi_byte_request(byte_query: Optional[bytearray] = None, **kwargs) -
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
+        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -980,11 +983,11 @@ def _byte_empty_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
+    query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -998,11 +1001,11 @@ def _byte_null_request(byte_query: Optional[bytearray] = None, **kwargs) -> Http
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = self._serialize.query("byte_query", byte_query, "bytearray")
+        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1016,11 +1019,11 @@ def _date_valid_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["dateQuery"] = self._serialize.query("date_query", date_query, "date")
+    query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1034,11 +1037,11 @@ def _date_null_request(date_query: Optional[datetime.date] = None, **kwargs) -> 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if date_query is not None:
-        query_parameters["dateQuery"] = self._serialize.query("date_query", date_query, "date")
+        query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1052,11 +1055,11 @@ def _date_time_valid_request(**kwargs) -> HttpRequest:
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["dateTimeQuery"] = self._serialize.query("date_time_query", date_time_query, "iso-8601")
+    query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1070,11 +1073,11 @@ def _date_time_null_request(date_time_query: Optional[datetime.datetime] = None,
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if date_time_query is not None:
-        query_parameters["dateTimeQuery"] = self._serialize.query("date_time_query", date_time_query, "iso-8601")
+        query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1088,11 +1091,11 @@ def _array_string_csv_valid_request(array_query: Optional[List[str]] = None, **k
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
+        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1106,11 +1109,11 @@ def _array_string_csv_null_request(array_query: Optional[List[str]] = None, **kw
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
+        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1124,11 +1127,11 @@ def _array_string_csv_empty_request(array_query: Optional[List[str]] = None, **k
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
+        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1142,11 +1145,11 @@ def _array_string_no_collection_format_empty_request(array_query: Optional[List[
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=",")
+        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1160,11 +1163,11 @@ def _array_string_ssv_valid_request(array_query: Optional[List[str]] = None, **k
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div=" ")
+        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1178,11 +1181,11 @@ def _array_string_tsv_valid_request(array_query: Optional[List[str]] = None, **k
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div="	")
+        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1196,11 +1199,11 @@ def _array_string_pipes_valid_request(array_query: Optional[List[str]] = None, *
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = self._serialize.query("array_query", array_query, "[str]", div="|")
+        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1220,30 +1223,28 @@ def _get_all_with_values_request(
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
     )
     path_format_arguments = {
-        "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": self._serialize.url(
-            "self._config.global_string_path", self._config.global_string_path, "str"
-        ),
-        "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = self._serialize.query(
+        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = self._serialize.query(
+        query_parameters["globalStringQuery"] = _SERIALIZER.query(
             "self._config.global_string_query", self._config.global_string_query, "str"
         )
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = self._serialize.query("local_string_query", local_string_query, "str")
+        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1263,30 +1264,28 @@ def _get_global_query_null_request(
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
     )
     path_format_arguments = {
-        "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": self._serialize.url(
-            "self._config.global_string_path", self._config.global_string_path, "str"
-        ),
-        "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = self._serialize.query(
+        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = self._serialize.query(
+        query_parameters["globalStringQuery"] = _SERIALIZER.query(
             "self._config.global_string_query", self._config.global_string_query, "str"
         )
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = self._serialize.query("local_string_query", local_string_query, "str")
+        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1306,30 +1305,28 @@ def _get_global_and_local_query_null_request(
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
     )
     path_format_arguments = {
-        "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": self._serialize.url(
-            "self._config.global_string_path", self._config.global_string_path, "str"
-        ),
-        "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = self._serialize.query(
+        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = self._serialize.query(
+        query_parameters["globalStringQuery"] = _SERIALIZER.query(
             "self._config.global_string_query", self._config.global_string_query, "str"
         )
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = self._serialize.query("local_string_query", local_string_query, "str")
+        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -1349,29 +1346,27 @@ def _get_local_path_item_query_null_request(
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
     )
     path_format_arguments = {
-        "pathItemStringPath": self._serialize.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": self._serialize.url(
-            "self._config.global_string_path", self._config.global_string_path, "str"
-        ),
-        "localStringPath": self._serialize.url("local_string_path", local_string_path, "str"),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
+        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = self._serialize.query(
+        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if self._config.global_string_query is not None:
-        query_parameters["globalStringQuery"] = self._serialize.query(
+        query_parameters["globalStringQuery"] = _SERIALIZER.query(
             "self._config.global_string_query", self._config.global_string_query, "str"
         )
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = self._serialize.query("local_string_query", local_string_query, "str")
+        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

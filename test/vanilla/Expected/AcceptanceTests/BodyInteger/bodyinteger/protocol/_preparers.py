@@ -8,9 +8,13 @@
 import datetime
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _get_null_request(
@@ -27,7 +31,7 @@ def _get_null_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -46,7 +50,7 @@ def _get_invalid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -65,7 +69,7 @@ def _get_overflow_int32_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -84,7 +88,7 @@ def _get_underflow_int32_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -103,7 +107,7 @@ def _get_overflow_int64_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -122,7 +126,7 @@ def _get_underflow_int64_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -143,8 +147,8 @@ def _put_max32_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -167,8 +171,8 @@ def _put_max64_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -191,8 +195,8 @@ def _put_min32_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -215,8 +219,8 @@ def _put_min64_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -237,7 +241,7 @@ def _get_unix_time_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -258,8 +262,8 @@ def _put_unix_time_date_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -280,7 +284,7 @@ def _get_invalid_unix_time_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -299,6 +303,6 @@ def _get_null_unix_time_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

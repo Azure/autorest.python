@@ -8,6 +8,9 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _put200_succeeded_initial_request(body: Optional["_models.Product"] = None, **kwargs) -> HttpRequest:
@@ -22,8 +25,8 @@ def _put200_succeeded_initial_request(body: Optional["_models.Product"] = None, 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -42,8 +45,8 @@ def _put201_succeeded_initial_request(body: Optional["_models.Product"] = None, 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -61,7 +64,7 @@ def _post202_list_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -78,8 +81,8 @@ def _put200_succeeded_no_state_initial_request(body: Optional["_models.Product"]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -98,8 +101,8 @@ def _put202_retry200_initial_request(body: Optional["_models.Product"] = None, *
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -118,8 +121,8 @@ def _put201_creating_succeeded200_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -138,8 +141,8 @@ def _put200_updating_succeeded204_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -158,8 +161,8 @@ def _put201_creating_failed200_initial_request(body: Optional["_models.Product"]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -178,8 +181,8 @@ def _put200_acceptedcanceled200_initial_request(body: Optional["_models.Product"
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -198,8 +201,8 @@ def _put_no_header_in_retry_initial_request(body: Optional["_models.Product"] = 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -218,8 +221,8 @@ def _put_async_retry_succeeded_initial_request(body: Optional["_models.Product"]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -238,8 +241,8 @@ def _put_async_no_retry_succeeded_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -258,8 +261,8 @@ def _put_async_retry_failed_initial_request(body: Optional["_models.Product"] = 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -278,8 +281,8 @@ def _put_async_no_retrycanceled_initial_request(body: Optional["_models.Product"
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -298,8 +301,8 @@ def _put_async_no_header_in_retry_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -318,8 +321,8 @@ def _put_non_resource_initial_request(body: Optional["_models.Sku"] = None, **kw
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -338,8 +341,8 @@ def _put_async_non_resource_initial_request(body: Optional["_models.Sku"] = None
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -358,8 +361,8 @@ def _put_sub_resource_initial_request(body: Optional["_models.SubProduct"] = Non
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -378,8 +381,8 @@ def _put_async_sub_resource_initial_request(body: Optional["_models.SubProduct"]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -397,7 +400,7 @@ def _delete_provisioning202_accepted200_succeeded_initial_request(**kwargs) -> H
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -413,7 +416,7 @@ def _delete_provisioning202_deleting_failed200_initial_request(**kwargs) -> Http
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -429,7 +432,7 @@ def _delete_provisioning202_deletingcanceled200_initial_request(**kwargs) -> Htt
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -445,7 +448,7 @@ def _delete204_succeeded_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -461,7 +464,7 @@ def _delete202_retry200_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -477,7 +480,7 @@ def _delete202_no_retry204_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -493,7 +496,7 @@ def _delete_no_header_in_retry_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -509,7 +512,7 @@ def _delete_async_no_header_in_retry_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -525,7 +528,7 @@ def _delete_async_retry_succeeded_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -541,7 +544,7 @@ def _delete_async_no_retry_succeeded_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -557,7 +560,7 @@ def _delete_async_retry_failed_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -573,7 +576,7 @@ def _delete_async_retrycanceled_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -589,7 +592,7 @@ def _post200_with_payload_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -606,8 +609,8 @@ def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -626,8 +629,8 @@ def _post202_no_retry204_initial_request(body: Optional["_models.Product"] = Non
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -645,7 +648,7 @@ def _post_double_headers_final_location_get_initial_request(**kwargs) -> HttpReq
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -661,7 +664,7 @@ def _post_double_headers_final_azure_header_get_initial_request(**kwargs) -> Htt
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -677,7 +680,7 @@ def _post_double_headers_final_azure_header_get_default_initial_request(**kwargs
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -694,8 +697,8 @@ def _post_async_retry_succeeded_initial_request(body: Optional["_models.Product"
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -714,8 +717,8 @@ def _post_async_no_retry_succeeded_initial_request(body: Optional["_models.Produ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -734,8 +737,8 @@ def _post_async_retry_failed_initial_request(body: Optional["_models.Product"] =
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -754,8 +757,8 @@ def _post_async_retrycanceled_initial_request(body: Optional["_models.Product"] 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -774,8 +777,8 @@ def _put201_creating_succeeded200_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -796,8 +799,8 @@ def _put_async_relative_retry_succeeded_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -815,7 +818,7 @@ def _delete_provisioning202_accepted200_succeeded_initial_request(**kwargs) -> H
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -831,7 +834,7 @@ def _delete202_retry200_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -847,7 +850,7 @@ def _delete_async_relative_retry_succeeded_initial_request(**kwargs) -> HttpRequ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -864,8 +867,8 @@ def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -886,8 +889,8 @@ def _post_async_relative_retry_succeeded_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -906,8 +909,8 @@ def _put_non_retry400_initial_request(body: Optional["_models.Product"] = None, 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -926,8 +929,8 @@ def _put_non_retry201_creating400_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -948,8 +951,8 @@ def _put_non_retry201_creating400_invalid_json_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -968,8 +971,8 @@ def _put_async_relative_retry400_initial_request(body: Optional["_models.Product
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -987,7 +990,7 @@ def _delete_non_retry400_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1003,7 +1006,7 @@ def _delete202_non_retry400_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1019,7 +1022,7 @@ def _delete_async_relative_retry400_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1036,8 +1039,8 @@ def _post_non_retry400_initial_request(body: Optional["_models.Product"] = None,
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1056,8 +1059,8 @@ def _post202_non_retry400_initial_request(body: Optional["_models.Product"] = No
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1076,8 +1079,8 @@ def _post_async_relative_retry400_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1098,8 +1101,8 @@ def _put_error201_no_provisioning_state_payload_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1120,8 +1123,8 @@ def _put_async_relative_retry_no_status_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1142,8 +1145,8 @@ def _put_async_relative_retry_no_status_payload_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1161,7 +1164,7 @@ def _delete204_succeeded_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1177,7 +1180,7 @@ def _delete_async_relative_retry_no_status_initial_request(**kwargs) -> HttpRequ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1194,8 +1197,8 @@ def _post202_no_location_initial_request(body: Optional["_models.Product"] = Non
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1216,8 +1219,8 @@ def _post_async_relative_retry_no_payload_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1236,8 +1239,8 @@ def _put200_invalid_json_initial_request(body: Optional["_models.Product"] = Non
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1258,8 +1261,8 @@ def _put_async_relative_retry_invalid_header_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1280,8 +1283,8 @@ def _put_async_relative_retry_invalid_json_polling_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1299,7 +1302,7 @@ def _delete202_retry_invalid_header_initial_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1315,7 +1318,7 @@ def _delete_async_relative_retry_invalid_header_initial_request(**kwargs) -> Htt
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1331,7 +1334,7 @@ def _delete_async_relative_retry_invalid_json_polling_initial_request(**kwargs) 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.delete(url, query_parameters, header_parameters)
 
@@ -1348,8 +1351,8 @@ def _post202_retry_invalid_header_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1370,8 +1373,8 @@ def _post_async_relative_retry_invalid_header_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1392,8 +1395,8 @@ def _post_async_relative_retry_invalid_json_polling_initial_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1412,8 +1415,8 @@ def _put_async_retry_succeeded_initial_request(body: Optional["_models.Product"]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1432,8 +1435,8 @@ def _put201_creating_succeeded200_initial_request(body: Optional["_models.Produc
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1452,8 +1455,8 @@ def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -1472,8 +1475,8 @@ def _post_async_retry_succeeded_initial_request(body: Optional["_models.Product"
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body

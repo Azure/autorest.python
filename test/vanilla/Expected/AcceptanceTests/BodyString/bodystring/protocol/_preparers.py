@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional, Union
 
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _get_null_request(
@@ -28,7 +32,7 @@ def _get_null_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -49,8 +53,8 @@ def _put_null_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -71,7 +75,7 @@ def _get_empty_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -92,8 +96,8 @@ def _put_empty_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body = self._serialize.body(body, "str")
@@ -116,7 +120,7 @@ def _get_mbcs_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -137,8 +141,8 @@ def _put_mbcs_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body = self._serialize.body(body, "str")
@@ -161,7 +165,7 @@ def _get_whitespace_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -182,8 +186,8 @@ def _put_whitespace_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body = self._serialize.body(body, "str")
@@ -206,7 +210,7 @@ def _get_not_provided_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -225,7 +229,7 @@ def _get_base64_encoded_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -244,7 +248,7 @@ def _get_base64_url_encoded_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -265,8 +269,8 @@ def _put_base64_url_encoded_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -287,7 +291,7 @@ def _get_null_base64_url_encoded_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -306,7 +310,7 @@ def _get_not_expandable_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -327,8 +331,8 @@ def _put_not_expandable_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -349,7 +353,7 @@ def _get_referenced_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -370,8 +374,8 @@ def _put_referenced_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -392,7 +396,7 @@ def _get_referenced_constant_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -413,8 +417,8 @@ def _put_referenced_constant_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body

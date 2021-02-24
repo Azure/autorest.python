@@ -8,7 +8,9 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
 
+_SERIALIZER = Serializer()
 
 def _test_one_request(
     id: int,
@@ -23,14 +25,14 @@ def _test_one_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['id'] = self._serialize.query("id", id, 'int')
+    query_parameters['id'] = _SERIALIZER.query("id", id, 'int')
     if message is not None:
-        query_parameters['message'] = self._serialize.query("message", message, 'str')
-    query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        query_parameters['message'] = _SERIALIZER.query("message", message, 'str')
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return self._client.put(url, query_parameters, header_parameters)
 
@@ -47,14 +49,14 @@ def _test_different_calls_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['greetingInEnglish'] = self._serialize.header("greeting_in_english", greeting_in_english, 'str')
+    header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
     if greeting_in_chinese is not None:
-        header_parameters['greetingInChinese'] = self._serialize.header("greeting_in_chinese", greeting_in_chinese, 'str')
-    header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+        header_parameters['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -71,12 +73,12 @@ def _test_two_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+    header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs['content'] = body
@@ -93,11 +95,11 @@ def _test_three_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return self._client.put(url, query_parameters, header_parameters)
 
@@ -113,11 +115,11 @@ def _test_four_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['parameterOne'] = self._serialize.query("parameter_one", parameter_one, 'bool')
-    query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+    query_parameters['parameterOne'] = _SERIALIZER.query("parameter_one", parameter_one, 'bool')
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = self._serialize.header("accept", accept, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return self._client.post(url, query_parameters, header_parameters)

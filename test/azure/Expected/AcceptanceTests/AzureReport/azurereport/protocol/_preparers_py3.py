@@ -8,6 +8,9 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _get_report_request(qualifier: Optional[str] = None, **kwargs) -> HttpRequest:
@@ -19,10 +22,10 @@ def _get_report_request(qualifier: Optional[str] = None, **kwargs) -> HttpReques
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
+        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

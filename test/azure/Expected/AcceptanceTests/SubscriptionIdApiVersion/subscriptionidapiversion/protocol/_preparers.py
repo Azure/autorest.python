@@ -7,9 +7,13 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _get_sample_resource_group_request(
@@ -23,17 +27,17 @@ def _get_sample_resource_group_request(
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

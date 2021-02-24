@@ -9,6 +9,9 @@ import datetime
 from typing import Optional, Union
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _param_existing_key_request(user_agent_parameter: str, **kwargs) -> HttpRequest:
@@ -22,8 +25,8 @@ def _param_existing_key_request(user_agent_parameter: str, **kwargs) -> HttpRequ
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["User-Agent"] = self._serialize.header("user_agent_parameter", user_agent_parameter, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["User-Agent"] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -39,7 +42,7 @@ def _response_existing_key_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -55,8 +58,8 @@ def _param_protected_key_request(content_type: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -72,7 +75,7 @@ def _response_protected_key_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -88,9 +91,9 @@ def _param_integer_request(scenario: str, value: int, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "int")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -106,8 +109,8 @@ def _response_integer_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -123,9 +126,9 @@ def _param_long_request(scenario: str, value: int, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "long")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "long")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -141,8 +144,8 @@ def _response_long_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -158,9 +161,9 @@ def _param_float_request(scenario: str, value: float, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "float")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -176,8 +179,8 @@ def _response_float_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -193,9 +196,9 @@ def _param_double_request(scenario: str, value: float, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "float")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -211,8 +214,8 @@ def _response_double_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -228,9 +231,9 @@ def _param_bool_request(scenario: str, value: bool, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "bool")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "bool")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -246,8 +249,8 @@ def _response_bool_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -263,10 +266,10 @@ def _param_string_request(scenario: str, value: Optional[str] = None, **kwargs) 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     if value is not None:
-        header_parameters["value"] = self._serialize.header("value", value, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        header_parameters["value"] = _SERIALIZER.header("value", value, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -282,8 +285,8 @@ def _response_string_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -299,9 +302,9 @@ def _param_date_request(scenario: str, value: datetime.date, **kwargs) -> HttpRe
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "date")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "date")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -317,8 +320,8 @@ def _response_date_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -334,9 +337,9 @@ def _param_datetime_request(scenario: str, value: datetime.datetime, **kwargs) -
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "iso-8601")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "iso-8601")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -352,8 +355,8 @@ def _response_datetime_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -369,10 +372,10 @@ def _param_datetime_rfc1123_request(scenario: str, value: Optional[datetime.date
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     if value is not None:
-        header_parameters["value"] = self._serialize.header("value", value, "rfc-1123")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        header_parameters["value"] = _SERIALIZER.header("value", value, "rfc-1123")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -388,8 +391,8 @@ def _response_datetime_rfc1123_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -405,9 +408,9 @@ def _param_duration_request(scenario: str, value: datetime.timedelta, **kwargs) 
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "duration")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "duration")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -423,8 +426,8 @@ def _response_duration_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -440,9 +443,9 @@ def _param_byte_request(scenario: str, value: bytearray, **kwargs) -> HttpReques
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["value"] = self._serialize.header("value", value, "bytearray")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["value"] = _SERIALIZER.header("value", value, "bytearray")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -458,8 +461,8 @@ def _response_byte_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -477,10 +480,10 @@ def _param_enum_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     if value is not None:
-        header_parameters["value"] = self._serialize.header("value", value, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        header_parameters["value"] = _SERIALIZER.header("value", value, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -496,8 +499,8 @@ def _response_enum_request(scenario: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["scenario"] = self._serialize.header("scenario", scenario, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -513,6 +516,6 @@ def _custom_request_id_request(**kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)

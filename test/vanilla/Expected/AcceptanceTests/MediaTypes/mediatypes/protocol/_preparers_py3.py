@@ -8,6 +8,9 @@
 from typing import IO, Optional, Union
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs) -> HttpRequest:
@@ -22,8 +25,8 @@ def _analyze_body_request(body: Optional[Union[IO, "_models.SourcePath"]] = None
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     if header_parameters["Content-Type"].split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
@@ -53,8 +56,8 @@ def _content_type_with_encoding_request(body: Optional[str] = None, **kwargs) ->
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body

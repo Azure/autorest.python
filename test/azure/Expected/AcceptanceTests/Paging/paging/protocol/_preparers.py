@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional
 
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _get_no_item_name_pages_request(
@@ -28,7 +32,7 @@ def _get_no_item_name_pages_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -47,7 +51,7 @@ def _get_null_next_link_name_pages_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -66,7 +70,7 @@ def _get_single_pages_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -85,7 +89,7 @@ def _first_response_empty_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -108,12 +112,12 @@ def _get_multiple_pages_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = self._serialize.header("client_request_id", client_request_id, "str")
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
-        header_parameters["maxresults"] = self._serialize.header("maxresults", maxresults, "int")
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
-        header_parameters["timeout"] = self._serialize.header("timeout", timeout, "int")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -131,14 +135,14 @@ def _get_with_query_params_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["requiredQueryParameter"] = self._serialize.query(
+    query_parameters["requiredQueryParameter"] = _SERIALIZER.query(
         "required_query_parameter", required_query_parameter, "int"
     )
-    query_parameters["queryConstant"] = self._serialize.query("query_constant", query_constant, "bool")
+    query_parameters["queryConstant"] = _SERIALIZER.query("query_constant", query_constant, "bool")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -155,11 +159,11 @@ def _get_with_query_params_next_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["queryConstant"] = self._serialize.query("query_constant", query_constant, "bool")
+    query_parameters["queryConstant"] = _SERIALIZER.query("query_constant", query_constant, "bool")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -182,12 +186,12 @@ def _get_odata_multiple_pages_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = self._serialize.header("client_request_id", client_request_id, "str")
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
-        header_parameters["maxresults"] = self._serialize.header("maxresults", maxresults, "int")
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
-        header_parameters["timeout"] = self._serialize.header("timeout", timeout, "int")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -205,7 +209,7 @@ def _get_multiple_pages_with_offset_request(
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/withpath/{offset}")
     path_format_arguments = {
-        "offset": self._serialize.url("offset", offset, "int"),
+        "offset": _SERIALIZER.url("offset", offset, "int"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -215,12 +219,12 @@ def _get_multiple_pages_with_offset_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = self._serialize.header("client_request_id", client_request_id, "str")
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
-        header_parameters["maxresults"] = self._serialize.header("maxresults", maxresults, "int")
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
-        header_parameters["timeout"] = self._serialize.header("timeout", timeout, "int")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -239,7 +243,7 @@ def _get_multiple_pages_retry_first_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -258,7 +262,7 @@ def _get_multiple_pages_retry_second_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -277,7 +281,7 @@ def _get_single_pages_failure_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -296,7 +300,7 @@ def _get_multiple_pages_failure_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -315,7 +319,7 @@ def _get_multiple_pages_failure_uri_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -331,17 +335,17 @@ def _get_multiple_pages_fragment_next_link_request(
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}")
     path_format_arguments = {
-        "tenant": self._serialize.url("tenant", tenant, "str"),
+        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api_version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -357,17 +361,17 @@ def _get_multiple_pages_fragment_with_grouping_next_link_request(
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}")
     path_format_arguments = {
-        "tenant": self._serialize.url("tenant", tenant, "str"),
+        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api_version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -390,12 +394,12 @@ def _get_multiple_pages_lro_initial_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters["client-request-id"] = self._serialize.header("client_request_id", client_request_id, "str")
+        header_parameters["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
-        header_parameters["maxresults"] = self._serialize.header("maxresults", maxresults, "int")
+        header_parameters["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
-        header_parameters["timeout"] = self._serialize.header("timeout", timeout, "int")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+        header_parameters["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -412,18 +416,18 @@ def _get_multiple_pages_fragment_next_link_next_request(
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}/{nextLink}")
     path_format_arguments = {
-        "tenant": self._serialize.url("tenant", tenant, "str"),
-        "nextLink": self._serialize.url("next_link", next_link, "str", skip_quote=True),
+        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
+        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api_version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -440,18 +444,18 @@ def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}")
     path_format_arguments = {
-        "tenant": self._serialize.url("tenant", tenant, "str"),
-        "nextLink": self._serialize.url("next_link", next_link, "str", skip_quote=True),
+        "tenant": _SERIALIZER.url("tenant", tenant, "str"),
+        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api_version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -470,6 +474,6 @@ def _get_paging_model_with_item_name_with_xms_client_name_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

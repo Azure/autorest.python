@@ -7,10 +7,13 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.pipeline.transport import HttpRequest
 
+_SERIALIZER = Serializer()
 
 def _head200_request(
     **kwargs  # type: Any

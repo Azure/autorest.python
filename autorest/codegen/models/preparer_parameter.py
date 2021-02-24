@@ -39,6 +39,8 @@ class PreparerParameter(Parameter):
             return None
         return super(PreparerParameter, self).default_value
 
+    def serialize_line(self, function_name: str, parameters_line: str):
+        return f'_SERIALIZER.{function_name}({parameters_line})'
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "PreparerParameter":

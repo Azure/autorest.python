@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional, Union
 
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _check_name_availability_request(
@@ -28,18 +32,18 @@ def _check_name_availability_request(
         "template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -63,20 +67,20 @@ def _create_initial_request(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
     )
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "accountName": self._serialize.url("account_name", account_name, "str"),
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -97,15 +101,15 @@ def _delete_request(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
     )
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "accountName": self._serialize.url("account_name", account_name, "str"),
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
@@ -128,19 +132,19 @@ def _get_properties_request(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
     )
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "accountName": self._serialize.url("account_name", account_name, "str"),
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -162,20 +166,20 @@ def _update_request(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
     )
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "accountName": self._serialize.url("account_name", account_name, "str"),
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -197,19 +201,19 @@ def _list_keys_request(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
     )
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "accountName": self._serialize.url("account_name", account_name, "str"),
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -224,17 +228,17 @@ def _list_request(
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts")
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -253,18 +257,18 @@ def _list_by_resource_group_request(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
     )
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -286,20 +290,20 @@ def _regenerate_key_request(
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
     )
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "accountName": self._serialize.url("account_name", account_name, "str"),
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -316,16 +320,16 @@ def _list_request(
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages")
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

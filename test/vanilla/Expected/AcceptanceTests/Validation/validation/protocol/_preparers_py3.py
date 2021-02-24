@@ -8,6 +8,9 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _validation_of_method_parameters_request(resource_group_name: str, id: int, **kwargs) -> HttpRequest:
@@ -17,21 +20,21 @@ def _validation_of_method_parameters_request(resource_group_name: str, id: int, 
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        "resourceGroupName": self._serialize.url(
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url(
             "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9\']+"
         ),
-        "id": self._serialize.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
+        "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["apiVersion"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -46,22 +49,22 @@ def _validation_of_body_request(
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
-        "resourceGroupName": self._serialize.url(
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url(
             "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9]+"
         ),
-        "id": self._serialize.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
+        "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["apiVersion"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
@@ -74,7 +77,7 @@ def _get_with_constant_in_path_request(**kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
     path_format_arguments = {
-        "constantParam": self._serialize.url("constant_param", constant_param, "str"),
+        "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -95,7 +98,7 @@ def _post_with_constant_in_body_request(body: Optional["_models.Product"] = None
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
     path_format_arguments = {
-        "constantParam": self._serialize.url("constant_param", constant_param, "str"),
+        "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -104,8 +107,8 @@ def _post_with_constant_in_body_request(body: Optional["_models.Product"] = None
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body

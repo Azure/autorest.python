@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _update_request(
@@ -26,8 +30,8 @@ def _update_request(
     # Construct URL
     url = kwargs.pop("template_url", "/parameterFlattening/{resourceGroupName}/{availabilitySetName}")
     path_format_arguments = {
-        "resourceGroupName": self._serialize.url("resource_group_name", resource_group_name, "str"),
-        "availabilitySetName": self._serialize.url("avset", avset, "str", max_length=80, min_length=0),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "availabilitySetName": _SERIALIZER.url("avset", avset, "str", max_length=80, min_length=0),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -36,7 +40,7 @@ def _update_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = self._serialize.header("content_type", content_type, "str")
+    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body

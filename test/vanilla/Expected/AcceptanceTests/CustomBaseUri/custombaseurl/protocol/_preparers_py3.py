@@ -6,6 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from azure.core.pipeline.transport import HttpRequest
+from msrest import Serializer
+
+_SERIALIZER = Serializer()
 
 
 def _get_empty_request(account_name: str, **kwargs) -> HttpRequest:
@@ -14,8 +17,8 @@ def _get_empty_request(account_name: str, **kwargs) -> HttpRequest:
     # Construct URL
     url = kwargs.pop("template_url", "/customuri")
     path_format_arguments = {
-        "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-        "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str", skip_quote=True),
+        "host": _SERIALIZER.url("self._config.host", self._config.host, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -24,6 +27,6 @@ def _get_empty_request(account_name: str, **kwargs) -> HttpRequest:
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

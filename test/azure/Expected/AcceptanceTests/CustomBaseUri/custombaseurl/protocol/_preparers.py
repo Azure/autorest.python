@@ -7,9 +7,13 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _get_empty_request(
@@ -22,8 +26,8 @@ def _get_empty_request(
     # Construct URL
     url = kwargs.pop("template_url", "/customuri")
     path_format_arguments = {
-        "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-        "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+        "accountName": _SERIALIZER.url("account_name", account_name, "str", skip_quote=True),
+        "host": _SERIALIZER.url("self._config.host", self._config.host, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -32,6 +36,6 @@ def _get_empty_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

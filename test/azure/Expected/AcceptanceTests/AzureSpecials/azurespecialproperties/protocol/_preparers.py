@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional
 
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _get_request(
@@ -46,10 +50,10 @@ def _param_get_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["x-ms-client-request-id"] = self._serialize.header(
+    header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
         "x_ms_client_request_id", x_ms_client_request_id, "str"
     )
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -66,7 +70,7 @@ def _post_method_global_valid_request(
         "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -75,7 +79,7 @@ def _post_method_global_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -91,7 +95,7 @@ def _post_method_global_null_request(
         "template_url", "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -100,7 +104,7 @@ def _post_method_global_null_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -118,17 +122,17 @@ def _post_method_global_not_provided_valid_request(
         "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -145,7 +149,7 @@ def _post_path_global_valid_request(
         "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -154,7 +158,7 @@ def _post_path_global_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -171,7 +175,7 @@ def _post_swagger_global_valid_request(
         "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -180,7 +184,7 @@ def _post_swagger_global_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -198,7 +202,7 @@ def _post_method_local_valid_request(
         "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -207,7 +211,7 @@ def _post_method_local_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -224,7 +228,7 @@ def _post_method_local_null_request(
         "template_url", "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -233,7 +237,7 @@ def _post_method_local_null_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -250,7 +254,7 @@ def _post_path_local_valid_request(
         "template_url", "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -259,7 +263,7 @@ def _post_path_local_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -277,7 +281,7 @@ def _post_swagger_local_valid_request(
         "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
     )
     path_format_arguments = {
-        "subscriptionId": self._serialize.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -286,7 +290,7 @@ def _post_swagger_local_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -303,11 +307,11 @@ def _get_method_global_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -326,11 +330,11 @@ def _get_method_global_not_provided_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -347,11 +351,11 @@ def _get_path_global_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -368,11 +372,11 @@ def _get_swagger_global_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -389,11 +393,11 @@ def _get_method_local_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -411,11 +415,11 @@ def _get_method_local_null_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if api_version is not None:
-        query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+        query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -432,11 +436,11 @@ def _get_path_local_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -453,11 +457,11 @@ def _get_swagger_local_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = self._serialize.query("api_version", api_version, "str")
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -472,7 +476,7 @@ def _get_method_path_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}")
     path_format_arguments = {
-        "unencodedPathParam": self._serialize.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
+        "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -481,7 +485,7 @@ def _get_method_path_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -496,7 +500,7 @@ def _get_path_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}")
     path_format_arguments = {
-        "unencodedPathParam": self._serialize.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
+        "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -505,7 +509,7 @@ def _get_path_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -520,7 +524,7 @@ def _get_swagger_path_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}")
     path_format_arguments = {
-        "unencodedPathParam": self._serialize.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
+        "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
     url = self._client.format_url(url, **path_format_arguments)
 
@@ -529,7 +533,7 @@ def _get_swagger_path_valid_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -546,11 +550,11 @@ def _get_method_query_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
+    query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -568,11 +572,11 @@ def _get_method_query_null_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if q1 is not None:
-        query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
+        query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -589,11 +593,11 @@ def _get_path_query_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
+    query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -610,11 +614,11 @@ def _get_swagger_query_valid_request(
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["q1"] = self._serialize.query("q1", q1, "str", skip_quote=True)
+    query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -634,15 +638,15 @@ def _get_with_filter_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if filter is not None:
-        query_parameters["$filter"] = self._serialize.query("filter", filter, "str")
+        query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
     if top is not None:
-        query_parameters["$top"] = self._serialize.query("top", top, "int")
+        query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
     if orderby is not None:
-        query_parameters["$orderby"] = self._serialize.query("orderby", orderby, "str")
+        query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -662,10 +666,10 @@ def _custom_named_request_id_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = self._serialize.header(
+    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -685,10 +689,10 @@ def _custom_named_request_id_param_grouping_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = self._serialize.header(
+    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.post(url, query_parameters, header_parameters)
 
@@ -708,9 +712,9 @@ def _custom_named_request_id_head_request(
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = self._serialize.header(
+    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.head(url, query_parameters, header_parameters)

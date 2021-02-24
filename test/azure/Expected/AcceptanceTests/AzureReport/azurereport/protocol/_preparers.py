@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional
 
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _get_report_request(
@@ -27,10 +31,10 @@ def _get_report_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = self._serialize.query("qualifier", qualifier, "str")
+        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

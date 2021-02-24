@@ -2,6 +2,7 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
+_SERIALIZER = Serializer()
 {% for preparer in code_model.protocol.preparers %}
 
 {% include "preparer.py.jinja2" %}

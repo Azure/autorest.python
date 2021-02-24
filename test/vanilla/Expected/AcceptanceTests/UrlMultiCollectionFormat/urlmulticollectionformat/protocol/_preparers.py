@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import List, Optional
 
     from azure.core.pipeline.transport import HttpRequest
+
+_SERIALIZER = Serializer()
 
 
 def _array_string_multi_null_request(
@@ -28,12 +32,12 @@ def _array_string_multi_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters["arrayQuery"] = [
-            self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
+            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
         ]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -52,12 +56,12 @@ def _array_string_multi_empty_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters["arrayQuery"] = [
-            self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
+            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
         ]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)
 
@@ -76,11 +80,11 @@ def _array_string_multi_valid_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters["arrayQuery"] = [
-            self._serialize.query("array_query", q, "str") if q is not None else "" for q in array_query
+            _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
         ]
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = self._serialize.header("accept", accept, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return self._client.get(url, query_parameters, header_parameters)

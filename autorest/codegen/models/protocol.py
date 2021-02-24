@@ -6,7 +6,7 @@
 from typing import Any, Dict, List
 from .base_model import BaseModel
 from .preparer import Preparer
-from .imports import FileImport
+from .imports import FileImport, ImportType
 
 class Protocol(BaseModel):
     """Everything that goes into the preparers
@@ -23,6 +23,7 @@ class Protocol(BaseModel):
         file_import = FileImport()
         for preparer in self.preparers:
             file_import.merge(preparer.imports())
+        file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
         return file_import
 
     @classmethod
