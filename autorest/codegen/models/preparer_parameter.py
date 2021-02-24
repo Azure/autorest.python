@@ -11,13 +11,13 @@ def _make_public(name):
         return name[1:]
     return name
 
-class RequestParameter(Parameter):
+class PreparerParameter(Parameter):
 
     @property
     def in_method_signature(self) -> bool:
         return not(
             # If I only have one value, I can't be set, so no point being in signature
-            # constant bodies still go in method signature bc we don't support that in request
+            # constant bodies still go in method signature bc we don't support that in our preparer
             (self.constant and not self.location == ParameterLocation.Body)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
@@ -37,11 +37,11 @@ class RequestParameter(Parameter):
     def default_value(self) -> Optional[Any]:
         if self.location == ParameterLocation.Body:
             return None
-        return super(RequestParameter, self).default_value
+        return super(PreparerParameter, self).default_value
 
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestParameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "PreparerParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])

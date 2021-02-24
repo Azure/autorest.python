@@ -7,8 +7,8 @@ from typing import Any, cast, Dict, List, TypeVar
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
-from .request_parameter import RequestParameter
-from .request_parameter_list import RequestParameterList
+from .preparer_parameter import PreparerParameter
+from .preparer_parameter_list import PreparerParameterList
 from .schema_request import SchemaRequest
 from .imports import FileImport, ImportType, TypingSection
 from .utils import get_converted_parameters
@@ -37,7 +37,7 @@ def _non_binary_schema_media_types(media_types: List[str]) -> OrderedSet[str]:
             response_media_types[xml_media_types[0]] = None
     return response_media_types
 
-class Request(BaseModel):
+class Preparer(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -46,10 +46,10 @@ class Request(BaseModel):
         method: str,
         multipart: bool,
         schema_requests: List[SchemaRequest],
-        parameters: RequestParameterList,
-        multiple_media_type_parameters: RequestParameterList,
+        parameters: PreparerParameterList,
+        multiple_media_type_parameters: PreparerParameterList,
     ):
-        super(Request, self).__init__(yaml_data)
+        super(Preparer, self).__init__(yaml_data)
         self.name = name
         self.url = url
         self.method = method
@@ -69,7 +69,7 @@ class Request(BaseModel):
 
     @property
     def is_stream(self) -> bool:
-        """Is the request is a stream, like an upload."""
+        """Is the request we're preparing a stream, like an upload."""
         return any(request.is_stream_request for request in self.schema_requests)
 
     @property
@@ -105,13 +105,13 @@ class Request(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Request":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Preparer":
         operation_name = yaml_data["language"]["python"]["name"]
         name = f"_{operation_name}_request"
 
         first_request = yaml_data["requests"][0]
 
-        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, RequestParameter.from_yaml)
+        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, PreparerParameter.from_yaml)
 
         request_class = cls(
             yaml_data=yaml_data,
@@ -120,8 +120,8 @@ class Request(BaseModel):
             method=first_request["protocol"]["http"]["method"],
             multipart=first_request["protocol"]["http"].get("multipart", False),
             schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
-            parameters=RequestParameterList(parameters),
-            multiple_media_type_parameters=RequestParameterList(multiple_media_type_parameters),
+            parameters=PreparerParameterList(parameters),
+            multiple_media_type_parameters=PreparerParameterList(multiple_media_type_parameters),
         )
         code_model.request_ids[id(yaml_data)] = request_class
         return request_class
