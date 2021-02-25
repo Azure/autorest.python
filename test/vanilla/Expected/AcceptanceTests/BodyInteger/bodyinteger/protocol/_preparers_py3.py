@@ -126,6 +126,7 @@ def _put_max32_request(body: int, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -146,6 +147,7 @@ def _put_max64_request(body: int, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -166,6 +168,7 @@ def _put_min32_request(body: int, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -186,6 +189,7 @@ def _put_min64_request(body: int, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -222,6 +226,7 @@ def _put_unix_time_date_request(body: datetime.datetime, **kwargs) -> HttpReques
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 

@@ -58,6 +58,7 @@ def _put_true_request(
     body = self._serialize.body(body, "bool")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -103,6 +104,7 @@ def _put_false_request(
     body = self._serialize.body(body, "bool")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 

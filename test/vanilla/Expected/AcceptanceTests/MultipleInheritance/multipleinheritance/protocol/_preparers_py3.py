@@ -44,6 +44,7 @@ def _put_horse_request(body: "_models.Horse", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -80,6 +81,7 @@ def _put_pet_request(body: "_models.Pet", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -116,6 +118,7 @@ def _put_feline_request(body: "_models.Feline", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -152,6 +155,7 @@ def _put_cat_request(body: "_models.Cat", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -188,4 +192,5 @@ def _put_kitten_request(body: "_models.Kitten", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)

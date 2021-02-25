@@ -180,11 +180,8 @@ body_content_kwargs['stream_content'] = {{ preparer.parameters.body[0].serialize
 body_content_kwargs['content'] = body{% endif %}{% endmacro %}
 
 {# write body parameters #}
-{% macro body_parameters(preparer, http_verb=None, returns_preparer=True) %}
-{% set body_content_kwargs_signature = "" %}
-{% set form_content_kwarg_signature = "" %}
+{% macro body_parameters(preparer) %}
 {% if preparer.parameters.has_body %}
-    {% set body_content_kwargs_signature = ", **body_content_kwargs" %}
 body_content_kwargs = {}  # type: Dict[str, Any]
     {% if (preparer.schema_requests | length) == 1 %}
 {{ set_body_content_kwarg(preparer, preparer.schema_requests[0]) }}
@@ -198,9 +195,12 @@ else:
         "The content_type '{}' is not one of the allowed values: "
         "{{ preparer.schema_requests | map(attribute="media_types") | sum(start = []) | unique | list }}".format(header_parameters['Content-Type'])
     )
-    {% endif %}
-{% endif %}
-{{ "return" if returns_preparer else "preparer =" }} self._client.{{ http_verb if http_verb else preparer.method }}(url, query_parameters, header_parameters{{ form_content_kwarg_signature }}{{ body_content_kwargs_signature }}){% endmacro %}
+    {% endif %}{% endif %}{% endmacro %}
+
+{# create HTTPRequest #}
+{% macro create_http_request(preparer) %}
+{% set body_content_kwargs_signature = ", **body_content_kwargs" if  preparer.parameters.has_body else "" %}
+return self._client.{{ http_verb if http_verb else preparer.method }}(url, query_parameters, header_parameters{{ body_content_kwargs_signature }}){% endmacro %}
 
 {% macro handle_error_response(code_model, operation) %}
 if response.status_code not in {{ operation.success_status_code|string() }}:

@@ -94,6 +94,7 @@ def _put_non_ascii_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 

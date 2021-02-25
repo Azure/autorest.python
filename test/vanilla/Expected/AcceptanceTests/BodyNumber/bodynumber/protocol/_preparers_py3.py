@@ -92,6 +92,7 @@ def _put_big_float_request(body: float, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -128,6 +129,7 @@ def _put_big_double_request(body: float, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -166,6 +168,7 @@ def _put_big_double_positive_decimal_request(body: float, **kwargs) -> HttpReque
     body = self._serialize.body(body, "float")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -204,6 +207,7 @@ def _put_big_double_negative_decimal_request(body: float, **kwargs) -> HttpReque
     body = self._serialize.body(body, "float")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -240,6 +244,7 @@ def _put_big_decimal_request(body: float, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -278,6 +283,7 @@ def _put_big_decimal_positive_decimal_request(body: float, **kwargs) -> HttpRequ
     body = self._serialize.body(body, "float")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -316,6 +322,7 @@ def _put_big_decimal_negative_decimal_request(body: float, **kwargs) -> HttpRequ
     body = self._serialize.body(body, "float")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -352,6 +359,7 @@ def _put_small_float_request(body: float, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -388,6 +396,7 @@ def _put_small_double_request(body: float, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -424,6 +433,7 @@ def _put_small_decimal_request(body: float, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 

@@ -24,3 +24,4 @@
     {{ op_tools.query_parameters(preparer, is_python_3_file)|indent }}
     {{ op_tools.header_parameters(code_model, preparer, is_python_3_file)|indent }}
     {{ op_tools.body_parameters(preparer)|indent }}
+    {{ op_tools.create_http_request(preparer)|indent }}

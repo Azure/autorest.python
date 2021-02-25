@@ -86,6 +86,7 @@ def _put_optional_body_request(body: Optional[str] = None, **kwargs) -> HttpRequ
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -230,6 +231,7 @@ def _post_required_integer_parameter_request(body: int, **kwargs) -> HttpRequest
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -250,6 +252,7 @@ def _post_optional_integer_parameter_request(body: Optional[int] = None, **kwarg
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -270,6 +273,7 @@ def _post_required_integer_property_request(body: "_models.IntWrapper", **kwargs
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -292,6 +296,7 @@ def _post_optional_integer_property_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -347,6 +352,7 @@ def _post_required_string_parameter_request(body: str, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -367,6 +373,7 @@ def _post_optional_string_parameter_request(body: Optional[str] = None, **kwargs
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -387,6 +394,7 @@ def _post_required_string_property_request(body: "_models.StringWrapper", **kwar
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -409,6 +417,7 @@ def _post_optional_string_property_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -464,6 +473,7 @@ def _post_required_class_parameter_request(body: "_models.Product", **kwargs) ->
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -484,6 +494,7 @@ def _post_optional_class_parameter_request(body: Optional["_models.Product"] = N
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -504,6 +515,7 @@ def _post_required_class_property_request(body: "_models.ClassWrapper", **kwargs
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -526,6 +538,7 @@ def _post_optional_class_property_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -546,6 +559,7 @@ def _post_required_array_parameter_request(body: List[str], **kwargs) -> HttpReq
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -566,6 +580,7 @@ def _post_optional_array_parameter_request(body: Optional[List[str]] = None, **k
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -586,6 +601,7 @@ def _post_required_array_property_request(body: "_models.ArrayWrapper", **kwargs
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -608,6 +624,7 @@ def _post_optional_array_property_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 

@@ -30,6 +30,7 @@ def _put_array_request(body: Optional[List["_models.Resource"]] = None, **kwargs
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -66,6 +67,7 @@ def _put_wrapped_array_request(body: Optional[List["_models.WrappedProduct"]] = 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -102,6 +104,7 @@ def _put_dictionary_request(body: Optional[Dict[str, "_models.FlattenedProduct"]
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -138,6 +141,7 @@ def _put_resource_collection_request(body: Optional["_models.ResourceCollection"
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -174,6 +178,7 @@ def _put_simple_product_request(body: Optional["_models.SimpleProduct"] = None, 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -194,6 +199,7 @@ def _post_flattened_simple_product_request(body: Optional["_models.SimpleProduct
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -220,4 +226,5 @@ def _put_simple_product_with_grouping_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)

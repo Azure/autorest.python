@@ -82,6 +82,7 @@ def _validation_of_body_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -133,4 +134,5 @@ def _post_with_constant_in_body_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)

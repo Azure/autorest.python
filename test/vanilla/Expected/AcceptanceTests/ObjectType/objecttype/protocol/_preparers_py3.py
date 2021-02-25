@@ -44,4 +44,5 @@ def _put_request(body: object, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)

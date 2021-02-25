@@ -50,6 +50,7 @@ def _analyze_body_request(
                 header_parameters["Content-Type"]
             )
         )
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -74,4 +75,5 @@ def _content_type_with_encoding_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)

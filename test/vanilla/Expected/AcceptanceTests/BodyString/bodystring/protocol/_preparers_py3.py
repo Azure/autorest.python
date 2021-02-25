@@ -46,6 +46,7 @@ def _put_null_request(body: Optional[str] = None, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -84,6 +85,7 @@ def _put_empty_request(body: str, **kwargs) -> HttpRequest:
     body = self._serialize.body(body, "str")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -122,6 +124,7 @@ def _put_mbcs_request(body: str, **kwargs) -> HttpRequest:
     body = self._serialize.body(body, "str")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -160,6 +163,7 @@ def _put_whitespace_request(body: str, **kwargs) -> HttpRequest:
     body = self._serialize.body(body, "str")
 
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -228,6 +232,7 @@ def _put_base64_url_encoded_request(body: bytes, **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -280,6 +285,7 @@ def _put_not_expandable_request(body: Union[str, "_models.Colors"], **kwargs) ->
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -316,6 +322,7 @@ def _put_referenced_request(body: Union[str, "_models.Colors"], **kwargs) -> Htt
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -352,4 +359,5 @@ def _put_referenced_constant_request(body: "_models.RefColorConstant", **kwargs)
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)

@@ -40,8 +40,8 @@ def _test_one_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.put(url, query_parameters, header_parameters)
-
 def _test_different_calls_request(
     greeting_in_english,  # type: str
     greeting_in_chinese=None,  # type: Optional[str]
@@ -65,8 +65,8 @@ def _test_different_calls_request(
         header_parameters['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.get(url, query_parameters, header_parameters)
-
 def _test_two_request(
     body=None,  # type: Optional["_models.ModelTwo"]
     **kwargs  # type: Any
@@ -90,8 +90,8 @@ def _test_two_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs['content'] = body
-    return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
+    return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 def _test_three_request(
     **kwargs  # type: Any
 ):
@@ -110,8 +110,8 @@ def _test_three_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.put(url, query_parameters, header_parameters)
-
 def _test_four_request(
     parameter_one,  # type: bool
     **kwargs  # type: Any
@@ -132,4 +132,5 @@ def _test_four_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.post(url, query_parameters, header_parameters)

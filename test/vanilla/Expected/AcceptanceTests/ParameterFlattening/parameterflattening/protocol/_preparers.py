@@ -44,4 +44,5 @@ def _update_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)

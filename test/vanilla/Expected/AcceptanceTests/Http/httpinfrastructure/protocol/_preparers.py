@@ -153,6 +153,7 @@ def _put200_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -177,6 +178,7 @@ def _patch200_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -201,6 +203,7 @@ def _post200_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -225,6 +228,7 @@ def _delete200_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -249,6 +253,7 @@ def _put201_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -273,6 +278,7 @@ def _post201_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -297,6 +303,7 @@ def _put202_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -321,6 +328,7 @@ def _patch202_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -345,6 +353,7 @@ def _post202_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -369,6 +378,7 @@ def _delete202_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -412,6 +422,7 @@ def _put204_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -436,6 +447,7 @@ def _patch204_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -460,6 +472,7 @@ def _post204_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -484,6 +497,7 @@ def _delete204_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -603,6 +617,7 @@ def _put301_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -665,6 +680,7 @@ def _patch302_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -689,6 +705,7 @@ def _post303_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -770,6 +787,7 @@ def _put307_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -794,6 +812,7 @@ def _patch307_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -818,6 +837,7 @@ def _post307_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -842,6 +862,7 @@ def _delete307_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -923,6 +944,7 @@ def _put400_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -947,6 +969,7 @@ def _patch400_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -971,6 +994,7 @@ def _post400_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -995,6 +1019,7 @@ def _delete400_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1095,6 +1120,7 @@ def _put404_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1119,6 +1145,7 @@ def _patch405_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1143,6 +1170,7 @@ def _post406_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1167,6 +1195,7 @@ def _delete407_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1191,6 +1220,7 @@ def _put409_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1291,6 +1321,7 @@ def _put413_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1315,6 +1346,7 @@ def _patch414_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1339,6 +1371,7 @@ def _post415_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1382,6 +1415,7 @@ def _delete417_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1463,6 +1497,7 @@ def _post505_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1487,6 +1522,7 @@ def _delete505_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1530,6 +1566,7 @@ def _put500_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1554,6 +1591,7 @@ def _patch500_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1616,6 +1654,7 @@ def _post503_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1640,6 +1679,7 @@ def _delete503_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1664,6 +1704,7 @@ def _put504_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1688,6 +1729,7 @@ def _patch504_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
 

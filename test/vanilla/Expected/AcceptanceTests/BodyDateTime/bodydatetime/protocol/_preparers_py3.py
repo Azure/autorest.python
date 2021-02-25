@@ -94,6 +94,7 @@ def _put_utc_max_date_time_request(body: datetime.datetime, **kwargs) -> HttpReq
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -114,6 +115,7 @@ def _put_utc_max_date_time7_digits_request(body: datetime.datetime, **kwargs) ->
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -182,6 +184,7 @@ def _put_local_positive_offset_max_date_time_request(body: datetime.datetime, **
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -234,6 +237,7 @@ def _put_local_negative_offset_max_date_time_request(body: datetime.datetime, **
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -286,6 +290,7 @@ def _put_utc_min_date_time_request(body: datetime.datetime, **kwargs) -> HttpReq
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -322,6 +327,7 @@ def _put_local_positive_offset_min_date_time_request(body: datetime.datetime, **
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -358,6 +364,7 @@ def _put_local_negative_offset_min_date_time_request(body: datetime.datetime, **
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 

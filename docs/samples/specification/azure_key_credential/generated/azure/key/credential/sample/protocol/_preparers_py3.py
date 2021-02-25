@@ -23,8 +23,8 @@ def _head200_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
+    
     return self._client.head(url, query_parameters, header_parameters)
-
 def _head204_request(
     **kwargs
 ) -> HttpRequest:
@@ -38,8 +38,8 @@ def _head204_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
+    
     return self._client.head(url, query_parameters, header_parameters)
-
 def _head404_request(
     **kwargs
 ) -> HttpRequest:
@@ -53,4 +53,5 @@ def _head404_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
 
+    
     return self._client.head(url, query_parameters, header_parameters)

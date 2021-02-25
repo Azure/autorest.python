@@ -32,8 +32,8 @@ def _basic_polling_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs['content'] = body
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
+    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 def _basic_paging_request(
     **kwargs
 ) -> HttpRequest:
@@ -49,4 +49,5 @@ def _basic_paging_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.get(url, query_parameters, header_parameters)

@@ -30,6 +30,7 @@ def _put200_succeeded_initial_request(body: Optional["_models.Product"] = None, 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -50,6 +51,7 @@ def _put201_succeeded_initial_request(body: Optional["_models.Product"] = None, 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -86,6 +88,7 @@ def _put200_succeeded_no_state_initial_request(body: Optional["_models.Product"]
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -106,6 +109,7 @@ def _put202_retry200_initial_request(body: Optional["_models.Product"] = None, *
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -126,6 +130,7 @@ def _put201_creating_succeeded200_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -146,6 +151,7 @@ def _put200_updating_succeeded204_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -166,6 +172,7 @@ def _put201_creating_failed200_initial_request(body: Optional["_models.Product"]
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -186,6 +193,7 @@ def _put200_acceptedcanceled200_initial_request(body: Optional["_models.Product"
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -206,6 +214,7 @@ def _put_no_header_in_retry_initial_request(body: Optional["_models.Product"] = 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -226,6 +235,7 @@ def _put_async_retry_succeeded_initial_request(body: Optional["_models.Product"]
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -246,6 +256,7 @@ def _put_async_no_retry_succeeded_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -266,6 +277,7 @@ def _put_async_retry_failed_initial_request(body: Optional["_models.Product"] = 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -286,6 +298,7 @@ def _put_async_no_retrycanceled_initial_request(body: Optional["_models.Product"
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -306,6 +319,7 @@ def _put_async_no_header_in_retry_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -326,6 +340,7 @@ def _put_non_resource_initial_request(body: Optional["_models.Sku"] = None, **kw
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -346,6 +361,7 @@ def _put_async_non_resource_initial_request(body: Optional["_models.Sku"] = None
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -366,6 +382,7 @@ def _put_sub_resource_initial_request(body: Optional["_models.SubProduct"] = Non
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -386,6 +403,7 @@ def _put_async_sub_resource_initial_request(body: Optional["_models.SubProduct"]
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -614,6 +632,7 @@ def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -634,6 +653,7 @@ def _post202_no_retry204_initial_request(body: Optional["_models.Product"] = Non
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -702,6 +722,7 @@ def _post_async_retry_succeeded_initial_request(body: Optional["_models.Product"
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -722,6 +743,7 @@ def _post_async_no_retry_succeeded_initial_request(body: Optional["_models.Produ
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -742,6 +764,7 @@ def _post_async_retry_failed_initial_request(body: Optional["_models.Product"] =
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -762,6 +785,7 @@ def _post_async_retrycanceled_initial_request(body: Optional["_models.Product"] 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -782,6 +806,7 @@ def _put201_creating_succeeded200_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -804,6 +829,7 @@ def _put_async_relative_retry_succeeded_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -872,6 +898,7 @@ def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -894,6 +921,7 @@ def _post_async_relative_retry_succeeded_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -914,6 +942,7 @@ def _put_non_retry400_initial_request(body: Optional["_models.Product"] = None, 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -934,6 +963,7 @@ def _put_non_retry201_creating400_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -956,6 +986,7 @@ def _put_non_retry201_creating400_invalid_json_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -976,6 +1007,7 @@ def _put_async_relative_retry400_initial_request(body: Optional["_models.Product
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1044,6 +1076,7 @@ def _post_non_retry400_initial_request(body: Optional["_models.Product"] = None,
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1064,6 +1097,7 @@ def _post202_non_retry400_initial_request(body: Optional["_models.Product"] = No
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1084,6 +1118,7 @@ def _post_async_relative_retry400_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1106,6 +1141,7 @@ def _put_error201_no_provisioning_state_payload_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1128,6 +1164,7 @@ def _put_async_relative_retry_no_status_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1150,6 +1187,7 @@ def _put_async_relative_retry_no_status_payload_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1202,6 +1240,7 @@ def _post202_no_location_initial_request(body: Optional["_models.Product"] = Non
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1224,6 +1263,7 @@ def _post_async_relative_retry_no_payload_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1244,6 +1284,7 @@ def _put200_invalid_json_initial_request(body: Optional["_models.Product"] = Non
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1266,6 +1307,7 @@ def _put_async_relative_retry_invalid_header_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1288,6 +1330,7 @@ def _put_async_relative_retry_invalid_json_polling_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1356,6 +1399,7 @@ def _post202_retry_invalid_header_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1378,6 +1422,7 @@ def _post_async_relative_retry_invalid_header_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1400,6 +1445,7 @@ def _post_async_relative_retry_invalid_json_polling_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1420,6 +1466,7 @@ def _put_async_retry_succeeded_initial_request(body: Optional["_models.Product"]
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1440,6 +1487,7 @@ def _put201_creating_succeeded200_initial_request(body: Optional["_models.Produc
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1460,6 +1508,7 @@ def _post202_retry200_initial_request(body: Optional["_models.Product"] = None, 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -1480,4 +1529,5 @@ def _post_async_retry_succeeded_initial_request(body: Optional["_models.Product"
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)

@@ -27,8 +27,8 @@ def _test_paging_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.get(url, query_parameters, header_parameters)
-
 def _test_different_calls_request(
     greeting_in_english: str,
     greeting_in_chinese: Optional[str] = None,
@@ -54,8 +54,8 @@ def _test_different_calls_request(
         header_parameters['greetingInFrench'] = _SERIALIZER.header("greeting_in_french", greeting_in_french, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.get(url, query_parameters, header_parameters)
-
 def _test_two_request(
     body: Optional["_models.ModelThree"] = None,
     **kwargs
@@ -78,8 +78,8 @@ def _test_two_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs['content'] = body
-    return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 
+    return self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 def _test_four_request(
     body: Optional[Union[IO, "_models.SourcePath"]] = None,
     **kwargs
@@ -111,8 +111,8 @@ def _test_four_request(
             "The content_type '{}' is not one of the allowed values: "
             "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(header_parameters['Content-Type'])
         )
-    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
+    return self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 def _test_five_request(
     **kwargs
 ) -> HttpRequest:
@@ -130,4 +130,5 @@ def _test_five_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.put(url, query_parameters, header_parameters)

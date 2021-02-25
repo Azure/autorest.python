@@ -40,8 +40,8 @@ def _test_one_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.put(url, query_parameters, header_parameters)
-
 def _test_lro_initial_request(
     body=None,  # type: Optional["_models.Product"]
     **kwargs  # type: Any
@@ -63,8 +63,8 @@ def _test_lro_initial_request(
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs['content'] = body
-    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
+    return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 def _test_lro_and_paging_initial_request(
     client_request_id=None,  # type: Optional[str]
     maxresults=None,  # type: Optional[int]
@@ -90,8 +90,8 @@ def _test_lro_and_paging_initial_request(
         header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.post(url, query_parameters, header_parameters)
-
 def _test_different_calls_request(
     greeting_in_english,  # type: str
     **kwargs  # type: Any
@@ -112,8 +112,8 @@ def _test_different_calls_request(
     header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.get(url, query_parameters, header_parameters)
-
 def _test_two_request(
     **kwargs  # type: Any
 ):
@@ -132,4 +132,5 @@ def _test_two_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
+    
     return self._client.get(url, query_parameters, header_parameters)

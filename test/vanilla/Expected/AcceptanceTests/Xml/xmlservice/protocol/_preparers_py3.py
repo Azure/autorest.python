@@ -44,6 +44,7 @@ def _put_complex_type_ref_no_meta_request(body: "_models.RootWithRefAndNoMeta", 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -78,6 +79,7 @@ def _put_complex_type_ref_with_meta_request(body: "_models.RootWithRefAndMeta", 
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -114,6 +116,7 @@ def _put_simple_request(body: "_models.Slideshow", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -150,6 +153,7 @@ def _put_wrapped_lists_request(body: "_models.AppleBarrel", **kwargs) -> HttpReq
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -198,6 +202,7 @@ def _put_empty_list_request(body: "_models.Slideshow", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -232,6 +237,7 @@ def _put_empty_wrapped_lists_request(body: "_models.AppleBarrel", **kwargs) -> H
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -266,6 +272,7 @@ def _put_root_list_request(body: List["_models.Banana"], **kwargs) -> HttpReques
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -300,6 +307,7 @@ def _put_root_list_single_item_request(body: List["_models.Banana"], **kwargs) -
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -334,6 +342,7 @@ def _put_empty_root_list_request(body: List["_models.Banana"], **kwargs) -> Http
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -368,6 +377,7 @@ def _put_empty_child_element_request(body: "_models.Banana", **kwargs) -> HttpRe
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -428,6 +438,7 @@ def _put_service_properties_request(body: "_models.StorageServiceProperties", **
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -470,6 +481,7 @@ def _put_acls_request(body: List["_models.SignedIdentifier"], **kwargs) -> HttpR
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -508,6 +520,7 @@ def _json_input_request(body: "_models.JSONInput", **kwargs) -> HttpRequest:
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -576,6 +589,7 @@ def _put_binary_request(body: "_models.ModelWithByteProperty", **kwargs) -> Http
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -612,4 +626,5 @@ def _put_uri_request(body: "_models.ModelWithUrlProperty", **kwargs) -> HttpRequ
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)

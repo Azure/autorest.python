@@ -30,6 +30,7 @@ def _put_request(body: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs)
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
@@ -66,6 +67,7 @@ def _put_request(body: Optional[Union[float, "_models.FloatEnum"]] = None, **kwa
 
     body_content_kwargs = {}  # type: Dict[str, Any]
     body_content_kwargs["content"] = body
+
     return self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
 
