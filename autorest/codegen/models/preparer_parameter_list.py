@@ -29,6 +29,14 @@ class PreparerParameterList(ParameterList):
         return all_constants
 
     @property
+    def path(self) -> List[Parameter]:
+        all_path_params = super(PreparerParameterList, self).path
+        return [
+            p for p in all_path_params
+            if p.implementation == "Method"
+        ]
+
+    @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """

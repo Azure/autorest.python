@@ -298,5 +298,10 @@ request = {{ preparer.name }}(
     template_url={{ template_url }},
     **kwargs
 )
-request.url = self._client.format_url(request.url)
+{% set path_format_arguments_kwarg = "" %}
+{% if operation.parameters.path | selectattr("implementation", "equalto", "Client") | first %}
+    {% set path_format_arguments_kwarg = ", **path_format_arguments" %}
+{{ path_format_arguments(operation.parameters.path | selectattr("implementation", "equalto", "Client")) }}
+{% endif %}
+request.url = self._client.format_url(request.url{{ path_format_arguments_kwarg }})
 kwargs.pop("content_type", None){% endmacro %}

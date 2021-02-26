@@ -9,6 +9,7 @@ import datetime
 from typing import TYPE_CHECKING
 
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 if TYPE_CHECKING:
@@ -30,7 +31,7 @@ def _get_boolean_true_request(
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -60,7 +61,7 @@ def _get_boolean_false_request(
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -90,7 +91,7 @@ def _get_int_one_million_request(
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -120,7 +121,7 @@ def _get_int_negative_one_million_request(
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -150,7 +151,7 @@ def _get_ten_billion_request(
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -180,7 +181,7 @@ def _get_negative_ten_billion_request(
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -210,7 +211,7 @@ def _float_scientific_positive_request(
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -240,7 +241,7 @@ def _float_scientific_negative_request(
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -270,7 +271,7 @@ def _double_decimal_positive_request(
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -300,7 +301,7 @@ def _double_decimal_negative_request(
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -330,7 +331,7 @@ def _string_unicode_request(
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -362,7 +363,7 @@ def _string_url_encoded_request(
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -392,7 +393,7 @@ def _string_url_non_encoded_request(
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str", skip_quote=True),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -422,7 +423,7 @@ def _string_empty_request(
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -452,7 +453,7 @@ def _string_null_request(
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -482,7 +483,7 @@ def _enum_valid_request(
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -512,7 +513,7 @@ def _enum_null_request(
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -542,7 +543,7 @@ def _byte_multi_byte_request(
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -572,7 +573,7 @@ def _byte_empty_request(
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -602,7 +603,7 @@ def _byte_null_request(
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -632,7 +633,7 @@ def _date_valid_request(
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -662,7 +663,7 @@ def _date_null_request(
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -692,7 +693,7 @@ def _date_time_valid_request(
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -722,7 +723,7 @@ def _date_time_null_request(
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -752,7 +753,7 @@ def _base64_url_request(
     path_format_arguments = {
         "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, "base64"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -785,7 +786,7 @@ def _array_csv_in_path_request(
     path_format_arguments = {
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -815,7 +816,7 @@ def _unix_time_url_request(
     path_format_arguments = {
         "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, "unix-time"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -1816,10 +1817,9 @@ def _get_all_with_values_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -1864,10 +1864,9 @@ def _get_global_query_null_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -1912,10 +1911,9 @@ def _get_global_and_local_query_null_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -1960,10 +1958,9 @@ def _get_local_path_item_query_null_request(
     )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
-        "globalStringPath": _SERIALIZER.url("self._config.global_string_path", self._config.global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

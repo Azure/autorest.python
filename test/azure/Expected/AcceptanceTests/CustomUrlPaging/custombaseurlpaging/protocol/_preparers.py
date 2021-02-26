@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
@@ -22,9 +23,8 @@ def _get_pages_partial_url_request(
     url = kwargs.pop("template_url", "/paging/customurl/partialnextlink")
     path_format_arguments = {
         "accountName": _SERIALIZER.url("account_name", account_name, "str", skip_quote=True),
-        "host": _SERIALIZER.url("self._config.host", self._config.host, "str", skip_quote=True),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -53,9 +53,8 @@ def _get_pages_partial_url_operation_request(
     url = kwargs.pop("template_url", "/paging/customurl/partialnextlinkop")
     path_format_arguments = {
         "accountName": _SERIALIZER.url("account_name", account_name, "str", skip_quote=True),
-        "host": _SERIALIZER.url("self._config.host", self._config.host, "str", skip_quote=True),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -85,10 +84,9 @@ def _get_pages_partial_url_operation_next_request(
     url = kwargs.pop("template_url", "/paging/customurl/{nextLink}")
     path_format_arguments = {
         "accountName": _SERIALIZER.url("account_name", account_name, "str", skip_quote=True),
-        "host": _SERIALIZER.url("self._config.host", self._config.host, "str", skip_quote=True),
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

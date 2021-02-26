@@ -50,7 +50,10 @@ class AutoRestValidationTestOperationsMixin:
             template_url=self.validation_of_method_parameters.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -101,7 +104,10 @@ class AutoRestValidationTestOperationsMixin:
             template_url=self.validation_of_body.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

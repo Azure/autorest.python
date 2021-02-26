@@ -66,7 +66,10 @@ class SubscriptionInCredentialsOperations:
         request = _post_method_global_valid_request(
             template_url=self.post_method_global_valid.metadata["url"], **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -97,7 +100,10 @@ class SubscriptionInCredentialsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = _post_method_global_null_request(template_url=self.post_method_global_null.metadata["url"], **kwargs)
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -130,7 +136,10 @@ class SubscriptionInCredentialsOperations:
         request = _post_method_global_not_provided_valid_request(
             template_url=self.post_method_global_not_provided_valid.metadata["url"], **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -161,7 +170,10 @@ class SubscriptionInCredentialsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = _post_path_global_valid_request(template_url=self.post_path_global_valid.metadata["url"], **kwargs)
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -194,7 +206,10 @@ class SubscriptionInCredentialsOperations:
         request = _post_swagger_global_valid_request(
             template_url=self.post_swagger_global_valid.metadata["url"], **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

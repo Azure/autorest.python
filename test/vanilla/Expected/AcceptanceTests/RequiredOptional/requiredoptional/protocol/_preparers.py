@@ -8,6 +8,7 @@
 from typing import TYPE_CHECKING
 
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 if TYPE_CHECKING:
@@ -29,7 +30,7 @@ def _get_required_path_request(
     path_format_arguments = {
         "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -175,12 +176,6 @@ def _get_required_global_path_request(
 
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
-    path_format_arguments = {
-        "required-global-path": _SERIALIZER.url(
-            "self._config.required_global_path", self._config.required_global_path, "str"
-        ),
-    }
-    url = self._client.format_url(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

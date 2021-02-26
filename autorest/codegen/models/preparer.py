@@ -114,6 +114,10 @@ class Preparer(BaseModel):
             "HttpRequest",
             ImportType.AZURECORE,
         )
+        if self.parameters.path:
+            file_import.add_from_import(
+                "azure.core.pipeline.transport._base", "_format_url_section", ImportType.AZURECORE
+            )
         return file_import
 
     @classmethod

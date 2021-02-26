@@ -8,6 +8,7 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
@@ -24,7 +25,7 @@ def _post_required_request(
     path_format_arguments = {
         "path": _SERIALIZER.url("path", path, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

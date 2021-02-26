@@ -89,7 +89,13 @@ class PathsOperations(object):
             template_url=self.get_empty.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "dnsSuffix": self._serialize.url(
+                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
+            ),
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -237,7 +237,12 @@ class ImplicitOperations:
         request = _get_required_global_path_request(
             template_url=self.get_required_global_path.metadata["url"], **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "required-global-path": self._serialize.url(
+                "self._config.required_global_path", self._config.required_global_path, "str"
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

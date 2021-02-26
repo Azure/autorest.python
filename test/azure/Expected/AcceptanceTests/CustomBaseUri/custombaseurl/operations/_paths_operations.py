@@ -73,7 +73,10 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = _get_empty_request(account_name=account_name, template_url=self.get_empty.metadata["url"], **kwargs)
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -153,7 +153,9 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if code_model.options["azure_arm"]:
             file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-        file_import.merge(self.preparer.imports())
+
+        for param in self.parameters.method:
+            file_import.merge(param.imports())
 
         for response in [r for r in self.responses if r.has_body]:
             file_import.merge(cast(BaseSchema, response.schema).imports())

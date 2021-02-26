@@ -71,13 +71,19 @@ class PagingOperations:
                 request = _get_pages_partial_url_request(
                     account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
                 request = _get_pages_partial_url_request(
                     account_name=account_name, template_url=self.get_pages_partial_url.metadata["url"], **kwargs
                 )
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
@@ -133,7 +139,10 @@ class PagingOperations:
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                     **kwargs
                 )
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
                 request = _get_pages_partial_url_operation_next_request(
@@ -142,7 +151,10 @@ class PagingOperations:
                     template_url="/paging/customurl/{nextLink}",
                     **kwargs
                 )
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             return request
 

@@ -8,6 +8,7 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
@@ -226,7 +227,7 @@ def _get_multiple_pages_with_offset_request(
     path_format_arguments = {
         "offset": _SERIALIZER.url("offset", offset, "int"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -368,7 +369,7 @@ def _get_multiple_pages_fragment_next_link_request(api_version: str, tenant: str
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -397,7 +398,7 @@ def _get_multiple_pages_fragment_with_grouping_next_link_request(
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -457,7 +458,7 @@ def _get_multiple_pages_fragment_next_link_next_request(
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
@@ -487,7 +488,7 @@ def _get_multiple_pages_fragment_with_grouping_next_link_next_request(
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

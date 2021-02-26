@@ -8,6 +8,7 @@
 from typing import Optional
 
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
@@ -23,11 +24,9 @@ def _get_empty_request(
     path_format_arguments = {
         "vault": _SERIALIZER.url("vault", vault, "str", skip_quote=True),
         "secret": _SERIALIZER.url("secret", secret, "str", skip_quote=True),
-        "dnsSuffix": _SERIALIZER.url("self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True),
         "keyName": _SERIALIZER.url("key_name", key_name, "str"),
-        "subscriptionId": _SERIALIZER.url("self._config.subscription_id", self._config.subscription_id, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

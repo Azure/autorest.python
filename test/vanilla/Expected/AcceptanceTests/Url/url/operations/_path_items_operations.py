@@ -92,7 +92,12 @@ class PathItemsOperations(object):
             template_url=self.get_all_with_values.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -148,7 +153,12 @@ class PathItemsOperations(object):
             template_url=self.get_global_query_null.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -204,7 +214,12 @@ class PathItemsOperations(object):
             template_url=self.get_global_and_local_query_null.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -259,7 +274,12 @@ class PathItemsOperations(object):
             template_url=self.get_local_path_item_query_null.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "globalStringPath": self._serialize.url(
+                "self._config.global_string_path", self._config.global_string_path, "str"
+            ),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

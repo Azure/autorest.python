@@ -83,7 +83,10 @@ class StorageAccountsOperations(object):
         request = _check_name_availability_request(
             body=account_name, template_url=self.check_name_availability.metadata["url"], **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -123,7 +126,10 @@ class StorageAccountsOperations(object):
             template_url=self._creat_initial.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -254,7 +260,10 @@ class StorageAccountsOperations(object):
             template_url=self.delete.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -302,7 +311,10 @@ class StorageAccountsOperations(object):
             template_url=self.get_properties.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -365,7 +377,10 @@ class StorageAccountsOperations(object):
             template_url=self.update.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -413,7 +428,10 @@ class StorageAccountsOperations(object):
             template_url=self.list_keys.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -452,11 +470,21 @@ class StorageAccountsOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 request = _list_request(template_url=self.list.metadata["url"], **kwargs)
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "subscriptionId": self._serialize.url(
+                        "self._config.subscription_id", self._config.subscription_id, "str"
+                    ),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
                 request = _list_request(template_url=self.list.metadata["url"], **kwargs)
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "subscriptionId": self._serialize.url(
+                        "self._config.subscription_id", self._config.subscription_id, "str"
+                    ),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
@@ -465,7 +493,7 @@ class StorageAccountsOperations(object):
                     ),
                 }
                 request.method = "get"
-                request.url = self._client.format_url(next_link, **path_format_arguments)
+                request.url = self._client.format_url(next_link)
             return request
 
         def extract_data(pipeline_response):
@@ -519,7 +547,12 @@ class StorageAccountsOperations(object):
                     template_url=self.list_by_resource_group.metadata["url"],
                     **kwargs
                 )
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "subscriptionId": self._serialize.url(
+                        "self._config.subscription_id", self._config.subscription_id, "str"
+                    ),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
             else:
                 request = _list_by_resource_group_request(
@@ -527,7 +560,12 @@ class StorageAccountsOperations(object):
                     template_url=self.list_by_resource_group.metadata["url"],
                     **kwargs
                 )
-                request.url = self._client.format_url(request.url)
+                path_format_arguments = {
+                    "subscriptionId": self._serialize.url(
+                        "self._config.subscription_id", self._config.subscription_id, "str"
+                    ),
+                }
+                request.url = self._client.format_url(request.url, **path_format_arguments)
                 kwargs.pop("content_type", None)
                 # little hacky, but this code will soon be replaced with code that won't need the hack
                 path_format_arguments = {
@@ -601,7 +639,10 @@ class StorageAccountsOperations(object):
             template_url=self.regenerate_key.metadata["url"],
             **kwargs
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
         kwargs.pop("content_type", None)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

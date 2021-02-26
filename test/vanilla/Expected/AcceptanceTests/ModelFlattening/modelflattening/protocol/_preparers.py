@@ -8,6 +8,7 @@
 from typing import TYPE_CHECKING
 
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 if TYPE_CHECKING:
@@ -323,7 +324,7 @@ def _put_simple_product_with_grouping_request(
     path_format_arguments = {
         "name": _SERIALIZER.url("name", name, "str"),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]

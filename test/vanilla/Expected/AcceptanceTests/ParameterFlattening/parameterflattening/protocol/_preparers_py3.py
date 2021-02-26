@@ -8,6 +8,7 @@
 from typing import Dict
 
 from azure.core.pipeline.transport import HttpRequest
+from azure.core.pipeline.transport._base import _format_url_section
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
@@ -24,7 +25,7 @@ def _update_request(
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "availabilitySetName": _SERIALIZER.url("avset", avset, "str", max_length=80, min_length=0),
     }
-    url = self._client.format_url(url, **path_format_arguments)
+    url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
